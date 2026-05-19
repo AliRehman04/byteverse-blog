@@ -193,35 +193,3 @@ export function MarkdownRenderer({ content }: { content: string }) {
   );
 }
 
-export function TableOfContents({ content }: { content: string }) {
-  const headings = content.match(/^#{2,3}\s+.+$/gm) || [];
-  if (headings.length < 3) return null;
-
-  const items = headings.map((h) => {
-    const level = h.match(/^(#{2,3})/)?.[0].length || 2;
-    const text = h.replace(/^#{2,3}\s+/, "").replace(/\*\*/g, "");
-    const id = text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
-    return { level, text, id };
-  });
-
-  return (
-    <nav className="my-10 p-6 rounded-2xl bg-muted/50 ring-1 ring-border">
-      <p className="text-sm font-bold text-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
-        <span className="w-1 h-5 bg-primary rounded-full" />
-        Table of Contents
-      </p>
-      <ol className="space-y-1.5 text-sm">
-        {items.map((item, i) => (
-          <li key={i} className={item.level === 3 ? "pl-5" : ""}>
-            <a
-              href={`#${item.id}`}
-              className="text-muted-foreground hover:text-primary transition-colors leading-relaxed inline-block py-0.5"
-            >
-              {item.text}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}

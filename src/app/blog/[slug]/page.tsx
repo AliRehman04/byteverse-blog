@@ -97,6 +97,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}/logo.png`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

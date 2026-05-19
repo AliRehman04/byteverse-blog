@@ -64,6 +64,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
+  publisher: siteConfig.name,
   alternates: {
     canonical: siteConfig.url,
   },
@@ -92,6 +93,50 @@ export default function RootLayout({
       <head>
         <AdSense />
         <GoogleAnalytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+              logo: `${siteConfig.url}/logo.png`,
+              description: siteConfig.description,
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: siteConfig.email,
+                contactType: "customer support",
+              },
+              sameAs: [],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: siteConfig.name,
+              url: siteConfig.url,
+              description: siteConfig.description,
+              publisher: {
+                "@type": "Organization",
+                name: siteConfig.name,
+                logo: {
+                  "@type": "ImageObject",
+                  url: `${siteConfig.url}/logo.png`,
+                },
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: `${siteConfig.url}/blog?q={search_term_string}`,
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

@@ -4,8 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
-import Image from "next/image";
-import { useState } from "react";
+import { Children, isValidElement, useState } from "react";
 import { Check, Copy, ExternalLink } from "lucide-react";
 
 function CopyButton({ code }: { code: string }) {
@@ -44,23 +43,31 @@ export function MarkdownRenderer({ content }: { content: string }) {
               {children}
             </h3>
           ),
-          p: ({ children, ...props }) => (
-            <p className="text-base sm:text-[1.0625rem] leading-[1.85] text-foreground/90 mb-6" {...props}>
-              {children}
-            </p>
-          ),
+          p: ({ children, ...props }) => {
+            const childArray = Children.toArray(children);
+            const hasOnlyImage = childArray.length === 1 && isValidElement(childArray[0]) && childArray[0].type === "figure";
+
+            if (hasOnlyImage) {
+              return <>{children}</>;
+            }
+
+            return (
+              <p className="text-base sm:text-[1.0625rem] leading-[1.85] text-foreground/90 mb-6" {...props}>
+                {children}
+              </p>
+            );
+          },
           img: ({ src, alt }) => {
             if (!src || typeof src !== "string") return null;
             return (
               <figure className="my-10">
                 <div className="relative rounded-xl overflow-hidden ring-1 ring-border shadow-md">
-                  <Image
+                  <img
                     src={src}
                     alt={alt || ""}
-                    width={800}
-                    height={450}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
                   />
                 </div>
                 {alt && alt !== "" && (

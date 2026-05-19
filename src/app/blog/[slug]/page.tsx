@@ -336,6 +336,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     alt={post.title}
                     fill
                     priority
+                    unoptimized={post.coverImage.endsWith(".svg")}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 800px"
                   />
@@ -459,6 +460,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                           src={related.coverImage}
                           alt={related.title}
                           fill
+                          unoptimized={related.coverImage.endsWith(".svg")}
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 640px) 100vw, 33vw"
                         />

@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/config";
 export function Footer() {
   return (
     <footer className="mt-auto">
-      <div className="gradient-line" />
+      <div className="gradient-line" aria-hidden="true" />
       <div className="bg-muted/50 border-t border-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -88,6 +88,7 @@ export function Footer() {
                 href={siteConfig.links.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Twitter"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 Twitter
@@ -96,6 +97,7 @@ export function Footer() {
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="View our GitHub profile"
                 className="text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 GitHub

@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X, Zap, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
 
@@ -32,9 +33,13 @@ export function Header() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Zap size={16} className="text-primary-foreground" />
-              </div>
+              <Image
+                src="/logo.jpeg"
+                alt="ByteVerse Logo"
+                width={32}
+                height={32}
+                className="rounded-lg group-hover:scale-105 transition-transform"
+              />
               <span className="text-lg font-bold tracking-tight">
                 {siteConfig.name}
               </span>

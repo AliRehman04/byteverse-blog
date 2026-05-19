@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 
 export function Footer() {
@@ -12,9 +12,13 @@ export function Footer() {
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
               <Link href="/" className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <Zap size={14} className="text-primary-foreground" />
-                </div>
+                <Image
+                  src="/logo.jpeg"
+                  alt="ByteVerse Logo"
+                  width={32}
+                  height={32}
+                  className="rounded-lg"
+                />
                 <span className="text-lg font-bold">{siteConfig.name}</span>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Zap, Target, Users, Heart } from "lucide-react";
+import Image from "next/image";
+import { Target, Users, Heart } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
 
@@ -35,8 +36,8 @@ export default function AboutPage() {
         </div>
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 mb-5">
-              <Zap size={26} className="text-blue-400" />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 mb-5 overflow-hidden">
+              <Image src="/logo.jpeg" alt="ByteVerse Logo" width={56} height={56} className="rounded-2xl" />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
               About ByteVerse

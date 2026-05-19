@@ -10,6 +10,7 @@ import { formatDate } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { Newsletter } from "@/components/newsletter";
 import { AdUnit } from "@/components/adsense";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -274,10 +275,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <AdUnit slot="blog-top" format="horizontal" />
 
           {/* Content */}
-          <div
-            className="prose max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <MarkdownRenderer content={post.content} />
 
           {/* Ad after content */}
           <AdUnit slot="blog-bottom" format="horizontal" />

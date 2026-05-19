@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { db } from "@/lib/db";
-import { posts, categories } from "@/lib/db/schema";
+import { posts, categories, authors } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
@@ -16,7 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/disclaimer`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/author/ali-rehman`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
   ];
 
   if (!db) return staticPages;
@@ -46,5 +45,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...postPages, ...categoryPages];
+  // Author pages
+  const allAuthors = await db
+    .select({ slug: authors.slug })
+    .from(authors);
+
+  const authorPages: MetadataRoute.Sitemap = allAuthors.map((author) => ({
+    url: `${baseUrl}/author/${author.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...postPages, ...categoryPages, ...authorPages];
 }

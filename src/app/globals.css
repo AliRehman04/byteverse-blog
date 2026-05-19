@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+span.inline-block.relative.overflow-hidden {
+  top: 12px;
+}
+
 /* ====== MODERN PRO COLOR SYSTEM ====== */
 :root {
   --background: #ffffff;

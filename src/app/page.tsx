@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Zap, Code2, Braces, Terminal, Layers } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Zap, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
 import { db } from "@/lib/db";
@@ -66,6 +66,14 @@ export default async function HomePage() {
     allCategories = await db.select().from(categories);
   }
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
+
+  const categoryIcons: Record<string, React.ElementType> = {
+    "ai-tools": Bot,
+    "tech-guides": Monitor,
+    "productivity": Lightbulb,
+    "coding": Code2,
+    "software-reviews": Star,
+  };
 
   return (
     <>
@@ -281,10 +289,10 @@ export default async function HomePage() {
                     className="w-10 h-10 rounded-xl flex items-center justify-center"
                     style={{ backgroundColor: cat.color + "15" }}
                   >
-                    <div
-                      className="w-4 h-4 rounded-md group-hover:scale-110 transition-transform duration-300"
-                      style={{ backgroundColor: cat.color }}
-                    />
+                    {(() => {
+                      const IconComp = categoryIcons[cat.slug] || Package;
+                      return <IconComp size={20} style={{ color: cat.color }} className="group-hover:scale-110 transition-transform duration-300" />;
+                    })()}
                   </div>
                   <h3 className="font-bold group-hover:text-primary transition-colors duration-200">
                     {cat.name}

@@ -8,17 +8,17 @@ span.inline-block.relative.overflow-hidden {
 
 /* Footer logo sizing */
 footer img.h-9.w-auto {
-  width: 187px;
-  height: auto;
+  width: 187px !important;
+  height: auto !important;
   left: -18px;
   position: relative;
 }
 
 footer a.flex.items-center.gap-2.mb-4 {
-  height: 60px;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+  height: 60px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow: hidden !important;
 }
 
 /* ====== MODERN PRO COLOR SYSTEM ====== */

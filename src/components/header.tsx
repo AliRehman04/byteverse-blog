@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -10,6 +11,7 @@ import { siteConfig } from "@/lib/config";
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -45,15 +47,22 @@ export function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="px-3.5 py-2 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted/60 transition-all duration-200"
-                >
-                  {item.title}
-                </Link>
-              ))}
+              {siteConfig.nav.map((item) => {
+                const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-primary font-semibold bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right side */}
@@ -78,16 +87,23 @@ export function Header() {
           {/* Mobile Nav */}
           {mobileOpen && (
             <nav className="md:hidden py-4 border-t border-border space-y-1 animate-fade-in">
-              {siteConfig.nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-                >
-                  {item.title}
-                </Link>
-              ))}
+              {siteConfig.nav.map((item) => {
+                const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block px-4 py-3 text-sm rounded-lg transition-colors ${
+                      isActive
+                        ? "text-primary font-semibold bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                );
+              })}
               <Link
                 href="/blog"
                 onClick={() => setMobileOpen(false)}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { db } from "@/lib/db";
+import { categories } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -8,7 +10,20 @@ export const metadata: Metadata = {
     "Browse all content categories — AI Tools, Tech Guides, Productivity, Coding, and Software Reviews.",
 };
 
-export default function CategoriesPage() {
+export default async function CategoriesPage() {
+  const dbCategories = db
+    ? await db.select().from(categories).orderBy(categories.name)
+    : null;
+
+  const cats = dbCategories && dbCategories.length > 0
+    ? dbCategories.map((c) => ({
+        name: c.name,
+        slug: c.slug,
+        description: c.description || "",
+        color: c.color,
+      }))
+    : siteConfig.categories;
+
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="mb-12 animate-fade-in">
@@ -21,7 +36,7 @@ export default function CategoriesPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {siteConfig.categories.map((cat) => (
+        {cats.map((cat) => (
           <Link
             key={cat.slug}
             href={`/category/${cat.slug}`}

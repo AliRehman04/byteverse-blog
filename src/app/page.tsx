@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
+import { db } from "@/lib/db";
+import { categories } from "@/lib/db/schema";
 
 const features = [
   {
@@ -26,7 +28,20 @@ const features = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const dbCategories = db
+    ? await db.select().from(categories).orderBy(categories.name)
+    : null;
+
+  const cats = dbCategories && dbCategories.length > 0
+    ? dbCategories.map((c) => ({
+        name: c.name,
+        slug: c.slug,
+        description: c.description || "",
+        color: c.color,
+      }))
+    : siteConfig.categories;
+
   return (
     <>
       {/* Hero Section */}
@@ -106,7 +121,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {siteConfig.categories.map((cat) => (
+          {cats.map((cat) => (
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}

@@ -70,7 +70,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ===== HERO BANNER ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Gradient orbs */}

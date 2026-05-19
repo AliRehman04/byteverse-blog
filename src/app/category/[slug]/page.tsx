@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (!cat) return { title: "Category Not Found" };
 
   return {
-    title: `${cat.name} Articles — Guides, Tips & Tutorials | ByteVerse`,
+    title: `${cat.name} Articles — Guides, Tips & Tutorials`,
     description: cat.description
       ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles, tutorials, and in-depth guides on ByteVerse.`
       : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, tips, and in-depth guides on ByteVerse.`,

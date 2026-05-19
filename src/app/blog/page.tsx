@@ -7,9 +7,9 @@ import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Blog — Latest Articles on AI, Tech & Productivity | ByteVerse",
+  title: "Blog — Latest Articles on AI, Tech & Productivity",
   description:
-    "Read the latest in-depth articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse.",
+    "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse.",
   alternates: {
     canonical: `${siteConfig.url}/blog`,
   },

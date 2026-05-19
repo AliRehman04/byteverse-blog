@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Rules & Guidelines | ByteVerse",
+  title: "Terms of Service — Rules & Guidelines",
   description: `Review the ByteVerse terms of service covering content usage, affiliate links, intellectual property, user responsibilities, and site disclaimers.`,
   alternates: {
     canonical: `${siteConfig.url}/terms`,

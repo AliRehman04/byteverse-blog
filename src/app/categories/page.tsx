@@ -5,7 +5,7 @@ import { categories } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Browse All Categories — AI Tools, Tech Guides & More | ByteVerse",
+  title: "Browse All Categories — AI Tools, Tech Guides & More",
   description:
     "Explore all ByteVerse content categories including AI tools, step-by-step tech guides, productivity tips, coding tutorials, and honest software reviews.",
   alternates: {

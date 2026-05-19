@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Host
+Host: https://byteverse.fyi
+
+# Sitemaps
+Sitemap: https://byteverse.fyi/sitemap.xml

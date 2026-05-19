@@ -18,6 +18,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/disclaimer`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
+  if (!db) return staticPages;
+
   // Dynamic blog posts
   const allPosts = await db
     .select({ slug: posts.slug, updatedAt: posts.updatedAt })

@@ -8,6 +8,8 @@ export async function POST(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    if (!db) return NextResponse.json({ error: "DB not configured" }, { status: 503 });
+
     const { slug } = await params;
     await db
       .update(posts)

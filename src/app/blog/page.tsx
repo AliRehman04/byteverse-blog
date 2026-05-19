@@ -14,13 +14,18 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function BlogPage() {
-  const allPosts = await db
-    .select()
-    .from(posts)
-    .where(eq(posts.published, true))
-    .orderBy(desc(posts.createdAt));
+  let allPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
+  let allCategories: (typeof import("@/lib/db/schema").categories.$inferSelect)[] = [];
 
-  const allCategories = await db.select().from(categories);
+  if (db) {
+    allPosts = await db
+      .select()
+      .from(posts)
+      .where(eq(posts.published, true))
+      .orderBy(desc(posts.createdAt));
+
+    allCategories = await db.select().from(categories);
+  }
 
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
 

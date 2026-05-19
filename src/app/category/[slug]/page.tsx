@@ -29,21 +29,25 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const catConfig = siteConfig.categories.find((c) => c.slug === slug);
   if (!catConfig) notFound();
 
-  const catResult = await db
-    .select()
-    .from(categories)
-    .where(eq(categories.slug, slug))
-    .limit(1);
-
-  const category = catResult[0];
-
+  let category = null;
   let categoryPosts: (typeof posts.$inferSelect)[] = [];
-  if (category) {
-    categoryPosts = await db
+
+  if (db) {
+    const catResult = await db
       .select()
-      .from(posts)
-      .where(and(eq(posts.categoryId, category.id), eq(posts.published, true)))
-      .orderBy(desc(posts.createdAt));
+      .from(categories)
+      .where(eq(categories.slug, slug))
+      .limit(1);
+
+    category = catResult[0] || null;
+
+    if (category) {
+      categoryPosts = await db
+        .select()
+        .from(posts)
+        .where(and(eq(posts.categoryId, category.id), eq(posts.published, true)))
+        .orderBy(desc(posts.createdAt));
+    }
   }
 
   return (

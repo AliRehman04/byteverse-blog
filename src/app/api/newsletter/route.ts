@@ -5,6 +5,10 @@ import { eq } from "drizzle-orm";
 
 export async function POST(request: Request) {
   try {
+    if (!db) {
+      return NextResponse.json({ error: "Database not configured" }, { status: 503 });
+    }
+
     const { email } = await request.json();
 
     if (!email || typeof email !== "string") {

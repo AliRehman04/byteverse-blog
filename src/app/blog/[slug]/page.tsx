@@ -19,6 +19,8 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (!db) return { title: "Post Not Found" };
+
   const result = await db
     .select()
     .from(posts)
@@ -54,6 +56,8 @@ export const revalidate = 60;
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
+  if (!db) notFound();
+
   const result = await db
     .select()
     .from(posts)

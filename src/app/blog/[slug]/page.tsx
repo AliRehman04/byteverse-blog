@@ -10,7 +10,7 @@ import { formatDate } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { Newsletter } from "@/components/newsletter";
 import { AdUnit } from "@/components/adsense";
-import { MarkdownRenderer, TableOfContents } from "@/components/markdown-renderer";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { ShareButtons } from "@/components/share-buttons";
 import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
 
@@ -342,10 +342,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
 
         {/* ========== ARTICLE BODY ========== */}
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
-          <div className="lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
-            {/* Main Content Column */}
-            <div className="min-w-0">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+          <div className="min-w-0">
               {/* Cover Image */}
               {post.coverImage && (
                 <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 ring-1 ring-border shadow-lg">
@@ -363,11 +361,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Ad before content */}
               <AdUnit slot="blog-top" format="horizontal" />
-
-              {/* Table of Contents (mobile: inside content flow) */}
-              <div className="lg:hidden">
-                <TableOfContents content={post.content} />
-              </div>
 
               {/* Markdown Content */}
               <MarkdownRenderer content={post.content} />
@@ -439,18 +432,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* ========== SIDEBAR (Desktop) ========== */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-24 space-y-6">
-                {/* TOC */}
-                <TableOfContents content={post.content} />
-
-                {/* Sidebar Ad */}
-                <AdUnit slot="sidebar" format="vertical" />
-              </div>
-            </aside>
           </div>
 
           {/* ========== RELATED POSTS ========== */}

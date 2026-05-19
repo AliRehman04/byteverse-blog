@@ -77,7 +77,25 @@ export function getPostSeoImages({
   return images;
 }
 
+export function getImageLicenseUrl(imageUrl: string) {
+  if (imageUrl.startsWith(siteConfig.url)) return `${siteConfig.url}/terms`;
+  if (imageUrl.includes("images.unsplash.com")) return "https://unsplash.com/license";
+  if (imageUrl.includes("images.pexels.com")) return "https://www.pexels.com/license/";
+  if (imageUrl.includes("pixabay.com")) return "https://pixabay.com/service/license-summary/";
+  return `${siteConfig.url}/terms`;
+}
+
+export function getImageCreditText(imageUrl: string) {
+  if (imageUrl.startsWith(siteConfig.url)) return `${siteConfig.name} original illustration`;
+  if (imageUrl.includes("images.unsplash.com")) return "Royalty-free stock photo from Unsplash";
+  if (imageUrl.includes("images.pexels.com")) return "Royalty-free stock photo from Pexels";
+  if (imageUrl.includes("pixabay.com")) return "Royalty-free stock photo from Pixabay";
+  return "Royalty-free stock photo";
+}
+
 export function toImageObjectSchema(image: SeoImage, representativeOfPage = false) {
+  const isByteVerseAsset = image.url.startsWith(siteConfig.url);
+
   return {
     "@type": "ImageObject",
     url: image.url,
@@ -88,17 +106,20 @@ export function toImageObjectSchema(image: SeoImage, representativeOfPage = fals
     height: image.height,
     inLanguage: "en-US",
     representativeOfPage,
-    creator: {
+    creator: isByteVerseAsset ? {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
-    },
-    copyrightHolder: {
+    } : undefined,
+    copyrightHolder: isByteVerseAsset ? {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
-    },
-    copyrightNotice: `Copyright ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`,
-    creditText: `${siteConfig.name} original illustration`,
+    } : undefined,
+    copyrightNotice: isByteVerseAsset
+      ? `Copyright ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`
+      : "Royalty-free stock photo used under the source platform license.",
+    creditText: getImageCreditText(image.url),
+    license: getImageLicenseUrl(image.url),
   };
 }

@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { posts } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
-import { getPostSeoImages } from "@/lib/image-seo";
+import { getImageLicenseUrl, getPostSeoImages } from "@/lib/image-seo";
 
 export const revalidate = 3600;
 
@@ -45,7 +45,7 @@ export async function GET() {
       <image:loc>${escapeXml(image.url)}</image:loc>
       <image:title>${escapeXml(image.alt)}</image:title>
       <image:caption>${escapeXml(image.caption)}</image:caption>
-      <image:license>${escapeXml(`${siteConfig.url}/terms`)}</image:license>
+      <image:license>${escapeXml(getImageLicenseUrl(image.url))}</image:license>
     </image:image>`)
         .join("");
 

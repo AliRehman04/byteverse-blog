@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Target, Users, Heart } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
@@ -35,14 +34,15 @@ export default function AboutPage() {
           }} />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 mb-5 overflow-hidden">
-              <Image src="/logo.jpeg" alt="ByteVerse Logo" width={56} height={56} className="rounded-2xl" />
+          <div className="animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              About Us
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
               About ByteVerse
             </h1>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
               We believe technology should be accessible to everyone. ByteVerse is
               your trusted guide to navigating the ever-evolving tech landscape.
             </p>

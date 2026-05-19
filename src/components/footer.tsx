@@ -10,7 +10,7 @@ export function Footer() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1 flex flex-col">
               <Link href="/" className="flex items-center gap-2 mb-4">
                 <Image
                   src="/logo.png"
@@ -86,26 +86,12 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
             </p>
-            <div className="flex gap-4">
-              <a
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on Twitter"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Twitter
-              </a>
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View our GitHub profile"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                GitHub
-              </a>
-            </div>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {siteConfig.email}
+            </a>
           </div>
         </div>
       </div>

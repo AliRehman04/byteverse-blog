@@ -5,11 +5,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi",
   ogImage: "/og-image.png",
   author: "ByteVerse Team",
-  email: "hello@byteverse.fyi",
-  links: {
-    twitter: "https://twitter.com/byteverse",
-    github: "https://github.com/byteverse",
-  },
+  email: "alirehmanytlearning@gmail.com",
   nav: [
     { title: "Home", href: "/" },
     { title: "Blog", href: "/blog" },

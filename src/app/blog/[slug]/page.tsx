@@ -114,36 +114,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {/* Back link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary font-medium mb-10 transition-colors group"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary font-medium mb-8 transition-colors"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft size={14} />
           Back to Blog
         </Link>
 
         {/* Header */}
-        <header className="mb-12 animate-fade-in">
+        <header className="mb-10 animate-fade-in">
           {category && (
             <Link
               href={`/category/${category.slug}`}
-              className="tag text-white mb-5 inline-flex"
-              style={{ backgroundColor: category.color }}
+              className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-md mb-4"
+              style={{ backgroundColor: category.color + "15", color: category.color }}
             >
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: category.color }} />
               {category.name}
             </Link>
           )}
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-5 leading-[1.1]">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 leading-tight">
             {post.title}
           </h1>
 
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
+          <p className="text-muted-foreground mb-6 leading-relaxed">{post.excerpt}</p>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground p-4 rounded-2xl glass">
-            <span className="font-bold text-foreground">{post.author}</span>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground pb-6 border-b border-border">
+            <span className="font-semibold text-foreground">{post.author}</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
@@ -168,7 +169,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Cover Image */}
         {post.coverImage && (
-          <div className="relative aspect-video rounded-3xl overflow-hidden mb-12 glow-sm">
+          <div className="relative aspect-video rounded-xl overflow-hidden mb-10">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -192,14 +193,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Ad after content */}
         <AdUnit slot="blog-bottom" format="horizontal" />
 
-        {/* Share & Tags */}
-        <div className="mt-14 pt-8 border-t border-border/50">
+        {/* Tags */}
+        <div className="mt-12 pt-6 border-t border-border">
           {post.keywords && (
             <div className="flex flex-wrap gap-2">
               {post.keywords.split(",").map((tag) => (
                 <span
                   key={tag}
-                  className="tag glass text-muted-foreground"
+                  className="text-xs px-2.5 py-1 rounded-md bg-muted text-muted-foreground"
                 >
                   #{tag.trim()}
                 </span>
@@ -209,7 +210,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Newsletter */}
-        <div className="mt-14">
+        <div className="mt-12">
           <Newsletter />
         </div>
       </article>

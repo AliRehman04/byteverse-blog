@@ -81,40 +81,38 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       {/* Header */}
-      <div className="mb-16 animate-fade-in relative">
-        <div className="orb w-72 h-72 -top-36 -right-36" style={{ backgroundColor: catDisplay.color + "15" }} />
-        <div className="flex items-center gap-3 mb-5">
+      <div className="mb-10 animate-fade-in">
+        <div className="flex items-center gap-3 mb-3">
           <div
-            className="tag text-white"
+            className="w-3 h-3 rounded-full"
             style={{ backgroundColor: catDisplay.color }}
-          >
+          />
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
             Category
-          </div>
+          </span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+        <h1 className="text-3xl font-bold tracking-tight mb-3">
           {catDisplay.name}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        <p className="text-muted-foreground max-w-2xl">
           {catDisplay.description}
         </p>
       </div>
 
       {/* Posts */}
       {categoryPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {categoryPosts.map((post) => (
             <PostCard key={post.id} post={post} category={category} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-24">
-          <div className="w-20 h-20 rounded-3xl glass flex items-center justify-center mx-auto mb-6">
-            <span className="text-3xl">📂</span>
-          </div>
-          <h2 className="text-2xl font-bold mb-3">No articles yet</h2>
-          <p className="text-muted-foreground">
+        <div className="text-center py-20">
+          <p className="text-5xl mb-4">📂</p>
+          <h2 className="text-xl font-bold mb-2">No articles yet</h2>
+          <p className="text-sm text-muted-foreground">
             We&apos;re preparing great content for this category. Stay tuned!
           </p>
         </div>

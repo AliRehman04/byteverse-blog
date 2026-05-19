@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, CheckCircle, Loader2, Sparkles } from "lucide-react";
+import { Mail, CheckCircle, Loader2 } from "lucide-react";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -37,47 +37,36 @@ export function Newsletter() {
   }
 
   return (
-    <section className="relative overflow-hidden rounded-3xl glass-strong p-8 md:p-14">
-      {/* Orbs */}
-      <div className="orb w-72 h-72 bg-violet-500/15 -top-36 -right-36" />
-      <div className="orb w-56 h-56 bg-pink-500/10 -bottom-28 -left-28" style={{ animationDelay: "-10s" }} />
-
-      <div className="relative z-10 max-w-xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-primary text-sm font-semibold mb-6">
-          <Sparkles size={14} className="animate-pulse" />
-          Newsletter
+    <section className="rounded-xl bg-muted border border-border p-8 md:p-10">
+      <div className="max-w-xl mx-auto text-center">
+        <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 mb-4">
+          <Mail size={20} className="text-primary" />
         </div>
-
-        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
-          Stay <span className="gradient-text">Updated</span>
-        </h3>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+        <h3 className="text-xl font-bold mb-2">Stay Updated</h3>
+        <p className="text-sm text-muted-foreground mb-6">
           Get the latest AI tools, tech guides, and productivity tips delivered
           to your inbox. No spam, unsubscribe anytime.
         </p>
 
         {status === "success" ? (
-          <div className="flex items-center justify-center gap-2 text-green-500 animate-fade-in">
-            <CheckCircle size={20} />
-            <span className="font-medium">{message}</span>
+          <div className="flex items-center justify-center gap-2 text-green-600 animate-fade-in">
+            <CheckCircle size={18} />
+            <span className="text-sm font-medium">{message}</span>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <div className="relative flex-1">
-              <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full pl-11 pr-4 py-3.5 rounded-2xl glass text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow placeholder:text-muted-foreground/60"
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2.5 max-w-md mx-auto">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-2.5 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-shadow"
+            />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-7 py-3.5 gradient-bg text-white rounded-2xl text-sm font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2 glow-sm"
+              className="px-5 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {status === "loading" ? (
                 <Loader2 size={16} className="animate-spin" />
@@ -89,7 +78,7 @@ export function Newsletter() {
         )}
 
         {status === "error" && (
-          <p className="mt-4 text-sm text-red-500 font-medium">{message}</p>
+          <p className="mt-3 text-sm text-red-500">{message}</p>
         )}
       </div>
     </section>

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { categories } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/config";
-import { ArrowRight, Grid3X3, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Browse All Categories — AI Tools, Tech Guides & More",
@@ -29,53 +28,35 @@ export default async function CategoriesPage() {
     : siteConfig.categories;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <div className="mb-16 animate-fade-in relative">
-        <div className="orb w-80 h-80 bg-pink-500/10 -top-40 -right-40" />
-        <div className="tag glass text-primary mb-4 w-fit">
-          <Grid3X3 size={12} />
-          Topics
-        </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-          Browse <span className="gradient-text">Categories</span>
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="mb-10 animate-fade-in">
+        <h1 className="text-3xl font-bold tracking-tight mb-3">
+          Browse Categories
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        <p className="text-muted-foreground max-w-2xl">
           Find articles organized by topic. Click any category to explore.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cats.map((cat, i) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cats.map((cat) => (
           <Link
             key={cat.slug}
             href={`/category/${cat.slug}`}
-            className={`group relative p-8 rounded-3xl glass hover-lift overflow-hidden animate-fade-in-up stagger-${(i % 5) + 1}`}
+            className="group p-6 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-sm transition-all"
           >
-            {/* Top gradient accent */}
-            <div
-              className="absolute top-0 left-0 w-full h-1 opacity-60 group-hover:opacity-100 transition-opacity"
-              style={{ backgroundColor: cat.color }}
-            />
-
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
-              style={{ backgroundColor: cat.color + "20" }}
-            >
+            <div className="flex items-center gap-3 mb-2">
               <div
-                className="w-6 h-6 rounded-lg"
+                className="w-3 h-3 rounded-full"
                 style={{ backgroundColor: cat.color }}
               />
+              <h2 className="font-semibold group-hover:text-primary transition-colors">
+                {cat.name}
+              </h2>
             </div>
-
-            <h2 className="text-xl font-extrabold mb-2 group-hover:text-primary transition-colors">
-              {cat.name}
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {cat.description}
             </p>
-            <div className="flex items-center gap-1 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-              Explore Articles <ArrowRight size={12} />
-            </div>
           </Link>
         ))}
       </div>

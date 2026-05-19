@@ -180,7 +180,7 @@ export default async function HomePage() {
           <svg className="relative block w-full h-16 md:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path
               d="M0,40 C150,100 350,0 600,50 C850,100 1050,10 1200,40 L1200,120 L0,120 Z"
-              className="fill-background"
+              className="fill-[#f1f5f9] dark:fill-[#141416]"
             />
           </svg>
         </div>

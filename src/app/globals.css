@@ -340,3 +340,61 @@ body {
   background: var(--muted);
   font-weight: 700;
 }
+
+/* ====== BLOG CONTENT OVERRIDES ====== */
+.blog-content h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.blog-content > div > :first-child {
+  margin-top: 0;
+}
+
+.blog-content figure + h2,
+.blog-content figure + h3 {
+  margin-top: 2.5em;
+}
+
+/* Numbered list styling */
+.blog-content ol {
+  counter-reset: blog-counter;
+}
+.blog-content ol > li {
+  counter-increment: blog-counter;
+}
+.blog-content ol > li > span:first-child {
+  display: none;
+}
+.blog-content ol > li::before {
+  content: counter(blog-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Code block dark theme */
+.blog-content pre {
+  background: #0d1117 !important;
+  border: none !important;
+}
+
+.blog-content pre code {
+  color: #c9d1d9;
+  background: none !important;
+}
+
+/* Smooth scroll for TOC links */
+html {
+  scroll-behavior: smooth;
+}

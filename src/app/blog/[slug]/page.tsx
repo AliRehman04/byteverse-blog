@@ -3,14 +3,15 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { posts, categories } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
-import { Clock, Calendar, ArrowLeft, Eye } from "lucide-react";
+import { posts, categories, authors } from "@/lib/db/schema";
+import { eq, ne, desc, and } from "drizzle-orm";
+import { Clock, Calendar, ArrowLeft, Eye, Share2, ChevronRight, User } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { Newsletter } from "@/components/newsletter";
 import { AdUnit } from "@/components/adsense";
-import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { MarkdownRenderer, TableOfContents } from "@/components/markdown-renderer";
+import { ShareButtons } from "@/components/share-buttons";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -168,6 +169,47 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Track view
   void fetch(`${siteConfig.url}/api/views/${post.slug}`, { method: "POST" }).catch(() => {});
 
+  // Fetch author info from DB
+  const authorSlug = post.author.toLowerCase().replace(/\s+/g, "-");
+  let authorData = null;
+  try {
+    const authorResult = await db
+      .select()
+      .from(authors)
+      .where(eq(authors.slug, authorSlug))
+      .limit(1);
+    authorData = authorResult[0] || null;
+  } catch { /* ignore */ }
+
+  // Fetch related posts (same category, exclude current)
+  let relatedPosts: (typeof post)[] = [];
+  try {
+    if (post.categoryId) {
+      relatedPosts = await db
+        .select()
+        .from(posts)
+        .where(and(eq(posts.categoryId, post.categoryId), ne(posts.id, post.id), eq(posts.published, true)))
+        .orderBy(desc(posts.createdAt))
+        .limit(3);
+    }
+    if (relatedPosts.length < 3) {
+      const moreIds = [post.id, ...relatedPosts.map((p) => p.id)];
+      const more = await db
+        .select()
+        .from(posts)
+        .where(eq(posts.published, true))
+        .orderBy(desc(posts.views))
+        .limit(6);
+      for (const p of more) {
+        if (!moreIds.includes(p.id) && relatedPosts.length < 3) {
+          relatedPosts.push(p);
+        }
+      }
+    }
+  } catch { /* ignore */ }
+
+  const postUrl = `${siteConfig.url}/blog/${post.slug}`;
+
   return (
     <>
       <script
@@ -186,7 +228,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       <article>
-        {/* Article Header */}
+        {/* ========== HERO HEADER ========== */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl animate-float-slow" />
@@ -196,15 +238,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               backgroundSize: "60px 60px",
             }} />
           </div>
-          <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
-            {/* Back link */}
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white font-medium mb-8 transition-colors"
-            >
-              <ArrowLeft size={14} />
-              Back to Blog
-            </Link>
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-2 text-sm text-slate-400 mb-8 flex-wrap">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={14} />
+              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+              {category && (
+                <>
+                  <ChevronRight size={14} />
+                  <Link href={`/category/${category.slug}`} className="hover:text-white transition-colors">{category.name}</Link>
+                </>
+              )}
+            </nav>
 
             <div className="animate-fade-in-up">
               {category && (
@@ -218,15 +264,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </Link>
               )}
 
-              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold tracking-tight mb-5 leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold tracking-tight mb-6 leading-[1.15]">
                 {post.title}
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed">{post.excerpt}</p>
+              {post.excerpt && (
+                <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed max-w-2xl">{post.excerpt}</p>
+              )}
 
+              {/* Author + Meta Row */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
-                <span className="font-semibold text-white">{post.author}</span>
-                <span className="w-1 h-1 rounded-full bg-slate-500" />
+                <Link href={`/author/${authorSlug}`} className="flex items-center gap-3 group">
+                  {authorData?.avatar ? (
+                    <Image
+                      src={authorData.avatar}
+                      alt={post.author}
+                      width={36}
+                      height={36}
+                      className="w-9 h-9 rounded-full ring-2 ring-white/20 object-cover"
+                    />
+                  ) : (
+                    <div className="w-9 h-9 rounded-full ring-2 ring-white/20 bg-white/10 flex items-center justify-center text-sm font-bold">
+                      {post.author.charAt(0)}
+                    </div>
+                  )}
+                  <div>
+                    <span className="font-semibold text-white group-hover:text-blue-300 transition-colors block leading-tight">{post.author}</span>
+                    {authorData?.role && <span className="text-xs text-slate-500">{authorData.role}</span>}
+                  </div>
+                </Link>
+                <span className="w-px h-5 bg-slate-600 hidden sm:block" />
                 <span className="flex items-center gap-1.5">
                   <Calendar size={14} />
                   {formatDate(post.createdAt)}
@@ -243,11 +310,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span className="w-1 h-1 rounded-full bg-slate-500" />
                 <span className="flex items-center gap-1.5">
                   <Eye size={14} />
-                  {post.views} views
+                  {post.views.toLocaleString()} views
                 </span>
               </div>
             </div>
           </div>
+          {/* Wave separator */}
           <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
             <svg className="relative block w-full h-10 md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
               <path d="M0,40 C150,100 350,0 600,50 C850,100 1050,10 1200,40 L1200,120 L0,120 Z" className="fill-background" />
@@ -255,50 +323,173 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
 
-        {/* Article Body */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
-          {/* Cover Image */}
-          {post.coverImage && (
-            <div className="relative aspect-video rounded-2xl overflow-hidden mb-12 ring-1 ring-border">
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 800px"
-              />
-            </div>
-          )}
+        {/* ========== ARTICLE BODY ========== */}
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+          <div className="lg:grid lg:grid-cols-[1fr_260px] lg:gap-10">
+            {/* Main Content Column */}
+            <div className="min-w-0">
+              {/* Cover Image */}
+              {post.coverImage && (
+                <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 ring-1 ring-border shadow-lg">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
+                </div>
+              )}
 
-          {/* Ad before content */}
-          <AdUnit slot="blog-top" format="horizontal" />
+              {/* Ad before content */}
+              <AdUnit slot="blog-top" format="horizontal" />
 
-          {/* Content */}
-          <MarkdownRenderer content={post.content} />
+              {/* Table of Contents (mobile: inside content flow) */}
+              <div className="lg:hidden">
+                <TableOfContents content={post.content} />
+              </div>
 
-          {/* Ad after content */}
-          <AdUnit slot="blog-bottom" format="horizontal" />
+              {/* Markdown Content */}
+              <MarkdownRenderer content={post.content} />
 
-          {/* Tags */}
-          {post.keywords && (
-            <div className="mt-14 pt-8 border-t border-border">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Tags</p>
-              <div className="flex flex-wrap gap-2">
-                {post.keywords.split(",").map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    #{tag.trim()}
-                  </span>
-                ))}
+              {/* Ad after content */}
+              <AdUnit slot="blog-bottom" format="horizontal" />
+
+              {/* Tags */}
+              {post.keywords && (
+                <div className="mt-12 pt-8 border-t border-border">
+                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Tags</p>
+                  <div className="flex flex-wrap gap-2">
+                    {post.keywords.split(",").map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors cursor-default"
+                      >
+                        #{tag.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Share Buttons */}
+              <div className="mt-10 pt-8 border-t border-border">
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Share2 size={14} />
+                  Share this article
+                </p>
+                <ShareButtons url={postUrl} title={post.title} />
+              </div>
+
+              {/* ========== AUTHOR BOX ========== */}
+              <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-muted/50 ring-1 ring-border">
+                <div className="flex flex-col sm:flex-row items-start gap-5">
+                  <Link href={`/author/${authorSlug}`} className="shrink-0">
+                    {authorData?.avatar ? (
+                      <Image
+                        src={authorData.avatar}
+                        alt={post.author}
+                        width={72}
+                        height={72}
+                        className="w-[72px] h-[72px] rounded-2xl object-cover ring-2 ring-border"
+                      />
+                    ) : (
+                      <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 ring-2 ring-border flex items-center justify-center">
+                        <User size={28} className="text-primary" />
+                      </div>
+                    )}
+                  </Link>
+                  <div className="flex-1">
+                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-1">Written by</p>
+                    <Link href={`/author/${authorSlug}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">
+                      {post.author}
+                    </Link>
+                    {authorData?.role && (
+                      <p className="text-sm text-muted-foreground mt-0.5">{authorData.role} at ByteVerse</p>
+                    )}
+                    {authorData?.bio && (
+                      <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{authorData.bio}</p>
+                    )}
+                    <Link
+                      href={`/author/${authorSlug}`}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-primary mt-3 hover:underline"
+                    >
+                      View all posts <ArrowLeft size={14} className="rotate-180" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* ========== SIDEBAR (Desktop) ========== */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 space-y-6">
+                {/* TOC */}
+                <TableOfContents content={post.content} />
+
+                {/* Sidebar Ad */}
+                <AdUnit slot="sidebar" format="vertical" />
+              </div>
+            </aside>
+          </div>
+
+          {/* ========== RELATED POSTS ========== */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-border">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-extrabold tracking-tight flex items-center gap-2">
+                  <span className="w-1 h-7 bg-primary rounded-full" />
+                  You Might Also Like
+                </h2>
+                <Link href="/blog" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
+                  All Posts <ChevronRight size={14} />
+                </Link>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedPosts.map((related) => (
+                  <Link
+                    key={related.id}
+                    href={`/blog/${related.slug}`}
+                    className="group rounded-2xl overflow-hidden ring-1 ring-border bg-card hover:shadow-lg transition-all hover:-translate-y-0.5"
+                  >
+                    {related.coverImage ? (
+                      <div className="relative aspect-[16/10] overflow-hidden">
+                        <Image
+                          src={related.coverImage}
+                          alt={related.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-[16/10] bg-muted flex items-center justify-center">
+                        <span className="text-4xl font-bold text-muted-foreground/30">{related.title.charAt(0)}</span>
+                      </div>
+                    )}
+                    <div className="p-5">
+                      <h3 className="font-bold text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2 mb-2">
+                        {related.title}
+                      </h3>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>{formatDate(related.createdAt)}</span>
+                        {related.readingTime && (
+                          <>
+                            <span className="w-1 h-1 rounded-full bg-border" />
+                            <span>{related.readingTime}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
 
-          {/* Newsletter */}
-          <div className="mt-14">
+          {/* ========== NEWSLETTER ========== */}
+          <div className="mt-16">
             <Newsletter />
           </div>
         </div>

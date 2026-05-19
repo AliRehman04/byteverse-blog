@@ -7,6 +7,7 @@ import { categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { PostCard } from "@/components/post-card";
 import { TextRotator } from "@/components/text-rotator";
+import { HeroCodeBlock } from "@/components/hero-code-block";
 
 const features = [
   {
@@ -115,53 +116,61 @@ export default async function HomePage() {
 
         {/* Content */}
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-28 md:pt-28 md:pb-36">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-8">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Your Tech Knowledge Hub
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left - Text */}
+            <div>
+              {/* Badge */}
+              <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-8">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Your Tech Knowledge Hub
+              </div>
+
+              {/* Headline */}
+              <h1 className="animate-fade-in-up stagger-1 text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                Master the World
+                <br />
+                of <TextRotator />
+              </h1>
+
+              <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
+                Discover AI tools, master new technologies, and boost your
+                productivity with expert guides, tutorials, and honest reviews.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="animate-fade-in-up stagger-3 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-slate-900 rounded-xl text-sm font-bold hover:bg-slate-100 transition-all duration-200 btn-shimmer"
+                >
+                  Start Reading <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="/categories"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 bg-white/5 backdrop-blur-sm rounded-xl text-sm font-semibold hover:bg-white/10 hover:border-white/30 transition-all duration-200"
+                >
+                  Browse Categories
+                </Link>
+              </div>
+
+              {/* Stats bar */}
+              <div className="animate-fade-in-up stagger-4 mt-12 flex flex-wrap gap-8">
+                {[
+                  { value: "50+", label: "Articles" },
+                  { value: `${cats.length}`, label: "Categories" },
+                  { value: "10K+", label: "Readers" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-2xl font-extrabold text-white">{stat.value}</div>
+                    <div className="text-[10px] text-slate-400 mt-0.5 uppercase tracking-wider font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Headline */}
-            <h1 className="animate-fade-in-up stagger-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6">
-              Master the World
-              <br />
-              of <TextRotator />
-            </h1>
-
-            <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
-              Discover AI tools, master new technologies, and boost your
-              productivity with expert guides, tutorials, and honest reviews.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="animate-fade-in-up stagger-3 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-slate-900 rounded-xl text-sm font-bold hover:bg-slate-100 transition-all duration-200 btn-shimmer"
-              >
-                Start Reading <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/categories"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 bg-white/5 backdrop-blur-sm rounded-xl text-sm font-semibold hover:bg-white/10 hover:border-white/30 transition-all duration-200"
-              >
-                Browse Categories
-              </Link>
-            </div>
-
-            {/* Stats bar */}
-            <div className="animate-fade-in-up stagger-4 mt-14 flex flex-wrap gap-8 md:gap-12">
-              {[
-                { value: "50+", label: "Articles" },
-                { value: `${cats.length}`, label: "Categories" },
-                { value: "10K+", label: "Readers" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl md:text-3xl font-extrabold text-white">{stat.value}</div>
-                  <div className="text-xs text-slate-400 mt-0.5 uppercase tracking-wider font-medium">{stat.label}</div>
-                </div>
-              ))}
+            {/* Right - Code Block Visual */}
+            <div className="hidden lg:block animate-fade-in-up stagger-3">
+              <HeroCodeBlock />
             </div>
           </div>
         </div>

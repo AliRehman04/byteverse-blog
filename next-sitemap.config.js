@@ -6,7 +6,9 @@ const config = {
   changefreq: "daily",
   priority: 0.7,
   robotsTxtOptions: {
-    additionalSitemaps: [],
+    additionalSitemaps: [
+      `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi"}/image-sitemap.xml`,
+    ],
     policies: [
       {
         userAgent: "*",

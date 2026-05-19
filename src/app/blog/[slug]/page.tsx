@@ -12,6 +12,7 @@ import { Newsletter } from "@/components/newsletter";
 import { AdUnit } from "@/components/adsense";
 import { MarkdownRenderer, TableOfContents } from "@/components/markdown-renderer";
 import { ShareButtons } from "@/components/share-buttons";
+import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,12 @@ export async function generateMetadata({
   const post = result[0];
   if (!post) return { title: "Post Not Found" };
 
+  const seoImages = getPostSeoImages({
+    title: post.title,
+    coverImage: post.coverImage,
+    content: post.content,
+  });
+
   return {
     title: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
@@ -43,13 +50,18 @@ export async function generateMetadata({
       publishedTime: post.createdAt.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
       authors: [post.author],
-      images: post.coverImage ? [{ url: post.coverImage }] : [],
+      images: seoImages.slice(0, 4).map((image) => ({
+        url: image.url,
+        width: image.width,
+        height: image.height,
+        alt: image.alt,
+      })),
     },
     twitter: {
       card: "summary_large_image",
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: seoImages[0] ? [seoImages[0].url] : [],
     },
     alternates: {
       canonical: `${siteConfig.url}/blog/${slug}`,
@@ -85,6 +97,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // JSON-LD structured data (auto-generated from post data)
   const wordCount = post.content.split(/\s+/).length;
   const readingMinutes = Math.ceil(wordCount / 200);
+  const postUrl = `${siteConfig.url}/blog/${post.slug}`;
+  const seoImages = getPostSeoImages({
+    title: post.title,
+    coverImage: post.coverImage,
+    content: post.content,
+  });
 
   // Auto-extract FAQs from content (matches ## FAQ or ### heading with ? in it)
   const faqRegex = /#{2,3}\s+(.+\?)\s*\n+([\s\S]*?)(?=\n#{2,3}\s|\n*$)/g;
@@ -102,7 +120,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "BlogPosting",
     headline: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
-    image: post.coverImage || undefined,
+    image: seoImages.map((image, index) => toImageObjectSchema(image, index === 0)),
+    thumbnailUrl: seoImages[0]?.url,
+    primaryImageOfPage: seoImages[0] ? toImageObjectSchema(seoImages[0], true) : undefined,
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     wordCount,
@@ -123,9 +143,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteConfig.url}/blog/${post.slug}`,
+      "@id": postUrl,
     },
-    url: `${siteConfig.url}/blog/${post.slug}`,
+    url: postUrl,
     ...(post.keywords ? { keywords: post.keywords } : {}),
     ...(category ? {
       articleSection: category.name,
@@ -207,8 +227,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       }
     }
   } catch { /* ignore */ }
-
-  const postUrl = `${siteConfig.url}/blog/${post.slug}`;
 
   return (
     <>
@@ -333,7 +351,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 ring-1 ring-border shadow-lg">
                   <Image
                     src={post.coverImage}
-                    alt={post.title}
+                    alt={seoImages[0]?.alt || post.title}
                     fill
                     priority
                     unoptimized={post.coverImage.endsWith(".svg")}

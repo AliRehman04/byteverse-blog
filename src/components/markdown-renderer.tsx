@@ -57,22 +57,31 @@ export function MarkdownRenderer({ content }: { content: string }) {
               </p>
             );
           },
-          img: ({ src, alt }) => {
+          img: ({ src, alt, title }) => {
             if (!src || typeof src !== "string") return null;
+            const imageAlt = alt || title || "ByteVerse article illustration";
+            const imageCaption = title || alt;
             return (
-              <figure className="my-10">
+              <figure className="my-10" itemScope itemType="https://schema.org/ImageObject">
                 <div className="relative rounded-xl overflow-hidden ring-1 ring-border shadow-md">
                   <img
                     src={src}
-                    alt={alt || ""}
+                    alt={imageAlt}
+                    title={imageCaption || imageAlt}
+                    width={1200}
+                    height={675}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-auto object-cover"
+                    itemProp="contentUrl"
                   />
                 </div>
-                {alt && alt !== "" && (
-                  <figcaption className="text-center text-sm text-muted-foreground mt-3 italic">
-                    {alt}
+                <meta itemProp="width" content="1200" />
+                <meta itemProp="height" content="675" />
+                <meta itemProp="description" content={imageAlt} />
+                {imageCaption && imageCaption !== "" && (
+                  <figcaption className="text-center text-sm text-muted-foreground mt-3 italic" itemProp="caption">
+                    {imageCaption}
                   </figcaption>
                 )}
               </figure>

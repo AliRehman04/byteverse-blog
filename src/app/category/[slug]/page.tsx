@@ -81,42 +81,56 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      {/* Header */}
-      <div className="mb-10 animate-fade-in">
-        <div className="flex items-center gap-3 mb-3">
-          <div
-            className="w-3 h-3 rounded-full"
-            style={{ backgroundColor: catDisplay.color }}
-          />
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-            Category
-          </span>
+    <>
+      {/* Page Header */}
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-transparent" />
+        <div className="absolute inset-0 dot-grid opacity-30" />
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="animate-fade-in-up">
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ backgroundColor: catDisplay.color + "15" }}
+              >
+                <div
+                  className="w-4 h-4 rounded-md"
+                  style={{ backgroundColor: catDisplay.color }}
+                />
+              </div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                Category
+              </span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+              {catDisplay.name}
+            </h1>
+            <p className="text-muted-foreground max-w-2xl">
+              {catDisplay.description}
+            </p>
+          </div>
         </div>
-        <h1 className="text-3xl font-bold tracking-tight mb-3">
-          {catDisplay.name}
-        </h1>
-        <p className="text-muted-foreground max-w-2xl">
-          {catDisplay.description}
-        </p>
-      </div>
+      </section>
 
-      {/* Posts */}
-      {categoryPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {categoryPosts.map((post) => (
-            <PostCard key={post.id} post={post} category={category} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-20">
-          <p className="text-5xl mb-4">📂</p>
-          <h2 className="text-xl font-bold mb-2">No articles yet</h2>
-          <p className="text-sm text-muted-foreground">
-            We&apos;re preparing great content for this category. Stay tuned!
-          </p>
-        </div>
-      )}
-    </div>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        {categoryPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categoryPosts.map((post) => (
+              <PostCard key={post.id} post={post} category={category} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-24">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mx-auto mb-5">
+              <span className="text-3xl">📂</span>
+            </div>
+            <h2 className="text-xl font-bold mb-2">No articles yet</h2>
+            <p className="text-sm text-muted-foreground">
+              We&apos;re preparing great content for this category. Stay tuned!
+            </p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

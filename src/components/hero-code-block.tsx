@@ -85,7 +85,7 @@ export function HeroCodeBlock() {
       <div className="absolute -bottom-3 -left-3 animate-float-reverse" style={{ animationDelay: "1s" }}>
         <div className="px-3 py-2 rounded-xl bg-blue-500/20 border border-blue-400/20 backdrop-blur-sm">
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold text-blue-300">50+ Articles</span>
+            <span className="text-[11px] font-semibold text-blue-300">Fresh Guides</span>
           </div>
         </div>
       </div>

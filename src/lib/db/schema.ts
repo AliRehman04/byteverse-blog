@@ -44,8 +44,25 @@ export const newsletter = pgTable("newsletter", {
   active: boolean("active").notNull().default(true),
 });
 
+export const authors = pgTable("authors", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+  role: varchar("role", { length: 100 }).notNull().default("Author"),
+  bio: text("bio"),
+  email: varchar("email", { length: 255 }),
+  avatar: text("avatar"),
+  twitter: varchar("twitter", { length: 255 }),
+  linkedin: varchar("linkedin", { length: 255 }),
+  github: varchar("github", { length: 255 }),
+  youtube: varchar("youtube", { length: 255 }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
 export type Post = typeof posts.$inferSelect;
 export type NewPost = typeof posts.$inferInsert;
 export type Category = typeof categories.$inferSelect;
 export type NewCategory = typeof categories.$inferInsert;
 export type Newsletter = typeof newsletter.$inferSelect;
+export type Author = typeof authors.$inferSelect;
+export type NewAuthor = typeof authors.$inferInsert;

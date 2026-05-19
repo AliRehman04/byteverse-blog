@@ -80,18 +80,35 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     category = catResult[0] || null;
   }
 
-  // JSON-LD structured data
+  // JSON-LD structured data (auto-generated from post data)
+  const wordCount = post.content.split(/\s+/).length;
+  const readingMinutes = Math.ceil(wordCount / 200);
+
+  // Auto-extract FAQs from content (matches ## FAQ or ### heading with ? in it)
+  const faqRegex = /#{2,3}\s+(.+\?)\s*\n+([\s\S]*?)(?=\n#{2,3}\s|\n*$)/g;
+  const faqs: { question: string; answer: string }[] = [];
+  let faqMatch;
+  while ((faqMatch = faqRegex.exec(post.content)) !== null) {
+    const answer = faqMatch[2].trim().replace(/\n+/g, " ").replace(/[#*_`>-]/g, "").trim();
+    if (answer.length > 10) {
+      faqs.push({ question: faqMatch[1].trim(), answer });
+    }
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
+    headline: post.metaTitle || post.title,
+    description: post.metaDescription || post.excerpt,
     image: post.coverImage || undefined,
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
+    wordCount,
+    timeRequired: `PT${readingMinutes}M`,
     author: {
       "@type": "Person",
       name: post.author,
+      url: `${siteConfig.url}/author/${post.author.toLowerCase().replace(/\s+/g, "-")}`,
     },
     publisher: {
       "@type": "Organization",
@@ -106,6 +123,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/blog/${post.slug}`,
     },
+    url: `${siteConfig.url}/blog/${post.slug}`,
+    ...(post.keywords ? { keywords: post.keywords } : {}),
+    ...(category ? {
+      articleSection: category.name,
+      about: {
+        "@type": "Thing",
+        name: category.name,
+      },
+    } : {}),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+  };
+
+  // FAQ schema (auto-extracted from content headings with ?)
+  const faqLd = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  } : null;
+
+  // Breadcrumb schema
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteConfig.url}/blog` },
+      ...(category
+        ? [{ "@type": "ListItem", position: 3, name: category.name, item: `${siteConfig.url}/category/${category.slug}` }]
+        : []),
+      { "@type": "ListItem", position: category ? 4 : 3, name: post.title, item: `${siteConfig.url}/blog/${post.slug}` },
+    ],
   };
 
   // Track view
@@ -117,6 +173,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       <article>
         {/* Article Header */}

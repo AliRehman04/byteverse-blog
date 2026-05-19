@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, count } from "drizzle-orm";
 import { PostCard } from "@/components/post-card";
 import { siteConfig } from "@/lib/config";
 
@@ -32,14 +32,32 @@ export async function generateMetadata({
 
   if (!cat) return { title: "Category Not Found" };
 
+  // Check if category has posts
+  let hasContent = false;
+  if (db) {
+    const catRecord = await db.select().from(categories).where(eq(categories.slug, slug)).limit(1);
+    if (catRecord[0]) {
+      const postCount = await db.select({ count: count() }).from(posts).where(and(eq(posts.categoryId, catRecord[0].id), eq(posts.published, true)));
+      hasContent = (postCount[0]?.count ?? 0) > 0;
+    }
+  }
+
   return {
     title: `${cat.name} Articles — Guides, Tips & Tutorials`,
     description: cat.description
       ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles, tutorials, and in-depth guides on ByteVerse.`
       : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, tips, and in-depth guides on ByteVerse.`,
+    openGraph: {
+      title: `${cat.name} Articles — Guides, Tips & Tutorials | ByteVerse`,
+      description: cat.description
+        ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles and guides.`
+        : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, and guides on ByteVerse.`,
+      type: "website",
+    },
     alternates: {
       canonical: `${siteConfig.url}/category/${slug}`,
     },
+    ...(hasContent ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

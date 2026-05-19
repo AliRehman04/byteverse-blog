@@ -11,12 +11,14 @@ import {
   Menu,
   X,
   ChevronRight,
+  UserPen,
 } from "lucide-react";
 
 const navItems = [
   { title: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { title: "Posts", href: "/admin/posts", icon: FileText },
   { title: "Categories", href: "/admin/categories", icon: FolderOpen },
+  { title: "Authors", href: "/admin/authors", icon: UserPen },
 ];
 
 export default function AdminLayout({

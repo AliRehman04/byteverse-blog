@@ -164,9 +164,9 @@ export default async function HomePage() {
               {/* Stats bar */}
               <div className="animate-fade-in-up stagger-4 mt-12 flex flex-wrap gap-8">
                 {[
-                  { value: "50+", label: "Articles" },
+                  { value: "Weekly", label: "New Guides" },
                   { value: `${cats.length}`, label: "Categories" },
-                  { value: "10K+", label: "Readers" },
+                  { value: "Free", label: "AI & Tech Tutorials" },
                 ].map((stat) => (
                   <div key={stat.label}>
                     <div className="text-2xl font-extrabold text-white">{stat.value}</div>

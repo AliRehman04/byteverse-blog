@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Upload, ArrowLeft, Save, Eye, Image as ImageIcon, X } from "lucide-react";
+import { Upload, ArrowLeft, Save, Eye, Image as ImageIcon, X, Sparkles } from "lucide-react";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
@@ -58,6 +58,7 @@ export default function PostEditor({
   const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [generatingAI, setGeneratingAI] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
   const [imageInsert, setImageInsert] = useState<ImageInsert>({
@@ -167,6 +168,48 @@ export default function PostEditor({
     setForm({ ...form, content: newContent });
     setShowImageModal(false);
     setImageInsert({ url: "", altText: "", title: "", caption: "", width: "", loading: "lazy" });
+  };
+
+  const handleAIGenerate = async () => {
+    if (!form.title || !form.content) {
+      setMessage({ type: "error", text: "Title and content are required for AI generation" });
+      return;
+    }
+    setGeneratingAI(true);
+    setMessage(null);
+
+    const categoryName = categories.find((c) => c.id.toString() === form.categoryId)?.name || "";
+
+    try {
+      const res = await fetch("/api/admin/ai-seo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: form.title,
+          content: form.content,
+          category: categoryName,
+        }),
+      });
+
+      if (res.ok) {
+        const seoData = await res.json();
+        setForm({
+          ...form,
+          metaTitle: seoData.metaTitle || form.metaTitle,
+          metaDescription: seoData.metaDescription || form.metaDescription,
+          keywords: seoData.keywords || form.keywords,
+          excerpt: seoData.excerpt || form.excerpt,
+        });
+        setMessage({ type: "success", text: "AI generated SEO data successfully!" });
+      } else {
+        const data = await res.json();
+        setMessage({ type: "error", text: data.error || "AI generation failed" });
+      }
+    } catch {
+      setMessage({ type: "error", text: "Network error during AI generation" });
+    }
+
+    setGeneratingAI(false);
   };
 
   const handleSubmit = async (publish?: boolean) => {
@@ -532,9 +575,24 @@ export default function PostEditor({
 
           {/* SEO */}
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 space-y-3">
-            <label className="block text-sm font-medium text-[var(--foreground)]">
-              SEO Settings
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="block text-sm font-medium text-[var(--foreground)]">
+                SEO Settings
+              </label>
+              <button
+                type="button"
+                onClick={handleAIGenerate}
+                disabled={generatingAI || !form.title || !form.content}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-violet-600 to-blue-600 text-white hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {generatingAI ? (
+                  <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full" />
+                ) : (
+                  <Sparkles className="w-3 h-3" />
+                )}
+                {generatingAI ? "Generating..." : "AI Generate"}
+              </button>
+            </div>
             <div>
               <label className="block text-sm text-[var(--muted-foreground)] mb-1">
                 Meta Title

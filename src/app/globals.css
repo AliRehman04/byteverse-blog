@@ -6,6 +6,21 @@ span.inline-block.relative.overflow-hidden {
   top: 12px;
 }
 
+/* Footer logo sizing */
+footer img.h-9.w-auto {
+  width: 187px;
+  height: auto;
+  left: -18px;
+  position: relative;
+}
+
+footer a.flex.items-center.gap-2.mb-4 {
+  height: 60px;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
 /* ====== MODERN PRO COLOR SYSTEM ====== */
 :root {
   --background: #ffffff;

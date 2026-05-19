@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "ByteVerse",
   description:
     "Discover the latest in AI tools, tech guides, productivity hacks, and coding tutorials. Your one-stop destination for everything tech.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://byteverse.fyi",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi",
   ogImage: "/og-image.png",
   author: "ByteVerse Team",
   email: "hello@byteverse.fyi",

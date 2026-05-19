@@ -5,7 +5,7 @@ Disallow: /api/
 Disallow: /admin/
 
 # Host
-Host: https://byteverse.fyi
+Host: https://www.byteverse.fyi
 
 # Sitemaps
-Sitemap: https://byteverse.fyi/sitemap.xml
+Sitemap: https://www.byteverse.fyi/sitemap.xml

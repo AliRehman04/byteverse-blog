@@ -3,13 +3,22 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Upload, ArrowLeft, Save, Eye, Image as ImageIcon } from "lucide-react";
+import { Upload, ArrowLeft, Save, Eye, Image as ImageIcon, X } from "lucide-react";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 interface Category {
   id: number;
   name: string;
+}
+
+interface ImageInsert {
+  url: string;
+  altText: string;
+  title: string;
+  caption: string;
+  width: string;
+  loading: "lazy" | "eager";
 }
 
 interface PostForm {
@@ -50,6 +59,16 @@ export default function PostEditor({
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [imageInsert, setImageInsert] = useState<ImageInsert>({
+    url: "",
+    altText: "",
+    title: "",
+    caption: "",
+    width: "",
+    loading: "lazy",
+  });
+  const [uploadingInline, setUploadingInline] = useState(false);
   const router = useRouter();
   const isEditing = !!postId;
 
@@ -110,6 +129,44 @@ export default function PostEditor({
     if (url) {
       setForm({ ...form, coverImage: url });
     }
+  };
+
+  const handleInlineImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingInline(true);
+    const url = await handleImageUpload(file);
+    if (url) {
+      setImageInsert({ ...imageInsert, url });
+    }
+    setUploadingInline(false);
+  };
+
+  const insertImageToContent = () => {
+    if (!imageInsert.url) return;
+
+    const attrs: string[] = [];
+    if (imageInsert.width) attrs.push(`width="${imageInsert.width}"`);
+    if (imageInsert.loading) attrs.push(`loading="${imageInsert.loading}"`);
+    if (imageInsert.title) attrs.push(`title="${imageInsert.title}"`);
+
+    let imgTag: string;
+    if (attrs.length > 0) {
+      // Use HTML img tag for extra attributes
+      imgTag = `<img src="${imageInsert.url}" alt="${imageInsert.altText || ""}" ${attrs.join(" ")} />`;
+    } else {
+      // Simple markdown
+      imgTag = `![${imageInsert.altText || ""}](${imageInsert.url})`;
+    }
+
+    if (imageInsert.caption) {
+      imgTag = `<figure>\n${imgTag}\n<figcaption>${imageInsert.caption}</figcaption>\n</figure>`;
+    }
+
+    const newContent = form.content ? form.content + "\n\n" + imgTag : imgTag;
+    setForm({ ...form, content: newContent });
+    setShowImageModal(false);
+    setImageInsert({ url: "", altText: "", title: "", caption: "", width: "", loading: "lazy" });
   };
 
   const handleSubmit = async (publish?: boolean) => {
@@ -213,6 +270,16 @@ export default function PostEditor({
           />
 
           {/* Markdown Editor */}
+          <div className="flex items-center gap-2 mb-1">
+            <button
+              type="button"
+              onClick={() => setShowImageModal(true)}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+            >
+              <ImageIcon className="w-4 h-4" />
+              Insert Image
+            </button>
+          </div>
           <div data-color-mode="auto">
             <MDEditor
               value={form.content}
@@ -222,6 +289,151 @@ export default function PostEditor({
             />
           </div>
         </div>
+
+        {/* Image Insert Modal */}
+        {showImageModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-[var(--foreground)]">Insert Image</h3>
+                <button
+                  onClick={() => setShowImageModal(false)}
+                  className="p-1 rounded-lg hover:bg-[var(--muted)] text-[var(--muted-foreground)]"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                {/* Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                    Upload Image *
+                  </label>
+                  {imageInsert.url ? (
+                    <div className="relative">
+                      <img src={imageInsert.url} alt="Preview" className="w-full h-32 object-cover rounded-xl" />
+                      <button
+                        onClick={() => setImageInsert({ ...imageInsert, url: "" })}
+                        className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="flex flex-col items-center justify-center h-32 border-2 border-dashed border-[var(--border)] rounded-xl cursor-pointer hover:border-[var(--primary)] transition-colors">
+                      {uploadingInline ? (
+                        <div className="animate-spin w-6 h-6 border-2 border-[var(--primary)] border-t-transparent rounded-full" />
+                      ) : (
+                        <>
+                          <Upload className="w-6 h-6 text-[var(--muted-foreground)] mb-1" />
+                          <span className="text-sm text-[var(--muted-foreground)]">Click to upload</span>
+                        </>
+                      )}
+                      <input type="file" accept="image/*" onChange={handleInlineImageUpload} className="hidden" />
+                    </label>
+                  )}
+                  <p className="text-xs text-[var(--muted-foreground)] mt-1">Or paste a URL below</p>
+                  <input
+                    type="text"
+                    value={imageInsert.url}
+                    onChange={(e) => setImageInsert({ ...imageInsert, url: e.target.value })}
+                    placeholder="https://example.com/image.jpg"
+                    className="w-full mt-1 px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  />
+                </div>
+
+                {/* Alt Text */}
+                <div>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                    Alt Text *
+                    <span className="text-xs font-normal text-[var(--muted-foreground)] ml-1">(SEO & Accessibility)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={imageInsert.altText}
+                    onChange={(e) => setImageInsert({ ...imageInsert, altText: e.target.value })}
+                    placeholder="Describe the image for search engines & screen readers"
+                    className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  />
+                  <p className="text-xs text-[var(--muted-foreground)] mt-0.5">
+                    {imageInsert.altText.length > 0
+                      ? `${imageInsert.altText.length}/125 chars`
+                      : "Include keywords naturally. Be descriptive."}
+                  </p>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                    Title Attribute
+                    <span className="text-xs font-normal text-[var(--muted-foreground)] ml-1">(Tooltip on hover)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={imageInsert.title}
+                    onChange={(e) => setImageInsert({ ...imageInsert, title: e.target.value })}
+                    placeholder="Additional context shown on hover"
+                    className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  />
+                </div>
+
+                {/* Caption */}
+                <div>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                    Caption
+                    <span className="text-xs font-normal text-[var(--muted-foreground)] ml-1">(Visible below image)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={imageInsert.caption}
+                    onChange={(e) => setImageInsert({ ...imageInsert, caption: e.target.value })}
+                    placeholder="Image source or description"
+                    className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                  />
+                </div>
+
+                {/* Width & Loading */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                      Width
+                    </label>
+                    <input
+                      type="text"
+                      value={imageInsert.width}
+                      onChange={(e) => setImageInsert({ ...imageInsert, width: e.target.value })}
+                      placeholder="e.g. 800 or 100%"
+                      className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                      Loading
+                    </label>
+                    <select
+                      value={imageInsert.loading}
+                      onChange={(e) => setImageInsert({ ...imageInsert, loading: e.target.value as "lazy" | "eager" })}
+                      className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                    >
+                      <option value="lazy">Lazy (recommended)</option>
+                      <option value="eager">Eager</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Insert Button */}
+                <button
+                  onClick={insertImageToContent}
+                  disabled={!imageInsert.url}
+                  className="w-full mt-2 px-4 py-2.5 bg-[var(--primary)] text-white rounded-xl text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Insert Image
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Sidebar */}
         <div className="space-y-4">

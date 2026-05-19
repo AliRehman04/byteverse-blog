@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, CheckCircle, Loader2 } from "lucide-react";
+import { Mail, CheckCircle, Loader2, Sparkles } from "lucide-react";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -37,13 +37,21 @@ export function Newsletter() {
   }
 
   return (
-    <section className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary/10 via-accent/5 to-primary/10 border border-primary/20 p-8 md:p-12">
+    <section className="relative overflow-hidden rounded-3xl glass-strong p-8 md:p-14">
+      {/* Orbs */}
+      <div className="orb w-72 h-72 bg-violet-500/15 -top-36 -right-36" />
+      <div className="orb w-56 h-56 bg-pink-500/10 -bottom-28 -left-28" style={{ animationDelay: "-10s" }} />
+
       <div className="relative z-10 max-w-xl mx-auto text-center">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
-          <Mail size={24} className="text-primary" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-primary text-sm font-semibold mb-6">
+          <Sparkles size={14} className="animate-pulse" />
+          Newsletter
         </div>
-        <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
-        <p className="text-muted-foreground mb-6">
+
+        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
+          Stay <span className="gradient-text">Updated</span>
+        </h3>
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
           Get the latest AI tools, tech guides, and productivity tips delivered
           to your inbox. No spam, unsubscribe anytime.
         </p>
@@ -54,19 +62,22 @@ export function Newsletter() {
             <span className="font-medium">{message}</span>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-            />
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <div className="relative flex-1">
+              <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full pl-11 pr-4 py-3.5 rounded-2xl glass text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow placeholder:text-muted-foreground/60"
+              />
+            </div>
             <button
               type="submit"
               disabled={status === "loading"}
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
+              className="px-7 py-3.5 gradient-bg text-white rounded-2xl text-sm font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2 glow-sm"
             >
               {status === "loading" ? (
                 <Loader2 size={16} className="animate-spin" />
@@ -78,13 +89,9 @@ export function Newsletter() {
         )}
 
         {status === "error" && (
-          <p className="mt-3 text-sm text-red-500">{message}</p>
+          <p className="mt-4 text-sm text-red-500 font-medium">{message}</p>
         )}
       </div>
-
-      {/* Decorative blobs */}
-      <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-accent/5 rounded-full blur-3xl" />
     </section>
   );
 }

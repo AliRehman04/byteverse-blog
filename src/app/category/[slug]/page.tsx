@@ -81,25 +81,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
-      <div className="mb-12 animate-fade-in">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="mb-16 animate-fade-in relative">
+        <div className="orb w-72 h-72 -top-36 -right-36" style={{ backgroundColor: catDisplay.color + "15" }} />
+        <div className="flex items-center gap-3 mb-5">
           <div
-            className="w-4 h-4 rounded-full"
+            className="tag text-white"
             style={{ backgroundColor: catDisplay.color }}
-          />
-          <span
-            className="text-sm font-semibold uppercase tracking-wider"
-            style={{ color: catDisplay.color }}
           >
             Category
-          </span>
+          </div>
         </div>
-        <h1 className="text-4xl font-extrabold tracking-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
           {catDisplay.name}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl">
+        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
           {catDisplay.description}
         </p>
       </div>
@@ -112,9 +109,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20">
-          <p className="text-6xl mb-4">📂</p>
-          <h2 className="text-2xl font-bold mb-2">No articles yet</h2>
+        <div className="text-center py-24">
+          <div className="w-20 h-20 rounded-3xl glass flex items-center justify-center mx-auto mb-6">
+            <span className="text-3xl">📂</span>
+          </div>
+          <h2 className="text-2xl font-bold mb-3">No articles yet</h2>
           <p className="text-muted-foreground">
             We&apos;re preparing great content for this category. Stay tuned!
           </p>

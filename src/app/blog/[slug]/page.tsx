@@ -114,47 +114,52 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         {/* Back link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary font-medium mb-10 transition-colors group"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Back to Blog
         </Link>
 
         {/* Header */}
-        <header className="mb-10 animate-fade-in">
+        <header className="mb-12 animate-fade-in">
           {category && (
             <Link
               href={`/category/${category.slug}`}
-              className="inline-block px-3 py-1 text-xs font-semibold rounded-full text-white mb-4"
+              className="tag text-white mb-5 inline-flex"
               style={{ backgroundColor: category.color }}
             >
               {category.name}
             </Link>
           )}
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-5 leading-[1.1]">
             {post.title}
           </h1>
 
-          <p className="text-lg text-muted-foreground mb-6">{post.excerpt}</p>
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">{post.author}</span>
-            <span className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground p-4 rounded-2xl glass">
+            <span className="font-bold text-foreground">{post.author}</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span className="flex items-center gap-1.5">
               <Calendar size={14} />
               {formatDate(post.createdAt)}
             </span>
             {post.readingTime && (
-              <span className="flex items-center gap-1">
-                <Clock size={14} />
-                {post.readingTime}
-              </span>
+              <>
+                <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                <span className="flex items-center gap-1.5">
+                  <Clock size={14} />
+                  {post.readingTime}
+                </span>
+              </>
             )}
-            <span className="flex items-center gap-1">
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <span className="flex items-center gap-1.5">
               <Eye size={14} />
               {post.views} views
             </span>
@@ -163,7 +168,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Cover Image */}
         {post.coverImage && (
-          <div className="relative aspect-video rounded-2xl overflow-hidden mb-10">
+          <div className="relative aspect-video rounded-3xl overflow-hidden mb-12 glow-sm">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -188,13 +193,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <AdUnit slot="blog-bottom" format="horizontal" />
 
         {/* Share & Tags */}
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-14 pt-8 border-t border-border/50">
           {post.keywords && (
             <div className="flex flex-wrap gap-2">
               {post.keywords.split(",").map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium bg-muted rounded-full text-muted-foreground"
+                  className="tag glass text-muted-foreground"
                 >
                   #{tag.trim()}
                 </span>
@@ -204,7 +209,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Newsletter */}
-        <div className="mt-12">
+        <div className="mt-14">
           <Newsletter />
         </div>
       </article>

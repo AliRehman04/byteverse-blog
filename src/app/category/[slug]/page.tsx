@@ -14,22 +14,40 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const cat = siteConfig.categories.find((c) => c.slug === slug);
+
+  // Try DB first
+  let cat: { name: string; description: string | null; slug: string } | null = null;
+  if (db) {
+    const result = await db
+      .select()
+      .from(categories)
+      .where(eq(categories.slug, slug))
+      .limit(1);
+    cat = result[0] || null;
+  }
+
+  if (!cat) {
+    cat = siteConfig.categories.find((c) => c.slug === slug) || null;
+  }
 
   if (!cat) return { title: "Category Not Found" };
 
   return {
-    title: `${cat.name} Articles`,
-    description: cat.description,
+    title: `${cat.name} Articles — Guides, Tips & Tutorials | ByteVerse`,
+    description: cat.description
+      ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles, tutorials, and in-depth guides on ByteVerse.`
+      : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, tips, and in-depth guides on ByteVerse.`,
+    alternates: {
+      canonical: `${siteConfig.url}/category/${slug}`,
+    },
   };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
-  const catConfig = siteConfig.categories.find((c) => c.slug === slug);
-  if (!catConfig) notFound();
 
   let category = null;
+  let catDisplay: { name: string; description: string; color: string } | null = null;
   let categoryPosts: (typeof posts.$inferSelect)[] = [];
 
   if (db) {
@@ -42,12 +60,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     category = catResult[0] || null;
 
     if (category) {
+      catDisplay = {
+        name: category.name,
+        description: category.description || "",
+        color: category.color,
+      };
+
       categoryPosts = await db
         .select()
         .from(posts)
         .where(and(eq(posts.categoryId, category.id), eq(posts.published, true)))
         .orderBy(desc(posts.createdAt));
     }
+  }
+
+  if (!catDisplay) {
+    const configCat = siteConfig.categories.find((c) => c.slug === slug);
+    if (!configCat) notFound();
+    catDisplay = configCat;
   }
 
   return (
@@ -57,20 +87,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <div className="flex items-center gap-3 mb-4">
           <div
             className="w-4 h-4 rounded-full"
-            style={{ backgroundColor: catConfig.color }}
+            style={{ backgroundColor: catDisplay.color }}
           />
           <span
             className="text-sm font-semibold uppercase tracking-wider"
-            style={{ color: catConfig.color }}
+            style={{ color: catDisplay.color }}
           >
             Category
           </span>
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">
-          {catConfig.name}
+          {catDisplay.name}
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          {catConfig.description}
+          {catDisplay.description}
         </p>
       </div>
 

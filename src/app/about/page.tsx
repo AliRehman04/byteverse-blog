@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { Zap, Target, Users, Heart } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About ByteVerse — Your Trusted Tech Knowledge Hub",
   description:
-    "Learn about ByteVerse — your go-to source for AI tools, tech guides, productivity hacks, and coding tutorials.",
+    "Learn about ByteVerse, your go-to source for AI tool reviews, step-by-step tech guides, productivity hacks, coding tutorials, and honest software reviews.",
+  alternates: {
+    canonical: `${siteConfig.url}/about`,
+  },
 };
 
 export default function AboutPage() {

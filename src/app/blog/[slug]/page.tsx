@@ -49,6 +49,9 @@ export async function generateMetadata({
       description: post.metaDescription || post.excerpt,
       images: post.coverImage ? [post.coverImage] : [],
     },
+    alternates: {
+      canonical: `${siteConfig.url}/blog/${slug}`,
+    },
   };
 }
 

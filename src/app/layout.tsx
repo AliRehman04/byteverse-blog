@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
+  alternates: {
+    canonical: siteConfig.url,
+  },
 };
 
 export default function RootLayout({

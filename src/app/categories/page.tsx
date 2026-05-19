@@ -5,9 +5,12 @@ import { categories } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Categories",
+  title: "Browse All Categories — AI Tools, Tech Guides & More | ByteVerse",
   description:
-    "Browse all content categories — AI Tools, Tech Guides, Productivity, Coding, and Software Reviews.",
+    "Explore all ByteVerse content categories including AI tools, step-by-step tech guides, productivity tips, coding tutorials, and honest software reviews.",
+  alternates: {
+    canonical: `${siteConfig.url}/categories`,
+  },
 };
 
 export default async function CategoriesPage() {

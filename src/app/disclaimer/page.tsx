@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Disclaimer",
-  description: `Disclaimer for ${siteConfig.name}`,
+  title: "Disclaimer — Affiliate Disclosure & Content Notice | ByteVerse",
+  description: `Read the ByteVerse disclaimer covering affiliate disclosures, advertising policies, content accuracy, and professional advice limitations.`,
+  alternates: {
+    canonical: `${siteConfig.url}/disclaimer`,
+  },
 };
 
 export default function DisclaimerPage() {

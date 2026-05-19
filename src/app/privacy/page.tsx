@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: `Privacy Policy for ${siteConfig.name}`,
+  title: "Privacy Policy — How ByteVerse Protects Your Data",
+  description: `Read the ByteVerse privacy policy to understand how we collect, use, and protect your personal data, including cookie usage, analytics, and newsletter subscriptions.`,
+  alternates: {
+    canonical: `${siteConfig.url}/privacy`,
+  },
 };
 
 export default function PrivacyPage() {

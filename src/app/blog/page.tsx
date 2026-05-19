@@ -4,11 +4,15 @@ import { posts, categories } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { PostCard } from "@/components/post-card";
 import { Newsletter } from "@/components/newsletter";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog — Latest Articles on AI, Tech & Productivity | ByteVerse",
   description:
-    "Read the latest articles on AI tools, tech guides, productivity tips, and coding tutorials.",
+    "Read the latest in-depth articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse.",
+  alternates: {
+    canonical: `${siteConfig.url}/blog`,
+  },
 };
 
 export const revalidate = 60;

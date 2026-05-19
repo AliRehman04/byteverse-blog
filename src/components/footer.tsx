@@ -17,7 +17,7 @@ export function Footer() {
                   alt="ByteVerse"
                   width={140}
                   height={36}
-                  className="h-8 w-auto"
+                  className="w-auto"
                 />
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">

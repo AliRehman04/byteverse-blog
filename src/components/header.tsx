@@ -38,7 +38,7 @@ export function Header() {
                 alt="ByteVerse"
                 width={160}
                 height={40}
-                className="h-9 w-auto group-hover:scale-[1.02] transition-transform"
+                className="w-auto group-hover:scale-[1.02] transition-transform"
                 priority
               />
             </Link>

@@ -11,15 +11,14 @@ export function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <Link href="/" className="flex items-center gap-2.5 mb-4">
+              <Link href="/" className="flex items-center gap-2 mb-4">
                 <Image
-                  src="/logo.jpeg"
-                  alt="ByteVerse Logo"
-                  width={32}
-                  height={32}
-                  className="rounded-lg"
+                  src="/logo.png"
+                  alt="ByteVerse"
+                  width={140}
+                  height={36}
+                  className="h-8 w-auto"
                 />
-                <span className="text-lg font-bold">{siteConfig.name}</span>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {siteConfig.description}

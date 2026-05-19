@@ -32,17 +32,15 @@ export function Header() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
+            <Link href="/" className="flex items-center gap-2 group">
               <Image
-                src="/logo.jpeg"
-                alt="ByteVerse Logo"
-                width={32}
-                height={32}
-                className="rounded-lg group-hover:scale-105 transition-transform"
+                src="/logo.png"
+                alt="ByteVerse"
+                width={160}
+                height={40}
+                className="h-9 w-auto group-hover:scale-[1.02] transition-transform"
+                priority
               />
-              <span className="text-lg font-bold tracking-tight">
-                {siteConfig.name}
-              </span>
             </Link>
 
             {/* Desktop Nav */}

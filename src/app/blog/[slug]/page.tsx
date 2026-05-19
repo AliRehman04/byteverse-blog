@@ -116,13 +116,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <article>
         {/* Article Header */}
-        <section className="relative overflow-hidden border-b border-border">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-transparent" />
+        <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl animate-float-slow" />
+            <div className="absolute bottom-0 -left-20 w-60 h-60 bg-violet-500/10 rounded-full blur-3xl animate-float-reverse" />
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
           <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
             {/* Back link */}
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary font-medium mb-8 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white font-medium mb-8 transition-colors"
             >
               <ArrowLeft size={14} />
               Back to Blog
@@ -132,43 +139,48 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {category && (
                 <Link
                   href={`/category/${category.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-5"
-                  style={{ backgroundColor: category.color + "15", color: category.color }}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-5 border border-white/10 backdrop-blur-sm"
+                  style={{ backgroundColor: category.color + "25", color: category.color }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: category.color }} />
                   {category.name}
                 </Link>
               )}
 
-              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-tight mb-5 leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold tracking-tight mb-5 leading-[1.15]">
                 {post.title}
               </h1>
 
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
+              <p className="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed">{post.excerpt}</p>
 
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">{post.author}</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+                <span className="font-semibold text-white">{post.author}</span>
+                <span className="w-1 h-1 rounded-full bg-slate-500" />
                 <span className="flex items-center gap-1.5">
                   <Calendar size={14} />
                   {formatDate(post.createdAt)}
                 </span>
                 {post.readingTime && (
                   <>
-                    <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+                    <span className="w-1 h-1 rounded-full bg-slate-500" />
                     <span className="flex items-center gap-1.5">
                       <Clock size={14} />
                       {post.readingTime}
                     </span>
                   </>
                 )}
-                <span className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+                <span className="w-1 h-1 rounded-full bg-slate-500" />
                 <span className="flex items-center gap-1.5">
                   <Eye size={14} />
                   {post.views} views
                 </span>
               </div>
             </div>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg className="relative block w-full h-10 md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,40 C150,100 350,0 600,50 C850,100 1050,10 1200,40 L1200,120 L0,120 Z" className="fill-background" />
+            </svg>
           </div>
         </section>
 

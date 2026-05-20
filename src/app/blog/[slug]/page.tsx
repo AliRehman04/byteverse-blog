@@ -5,7 +5,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
 import { eq, ne, desc, and } from "drizzle-orm";
-import { Clock, Calendar, ArrowLeft, Eye, Share2, ChevronRight, User } from "lucide-react";
+import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { Newsletter } from "@/components/newsletter";
@@ -326,11 +326,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </span>
                   </>
                 )}
-                <span className="w-1 h-1 rounded-full bg-slate-500" />
-                <span className="flex items-center gap-1.5">
-                  <Eye size={14} />
-                  {post.views.toLocaleString()} views
-                </span>
               </div>
             </div>
           </div>

@@ -3,7 +3,8 @@ import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — How We Protect Your Data",
-  description: `Read the ByteVerse privacy policy to understand how we collect, use, and protect your personal data, including cookie usage, analytics, and newsletter subscriptions.`,
+  description:
+    "Read the ByteVerse privacy policy covering data collection, cookies, analytics, newsletter emails, and how your information is protected.",
   alternates: {
     canonical: `${siteConfig.url}/privacy`,
   },

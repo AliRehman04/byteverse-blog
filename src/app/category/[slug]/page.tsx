@@ -10,6 +10,10 @@ interface CategoryPageProps {
   params: Promise<{ slug: string }>;
 }
 
+function getCategorySeoDescription(categoryName: string) {
+  return `Explore ${categoryName.toLowerCase()} articles on ByteVerse, including practical tutorials, tools, tips, reviews, and step-by-step guides for tech readers.`;
+}
+
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
@@ -44,14 +48,10 @@ export async function generateMetadata({
 
   return {
     title: `${cat.name} Articles — Guides, Tips & Tutorials`,
-    description: cat.description
-      ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles, tutorials, and in-depth guides on ByteVerse.`
-      : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, tips, and in-depth guides on ByteVerse.`,
+    description: getCategorySeoDescription(cat.name),
     openGraph: {
       title: `${cat.name} Articles — Guides, Tips & Tutorials | ByteVerse`,
-      description: cat.description
-        ? `${cat.description}. Browse all ${cat.name.toLowerCase()} articles and guides.`
-        : `Explore the best ${cat.name.toLowerCase()} articles, tutorials, and guides on ByteVerse.`,
+      description: getCategorySeoDescription(cat.name),
       type: "website",
     },
     alternates: {

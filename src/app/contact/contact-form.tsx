@@ -4,7 +4,6 @@ import { FormEvent, useState } from "react";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 
 type Status = "idle" | "sending" | "success" | "error";
-const contactEmail = "contact@byteverse.fyi";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -19,28 +18,37 @@ export function ContactForm() {
     const formData = new FormData(form);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
-    const subject = String(formData.get("subject") || "ByteVerse contact message").trim();
+    const subject = String(formData.get("subject") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
     if (!name || !email || message.length < 20) {
       setStatus("error");
-      setNotice("Please complete the form with a valid message.");
+      setNotice("Please fill all fields with a message of at least 20 characters.");
       return;
     }
 
-    const mailBody = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      "",
-      message,
-    ].join("\n");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
 
-    const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
-    window.location.href = mailtoUrl;
+      const data = await res.json();
 
-    setStatus("success");
-    setNotice("Your email app is opening. Send the prepared email to finish.");
-    setTimeout(() => form.reset(), 600);
+      if (!res.ok) {
+        setStatus("error");
+        setNotice(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setNotice("Message sent successfully! We'll get back to you soon.");
+      setTimeout(() => form.reset(), 500);
+    } catch {
+      setStatus("error");
+      setNotice("Network error. Please check your connection and try again.");
+    }
   }
 
   return (
@@ -100,7 +108,7 @@ export function ContactForm() {
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "sending" ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-          Open Email
+          {status === "sending" ? "Sending..." : "Send Message"}
         </button>
 
         {notice && (

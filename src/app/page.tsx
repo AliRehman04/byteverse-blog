@@ -57,13 +57,24 @@ export default async function HomePage() {
   let latestPosts: (typeof posts.$inferSelect)[] = [];
   let allCategories: (typeof categories.$inferSelect)[] = [];
   if (db) {
-    latestPosts = await db
+    allCategories = await db.select().from(categories).orderBy(categories.id);
+
+    const publishedPosts = await db
       .select()
       .from(posts)
       .where(eq(posts.published, true))
-      .orderBy(desc(posts.createdAt))
-      .limit(6);
-    allCategories = await db.select().from(categories);
+      .orderBy(desc(posts.createdAt), desc(posts.id));
+
+    const latestPostByCategory = new Map<number, typeof posts.$inferSelect>();
+    for (const post of publishedPosts) {
+      if (post.categoryId && !latestPostByCategory.has(post.categoryId)) {
+        latestPostByCategory.set(post.categoryId, post);
+      }
+    }
+
+    latestPosts = allCategories
+      .map((category) => latestPostByCategory.get(category.id))
+      .filter((post): post is typeof posts.$inferSelect => Boolean(post));
   }
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
 

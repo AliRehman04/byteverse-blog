@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       content: body.content,
       coverImage: body.coverImage || null,
       categoryId: body.categoryId ? parseInt(body.categoryId) : null,
-      author: body.author || "ByteVerse",
+      author: body.author || "Ali Rehman",
       published: body.published ?? false,
       featured: body.featured ?? false,
       metaTitle: body.metaTitle || body.title,

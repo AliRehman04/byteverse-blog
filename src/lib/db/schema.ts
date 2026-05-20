@@ -16,7 +16,7 @@ export const posts = pgTable("posts", {
   content: text("content").notNull(),
   coverImage: text("cover_image"),
   categoryId: integer("category_id").references(() => categories.id),
-  author: varchar("author", { length: 100 }).notNull().default("ByteVerse"),
+  author: varchar("author", { length: 100 }).notNull().default("Ali Rehman"),
   published: boolean("published").notNull().default(false),
   featured: boolean("featured").notNull().default(false),
   metaTitle: varchar("meta_title", { length: 70 }),

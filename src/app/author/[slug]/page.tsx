@@ -28,7 +28,7 @@ async function getAuthor(slug: string) {
 function getAuthorSeoTitle(author: { name: string; role: string }) {
   const role = author.role.trim();
   const titleRole = role.toLowerCase() === "author" ? "Tech Articles & Developer Guides" : `${role} Articles & Guides`;
-  return `${author.name} — ${titleRole}`;
+  return `${author.name} | ${titleRole}`;
 }
 
 function getAuthorSeoDescription(author: { name: string; role: string }) {

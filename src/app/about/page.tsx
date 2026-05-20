@@ -4,11 +4,11 @@ import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "About — Your Trusted Tech Knowledge Hub",
+  title: "About | Your Trusted Tech Knowledge Hub",
   description:
     "Learn about ByteVerse, your go-to source for AI tool reviews, step-by-step tech guides, productivity hacks, coding tutorials, and honest software reviews.",
   openGraph: {
-    title: "About ByteVerse — Your Trusted Tech Knowledge Hub",
+    title: "About ByteVerse | Your Trusted Tech Knowledge Hub",
     description:
       "Learn about ByteVerse, your go-to source for AI tool reviews, tech guides, productivity hacks, and coding tutorials.",
     type: "website",
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { icon: Target, title: "Our Mission", desc: "To make complex tech topics simple and actionable for everyone — from beginners to experienced professionals." },
+              { icon: Target, title: "Our Mission", desc: "To make complex tech topics simple and actionable for everyone, from beginners to experienced professionals." },
               { icon: Users, title: "Our Audience", desc: "Students, developers, freelancers, and tech enthusiasts who want to stay ahead with the latest tools and trends." },
               { icon: Heart, title: "Our Promise", desc: "Honest reviews, clear tutorials, and no fluff. Every article is researched, tested, and written to genuinely help you." },
             ].map((item, i) => (
@@ -130,7 +130,7 @@ export default function AboutPage() {
             {[
               { icon: Search, title: "Research First", desc: "Every tool we review is personally tested. We spend hours exploring features, pricing, and real-world use cases before writing a single word." },
               { icon: Shield, title: "Honest Reviews", desc: "We don't accept paid reviews. Our recommendations are based on genuine experience. If a tool isn't worth it, we'll tell you." },
-              { icon: Heart, title: "Reader-Focused", desc: "Articles are written for real people — students, freelancers, and beginners. No jargon walls, no fluff, just practical value." },
+              { icon: Heart, title: "Reader-Focused", desc: "Articles are written for real people: students, freelancers, and beginners. No jargon walls, no fluff, just practical value." },
             ].map((item, i) => (
               <div key={item.title} className={`animate-fade-in-up stagger-${i + 1} p-6 rounded-2xl border border-border bg-card card-hover`}>
                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-4">

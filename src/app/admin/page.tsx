@@ -77,7 +77,7 @@ export default function AdminDashboard() {
               </div>
             </div>
             <div className="text-3xl font-bold text-[var(--foreground)]">
-              {stats === null ? "—" : card.value.toLocaleString()}
+              {stats === null ? "N/A" : card.value.toLocaleString()}
             </div>
           </div>
         ))}

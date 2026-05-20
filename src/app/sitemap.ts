@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
-import { getPostSeoImages } from "@/lib/image-seo";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -28,29 +27,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPosts = await db
     .select({
       slug: posts.slug,
-      title: posts.title,
-      coverImage: posts.coverImage,
-      content: posts.content,
       updatedAt: posts.updatedAt,
     })
     .from(posts)
     .where(eq(posts.published, true));
 
-  const postPages: MetadataRoute.Sitemap = allPosts.map((post) => {
-    const images = getPostSeoImages({
-      title: post.title,
-      coverImage: post.coverImage,
-      content: post.content,
-    }).map((image) => image.url);
-
-    return {
+  const postPages: MetadataRoute.Sitemap = allPosts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      images,
-    };
-  });
+    }));
 
   // Category pages
   const allCategories = await db

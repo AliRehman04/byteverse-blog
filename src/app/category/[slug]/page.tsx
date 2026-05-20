@@ -47,10 +47,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${cat.name} Articles — Guides, Tips & Tutorials`,
+    title: `${cat.name} Articles | Guides, Tips & Tutorials`,
     description: getCategorySeoDescription(cat.name),
     openGraph: {
-      title: `${cat.name} Articles — Guides, Tips & Tutorials | ByteVerse`,
+      title: `${cat.name} Articles | Guides, Tips & Tutorials | ByteVerse`,
       description: getCategorySeoDescription(cat.name),
       type: "website",
     },

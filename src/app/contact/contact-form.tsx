@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 
 type Status = "idle" | "sending" | "success" | "error";
+const contactEmail = "contact@byteverse.fyi";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -16,29 +17,30 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const subject = String(formData.get("subject") || "ByteVerse contact message").trim();
+    const message = String(formData.get("message") || "").trim();
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        email: formData.get("email"),
-        subject: formData.get("subject"),
-        message: formData.get("message"),
-      }),
-    });
-
-    const data = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
+    if (!name || !email || message.length < 20) {
       setStatus("error");
-      setNotice(data.error || "Message could not be sent. Please email contact@byteverse.fyi directly.");
+      setNotice("Please complete the form with a valid message.");
       return;
     }
 
-    form.reset();
+    const mailBody = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      message,
+    ].join("\n");
+
+    const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
+    window.location.href = mailtoUrl;
+
     setStatus("success");
-    setNotice("Message sent. We will reply as soon as possible.");
+    setNotice("Your email app is opening. Send the prepared email to finish.");
+    setTimeout(() => form.reset(), 600);
   }
 
   return (
@@ -98,7 +100,7 @@ export function ContactForm() {
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "sending" ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-          Send Message
+          Open Email
         </button>
 
         {notice && (

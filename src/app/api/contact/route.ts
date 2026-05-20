@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const contactEmail = "alirehmanytlearning@gmail.com";
+const contactEmail = "contact@byteverse.fyi";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function cleanText(value: unknown, maxLength: number) {
@@ -37,28 +37,30 @@ export async function POST(request: Request) {
       );
     }
 
+    const payload = new URLSearchParams({
+      name,
+      email,
+      subject,
+      message,
+      source: "ByteVerse contact page",
+      _subject: `ByteVerse Contact: ${subject}`,
+      _template: "table",
+      _captcha: "false",
+      _replyto: email,
+    });
+
     const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify({
-        name,
-        email,
-        subject,
-        message,
-        source: "ByteVerse contact page",
-        _subject: `ByteVerse Contact: ${subject}`,
-        _template: "table",
-        _captcha: "false",
-        _replyto: email,
-      }),
+      body: payload,
     });
 
     if (!response.ok) {
       return NextResponse.json(
-        { error: "Message could not be sent right now. Please email us directly." },
+        { error: `Message could not be sent yet. Please verify ${contactEmail} in Gmail, then try again.` },
         { status: 502 }
       );
     }

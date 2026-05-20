@@ -5,7 +5,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi",
   ogImage: "/opengraph-image",
   author: "ByteVerse Team",
-  email: "alirehmanytlearning@gmail.com",
+  email: "contact@byteverse.fyi",
   nav: [
     { title: "Home", href: "/" },
     { title: "Blog", href: "/blog" },

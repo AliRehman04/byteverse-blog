@@ -32,7 +32,7 @@ export function ContactForm() {
 
     if (!response.ok) {
       setStatus("error");
-      setNotice(data.error || "Message could not be sent. Please try again.");
+      setNotice(data.error || "Message could not be sent. Please email contact@byteverse.fyi directly.");
       return;
     }
 

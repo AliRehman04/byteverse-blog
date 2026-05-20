@@ -369,23 +369,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {/* Ad after content */}
               <AdUnit slot="blog-bottom" format="horizontal" />
 
-              {/* Tags */}
-              {post.keywords && (
-                <div className="mt-12 pt-8 border-t border-border">
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Tags</p>
-                  <div className="flex flex-wrap gap-2">
-                    {post.keywords.split(",").map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors cursor-default"
-                      >
-                        #{tag.trim()}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Share Buttons */}
               <div className="mt-10 pt-8 border-t border-border">
                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">

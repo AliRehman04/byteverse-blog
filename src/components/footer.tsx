@@ -78,6 +78,11 @@ export function Footer() {
                     Disclaimer
                   </Link>
                 </li>
+                <li>
+                  <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

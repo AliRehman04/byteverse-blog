@@ -18,6 +18,30 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
+function normalizeText(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function removeDuplicatedPostIntro(content: string, title: string, coverImage: string | null) {
+  let cleaned = content.trimStart();
+  const headingMatch = cleaned.match(/^#\s+(.+?)\s*(?:\r?\n|$)/);
+
+  if (headingMatch && normalizeText(headingMatch[1]) === normalizeText(title)) {
+    cleaned = cleaned.slice(headingMatch[0].length).trimStart();
+  }
+
+  const imageMatch = cleaned.match(/^!\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)\s*(?:\r?\n|$)/);
+  if (imageMatch) {
+    const imageUrl = imageMatch[1];
+    const isCoverImage = coverImage ? imageUrl === coverImage : true;
+    if (isCoverImage) {
+      cleaned = cleaned.slice(imageMatch[0].length).trimStart();
+    }
+  }
+
+  return cleaned;
+}
+
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
@@ -99,6 +123,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const wordCount = post.content.split(/\s+/).length;
   const readingMinutes = Math.ceil(wordCount / 200);
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
+  const articleContent = removeDuplicatedPostIntro(post.content, post.title, post.coverImage);
   const seoImages = getPostSeoImages({
     title: post.title,
     coverImage: post.coverImage,
@@ -359,7 +384,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <AdUnit slot="blog-top" format="horizontal" />
 
               {/* Markdown Content */}
-              <MarkdownRenderer content={post.content} />
+              <MarkdownRenderer content={articleContent} />
 
               {/* Ad after content */}
               <AdUnit slot="blog-bottom" format="horizontal" />

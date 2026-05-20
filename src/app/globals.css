@@ -357,6 +357,11 @@ body {
   margin-top: 2.5em;
 }
 
+.blog-content figure img {
+  display: block;
+  margin: 0 !important;
+}
+
 /* Numbered list styling */
 .blog-content ol {
   counter-reset: blog-counter;

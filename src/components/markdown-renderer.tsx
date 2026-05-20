@@ -72,7 +72,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     height={675}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-auto object-cover"
+                    className="block w-full h-auto !m-0 object-cover"
                     itemProp="contentUrl"
                   />
                 </div>

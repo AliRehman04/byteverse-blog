@@ -25,6 +25,16 @@ async function getAuthor(slug: string) {
   return author || null;
 }
 
+function getAuthorSeoTitle(author: { name: string; role: string }) {
+  const role = author.role.trim();
+  const titleRole = role.toLowerCase() === "author" ? "Tech Articles & Developer Guides" : `${role} Articles & Guides`;
+  return `${author.name} — ${titleRole}`;
+}
+
+function getAuthorSeoDescription(author: { name: string; role: string }) {
+  return `Read ${author.name}'s ByteVerse articles on React, Next.js, JavaScript, backend APIs, AI tools, and practical web development guides.`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const author = await getAuthor(slug);
@@ -33,16 +43,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Author Not Found" };
   }
 
+  const title = getAuthorSeoTitle(author);
+  const description = getAuthorSeoDescription(author);
+
   return {
-    title: `${author.name} — ${author.role}`,
-    description:
-      author.bio ||
-      `${author.name} is a ${author.role} at ByteVerse. Read their articles on AI, coding, and technology.`,
+    title,
+    description,
     openGraph: {
-      title: `${author.name} — ${author.role} | ByteVerse`,
-      description:
-        author.bio ||
-        `${author.name} is a ${author.role} at ByteVerse.`,
+      title: `${title} | ByteVerse`,
+      description,
       type: "profile",
       ...(author.avatar && { images: [{ url: author.avatar }] }),
     },

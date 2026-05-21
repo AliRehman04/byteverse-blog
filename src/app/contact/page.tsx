@@ -30,7 +30,7 @@ export default function ContactPage() {
             Get in touch with ByteVerse
           </h1>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-8">
-            Got a question, spotted an error, or want to suggest a topic? Drop us a message — we read every one.
+            Got a question, spotted an error, or want to suggest a topic? Drop us a message. We read every one.
           </p>
 
           <div className="space-y-4">

@@ -44,7 +44,7 @@ const features = [
   {
     icon: BookOpen,
     title: "Step-by-Step Guides",
-    description: "Clear tutorials you can follow along — no walls of jargon.",
+    description: "Clear tutorials you can follow along. No walls of jargon.",
     color: "from-blue-500/10 to-cyan-500/10",
     iconColor: "text-blue-600 dark:text-blue-400",
   },
@@ -176,7 +176,7 @@ export default async function HomePage() {
               </h1>
 
               <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
-                We write about AI tools, coding, and tech — tested first, then
+                We write about AI tools, coding, and tech. Tested first, then
                 explained so you can actually use it. No fluff, no filler.
               </p>
 
@@ -238,7 +238,7 @@ export default async function HomePage() {
               Everything You Need, <span className="gradient-text">One Place</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              From cutting-edge AI tools to practical coding tutorials — content you can actually use.
+              From cutting-edge AI tools to practical coding tutorials. Content you can actually use.
             </p>
           </div>
 
@@ -354,7 +354,7 @@ export default async function HomePage() {
             Most tech blogs rehash the same press releases. We don&apos;t. Every AI tool we review gets installed, tested, and compared before we write a word. Every coding tutorial runs on a real machine, not just in theory.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            We cover things like ChatGPT alternatives, React and Next.js projects, Python automation, Notion setups, and cloud deployment — because those are the topics we work with ourselves. If it doesn&apos;t solve a real problem, we skip it.
+            We cover things like ChatGPT alternatives, React and Next.js projects, Python automation, Notion setups, and cloud deployment. These are the topics we work with ourselves. If it doesn&apos;t solve a real problem, we skip it.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Whether you&apos;re a student picking your first framework or a developer evaluating a new tool, the goal is simple: read a ByteVerse article and walk away knowing exactly what to do next.

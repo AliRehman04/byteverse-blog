@@ -41,7 +41,7 @@ export async function DELETE(request: Request) {
   }
 }
 
-// PATCH — toggle active status
+// PATCH - toggle active status
 export async function PATCH(request: Request) {
   try {
     if (!db) {

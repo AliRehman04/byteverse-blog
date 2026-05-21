@@ -23,19 +23,19 @@ export const siteConfig = {
     {
       name: "Tech Guides",
       slug: "tech-guides",
-      description: "Practical walkthroughs for cloud hosting, dev tools, APIs, and frameworks — written so you can follow along",
+      description: "Practical walkthroughs for cloud hosting, dev tools, APIs, and frameworks. Written so you can follow along",
       color: "#3b82f6",
     },
     {
       name: "Productivity",
       slug: "productivity",
-      description: "Apps, setups, and workflows that save real time — Notion, Obsidian, Todoist, and more",
+      description: "Apps, setups, and workflows that save real time. Notion, Obsidian, Todoist, and more",
       color: "#10b981",
     },
     {
       name: "Coding",
       slug: "coding",
-      description: "JavaScript, Python, React, Next.js — real projects and code you can copy, run, and learn from",
+      description: "JavaScript, Python, React, Next.js tutorials. Real projects and code you can copy, run, and learn from",
       color: "#f59e0b",
     },
     {

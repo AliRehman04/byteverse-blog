@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { title: "AI Tools & Reviews", description: "We install, test, and compare AI tools like ChatGPT, Claude, Midjourney — then tell you what’s actually good.", color: "from-violet-500/10 to-purple-500/10" },
-  { title: "Tech Guides", description: "From spinning up a VPS to deploying a Next.js app — follow-along guides that work.", color: "from-blue-500/10 to-cyan-500/10" },
+  { title: "AI Tools & Reviews", description: "We install, test, and compare AI tools like ChatGPT, Claude, Midjourney, then tell you what's actually good.", color: "from-violet-500/10 to-purple-500/10" },
+  { title: "Tech Guides", description: "From spinning up a VPS to deploying a Next.js app. Follow-along guides that work.", color: "from-blue-500/10 to-cyan-500/10" },
   { title: "Productivity", description: "Notion setups, Obsidian workflows, and tools that save you real hours.", color: "from-emerald-500/10 to-teal-500/10" },
-  { title: "Coding Tutorials", description: "JavaScript, Python, React — real projects you can build and learn from.", color: "from-amber-500/10 to-orange-500/10" },
+  { title: "Coding Tutorials", description: "JavaScript, Python, React tutorials. Real projects you can build and learn from.", color: "from-amber-500/10 to-orange-500/10" },
   { title: "Software Reviews", description: "Honest side-by-side comparisons so you pick the right tool, not the hyped one.", color: "from-pink-500/10 to-rose-500/10" },
 ];
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
               A tech blog that skips the filler. We test tools, write code, and
-              share what we learn — straight up.
+              share what we learn, straight up.
             </p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
               <h3 className="text-xl font-bold mb-1">Ali Rehman</h3>
               <p className="text-sm text-primary font-medium mb-3">Founder & Editor</p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                I’m a self-taught developer who got tired of reading AI tool “lists” that were clearly written by someone who never opened the tool. So I started ByteVerse — a place where I test things myself, write about what I find, and share the code that actually works. Every guide on this site comes from my own experience building projects, trying apps, and figuring things out the hard way.
+                I’m a self-taught developer who got tired of reading AI tool “lists” that were clearly written by someone who never opened the tool. So I started ByteVerse, a place where I test things myself, write about what I find, and share the code that actually works. Every guide on this site comes from my own experience building projects, trying apps, and figuring things out the hard way.
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail size={14} />

@@ -119,7 +119,7 @@ export default async function BlogPage({
               Latest Articles
             </h1>
             <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-              Guides, tutorials, and reviews — all tested before we hit publish.
+              Guides, tutorials, and reviews. All tested before we hit publish.
             </p>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default async function BlogPage({
                 <div className="flex items-center justify-between mb-6">
                   <div>
                     <h2 className="text-xl font-bold text-foreground">
-                      {isFirstPage ? 'Latest Articles' : `Articles — Page ${currentPage}`}
+                      {isFirstPage ? 'Latest Articles' : `Articles - Page ${currentPage}`}
                     </h2>
                     <p className="text-sm text-muted-foreground mt-0.5">{totalPosts} articles published</p>
                   </div>

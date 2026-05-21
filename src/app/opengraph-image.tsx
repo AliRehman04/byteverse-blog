@@ -89,7 +89,7 @@ export default function OgImage() {
               marginBottom: 40,
             }}
           >
-            AI Tools • Tech Guides • Productivity • Coding Tutorials
+            AI Tools | Tech Guides | Productivity | Coding Tutorials
           </div>
 
           {/* URL */}

@@ -145,7 +145,7 @@ export default function PostsPage() {
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-6 pt-4 border-t border-[var(--border)]">
           <p className="text-sm text-[var(--muted-foreground)]">
-            Showing {(page - 1) * POSTS_PER_PAGE + 1}–{Math.min(page * POSTS_PER_PAGE, posts.length)} of {posts.length} posts
+            Showing {(page - 1) * POSTS_PER_PAGE + 1}-{Math.min(page * POSTS_PER_PAGE, posts.length)} of {posts.length} posts
           </p>
           <div className="flex items-center gap-2">
             <button

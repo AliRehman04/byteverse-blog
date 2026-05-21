@@ -3,8 +3,8 @@ import { db } from "@/lib/db";
 import { posts } from "@/lib/db/schema";
 import { and, eq, lte, isNotNull } from "drizzle-orm";
 
-// Vercel Cron: runs every 5 minutes
-// Add to vercel.json: { "crons": [{ "path": "/api/cron/publish", "schedule": "*/5 * * * *" }] }
+// Vercel Cron: runs every 12 hours (at 00:00 and 12:00 UTC)
+// Configured in vercel.json: { "crons": [{ "path": "/api/cron/publish", "schedule": "0 */12 * * *" }] }
 
 export async function GET(request: Request) {
   // Verify cron secret (Vercel sends this header for cron jobs)

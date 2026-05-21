@@ -12,6 +12,7 @@ import {
   X,
   ChevronRight,
   UserPen,
+  Mail,
 } from "lucide-react";
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { title: "Posts", href: "/admin/posts", icon: FileText },
   { title: "Categories", href: "/admin/categories", icon: FolderOpen },
   { title: "Authors", href: "/admin/authors", icon: UserPen },
+  { title: "Newsletter", href: "/admin/newsletter", icon: Mail },
 ];
 
 export default function AdminLayout({

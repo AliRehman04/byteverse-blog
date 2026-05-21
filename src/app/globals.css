@@ -438,3 +438,11 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ====== RENDER PERFORMANCE ====== */
+/* content-visibility: auto lets browser skip rendering off-screen sections */
+.section-alt,
+.blog-content {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

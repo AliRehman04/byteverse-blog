@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+    minimumCacheTTL: 2678400, // 31 days — cache optimized images longer
   },
   headers: async () => [
     {

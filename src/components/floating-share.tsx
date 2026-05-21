@@ -1,13 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Check, Copy, Share2 } from "lucide-react";
 
 export function FloatingShareBar({ url, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hideNearFooter, setHideNearFooter] = useState(false);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector("footer");
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // Hide when footer is visible (within 100px of viewport bottom)
+        setHideNearFooter(footerRect.top < windowHeight - 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const copyLink = () => {
     navigator.clipboard.writeText(url);
@@ -18,7 +34,7 @@ export function FloatingShareBar({ url, title }: { url: string; title: string })
   return (
     <>
       {/* Desktop: fixed left sidebar */}
-      <div className="hidden xl:flex fixed left-[max(1rem,calc((100vw-768px)/2-80px))] top-1/2 -translate-y-1/2 z-40 flex-col gap-2">
+      <div className={`hidden xl:flex fixed left-[max(1rem,calc((100vw-768px)/2-80px))] top-1/2 -translate-y-1/2 z-40 flex-col gap-2 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <a
           href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
           target="_blank"
@@ -62,7 +78,7 @@ export function FloatingShareBar({ url, title }: { url: string; title: string })
       </div>
 
       {/* Mobile: floating bottom button */}
-      <div className="xl:hidden fixed bottom-6 left-6 z-40">
+      <div className={`xl:hidden fixed bottom-6 left-6 z-40 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <button
           onClick={() => setOpen(!open)}
           className="p-3 rounded-full bg-card border border-border shadow-lg hover:bg-muted transition-colors"

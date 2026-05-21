@@ -95,7 +95,7 @@ export function Newsletter({ compact }: { compact?: boolean }) {
           </div>
           <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
           <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
-            New guides and tool reviews, straight to your inbox. No spam \u2014
+            New guides and tool reviews, straight to your inbox. No spam —
             just useful stuff, once a week.
           </p>
 

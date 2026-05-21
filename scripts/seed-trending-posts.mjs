@@ -25,12 +25,12 @@ const newPosts = [
       "Learn 12 proven ways to make money with AI in 2026 including freelancing, content, apps, automation, and consulting.",
     keywords:
       "how to make money with AI 2026, AI side hustle, make money AI tools, AI business ideas 2026, earn money with ChatGPT",
-    cover: "1553729459-afe14108a159",
+    cover: "1556761175-b413da4baf72",
     content: `If you have been searching for **how to make money with AI in 2026**, you are not alone. AI is no longer a futuristic experiment — it is a practical toolkit that thousands of people are using right now to earn real income.
 
 This guide covers 12 real ways to make money with AI. No hype, no overnight-rich promises — just methods that work when you put in the effort.
 
-![Person working on laptop with AI tools for income generation](${imageUrl("1553729459-afe14108a159")} "Making money with AI in 2026")
+![Person working on laptop with AI tools for income generation](${imageUrl("1556761175-b413da4baf72")} "Making money with AI in 2026")
 
 ## Why AI Is a Real Income Opportunity in 2026
 

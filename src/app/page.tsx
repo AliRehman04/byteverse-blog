@@ -1,14 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Zap, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb } from "lucide-react";
-import { Newsletter } from "@/components/newsletter";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb } from "lucide-react";
+import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { GridPostCard } from "@/components/post-card";
 import { TextRotator } from "@/components/text-rotator";
-import { HeroCodeBlock } from "@/components/hero-code-block";
+import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
@@ -116,10 +116,10 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Gradient orbs */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float-slow" />
-          <div className="absolute top-1/2 -left-32 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl animate-float-reverse" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-float" />
+          {/* Gradient orbs - simplified on mobile via CSS */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl md:animate-float-slow" />
+          <div className="absolute top-1/2 -left-32 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl md:animate-float-reverse" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl md:animate-float" />
 
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -213,7 +213,7 @@ export default async function HomePage() {
 
             {/* Right - Code Block Visual */}
             <div className="hidden lg:block animate-fade-in-up stagger-3">
-              <HeroCodeBlock />
+              <LazyHeroCodeBlock />
             </div>
           </div>
         </div>
@@ -364,7 +364,7 @@ export default async function HomePage() {
 
       {/* Newsletter */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
-        <Newsletter />
+        <LazyNewsletter />
       </section>
     </>
   );

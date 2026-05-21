@@ -348,6 +348,41 @@ body {
   border-top: none;
 }
 
+/* ====== MOBILE PERFORMANCE ====== */
+/* Reduce GPU-intensive blur/backdrop on mobile to improve LCP & TBT */
+@media (max-width: 767px) {
+  .blur-3xl {
+    filter: blur(32px) !important;
+  }
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .animate-float,
+  .animate-float-reverse,
+  .animate-float-slow,
+  .animate-pulse-ring {
+    animation: none !important;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-reverse,
+  .animate-float-slow,
+  .animate-pulse-ring,
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .btn-shimmer::after {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .blog-content > div > :first-child {
   margin-top: 0;
 }

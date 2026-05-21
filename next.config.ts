@@ -70,6 +70,16 @@ const nextConfig: NextConfig = {
       permanent: true,
     },
   ],
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "date-fns",
+      "react-markdown",
+      "remark-gfm",
+      "rehype-raw",
+      "rehype-slug",
+    ],
+  },
 };
 
 export default nextConfig;

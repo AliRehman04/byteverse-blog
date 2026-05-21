@@ -4,9 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
+
+const SearchDialog = dynamic(
+  () => import("@/components/search-dialog").then((m) => m.SearchDialog),
+  { ssr: false, loading: () => (
+    <div className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground rounded-lg border border-border">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span className="hidden lg:inline">Search...</span>
+    </div>
+  )}
+);
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -68,6 +79,7 @@ export function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
+              <SearchDialog />
               <ThemeToggle />
               <Link
                 href="/blog"

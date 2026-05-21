@@ -33,6 +33,7 @@ interface PostForm {
   metaTitle: string;
   metaDescription: string;
   keywords: string;
+  scheduledAt: string;
 }
 
 const defaultForm: PostForm = {
@@ -47,6 +48,7 @@ const defaultForm: PostForm = {
   metaTitle: "",
   metaDescription: "",
   keywords: "",
+  scheduledAt: "",
 };
 
 export default function PostEditor({
@@ -95,6 +97,7 @@ export default function PostEditor({
             metaTitle: post.metaTitle || "",
             metaDescription: post.metaDescription || "",
             keywords: post.keywords || "",
+            scheduledAt: post.scheduledAt ? new Date(post.scheduledAt).toISOString().slice(0, 16) : "",
           });
         })
         .catch(() => {});
@@ -260,6 +263,17 @@ export default function PostEditor({
           Back to Posts
         </button>
         <div className="flex items-center gap-2">
+          {isEditing && (
+            <a
+              href={`/admin/posts/${postId}/preview`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2.5 border border-[var(--border)] rounded-xl text-sm font-medium hover:bg-[var(--muted)] transition-colors text-[var(--muted-foreground)]"
+            >
+              <Eye className="w-4 h-4" />
+              Preview
+            </a>
+          )}
           <button
             onClick={() => handleSubmit(false)}
             disabled={saving}
@@ -571,6 +585,26 @@ export default function PostEditor({
                 className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
               />
             </div>
+          </div>
+
+          {/* Schedule */}
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 space-y-3">
+            <label className="block text-sm font-medium text-[var(--foreground)]">
+              Schedule Publish
+            </label>
+            <input
+              type="datetime-local"
+              value={form.scheduledAt}
+              onChange={(e) =>
+                setForm({ ...form, scheduledAt: e.target.value })
+              }
+              className="w-full px-3 py-2 rounded-lg bg-[var(--muted)] border border-[var(--border)] text-[var(--foreground)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            />
+            {form.scheduledAt && (
+              <p className="text-xs text-[var(--muted-foreground)]">
+                Post will auto-publish at this date/time. Publish toggle will be ignored.
+              </p>
+            )}
           </div>
 
           {/* SEO */}

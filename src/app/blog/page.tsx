@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc, sql, count } from "drizzle-orm";
 import { PostCard, FeaturedPostCard } from "@/components/post-card";
-import { Newsletter } from "@/components/newsletter";
+import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
-import { TrendingUp, FolderOpen } from "lucide-react";
+import { TrendingUp, FolderOpen, ChevronLeft, ChevronRight } from "lucide-react";
+
+const POSTS_PER_PAGE = 30;
 
 export const metadata: Metadata = {
   title: "Blog | Latest Articles on AI, Tech & Productivity",
@@ -25,21 +27,53 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page: pageParam } = await searchParams;
+  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
+
   let allPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
   let allCategories: (typeof import("@/lib/db/schema").categories.$inferSelect)[] = [];
+  let totalPosts = 0;
+  let popularPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
+  let allPublishedPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
 
   if (db) {
+    const [countResult] = await db
+      .select({ total: count() })
+      .from(posts)
+      .where(eq(posts.published, true));
+    totalPosts = countResult?.total ?? 0;
+
     allPosts = await db
       .select()
       .from(posts)
       .where(eq(posts.published, true))
-      .orderBy(desc(posts.createdAt));
+      .orderBy(desc(posts.createdAt))
+      .limit(POSTS_PER_PAGE)
+      .offset((currentPage - 1) * POSTS_PER_PAGE);
+
+    popularPosts = await db
+      .select()
+      .from(posts)
+      .where(eq(posts.published, true))
+      .orderBy(desc(posts.views))
+      .limit(5);
+
+    allPublishedPosts = await db
+      .select({ id: posts.id, categoryId: posts.categoryId })
+      .from(posts)
+      .where(eq(posts.published, true)) as typeof allPublishedPosts;
 
     allCategories = await db.select().from(categories);
   }
 
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
+  const isFirstPage = currentPage === 1;
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -49,7 +83,7 @@ export default async function BlogPage() {
     url: `${siteConfig.url}/blog`,
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: allPosts.length,
+      numberOfItems: totalPosts,
       itemListElement: allPosts.slice(0, 10).map((post, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -99,26 +133,30 @@ export default async function BlogPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {allPosts.length > 0 ? (
           <>
-            {/* Featured Hero Post */}
-            <FeaturedPostCard
-              post={allPosts[0]}
-              category={categoryMap.get(allPosts[0].categoryId ?? 0)}
-              featured
-            />
+            {/* Featured Hero Post (page 1 only) */}
+            {isFirstPage && (
+              <FeaturedPostCard
+                post={allPosts[0]}
+                category={categoryMap.get(allPosts[0].categoryId ?? 0)}
+                featured
+              />
+            )}
 
             {/* Main content + Sidebar */}
-            <div className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10">
+            <div className={`${isFirstPage ? 'mt-10 md:mt-12' : ''} grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10`}>
               {/* Articles List */}
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <h2 className="text-xl font-bold text-foreground">Latest Articles</h2>
-                    <p className="text-sm text-muted-foreground mt-0.5">{allPosts.length} articles published</p>
+                    <h2 className="text-xl font-bold text-foreground">
+                      {isFirstPage ? 'Latest Articles' : `Articles — Page ${currentPage}`}
+                    </h2>
+                    <p className="text-sm text-muted-foreground mt-0.5">{totalPosts} articles published</p>
                   </div>
                 </div>
 
                 <div className="space-y-4 sm:space-y-5">
-                  {allPosts.slice(1).map((post) => (
+                  {(isFirstPage ? allPosts.slice(1) : allPosts).map((post) => (
                     <PostCard
                       key={post.id}
                       post={post}
@@ -126,6 +164,53 @@ export default async function BlogPage() {
                     />
                   ))}
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
+                    {currentPage > 1 ? (
+                      <Link
+                        href={currentPage === 2 ? '/blog' : `/blog?page=${currentPage - 1}`}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
+                      >
+                        <ChevronLeft size={16} /> Previous
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-muted/50 text-muted-foreground cursor-not-allowed">
+                        <ChevronLeft size={16} /> Previous
+                      </span>
+                    )}
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <Link
+                          key={page}
+                          href={page === 1 ? '/blog' : `/blog?page=${page}`}
+                          className={`w-10 h-10 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
+                            page === currentPage
+                              ? 'bg-primary text-primary-foreground'
+                              : 'border border-border bg-card hover:bg-muted'
+                          }`}
+                        >
+                          {page}
+                        </Link>
+                      ))}
+                    </div>
+
+                    {currentPage < totalPages ? (
+                      <Link
+                        href={`/blog?page=${currentPage + 1}`}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
+                      >
+                        Next <ChevronRight size={16} />
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-muted/50 text-muted-foreground cursor-not-allowed">
+                        Next <ChevronRight size={16} />
+                      </span>
+                    )}
+                  </nav>
+                )}
               </div>
 
               {/* Sidebar */}
@@ -137,10 +222,7 @@ export default async function BlogPage() {
                     Popular Now
                   </h3>
                   <div className="space-y-3">
-                    {[...allPosts]
-                      .sort((a, b) => (b.views ?? 0) - (a.views ?? 0))
-                      .slice(0, 5)
-                      .map((post, i) => (
+                    {popularPosts.map((post, i) => (
                         <Link
                           key={post.id}
                           href={`/blog/${post.slug}`}
@@ -174,7 +256,7 @@ export default async function BlogPage() {
                   </h3>
                   <div className="space-y-1.5">
                     {allCategories.map((cat) => {
-                      const count = allPosts.filter((p) => p.categoryId === cat.id).length;
+                      const catCount = allPublishedPosts.filter((p) => p.categoryId === cat.id).length;
                       return (
                         <Link
                           key={cat.id}
@@ -191,7 +273,7 @@ export default async function BlogPage() {
                             </span>
                           </span>
                           <span className="text-xs text-muted-foreground bg-muted rounded-full px-2 py-0.5 font-medium">
-                            {count}
+                            {catCount}
                           </span>
                         </Link>
                       );
@@ -201,7 +283,7 @@ export default async function BlogPage() {
 
                 {/* Newsletter */}
                 <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <Newsletter compact />
+                  <LazyNewsletter compact />
                 </div>
               </aside>
             </div>

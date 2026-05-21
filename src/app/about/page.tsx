@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Target, Users, Heart, Mail, Shield, Search } from "lucide-react";
-import { Newsletter } from "@/components/newsletter";
+import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -189,7 +189,7 @@ export default function AboutPage() {
       {/* Newsletter */}
       <section className="section-alt border-t border-border">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
-          <Newsletter />
+          <LazyNewsletter />
         </div>
       </section>
     </>

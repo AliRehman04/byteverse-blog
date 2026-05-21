@@ -10,15 +10,18 @@ export function ThemeToggle() {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return <div className="w-9 h-9" />;
-
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="p-2 rounded-lg bg-muted hover:bg-border transition-colors"
       aria-label="Toggle theme"
+      suppressHydrationWarning
     >
-      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+      {mounted ? (
+        theme === "dark" ? <Sun size={18} /> : <Moon size={18} />
+      ) : (
+        <Moon size={18} />
+      )}
     </button>
   );
 }

@@ -1,28 +1,10 @@
-"use client";
-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
-import { Children, isValidElement, useState } from "react";
-import { Check, Copy, ExternalLink } from "lucide-react";
-
-function CopyButton({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText(code);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }}
-      className="absolute top-3 right-3 p-1.5 rounded-md bg-white/10 hover:bg-white/20 text-slate-400 hover:text-white transition-all opacity-0 group-hover:opacity-100"
-      aria-label="Copy code"
-    >
-      {copied ? <Check size={14} /> : <Copy size={14} />}
-    </button>
-  );
-}
+import { Children, isValidElement } from "react";
+import { ExternalLink } from "lucide-react";
+import { CopyButton } from "@/components/copy-button";
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (

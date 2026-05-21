@@ -60,12 +60,13 @@ export async function PUT(
       coverImage: body.coverImage || null,
       categoryId: body.categoryId ? parseInt(body.categoryId) : null,
       author: body.author || "Ali Rehman",
-      published: body.published ?? false,
+      published: body.scheduledAt ? false : (body.published ?? false),
       featured: body.featured ?? false,
       metaTitle: body.metaTitle || body.title,
       metaDescription: body.metaDescription || body.excerpt,
       keywords: body.keywords || null,
       readingTime,
+      scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,
       updatedAt: new Date(),
     })
     .where(eq(posts.id, parseInt(id)))

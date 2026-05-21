@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, ArrowRight, Calendar } from "lucide-react";
-import { formatDate } from "@/lib/utils";
+import { formatDate, shimmerBlur } from "@/lib/utils";
 import type { Post, Category } from "@/lib/db/schema";
 
 interface PostCardProps {
@@ -25,6 +25,8 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               sizes="(max-width: 768px) 100vw, 50vw"
+              placeholder="blur"
+              blurDataURL={shimmerBlur}
               priority
             />
           ) : (
@@ -104,6 +106,8 @@ export function PostCard({ post, category }: PostCardProps) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             sizes="(max-width: 640px) 100vw, 320px"
+            placeholder="blur"
+            blurDataURL={shimmerBlur}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
@@ -172,6 +176,8 @@ export function GridPostCard({ post, category }: PostCardProps) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             sizes="(max-width: 768px) 100vw, 33vw"
+            placeholder="blur"
+            blurDataURL={shimmerBlur}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">

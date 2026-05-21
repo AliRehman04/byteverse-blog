@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, count } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
+
+const POSTS_PER_PAGE = 30;
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -23,6 +25,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   if (!db) return staticPages;
+
+  // Blog pagination pages
+  const [{ total }] = await db.select({ total: count() }).from(posts).where(eq(posts.published, true));
+  const totalPages = Math.ceil(total / POSTS_PER_PAGE);
+  const paginationPages: MetadataRoute.Sitemap = Array.from({ length: totalPages - 1 }, (_, i) => ({
+    url: `${baseUrl}/blog?page=${i + 2}`,
+    lastModified: new Date(),
+    changeFrequency: "daily" as const,
+    priority: 0.7,
+  }));
 
   // Dynamic blog posts
   const allPosts = await db
@@ -64,5 +76,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...postPages, ...categoryPages, ...authorPages];
+  return [...staticPages, ...paginationPages, ...postPages, ...categoryPages, ...authorPages];
 }

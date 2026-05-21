@@ -24,6 +24,7 @@ export const posts = pgTable("posts", {
   keywords: text("keywords"),
   readingTime: varchar("reading_time", { length: 20 }),
   views: integer("views").notNull().default(0),
+  scheduledAt: timestamp("scheduled_at"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

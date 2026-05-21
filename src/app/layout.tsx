@@ -11,11 +11,15 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -93,8 +97,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <AdSense />
-        <GoogleAnalytics />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="alternate" type="application/rss+xml" title="ByteVerse RSS Feed" href="/feed.xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -140,6 +145,8 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
+        <AdSense />
+        <GoogleAnalytics />
       </body>
     </html>
   );

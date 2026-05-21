@@ -6,14 +6,13 @@ import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
 import { eq, ne, desc, and } from "drizzle-orm";
 import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User } from "lucide-react";
-import { formatDate } from "@/lib/utils";
+import { formatDate, shimmerBlur } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
-import { Newsletter } from "@/components/newsletter";
 import { AdUnit } from "@/components/adsense";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
-import { ShareButtons } from "@/components/share-buttons";
 import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
-import { ViewTracker } from "@/components/view-tracker";
+import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare } from "@/components/blog-post-widgets";
+import { LazyNewsletter } from "@/components/lazy-newsletter";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -150,6 +149,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
   }
 
+  // Auto-extract HowTo steps (matches numbered list items under a "How to" heading)
+  const howToMatch = post.content.match(/#{2,3}\s+(How\s+to\s+.+?)\s*\n+([\s\S]*?)(?=\n#{2,3}\s|\n*$)/i);
+  const howToSteps: { name: string; text: string }[] = [];
+  if (howToMatch) {
+    const stepRegex = /(?:^|\n)\d+\.\s+\*\*(.+?)\*\*[:\s]*(.+)/g;
+    let stepMatch;
+    while ((stepMatch = stepRegex.exec(howToMatch[2])) !== null) {
+      howToSteps.push({ name: stepMatch[1].trim(), text: stepMatch[2].trim().replace(/[*_`]/g, "") });
+    }
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -205,6 +215,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         text: faq.answer,
       },
     })),
+  } : null;
+
+  // HowTo schema (auto-extracted from numbered steps under "How to" headings)
+  const howToLd = howToSteps.length >= 2 && howToMatch ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: howToMatch[1].trim(),
+    description: post.metaDescription || post.excerpt,
+    step: howToSteps.map((step, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: step.name,
+      text: step.text,
+    })),
+    totalTime: `PT${readingMinutes}M`,
   } : null;
 
   // Breadcrumb schema
@@ -278,14 +303,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
         />
       )}
+      {howToLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
+        />
+      )}
 
       <article>
-        <ViewTracker slug={post.slug} />
+        <BlogPostWidgets slug={post.slug} url={postUrl} title={post.title} />
         {/* ========== HERO HEADER ========== */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl animate-float-slow" />
-            <div className="absolute bottom-0 -left-20 w-60 h-60 bg-violet-500/10 rounded-full blur-3xl animate-float-reverse" />
+            <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl md:animate-float-slow" />
+            <div className="absolute bottom-0 -left-20 w-60 h-60 bg-violet-500/10 rounded-full blur-3xl md:animate-float-reverse" />
             <div className="absolute inset-0 opacity-[0.03]" style={{
               backgroundImage: "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
               backgroundSize: "60px 60px",
@@ -386,12 +417,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     unoptimized={post.coverImage.endsWith(".svg")}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 800px"
+                    placeholder="blur"
+                    blurDataURL={shimmerBlur}
                   />
                 </div>
               )}
 
               {/* Ad before content */}
               <AdUnit slot="blog-top" format="horizontal" />
+
+              {/* Table of Contents */}
+              <BlogPostToc />
 
               {/* Markdown Content */}
               <MarkdownRenderer content={articleContent} />
@@ -405,8 +441,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Share2 size={14} />
                   Share this article
                 </p>
-                <ShareButtons url={postUrl} title={post.title} />
+                <BlogPostShare url={postUrl} title={post.title} />
               </div>
+
+              {/* Comments */}
+              <BlogPostComments />
 
               {/* ========== AUTHOR BOX ========== */}
               <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-muted/50 ring-1 ring-border">
@@ -506,7 +545,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* ========== NEWSLETTER ========== */}
           <div className="mt-16">
-            <Newsletter />
+            <LazyNewsletter />
           </div>
         </div>
       </article>

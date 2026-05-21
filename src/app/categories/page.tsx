@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Bot, Monitor, Lightbulb, Code2, Star } from "lucide-react";
 import { db } from "@/lib/db";
 import { categories } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/config";
+
+const categoryIcons: Record<string, React.ElementType> = {
+  "ai-tools": Bot,
+  "tech-guides": Monitor,
+  "productivity": Lightbulb,
+  "coding": Code2,
+  "software-reviews": Star,
+};
 
 export const metadata: Metadata = {
   title: "Browse All Categories | AI Tools, Tech Guides & More",
@@ -91,10 +99,17 @@ export default async function CategoriesPage() {
                     className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300"
                     style={{ backgroundColor: cat.color + "15" }}
                   >
-                    <div
-                      className="w-4.5 h-4.5 rounded-md"
-                      style={{ backgroundColor: cat.color }}
-                    />
+                    {(() => {
+                      const Icon = categoryIcons[cat.slug];
+                      return Icon ? (
+                        <Icon className="w-5 h-5" style={{ color: cat.color }} />
+                      ) : (
+                        <div
+                          className="w-4.5 h-4.5 rounded-md"
+                          style={{ backgroundColor: cat.color }}
+                        />
+                      );
+                    })()}
                   </div>
                   <h2 className="font-bold text-lg group-hover:text-primary transition-colors duration-200">
                     {cat.name}

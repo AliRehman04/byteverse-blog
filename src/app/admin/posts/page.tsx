@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Eye, EyeOff, Star, FileText } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Star, FileText, ChevronLeft, ChevronRight } from "lucide-react";
+
+const POSTS_PER_PAGE = 30;
 
 interface Post {
   id: number;
@@ -21,6 +23,13 @@ interface Post {
 export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  const paginatedPosts = posts.slice(
+    (page - 1) * POSTS_PER_PAGE,
+    page * POSTS_PER_PAGE
+  );
 
   const fetchPosts = async () => {
     const res = await fetch("/api/admin/posts");
@@ -68,7 +77,7 @@ export default function PostsPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {posts.map((post) => (
+          {paginatedPosts.map((post) => (
             <div
               key={post.id}
               className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 flex items-center gap-4"
@@ -129,6 +138,46 @@ export default function PostsPage() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between mt-6 pt-4 border-t border-[var(--border)]">
+          <p className="text-sm text-[var(--muted-foreground)]">
+            Showing {(page - 1) * POSTS_PER_PAGE + 1}–{Math.min(page * POSTS_PER_PAGE, posts.length)} of {posts.length} posts
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <button
+                key={p}
+                onClick={() => setPage(p)}
+                className={`w-9 h-9 rounded-xl text-sm font-medium transition-colors ${
+                  p === page
+                    ? "bg-[var(--primary)] text-white"
+                    : "bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)]"
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-medium bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors disabled:opacity-40 disabled:pointer-events-none"
+            >
+              Next
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       )}
     </div>

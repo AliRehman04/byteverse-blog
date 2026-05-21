@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
 import { eq, desc, and, count } from "drizzle-orm";
-import { PostCard } from "@/components/post-card";
+import { GridPostCard } from "@/components/post-card";
 import { siteConfig } from "@/lib/config";
 
 interface CategoryPageProps {
@@ -145,7 +145,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {categoryPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categoryPosts.map((post) => (
-              <PostCard key={post.id} post={post} category={category} />
+              <GridPostCard key={post.id} post={post} category={category} />
             ))}
           </div>
         ) : (

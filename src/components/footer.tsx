@@ -15,6 +15,7 @@ export function Footer() {
                 <Image
                   src="/logo.png"
                   alt="ByteVerse"
+                  title="ByteVerse - AI Tools, Tech Guides & Productivity"
                   width={140}
                   height={36}
                   className="h-9 w-auto"

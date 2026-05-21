@@ -143,7 +143,8 @@ export default async function AuthorPage({ params }: Props) {
             {author.avatar ? (
               <Image
                 src={author.avatar}
-                alt={author.name}
+                alt={`${author.name} - ${author.role} at ByteVerse`}
+                title={`${author.name} - ${author.role}`}
                 width={96}
                 height={96}
                 className="w-24 h-24 rounded-2xl object-cover border border-white/15 shrink-0"

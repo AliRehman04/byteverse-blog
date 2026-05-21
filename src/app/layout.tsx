@@ -62,7 +62,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : {}),
   },
   publisher: siteConfig.name,
   alternates: {
@@ -108,7 +110,6 @@ export default function RootLayout({
                 email: siteConfig.email,
                 contactType: "customer support",
               },
-              sameAs: [],
             }),
           }}
         />
@@ -128,11 +129,6 @@ export default function RootLayout({
                   "@type": "ImageObject",
                   url: `${siteConfig.url}/logo.png`,
                 },
-              },
-              potentialAction: {
-                "@type": "SearchAction",
-                target: `${siteConfig.url}/blog?q={search_term_string}`,
-                "query-input": "required name=search_term_string",
               },
             }),
           }}

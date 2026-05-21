@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Mail, CheckCircle, Loader2 } from "lucide-react";
 
-export function Newsletter() {
+export function Newsletter({ compact }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -24,7 +24,7 @@ export function Newsletter() {
 
       if (res.ok) {
         setStatus("success");
-        setMessage("You're subscribed! Check your inbox.");
+        setMessage("You're subscribed! Thanks for joining.");
         setEmail("");
       } else {
         setStatus("error");
@@ -34,6 +34,54 @@ export function Newsletter() {
       setStatus("error");
       setMessage("Network error. Please try again.");
     }
+  }
+
+  if (compact) {
+    return (
+      <div>
+        <h3 className="flex items-center gap-2 text-sm font-bold text-[var(--foreground)] mb-2">
+          <Mail size={16} className="text-primary" />
+          Weekly Digest
+        </h3>
+        <p className="text-xs text-muted-foreground mb-3">
+          Best articles delivered weekly. No spam.
+        </p>
+
+        {status === "success" ? (
+          <div className="flex items-center gap-2 text-green-600 text-sm animate-fade-in">
+            <CheckCircle size={16} />
+            <span className="font-medium">Subscribed!</span>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              aria-label="Email address"
+              className="w-full px-3 py-2 rounded-lg bg-[var(--background)] border border-[var(--border)] text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {status === "loading" ? (
+                <Loader2 size={14} className="animate-spin" />
+              ) : (
+                "Subscribe"
+              )}
+            </button>
+          </form>
+        )}
+
+        {status === "error" && (
+          <p className="mt-2 text-xs text-red-500">{message}</p>
+        )}
+      </div>
+    );
   }
 
   return (
@@ -47,8 +95,8 @@ export function Newsletter() {
           </div>
           <h3 className="text-2xl font-bold mb-2">Stay Updated</h3>
           <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto">
-            Get the latest AI tools, tech guides, and productivity tips delivered
-            to your inbox. No spam, unsubscribe anytime.
+            New guides and tool reviews, straight to your inbox. No spam \u2014
+            just useful stuff, once a week.
           </p>
 
           {status === "success" ? (

@@ -13,6 +13,7 @@ import { AdUnit } from "@/components/adsense";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { ShareButtons } from "@/components/share-buttons";
 import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
+import { ViewTracker } from "@/components/view-tracker";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -93,8 +94,16 @@ export async function generateMetadata({
   };
 }
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  if (!db) return [];
+  const allPosts = await db
+    .select({ slug: posts.slug })
+    .from(posts)
+    .where(eq(posts.published, true));
+  return allPosts.map((p) => ({ slug: p.slug }));
+}
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
@@ -212,8 +221,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     ],
   };
 
-  // Track view
-  void fetch(`${siteConfig.url}/api/views/${post.slug}`, { method: "POST" }).catch(() => {});
+  // Track views via client-side API call (ISR pages can't do server-side tracking reliably)
 
   // Fetch author info from DB
   const authorSlug = post.author.toLowerCase().replace(/\s+/g, "-");
@@ -272,6 +280,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       <article>
+        <ViewTracker slug={post.slug} />
         {/* ========== HERO HEADER ========== */}
         <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
           <div className="absolute inset-0 overflow-hidden">
@@ -371,6 +380,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Image
                     src={post.coverImage}
                     alt={seoImages[0]?.alt || post.title}
+                    title={post.title}
                     fill
                     priority
                     unoptimized={post.coverImage.endsWith(".svg")}
@@ -462,6 +472,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <Image
                           src={related.coverImage}
                           alt={related.title}
+                          title={related.title}
                           fill
                           unoptimized={related.coverImage.endsWith(".svg")}
                           className="object-cover group-hover:scale-105 transition-transform duration-300"

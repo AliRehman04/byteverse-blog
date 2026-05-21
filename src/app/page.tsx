@@ -1,40 +1,64 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Zap, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
 import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
-import { PostCard } from "@/components/post-card";
+import { GridPostCard } from "@/components/post-card";
 import { TextRotator } from "@/components/text-rotator";
 import { HeroCodeBlock } from "@/components/hero-code-block";
+
+export const metadata: Metadata = {
+  title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+    description: siteConfig.description,
+    images: [{ url: `${siteConfig.url}/opengraph-image`, width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/opengraph-image`],
+  },
+  alternates: {
+    canonical: siteConfig.url,
+  },
+};
 
 const features = [
   {
     icon: Sparkles,
     title: "AI Tool Reviews",
-    description: "In-depth reviews of the latest AI tools to supercharge your workflow.",
+    description: "We test AI tools hands-on and tell you what's worth your time.",
     color: "from-violet-500/10 to-purple-500/10",
     iconColor: "text-violet-600 dark:text-violet-400",
   },
   {
     icon: BookOpen,
     title: "Step-by-Step Guides",
-    description: "Easy-to-follow tutorials on trending tech topics and frameworks.",
+    description: "Clear tutorials you can follow along — no walls of jargon.",
     color: "from-blue-500/10 to-cyan-500/10",
     iconColor: "text-blue-600 dark:text-blue-400",
   },
   {
     icon: Cpu,
     title: "Coding Tutorials",
-    description: "Learn modern programming with practical, real-world examples.",
+    description: "Build real projects with JavaScript, Python, React, and more.",
     color: "from-amber-500/10 to-orange-500/10",
     iconColor: "text-amber-600 dark:text-amber-400",
   },
   {
     icon: TrendingUp,
     title: "Productivity Hacks",
-    description: "Tips and strategies to 10x your productivity with the right tools.",
+    description: "Tools and setups that actually save you hours every week.",
     color: "from-emerald-500/10 to-teal-500/10",
     iconColor: "text-emerald-600 dark:text-emerald-400",
   },
@@ -152,8 +176,8 @@ export default async function HomePage() {
               </h1>
 
               <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
-                Discover AI tools, master new technologies, and boost your
-                productivity with expert guides, tutorials, and honest reviews.
+                We write about AI tools, coding, and tech — tested first, then
+                explained so you can actually use it. No fluff, no filler.
               </p>
 
               {/* CTA Buttons */}
@@ -214,7 +238,7 @@ export default async function HomePage() {
               Everything You Need, <span className="gradient-text">One Place</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              From cutting-edge AI tools to practical coding tutorials.
+              From cutting-edge AI tools to practical coding tutorials — content you can actually use.
             </p>
           </div>
 
@@ -256,12 +280,11 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {latestPosts.map((post, i) => (
-              <PostCard
+            {latestPosts.map((post) => (
+              <GridPostCard
                 key={post.id}
                 post={post}
                 category={categoryMap.get(post.categoryId ?? 0)}
-                featured={i === 0}
               />
             ))}
           </div>
@@ -318,6 +341,24 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* About ByteVerse */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold tracking-tight mb-4">
+            Why <span className="gradient-text">ByteVerse</span>?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Most tech blogs rehash the same press releases. We don&apos;t. Every AI tool we review gets installed, tested, and compared before we write a word. Every coding tutorial runs on a real machine, not just in theory.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            We cover things like ChatGPT alternatives, React and Next.js projects, Python automation, Notion setups, and cloud deployment — because those are the topics we work with ourselves. If it doesn&apos;t solve a real problem, we skip it.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Whether you&apos;re a student picking your first framework or a developer evaluating a new tool, the goal is simple: read a ByteVerse article and walk away knowing exactly what to do next.
+          </p>
         </div>
       </section>
 

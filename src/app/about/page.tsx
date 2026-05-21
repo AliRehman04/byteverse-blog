@@ -6,11 +6,11 @@ import { siteConfig } from "@/lib/config";
 export const metadata: Metadata = {
   title: "About | Your Trusted Tech Knowledge Hub",
   description:
-    "Learn about ByteVerse, your go-to source for AI tool reviews, step-by-step tech guides, productivity hacks, coding tutorials, and honest software reviews.",
+    "ByteVerse is a tech blog run by Ali Rehman. We test AI tools, write coding guides, and share what actually works.",
   openGraph: {
     title: "About ByteVerse | Your Trusted Tech Knowledge Hub",
     description:
-      "Learn about ByteVerse, your go-to source for AI tool reviews, tech guides, productivity hacks, and coding tutorials.",
+      "ByteVerse is a tech blog run by Ali Rehman. We test AI tools, write coding guides, and share what actually works.",
     type: "website",
   },
   alternates: {
@@ -19,16 +19,39 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { title: "AI Tools & Reviews", description: "Honest, hands-on reviews of the latest AI tools like ChatGPT, Midjourney, Claude, and more.", color: "from-violet-500/10 to-purple-500/10" },
-  { title: "Tech Guides", description: "Step-by-step tutorials on everything from cloud hosting to web development frameworks.", color: "from-blue-500/10 to-cyan-500/10" },
-  { title: "Productivity", description: "Tools, apps, and strategies to work smarter, not harder.", color: "from-emerald-500/10 to-teal-500/10" },
-  { title: "Coding Tutorials", description: "Practical programming guides with real-world projects and examples.", color: "from-amber-500/10 to-orange-500/10" },
-  { title: "Software Reviews", description: "Unbiased comparisons to help you choose the right tools for your needs.", color: "from-pink-500/10 to-rose-500/10" },
+  { title: "AI Tools & Reviews", description: "We install, test, and compare AI tools like ChatGPT, Claude, Midjourney — then tell you what’s actually good.", color: "from-violet-500/10 to-purple-500/10" },
+  { title: "Tech Guides", description: "From spinning up a VPS to deploying a Next.js app — follow-along guides that work.", color: "from-blue-500/10 to-cyan-500/10" },
+  { title: "Productivity", description: "Notion setups, Obsidian workflows, and tools that save you real hours.", color: "from-emerald-500/10 to-teal-500/10" },
+  { title: "Coding Tutorials", description: "JavaScript, Python, React — real projects you can build and learn from.", color: "from-amber-500/10 to-orange-500/10" },
+  { title: "Software Reviews", description: "Honest side-by-side comparisons so you pick the right tool, not the hyped one.", color: "from-pink-500/10 to-rose-500/10" },
 ];
 
 export default function AboutPage() {
+  const aboutLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About ByteVerse",
+    description: "ByteVerse is a tech blog run by Ali Rehman covering AI tools, coding tutorials, and productivity guides.",
+    url: `${siteConfig.url}/about`,
+    mainEntity: {
+      "@type": "Person",
+      name: "Ali Rehman",
+      jobTitle: "Founder & Editor",
+      url: `${siteConfig.url}/about`,
+      worksFor: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }}
+      />
       {/* Page Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
         <div className="absolute inset-0 overflow-hidden">
@@ -49,8 +72,8 @@ export default function AboutPage() {
               About ByteVerse
             </h1>
             <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-              We believe technology should be accessible to everyone. ByteVerse is
-              your trusted guide to navigating the ever-evolving tech landscape.
+              A tech blog that skips the filler. We test tools, write code, and
+              share what we learn — straight up.
             </p>
           </div>
         </div>
@@ -66,9 +89,9 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { icon: Target, title: "Our Mission", desc: "To make complex tech topics simple and actionable for everyone, from beginners to experienced professionals." },
-              { icon: Users, title: "Our Audience", desc: "Students, developers, freelancers, and tech enthusiasts who want to stay ahead with the latest tools and trends." },
-              { icon: Heart, title: "Our Promise", desc: "Honest reviews, clear tutorials, and no fluff. Every article is researched, tested, and written to genuinely help you." },
+              { icon: Target, title: "Our Mission", desc: "Break down complex tech into clear, usable guides. If you can't follow along, we rewrote it." },
+              { icon: Users, title: "Our Audience", desc: "Students learning to code, developers exploring new tools, and anyone trying to get more done with tech." },
+              { icon: Heart, title: "Our Promise", desc: "No sponsored rankings. No recycled press releases. If we recommend something, we've used it ourselves." },
             ].map((item, i) => (
               <div key={item.title} className={`animate-fade-in-up stagger-${i + 1} p-6 rounded-2xl border border-border bg-card card-hover`}>
                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-4">
@@ -100,10 +123,7 @@ export default function AboutPage() {
               <h3 className="text-xl font-bold mb-1">Ali Rehman</h3>
               <p className="text-sm text-primary font-medium mb-3">Founder & Editor</p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                Tech enthusiast and self-taught developer with a passion for making technology accessible to everyone. 
-                I started ByteVerse to share honest, hands-on reviews of AI tools, practical coding tutorials, and 
-                productivity tips that actually work. Every article is personally researched, tested, and written to 
-                help students, freelancers, and tech enthusiasts make better decisions.
+                I’m a self-taught developer who got tired of reading AI tool “lists” that were clearly written by someone who never opened the tool. So I started ByteVerse — a place where I test things myself, write about what I find, and share the code that actually works. Every guide on this site comes from my own experience building projects, trying apps, and figuring things out the hard way.
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail size={14} />
@@ -128,9 +148,9 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { icon: Search, title: "Research First", desc: "Every tool we review is personally tested. We spend hours exploring features, pricing, and real-world use cases before writing a single word." },
-              { icon: Shield, title: "Honest Reviews", desc: "We don't accept paid reviews. Our recommendations are based on genuine experience. If a tool isn't worth it, we'll tell you." },
-              { icon: Heart, title: "Reader-Focused", desc: "Articles are written for real people: students, freelancers, and beginners. No jargon walls, no fluff, just practical value." },
+              { icon: Search, title: "Research First", desc: "Every tool gets installed and used before we write about it. Screenshots are real. Opinions are honest." },
+              { icon: Shield, title: "No Paid Reviews", desc: "Nobody pays us to say nice things. If a tool is bad, we say so. If it's great, we explain exactly why." },
+              { icon: Heart, title: "Written for Humans", desc: "We write like we're explaining to a friend. No buzzword walls, no filler paragraphs, just the stuff you need." },
             ].map((item, i) => (
               <div key={item.title} className={`animate-fade-in-up stagger-${i + 1} p-6 rounded-2xl border border-border bg-card card-hover`}>
                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-4">

@@ -34,7 +34,7 @@ export default function DisclaimerPage() {
       </section>
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="prose max-w-none">
-        <p>Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+        <p>Last updated: July 11, 2025</p>
 
         <h2>General Disclaimer</h2>
         <p>

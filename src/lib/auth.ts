@@ -1,8 +1,13 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  console.warn("JWT_SECRET is not set. Authentication will not work.");
+}
+
 const secret = new TextEncoder().encode(
-  process.env.JWT_SECRET || "fallback-secret-change-me"
+  jwtSecret || "unsafe-dev-only-secret"
 );
 
 export async function createToken() {

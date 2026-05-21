@@ -1,17 +1,25 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend with API key from environment
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const contactEmail = "alirehmanytlearning@gmail.com";
+const contactEmail = process.env.CONTACT_EMAIL || "alirehmanytlearning@gmail.com";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function cleanText(value: unknown, maxLength: number) {
   if (typeof value !== "string") return "";
   return value.replace(/\s+/g, " ").trim().slice(0, maxLength);
+}
+
+function escapeHtml(str: string) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 export async function POST(request: Request) {
@@ -50,6 +58,11 @@ export async function POST(request: Request) {
       );
     }
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message);
+
     const { error } = await resend.emails.send({
       from: "ByteVerse Contact <onboarding@resend.dev>",
       to: contactEmail,
@@ -61,20 +74,20 @@ export async function POST(request: Request) {
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #64748b; width: 100px;"><strong>Name</strong></td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;">${name}</td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;">${safeName}</td>
             </tr>
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #64748b;"><strong>Email</strong></td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;"><a href="mailto:${email}" style="color: #6366f1;">${email}</a></td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;"><a href="mailto:${safeEmail}" style="color: #6366f1;">${safeEmail}</a></td>
             </tr>
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #64748b;"><strong>Subject</strong></td>
-              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;">${subject}</td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #1e293b;">${safeSubject}</td>
             </tr>
           </table>
           <div style="margin-top: 20px; padding: 16px; background: #f8fafc; border-radius: 8px;">
             <p style="margin: 0 0 8px 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Message</p>
-            <p style="margin: 0; color: #1e293b; white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            <p style="margin: 0; color: #1e293b; white-space: pre-wrap; line-height: 1.6;">${safeMessage}</p>
           </div>
           <p style="margin-top: 24px; font-size: 12px; color: #94a3b8;">This message was sent from the ByteVerse contact form.</p>
         </div>

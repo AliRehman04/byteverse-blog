@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import { Plus, Pencil, Trash2, X, Upload } from "lucide-react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { Plus, Pencil, Trash2, X, Upload, ZoomIn, ZoomOut, Move } from "lucide-react";
 
 interface Author {
   id: number;
@@ -15,6 +15,176 @@ interface Author {
   linkedin: string | null;
   github: string | null;
   youtube: string | null;
+}
+
+/* ── Avatar Cropper ── */
+function AvatarCropper({
+  file,
+  onCrop,
+  onCancel,
+}: {
+  file: File;
+  onCrop: (blob: Blob) => void;
+  onCancel: () => void;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [imgSrc, setImgSrc] = useState("");
+  const [scale, setScale] = useState(1);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0, px: 0, py: 0 });
+  const PREVIEW = 256; // crop output px
+
+  useEffect(() => {
+    const url = URL.createObjectURL(file);
+    setImgSrc(url);
+    const img = new window.Image();
+    img.onload = () => {
+      imgRef.current = img;
+      // fit image so shorter side fills the preview
+      const minDim = Math.min(img.width, img.height);
+      const fitScale = PREVIEW / minDim;
+      setScale(fitScale);
+      setPos({
+        x: (PREVIEW - img.width * fitScale) / 2,
+        y: (PREVIEW - img.height * fitScale) / 2,
+      });
+    };
+    img.src = url;
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    setDragging(true);
+    dragStart.current = { x: e.clientX, y: e.clientY, px: pos.x, py: pos.y };
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragging) return;
+    setPos({
+      x: dragStart.current.px + (e.clientX - dragStart.current.x),
+      y: dragStart.current.py + (e.clientY - dragStart.current.y),
+    });
+  };
+  const onPointerUp = () => setDragging(false);
+
+  const adjustScale = (delta: number) => {
+    setScale((s) => Math.max(0.1, Math.min(5, s + delta)));
+  };
+
+  const doCrop = () => {
+    const canvas = canvasRef.current;
+    const img = imgRef.current;
+    if (!canvas || !img) return;
+    canvas.width = PREVIEW;
+    canvas.height = PREVIEW;
+    const ctx = canvas.getContext("2d")!;
+    ctx.clearRect(0, 0, PREVIEW, PREVIEW);
+    ctx.drawImage(img, pos.x, pos.y, img.width * scale, img.height * scale);
+    canvas.toBlob(
+      (blob) => {
+        if (blob) onCrop(blob);
+      },
+      "image/webp",
+      0.9,
+    );
+  };
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4">
+      <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 w-full max-w-sm">
+        <h3 className="text-sm font-bold text-[var(--foreground)] mb-3 flex items-center gap-2">
+          <Move className="w-4 h-4" /> Crop Avatar
+        </h3>
+
+        {/* preview */}
+        <div
+          className="relative mx-auto overflow-hidden rounded-xl border border-[var(--border)] cursor-grab active:cursor-grabbing select-none"
+          style={{ width: PREVIEW, height: PREVIEW }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+        >
+          {imgSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={imgSrc}
+              alt="Crop preview"
+              draggable={false}
+              style={{
+                position: "absolute",
+                left: pos.x,
+                top: pos.y,
+                width: imgRef.current ? imgRef.current.width * scale : "auto",
+                height: imgRef.current ? imgRef.current.height * scale : "auto",
+                pointerEvents: "none",
+              }}
+            />
+          )}
+          {/* crosshair overlay */}
+          <div className="absolute inset-0 pointer-events-none border-2 border-white/30 rounded-xl" />
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+            <div className="w-px h-full bg-white/15" />
+          </div>
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+            <div className="h-px w-full bg-white/15" />
+          </div>
+        </div>
+
+        {/* zoom controls */}
+        <div className="flex items-center gap-3 mt-3">
+          <button
+            type="button"
+            onClick={() => adjustScale(-0.1)}
+            className="p-1.5 rounded-lg border border-[var(--border)] hover:bg-[var(--muted)] text-[var(--foreground)]"
+          >
+            <ZoomOut className="w-4 h-4" />
+          </button>
+          <input
+            type="range"
+            min="0.1"
+            max="5"
+            step="0.05"
+            value={scale}
+            onChange={(e) => setScale(parseFloat(e.target.value))}
+            className="flex-1 accent-[var(--primary)]"
+          />
+          <button
+            type="button"
+            onClick={() => adjustScale(0.1)}
+            className="p-1.5 rounded-lg border border-[var(--border)] hover:bg-[var(--muted)] text-[var(--foreground)]"
+          >
+            <ZoomIn className="w-4 h-4" />
+          </button>
+        </div>
+
+        <p className="text-xs text-[var(--muted-foreground)] text-center mt-2">
+          Drag to reposition &middot; Scroll or buttons to zoom
+        </p>
+
+        {/* actions */}
+        <div className="flex gap-2 mt-4">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="flex-1 px-3 py-2 text-sm border border-[var(--border)] rounded-xl hover:bg-[var(--muted)] text-[var(--foreground)]"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={doCrop}
+            className="flex-1 px-3 py-2 text-sm bg-[var(--primary)] text-white rounded-xl hover:opacity-90 font-medium"
+          >
+            Crop &amp; Save
+          </button>
+        </div>
+
+        <canvas ref={canvasRef} className="hidden" />
+      </div>
+    </div>
+  );
 }
 
 const emptyForm = {
@@ -37,6 +207,7 @@ export default function AuthorsPage() {
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [cropFile, setCropFile] = useState<File | null>(null);
 
   const loadAuthors = useCallback(() => {
     fetch("/api/admin/authors")
@@ -75,7 +246,15 @@ export default function AuthorsPage() {
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    setCropFile(file);
+    // reset input so same file can be re-selected
+    e.target.value = "";
+  };
+
+  const handleCroppedUpload = async (blob: Blob) => {
+    setCropFile(null);
     setUploading(true);
+    const file = new File([blob], "avatar.webp", { type: "image/webp" });
     const formData = new FormData();
     formData.append("file", file);
     try {
@@ -210,13 +389,23 @@ export default function AuthorsPage() {
                 </label>
                 {form.avatar ? (
                   <div className="relative w-20 h-20">
-                    <img src={form.avatar} alt="Avatar" className="w-20 h-20 rounded-xl object-cover" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={form.avatar}
+                      alt={form.name || "Author avatar"}
+                      className="w-20 h-20 rounded-xl object-cover"
+                    />
                     <button
                       onClick={() => setForm({ ...form, avatar: "" })}
                       className="absolute -top-1 -right-1 p-0.5 bg-red-500 text-white rounded-full text-xs"
                     >
                       ×
                     </button>
+                    {/* re-crop / replace button */}
+                    <label className="absolute -bottom-1 -right-1 p-1 bg-[var(--primary)] text-white rounded-full cursor-pointer hover:opacity-90">
+                      <Pencil className="w-3 h-3" />
+                      <input type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
+                    </label>
                   </div>
                 ) : (
                   <label className="flex items-center gap-2 px-3 py-2 border border-dashed border-[var(--border)] rounded-xl cursor-pointer hover:border-[var(--primary)] transition-colors w-fit">
@@ -230,6 +419,15 @@ export default function AuthorsPage() {
                   </label>
                 )}
               </div>
+
+              {/* Avatar Cropper Modal */}
+              {cropFile && (
+                <AvatarCropper
+                  file={cropFile}
+                  onCrop={handleCroppedUpload}
+                  onCancel={() => setCropFile(null)}
+                />
+              )}
 
               {/* Name & Slug */}
               <div className="grid grid-cols-2 gap-3">

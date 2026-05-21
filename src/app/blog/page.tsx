@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
-import { eq, desc } from "drizzle-orm";
-import { PostCard } from "@/components/post-card";
+import { eq, desc, sql } from "drizzle-orm";
+import { PostCard, FeaturedPostCard } from "@/components/post-card";
 import { Newsletter } from "@/components/newsletter";
 import { siteConfig } from "@/lib/config";
+import { TrendingUp, FolderOpen } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog | Latest Articles on AI, Tech & Productivity",
@@ -39,8 +41,30 @@ export default async function BlogPage() {
 
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "ByteVerse Blog",
+    description: "Guides, tutorials, and reviews on AI tools, coding, tech, and productivity.",
+    url: `${siteConfig.url}/blog`,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: allPosts.length,
+      itemListElement: allPosts.slice(0, 10).map((post, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${siteConfig.url}/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
+      />
       {/* Page Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
         <div className="absolute inset-0 overflow-hidden">
@@ -61,8 +85,7 @@ export default async function BlogPage() {
               Latest Articles
             </h1>
             <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-              Explore our collection of in-depth articles, tutorials, and guides on
-              AI tools, tech, and productivity.
+              Guides, tutorials, and reviews — all tested before we hit publish.
             </p>
           </div>
         </div>
@@ -75,16 +98,114 @@ export default async function BlogPage() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {allPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            {allPosts.map((post, i) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                category={categoryMap.get(post.categoryId ?? 0)}
-                featured={i === 0}
-              />
-            ))}
-          </div>
+          <>
+            {/* Featured Hero Post */}
+            <FeaturedPostCard
+              post={allPosts[0]}
+              category={categoryMap.get(allPosts[0].categoryId ?? 0)}
+              featured
+            />
+
+            {/* Main content + Sidebar */}
+            <div className="mt-10 md:mt-12 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10">
+              {/* Articles List */}
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-xl font-bold text-foreground">Latest Articles</h2>
+                    <p className="text-sm text-muted-foreground mt-0.5">{allPosts.length} articles published</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4 sm:space-y-5">
+                  {allPosts.slice(1).map((post) => (
+                    <PostCard
+                      key={post.id}
+                      post={post}
+                      category={categoryMap.get(post.categoryId ?? 0)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Sidebar */}
+              <aside className="space-y-6">
+                {/* Trending Posts */}
+                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-foreground mb-4">
+                    <TrendingUp size={16} className="text-primary" />
+                    Popular Now
+                  </h3>
+                  <div className="space-y-3">
+                    {[...allPosts]
+                      .sort((a, b) => (b.views ?? 0) - (a.views ?? 0))
+                      .slice(0, 5)
+                      .map((post, i) => (
+                        <Link
+                          key={post.id}
+                          href={`/blog/${post.slug}`}
+                          className="group flex items-start gap-3 py-2 border-b border-border last:border-0"
+                        >
+                          <span className="text-lg font-extrabold text-muted-foreground/40 group-hover:text-primary transition-colors w-6 shrink-0 leading-tight">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                              {post.title}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {new Date(post.createdAt).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                  </div>
+                </div>
+
+                {/* Categories */}
+                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-foreground mb-4">
+                    <FolderOpen size={16} className="text-primary" />
+                    Categories
+                  </h3>
+                  <div className="space-y-1.5">
+                    {allCategories.map((cat) => {
+                      const count = allPosts.filter((p) => p.categoryId === cat.id).length;
+                      return (
+                        <Link
+                          key={cat.id}
+                          href={`/category/${cat.slug}`}
+                          className="flex items-center justify-between py-2 px-3 rounded-lg text-sm hover:bg-muted transition-colors group"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span
+                              className="w-2 h-2 rounded-full shrink-0"
+                              style={{ backgroundColor: cat.color }}
+                            />
+                            <span className="text-foreground group-hover:text-primary transition-colors">
+                              {cat.name}
+                            </span>
+                          </span>
+                          <span className="text-xs text-muted-foreground bg-muted rounded-full px-2 py-0.5 font-medium">
+                            {count}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Newsletter */}
+                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
+                  <Newsletter compact />
+                </div>
+              </aside>
+            </div>
+          </>
         ) : (
           <div className="text-center py-24 mb-20">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mx-auto mb-5">
@@ -96,8 +217,6 @@ export default async function BlogPage() {
             </p>
           </div>
         )}
-
-        <Newsletter />
       </div>
     </>
   );

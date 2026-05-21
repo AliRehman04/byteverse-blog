@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "ByteVerse",
   description:
-    "Discover the latest in AI tools, tech guides, productivity hacks, and coding tutorials. Your one-stop destination for everything tech.",
+    "No-fluff guides on AI tools, coding, and productivity. We test everything before we write about it.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi",
   ogImage: "/opengraph-image",
   author: "ByteVerse Team",
@@ -17,31 +17,31 @@ export const siteConfig = {
     {
       name: "AI Tools",
       slug: "ai-tools",
-      description: "Discover the best AI tools, ChatGPT alternatives, AI image generators, and smart automation tools to supercharge your workflow",
+      description: "Hands-on reviews of ChatGPT alternatives, image generators, writing assistants, and automation tools we actually use",
       color: "#8b5cf6",
     },
     {
       name: "Tech Guides",
       slug: "tech-guides",
-      description: "Step-by-step technology tutorials covering cloud hosting, web development frameworks, and essential developer tools",
+      description: "Practical walkthroughs for cloud hosting, dev tools, APIs, and frameworks — written so you can follow along",
       color: "#3b82f6",
     },
     {
       name: "Productivity",
       slug: "productivity",
-      description: "Boost your efficiency with the best productivity apps, time management tips, workflow hacks, and Notion templates",
+      description: "Apps, setups, and workflows that save real time — Notion, Obsidian, Todoist, and more",
       color: "#10b981",
     },
     {
       name: "Coding",
       slug: "coding",
-      description: "Programming tutorials, web development guides, JavaScript tips, Python projects, and developer tools for beginners and pros",
+      description: "JavaScript, Python, React, Next.js — real projects and code you can copy, run, and learn from",
       color: "#f59e0b",
     },
     {
       name: "Software Reviews",
       slug: "software-reviews",
-      description: "Honest, hands-on software comparisons and reviews to help you pick the right tools for development, design, and productivity",
+      description: "Side-by-side comparisons of popular tools so you can pick what actually fits your workflow",
       color: "#ef4444",
     },
   ],

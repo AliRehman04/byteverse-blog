@@ -169,15 +169,16 @@ export function Header() {
 
                       {/* Mega Menu Dropdown */}
                       <div
-                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 ${
+                        className={`absolute top-full right-0 lg:left-1/2 lg:-translate-x-1/2 pt-2 transition-all duration-200 ${
                           toolsOpen
                             ? "opacity-100 translate-y-0 pointer-events-auto"
                             : "opacity-0 -translate-y-2 pointer-events-none"
                         }`}
+                        style={{ zIndex: 60 }}
                       >
-                        <div className="w-[680px] bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden">
+                        <div className="w-[calc(100vw-2rem)] max-w-[680px] bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden">
                           {/* Header */}
-                          <div className="px-6 pt-5 pb-3 border-b border-border/60 flex items-center justify-between">
+                          <div className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-border/60 flex items-center justify-between">
                             <div>
                               <p className="text-sm font-bold">Developer Tools</p>
                               <p className="text-xs text-muted-foreground mt-0.5">Free, private, runs in your browser</p>
@@ -191,12 +192,12 @@ export function Header() {
                           </div>
 
                           {/* Categories grid */}
-                          <div className="grid grid-cols-2 gap-0 p-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 p-1.5 sm:p-2 max-h-[60vh] overflow-y-auto">
                             {toolCategories.map((cat) => (
-                              <div key={cat.title} className="p-3">
-                                <div className="flex items-center gap-2 mb-2.5 px-1">
+                              <div key={cat.title} className="p-2 sm:p-3">
+                                <div className="flex items-center gap-2 mb-2 px-1">
                                   <cat.icon size={14} className={cat.color} />
-                                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                  <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                                     {cat.title}
                                   </span>
                                 </div>
@@ -205,16 +206,16 @@ export function Header() {
                                     <Link
                                       key={tool.href}
                                       href={tool.href}
-                                      className="flex items-center gap-3 px-2.5 py-2 rounded-lg hover:bg-muted/70 transition-colors group"
+                                      className="flex items-center gap-2.5 px-2 py-1.5 sm:py-2 rounded-lg hover:bg-muted/70 transition-colors group"
                                     >
-                                      <div className="w-8 h-8 rounded-lg bg-muted/80 group-hover:bg-primary/10 flex items-center justify-center transition-colors shrink-0">
-                                        <tool.icon size={15} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-muted/80 group-hover:bg-primary/10 flex items-center justify-center transition-colors shrink-0">
+                                        <tool.icon size={14} className="text-muted-foreground group-hover:text-primary transition-colors" />
                                       </div>
                                       <div className="min-w-0">
-                                        <p className="text-sm font-medium group-hover:text-primary transition-colors leading-tight">
+                                        <p className="text-[13px] font-medium group-hover:text-primary transition-colors leading-tight">
                                           {tool.name}
                                         </p>
-                                        <p className="text-xs text-muted-foreground leading-tight mt-0.5 truncate">
+                                        <p className="text-xs text-muted-foreground leading-tight mt-0.5 truncate hidden sm:block">
                                           {tool.desc}
                                         </p>
                                       </div>
@@ -226,7 +227,7 @@ export function Header() {
                           </div>
 
                           {/* Footer */}
-                          <div className="px-6 py-3 border-t border-border/60 bg-muted/30 flex items-center justify-between">
+                          <div className="px-4 sm:px-6 py-2.5 sm:py-3 border-t border-border/60 bg-muted/30 flex items-center justify-between">
                             <p className="text-xs text-muted-foreground">
                               {toolCategories.reduce((sum, c) => sum + c.tools.length, 0)} tools available
                             </p>

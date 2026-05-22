@@ -84,6 +84,8 @@ export function Footer() {
                 <Link href="/tools/css-gradient-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Gradient Generator</Link>
                 <Link href="/tools/color-converter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Color Converter</Link>
                 <Link href="/tools/box-shadow-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Box Shadow</Link>
+                <Link href="/tools/ai-content-detector" className="text-sm text-muted-foreground hover:text-foreground transition-colors">AI Content Detector</Link>
+                <Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Checker</Link>
               </div>
             </div>
 

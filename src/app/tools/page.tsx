@@ -21,6 +21,8 @@ import {
   Paintbrush,
   Pipette,
   Square,
+  Brain,
+  FileSearch,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -225,6 +227,24 @@ const tools = [
     icon: Square,
     color: "text-stone-500",
     bg: "bg-stone-500/10",
+  },
+  {
+    title: "AI Content Detector",
+    description:
+      "Detect AI-generated text using 8 linguistic signals. Check if content was written by ChatGPT, Claude, or other AI models.",
+    href: "/tools/ai-content-detector",
+    icon: Brain,
+    color: "text-pink-500",
+    bg: "bg-pink-500/10",
+  },
+  {
+    title: "Plagiarism Checker",
+    description:
+      "Check text uniqueness and compare documents for plagiarism. Uses n-gram analysis, cosine similarity, and sentence matching.",
+    href: "/tools/plagiarism-checker",
+    icon: FileSearch,
+    color: "text-rose-500",
+    bg: "bg-rose-500/10",
   },
 ];
 

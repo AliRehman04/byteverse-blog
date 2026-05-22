@@ -52,6 +52,8 @@ export async function GET() {
     { name: "CSS Gradient Generator", href: "/tools/css-gradient-generator", desc: "Create linear and radial CSS gradients with visual editor" },
     { name: "Color Converter", href: "/tools/color-converter", desc: "Convert colors between HEX, RGB, and HSL formats" },
     { name: "Box Shadow Generator", href: "/tools/box-shadow-generator", desc: "Build CSS box-shadow effects with multiple layers" },
+    { name: "AI Content Detector", href: "/tools/ai-content-detector", desc: "Detect AI-generated text using 8 linguistic signals" },
+    { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", desc: "Check text uniqueness and compare documents for similarity" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

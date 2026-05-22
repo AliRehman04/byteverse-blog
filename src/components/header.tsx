@@ -10,6 +10,7 @@ import {
   Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
+  Brain, FileSearch,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -59,22 +60,31 @@ const toolCategories = [
     ],
   },
   {
-    title: "SEO & Content",
+    title: "SEO & Web",
     icon: Tags,
     color: "text-purple-500",
     tools: [
       { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags + preview" },
       { name: "OG Preview", href: "/tools/og-preview", icon: Eye, desc: "Social media link cards" },
-      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
+      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
       { name: "Schema Markup", href: "/tools/schema-markup-generator", icon: Code, desc: "JSON-LD structured data" },
     ],
   },
   {
-    title: "Web & Design",
+    title: "Content Analysis",
+    icon: Brain,
+    color: "text-pink-500",
+    tools: [
+      { name: "AI Content Detector", href: "/tools/ai-content-detector", icon: Brain, desc: "Detect AI-generated text" },
+      { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", icon: FileSearch, desc: "Check text uniqueness" },
+      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
+    ],
+  },
+  {
+    title: "CSS & Design",
     icon: Paintbrush,
     color: "text-red-500",
     tools: [
-      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
       { name: "Gradient Generator", href: "/tools/css-gradient-generator", icon: Paintbrush, desc: "Linear & radial CSS" },
       { name: "Color Converter", href: "/tools/color-converter", icon: Pipette, desc: "HEX, RGB & HSL" },
       { name: "Box Shadow", href: "/tools/box-shadow-generator", icon: Square, desc: "Visual shadow builder" },

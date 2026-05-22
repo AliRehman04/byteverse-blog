@@ -17,7 +17,7 @@ export async function GET() {
 
   // About
   lines.push("## About");
-  lines.push(`ByteVerse is a tech knowledge hub covering AI tools, coding tutorials, productivity workflows, and software reviews. Every guide is tested before publishing. Visit: ${base}`);
+  lines.push(`- [ByteVerse](${base}): A tech knowledge hub covering AI tools, coding tutorials, productivity workflows, and software reviews. Every guide is tested before publishing.`);
   lines.push("");
 
   // Main pages

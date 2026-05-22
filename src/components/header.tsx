@@ -26,13 +26,14 @@ const SearchDialog = dynamic(
 
 const toolCategories = [
   {
-    title: "Formatters & Validators",
+    title: "Formatters & Dev",
     icon: Braces,
     color: "text-blue-500",
     tools: [
-      { name: "JSON Formatter", href: "/tools/json-formatter", icon: Braces, desc: "Format, validate & minify JSON" },
-      { name: "Regex Tester", href: "/tools/regex-tester", icon: Regex, desc: "Test patterns with live highlighting" },
+      { name: "JSON Formatter", href: "/tools/json-formatter", icon: Braces, desc: "Format, validate & minify" },
+      { name: "Regex Tester", href: "/tools/regex-tester", icon: Regex, desc: "Test patterns live" },
       { name: "Diff Checker", href: "/tools/diff-checker", icon: GitCompareArrows, desc: "Compare texts side by side" },
+      { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Words, chars & reading time" },
     ],
   },
   {
@@ -42,7 +43,8 @@ const toolCategories = [
     tools: [
       { name: "Base64 Encoder", href: "/tools/base64-encoder-decoder", icon: Binary, desc: "Encode & decode Base64" },
       { name: "URL Encoder", href: "/tools/url-encoder-decoder", icon: Link2, desc: "Encode & decode URLs" },
-      { name: "Timestamp Converter", href: "/tools/timestamp-converter", icon: Clock, desc: "Unix epoch to date & back" },
+      { name: "Timestamp Converter", href: "/tools/timestamp-converter", icon: Clock, desc: "Unix epoch ↔ date" },
+      { name: "Slug Generator", href: "/tools/slug-generator", icon: TextCursorInput, desc: "URL-friendly text" },
     ],
   },
   {
@@ -52,7 +54,7 @@ const toolCategories = [
     tools: [
       { name: "Password Generator", href: "/tools/password-generator", icon: KeyRound, desc: "Strong random passwords" },
       { name: "Hash Generator", href: "/tools/hash-generator", icon: Hash, desc: "SHA-256, SHA-512 hashes" },
-      { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: ShieldCheck, desc: "Decode & inspect JWT tokens" },
+      { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: ShieldCheck, desc: "Decode & inspect JWTs" },
       { name: "UUID Generator", href: "/tools/uuid-generator", icon: Fingerprint, desc: "Generate & validate UUIDs" },
     ],
   },
@@ -61,23 +63,21 @@ const toolCategories = [
     icon: Tags,
     color: "text-purple-500",
     tools: [
-      { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags with preview" },
-      { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Count words, chars & more" },
-      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate llms.txt" },
-      { name: "OG Preview", href: "/tools/og-preview", icon: Eye, desc: "Preview social media link cards" },
-      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
+      { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags + preview" },
+      { name: "OG Preview", href: "/tools/og-preview", icon: Eye, desc: "Social media link cards" },
+      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
       { name: "Schema Markup", href: "/tools/schema-markup-generator", icon: Code, desc: "JSON-LD structured data" },
-      { name: "Slug Generator", href: "/tools/slug-generator", icon: TextCursorInput, desc: "URL-friendly text converter" },
     ],
   },
   {
-    title: "CSS & Design",
+    title: "Web & Design",
     icon: Paintbrush,
     color: "text-red-500",
     tools: [
-      { name: "Gradient Generator", href: "/tools/css-gradient-generator", icon: Paintbrush, desc: "Linear & radial CSS gradients" },
-      { name: "Color Converter", href: "/tools/color-converter", icon: Pipette, desc: "HEX, RGB & HSL converter" },
-      { name: "Box Shadow", href: "/tools/box-shadow-generator", icon: Square, desc: "Visual box-shadow builder" },
+      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
+      { name: "Gradient Generator", href: "/tools/css-gradient-generator", icon: Paintbrush, desc: "Linear & radial CSS" },
+      { name: "Color Converter", href: "/tools/color-converter", icon: Pipette, desc: "HEX, RGB & HSL" },
+      { name: "Box Shadow", href: "/tools/box-shadow-generator", icon: Square, desc: "Visual shadow builder" },
     ],
   },
 ];
@@ -191,7 +191,7 @@ export function Header() {
                         }`}
                         style={{ zIndex: 60 }}
                       >
-                        <div className="w-[calc(100vw-2rem)] max-w-[680px] bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden">
+                        <div className="w-[calc(100vw-2rem)] max-w-[820px] bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden">
                           {/* Header */}
                           <div className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-border/60 flex items-center justify-between">
                             <div>
@@ -207,7 +207,7 @@ export function Header() {
                           </div>
 
                           {/* Categories grid */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 p-1.5 sm:p-2 max-h-[60vh] overflow-y-auto">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 p-1.5 sm:p-2 max-h-[60vh] overflow-y-auto">
                             {toolCategories.map((cat) => (
                               <div key={cat.title} className="p-2 sm:p-3">
                                 <div className="flex items-center gap-2 mb-2 px-1">

@@ -724,21 +724,44 @@ export function LlmsTxtTool() {
         string,
         { title: string; url: string }[]
       >;
+      const groupCounts = (data.groupCounts || {}) as Record<string, number>;
+      const navSections = (data.navSections || {}) as Record<
+        string,
+        { title: string; url: string }[]
+      >;
       const newSections: Section[] = [];
       let id = 1;
 
-      if (groups["Main URLs"]) {
+      // Navigation sections first (from nav/footer extraction)
+      for (const [name, links] of Object.entries(navSections)) {
+        if (links.length > 0) {
+          newSections.push({
+            id: String(id++),
+            name: `Navigation: ${name}`,
+            items: links.map((l) => `[${l.title}](${l.url})`),
+          });
+        }
+      }
+
+      // Main Pages first from groups
+      if (groups["Main Pages"]) {
+        const count = groupCounts["Main Pages"] || groups["Main Pages"].length;
+        const suffix = count > 30 ? ` (${count} total)` : "";
         newSections.push({
           id: String(id++),
-          name: "Main URLs",
-          items: groups["Main URLs"].map((p) => `[${p.title}](${p.url})`),
+          name: `Main Pages${suffix}`,
+          items: groups["Main Pages"].map((p) => `[${p.title}](${p.url})`),
         });
       }
+
+      // Other groups
       for (const [name, pages] of Object.entries(groups)) {
-        if (name === "Main URLs") continue;
+        if (name === "Main Pages") continue;
+        const count = groupCounts[name] || pages.length;
+        const suffix = count > 30 ? ` (${count} total)` : "";
         newSections.push({
           id: String(id++),
-          name,
+          name: `${name}${suffix}`,
           items: pages.map((p) => `[${p.title}](${p.url})`),
         });
       }

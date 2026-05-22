@@ -8,6 +8,7 @@ const resend = process.env.RESEND_API_KEY
 
 const contactEmail = process.env.CONTACT_EMAIL || "alirehmanytlearning@gmail.com";
 const contactFromEmail = process.env.CONTACT_FROM_EMAIL || "ByteVerse Contact <contact@byteverse.fyi>";
+const fallbackFromEmail = process.env.CONTACT_FALLBACK_FROM_EMAIL || "ByteVerse Contact <onboarding@resend.dev>";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function cleanText(value: unknown, maxLength: number) {
@@ -76,7 +77,7 @@ export async function POST(request: Request) {
     const safeSubject = escapeHtml(subject);
     const safeMessage = escapeHtml(message);
 
-    const { error } = await resend.emails.send({
+    const emailPayload = {
       from: contactFromEmail,
       to: contactEmail,
       replyTo: email,
@@ -106,7 +107,17 @@ export async function POST(request: Request) {
         </div>
       `,
       text: `New contact form message\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
-    });
+    };
+
+    let { error } = await resend.emails.send(emailPayload);
+
+    if (error && contactFromEmail !== fallbackFromEmail) {
+      console.error("Resend primary sender error:", error);
+      ({ error } = await resend.emails.send({
+        ...emailPayload,
+        from: fallbackFromEmail,
+      }));
+    }
 
     if (error) {
       console.error("Resend error:", error);

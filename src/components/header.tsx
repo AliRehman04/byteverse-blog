@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Menu, X, ArrowRight } from "lucide-react";
+import {
+  Menu, X, ArrowRight, ChevronDown, ChevronRight,
+  Braces, KeyRound, Tags, Binary, Type, FileText,
+  Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
+} from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
 
@@ -19,9 +23,57 @@ const SearchDialog = dynamic(
   )}
 );
 
+const toolCategories = [
+  {
+    title: "Formatters & Validators",
+    icon: Braces,
+    color: "text-blue-500",
+    tools: [
+      { name: "JSON Formatter", href: "/tools/json-formatter", icon: Braces, desc: "Format, validate & minify JSON" },
+      { name: "Regex Tester", href: "/tools/regex-tester", icon: Regex, desc: "Test patterns with live highlighting" },
+      { name: "Diff Checker", href: "/tools/diff-checker", icon: GitCompareArrows, desc: "Compare texts side by side" },
+    ],
+  },
+  {
+    title: "Encoders & Converters",
+    icon: Binary,
+    color: "text-orange-500",
+    tools: [
+      { name: "Base64 Encoder", href: "/tools/base64-encoder-decoder", icon: Binary, desc: "Encode & decode Base64" },
+      { name: "URL Encoder", href: "/tools/url-encoder-decoder", icon: Link2, desc: "Encode & decode URLs" },
+      { name: "Timestamp Converter", href: "/tools/timestamp-converter", icon: Clock, desc: "Unix epoch to date & back" },
+    ],
+  },
+  {
+    title: "Security & Crypto",
+    icon: ShieldCheck,
+    color: "text-green-500",
+    tools: [
+      { name: "Password Generator", href: "/tools/password-generator", icon: KeyRound, desc: "Strong random passwords" },
+      { name: "Hash Generator", href: "/tools/hash-generator", icon: Hash, desc: "SHA-256, SHA-512 hashes" },
+      { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: ShieldCheck, desc: "Decode & inspect JWT tokens" },
+      { name: "UUID Generator", href: "/tools/uuid-generator", icon: Fingerprint, desc: "Generate & validate UUIDs" },
+    ],
+  },
+  {
+    title: "SEO & Content",
+    icon: Tags,
+    color: "text-purple-500",
+    tools: [
+      { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags with preview" },
+      { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Count words, chars & more" },
+      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate llms.txt" },
+    ],
+  },
+];
+
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
+  const toolsRef = useRef<HTMLDivElement>(null);
+  const toolsTimeout = useRef<ReturnType<typeof setTimeout>>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,6 +81,34 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Close mega menu on route change
+  useEffect(() => {
+    setToolsOpen(false);
+    setMobileOpen(false);
+    setMobileToolsOpen(false);
+  }, [pathname]);
+
+  // Close on click outside
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (toolsRef.current && !toolsRef.current.contains(e.target as Node)) {
+        setToolsOpen(false);
+      }
+    }
+    if (toolsOpen) {
+      document.addEventListener("mousedown", handleClick);
+      return () => document.removeEventListener("mousedown", handleClick);
+    }
+  }, [toolsOpen]);
+
+  const openTools = () => {
+    if (toolsTimeout.current) clearTimeout(toolsTimeout.current);
+    setToolsOpen(true);
+  };
+  const closeTools = () => {
+    toolsTimeout.current = setTimeout(() => setToolsOpen(false), 200);
+  };
 
   return (
     <>
@@ -61,6 +141,106 @@ export function Header() {
             <nav className="hidden md:flex items-center gap-1">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+                // Tools gets a mega menu
+                if (item.href === "/tools") {
+                  return (
+                    <div
+                      key={item.href}
+                      ref={toolsRef}
+                      className="relative"
+                      onMouseEnter={openTools}
+                      onMouseLeave={closeTools}
+                    >
+                      <button
+                        onClick={() => setToolsOpen((v) => !v)}
+                        className={`flex items-center gap-1 px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
+                          isActive || toolsOpen
+                            ? "text-primary font-semibold bg-primary/10"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                        }`}
+                      >
+                        {item.title}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-200 ${toolsOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+
+                      {/* Mega Menu Dropdown */}
+                      <div
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 ${
+                          toolsOpen
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 -translate-y-2 pointer-events-none"
+                        }`}
+                      >
+                        <div className="w-[680px] bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/10 dark:shadow-black/30 overflow-hidden">
+                          {/* Header */}
+                          <div className="px-6 pt-5 pb-3 border-b border-border/60 flex items-center justify-between">
+                            <div>
+                              <p className="text-sm font-bold">Developer Tools</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">Free, private, runs in your browser</p>
+                            </div>
+                            <Link
+                              href="/tools"
+                              className="text-xs font-medium text-primary hover:underline flex items-center gap-1"
+                            >
+                              View all <ArrowRight size={12} />
+                            </Link>
+                          </div>
+
+                          {/* Categories grid */}
+                          <div className="grid grid-cols-2 gap-0 p-2">
+                            {toolCategories.map((cat) => (
+                              <div key={cat.title} className="p-3">
+                                <div className="flex items-center gap-2 mb-2.5 px-1">
+                                  <cat.icon size={14} className={cat.color} />
+                                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                    {cat.title}
+                                  </span>
+                                </div>
+                                <div className="space-y-0.5">
+                                  {cat.tools.map((tool) => (
+                                    <Link
+                                      key={tool.href}
+                                      href={tool.href}
+                                      className="flex items-center gap-3 px-2.5 py-2 rounded-lg hover:bg-muted/70 transition-colors group"
+                                    >
+                                      <div className="w-8 h-8 rounded-lg bg-muted/80 group-hover:bg-primary/10 flex items-center justify-center transition-colors shrink-0">
+                                        <tool.icon size={15} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                      </div>
+                                      <div className="min-w-0">
+                                        <p className="text-sm font-medium group-hover:text-primary transition-colors leading-tight">
+                                          {tool.name}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground leading-tight mt-0.5 truncate">
+                                          {tool.desc}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Footer */}
+                          <div className="px-6 py-3 border-t border-border/60 bg-muted/30 flex items-center justify-between">
+                            <p className="text-xs text-muted-foreground">
+                              {toolCategories.reduce((sum, c) => sum + c.tools.length, 0)} tools available
+                            </p>
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                              100% client-side
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.href}
@@ -102,6 +282,58 @@ export function Header() {
             <nav className="md:hidden py-4 border-t border-border space-y-1 animate-fade-in">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+                if (item.href === "/tools") {
+                  return (
+                    <div key={item.href}>
+                      <button
+                        onClick={() => setMobileToolsOpen((v) => !v)}
+                        className={`flex items-center justify-between w-full px-4 py-3 text-sm rounded-lg transition-colors ${
+                          isActive
+                            ? "text-primary font-semibold bg-primary/10"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        }`}
+                      >
+                        {item.title}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-200 ${mobileToolsOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {mobileToolsOpen && (
+                        <div className="pl-4 pr-2 py-2 space-y-3 animate-fade-in">
+                          {toolCategories.map((cat) => (
+                            <div key={cat.title}>
+                              <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground px-3 mb-1">
+                                <cat.icon size={12} className={cat.color} />
+                                {cat.title}
+                              </p>
+                              {cat.tools.map((tool) => (
+                                <Link
+                                  key={tool.href}
+                                  href={tool.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className="flex items-center gap-2.5 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                                >
+                                  <tool.icon size={14} />
+                                  {tool.name}
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
+                          <Link
+                            href="/tools"
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-primary"
+                          >
+                            View all tools <ChevronRight size={14} />
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.href}

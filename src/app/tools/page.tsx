@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Braces, KeyRound, Tags, Binary, Type } from "lucide-react";
+import { Braces, KeyRound, Tags, Binary, Type, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Free Developer Tools - ByteVerse",
@@ -62,6 +62,15 @@ const tools = [
     icon: Type,
     color: "text-cyan-500",
     bg: "bg-cyan-500/10",
+  },
+  {
+    title: "llms.txt Generator & Validator",
+    description:
+      "Create and validate llms.txt files. Check format compliance, detect issues, and help AI models understand your site.",
+    href: "/tools/llms-txt-generator-validator",
+    icon: FileText,
+    color: "text-rose-500",
+    bg: "bg-rose-500/10",
   },
 ];
 

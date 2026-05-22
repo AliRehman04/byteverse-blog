@@ -69,6 +69,7 @@ export function Footer() {
                 <li><Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link></li>
                 <li><Link href="/tools/base64-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Base64 Encoder</Link></li>
                 <li><Link href="/tools/word-counter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Word Counter</Link></li>
+                <li><Link href="/tools/llms-txt-generator-validator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">llms.txt Validator</Link></li>
               </ul>
             </div>
 

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { posts, categories, newsletter } from "@/lib/db/schema";
 import { isAuthenticated } from "@/lib/auth";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, desc } from "drizzle-orm";
 
 export async function GET() {
   if (!(await isAuthenticated())) {
@@ -15,6 +15,8 @@ export async function GET() {
       totalCategories: 0,
       totalViews: 0,
       totalSubscribers: 0,
+      recentPosts: [],
+      topPosts: [],
     });
   }
 
@@ -35,11 +37,38 @@ export async function GET() {
     .from(newsletter)
     .where(eq(newsletter.active, true));
 
+  const recentPosts = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+      slug: posts.slug,
+      views: posts.views,
+      published: posts.published,
+      createdAt: posts.createdAt,
+    })
+    .from(posts)
+    .orderBy(desc(posts.createdAt))
+    .limit(5);
+
+  const topPosts = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+      slug: posts.slug,
+      views: posts.views,
+    })
+    .from(posts)
+    .where(eq(posts.published, true))
+    .orderBy(desc(posts.views))
+    .limit(5);
+
   return NextResponse.json({
     totalPosts: Number(postStats.total),
     publishedPosts: Number(postStats.published),
     totalCategories: Number(catStats.total),
     totalViews: Number(postStats.views),
     totalSubscribers: Number(subStats.total),
+    recentPosts,
+    topPosts,
   });
 }

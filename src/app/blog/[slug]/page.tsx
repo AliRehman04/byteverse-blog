@@ -55,23 +55,29 @@ function RecommendedTools({ categorySlug }: { categorySlug?: string | null }) {
   return (
     <section className="mt-12 pt-8 border-t border-border">
       <div className="flex items-center justify-between mb-5">
-        <h2 className="text-lg font-bold flex items-center gap-2">
-          <Wrench size={18} className="text-primary" />
+        <h2 className="text-lg font-bold flex items-center gap-3">
+          <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10">
+            <Wrench size={16} className="text-primary" />
+          </span>
           Recommended Tools
         </h2>
-        <Link href="/tools" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
-          All Tools <ChevronRight size={14} />
+        <Link href="/tools" className="group text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5">
+          All Tools
+          <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3">
         {tools.map((tool) => (
           <Link
             key={tool.slug}
             href={`/tools/${tool.slug}`}
-            className="group p-4 rounded-xl ring-1 ring-border bg-card hover:ring-primary/30 hover:shadow-md transition-all"
+            className="group relative p-5 rounded-2xl bg-gradient-to-br from-card to-muted/30 ring-1 ring-border hover:ring-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
-            <h3 className="font-semibold text-sm group-hover:text-primary transition-colors mb-1">{tool.name}</h3>
-            <p className="text-xs text-muted-foreground">{tool.desc}</p>
+            <h3 className="font-semibold text-sm group-hover:text-primary transition-colors mb-1.5">{tool.name}</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">{tool.desc}</p>
+            <div className="mt-3 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              Try it free <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+            </div>
           </Link>
         ))}
       </div>

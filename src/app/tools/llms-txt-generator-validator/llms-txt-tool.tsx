@@ -15,6 +15,10 @@ import {
   Globe,
   Loader2,
   Download,
+  ExternalLink,
+  ChevronDown,
+  ChevronRight,
+  Hash,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -25,6 +29,28 @@ interface Section {
   id: string;
   name: string;
   items: string[];
+}
+
+interface SourceLine {
+  line: number;
+  text: string;
+  type:
+    | "heading"
+    | "blockquote"
+    | "list"
+    | "link"
+    | "blank"
+    | "text"
+    | "code-fence"
+    | "summary";
+  headingLevel?: number;
+  errors: string[];
+}
+
+interface ParsedSection {
+  title: string;
+  line: number;
+  items: { text: string; line: number }[];
 }
 
 interface ValidationResult {
@@ -39,7 +65,21 @@ interface ValidationResult {
     h2Sections: number;
     listItems: number;
     links: number;
+    emails: number;
   };
+  sourceLines: SourceLine[];
+  parsedTitle: string | null;
+  parsedSummary: string | null;
+  parsedSections: ParsedSection[];
+}
+
+interface FetchStatus {
+  found: boolean;
+  status: string;
+  url: string | null;
+  tried: string[];
+  contentType?: string;
+  error?: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -50,6 +90,10 @@ function validateLlmsTxt(text: string): ValidationResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const suggestions: string[] = [];
+  const sourceLines: SourceLine[] = [];
+  const parsedSections: ParsedSection[] = [];
+  let parsedTitle: string | null = null;
+  let parsedSummary: string | null = null;
 
   const raw = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   const lines = raw.split("\n");
@@ -61,20 +105,29 @@ function validateLlmsTxt(text: string): ValidationResult {
     h2Sections: 0,
     listItems: 0,
     links: 0,
+    emails: 0,
   };
 
   if (!raw.trim()) {
-    return { valid: false, errors: ["File is empty - no content found"], warnings, suggestions, stats };
+    return {
+      valid: false,
+      errors: ["File is empty — no content found"],
+      warnings,
+      suggestions,
+      stats,
+      sourceLines,
+      parsedTitle: null,
+      parsedSummary: null,
+      parsedSections: [],
+    };
   }
 
-  // Parse line types
   let hasH1 = false;
   let hasBlockquote = false;
-  let currentH2: string | null = null;
-  let h2HasItems = false;
-  const h2Sections: { name: string; hasItems: boolean; hasLinks: boolean }[] = [];
+  let foundBlockquoteSummary = false;
+  let currentH2: ParsedSection | null = null;
   let inCodeFence = false;
-  let foundAnyLink = false;
+
   const emailPattern = /[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g;
   const phonePattern = /\+?\d[\d\-.\s()]{6,}\d/g;
   const linkPattern = /https?:\/\/[^\s)>\]]+/g;
@@ -85,15 +138,32 @@ function validateLlmsTxt(text: string): ValidationResult {
     const trimmed = line.trim();
     const lineNum = i + 1;
 
-    // Code fences toggle
+    const lineMeta: SourceLine = {
+      line: lineNum,
+      text: line,
+      type: "text",
+      errors: [],
+    };
+
+    // Code fences
     if (/^(`{3,}|~{3,})/.test(trimmed)) {
       inCodeFence = !inCodeFence;
+      lineMeta.type = "code-fence";
+      sourceLines.push(lineMeta);
       continue;
     }
-    if (inCodeFence) continue;
+    if (inCodeFence) {
+      lineMeta.type = "code-fence";
+      sourceLines.push(lineMeta);
+      continue;
+    }
 
     // Blank line
-    if (!trimmed) continue;
+    if (!trimmed) {
+      lineMeta.type = "blank";
+      sourceLines.push(lineMeta);
+      continue;
+    }
 
     // Headings
     const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)/);
@@ -101,155 +171,405 @@ function validateLlmsTxt(text: string): ValidationResult {
       stats.headings++;
       const level = headingMatch[1].length;
       const headingText = headingMatch[2].trim();
+      lineMeta.type = "heading";
+      lineMeta.headingLevel = level;
 
       if (level === 1) {
         if (hasH1) {
-          warnings.push(`Line ${lineNum}: Multiple H1 headings found. Only the first one is used as the title.`);
+          warnings.push(
+            `Line ${lineNum}: Multiple H1 headings found. Only the first is used as the title.`
+          );
+        } else {
+          parsedTitle = headingText;
         }
         hasH1 = true;
         if (!headingText) {
-          errors.push(`Line ${lineNum}: H1 heading is empty.`);
+          const msg = `Line ${lineNum}: H1 heading is empty.`;
+          errors.push(msg);
+          lineMeta.errors.push(msg);
         }
       }
 
       if (level === 2) {
-        // Close previous section
-        if (currentH2 !== null) {
-          h2Sections.push({ name: currentH2, hasItems: h2HasItems, hasLinks: foundAnyLink });
+        if (currentH2) {
+          parsedSections.push(currentH2);
         }
-        currentH2 = headingText;
-        h2HasItems = false;
-        foundAnyLink = false;
+        currentH2 = { title: headingText, line: lineNum, items: [] };
         stats.h2Sections++;
-
         if (!headingText) {
-          errors.push(`Line ${lineNum}: H2 section heading is empty.`);
+          const msg = `Line ${lineNum}: H2 section heading is empty.`;
+          errors.push(msg);
+          lineMeta.errors.push(msg);
         }
       }
+
+      sourceLines.push(lineMeta);
       continue;
     }
 
     // Blockquote
     if (/^>\s*/.test(trimmed)) {
       hasBlockquote = true;
-      // Check for sensitive data in blockquotes too
+      lineMeta.type = "blockquote";
       const bqContent = trimmed.replace(/^>\s*/, "");
-      if (emailPattern.test(bqContent)) {
-        warnings.push(`Line ${lineNum}: Blockquote contains an email address. Consider removing or redacting it.`);
+
+      if (!foundBlockquoteSummary && hasH1 && !currentH2) {
+        foundBlockquoteSummary = true;
+        if (parsedSummary === null) parsedSummary = "";
+        parsedSummary += bqContent + "\n";
       }
+
+      emailPattern.lastIndex = 0;
+      if (emailPattern.test(bqContent)) {
+        warnings.push(
+          `Line ${lineNum}: Blockquote contains an email address. Consider redacting it.`
+        );
+      }
+      emailPattern.lastIndex = 0;
+
+      sourceLines.push(lineMeta);
       continue;
     }
 
     // List items
     if (/^[-*+]\s+/.test(trimmed) || /^\d+\.\s+/.test(trimmed)) {
       stats.listItems++;
-      h2HasItems = true;
+      lineMeta.type = "list";
+      const itemText = trimmed.replace(/^\s*([-*+]\s+|\d+\.\s+)/, "");
 
-      // Check for links in this list item
+      if (currentH2) {
+        currentH2.items.push({ text: itemText, line: lineNum });
+      }
+
+      linkPattern.lastIndex = 0;
+      mdLinkPattern.lastIndex = 0;
       if (linkPattern.test(trimmed) || mdLinkPattern.test(trimmed)) {
         stats.links++;
-        foundAnyLink = true;
       }
-      // Reset patterns since they're stateful
       linkPattern.lastIndex = 0;
       mdLinkPattern.lastIndex = 0;
 
-      // Check for sensitive data
       emailPattern.lastIndex = 0;
       if (emailPattern.test(trimmed)) {
-        warnings.push(`Line ${lineNum}: Contains an email address. Consider using a contact page link instead.`);
+        stats.emails++;
+        warnings.push(
+          `Line ${lineNum}: Contains an email address. Consider using a contact page link instead.`
+        );
       }
       emailPattern.lastIndex = 0;
 
       phonePattern.lastIndex = 0;
       if (phonePattern.test(trimmed)) {
-        warnings.push(`Line ${lineNum}: Contains a phone number. Consider using a contact page link instead.`);
+        warnings.push(
+          `Line ${lineNum}: Contains a phone number. Consider using a contact page link instead.`
+        );
       }
       phonePattern.lastIndex = 0;
 
+      sourceLines.push(lineMeta);
       continue;
     }
 
-    // Bare URL on its own line
+    // Bare URL
     if (/^https?:\/\/\S+$/.test(trimmed)) {
       stats.links++;
+      lineMeta.type = "link";
       if (currentH2) {
-        h2HasItems = true;
-        foundAnyLink = true;
+        currentH2.items.push({ text: trimmed, line: lineNum });
       }
+      sourceLines.push(lineMeta);
       continue;
     }
 
     // Plain text
     if (currentH2 !== null) {
-      errors.push(
-        `Line ${lineNum}: Plain text found inside section "${currentH2}". Only list items are allowed within H2 sections.`
+      const msg = `Line ${lineNum}: Plain text found inside section "${currentH2.title}". Only list items are allowed within H2 sections.`;
+      errors.push(msg);
+      lineMeta.errors.push(msg);
+      suggestions.push(
+        `Convert line ${lineNum} to a list item (prefix with "- ") or move it outside the H2 section.`
       );
+      currentH2.items.push({ text: trimmed, line: lineNum });
     } else {
-      // Plain text before any section is fine (summary area)
+      if (hasH1 && !foundBlockquoteSummary && !currentH2) {
+        lineMeta.type = "summary";
+        if (parsedSummary === null) parsedSummary = "";
+        parsedSummary += trimmed + "\n";
+      }
+
       emailPattern.lastIndex = 0;
       if (emailPattern.test(trimmed)) {
-        warnings.push(`Line ${lineNum}: Contains an email address in the summary area. Consider redacting it.`);
+        stats.emails++;
+        warnings.push(
+          `Line ${lineNum}: Contains an email address. Consider redacting it.`
+        );
+        lineMeta.errors.push("Contains email address.");
       }
       emailPattern.lastIndex = 0;
 
       phonePattern.lastIndex = 0;
       if (phonePattern.test(trimmed)) {
-        warnings.push(`Line ${lineNum}: Contains a phone number in the summary area. Consider removing it.`);
+        warnings.push(
+          `Line ${lineNum}: Contains a phone number. Consider removing it.`
+        );
+        lineMeta.errors.push("Contains phone-like string.");
       }
       phonePattern.lastIndex = 0;
     }
+
+    sourceLines.push(lineMeta);
   }
 
   // Close last section
-  if (currentH2 !== null) {
-    h2Sections.push({ name: currentH2, hasItems: h2HasItems, hasLinks: foundAnyLink });
+  if (currentH2) {
+    parsedSections.push(currentH2);
   }
+
+  if (parsedSummary) parsedSummary = parsedSummary.trim();
 
   // Validation rules
   if (!hasH1) {
-    errors.push("Missing H1 heading. The file must start with a title, e.g. # Your Site Name");
+    errors.push(
+      "Missing H1 heading. The file must start with a title, e.g. # Your Site Name"
+    );
+    suggestions.push(
+      'Add a short title at the top (e.g. "# My Site").'
+    );
   }
 
-  // Check empty sections
-  for (const sec of h2Sections) {
-    if (!sec.hasItems) {
-      warnings.push(`Section "${sec.name}" has no list items. Add items or remove the section.`);
+  for (const sec of parsedSections) {
+    if (sec.items.length === 0) {
+      warnings.push(
+        `Section "${sec.title}" has no list items. Add items or remove the section.`
+      );
     }
   }
 
-  // Check Main URLs section
-  const mainUrlsSection = h2Sections.find(
-    (s) => s.name.toLowerCase().includes("main url") || s.name.toLowerCase().includes("main links")
+  const mainUrlsSection = parsedSections.find(
+    (s) =>
+      s.title.toLowerCase().includes("main url") ||
+      s.title.toLowerCase().includes("main links")
   );
-  if (mainUrlsSection && !mainUrlsSection.hasLinks) {
-    warnings.push(`Section "${mainUrlsSection.name}" has no recognizable URLs. Add markdown links or bare URLs.`);
+  if (mainUrlsSection) {
+    const hasLinks = mainUrlsSection.items.some(
+      (it) => /https?:\/\//.test(it.text) || /\[.+\]\(.+\)/.test(it.text)
+    );
+    if (!hasLinks) {
+      warnings.push(
+        `Section "${mainUrlsSection.title}" has no recognizable URLs. Add markdown links or bare URLs.`
+      );
+      suggestions.push(
+        `Add site URLs as markdown links under "${mainUrlsSection.title}".`
+      );
+    }
   }
 
-  // Suggestions
   if (!hasBlockquote) {
-    suggestions.push("Consider adding a blockquote summary after the H1 heading (> A brief description of your site).");
+    suggestions.push(
+      "Consider adding a blockquote summary after the H1 heading (> A brief description of your site)."
+    );
   }
 
   if (stats.h2Sections === 0) {
-    suggestions.push("Consider adding H2 sections to organize your content (e.g. ## Main URLs, ## Resources).");
+    suggestions.push(
+      "Consider adding H2 sections to organize your content (e.g. ## Main URLs, ## Resources)."
+    );
   }
 
   if (stats.links === 0 && stats.h2Sections > 0) {
-    suggestions.push("No links found. Consider adding URLs to your key pages as markdown links.");
+    suggestions.push(
+      "No links found. Consider adding URLs to your key pages as markdown links."
+    );
   }
 
-  if (!h2Sections.some((s) => s.name.toLowerCase().includes("contact"))) {
-    suggestions.push("Consider adding a contact section or link so AI can direct users to reach you.");
+  if (
+    !parsedSections.some((s) => s.title.toLowerCase().includes("contact"))
+  ) {
+    suggestions.push(
+      "Consider adding a contact section or link so AI can direct users to reach you."
+    );
   }
 
   if (stats.chars > 200000) {
-    errors.push("File exceeds 200 KB. Keep it concise for better AI consumption.");
+    errors.push(
+      "File exceeds 200 KB. Keep it concise for better AI consumption."
+    );
   }
 
   const valid = errors.length === 0;
 
-  return { valid, errors, warnings, suggestions, stats };
+  return {
+    valid,
+    errors,
+    warnings,
+    suggestions,
+    stats,
+    sourceLines,
+    parsedTitle,
+    parsedSummary,
+    parsedSections,
+  };
+}
+
+/* ------------------------------------------------------------------ */
+/*  SOURCE LINE VIEWER                                                 */
+/* ------------------------------------------------------------------ */
+
+function SourceLineViewer({ lines }: { lines: SourceLine[] }) {
+  const [expanded, setExpanded] = useState(true);
+  if (lines.length === 0) return null;
+
+  const typeColor = (type: string, hasErrors: boolean) => {
+    if (hasErrors)
+      return "bg-red-50 dark:bg-red-950/30 border-l-4 border-l-red-500";
+    switch (type) {
+      case "heading":
+        return "text-primary font-bold";
+      case "blockquote":
+        return "text-blue-600 dark:text-blue-400 italic";
+      case "list":
+        return "";
+      case "link":
+        return "text-cyan-600 dark:text-cyan-400";
+      case "blank":
+        return "opacity-30";
+      case "code-fence":
+        return "text-orange-500 dark:text-orange-400";
+      case "summary":
+        return "text-muted-foreground italic";
+      default:
+        return "";
+    }
+  };
+
+  return (
+    <div className="border border-border rounded-lg overflow-hidden">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full flex items-center gap-2 px-4 py-3 bg-muted/50 text-sm font-semibold hover:bg-muted transition-colors"
+      >
+        {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+        <Hash size={16} /> Source Preview ({lines.length} lines)
+      </button>
+      {expanded && (
+        <div className="max-h-[400px] overflow-y-auto bg-card">
+          <table className="w-full text-xs font-mono">
+            <tbody>
+              {lines.map((ln) => (
+                <tr
+                  key={ln.line}
+                  className={`border-b border-border/30 ${typeColor(
+                    ln.type,
+                    ln.errors.length > 0
+                  )}`}
+                >
+                  <td className="px-3 py-1 text-right text-muted-foreground select-none w-12 border-r border-border/30">
+                    {ln.line}
+                  </td>
+                  <td className="px-3 py-1 whitespace-pre-wrap break-all">
+                    {ln.text || "\u00A0"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  PARSED STRUCTURE VIEWER                                            */
+/* ------------------------------------------------------------------ */
+
+function ParsedStructureViewer({
+  title,
+  summary,
+  sections,
+}: {
+  title: string | null;
+  summary: string | null;
+  sections: ParsedSection[];
+}) {
+  const [expanded, setExpanded] = useState(true);
+
+  if (!title && !summary && sections.length === 0) return null;
+
+  return (
+    <div className="border border-border rounded-lg overflow-hidden">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full flex items-center gap-2 px-4 py-3 bg-muted/50 text-sm font-semibold hover:bg-muted transition-colors"
+      >
+        {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+        <FileText size={16} /> Parsed Structure
+      </button>
+      {expanded && (
+        <div className="p-4 space-y-4">
+          {title && (
+            <div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                Title (H1)
+              </span>
+              <p className="text-lg font-bold mt-1">{title}</p>
+            </div>
+          )}
+          {summary && (
+            <div>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                Summary
+              </span>
+              <p className="mt-1 text-sm text-muted-foreground italic border-l-2 border-primary/30 pl-3">
+                {summary}
+              </p>
+            </div>
+          )}
+          {sections.length > 0 && (
+            <div className="space-y-3">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                Sections ({sections.length})
+              </span>
+              {sections.map((sec, idx) => (
+                <div
+                  key={idx}
+                  className="p-3 bg-muted/30 rounded-lg border border-border"
+                >
+                  <p className="text-sm font-bold">
+                    ## {sec.title || "(empty)"}
+                  </p>
+                  {sec.items.length > 0 ? (
+                    <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+                      {sec.items.slice(0, 20).map((item, ii) => (
+                        <li key={ii} className="flex gap-2">
+                          <span className="text-muted-foreground/50 select-none">
+                            •
+                          </span>
+                          <span className="break-all">{item.text}</span>
+                          <span className="text-muted-foreground/40 ml-auto whitespace-nowrap">
+                            L{item.line}
+                          </span>
+                        </li>
+                      ))}
+                      {sec.items.length > 20 && (
+                        <li className="text-muted-foreground/60 italic">
+                          ...and {sec.items.length - 20} more items
+                        </li>
+                      )}
+                    </ul>
+                  ) : (
+                    <p className="mt-1 text-xs text-muted-foreground/60 italic">
+                      No items in this section
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -334,7 +654,7 @@ function SectionEditor({
 export function LlmsTxtTool() {
   const [tab, setTab] = useState<"generator" | "validator">("generator");
 
-  // Generator state
+  /* ---- Generator state ---- */
   const [siteName, setSiteName] = useState("");
   const [summary, setSummary] = useState("");
   const [sections, setSections] = useState<Section[]>([
@@ -345,11 +665,17 @@ export function LlmsTxtTool() {
   const [fetching, setFetching] = useState(false);
   const [fetchError, setFetchError] = useState("");
 
-  // Validator state
+  /* ---- Validator state ---- */
+  const [valMode, setValMode] = useState<"url" | "text">("url");
+  const [valDomain, setValDomain] = useState("");
+  const [valFetching, setValFetching] = useState(false);
+  const [valFetchStatus, setValFetchStatus] = useState<FetchStatus | null>(
+    null
+  );
   const [validatorInput, setValidatorInput] = useState("");
   const [result, setResult] = useState<ValidationResult | null>(null);
 
-  // Generator output
+  /* ---- Generator output ---- */
   const generated = useMemo(() => {
     const lines: string[] = [];
     if (siteName) lines.push(`# ${siteName}`);
@@ -365,10 +691,11 @@ export function LlmsTxtTool() {
         if (item) lines.push(`- ${item}`);
       }
     }
-    lines.push(""); // trailing newline
+    lines.push("");
     return lines.join("\n");
   }, [siteName, summary, sections]);
 
+  /* ---- Generator actions ---- */
   const addSection = useCallback(() => {
     setSections((prev) => [
       ...prev,
@@ -393,7 +720,10 @@ export function LlmsTxtTool() {
       if (data.siteTitle) setSiteName(data.siteTitle);
       if (data.siteDescription) setSummary(data.siteDescription);
 
-      const groups = data.groups as Record<string, { title: string; url: string }[]>;
+      const groups = data.groups as Record<
+        string,
+        { title: string; url: string }[]
+      >;
       const newSections: Section[] = [];
       let id = 1;
 
@@ -415,7 +745,9 @@ export function LlmsTxtTool() {
 
       if (newSections.length > 0) setSections(newSections);
     } catch (err: unknown) {
-      setFetchError(err instanceof Error ? err.message : "Failed to fetch site data");
+      setFetchError(
+        err instanceof Error ? err.message : "Failed to fetch site data"
+      );
     } finally {
       setFetching(false);
     }
@@ -445,7 +777,55 @@ export function LlmsTxtTool() {
     setTimeout(() => setGenCopied(false), 2000);
   }, [generated]);
 
-  const runValidation = useCallback(() => {
+  /* ---- Validator actions ---- */
+  const validateByUrl = useCallback(async () => {
+    const d = valDomain.trim();
+    if (!d) return;
+    setValFetching(true);
+    setResult(null);
+    setValFetchStatus(null);
+    setValidatorInput("");
+    try {
+      const res = await fetch("/api/tools/llms-txt/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain: d }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to check domain");
+
+      const fetchStatus: FetchStatus = {
+        found: data.found,
+        status: data.status,
+        url: data.url,
+        tried: data.tried || [],
+        contentType: data.contentType,
+        error: data.error,
+      };
+      setValFetchStatus(fetchStatus);
+
+      if (data.found && data.status === "present" && data.content) {
+        setValidatorInput(data.content);
+        setResult(validateLlmsTxt(data.content));
+      } else if (data.found && data.status === "invalid_content") {
+        setResult(null);
+      }
+    } catch (err: unknown) {
+      setValFetchStatus({
+        found: false,
+        status: "error",
+        url: null,
+        tried: [],
+        error:
+          err instanceof Error ? err.message : "Failed to check domain",
+      });
+    } finally {
+      setValFetching(false);
+    }
+  }, [valDomain]);
+
+  const validateText = useCallback(() => {
+    setValFetchStatus(null);
     setResult(validateLlmsTxt(validatorInput));
   }, [validatorInput]);
 
@@ -471,6 +851,7 @@ export function LlmsTxtTool() {
 - [Support](https://example.com/support)
 `);
     setResult(null);
+    setValFetchStatus(null);
   }, []);
 
   const loadBadSample = useCallback(() => {
@@ -489,12 +870,15 @@ Call us at +1-555-123-4567
 ## Empty Section
 `);
     setResult(null);
+    setValFetchStatus(null);
   }, []);
 
   const useInValidator = useCallback(() => {
     setValidatorInput(generated);
+    setValMode("text");
     setTab("validator");
     setResult(null);
+    setValFetchStatus(null);
   }, [generated]);
 
   return (
@@ -565,8 +949,8 @@ Call us at +1-555-123-4567
               </p>
             )}
             <p className="text-xs text-muted-foreground">
-              Enter your domain to auto-fetch sitemap and generate llms.txt.
-              No email required — 100% free.
+              Enter your domain to auto-fetch sitemap and generate llms.txt. No
+              email required — 100% free.
             </p>
           </div>
 
@@ -583,139 +967,321 @@ Call us at +1-555-123-4567
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
-          {/* Form */}
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium block mb-1.5">
-                Site Name <span className="text-red-500">*</span>
-              </label>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground font-mono">#</span>
-                <input
-                  type="text"
-                  value={siteName}
-                  onChange={(e) => setSiteName(e.target.value)}
-                  placeholder="Your Website Name"
-                  className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
+            {/* Form */}
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium block mb-1.5">
+                  Site Name <span className="text-red-500">*</span>
+                </label>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground font-mono">
+                    #
+                  </span>
+                  <input
+                    type="text"
+                    value={siteName}
+                    onChange={(e) => setSiteName(e.target.value)}
+                    placeholder="Your Website Name"
+                    className="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium block mb-1.5">
+                  Summary (blockquote)
+                </label>
+                <textarea
+                  value={summary}
+                  onChange={(e) => setSummary(e.target.value)}
+                  placeholder="A brief description of your website..."
+                  rows={3}
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background resize-none focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium">Sections</label>
+                  <button
+                    onClick={addSection}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    <Plus size={14} /> Add Section
+                  </button>
+                </div>
+
+                {sections.map((section) => (
+                  <SectionEditor
+                    key={section.id}
+                    section={section}
+                    onUpdate={(s) => updateSection(section.id, s)}
+                    onRemove={() => removeSection(section.id)}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={useInValidator}
+                className="w-full py-2 text-sm text-primary border border-primary/30 rounded-lg hover:bg-primary/5 transition-colors"
+              >
+                Validate this output
+              </button>
             </div>
 
+            {/* Preview / Output */}
             <div>
-              <label className="text-sm font-medium block mb-1.5">
-                Summary (blockquote)
-              </label>
-              <textarea
-                value={summary}
-                onChange={(e) => setSummary(e.target.value)}
-                placeholder="A brief description of your website..."
-                rows={3}
-                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background resize-none focus:outline-none focus:ring-2 focus:ring-primary/30"
-              />
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Sections</label>
-                <button
-                  onClick={addSection}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  <Plus size={14} /> Add Section
-                </button>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium">
+                  Generated llms.txt
+                </label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={downloadGenerated}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-border text-xs font-medium rounded-lg hover:bg-muted transition-colors"
+                  >
+                    <Download size={14} /> Download
+                  </button>
+                  <button
+                    onClick={copyGenerated}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    {genCopied ? <Check size={14} /> : <Copy size={14} />}
+                    {genCopied ? "Copied!" : "Copy"}
+                  </button>
+                </div>
               </div>
-
-              {sections.map((section) => (
-                <SectionEditor
-                  key={section.id}
-                  section={section}
-                  onUpdate={(s) => updateSection(section.id, s)}
-                  onRemove={() => removeSection(section.id)}
-                />
-              ))}
+              <pre className="p-4 bg-muted/50 border border-border rounded-lg text-sm font-mono whitespace-pre-wrap min-h-[300px] max-h-[600px] overflow-y-auto">
+                {generated ||
+                  "# Your Site Name\n\n> Description...\n\n## Main URLs\n- [Homepage](https://...)"}
+              </pre>
             </div>
-
-            <button
-              onClick={useInValidator}
-              className="w-full py-2 text-sm text-primary border border-primary/30 rounded-lg hover:bg-primary/5 transition-colors"
-            >
-              Validate this output
-            </button>
           </div>
-
-          {/* Preview / Output */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium">Generated llms.txt</label>
-              <div className="flex gap-2">
-                <button
-                  onClick={downloadGenerated}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-border text-xs font-medium rounded-lg hover:bg-muted transition-colors"
-                >
-                  <Download size={14} /> Download
-                </button>
-                <button
-                  onClick={copyGenerated}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  {genCopied ? <Check size={14} /> : <Copy size={14} />}
-                  {genCopied ? "Copied!" : "Copy"}
-                </button>
-              </div>
-            </div>
-            <pre className="p-4 bg-muted/50 border border-border rounded-lg text-sm font-mono whitespace-pre-wrap min-h-[300px] max-h-[600px] overflow-y-auto">
-              {generated || "# Your Site Name\n\n> Description...\n\n## Main URLs\n- [Homepage](https://...)"}
-            </pre>
-          </div>
-        </div>
         </div>
       )}
 
       {/* ============ VALIDATOR TAB ============ */}
       {tab === "validator" && (
         <div className="space-y-6">
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium">
-                Paste your llms.txt content
-              </label>
-              <div className="flex gap-2">
-                <button
-                  onClick={loadSample}
-                  className="text-xs text-primary hover:underline"
-                >
-                  Load valid sample
-                </button>
-                <button
-                  onClick={loadBadSample}
-                  className="text-xs text-orange-500 hover:underline"
-                >
-                  Load invalid sample
-                </button>
-              </div>
-            </div>
-            <textarea
-              value={validatorInput}
-              onChange={(e) => {
-                setValidatorInput(e.target.value);
+          {/* Mode switcher */}
+          <div className="flex items-center gap-1 p-1 bg-muted rounded-lg w-fit mx-auto">
+            <button
+              onClick={() => {
+                setValMode("url");
                 setResult(null);
+                setValFetchStatus(null);
               }}
-              placeholder={"# Your Site Name\n\n> Brief description\n\n## Main URLs\n- [Home](https://example.com)"}
-              rows={12}
-              spellCheck={false}
-              className="w-full p-4 font-mono text-sm bg-muted/50 border border-border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className={`inline-flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-md transition-colors ${
+                valMode === "url"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Globe size={14} /> Validate by URL
+            </button>
+            <button
+              onClick={() => {
+                setValMode("text");
+                setResult(null);
+                setValFetchStatus(null);
+              }}
+              className={`inline-flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-md transition-colors ${
+                valMode === "text"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <FileText size={14} /> Validate by Text
+            </button>
           </div>
 
-          <button
-            onClick={runValidation}
-            disabled={!validatorInput.trim()}
-            className="w-full py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-40"
-          >
-            Validate
-          </button>
+          {/* URL mode */}
+          {valMode === "url" && (
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium block mb-1.5">
+                  Website domain
+                </label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Globe
+                      size={16}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
+                    />
+                    <input
+                      type="url"
+                      value={valDomain}
+                      onChange={(e) => setValDomain(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && validateByUrl()}
+                      placeholder="example.com or https://example.com"
+                      className="w-full pl-9 pr-3 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    />
+                  </div>
+                  <button
+                    onClick={validateByUrl}
+                    disabled={valFetching || !valDomain.trim()}
+                    className="px-6 py-2.5 bg-primary text-primary-foreground font-medium text-sm rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-40 inline-flex items-center gap-2 whitespace-nowrap"
+                  >
+                    {valFetching ? (
+                      <Loader2 size={16} className="animate-spin" />
+                    ) : (
+                      <Search size={16} />
+                    )}
+                    {valFetching ? "Checking..." : "Validate"}
+                  </button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1.5">
+                  Checks /llms.txt, /.well-known/llms.txt, and www variant
+                  automatically. No email required.
+                </p>
+              </div>
+            </div>
+          )}
 
-          {/* Results */}
+          {/* Text mode */}
+          {valMode === "text" && (
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium">
+                  Paste your llms.txt content
+                </label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={loadSample}
+                    className="text-xs text-primary hover:underline"
+                  >
+                    Load valid sample
+                  </button>
+                  <button
+                    onClick={loadBadSample}
+                    className="text-xs text-orange-500 hover:underline"
+                  >
+                    Load invalid sample
+                  </button>
+                </div>
+              </div>
+              <textarea
+                value={validatorInput}
+                onChange={(e) => {
+                  setValidatorInput(e.target.value);
+                  setResult(null);
+                }}
+                placeholder={
+                  "# Your Site Name\n\n> Brief description\n\n## Main URLs\n- [Home](https://example.com)"
+                }
+                rows={12}
+                spellCheck={false}
+                className="w-full p-4 font-mono text-sm bg-muted/50 border border-border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/30"
+              />
+
+              <button
+                onClick={validateText}
+                disabled={!validatorInput.trim()}
+                className="w-full mt-4 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-40"
+              >
+                Validate
+              </button>
+            </div>
+          )}
+
+          {/* ---- Fetch Status (URL mode) ---- */}
+          {valFetchStatus && (
+            <div className="animate-fade-in">
+              {valFetchStatus.status === "not_found" && (
+                <div className="p-4 rounded-lg border bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <XCircle
+                      size={20}
+                      className="text-red-600 dark:text-red-400"
+                    />
+                    <p className="font-semibold text-red-700 dark:text-red-300">
+                      No llms.txt found
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Could not find an llms.txt file on the target domain.
+                  </p>
+                  <div className="text-xs text-muted-foreground space-y-1">
+                    <p className="font-medium">URLs tried:</p>
+                    {valFetchStatus.tried.map((u, i) => (
+                      <p
+                        key={i}
+                        className="flex items-center gap-1.5 text-red-600/70 dark:text-red-400/70"
+                      >
+                        <XCircle size={12} /> {u}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {valFetchStatus.status === "invalid_content" && (
+                <div className="p-4 rounded-lg border bg-orange-50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-800 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle
+                      size={20}
+                      className="text-orange-600 dark:text-orange-400"
+                    />
+                    <p className="font-semibold text-orange-700 dark:text-orange-300">
+                      File found but not plain text
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Found at{" "}
+                    <span className="font-mono text-xs">
+                      {valFetchStatus.url}
+                    </span>{" "}
+                    but Content-Type is{" "}
+                    <span className="font-mono text-xs">
+                      {valFetchStatus.contentType || "unknown"}
+                    </span>
+                    . The file should be plain text.
+                  </p>
+                </div>
+              )}
+
+              {valFetchStatus.status === "present" && (
+                <div className="p-4 rounded-lg border bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2
+                      size={20}
+                      className="text-green-600 dark:text-green-400"
+                    />
+                    <div>
+                      <p className="font-semibold text-green-700 dark:text-green-300">
+                        llms.txt found
+                      </p>
+                      <a
+                        href={valFetchStatus.url!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-green-600 dark:text-green-400 hover:underline inline-flex items-center gap-1"
+                      >
+                        {valFetchStatus.url}{" "}
+                        <ExternalLink size={10} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {valFetchStatus.status === "error" && (
+                <div className="p-4 rounded-lg border bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800">
+                  <div className="flex items-center gap-2">
+                    <XCircle
+                      size={20}
+                      className="text-red-600 dark:text-red-400"
+                    />
+                    <p className="font-semibold text-red-700 dark:text-red-300">
+                      {valFetchStatus.error || "Failed to check domain"}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ---- Validation Results ---- */}
           {result && (
             <div className="space-y-4 animate-fade-in">
               {/* Status badge */}
@@ -727,24 +1293,39 @@ Call us at +1-555-123-4567
                 }`}
               >
                 {result.valid ? (
-                  <CheckCircle2 size={24} className="text-green-600 dark:text-green-400 flex-shrink-0" />
+                  <CheckCircle2
+                    size={24}
+                    className="text-green-600 dark:text-green-400 flex-shrink-0"
+                  />
                 ) : (
-                  <XCircle size={24} className="text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <XCircle
+                    size={24}
+                    className="text-red-600 dark:text-red-400 flex-shrink-0"
+                  />
                 )}
                 <div>
-                  <p className={`font-semibold ${result.valid ? "text-green-700 dark:text-green-300" : "text-red-700 dark:text-red-300"}`}>
+                  <p
+                    className={`font-semibold ${
+                      result.valid
+                        ? "text-green-700 dark:text-green-300"
+                        : "text-red-700 dark:text-red-300"
+                    }`}
+                  >
                     {result.valid ? "Valid llms.txt" : "Invalid llms.txt"}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    {result.errors.length} error{result.errors.length !== 1 ? "s" : ""},{" "}
-                    {result.warnings.length} warning{result.warnings.length !== 1 ? "s" : ""},{" "}
-                    {result.suggestions.length} suggestion{result.suggestions.length !== 1 ? "s" : ""}
+                    {result.errors.length} error
+                    {result.errors.length !== 1 ? "s" : ""},{" "}
+                    {result.warnings.length} warning
+                    {result.warnings.length !== 1 ? "s" : ""},{" "}
+                    {result.suggestions.length} suggestion
+                    {result.suggestions.length !== 1 ? "s" : ""}
                   </p>
                 </div>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-7 gap-3">
                 {[
                   { label: "Lines", value: result.stats.lines },
                   { label: "Characters", value: result.stats.chars },
@@ -752,10 +1333,16 @@ Call us at +1-555-123-4567
                   { label: "Sections", value: result.stats.h2Sections },
                   { label: "List Items", value: result.stats.listItems },
                   { label: "Links", value: result.stats.links },
+                  { label: "Emails", value: result.stats.emails },
                 ].map((s) => (
-                  <div key={s.label} className="p-3 bg-card border border-border rounded-lg text-center">
+                  <div
+                    key={s.label}
+                    className="p-3 bg-card border border-border rounded-lg text-center"
+                  >
                     <div className="text-lg font-bold">{s.value}</div>
-                    <div className="text-xs text-muted-foreground">{s.label}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {s.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -764,7 +1351,7 @@ Call us at +1-555-123-4567
               {result.errors.length > 0 && (
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold flex items-center gap-2 text-red-600 dark:text-red-400">
-                    <XCircle size={16} /> Errors
+                    <XCircle size={16} /> Errors ({result.errors.length})
                   </h3>
                   {result.errors.map((e, i) => (
                     <div
@@ -781,7 +1368,8 @@ Call us at +1-555-123-4567
               {result.warnings.length > 0 && (
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
-                    <AlertTriangle size={16} /> Warnings
+                    <AlertTriangle size={16} /> Warnings (
+                    {result.warnings.length})
                   </h3>
                   {result.warnings.map((w, i) => (
                     <div
@@ -798,7 +1386,7 @@ Call us at +1-555-123-4567
               {result.suggestions.length > 0 && (
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold flex items-center gap-2 text-blue-600 dark:text-blue-400">
-                    <Info size={16} /> Suggestions
+                    <Info size={16} /> Suggestions ({result.suggestions.length})
                   </h3>
                   {result.suggestions.map((s, i) => (
                     <div
@@ -810,6 +1398,16 @@ Call us at +1-555-123-4567
                   ))}
                 </div>
               )}
+
+              {/* Source line viewer */}
+              <SourceLineViewer lines={result.sourceLines} />
+
+              {/* Parsed structure */}
+              <ParsedStructureViewer
+                title={result.parsedTitle}
+                summary={result.parsedSummary}
+                sections={result.parsedSections}
+              />
             </div>
           )}
         </div>

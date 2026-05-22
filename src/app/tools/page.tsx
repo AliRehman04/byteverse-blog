@@ -1,6 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Braces, KeyRound, Tags, Binary, Type, FileText } from "lucide-react";
+import {
+  Braces,
+  KeyRound,
+  Tags,
+  Binary,
+  Type,
+  FileText,
+  Regex,
+  ShieldCheck,
+  Hash,
+  Fingerprint,
+  Clock,
+  Link2,
+  GitCompareArrows,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Free Developer Tools - ByteVerse",
@@ -13,6 +27,13 @@ export const metadata: Metadata = {
     "coding tools",
     "json formatter",
     "password generator",
+    "regex tester",
+    "jwt decoder",
+    "hash generator",
+    "uuid generator",
+    "timestamp converter",
+    "url encoder",
+    "diff checker",
   ],
   alternates: { canonical: "https://www.byteverse.fyi/tools" },
 };
@@ -72,6 +93,69 @@ const tools = [
     color: "text-rose-500",
     bg: "bg-rose-500/10",
   },
+  {
+    title: "Regex Tester",
+    description:
+      "Test regular expressions with live highlighting, match details, replace mode, and a quick reference cheat sheet.",
+    href: "/tools/regex-tester",
+    icon: Regex,
+    color: "text-amber-500",
+    bg: "bg-amber-500/10",
+  },
+  {
+    title: "JWT Decoder",
+    description:
+      "Decode JSON Web Tokens instantly. View header, payload, signature, expiration status, and registered claims.",
+    href: "/tools/jwt-decoder",
+    icon: ShieldCheck,
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10",
+  },
+  {
+    title: "Hash Generator",
+    description:
+      "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes using the Web Crypto API. Compare and verify hashes.",
+    href: "/tools/hash-generator",
+    icon: Hash,
+    color: "text-teal-500",
+    bg: "bg-teal-500/10",
+  },
+  {
+    title: "UUID Generator",
+    description:
+      "Generate UUID v4 (random) and v1-like (time-based) identifiers. Bulk generation and UUID validation included.",
+    href: "/tools/uuid-generator",
+    icon: Fingerprint,
+    color: "text-pink-500",
+    bg: "bg-pink-500/10",
+  },
+  {
+    title: "Unix Timestamp Converter",
+    description:
+      "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds.",
+    href: "/tools/timestamp-converter",
+    icon: Clock,
+    color: "text-yellow-500",
+    bg: "bg-yellow-500/10",
+  },
+  {
+    title: "URL Encoder & Decoder",
+    description:
+      "Encode or decode URLs with component and full URI modes. Includes a URL parser to break down any URL.",
+    href: "/tools/url-encoder-decoder",
+    icon: Link2,
+    color: "text-sky-500",
+    bg: "bg-sky-500/10",
+  },
+  {
+    title: "Diff Checker",
+    description:
+      "Compare two texts side by side with line-by-line diff. See additions, deletions, and unchanged lines.",
+    href: "/tools/diff-checker",
+    icon: GitCompareArrows,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+  },
 ];
 
 export default function ToolsPage() {
@@ -107,16 +191,6 @@ export default function ToolsPage() {
             </p>
           </Link>
         ))}
-
-        {/* Coming soon card */}
-        <div className="p-6 bg-muted/30 border border-dashed border-border rounded-xl flex flex-col items-center justify-center text-center">
-          <p className="text-muted-foreground text-sm font-medium mb-1">
-            More tools coming soon
-          </p>
-          <p className="text-xs text-muted-foreground">
-            CSS minifier, regex tester, color converter...
-          </p>
-        </div>
       </div>
     </main>
   );

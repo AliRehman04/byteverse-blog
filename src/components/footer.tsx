@@ -70,6 +70,13 @@ export function Footer() {
                 <li><Link href="/tools/base64-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Base64 Encoder</Link></li>
                 <li><Link href="/tools/word-counter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Word Counter</Link></li>
                 <li><Link href="/tools/llms-txt-generator-validator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">llms.txt Validator</Link></li>
+                <li><Link href="/tools/regex-tester" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link></li>
+                <li><Link href="/tools/jwt-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JWT Decoder</Link></li>
+                <li><Link href="/tools/hash-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Hash Generator</Link></li>
+                <li><Link href="/tools/uuid-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">UUID Generator</Link></li>
+                <li><Link href="/tools/timestamp-converter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Timestamp Converter</Link></li>
+                <li><Link href="/tools/url-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">URL Encoder</Link></li>
+                <li><Link href="/tools/diff-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Diff Checker</Link></li>
               </ul>
             </div>
 

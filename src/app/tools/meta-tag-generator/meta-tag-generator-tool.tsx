@@ -17,34 +17,37 @@ export function MetaTagGeneratorTool() {
   const [showPreview, setShowPreview] = useState(true);
 
   const output = useMemo(() => {
+    const esc = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
     const lines: string[] = [
       '<!-- Primary Meta Tags -->',
       '<meta charset="UTF-8">',
       '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
     ];
 
-    if (title) lines.push(`<title>${title}</title>`);
-    if (description) lines.push(`<meta name="description" content="${description}">`);
-    if (keywords) lines.push(`<meta name="keywords" content="${keywords}">`);
-    if (author) lines.push(`<meta name="author" content="${author}">`);
-    if (robots) lines.push(`<meta name="robots" content="${robots}">`);
-    if (url) lines.push(`<link rel="canonical" href="${url}">`);
+    if (title) lines.push(`<title>${esc(title)}</title>`);
+    if (description) lines.push(`<meta name="description" content="${esc(description)}">`);
+    if (keywords) lines.push(`<meta name="keywords" content="${esc(keywords)}">`);
+    if (author) lines.push(`<meta name="author" content="${esc(author)}">`);
+    if (robots) lines.push(`<meta name="robots" content="${esc(robots)}">`);
+    if (url) lines.push(`<link rel="canonical" href="${esc(url)}">`);
 
     lines.push('');
     lines.push('<!-- Open Graph / Facebook -->');
     lines.push('<meta property="og:type" content="website">');
-    if (title) lines.push(`<meta property="og:title" content="${title}">`);
-    if (description) lines.push(`<meta property="og:description" content="${description}">`);
-    if (url) lines.push(`<meta property="og:url" content="${url}">`);
-    if (image) lines.push(`<meta property="og:image" content="${image}">`);
-    if (siteName) lines.push(`<meta property="og:site_name" content="${siteName}">`);
+    if (title) lines.push(`<meta property="og:title" content="${esc(title)}">`);
+    if (description) lines.push(`<meta property="og:description" content="${esc(description)}">`);
+    if (url) lines.push(`<meta property="og:url" content="${esc(url)}">`);
+    if (image) lines.push(`<meta property="og:image" content="${esc(image)}">`);
+    if (siteName) lines.push(`<meta property="og:site_name" content="${esc(siteName)}">`);
 
     lines.push('');
     lines.push('<!-- Twitter -->');
-    lines.push(`<meta name="twitter:card" content="${twitterCard}">`);
-    if (title) lines.push(`<meta name="twitter:title" content="${title}">`);
-    if (description) lines.push(`<meta name="twitter:description" content="${description}">`);
-    if (image) lines.push(`<meta name="twitter:image" content="${image}">`);
+    lines.push(`<meta name="twitter:card" content="${esc(twitterCard)}">`);
+    if (title) lines.push(`<meta name="twitter:title" content="${esc(title)}">`);
+    if (description) lines.push(`<meta name="twitter:description" content="${esc(description)}">`);
+    if (image) lines.push(`<meta name="twitter:image" content="${esc(image)}">`);
 
     return lines.join('\n');
   }, [title, description, url, image, siteName, author, keywords, robots, twitterCard]);
@@ -153,10 +156,12 @@ export function MetaTagGeneratorTool() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium block mb-1">Robots</label>
+              <label htmlFor="robots-select" className="text-sm font-medium block mb-1">Robots</label>
               <select
+                id="robots-select"
                 value={robots}
                 onChange={(e) => setRobots(e.target.value)}
+                title="Robots directive"
                 className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background"
               >
                 <option value="index, follow">Index, Follow</option>
@@ -166,10 +171,12 @@ export function MetaTagGeneratorTool() {
               </select>
             </div>
             <div>
-              <label className="text-sm font-medium block mb-1">Twitter Card</label>
+              <label htmlFor="twitter-card-select" className="text-sm font-medium block mb-1">Twitter Card</label>
               <select
+                id="twitter-card-select"
                 value={twitterCard}
                 onChange={(e) => setTwitterCard(e.target.value)}
+                title="Twitter card type"
                 className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background"
               >
                 <option value="summary_large_image">Large Image</option>

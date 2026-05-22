@@ -110,6 +110,7 @@ export function JsonFormatterTool() {
           <select
             value={indent}
             onChange={(e) => setIndent(Number(e.target.value))}
+            title="Indentation size"
             className="px-2 py-1 text-sm border border-border rounded-lg bg-background"
           >
             <option value={2}>2 spaces</option>

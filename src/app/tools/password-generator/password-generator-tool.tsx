@@ -102,9 +102,8 @@ export function PasswordGeneratorTool() {
         <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-300 ${
-              strength.score <= 2 ? "bg-red-500" : strength.score <= 4 ? "bg-yellow-500" : "bg-green-500"
+              strength.score <= 2 ? "bg-red-500 w-1/3" : strength.score <= 4 ? "bg-yellow-500 w-2/3" : "bg-green-500 w-full"
             }`}
-            style={{ width: `${(strength.score / 6) * 100}%` }}
           />
         </div>
       </div>
@@ -123,6 +122,7 @@ export function PasswordGeneratorTool() {
             max={64}
             value={length}
             onChange={(e) => setLength(Number(e.target.value))}
+            title="Password length"
             className="w-full accent-primary"
           />
           <div className="flex justify-between text-xs text-muted-foreground mt-1">
@@ -175,6 +175,7 @@ export function PasswordGeneratorTool() {
           <select
             value={count}
             onChange={(e) => setCount(Number(e.target.value))}
+            title="Number of passwords to generate"
             className="px-2 py-1 text-sm border border-border rounded-lg bg-background"
           >
             <option value={1}>1 password</option>

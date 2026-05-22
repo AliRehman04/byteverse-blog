@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { RegexTesterTool } from "./regex-tester-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Regex Tester",
   title: "Regex Tester Online - Free Regular Expression Tester & Debugger",
-  description:
-    "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
-  keywords: [
-    "regex tester",
-    "regex tester online",
-    "regular expression tester",
-    "regex debugger",
-    "regex match",
-    "regex replace",
-    "test regex",
-    "regex validator",
+  description: "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
+  slug: "regex-tester",
+  keywords: ["regex tester", "regex tester online", "regular expression tester", "regex debugger", "regex match", "regex replace", "test regex", "regex validator"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. Everything runs entirely in your browser. No data is sent to any server." },
+    { question: "Which regex flavor does this use?", answer: "This tool uses JavaScript's built-in RegExp engine, which supports ES2024 features including named groups, lookbehind assertions, and the dotall flag." },
+    { question: "Can I test multiline patterns?", answer: "Yes. Enable the Multiline (m) flag to make ^ and $ match at line boundaries instead of string boundaries." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/regex-tester" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function RegexTesterPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Regex Tester & Debugger

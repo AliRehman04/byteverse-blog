@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 import { PasswordGeneratorTool } from "./password-generator-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Password Generator",
   title: "Password Generator - Free Secure Password Tool",
-  description:
-    "Generate strong, random passwords instantly. Customize length, symbols, numbers, and more. 100% client-side, nothing stored.",
-  keywords: [
-    "password generator",
-    "random password",
-    "secure password",
-    "strong password generator",
-    "password tool",
+  description: "Generate strong, random passwords instantly. Customize length, symbols, numbers, and more. 100% client-side, nothing stored.",
+  slug: "password-generator",
+  keywords: ["password generator", "random password", "secure password", "strong password generator", "password tool"],
+  faqs: [
+    { question: "Is this password generator safe?", answer: "Yes. Passwords are generated entirely in your browser using the Web Crypto API. Nothing is sent to any server or stored anywhere." },
+    { question: "How long should my password be?", answer: "At least 16 characters for important accounts. For maximum security, use 20+ characters with all character types enabled." },
+    { question: "Should I use a password manager?", answer: "Absolutely. Generate unique passwords here and store them in a password manager like Bitwarden, 1Password, or KeePass." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/password-generator" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function PasswordGeneratorPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Password Generator

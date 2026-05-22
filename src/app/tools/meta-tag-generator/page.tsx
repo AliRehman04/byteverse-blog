@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { MetaTagGeneratorTool } from "./meta-tag-generator-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Meta Tag Generator",
   title: "Meta Tag Generator - Free SEO Meta Tags Tool",
-  description:
-    "Generate perfect HTML meta tags for SEO. Preview how your page looks on Google and social media. Free, instant, and easy to use.",
-  keywords: [
-    "meta tag generator",
-    "seo meta tags",
-    "open graph generator",
-    "html meta tags",
-    "seo tool",
-    "meta description generator",
+  description: "Generate perfect HTML meta tags for SEO. Preview how your page looks on Google and social media. Free, instant, and easy to use.",
+  slug: "meta-tag-generator",
+  keywords: ["meta tag generator", "seo meta tags", "open graph generator", "html meta tags", "seo tool", "meta description generator"],
+  faqs: [
+    { question: "How long should my title tag be?", answer: "Keep it under 60 characters. Google truncates longer titles in search results." },
+    { question: "How long should my meta description be?", answer: "Aim for 150-160 characters. This gives you enough space to describe the page without getting cut off." },
+    { question: "Do meta tags affect SEO rankings?", answer: "Title tags directly affect rankings. Meta descriptions do not affect rankings directly but influence click-through rates, which matters a lot." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/meta-tag-generator" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function MetaTagGeneratorPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Meta Tag Generator

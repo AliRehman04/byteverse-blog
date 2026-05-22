@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { LlmsTxtTool } from "./llms-txt-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "llms.txt Generator & Validator",
   title: "llms.txt Generator & Validator - Free Online Tool",
-  description:
-    "Generate and validate llms.txt files for your website. Check format, detect issues, and create spec-compliant files that help AI models understand your site.",
-  keywords: [
-    "llms.txt generator",
-    "llms.txt validator",
-    "llms txt checker",
-    "llms.txt format",
-    "ai website optimization",
-    "llms txt file",
+  description: "Generate and validate llms.txt files for your website. Check format, detect issues, and create spec-compliant files that help AI models understand your site.",
+  slug: "llms-txt-generator-validator",
+  keywords: ["llms.txt generator", "llms.txt validator", "llms txt checker", "llms.txt format", "ai website optimization", "llms txt file"],
+  faqs: [
+    { question: "Is llms.txt an official web standard?", answer: "It is a proposed standard gaining adoption, not yet an official W3C or IETF standard. However, many sites already use it and AI tools are starting to look for it." },
+    { question: "Does llms.txt affect SEO?", answer: "Not directly for traditional search engines. It helps AI-powered search and chatbots better understand your site, which may improve visibility in AI-generated answers." },
+    { question: "Can I have both robots.txt and llms.txt?", answer: "Yes. They serve different purposes. robots.txt controls crawler access, while llms.txt provides structured information for AI models." },
   ],
-  alternates: {
-    canonical: "https://www.byteverse.fyi/tools/llms-txt-generator-validator",
-  },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function LlmsTxtPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           llms.txt Generator & Validator

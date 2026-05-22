@@ -229,8 +229,30 @@ const tools = [
 ];
 
 export default function ToolsPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Free Developer Tools",
+    description: "Fast, private, no sign-up required. Free online tools for developers that run entirely in your browser.",
+    url: "https://www.byteverse.fyi/tools",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: tools.length,
+      itemListElement: tools.map((tool, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: tool.title,
+        url: `https://www.byteverse.fyi${tool.href}`,
+      })),
+    },
+  };
+
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Free Developer Tools

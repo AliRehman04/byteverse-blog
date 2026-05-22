@@ -8,7 +8,7 @@ export function Footer() {
       <div className="gradient-line" aria-hidden="true" />
       <div className="bg-muted/50 border-t border-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1 flex flex-col">
               <Link href="/" className="flex items-center gap-2 mb-4">
@@ -61,16 +61,30 @@ export function Footer() {
             </div>
 
             {/* Tools */}
-            <div>
+            <div className="sm:col-span-2">
               <h3 className="font-semibold text-sm mb-4">Free Tools</h3>
-              <ul className="space-y-2.5">
-                <li><Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
-                <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
-                <li><Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link></li>
-                <li><Link href="/tools/base64-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Base64 Encoder</Link></li>
-                <li><Link href="/tools/word-counter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Word Counter</Link></li>
-                <li><Link href="/tools/llms-txt-generator-validator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">llms.txt Validator</Link></li>
-              </ul>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+                <Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link>
+                <Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link>
+                <Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link>
+                <Link href="/tools/base64-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Base64 Encoder</Link>
+                <Link href="/tools/word-counter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Word Counter</Link>
+                <Link href="/tools/llms-txt-generator-validator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">llms.txt Validator</Link>
+                <Link href="/tools/regex-tester" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link>
+                <Link href="/tools/jwt-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JWT Decoder</Link>
+                <Link href="/tools/hash-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Hash Generator</Link>
+                <Link href="/tools/uuid-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">UUID Generator</Link>
+                <Link href="/tools/timestamp-converter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Timestamp Converter</Link>
+                <Link href="/tools/url-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">URL Encoder</Link>
+                <Link href="/tools/diff-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Diff Checker</Link>
+                <Link href="/tools/og-preview" className="text-sm text-muted-foreground hover:text-foreground transition-colors">OG Preview</Link>
+                <Link href="/tools/robots-txt-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">robots.txt Generator</Link>
+                <Link href="/tools/schema-markup-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Schema Generator</Link>
+                <Link href="/tools/slug-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Slug Generator</Link>
+                <Link href="/tools/css-gradient-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Gradient Generator</Link>
+                <Link href="/tools/color-converter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Color Converter</Link>
+                <Link href="/tools/box-shadow-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Box Shadow</Link>
+              </div>
             </div>
 
             {/* Legal */}

@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
 import { TimestampConverterTool } from "./timestamp-converter-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Unix Timestamp Converter",
   title: "Unix Timestamp Converter Online - Epoch Time to Date & Vice Versa",
-  description:
-    "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
-  keywords: [
-    "unix timestamp converter",
-    "epoch converter",
-    "timestamp to date",
-    "date to timestamp",
-    "unix time converter",
-    "epoch time converter",
-    "unix timestamp to date online",
+  description: "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
+  slug: "timestamp-converter",
+  keywords: ["unix timestamp converter", "epoch converter", "timestamp to date", "date to timestamp", "unix time converter", "epoch time converter", "unix timestamp to date online"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. All conversions happen in your browser. No data is sent to any server." },
+    { question: "How do I know if my timestamp is in seconds or milliseconds?", answer: "Timestamps in seconds are typically 10 digits (e.g., 1700000000). Millisecond timestamps are 13 digits (e.g., 1700000000000). This tool auto-detects the format." },
+    { question: "What is the Year 2038 problem?", answer: "32-bit systems store Unix timestamps as a signed 32-bit integer, which overflows on January 19, 2038. Modern 64-bit systems and JavaScript use 64-bit numbers, so this tool works correctly for dates far beyond 2038." },
   ],
-  alternates: {
-    canonical: "https://www.byteverse.fyi/tools/timestamp-converter",
-  },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function TimestampConverterPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Unix Timestamp Converter

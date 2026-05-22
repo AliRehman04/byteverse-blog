@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { JsonFormatterTool } from "./json-formatter-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "JSON Formatter & Validator",
   title: "JSON Formatter & Validator Online - Free Tool",
-  description:
-    "Format, validate, and minify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, and one-click copy.",
-  keywords: [
-    "json formatter",
-    "json validator",
-    "json beautifier",
-    "json minifier",
-    "format json online",
-    "json tool",
+  description: "Format, validate, and minify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, and one-click copy.",
+  slug: "json-formatter",
+  keywords: ["json formatter", "json validator", "json beautifier", "json minifier", "format json online", "json tool"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. Everything runs in your browser. No data is sent to any server." },
+    { question: "What JSON errors does it catch?", answer: "Missing commas, extra commas, unquoted keys, mismatched brackets, invalid values, and more." },
+    { question: "Can I use this for large JSON files?", answer: "This tool handles files up to several MB comfortably. For very large files (50MB+), use a desktop tool." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/json-formatter" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function JsonFormatterPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           JSON Formatter & Validator

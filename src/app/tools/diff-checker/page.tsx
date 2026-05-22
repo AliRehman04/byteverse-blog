@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { DiffCheckerTool } from "./diff-checker-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Diff Checker",
   title: "Diff Checker Online - Free Text Compare & Difference Finder",
-  description:
-    "Compare two texts side by side and find differences instantly. Line-by-line diff with additions, deletions, and unchanged lines. Free, private, runs in your browser.",
-  keywords: [
-    "diff checker",
-    "diff checker online",
-    "text compare",
-    "text diff",
-    "compare text online",
-    "difference finder",
-    "code diff",
-    "file compare",
+  description: "Compare two texts side by side and find differences instantly. Line-by-line diff with additions, deletions, and unchanged lines. Free, private, runs in your browser.",
+  slug: "diff-checker",
+  keywords: ["diff checker", "diff checker online", "text compare", "text diff", "compare text online", "difference finder", "code diff", "file compare"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. All comparisons are done entirely in your browser. No text is sent to any server." },
+    { question: "Can I compare code files?", answer: "Yes. This tool works with any text including source code. It performs a line-by-line comparison using an LCS (Longest Common Subsequence) algorithm." },
+    { question: "Is there a size limit?", answer: "There is no hard limit, but very large texts (100,000+ lines) may slow down your browser since the diff is computed client-side." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/diff-checker" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function DiffCheckerPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Diff Checker — Text Compare Tool

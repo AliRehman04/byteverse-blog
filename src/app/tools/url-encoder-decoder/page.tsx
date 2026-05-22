@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import { UrlEncoderDecoderTool } from "./url-encoder-decoder-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "URL Encoder & Decoder",
   title: "URL Encoder & Decoder Online - Free Percent Encoding Tool",
-  description:
-    "Encode and decode URLs instantly. Supports encodeURIComponent and encodeURI modes, URL parser, and common encoding reference. Free, private, runs in your browser.",
-  keywords: [
-    "url encoder",
-    "url decoder",
-    "url encode online",
-    "url decode online",
-    "percent encoding",
-    "urlencode",
-    "urldecode",
-    "url parser",
+  description: "Encode and decode URLs instantly. Supports encodeURIComponent and encodeURI modes, URL parser, and common encoding reference. Free, private, runs in your browser.",
+  slug: "url-encoder-decoder",
+  keywords: ["url encoder", "url decoder", "url encode online", "url decode online", "percent encoding", "urlencode", "urldecode", "url parser"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. All encoding and decoding is done in your browser. No data is sent to any server." },
+    { question: "When should I URL-encode text?", answer: "URL-encode any text that contains special characters before using it in a URL, especially in query parameters. For example, spaces become %20 and ampersands become %26." },
+    { question: "What is percent encoding?", answer: "Percent encoding (also called URL encoding) replaces unsafe characters with a % followed by two hexadecimal digits representing the character's byte value in UTF-8." },
   ],
-  alternates: {
-    canonical: "https://www.byteverse.fyi/tools/url-encoder-decoder",
-  },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function UrlEncoderDecoderPage() {
   return (

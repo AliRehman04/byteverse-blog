@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { JwtDecoderTool } from "./jwt-decoder-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "JWT Decoder",
   title: "JWT Decoder Online - Free JSON Web Token Decoder & Inspector",
-  description:
-    "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
-  keywords: [
-    "jwt decoder",
-    "jwt decoder online",
-    "decode jwt",
-    "json web token decoder",
-    "jwt token decoder",
-    "jwt inspector",
-    "jwt debugger",
-    "jwt parser",
+  description: "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
+  slug: "jwt-decoder",
+  keywords: ["jwt decoder", "jwt decoder online", "decode jwt", "json web token decoder", "jwt token decoder", "jwt inspector", "jwt debugger", "jwt parser"],
+  faqs: [
+    { question: "Is my JWT safe here?", answer: "Yes. Decoding happens entirely in your browser. No token data is sent to any server." },
+    { question: "Can this tool verify JWT signatures?", answer: "No. Signature verification requires the secret key or public key, which should never be shared in a browser tool. This tool only decodes and inspects the token contents." },
+    { question: "What algorithms are supported?", answer: "This decoder works with any JWT regardless of algorithm (HS256, RS256, ES256, etc.) since it only decodes the Base64Url-encoded parts." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/jwt-decoder" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function JwtDecoderPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           JWT Decoder & Inspector

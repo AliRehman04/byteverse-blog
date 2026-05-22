@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import { UuidGeneratorTool } from "./uuid-generator-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "UUID Generator",
   title: "UUID Generator Online - Free UUID v4 Generator & Validator",
-  description:
-    "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
-  keywords: [
-    "uuid generator",
-    "uuid generator online",
-    "generate uuid",
-    "uuid v4",
-    "random uuid",
-    "guid generator",
-    "uuid validator",
-    "bulk uuid generator",
+  description: "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
+  slug: "uuid-generator",
+  keywords: ["uuid generator", "uuid generator online", "generate uuid", "uuid v4", "random uuid", "guid generator", "uuid validator", "bulk uuid generator"],
+  faqs: [
+    { question: "Is my data safe?", answer: "Yes. UUIDs are generated using your browser's Web Crypto API. Nothing is sent to any server." },
+    { question: "Can two UUIDs be the same?", answer: "Theoretically possible but practically impossible. With 122 random bits in a v4 UUID, you would need to generate 2.71 quintillion UUIDs to have a 50% chance of a collision." },
+    { question: "UUID vs GUID — what's the difference?", answer: "They are the same thing. GUID (Globally Unique Identifier) is Microsoft's term for UUID." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/uuid-generator" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function UuidGeneratorPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           UUID Generator & Validator

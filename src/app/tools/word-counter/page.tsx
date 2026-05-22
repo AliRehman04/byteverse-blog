@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { WordCounterTool } from "./word-counter-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Word & Character Counter",
   title: "Word & Character Counter - Free Online Tool",
-  description:
-    "Count words, characters, sentences, paragraphs, and estimated reading time instantly. Free tool for writers, students, and developers.",
-  keywords: [
-    "word counter",
-    "character counter",
-    "word count tool",
-    "character count online",
-    "reading time calculator",
-    "text counter",
+  description: "Count words, characters, sentences, paragraphs, and estimated reading time instantly. Free tool for writers, students, and developers.",
+  slug: "word-counter",
+  keywords: ["word counter", "character counter", "word count tool", "character count online", "reading time calculator", "text counter"],
+  faqs: [
+    { question: "How accurate is the word count?", answer: "Very accurate. It counts the same way as Microsoft Word and Google Docs." },
+    { question: "What about different languages?", answer: "This tool works with any language that uses spaces between words, including English, Spanish, French, German, and more." },
+    { question: "How is reading time calculated?", answer: "Based on an average adult reading speed of 200 words per minute. Actual speed varies by person and content complexity." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/word-counter" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function WordCounterPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Word & Character Counter

@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
 import { CssGradientGeneratorTool } from "./css-gradient-generator-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "CSS Gradient Generator",
   title: "CSS Gradient Generator - Free Linear & Radial Gradient Builder",
   description: "Create beautiful CSS gradients visually. Build linear and radial gradients with multiple color stops, angle controls, and presets. Copy the CSS code instantly.",
+  slug: "css-gradient-generator",
   keywords: ["css gradient generator", "gradient builder", "linear gradient", "radial gradient", "css background gradient", "color gradient maker"],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/css-gradient-generator" },
+  faqs: [
+    { question: "What is a CSS gradient?", answer: "A CSS gradient lets you display smooth transitions between two or more colors as a background, without needing an image file. They are created with CSS functions like linear-gradient() and radial-gradient()." },
+    { question: "How many color stops can I add?", answer: "There is no hard limit in CSS. You can add as many color stops as you need. This tool lets you manage multiple stops with percentage positions for precise control." },
+    { question: "Do CSS gradients affect page performance?", answer: "CSS gradients are rendered by the browser and are very lightweight — much faster than loading gradient images. They also scale perfectly on all screen sizes." },
+  ],
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function CssGradientGeneratorPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">CSS Gradient Generator</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">Build beautiful linear and radial CSS gradients with a visual editor. Add color stops, adjust angles, and copy the generated CSS code.</p>
@@ -24,6 +34,15 @@ export default function CssGradientGeneratorPage() {
           <li><strong>Linear Gradient</strong> &mdash; Colors transition along a straight line at a specified angle</li>
           <li><strong>Radial Gradient</strong> &mdash; Colors radiate outward from a center point</li>
         </ul>
+      </section>
+      <section className="mt-12 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
+        <h2>Frequently Asked Questions</h2>
+        {toolConfig.faqs.map((faq, i) => (
+          <div key={i}>
+            <h3>{faq.question}</h3>
+            <p>{faq.answer}</p>
+          </div>
+        ))}
       </section>
     </main>
   );

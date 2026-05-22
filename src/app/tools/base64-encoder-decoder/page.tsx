@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { Base64Tool } from "./base64-tool";
+import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
-export const metadata: Metadata = {
+const toolConfig = {
+  name: "Base64 Encoder & Decoder",
   title: "Base64 Encoder & Decoder - Free Online Tool",
-  description:
-    "Encode or decode Base64 strings instantly. Supports text and UTF-8. Free, fast, and runs entirely in your browser.",
-  keywords: [
-    "base64 encoder",
-    "base64 decoder",
-    "base64 online",
-    "encode base64",
-    "decode base64",
-    "base64 tool",
+  description: "Encode or decode Base64 strings instantly. Supports text and UTF-8. Free, fast, and runs entirely in your browser.",
+  slug: "base64-encoder-decoder",
+  keywords: ["base64 encoder", "base64 decoder", "base64 online", "encode base64", "decode base64", "base64 tool"],
+  faqs: [
+    { question: "Is Base64 encryption?", answer: "No. Base64 is encoding, not encryption. It does not protect data. Anyone can decode Base64 strings. For security, use proper encryption." },
+    { question: "Why does Base64 make data larger?", answer: "Base64 encoding increases data size by about 33% because it represents 3 bytes of binary data as 4 ASCII characters." },
+    { question: "Is my data safe here?", answer: "Yes. All encoding and decoding happens in your browser. No data is sent to any server." },
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools/base64-encoder-decoder" },
 };
+
+export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function Base64Page() {
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           Base64 Encoder & Decoder

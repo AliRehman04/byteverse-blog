@@ -24,6 +24,7 @@ import {
   Brain,
   FileSearch,
   CodeXml,
+  RemoveFormatting,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -255,6 +256,15 @@ const tools = [
     icon: CodeXml,
     color: "text-orange-500",
     bg: "bg-orange-500/10",
+  },
+  {
+    title: "HTML Tag Generator & Remover",
+    description:
+      "Add HTML tags to plain text or strip all tags from HTML. Supports paragraphs, headings, lists, links, bold, and custom tags.",
+    href: "/tools/html-tag-generator",
+    icon: RemoveFormatting,
+    color: "text-cyan-500",
+    bg: "bg-cyan-500/10",
   },
 ];
 

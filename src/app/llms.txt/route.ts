@@ -55,6 +55,7 @@ export async function GET() {
     { name: "AI Content Detector", href: "/tools/ai-content-detector", desc: "Detect AI-generated text using 8 linguistic signals" },
     { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", desc: "Check text uniqueness and compare documents for similarity" },
     { name: "Live HTML Editor", href: "/tools/html-editor", desc: "Write HTML, CSS, and JavaScript with instant live preview and 7 templates" },
+    { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

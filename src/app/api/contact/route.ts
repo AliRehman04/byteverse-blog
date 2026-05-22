@@ -7,6 +7,7 @@ const resend = process.env.RESEND_API_KEY
   : null;
 
 const contactEmail = process.env.CONTACT_EMAIL || "alirehmanytlearning@gmail.com";
+const contactFromEmail = process.env.CONTACT_FROM_EMAIL || "ByteVerse Contact <contact@byteverse.fyi>";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function cleanText(value: unknown, maxLength: number) {
@@ -76,7 +77,7 @@ export async function POST(request: Request) {
     const safeMessage = escapeHtml(message);
 
     const { error } = await resend.emails.send({
-      from: "ByteVerse Contact <onboarding@resend.dev>",
+      from: contactFromEmail,
       to: contactEmail,
       replyTo: email,
       subject: `[ByteVerse] ${subject}`,

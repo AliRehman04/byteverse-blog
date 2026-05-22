@@ -25,6 +25,7 @@ import {
   FileSearch,
   CodeXml,
   RemoveFormatting,
+  Wand2,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -265,6 +266,15 @@ const tools = [
     icon: RemoveFormatting,
     color: "text-cyan-500",
     bg: "bg-cyan-500/10",
+  },
+  {
+    title: "Plagiarism Remover & AI Humanizer",
+    description:
+      "Rewrite text to remove plagiarism and humanize AI-generated content. Replaces AI phrases, swaps synonyms, and adds contractions.",
+    href: "/tools/plagiarism-remover",
+    icon: Wand2,
+    color: "text-fuchsia-500",
+    bg: "bg-fuchsia-500/10",
   },
 ];
 

@@ -86,6 +86,7 @@ export function Footer() {
                 <Link href="/tools/box-shadow-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Box Shadow</Link>
                 <Link href="/tools/ai-content-detector" className="text-sm text-muted-foreground hover:text-foreground transition-colors">AI Content Detector</Link>
                 <Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Checker</Link>
+                <Link href="/tools/plagiarism-remover" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Remover</Link>
                 <Link href="/tools/html-editor" className="text-sm text-muted-foreground hover:text-foreground transition-colors">HTML Editor</Link>
                 <Link href="/tools/html-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Tag Generator</Link>
               </div>

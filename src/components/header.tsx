@@ -10,7 +10,7 @@ import {
   Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
-  Brain, FileSearch, CodeXml, RemoveFormatting,
+  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -78,6 +78,7 @@ const toolCategories = [
     tools: [
       { name: "AI Content Detector", href: "/tools/ai-content-detector", icon: Brain, desc: "Detect AI-generated text" },
       { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", icon: FileSearch, desc: "Check text uniqueness" },
+      { name: "Plagiarism Remover", href: "/tools/plagiarism-remover", icon: Wand2, desc: "Rewrite & humanize text" },
       { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
       { name: "Tag Generator", href: "/tools/html-tag-generator", icon: RemoveFormatting, desc: "Add or strip HTML tags" },
     ],

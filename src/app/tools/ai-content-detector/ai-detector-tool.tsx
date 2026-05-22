@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import {
   Brain, AlertTriangle, CheckCircle2, XCircle,
-  RotateCcw, ChevronDown, ChevronUp, Loader2,
+  RotateCcw, ChevronDown, ChevronUp, Loader2, ArrowRight,
 } from "lucide-react";
 
 /* ── AI Signature Phrases ─────────────────────────────── */
@@ -443,6 +444,22 @@ export function AiDetectorTool() {
           <p className="text-xs text-muted-foreground text-center mt-4">
             This tool uses statistical heuristics and is not 100% definitive. Use results as a guide, not as proof. No data is sent to any server.
           </p>
+
+          {/* Cross-link CTA */}
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <p className="text-sm font-medium">AI text detected?</p>
+              <p className="text-xs text-muted-foreground">Rewrite it to sound human and pass AI detection</p>
+            </div>
+            <div className="flex gap-2">
+              <Link href="/tools/plagiarism-remover" className="px-4 py-2 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-1.5">
+                Plagiarism Remover <ArrowRight size={12} />
+              </Link>
+              <Link href="/tools/plagiarism-checker" className="px-4 py-2 text-xs font-medium rounded-lg border border-border hover:bg-muted transition-colors flex items-center gap-1.5">
+                Plagiarism Checker <ArrowRight size={12} />
+              </Link>
+            </div>
+          </div>
         </>
       )}
     </div>

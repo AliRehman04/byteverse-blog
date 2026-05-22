@@ -5,7 +5,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
 import { eq, ne, desc, and } from "drizzle-orm";
-import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User } from "lucide-react";
+import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User, Wrench } from "lucide-react";
 import { formatDate, shimmerBlur } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { AdUnit } from "@/components/adsense";
@@ -14,6 +14,70 @@ import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
 import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare } from "@/components/blog-post-widgets";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { KeyTakeaways } from "@/components/key-takeaways";
+
+/* ── Recommended Tools by Category ────────────────────── */
+const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string }[]> = {
+  "ai-tools": [
+    { name: "AI Content Detector", slug: "ai-content-detector", desc: "Detect AI-generated text" },
+    { name: "Plagiarism Remover", slug: "plagiarism-remover", desc: "Rewrite & humanize AI text" },
+    { name: "Plagiarism Checker", slug: "plagiarism-checker", desc: "Check text uniqueness" },
+  ],
+  "tech-guides": [
+    { name: "JSON Formatter", slug: "json-formatter", desc: "Format & validate JSON" },
+    { name: "HTML Editor", slug: "html-editor", desc: "Live HTML/CSS/JS playground" },
+    { name: "Regex Tester", slug: "regex-tester", desc: "Test regex with highlighting" },
+  ],
+  coding: [
+    { name: "Diff Checker", slug: "diff-checker", desc: "Compare texts side by side" },
+    { name: "JSON Formatter", slug: "json-formatter", desc: "Format & validate JSON" },
+    { name: "Regex Tester", slug: "regex-tester", desc: "Test regex with highlighting" },
+  ],
+  productivity: [
+    { name: "Word Counter", slug: "word-counter", desc: "Words, chars & reading time" },
+    { name: "Diff Checker", slug: "diff-checker", desc: "Compare texts side by side" },
+    { name: "Slug Generator", slug: "slug-generator", desc: "URL-friendly text slugs" },
+  ],
+  "software-reviews": [
+    { name: "Meta Tag Generator", slug: "meta-tag-generator", desc: "SEO meta tags with preview" },
+    { name: "Schema Markup", slug: "schema-markup-generator", desc: "JSON-LD structured data" },
+    { name: "OG Preview", slug: "og-preview", desc: "Social media link preview" },
+  ],
+};
+
+const DEFAULT_TOOLS = [
+  { name: "Word Counter", slug: "word-counter", desc: "Words, chars & reading time" },
+  { name: "JSON Formatter", slug: "json-formatter", desc: "Format & validate JSON" },
+  { name: "AI Content Detector", slug: "ai-content-detector", desc: "Detect AI-generated text" },
+];
+
+function RecommendedTools({ categorySlug }: { categorySlug?: string | null }) {
+  const tools = (categorySlug && CATEGORY_TOOLS[categorySlug]) || DEFAULT_TOOLS;
+  return (
+    <section className="mt-12 pt-8 border-t border-border">
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-lg font-bold flex items-center gap-2">
+          <Wrench size={18} className="text-primary" />
+          Recommended Tools
+        </h2>
+        <Link href="/tools" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
+          All Tools <ChevronRight size={14} />
+        </Link>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {tools.map((tool) => (
+          <Link
+            key={tool.slug}
+            href={`/tools/${tool.slug}`}
+            className="group p-4 rounded-xl ring-1 ring-border bg-card hover:ring-primary/30 hover:shadow-md transition-all"
+          >
+            <h3 className="font-semibold text-sm group-hover:text-primary transition-colors mb-1">{tool.name}</h3>
+            <p className="text-xs text-muted-foreground">{tool.desc}</p>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -491,6 +555,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               </div>
           </div>
+
+          {/* ========== RECOMMENDED TOOLS ========== */}
+          <RecommendedTools categorySlug={category?.slug} />
 
           {/* ========== RELATED POSTS ========== */}
           {relatedPosts.length > 0 && (

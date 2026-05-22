@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import {
   Search, CheckCircle2, AlertTriangle, XCircle,
   RotateCcw, ChevronDown, ChevronUp, Loader2,
-  ExternalLink, BarChart3, FileText,
+  ExternalLink, BarChart3, FileText, ArrowRight,
 } from "lucide-react";
 
 /* ── Utility Functions ────────────────────────────────── */
@@ -555,6 +556,22 @@ export function PlagiarismTool() {
               <p className="text-xs text-muted-foreground text-center">
                 All comparison is done locally in your browser. No text is sent to any server.
               </p>
+
+              {/* Cross-link CTA */}
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-medium">Found plagiarism or generic content?</p>
+                  <p className="text-xs text-muted-foreground">Rewrite it to make it unique and human-sounding</p>
+                </div>
+                <div className="flex gap-2">
+                  <Link href="/tools/plagiarism-remover" className="px-4 py-2 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-1.5">
+                    Plagiarism Remover <ArrowRight size={12} />
+                  </Link>
+                  <Link href="/tools/ai-content-detector" className="px-4 py-2 text-xs font-medium rounded-lg border border-border hover:bg-muted transition-colors flex items-center gap-1.5">
+                    AI Detector <ArrowRight size={12} />
+                  </Link>
+                </div>
+              </div>
             </>
           )}
         </>

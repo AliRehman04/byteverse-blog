@@ -65,12 +65,11 @@ export function Footer() {
               <h3 className="font-semibold text-sm mb-4">Free Tools</h3>
               <ul className="space-y-2.5">
                 <li><Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
-                <li><Link href="/tools/ai-content-detector" className="text-sm text-muted-foreground hover:text-foreground transition-colors">AI Content Detector</Link></li>
+                <li><Link href="/tools/code-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Code Formatter</Link></li>
+                <li><Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Checker</Link></li>
                 <li><Link href="/tools/plagiarism-remover" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Remover</Link></li>
-                <li><Link href="/tools/html-editor" className="text-sm text-muted-foreground hover:text-foreground transition-colors">HTML Editor</Link></li>
+                <li><Link href="/tools/regex-tester" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link></li>
                 <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
-                <li><Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link></li>
-                <li><Link href="/tools" className="text-sm text-primary hover:underline transition-colors">View All 26 Tools →</Link></li>
               </ul>
             </div>
 

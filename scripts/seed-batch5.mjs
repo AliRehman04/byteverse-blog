@@ -223,7 +223,7 @@ Official plugins like typography and forms have been updated. Third-party plugin
 
 **Is Tailwind 4 production-ready?**
 Absolutely. It has been stable since its release and is used in production by thousands of projects. The new engine was tested extensively before launch.`,
-    coverImage: "https://images.unsplash.com/photo-1558618666-fcd25c85f7f7?w=1200&h=630&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=1200&h=630&fit=crop",
     categoryId: 4,
     metaTitle: "Tailwind CSS 4 Guide 2026: What's New and How to Migrate",
     metaDescription: "Complete guide to Tailwind CSS 4. Learn what changed, how to migrate from v3, and start using the new CSS-first config and Oxide engine.",

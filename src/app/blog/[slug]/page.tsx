@@ -13,6 +13,7 @@ import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
 import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare } from "@/components/blog-post-widgets";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
+import { KeyTakeaways } from "@/components/key-takeaways";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -201,6 +202,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     } : {}),
     inLanguage: "en-US",
     isAccessibleForFree: true,
+    ...(post.summary ? { abstract: post.summary.split("|").map(s => s.trim()).filter(Boolean).join(". ") + "." } : {}),
   };
 
   // FAQ schema (auto-extracted from content headings with ?)
@@ -425,6 +427,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Ad before content */}
               <AdUnit slot="blog-top" format="horizontal" />
+
+              {/* Key Takeaways */}
+              {post.summary && <KeyTakeaways summary={post.summary} />}
 
               {/* Table of Contents */}
               <BlogPostToc />

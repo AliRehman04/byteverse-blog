@@ -22,6 +22,7 @@ export const posts = pgTable("posts", {
   metaTitle: varchar("meta_title", { length: 70 }),
   metaDescription: varchar("meta_description", { length: 160 }),
   keywords: text("keywords"),
+  summary: text("summary"),
   readingTime: varchar("reading_time", { length: 20 }),
   views: integer("views").notNull().default(0),
   scheduledAt: timestamp("scheduled_at"),

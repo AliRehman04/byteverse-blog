@@ -97,53 +97,79 @@ interface CompareResult {
 }
 
 /* ── Uniqueness Analysis ──────────────────────────────── */
+
+// Well-known stock/placeholder text phrases (always flagged as plagiarized)
+const KNOWN_TEXTS: RegExp[] = [
+  /lorem ipsum/i,
+  /dolor sit amet/i,
+  /consectetur adipiscing/i,
+  /the quick brown fox jumps over the lazy dog/i,
+  /all work and no play makes jack a dull boy/i,
+  /to be or not to be/i,
+  /it was the best of times/i,
+  /call me ishmael/i,
+  /four score and seven years ago/i,
+];
+
 function analyzeUniqueness(text: string): UniquenessResult {
   const sentences = splitSentences(text);
+
+  // Check if the full text matches known stock/placeholder content
+  const lowerFull = text.toLowerCase();
+  const hasKnownText = KNOWN_TEXTS.some((rx) => rx.test(lowerFull));
+
   const results = sentences.map((sent) => {
     const lower = sent.toLowerCase();
-    let score = 68; // Start high — most original text IS unique
+
+    // If sentence itself contains known text phrases → immediate flag
+    const sentHasKnown = KNOWN_TEXTS.some((rx) => rx.test(lower));
+    if (sentHasKnown) {
+      const searchUrl = `https://www.google.com/search?q="${encodeURIComponent(sent.slice(0, 120))}"`;
+      return { text: sent, status: "verify" as const, reason: "Known stock/placeholder text — widely copied", searchUrl };
+    }
+
+    // If the overall text is known stock content, penalize all sentences heavily
+    let score = hasKnownText ? 15 : 68;
 
     // ── Strong positive signals ──
-    // Personal pronouns → very likely unique
     const personalMatches = lower.match(/\b(i|i'm|i've|i'd|i'll|my|me|mine|we|we're|our|you|you're|your)\b/g);
     if (personalMatches) score += personalMatches.length * 8;
 
-    // Questions and exclamations → conversational
     if (sent.includes("?")) score += 15;
     if (sent.includes("!")) score += 10;
 
-    // Contractions → human writing
     const contractionCount = (lower.match(/\w+'(t|re|ve|ll|d|m|s)\b/g) || []).length;
     if (contractionCount) score += contractionCount * 6;
 
-    // Specific details (numbers, names, brands)
-    if (sent.match(/\$\d+/)) score += 12; // Dollar amounts
-    if (sent.match(/\b\d{4}\b/)) score += 8; // Years
-    if (sent.match(/\b\d+%/)) score += 8; // Percentages
-    if (sent.match(/\b\d+-\d+\b/)) score += 6; // Ranges
-    if (sent.match(/[A-Z][a-z]+(?:\s[A-Z][a-z]+)+/)) score += 8; // Proper nouns
-    if (sent.match(/\b[A-Z]{2,}\b/)) score += 5; // Acronyms
+    if (sent.match(/\$\d+/)) score += 12;
+    if (sent.match(/\b\d{4}\b/)) score += hasKnownText ? 0 : 8;
+    if (sent.match(/\b\d+%/)) score += 8;
+    if (sent.match(/\b\d+-\d+\b/)) score += 6;
+    if (sent.match(/[A-Z][a-z]+(?:\s[A-Z][a-z]+)+/)) score += hasKnownText ? 0 : 8;
+    if (sent.match(/\b[A-Z]{2,}\b/)) score += 5;
 
-    // Opinions, advice, direct address
     if (lower.match(/\b(think|believe|feel|love|hate|prefer|opinion|honestly|personally|recommend)\b/)) score += 12;
     if (lower.match(/\b(should|could|might|try|consider)\b/)) score += 5;
     if (lower.match(/\b(great|awesome|terrible|fantastic|solid|decent|pretty good)\b/)) score += 8;
-
-    // Informal/conversational language
     if (lower.match(/\b(actually|basically|pretty|kinda|gonna|lol|haha|wow|anyway|sure|okay|fine|cool)\b/)) score += 10;
-
-    // Imperative/instructional patterns (original advice)
     if (lower.match(/^(update|check|make|use|try|start|build|create|add|clone|review|look)\b/i)) score += 8;
 
-    // ── Weak negative signals ── (only flag truly generic text)
-    // Copy-paste textbook language
+    // ── Negative signals ──
+    // No personal voice at all → more likely copied/generic
+    if (!personalMatches && !contractionCount && !sent.includes("?") && !sent.includes("!")) {
+      score -= 15;
+    }
+
     if (lower.match(/\b(is defined as|refers to|is a (?:type|form|kind) of|can be described as)\b/)) score -= 20;
-
-    // Wikipedia-style formal definitions
     if (lower.match(/\b(according to (?:recent )?(?:studies|research)|it has been (?:shown|proven|demonstrated))\b/)) score -= 18;
-
-    // Very generic filler
     if (lower.match(/\b(it is clear that|it is evident that|one of the most important)\b/)) score -= 12;
+
+    // Repetitive phrasing (same word repeated many times = filler/stock)
+    const words = lower.split(/\s+/);
+    const wordFreq = new Map<string, number>();
+    for (const w of words) if (w.length > 3) wordFreq.set(w, (wordFreq.get(w) || 0) + 1);
+    const maxFreq = Math.max(...wordFreq.values(), 0);
+    if (maxFreq >= 3 && words.length < 40) score -= 10;
 
     const clamped = Math.max(0, Math.min(100, score));
     const status: "unique" | "review" | "verify" = clamped >= 55 ? "unique" : clamped >= 30 ? "review" : "verify";

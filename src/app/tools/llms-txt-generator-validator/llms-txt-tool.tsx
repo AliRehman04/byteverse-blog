@@ -12,6 +12,9 @@ import {
   CheckCircle2,
   Info,
   XCircle,
+  Globe,
+  Loader2,
+  Download,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -338,6 +341,9 @@ export function LlmsTxtTool() {
     { id: "1", name: "Main URLs", items: [""] },
   ]);
   const [genCopied, setGenCopied] = useState(false);
+  const [domain, setDomain] = useState("");
+  const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState("");
 
   // Validator state
   const [validatorInput, setValidatorInput] = useState("");
@@ -369,6 +375,61 @@ export function LlmsTxtTool() {
       { id: Date.now().toString(), name: "", items: [""] },
     ]);
   }, []);
+
+  const autoGenerate = useCallback(async () => {
+    const d = domain.trim();
+    if (!d) return;
+    setFetching(true);
+    setFetchError("");
+    try {
+      const res = await fetch("/api/tools/llms-txt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domain: d }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to fetch site data");
+
+      if (data.siteTitle) setSiteName(data.siteTitle);
+      if (data.siteDescription) setSummary(data.siteDescription);
+
+      const groups = data.groups as Record<string, { title: string; url: string }[]>;
+      const newSections: Section[] = [];
+      let id = 1;
+
+      if (groups["Main URLs"]) {
+        newSections.push({
+          id: String(id++),
+          name: "Main URLs",
+          items: groups["Main URLs"].map((p) => `[${p.title}](${p.url})`),
+        });
+      }
+      for (const [name, pages] of Object.entries(groups)) {
+        if (name === "Main URLs") continue;
+        newSections.push({
+          id: String(id++),
+          name,
+          items: pages.map((p) => `[${p.title}](${p.url})`),
+        });
+      }
+
+      if (newSections.length > 0) setSections(newSections);
+    } catch (err: unknown) {
+      setFetchError(err instanceof Error ? err.message : "Failed to fetch site data");
+    } finally {
+      setFetching(false);
+    }
+  }, [domain]);
+
+  const downloadGenerated = useCallback(() => {
+    const blob = new Blob([generated], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "llms.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [generated]);
 
   const updateSection = useCallback((id: string, updated: Section) => {
     setSections((prev) => prev.map((s) => (s.id === id ? updated : s)));
@@ -464,7 +525,64 @@ Call us at +1-555-123-4567
 
       {/* ============ GENERATOR TAB ============ */}
       {tab === "generator" && (
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="space-y-6">
+          {/* Auto-generate from domain */}
+          <div className="p-5 bg-muted/30 border border-border rounded-xl space-y-3">
+            <label className="text-sm font-semibold block">
+              Auto-generate from website
+            </label>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Globe
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
+                />
+                <input
+                  type="url"
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && autoGenerate()}
+                  placeholder="https://example.com"
+                  className="w-full pl-9 pr-3 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
+              </div>
+              <button
+                onClick={autoGenerate}
+                disabled={fetching || !domain.trim()}
+                className="px-6 py-2.5 bg-primary text-primary-foreground font-medium text-sm rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-40 inline-flex items-center gap-2 whitespace-nowrap"
+              >
+                {fetching ? (
+                  <Loader2 size={16} className="animate-spin" />
+                ) : (
+                  <FileText size={16} />
+                )}
+                {fetching ? "Fetching..." : "Generate"}
+              </button>
+            </div>
+            {fetchError && (
+              <p className="text-sm text-red-500 flex items-center gap-1.5">
+                <XCircle size={14} className="flex-shrink-0" /> {fetchError}
+              </p>
+            )}
+            <p className="text-xs text-muted-foreground">
+              Enter your domain to auto-fetch sitemap and generate llms.txt.
+              No email required — 100% free.
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-border" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-background px-3 text-xs text-muted-foreground">
+                or edit manually below
+              </span>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6">
           {/* Form */}
           <div className="space-y-4">
             <div>
@@ -529,18 +647,27 @@ Call us at +1-555-123-4567
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className="text-sm font-medium">Generated llms.txt</label>
-              <button
-                onClick={copyGenerated}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                {genCopied ? <Check size={14} /> : <Copy size={14} />}
-                {genCopied ? "Copied!" : "Copy"}
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={downloadGenerated}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-border text-xs font-medium rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Download size={14} /> Download
+                </button>
+                <button
+                  onClick={copyGenerated}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  {genCopied ? <Check size={14} /> : <Copy size={14} />}
+                  {genCopied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
             <pre className="p-4 bg-muted/50 border border-border rounded-lg text-sm font-mono whitespace-pre-wrap min-h-[300px] max-h-[600px] overflow-y-auto">
               {generated || "# Your Site Name\n\n> Description...\n\n## Main URLs\n- [Homepage](https://...)"}
             </pre>
           </div>
+        </div>
         </div>
       )}
 

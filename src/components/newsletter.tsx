@@ -5,12 +5,20 @@ import { Mail, CheckCircle, Loader2 } from "lucide-react";
 
 export function Newsletter({ compact }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
+  const [hp, setHp] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
+
+    // Honeypot - if filled, silently succeed (bot)
+    if (hp) {
+      setStatus("success");
+      setMessage("You're subscribed! Thanks for joining.");
+      return;
+    }
 
     setStatus("loading");
     try {
@@ -54,6 +62,9 @@ export function Newsletter({ compact }: { compact?: boolean }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-2">
+            <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
+              <input type="text" value={hp} onChange={e => setHp(e.target.value)} autoComplete="off" tabIndex={-1} />
+            </div>
             <input
               type="email"
               required
@@ -106,6 +117,9 @@ export function Newsletter({ compact }: { compact?: boolean }) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
+                <input type="text" value={hp} onChange={e => setHp(e.target.value)} autoComplete="off" tabIndex={-1} />
+              </div>
               <label htmlFor="newsletter-email" className="sr-only">Email address</label>
               <input
                 id="newsletter-email"

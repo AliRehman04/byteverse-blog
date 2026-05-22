@@ -2,19 +2,19 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const jwtSecret = process.env.JWT_SECRET;
-if (!jwtSecret) {
-  console.warn("JWT_SECRET is not set. Authentication will not work.");
+if (!jwtSecret && process.env.NODE_ENV === "production") {
+  throw new Error("JWT_SECRET must be set in production!");
 }
 
 const secret = new TextEncoder().encode(
-  jwtSecret || "unsafe-dev-only-secret"
+  jwtSecret || "dev-only-secret-not-for-production"
 );
 
 export async function createToken() {
-  return new SignJWT({ role: "admin" })
+  return new SignJWT({ role: "admin", iat: Date.now() })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("7d")
+    .setExpirationTime("24h")
     .sign(secret);
 }
 

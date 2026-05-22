@@ -7,10 +7,10 @@ import { and, eq, lte, isNotNull } from "drizzle-orm";
 // Configured in vercel.json: { "crons": [{ "path": "/api/cron/publish", "schedule": "0 */12 * * *" }] }
 
 export async function GET(request: Request) {
-  // Verify cron secret (Vercel sends this header for cron jobs)
+  // Verify cron secret - fail secure (deny if secret is not configured)
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

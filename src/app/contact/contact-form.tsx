@@ -16,6 +16,15 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+
+    // Honeypot check - if this field is filled, it's a bot
+    const hp = String(formData.get("website") || "").trim();
+    if (hp) {
+      setStatus("success");
+      setNotice("Message sent successfully! We'll get back to you soon.");
+      return;
+    }
+
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const subject = String(formData.get("subject") || "").trim();
@@ -53,6 +62,11 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+      {/* Honeypot field - hidden from real users, bots will fill it */}
+      <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
+        <input type="text" name="website" autoComplete="off" tabIndex={-1} />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="space-y-2">
           <span className="text-sm font-semibold">Name</span>

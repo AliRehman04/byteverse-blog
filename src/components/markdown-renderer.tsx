@@ -1,17 +1,33 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import { Children, isValidElement } from "react";
 import { ExternalLink } from "lucide-react";
 import { CopyButton } from "@/components/copy-button";
+
+// Allow safe HTML tags but block scripts, event handlers, etc.
+const sanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [
+    ...(defaultSchema.tagNames || []),
+    "figure", "figcaption", "summary", "details",
+  ],
+  attributes: {
+    ...defaultSchema.attributes,
+    "*": ["className", "id", "style"],
+    a: ["href", "title", "target", "rel"],
+    img: ["src", "alt", "title", "width", "height", "loading", "decoding"],
+  },
+};
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (
     <div className="blog-content prose prose-lg max-w-none dark:prose-invert">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw, rehypeSlug]}
+        rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeSlug]}
         children={content}
         components={{
           h2: ({ children, id, ...props }) => (

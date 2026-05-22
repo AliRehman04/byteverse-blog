@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { rateLimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
@@ -24,7 +25,18 @@ function escapeHtml(str: string) {
 
 export async function POST(request: Request) {
   try {
+    // Rate limit: 3 messages per IP per 15 minutes
+    const ip = getClientIp(request);
+    const rl = rateLimit(`contact:${ip}`, { limit: 3, windowSeconds: 900 });
+    if (!rl.success) return rateLimitResponse(rl.resetAt);
+
     const body = await request.json();
+
+    // Honeypot check - bots fill hidden fields
+    if (body.website) {
+      return NextResponse.json({ message: "Message sent successfully!" });
+    }
+
     const name = cleanText(body.name, 80);
     const email = cleanText(body.email, 120).toLowerCase();
     const subject = cleanText(body.subject, 140) || "ByteVerse Contact Message";

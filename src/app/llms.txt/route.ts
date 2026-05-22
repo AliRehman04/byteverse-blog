@@ -54,6 +54,7 @@ export async function GET() {
     { name: "Box Shadow Generator", href: "/tools/box-shadow-generator", desc: "Build CSS box-shadow effects with multiple layers" },
     { name: "AI Content Detector", href: "/tools/ai-content-detector", desc: "Detect AI-generated text using 8 linguistic signals" },
     { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", desc: "Check text uniqueness and compare documents for similarity" },
+    { name: "Live HTML Editor", href: "/tools/html-editor", desc: "Write HTML, CSS, and JavaScript with instant live preview and 7 templates" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

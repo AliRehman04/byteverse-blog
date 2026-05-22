@@ -10,7 +10,7 @@ import {
   Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
-  Brain, FileSearch,
+  Brain, FileSearch, CodeXml,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -35,6 +35,7 @@ const toolCategories = [
       { name: "Regex Tester", href: "/tools/regex-tester", icon: Regex, desc: "Test patterns live" },
       { name: "Diff Checker", href: "/tools/diff-checker", icon: GitCompareArrows, desc: "Compare texts side by side" },
       { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Words, chars & reading time" },
+      { name: "HTML Editor", href: "/tools/html-editor", icon: CodeXml, desc: "Live HTML/CSS playground" },
     ],
   },
   {

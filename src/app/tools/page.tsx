@@ -23,6 +23,7 @@ import {
   Square,
   Brain,
   FileSearch,
+  CodeXml,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -245,6 +246,15 @@ const tools = [
     icon: FileSearch,
     color: "text-rose-500",
     bg: "bg-rose-500/10",
+  },
+  {
+    title: "Live HTML Editor",
+    description:
+      "Write HTML, CSS, and JavaScript with instant live preview. 7 templates, split layouts, mobile preview, and fullscreen mode.",
+    href: "/tools/html-editor",
+    icon: CodeXml,
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
   },
 ];
 

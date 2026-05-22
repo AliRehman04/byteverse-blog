@@ -169,7 +169,7 @@ export function Header() {
 
                       {/* Mega Menu Dropdown */}
                       <div
-                        className={`absolute top-full right-0 lg:left-1/2 lg:-translate-x-1/2 pt-2 transition-all duration-200 ${
+                        className={`fixed md:absolute top-[4.25rem] md:top-full left-1/2 -translate-x-1/2 pt-0 md:pt-2 transition-all duration-200 ${
                           toolsOpen
                             ? "opacity-100 translate-y-0 pointer-events-auto"
                             : "opacity-0 -translate-y-2 pointer-events-none"

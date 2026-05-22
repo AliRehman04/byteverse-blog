@@ -101,43 +101,52 @@ function analyzeUniqueness(text: string): UniquenessResult {
   const sentences = splitSentences(text);
   const results = sentences.map((sent) => {
     const lower = sent.toLowerCase();
-    let score = 50; // Start neutral
+    let score = 68; // Start high — most original text IS unique
 
-    // Personal pronouns → likely unique
-    const personalMatches = lower.match(/\b(i|i'm|i've|i'd|i'll|my|me|mine|we|we're|our)\b/g);
-    if (personalMatches) score += personalMatches.length * 12;
+    // ── Strong positive signals ──
+    // Personal pronouns → very likely unique
+    const personalMatches = lower.match(/\b(i|i'm|i've|i'd|i'll|my|me|mine|we|we're|our|you|you're|your)\b/g);
+    if (personalMatches) score += personalMatches.length * 8;
 
-    // Specific details (numbers, proper nouns)
-    if (sent.match(/\b\d{4}\b/)) score += 10; // Years
+    // Questions and exclamations → conversational
+    if (sent.includes("?")) score += 15;
+    if (sent.includes("!")) score += 10;
+
+    // Contractions → human writing
+    const contractionCount = (lower.match(/\w+'(t|re|ve|ll|d|m|s)\b/g) || []).length;
+    if (contractionCount) score += contractionCount * 6;
+
+    // Specific details (numbers, names, brands)
+    if (sent.match(/\$\d+/)) score += 12; // Dollar amounts
+    if (sent.match(/\b\d{4}\b/)) score += 8; // Years
     if (sent.match(/\b\d+%/)) score += 8; // Percentages
-    if (sent.match(/[A-Z][a-z]+\s[A-Z][a-z]+/)) score += 8; // Proper nouns
+    if (sent.match(/\b\d+-\d+\b/)) score += 6; // Ranges
+    if (sent.match(/[A-Z][a-z]+(?:\s[A-Z][a-z]+)+/)) score += 8; // Proper nouns
+    if (sent.match(/\b[A-Z]{2,}\b/)) score += 5; // Acronyms
 
-    // Opinions and emotions
-    if (lower.match(/\b(think|believe|feel|love|hate|prefer|opinion|honestly|personally)\b/)) score += 15;
+    // Opinions, advice, direct address
+    if (lower.match(/\b(think|believe|feel|love|hate|prefer|opinion|honestly|personally|recommend)\b/)) score += 12;
+    if (lower.match(/\b(should|could|might|try|consider)\b/)) score += 5;
+    if (lower.match(/\b(great|awesome|terrible|fantastic|solid|decent|pretty good)\b/)) score += 8;
 
-    // Informal language
-    if (lower.match(/\b(actually|basically|pretty|kinda|gonna|lol|haha|wow|anyway)\b/)) score += 12;
+    // Informal/conversational language
+    if (lower.match(/\b(actually|basically|pretty|kinda|gonna|lol|haha|wow|anyway|sure|okay|fine|cool)\b/)) score += 10;
 
-    // Questions and exclamations
-    if (sent.includes("?") || sent.includes("!")) score += 8;
+    // Imperative/instructional patterns (original advice)
+    if (lower.match(/^(update|check|make|use|try|start|build|create|add|clone|review|look)\b/i)) score += 8;
 
-    // Contractions
-    if (lower.match(/\w+'(t|re|ve|ll|d|m)\b/)) score += 6;
+    // ── Weak negative signals ── (only flag truly generic text)
+    // Copy-paste textbook language
+    if (lower.match(/\b(is defined as|refers to|is a (?:type|form|kind) of|can be described as)\b/)) score -= 20;
 
-    // Formal/academic markers → needs review
-    if (lower.match(/\b(according to|studies show|research indicates|it has been|it is important)\b/)) score -= 20;
+    // Wikipedia-style formal definitions
+    if (lower.match(/\b(according to (?:recent )?(?:studies|research)|it has been (?:shown|proven|demonstrated))\b/)) score -= 18;
 
-    // Definition-like patterns
-    if (lower.match(/\b(is defined as|refers to|is a (type|form|kind) of|can be described)\b/)) score -= 25;
-
-    // Very generic statements
-    if (lower.match(/\b(there are many|it is essential|one of the most|in order to|it is clear that)\b/)) score -= 15;
-
-    // Common textbook phrases
-    if (lower.match(/\b(furthermore|moreover|consequently|nevertheless|in conclusion|to summarize)\b/)) score -= 10;
+    // Very generic filler
+    if (lower.match(/\b(it is clear that|it is evident that|one of the most important)\b/)) score -= 12;
 
     const clamped = Math.max(0, Math.min(100, score));
-    const status: "unique" | "review" | "verify" = clamped >= 60 ? "unique" : clamped >= 35 ? "review" : "verify";
+    const status: "unique" | "review" | "verify" = clamped >= 55 ? "unique" : clamped >= 30 ? "review" : "verify";
     const reason = status === "unique"
       ? "Contains personal or specific content"
       : status === "review"
@@ -152,7 +161,7 @@ function analyzeUniqueness(text: string): UniquenessResult {
   const unique = results.filter((r) => r.status === "unique").length;
   const review = results.filter((r) => r.status === "review").length;
   const verify = results.filter((r) => r.status === "verify").length;
-  const overallScore = results.length > 0 ? Math.round(((unique + review * 0.5) / results.length) * 100) : 100;
+  const overallScore = results.length > 0 ? Math.round(((unique + review * 0.7) / results.length) * 100) : 100;
 
   return {
     sentences: results,

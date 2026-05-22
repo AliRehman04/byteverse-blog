@@ -9,85 +9,150 @@ import Link from "next/link";
 
 /* ── SYNONYM DICTIONARY ───────────────────────────────── */
 const SYN: Record<string, string[]> = {
-  // Common verbs
+  // ── Everyday verbs (most common words people actually use) ──
+  need: ["require", "want", "have to have"],
+  help: ["assist", "support", "aid"],
+  helps: ["assists", "supports", "aids"],
+  work: ["function", "operate", "run"],
+  works: ["functions", "operates", "runs"],
+  working: ["functioning", "operating", "running"],
+  use: ["utilize", "employ", "rely on"],
+  used: ["utilized", "employed", "relied on"],
+  using: ["relying on", "employing", "working with"],
+  start: ["begin", "kick off", "launch"],
+  started: ["began", "kicked off", "launched"],
+  starting: ["beginning", "kicking off", "launching"],
+  make: ["create", "build", "craft"],
+  making: ["creating", "building", "crafting"],
+  show: ["display", "reveal", "demonstrate"],
+  shows: ["displays", "reveals", "demonstrates"],
+  showing: ["displaying", "revealing", "demonstrating"],
+  get: ["obtain", "grab", "pick up"],
+  give: ["provide", "offer", "hand over"],
+  keep: ["maintain", "hold onto", "retain"],
+  find: ["locate", "discover", "track down"],
+  look: ["check", "glance", "peek"],
+  add: ["include", "throw in", "put in"],
+  take: ["grab", "pick", "remove"],
+  put: ["place", "set", "position"],
+  run: ["operate", "execute", "launch"],
+  see: ["notice", "spot", "observe"],
+  know: ["understand", "realize", "recognize"],
+  want: ["wish", "desire", "aim"],
+  come: ["arrive", "show up", "appear"],
+  go: ["head", "move", "proceed"],
+  try: ["attempt", "aim", "test"],
+  call: ["name", "label", "refer to as"],
+  tell: ["inform", "let know", "share with"],
+  ask: ["request", "inquire", "check with"],
+  change: ["alter", "modify", "switch"],
+  move: ["shift", "transfer", "relocate"],
+  follow: ["stick to", "adhere to", "track"],
+  leave: ["exit", "step away from", "abandon"],
+  turn: ["convert", "switch", "shift"],
+  play: ["perform", "engage in", "take part in"],
+  learn: ["pick up", "study", "master"],
+  update: ["refresh", "revise", "renew"],
+  finish: ["complete", "wrap up", "finalize"],
+  review: ["check", "revisit", "go over"],
+  check: ["inspect", "verify", "examine"],
+  fix: ["repair", "correct", "patch"],
+  set: ["configure", "arrange", "establish"],
+  test: ["verify", "validate", "check"],
+  send: ["deliver", "forward", "transmit"],
+  save: ["store", "preserve", "keep"],
+  write: ["compose", "draft", "author"],
+  read: ["scan", "browse", "go through"],
+  pick: ["choose", "select", "grab"],
+  clone: ["copy", "replicate", "duplicate"],
+  handle: ["manage", "deal with", "take care of"],
+  feature: ["highlight", "showcase", "include"],
+  approach: ["tackle", "handle", "deal with"],
+  costs: ["runs", "is priced at", "goes for"],
+  appreciate: ["value", "respect", "admire"],
+  // ── Common adjectives ──
+  good: ["solid", "strong", "decent"],
+  great: ["excellent", "outstanding", "fantastic"],
+  best: ["top", "finest", "ideal"],
+  new: ["fresh", "latest", "recent"],
+  old: ["outdated", "previous", "former"],
+  big: ["large", "major", "substantial"],
+  small: ["tiny", "compact", "minor"],
+  long: ["extended", "lengthy", "prolonged"],
+  short: ["brief", "quick", "concise"],
+  easy: ["simple", "straightforward", "effortless"],
+  hard: ["tough", "challenging", "difficult"],
+  fast: ["quick", "rapid", "speedy"],
+  slow: ["gradual", "steady", "unhurried"],
+  fine: ["okay", "acceptable", "decent"],
+  ready: ["prepared", "set", "good to go"],
+  free: ["no-cost", "complimentary", "open"],
+  sure: ["certain", "confident", "positive"],
+  real: ["genuine", "actual", "authentic"],
+  own: ["personal", "individual", "private"],
+  full: ["complete", "entire", "whole"],
+  popular: ["well-known", "widely used", "trending"],
+  notable: ["noteworthy", "remarkable", "significant"],
+  outdated: ["dated", "old", "stale"],
+  specific: ["particular", "certain", "exact"],
+  striking: ["impressive", "eye-catching", "remarkable"],
+  custom: ["personalized", "tailored", "bespoke"],
+  required: ["needed", "necessary", "mandatory"],
+  often: ["frequently", "regularly", "commonly"],
+  // ── More formal/AI verbs ──
   achieve: ["accomplish", "reach", "attain"],
-  address: ["tackle", "handle", "deal with"],
   allow: ["let", "enable", "permit"],
   analyze: ["examine", "study", "look into"],
-  appear: ["seem", "look", "come across as"],
   apply: ["use", "put to use", "employ"],
   assist: ["help", "support", "back up"],
   attempt: ["try", "aim", "strive"],
   begin: ["start", "kick off", "get going"],
   believe: ["think", "feel", "reckon"],
   build: ["create", "develop", "put together"],
-  cause: ["lead to", "trigger", "bring about"],
   choose: ["pick", "select", "go with"],
   combine: ["merge", "mix", "blend"],
   complete: ["finish", "wrap up", "finalize"],
-  conduct: ["run", "carry out", "do"],
   consider: ["think about", "look at", "weigh"],
   contain: ["hold", "include", "have"],
   continue: ["keep going", "carry on", "press on"],
-  contribute: ["add to", "pitch in", "chip in"],
   create: ["build", "make", "develop"],
-  decrease: ["drop", "reduce", "lower"],
   demonstrate: ["show", "prove", "display"],
   describe: ["explain", "outline", "lay out"],
   determine: ["figure out", "decide", "find out"],
   develop: ["build", "grow", "create"],
   discover: ["find", "uncover", "come across"],
   discuss: ["talk about", "cover", "go over"],
-  display: ["show", "present", "exhibit"],
   eliminate: ["remove", "cut", "get rid of"],
-  employ: ["use", "hire", "put to work"],
   enable: ["let", "allow", "make possible"],
-  encounter: ["face", "run into", "come across"],
   enhance: ["boost", "improve", "upgrade"],
   ensure: ["make sure", "guarantee", "confirm"],
   establish: ["set up", "create", "build"],
   evaluate: ["assess", "review", "judge"],
   examine: ["look at", "study", "check"],
-  execute: ["run", "carry out", "do"],
-  exhibit: ["show", "display", "present"],
   expand: ["grow", "broaden", "extend"],
-  experience: ["go through", "face", "deal with"],
   explain: ["describe", "break down", "clarify"],
   explore: ["look into", "dig into", "check out"],
   facilitate: ["help", "make easier", "support"],
   generate: ["create", "produce", "come up with"],
   identify: ["spot", "find", "recognize"],
-  illustrate: ["show", "highlight", "point out"],
   implement: ["set up", "put in place", "roll out"],
   improve: ["boost", "enhance", "upgrade"],
   include: ["cover", "feature", "have"],
   increase: ["grow", "boost", "raise"],
   indicate: ["show", "suggest", "point to"],
-  influence: ["shape", "affect", "impact"],
   introduce: ["bring in", "present", "launch"],
-  investigate: ["look into", "explore", "dig into"],
   involve: ["include", "mean", "require"],
   maintain: ["keep", "hold", "preserve"],
   manage: ["handle", "run", "oversee"],
-  maximize: ["boost", "get the most from", "optimize"],
-  minimize: ["reduce", "cut down", "limit"],
   modify: ["change", "tweak", "adjust"],
   obtain: ["get", "grab", "pick up"],
-  occur: ["happen", "take place", "come about"],
-  operate: ["run", "work", "function"],
   optimize: ["fine-tune", "improve", "streamline"],
-  organize: ["arrange", "sort", "set up"],
   overcome: ["beat", "get past", "push through"],
-  participate: ["join", "take part", "get involved"],
   perform: ["do", "carry out", "execute"],
-  possess: ["have", "own", "hold"],
   present: ["show", "share", "offer"],
   prevent: ["stop", "block", "avoid"],
-  prioritize: ["focus on", "put first", "rank"],
   produce: ["make", "create", "generate"],
   provide: ["give", "offer", "supply"],
-  purchase: ["buy", "get", "pick up"],
-  recognize: ["spot", "notice", "see"],
   recommend: ["suggest", "advise", "propose"],
   reduce: ["cut", "lower", "shrink"],
   remove: ["take out", "delete", "drop"],
@@ -95,76 +160,72 @@ const SYN: Record<string, string[]> = {
   resolve: ["fix", "solve", "sort out"],
   reveal: ["show", "uncover", "expose"],
   select: ["pick", "choose", "go with"],
-  significant: ["big", "major", "notable"],
   suggest: ["hint", "propose", "recommend"],
   support: ["back", "help", "assist"],
   transform: ["change", "reshape", "overhaul"],
   utilize: ["use", "apply", "tap into"],
-  // Common adjectives
+  // ── Adjectives ──
   additional: ["extra", "more", "added"],
-  adequate: ["enough", "sufficient", "decent"],
   appropriate: ["right", "fitting", "suitable"],
   beneficial: ["helpful", "useful", "good"],
   comprehensive: ["complete", "thorough", "full"],
-  considerable: ["large", "significant", "big"],
   crucial: ["key", "vital", "critical"],
-  customizable: ["flexible", "adjustable", "adaptable"],
   diverse: ["varied", "wide-ranging", "mixed"],
   effective: ["working", "proven", "solid"],
   efficient: ["fast", "streamlined", "smooth"],
   essential: ["vital", "key", "must-have"],
   excellent: ["great", "outstanding", "top-notch"],
-  exceptional: ["outstanding", "remarkable", "impressive"],
   extensive: ["wide", "broad", "large"],
-  fundamental: ["basic", "core", "key"],
   important: ["key", "vital", "major"],
-  impressive: ["striking", "remarkable", "notable"],
+  impressive: ["eye-catching", "remarkable", "notable"],
   innovative: ["creative", "fresh", "new"],
-  intricate: ["complex", "detailed", "involved"],
   meaningful: ["real", "valuable", "worthwhile"],
-  meticulous: ["careful", "detailed", "thorough"],
   numerous: ["many", "plenty of", "lots of"],
   optimal: ["best", "ideal", "top"],
-  paramount: ["top", "key", "highest"],
-  pertinent: ["relevant", "related", "on-topic"],
-  pivotal: ["key", "central", "critical"],
-  plethora: ["lots", "tons", "plenty"],
-  potential: ["possible", "likely", "would-be"],
-  predominant: ["main", "leading", "top"],
-  profound: ["deep", "strong", "powerful"],
-  prominent: ["leading", "well-known", "top"],
   robust: ["strong", "solid", "tough"],
   seamless: ["smooth", "easy", "effortless"],
-  straightforward: ["simple", "easy", "clear"],
   substantial: ["large", "big", "major"],
-  sufficient: ["enough", "adequate", "plenty"],
-  superior: ["better", "top", "stronger"],
-  tremendous: ["huge", "massive", "enormous"],
-  unparalleled: ["unmatched", "unique", "one of a kind"],
   valuable: ["useful", "helpful", "worthwhile"],
-  vast: ["huge", "enormous", "massive"],
-  // Common adverbs
+  // ── Adverbs ──
   additionally: ["also", "plus", "on top of that"],
   approximately: ["about", "around", "roughly"],
-  consequently: ["so", "as a result", "therefore"],
   effectively: ["well", "properly", "successfully"],
   essentially: ["basically", "really", "at its core"],
   frequently: ["often", "regularly", "a lot"],
   furthermore: ["also", "plus", "what's more"],
   generally: ["usually", "typically", "mostly"],
   however: ["but", "still", "yet"],
-  immediately: ["right away", "instantly", "at once"],
   moreover: ["also", "plus", "besides"],
-  nevertheless: ["still", "even so", "but"],
-  notably: ["especially", "particularly", "in particular"],
   particularly: ["especially", "mainly", "notably"],
-  predominantly: ["mainly", "mostly", "largely"],
   primarily: ["mainly", "mostly", "chiefly"],
   significantly: ["greatly", "a lot", "noticeably"],
-  subsequently: ["then", "after that", "later"],
   therefore: ["so", "thus", "hence"],
   ultimately: ["in the end", "finally", "eventually"],
-  undoubtedly: ["clearly", "no doubt", "for sure"],
+  // ── Common nouns ──
+  ability: ["skill", "talent", "capacity"],
+  advantage: ["benefit", "edge", "perk"],
+  amount: ["quantity", "number", "volume"],
+  area: ["field", "space", "domain"],
+  challenge: ["hurdle", "obstacle", "difficulty"],
+  chance: ["opportunity", "shot", "opening"],
+  domain: ["field", "area", "space"],
+  example: ["instance", "case", "sample"],
+  experience: ["background", "expertise", "know-how"],
+  goal: ["target", "aim", "objective"],
+  idea: ["concept", "thought", "notion"],
+  issue: ["problem", "concern", "matter"],
+  method: ["technique", "approach", "way"],
+  option: ["choice", "alternative", "pick"],
+  part: ["piece", "section", "portion"],
+  problem: ["issue", "challenge", "concern"],
+  process: ["workflow", "procedure", "method"],
+  project: ["endeavor", "undertaking", "initiative"],
+  result: ["outcome", "effect", "consequence"],
+  skill: ["ability", "talent", "expertise"],
+  solution: ["fix", "answer", "remedy"],
+  step: ["stage", "phase", "move"],
+  tool: ["resource", "utility", "instrument"],
+  way: ["method", "approach", "technique"],
 };
 
 /* ── AI PHRASE REPLACEMENTS ───────────────────────────── */
@@ -333,7 +394,52 @@ function rewriteText(text: string, opts: RewriteOptions): RewriteResult {
     }
   }
 
-  // Step 3: Synonym replacement
+  // Step 3: Sentence-level restructuring
+  if (opts.synonyms && opts.strength >= 35) {
+    // "When X, Y" → "Y when X"
+    result = result.replace(/(When [^,.]+),\s*([^.!?]+[.!?])/g, (match, clause1, clause2) => {
+      const h = Math.abs(hashCode(match, 0));
+      if ((h % 100) / 100 > replaceChance) return match;
+      const r = clause2.trim().replace(/[.!?]$/, "") + " " + clause1.toLowerCase().trim() + ".";
+      const final = r[0].toUpperCase() + r.slice(1);
+      changes.push({ from: match.trim(), to: final, type: "Restructure" });
+      return final;
+    });
+
+    // "If X, Y" → "Y if X"
+    result = result.replace(/(If [^,.]+),\s*([^.!?]+[.!?])/g, (match, clause1, clause2) => {
+      const h = Math.abs(hashCode(match, 1));
+      if ((h % 100) / 100 > replaceChance) return match;
+      const r = clause2.trim().replace(/[.!?]$/, "") + " " + clause1.toLowerCase().trim() + ".";
+      const final = r[0].toUpperCase() + r.slice(1);
+      changes.push({ from: match.trim(), to: final, type: "Restructure" });
+      return final;
+    });
+
+    // "X because Y" → "Since Y, X"
+    result = result.replace(/([A-Z][^.!?]{20,})\s+because\s+([^.!?]+[.!?])/g, (match, p1, p2) => {
+      const h = Math.abs(hashCode(match, 2));
+      if ((h % 100) / 100 > replaceChance * 0.7) return match;
+      const r = "Since " + p2.trim().replace(/[.!?]$/, "").toLowerCase() + ", " + p1.trim().toLowerCase() + ".";
+      const final = r[0].toUpperCase() + r.slice(1);
+      changes.push({ from: match.trim(), to: final, type: "Restructure" });
+      return final;
+    });
+
+    // "X, but Y" → "Although X, Y"
+    if (opts.strength >= 50) {
+      result = result.replace(/([^.!?]{15,}),\s*but\s+([^.!?]+[.!?])/g, (match, p1, p2) => {
+        const h = Math.abs(hashCode(match, 3));
+        if ((h % 100) / 100 > replaceChance * 0.6) return match;
+        const r = "Although " + p1.trim().toLowerCase() + ", " + p2.trim().toLowerCase();
+        const final = r[0].toUpperCase() + r.slice(1);
+        changes.push({ from: match.trim(), to: final, type: "Restructure" });
+        return final;
+      });
+    }
+  }
+
+  // Step 4: Synonym replacement
   if (opts.synonyms) {
     const words = result.split(/(\s+|[.,;:!?()\[\]{}"'—–-])/);
     let wordIndex = 0;
@@ -358,7 +464,7 @@ function rewriteText(text: string, opts: RewriteOptions): RewriteResult {
     result = newWords.join("");
   }
 
-  // Step 4: Clean up double spaces and awkward punctuation
+  // Step 5: Clean up double spaces and awkward punctuation
   result = result.replace(/ {2,}/g, " ");
   result = result.replace(/ ,/g, ",");
   result = result.replace(/ \./g, ".");

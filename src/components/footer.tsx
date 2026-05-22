@@ -8,7 +8,7 @@ export function Footer() {
       <div className="gradient-line" aria-hidden="true" />
       <div className="bg-muted/50 border-t border-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1 flex flex-col">
               <Link href="/" className="flex items-center gap-2 mb-4">
@@ -57,6 +57,18 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Tools */}
+            <div>
+              <h3 className="font-semibold text-sm mb-4">Free Tools</h3>
+              <ul className="space-y-2.5">
+                <li><Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
+                <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
+                <li><Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link></li>
+                <li><Link href="/tools/base64-encoder-decoder" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Base64 Encoder</Link></li>
+                <li><Link href="/tools/word-counter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Word Counter</Link></li>
               </ul>
             </div>
 

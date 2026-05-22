@@ -10,6 +10,7 @@ export const siteConfig = {
     { title: "Home", href: "/" },
     { title: "Blog", href: "/blog" },
     { title: "Categories", href: "/categories" },
+    { title: "Tools", href: "/tools" },
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
   ],

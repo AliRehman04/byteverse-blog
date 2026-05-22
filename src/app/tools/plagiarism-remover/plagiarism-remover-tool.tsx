@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import {
   Wand2, Copy, Check, RotateCcw, Loader2,
-  ChevronDown, ChevronUp, ArrowRight,
+  ChevronDown, ChevronUp, ArrowRight, Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -495,8 +495,11 @@ export function PlagiarismRemoverTool() {
     contractions: true,
   });
   const [processing, setProcessing] = useState(false);
+  const [aiProcessing, setAiProcessing] = useState(false);
+  const [aiError, setAiError] = useState("");
   const [copied, setCopied] = useState(false);
   const [showChanges, setShowChanges] = useState(false);
+  const [usedAi, setUsedAi] = useState(false);
 
   const wordCount = input.trim() ? input.trim().split(/\s+/).length : 0;
   const outWordCount = output.trim() ? output.trim().split(/\s+/).length : 0;
@@ -504,6 +507,7 @@ export function PlagiarismRemoverTool() {
   const handleRewrite = useCallback(() => {
     if (wordCount < 20) return;
     setProcessing(true);
+    setUsedAi(false);
     setTimeout(() => {
       const result = rewriteText(input, { strength, ...options });
       setOutput(result.text);
@@ -512,6 +516,34 @@ export function PlagiarismRemoverTool() {
       setShowChanges(false);
     }, 400);
   }, [input, strength, options, wordCount]);
+
+  const handleAiRewrite = useCallback(async () => {
+    if (wordCount < 20) return;
+    setAiProcessing(true);
+    setAiError("");
+    setUsedAi(true);
+    try {
+      const res = await fetch("/api/ai-rewrite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input, strength }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAiError(data.error || "Something went wrong.");
+        setUsedAi(false);
+        return;
+      }
+      setOutput(data.text);
+      setChanges([{ from: "Original", to: "AI Rewritten", type: "AI Rewrite" }]);
+      setShowChanges(false);
+    } catch {
+      setAiError("Network error. Please try again.");
+      setUsedAi(false);
+    } finally {
+      setAiProcessing(false);
+    }
+  }, [input, strength, wordCount]);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -604,20 +636,41 @@ export function PlagiarismRemoverTool() {
               </button>
             )}
           </div>
-          <button
-            onClick={handleRewrite}
-            disabled={wordCount < 20 || processing}
-            className="px-5 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-          >
-            {processing ? <><Loader2 size={14} className="animate-spin" /> Rewriting...</> : <><Wand2 size={14} /> Rewrite Text</>}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleRewrite}
+              disabled={wordCount < 20 || processing || aiProcessing}
+              className="px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+            >
+              {processing ? <><Loader2 size={14} className="animate-spin" /> Rewriting...</> : <><Wand2 size={14} /> Quick Rewrite</>}
+            </button>
+            <button
+              onClick={handleAiRewrite}
+              disabled={wordCount < 20 || processing || aiProcessing}
+              className="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
+            >
+              {aiProcessing ? <><Loader2 size={14} className="animate-spin" /> AI Rewriting...</> : <><Sparkles size={14} /> AI Rewrite</>}
+            </button>
+          </div>
         </div>
+        {aiError && (
+          <p className="text-xs text-red-500 mt-2 text-right">{aiError}</p>
+        )}
       </div>
 
       {/* Output */}
       {output && (
         <>
           {/* Stats bar */}
+          {usedAi ? (
+            <div className="bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20 rounded-xl p-4 mb-4 flex items-center gap-3">
+              <Sparkles size={18} className="text-violet-500 shrink-0" />
+              <div>
+                <p className="text-sm font-medium">AI-Powered Rewrite</p>
+                <p className="text-xs text-muted-foreground">Rewritten by Llama 3.3 70B — {outWordCount} words</p>
+              </div>
+            </div>
+          ) : (
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-4">
             <div className="bg-card border border-border rounded-xl p-3 text-center">
               <MiniGauge score={changes.length} label="Total Changes" color="text-primary" />
@@ -635,6 +688,7 @@ export function PlagiarismRemoverTool() {
               <MiniGauge score={outWordCount} label={`Words (was ${wordCount})`} color="text-muted-foreground" />
             </div>
           </div>
+          )}
 
           {/* Rewritten text */}
           <div className="bg-card border border-border rounded-xl p-4 sm:p-6 mb-4">
@@ -658,7 +712,7 @@ export function PlagiarismRemoverTool() {
           </div>
 
           {/* Changes list */}
-          {changes.length > 0 && (
+          {changes.length > 0 && !usedAi && (
             <div className="bg-card border border-border rounded-xl p-4 mb-4">
               <button
                 onClick={() => setShowChanges(!showChanges)}

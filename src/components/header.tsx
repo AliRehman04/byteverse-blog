@@ -9,6 +9,7 @@ import {
   Menu, X, ArrowRight, ChevronDown, ChevronRight,
   Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
+  Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -63,6 +64,20 @@ const toolCategories = [
       { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags with preview" },
       { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Count words, chars & more" },
       { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate llms.txt" },
+      { name: "OG Preview", href: "/tools/og-preview", icon: Eye, desc: "Preview social media link cards" },
+      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
+      { name: "Schema Markup", href: "/tools/schema-markup-generator", icon: Code, desc: "JSON-LD structured data" },
+      { name: "Slug Generator", href: "/tools/slug-generator", icon: TextCursorInput, desc: "URL-friendly text converter" },
+    ],
+  },
+  {
+    title: "CSS & Design",
+    icon: Paintbrush,
+    color: "text-red-500",
+    tools: [
+      { name: "Gradient Generator", href: "/tools/css-gradient-generator", icon: Paintbrush, desc: "Linear & radial CSS gradients" },
+      { name: "Color Converter", href: "/tools/color-converter", icon: Pipette, desc: "HEX, RGB & HSL converter" },
+      { name: "Box Shadow", href: "/tools/box-shadow-generator", icon: Square, desc: "Visual box-shadow builder" },
     ],
   },
 ];

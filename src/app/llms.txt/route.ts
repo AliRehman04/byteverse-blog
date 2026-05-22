@@ -45,6 +45,13 @@ export async function GET() {
     { name: "Timestamp Converter", href: "/tools/timestamp-converter", desc: "Convert Unix timestamps to human-readable dates and back" },
     { name: "URL Encoder & Decoder", href: "/tools/url-encoder-decoder", desc: "Encode and decode URLs with component and full URI modes" },
     { name: "Diff Checker", href: "/tools/diff-checker", desc: "Compare two texts side by side with line-by-line diff" },
+    { name: "Open Graph Preview", href: "/tools/og-preview", desc: "Preview how links appear on Google, Facebook, LinkedIn, and Twitter/X" },
+    { name: "robots.txt Generator", href: "/tools/robots-txt-generator", desc: "Build robots.txt files visually with user-agent rules and presets" },
+    { name: "Schema Markup Generator", href: "/tools/schema-markup-generator", desc: "Generate JSON-LD structured data for rich snippets in Google" },
+    { name: "Slug Generator", href: "/tools/slug-generator", desc: "Convert text into clean URL-friendly slugs" },
+    { name: "CSS Gradient Generator", href: "/tools/css-gradient-generator", desc: "Create linear and radial CSS gradients with visual editor" },
+    { name: "Color Converter", href: "/tools/color-converter", desc: "Convert colors between HEX, RGB, and HSL formats" },
+    { name: "Box Shadow Generator", href: "/tools/box-shadow-generator", desc: "Build CSS box-shadow effects with multiple layers" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

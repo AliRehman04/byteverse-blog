@@ -14,6 +14,13 @@ import {
   Clock,
   Link2,
   GitCompareArrows,
+  Eye,
+  Bot,
+  Code,
+  TextCursorInput,
+  Paintbrush,
+  Pipette,
+  Square,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -155,6 +162,69 @@ const tools = [
     icon: GitCompareArrows,
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
+  },
+  {
+    title: "Open Graph Preview",
+    description:
+      "Preview how your links appear on Google, Facebook, LinkedIn, and Twitter/X. Generate Open Graph and Twitter Card meta tags.",
+    href: "/tools/og-preview",
+    icon: Eye,
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
+  },
+  {
+    title: "robots.txt Generator",
+    description:
+      "Build robots.txt files visually with user-agent groups, allow/disallow rules, sitemaps, and crawl delays.",
+    href: "/tools/robots-txt-generator",
+    icon: Bot,
+    color: "text-slate-500",
+    bg: "bg-slate-500/10",
+  },
+  {
+    title: "Schema Markup Generator",
+    description:
+      "Generate JSON-LD structured data for Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, and more.",
+    href: "/tools/schema-markup-generator",
+    icon: Code,
+    color: "text-fuchsia-500",
+    bg: "bg-fuchsia-500/10",
+  },
+  {
+    title: "Slug Generator",
+    description:
+      "Convert any text into a clean, URL-friendly slug. Handles accented characters, special symbols, and unicode.",
+    href: "/tools/slug-generator",
+    icon: TextCursorInput,
+    color: "text-lime-500",
+    bg: "bg-lime-500/10",
+  },
+  {
+    title: "CSS Gradient Generator",
+    description:
+      "Create beautiful linear and radial CSS gradients with multiple color stops, angle controls, and presets.",
+    href: "/tools/css-gradient-generator",
+    icon: Paintbrush,
+    color: "text-red-500",
+    bg: "bg-red-500/10",
+  },
+  {
+    title: "Color Converter",
+    description:
+      "Convert colors between HEX, RGB, and HSL formats. Visual color picker with sliders and live preview.",
+    href: "/tools/color-converter",
+    icon: Pipette,
+    color: "text-pink-400",
+    bg: "bg-pink-400/10",
+  },
+  {
+    title: "Box Shadow Generator",
+    description:
+      "Build CSS box-shadow effects visually. Stack multiple layers, adjust blur, spread, color, and opacity.",
+    href: "/tools/box-shadow-generator",
+    icon: Square,
+    color: "text-stone-500",
+    bg: "bg-stone-500/10",
   },
 ];
 

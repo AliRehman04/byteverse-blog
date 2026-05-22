@@ -57,6 +57,7 @@ export async function GET() {
     { name: "Live HTML Editor", href: "/tools/html-editor", desc: "Write HTML, CSS, and JavaScript with instant live preview and 7 templates" },
     { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
     { name: "Plagiarism Remover & AI Humanizer", href: "/tools/plagiarism-remover", desc: "Rewrite text to remove plagiarism and humanize AI-generated content" },
+    { name: "Code Formatter & Beautifier", href: "/tools/code-formatter", desc: "Format, beautify, and minify JSON, HTML, CSS, JavaScript, SQL, and XML code" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

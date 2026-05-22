@@ -6,7 +6,7 @@ import {
   ArrowRight, Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Code, TextCursorInput, Paintbrush, Pipette, Square,
-  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2,
+  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, FileCode,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -37,6 +37,7 @@ const TOOLS: Record<string, { name: string; desc: string; icon: LucideIcon; colo
   "plagiarism-remover": { name: "Plagiarism Remover", desc: "Rewrite & humanize text", icon: Wand2, color: "text-fuchsia-500" },
   "html-editor": { name: "HTML Editor", desc: "Live HTML/CSS/JS playground", icon: CodeXml, color: "text-orange-500" },
   "html-tag-generator": { name: "Tag Generator", desc: "Add or strip HTML tags", icon: RemoveFormatting, color: "text-cyan-500" },
+  "code-formatter": { name: "Code Formatter", desc: "Format & beautify code", icon: FileCode, color: "text-emerald-500" },
 };
 
 /* ── Related Tools Map ────────────────────────────────── */
@@ -66,6 +67,7 @@ const RELATED: Record<string, string[]> = {
   "plagiarism-remover": ["plagiarism-checker", "ai-content-detector", "word-counter"],
   "html-editor": ["html-tag-generator", "css-gradient-generator", "json-formatter", "diff-checker"],
   "html-tag-generator": ["html-editor", "word-counter", "diff-checker", "slug-generator"],
+  "code-formatter": ["json-formatter", "html-editor", "diff-checker", "regex-tester"],
 };
 
 export function RelatedTools() {

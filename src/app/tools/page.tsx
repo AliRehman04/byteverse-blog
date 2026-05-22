@@ -26,6 +26,7 @@ import {
   CodeXml,
   RemoveFormatting,
   Wand2,
+  FileCode,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -275,6 +276,15 @@ const tools = [
     icon: Wand2,
     color: "text-fuchsia-500",
     bg: "bg-fuchsia-500/10",
+  },
+  {
+    title: "Code Formatter & Beautifier",
+    description:
+      "Format, beautify, and minify code instantly. Supports JSON, HTML, CSS, JavaScript, SQL, and XML.",
+    href: "/tools/code-formatter",
+    icon: FileCode,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
   },
 ];
 

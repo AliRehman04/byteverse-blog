@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   Search, CheckCircle2, AlertTriangle, XCircle,
   RotateCcw, ChevronDown, ChevronUp, Loader2,
-  ExternalLink, BarChart3, FileText, ArrowRight,
+  ExternalLink, BarChart3, FileText, ArrowRight, Sparkles,
 } from "lucide-react";
 
 /* ── Utility Functions ────────────────────────────────── */
@@ -300,6 +300,9 @@ export function PlagiarismTool() {
   const [cResult, setCResult] = useState<CompareResult | null>(null);
   const [checking, setChecking] = useState(false);
   const [showMatches, setShowMatches] = useState(false);
+  const [aiChecking, setAiChecking] = useState(false);
+  const [aiResult, setAiResult] = useState<{ score: number; verdict: string; style: string; flags: string[]; summary: string } | null>(null);
+  const [aiError, setAiError] = useState("");
 
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const wc1 = text1.trim() ? text1.trim().split(/\s+/).length : 0;
@@ -308,10 +311,35 @@ export function PlagiarismTool() {
   const handleCheck = useCallback(() => {
     if (wordCount < 30) return;
     setChecking(true);
+    setAiResult(null);
+    setAiError("");
     setTimeout(() => {
       setUResult(analyzeUniqueness(text));
       setChecking(false);
     }, 500);
+  }, [text, wordCount]);
+
+  const handleAiCheck = useCallback(async () => {
+    if (wordCount < 30) return;
+    setAiChecking(true);
+    setAiError("");
+    try {
+      const res = await fetch("/api/ai-plagiarism-check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAiError(data.error || "Something went wrong.");
+        return;
+      }
+      setAiResult(data);
+    } catch {
+      setAiError("Network error. Please try again.");
+    } finally {
+      setAiChecking(false);
+    }
   }, [text, wordCount]);
 
   const handleCompare = useCallback(() => {
@@ -380,10 +408,17 @@ export function PlagiarismTool() {
                 )}
                 <button
                   onClick={handleCheck}
-                  disabled={wordCount < 30 || checking}
+                  disabled={wordCount < 30 || checking || aiChecking}
                   className="px-4 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5"
                 >
-                  {checking ? <><Loader2 size={14} className="animate-spin" /> Checking...</> : <><Search size={14} /> Check Text</>}
+                  {checking ? <><Loader2 size={14} className="animate-spin" /> Checking...</> : <><Search size={14} /> Quick Check</>}
+                </button>
+                <button
+                  onClick={handleAiCheck}
+                  disabled={wordCount < 30 || checking || aiChecking}
+                  className="px-4 py-1.5 text-xs font-medium rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 shadow-md hover:shadow-lg"
+                >
+                  {aiChecking ? <><Loader2 size={14} className="animate-spin" /> AI Checking...</> : <><Sparkles size={14} /> AI Check</>}
                 </button>
               </div>
             </div>
@@ -448,6 +483,52 @@ export function PlagiarismTool() {
                 This analysis uses heuristic text patterns. For comprehensive web-based plagiarism detection, verify flagged sentences using the search links above.
               </p>
             </>
+          )}
+
+          {/* AI Analysis Result */}
+          {aiError && (
+            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-4 text-sm text-red-500">
+              {aiError}
+            </div>
+          )}
+          {aiResult && (
+            <div className="bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20 rounded-xl p-5 mb-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Sparkles size={18} className="text-violet-500" />
+                <h3 className="text-sm font-semibold">AI-Powered Analysis</h3>
+                <span className="ml-auto text-[10px] bg-violet-500/20 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full">Llama 3.3 70B</span>
+              </div>
+              <div className="grid grid-cols-3 gap-3 mb-4">
+                <div className="text-center p-3 bg-card rounded-lg border border-border">
+                  <p className={`text-2xl font-bold ${aiResult.score >= 70 ? "text-green-500" : aiResult.score >= 40 ? "text-amber-500" : "text-red-500"}`}>
+                    {aiResult.score}%
+                  </p>
+                  <p className="text-xs text-muted-foreground">Originality</p>
+                </div>
+                <div className="text-center p-3 bg-card rounded-lg border border-border">
+                  <p className="text-sm font-semibold capitalize">{aiResult.verdict.replace(/_/g, " ")}</p>
+                  <p className="text-xs text-muted-foreground">Verdict</p>
+                </div>
+                <div className="text-center p-3 bg-card rounded-lg border border-border">
+                  <p className="text-sm font-semibold capitalize">{aiResult.style.replace(/_/g, " ")}</p>
+                  <p className="text-xs text-muted-foreground">Writing Style</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3">{aiResult.summary}</p>
+              {aiResult.flags.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-1.5">Flags:</p>
+                  <ul className="space-y-1">
+                    {aiResult.flags.map((flag, i) => (
+                      <li key={i} className="text-xs flex items-start gap-1.5">
+                        <AlertTriangle size={12} className="text-amber-500 shrink-0 mt-0.5" />
+                        {flag}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           )}
         </>
       )}

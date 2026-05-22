@@ -36,6 +36,7 @@ const toolCategories = [
       { name: "Diff Checker", href: "/tools/diff-checker", icon: GitCompareArrows, desc: "Compare texts side by side" },
       { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Words, chars & reading time" },
       { name: "HTML Editor", href: "/tools/html-editor", icon: CodeXml, desc: "Live HTML/CSS playground" },
+      { name: "Code Formatter", href: "/tools/code-formatter", icon: Code, desc: "Format & beautify code" },
     ],
   },
   {

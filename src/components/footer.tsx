@@ -70,7 +70,7 @@ export function Footer() {
                 <li><Link href="/tools/html-editor" className="text-sm text-muted-foreground hover:text-foreground transition-colors">HTML Editor</Link></li>
                 <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
                 <li><Link href="/tools/meta-tag-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Meta Tag Generator</Link></li>
-                <li><Link href="/tools" className="text-sm text-primary hover:underline transition-colors">View All 25 Tools →</Link></li>
+                <li><Link href="/tools" className="text-sm text-primary hover:underline transition-colors">View All 26 Tools →</Link></li>
               </ul>
             </div>
 

@@ -6,72 +6,93 @@ import { Copy, Check, X, Search, Sparkles, Tag, Hash, AlertCircle } from "lucide
 /* ── Tag generation logic ──────────────────────────────── */
 const YOUTUBE_TAG_LIMIT = 500;
 
+/* Priority-ordered tag templates — highest-ranking patterns first */
 function generateTags(keyword: string): string[] {
   const kw = keyword.trim().toLowerCase();
   if (!kw) return [];
 
   const words = kw.split(/\s+/);
-  const tags = new Set<string>();
+  const core = words.filter((w) => w.length > 2);
 
-  // 1. Exact keyword
-  tags.add(kw);
+  /* Build candidates in priority order (most valuable first) */
+  const candidates: string[] = [];
+  const seen = new Set<string>();
+  const add = (t: string) => {
+    const tag = t.trim().toLowerCase();
+    if (tag.length > 1 && tag.length <= 100 && !seen.has(tag)) {
+      seen.add(tag);
+      candidates.push(tag);
+    }
+  };
 
-  // 2. Core variations
-  const prefixes = [
-    "how to", "best", "top", "what is", "why", "learn",
-    "free", "easy", "ultimate", "complete", "beginner",
-  ];
-  const suffixes = [
-    "tutorial", "guide", "tips", "tricks", "explained",
-    "for beginners", "2026", "review", "step by step",
-    "course", "examples", "vs", "tools", "ideas",
-    "hacks", "mistakes", "secrets", "walkthrough",
-  ];
+  // ── Tier 1: Exact match + year (highest SEO value) ──
+  add(kw);
+  add(`${kw} 2026`);
+  add(`${kw} 2025`);
 
-  prefixes.forEach((p) => {
-    const tag = `${p} ${kw}`;
-    if (tag.length <= 100) tags.add(tag);
+  // ── Tier 2: High-intent search modifiers ──
+  const highIntent = ["tutorial", "how to", "best", "review", "guide", "tips"];
+  highIntent.forEach((m) => {
+    add(`${kw} ${m}`);
+    add(`${m} ${kw}`);
   });
 
-  suffixes.forEach((s) => {
-    const tag = `${kw} ${s}`;
-    if (tag.length <= 100) tags.add(tag);
-  });
+  // ── Tier 3: YouTube-algorithm boosters ──
+  add(`${kw} for beginners`);
+  add(`${kw} step by step`);
+  add(`${kw} explained`);
+  add(`${kw} in hindi`);
+  add(`${kw} full course`);
+  add(`learn ${kw}`);
+  add(`${kw} free`);
 
-  // 3. Individual words (if multi-word)
+  // ── Tier 4: Trending / viral patterns ──
+  add(`${kw} trending`);
+  add(`${kw} viral`);
+  add(`${kw} shorts`);
+  add(`${kw} latest`);
+  add(`${kw} new`);
+  add(`top ${kw}`);
+  add(`top 10 ${kw}`);
+
+  // ── Tier 5: Long-tail question tags ──
+  add(`what is ${kw}`);
+  add(`how to ${kw}`);
+  add(`why ${kw}`);
+  add(`is ${kw} worth it`);
+  add(`${kw} vs`);
+
+  // ── Tier 6: Niche modifiers ──
+  const niche = [
+    "tricks", "hacks", "mistakes", "secrets", "ideas",
+    "examples", "tools", "course", "walkthrough", "complete",
+  ];
+  niche.forEach((n) => add(`${kw} ${n}`));
+
+  // ── Tier 7: Hashtag + partial combos ──
+  add(`#${words.join("")}`);
   if (words.length > 1) {
-    words.forEach((w) => {
-      if (w.length > 2) tags.add(w);
-    });
-  }
-
-  // 4. Two-word combos from multi-word input
-  if (words.length >= 3) {
+    add(`#${words[0]}`);
+    add(`#${words[words.length - 1]}`);
+    // Two-word sub-phrases
     for (let i = 0; i < words.length - 1; i++) {
-      tags.add(`${words[i]} ${words[i + 1]}`);
+      add(`${words[i]} ${words[i + 1]}`);
     }
   }
+  // Individual core words
+  core.forEach((w) => add(w));
 
-  // 5. YouTube-specific patterns
-  const ytPatterns = [
-    `${kw} youtube`, `${kw} video`, `${kw} shorts`,
-    `${kw} trending`, `${kw} viral`, `${kw} latest`,
-    `#${words.join("")}`, `#${words[0]}`,
-  ];
-  ytPatterns.forEach((t) => {
-    if (t.length <= 100) tags.add(t);
-  });
+  /* ── Enforce 500-char limit ── */
+  const result: string[] = [];
+  let charCount = 0;
+  for (const tag of candidates) {
+    const extra = result.length > 0 ? 2 : 0; // ", " separator
+    if (charCount + extra + tag.length > YOUTUBE_TAG_LIMIT) continue;
+    result.push(tag);
+    charCount += extra + tag.length;
+  }
 
-  // 6. Question-style tags
-  const questions = [
-    `what is ${kw}`, `how does ${kw} work`,
-    `is ${kw} worth it`, `${kw} vs`,
-  ];
-  questions.forEach((q) => {
-    if (q.length <= 100) tags.add(q);
-  });
-
-  return Array.from(tags).filter((t) => t.length > 1);
+  return result;
 }
 
 /* ── Component ─────────────────────────────────────────── */

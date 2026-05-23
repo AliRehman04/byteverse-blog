@@ -1,0 +1,291 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { Copy, Check, X, Search, Sparkles, Tag, Hash, AlertCircle } from "lucide-react";
+
+/* ── Tag generation logic ──────────────────────────────── */
+const YOUTUBE_TAG_LIMIT = 500;
+
+function generateTags(keyword: string): string[] {
+  const kw = keyword.trim().toLowerCase();
+  if (!kw) return [];
+
+  const words = kw.split(/\s+/);
+  const tags = new Set<string>();
+
+  // 1. Exact keyword
+  tags.add(kw);
+
+  // 2. Core variations
+  const prefixes = [
+    "how to", "best", "top", "what is", "why", "learn",
+    "free", "easy", "ultimate", "complete", "beginner",
+  ];
+  const suffixes = [
+    "tutorial", "guide", "tips", "tricks", "explained",
+    "for beginners", "2026", "review", "step by step",
+    "course", "examples", "vs", "tools", "ideas",
+    "hacks", "mistakes", "secrets", "walkthrough",
+  ];
+
+  prefixes.forEach((p) => {
+    const tag = `${p} ${kw}`;
+    if (tag.length <= 100) tags.add(tag);
+  });
+
+  suffixes.forEach((s) => {
+    const tag = `${kw} ${s}`;
+    if (tag.length <= 100) tags.add(tag);
+  });
+
+  // 3. Individual words (if multi-word)
+  if (words.length > 1) {
+    words.forEach((w) => {
+      if (w.length > 2) tags.add(w);
+    });
+  }
+
+  // 4. Two-word combos from multi-word input
+  if (words.length >= 3) {
+    for (let i = 0; i < words.length - 1; i++) {
+      tags.add(`${words[i]} ${words[i + 1]}`);
+    }
+  }
+
+  // 5. YouTube-specific patterns
+  const ytPatterns = [
+    `${kw} youtube`, `${kw} video`, `${kw} shorts`,
+    `${kw} trending`, `${kw} viral`, `${kw} latest`,
+    `#${words.join("")}`, `#${words[0]}`,
+  ];
+  ytPatterns.forEach((t) => {
+    if (t.length <= 100) tags.add(t);
+  });
+
+  // 6. Question-style tags
+  const questions = [
+    `what is ${kw}`, `how does ${kw} work`,
+    `is ${kw} worth it`, `${kw} vs`,
+  ];
+  questions.forEach((q) => {
+    if (q.length <= 100) tags.add(q);
+  });
+
+  return Array.from(tags).filter((t) => t.length > 1);
+}
+
+/* ── Component ─────────────────────────────────────────── */
+export function YouTubeTagGeneratorTool() {
+  const [input, setInput] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [copiedAll, setCopiedAll] = useState(false);
+  const [copiedTag, setCopiedTag] = useState<string | null>(null);
+  const [hasGenerated, setHasGenerated] = useState(false);
+
+  const totalChars = tags.join(", ").length;
+  const isOverLimit = totalChars > YOUTUBE_TAG_LIMIT;
+
+  const handleGenerate = useCallback(() => {
+    const result = generateTags(input);
+    setTags(result);
+    setHasGenerated(true);
+  }, [input]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleGenerate();
+      }
+    },
+    [handleGenerate]
+  );
+
+  const removeTag = useCallback((tag: string) => {
+    setTags((prev) => prev.filter((t) => t !== tag));
+  }, []);
+
+  const copyAll = useCallback(async () => {
+    if (tags.length === 0) return;
+    await navigator.clipboard.writeText(tags.join(", "));
+    setCopiedAll(true);
+    setTimeout(() => setCopiedAll(false), 2000);
+  }, [tags]);
+
+  const copyOne = useCallback(async (tag: string) => {
+    await navigator.clipboard.writeText(tag);
+    setCopiedTag(tag);
+    setTimeout(() => setCopiedTag(null), 1500);
+  }, []);
+
+  const clearAll = useCallback(() => {
+    setTags([]);
+    setInput("");
+    setHasGenerated(false);
+  }, []);
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-6">
+      {/* ── Search Box ── */}
+      <div className="bg-card border border-border rounded-xl p-5 space-y-4">
+        <label className="text-xs font-medium mb-1 block">
+          Enter video title or keyword
+        </label>
+        <div className="flex gap-2">
+          <div className="relative flex-1">
+            <Search
+              size={16}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+            />
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="e.g. how to learn python, minecraft tips, travel vlog..."
+              className="w-full bg-muted/50 border border-border rounded-lg pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+              autoFocus
+            />
+          </div>
+          <button
+            onClick={handleGenerate}
+            disabled={!input.trim()}
+            className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 shrink-0"
+          >
+            <Sparkles size={14} />
+            Generate
+          </button>
+        </div>
+
+        {/* Quick examples */}
+        <div className="flex flex-wrap gap-2">
+          <span className="text-xs text-muted-foreground">Try:</span>
+          {[
+            "minecraft",
+            "learn react in 2026",
+            "top 10 travel destinations",
+            "fitness workout",
+            "cooking recipes easy",
+          ].map((ex) => (
+            <button
+              key={ex}
+              onClick={() => {
+                setInput(ex);
+                const result = generateTags(ex);
+                setTags(result);
+                setHasGenerated(true);
+              }}
+              className="text-xs px-2.5 py-1 rounded-full bg-muted/70 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {ex}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Results ── */}
+      {hasGenerated && (
+        <div className="bg-card border border-border rounded-xl p-5 space-y-4">
+          {/* Stats bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-4 text-sm">
+              <span className="flex items-center gap-1.5 text-muted-foreground">
+                <Tag size={14} />
+                <strong className="text-foreground">{tags.length}</strong> tags
+              </span>
+              <span
+                className={`flex items-center gap-1.5 ${
+                  isOverLimit ? "text-red-500" : "text-muted-foreground"
+                }`}
+              >
+                <Hash size={14} />
+                <strong className={isOverLimit ? "text-red-500" : "text-foreground"}>
+                  {totalChars}
+                </strong>
+                / {YOUTUBE_TAG_LIMIT} chars
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={clearAll}
+                className="text-xs text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg hover:bg-muted/50 transition-colors"
+              >
+                Clear
+              </button>
+              <button
+                onClick={copyAll}
+                disabled={tags.length === 0}
+                className="text-xs font-medium px-4 py-1.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-40 flex items-center gap-1.5"
+              >
+                {copiedAll ? <Check size={12} /> : <Copy size={12} />}
+                {copiedAll ? "Copied!" : "Copy All Tags"}
+              </button>
+            </div>
+          </div>
+
+          {/* Over-limit warning */}
+          {isOverLimit && (
+            <div className="flex items-start gap-2 text-xs text-red-500 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+              <AlertCircle size={14} className="shrink-0 mt-0.5" />
+              <span>
+                YouTube allows a maximum of {YOUTUBE_TAG_LIMIT} characters for tags. Remove some tags to stay within the limit.
+              </span>
+            </div>
+          )}
+
+          {/* Tags cloud */}
+          {tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="group inline-flex items-center gap-1 bg-muted/60 hover:bg-muted border border-border rounded-lg px-3 py-1.5 text-sm transition-colors cursor-pointer"
+                  onClick={() => copyOne(tag)}
+                  title="Click to copy"
+                >
+                  <span className={copiedTag === tag ? "text-green-500" : ""}>
+                    {copiedTag === tag ? "Copied!" : tag}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeTag(tag);
+                    }}
+                    className="ml-0.5 text-muted-foreground/50 hover:text-red-500 transition-colors"
+                    aria-label={`Remove tag: ${tag}`}
+                  >
+                    <X size={12} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground text-center py-4">
+              All tags removed. Generate new tags or enter a different keyword.
+            </p>
+          )}
+
+          {/* Comma-separated preview */}
+          {tags.length > 0 && (
+            <div className="border-t border-border pt-4">
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-medium text-muted-foreground">
+                  Comma-separated (paste into YouTube)
+                </label>
+                <button
+                  onClick={copyAll}
+                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
+                >
+                  {copiedAll ? <Check size={12} /> : <Copy size={12} />}
+                  {copiedAll ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <div className="bg-muted/50 border border-border rounded-lg px-4 py-3 text-sm text-muted-foreground break-all max-h-32 overflow-y-auto font-mono text-xs leading-relaxed">
+                {tags.join(", ")}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

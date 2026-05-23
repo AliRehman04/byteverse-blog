@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     // Fallback: try ytInitialData for channel name
     if (!channelName) {
       const dataMatch = html.match(
-        /var\s+ytInitialData\s*=\s*(\{.+?\});\s*(?:var|<\/script>)/s
+        /var\s+ytInitialData\s*=\s*(\{[\s\S]+?\});\s*(?:var|<\/script>)/
       );
       if (dataMatch) {
         try {

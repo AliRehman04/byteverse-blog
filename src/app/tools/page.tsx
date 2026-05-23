@@ -28,7 +28,6 @@ import {
   Wand2,
   FileCode,
   Video,
-  MonitorPlay,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -296,15 +295,6 @@ const tools = [
     icon: Video,
     color: "text-red-500",
     bg: "bg-red-500/10",
-  },
-  {
-    title: "YouTube Data Extractor",
-    description:
-      "Extract thumbnail, title, description, and tags from any YouTube video or Shorts URL. Download HD thumbnails instantly.",
-    href: "/tools/youtube-data-extractor",
-    icon: MonitorPlay,
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
   },
 ];
 

@@ -7,7 +7,7 @@ import {
   Regex, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Code, TextCursorInput, Paintbrush, Pipette, Square,
   Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, FileCode,
-  Video, MonitorPlay,
+  Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -40,7 +40,6 @@ const TOOLS: Record<string, { name: string; desc: string; icon: LucideIcon; colo
   "html-tag-generator": { name: "Tag Generator", desc: "Add or strip HTML tags", icon: RemoveFormatting, color: "text-cyan-500" },
   "code-formatter": { name: "Code Formatter", desc: "Format & beautify code", icon: FileCode, color: "text-emerald-500" },
   "youtube-tag-generator": { name: "YouTube Tag Generator", desc: "Generate optimized YouTube tags", icon: Video, color: "text-red-500" },
-  "youtube-data-extractor": { name: "YouTube Data Extractor", desc: "Extract thumbnail, title & tags", icon: MonitorPlay, color: "text-rose-500" },
 };
 
 /* ── Related Tools Map ────────────────────────────────── */
@@ -71,8 +70,7 @@ const RELATED: Record<string, string[]> = {
   "html-editor": ["html-tag-generator", "css-gradient-generator", "json-formatter", "diff-checker"],
   "html-tag-generator": ["html-editor", "word-counter", "diff-checker", "slug-generator"],
   "code-formatter": ["json-formatter", "html-editor", "diff-checker", "regex-tester"],
-  "youtube-tag-generator": ["youtube-data-extractor", "meta-tag-generator", "slug-generator", "og-preview"],
-  "youtube-data-extractor": ["youtube-tag-generator", "og-preview", "meta-tag-generator", "slug-generator"],
+  "youtube-tag-generator": ["meta-tag-generator", "slug-generator", "og-preview", "word-counter"],
 };
 
 export function RelatedTools() {

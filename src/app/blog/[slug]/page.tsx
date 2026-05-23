@@ -475,7 +475,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
 
         {/* ========== ARTICLE BODY ========== */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-2 pb-10 md:pt-4 md:pb-14">
           <div className="min-w-0">
               {/* Cover Image */}
               {post.coverImage && (

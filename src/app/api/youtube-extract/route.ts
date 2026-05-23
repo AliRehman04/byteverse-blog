@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     let channelName = "";
 
     const playerMatch = html.match(
-      /var\s+ytInitialPlayerResponse\s*=\s*(\{.+?\});\s*(?:var|<\/script>)/s
+      /var\s+ytInitialPlayerResponse\s*=\s*(\{[\s\S]+?\});\s*(?:var|<\/script>)/
     );
     if (playerMatch) {
       try {

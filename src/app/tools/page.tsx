@@ -27,6 +27,7 @@ import {
   RemoveFormatting,
   Wand2,
   FileCode,
+  Video,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -285,6 +286,15 @@ const tools = [
     icon: FileCode,
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
+  },
+  {
+    title: "YouTube Tag Generator",
+    description:
+      "Generate optimized YouTube tags instantly. Enter your video title or keyword and get SEO-friendly tags to boost rankings.",
+    href: "/tools/youtube-tag-generator",
+    icon: Video,
+    color: "text-red-500",
+    bg: "bg-red-500/10",
   },
 ];
 

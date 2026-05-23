@@ -8,8 +8,29 @@ function extractVideoId(url: string): string | null {
   return m ? m[1] : null;
 }
 
+/* ── Simple in-memory rate limiter (per IP, 10 req / 60s) ── */
+const rateMap = new Map<string, number[]>();
+const RATE_LIMIT = 10;
+const WINDOW_MS = 60_000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (rateMap.get(ip) || []).filter((t) => now - t < WINDOW_MS);
+  if (hits.length >= RATE_LIMIT) return true;
+  hits.push(now);
+  rateMap.set(ip, hits);
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait a minute." },
+        { status: 429 }
+      );
+    }
     const { url } = (await req.json()) as { url?: string };
     if (!url || typeof url !== "string") {
       return NextResponse.json({ error: "Missing url" }, { status: 400 });

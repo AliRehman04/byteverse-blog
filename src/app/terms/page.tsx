@@ -34,7 +34,7 @@ export default function TermsPage() {
       </section>
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="prose max-w-none">
-        <p>Last updated: July 11, 2025</p>
+        <p>Last updated: May 23, 2026</p>
 
         <h2>Acceptance of Terms</h2>
         <p>
@@ -48,22 +48,90 @@ export default function TermsPage() {
           accuracy but make no guarantees. Use information at your own risk.
         </p>
 
-        <h2>Intellectual Property</h2>
+        <h2>Free Developer Tools</h2>
         <p>
-          All original content, design, and branding on {siteConfig.name} are
-          our property. Do not reproduce without permission.
+          {siteConfig.name} provides a collection of free browser-based
+          developer and SEO tools. By using these tools, you agree to the
+          following:
+        </p>
+        <ul>
+          <li>
+            Tools are provided &quot;as is&quot; without warranty of any kind,
+            express or implied.
+          </li>
+          <li>
+            You are solely responsible for the data you input and the results
+            you use. We are not liable for any loss, damage, or issue arising
+            from tool usage.
+          </li>
+          <li>
+            Most tools run entirely in your browser. Certain tools (e.g., AI
+            Content Detector, Plagiarism Checker) may transmit your input to
+            third-party APIs for processing.
+          </li>
+          <li>
+            Do not input sensitive, confidential, or personally identifiable
+            information into any tool unless you understand and accept the
+            associated risks.
+          </li>
+          <li>
+            We reserve the right to modify, discontinue, or limit access to
+            any tool at any time without prior notice.
+          </li>
+        </ul>
+
+        <h2>User Content &amp; Input</h2>
+        <p>
+          Any text, code, or data you enter into our tools is processed to
+          deliver the requested output. We do not store, log, or use your tool
+          inputs for any other purpose. You retain all rights to your input
+          data.
         </p>
 
-        <h2>Affiliate Links</h2>
+        <h2>Intellectual Property</h2>
+        <p>
+          All original content, design, branding, and tool interfaces on{" "}
+          {siteConfig.name} are our property. Do not reproduce, redistribute,
+          or create derivative works without written permission.
+        </p>
+
+        <h2>Affiliate Links &amp; Sponsored Content</h2>
         <p>
           Some links on our site are affiliate links. We may earn a commission
-          at no extra cost to you. This does not affect our editorial integrity.
+          at no extra cost to you. Sponsored content is clearly labeled. This
+          does not affect our editorial integrity or tool recommendations.
+        </p>
+
+        <h2>Prohibited Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use automated scripts or bots to access tools or scrape content</li>
+          <li>Attempt to reverse-engineer, exploit, or overload our services</li>
+          <li>Use our tools for any unlawful or harmful purpose</li>
+          <li>Misrepresent tool outputs as guaranteed or certified results</li>
+        </ul>
+
+        <h2>Service Availability</h2>
+        <p>
+          We aim to keep {siteConfig.name} and all tools available 24/7, but
+          we do not guarantee uninterrupted access. Downtime may occur due to
+          maintenance, updates, or factors beyond our control. We are not
+          liable for any losses caused by service interruptions.
         </p>
 
         <h2>Limitation of Liability</h2>
         <p>
-          {siteConfig.name} is not liable for any damages arising from the use
-          of our website or content.
+          To the fullest extent permitted by law, {siteConfig.name}, its
+          owner, and contributors shall not be liable for any direct, indirect,
+          incidental, consequential, or punitive damages arising from the use
+          of our website, content, or tools.
+        </p>
+
+        <h2>Changes to Terms</h2>
+        <p>
+          We may update these terms at any time. Changes take effect
+          immediately upon posting. Continued use of the site constitutes
+          acceptance of the updated terms.
         </p>
 
         <h2>Contact</h2>

@@ -85,6 +85,13 @@ export function getImageLicenseUrl(imageUrl: string) {
   return `${siteConfig.url}/terms`;
 }
 
+export function getImageAcquireLicensePage(imageUrl: string) {
+  if (imageUrl.includes("images.unsplash.com")) return "https://unsplash.com/license";
+  if (imageUrl.includes("images.pexels.com")) return "https://www.pexels.com/license/";
+  if (imageUrl.includes("pixabay.com")) return "https://pixabay.com/service/license-summary/";
+  return `${siteConfig.url}/terms`;
+}
+
 export function getImageCreditText(imageUrl: string) {
   if (imageUrl.startsWith(siteConfig.url)) return `${siteConfig.name} original illustration`;
   if (imageUrl.includes("images.unsplash.com")) return "Royalty-free stock photo from Unsplash";
@@ -121,5 +128,6 @@ export function toImageObjectSchema(image: SeoImage, representativeOfPage = fals
       : "Royalty-free stock photo used under the source platform license.",
     creditText: getImageCreditText(image.url),
     license: getImageLicenseUrl(image.url),
+    acquireLicensePage: getImageAcquireLicensePage(image.url),
   };
 }

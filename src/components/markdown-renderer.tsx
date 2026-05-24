@@ -77,6 +77,8 @@ export function MarkdownRenderer({ content }: { content: string }) {
                 <meta itemProp="width" content="1200" />
                 <meta itemProp="height" content="675" />
                 <meta itemProp="description" content={imageAlt} />
+                <link itemProp="license" href={src.includes("unsplash.com") ? "https://unsplash.com/license" : src.includes("pexels.com") ? "https://www.pexels.com/license/" : src.includes("pixabay.com") ? "https://pixabay.com/service/license-summary/" : "/terms"} />
+                <link itemProp="acquireLicensePage" href={src.includes("unsplash.com") ? "https://unsplash.com/license" : src.includes("pexels.com") ? "https://www.pexels.com/license/" : src.includes("pixabay.com") ? "https://pixabay.com/service/license-summary/" : "/terms"} />
                 {imageCaption && imageCaption !== "" && (
                   <figcaption className="text-center text-sm text-muted-foreground mt-3 italic" itemProp="caption">
                     {imageCaption}

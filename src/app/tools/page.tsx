@@ -28,6 +28,7 @@ import {
   Wand2,
   FileCode,
   Video,
+  Speech,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -295,6 +296,15 @@ const tools = [
     icon: Video,
     color: "text-red-500",
     bg: "bg-red-500/10",
+  },
+  {
+    title: "Text to Speech Converter",
+    description:
+      "Convert text to speech online for free. Choose from 100+ voices, adjust speed, pitch, and volume. Runs entirely in your browser.",
+    href: "/tools/text-to-speech",
+    icon: Speech,
+    color: "text-teal-500",
+    bg: "bg-teal-500/10",
   },
 ];
 

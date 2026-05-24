@@ -50,6 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/tools/plagiarism-remover`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/tools/code-formatter`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/tools/youtube-tag-generator`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/tools/text-to-speech`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 
   if (!db) return staticPages;

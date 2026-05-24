@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Schema Markup Generator",
-  title: "Schema Markup Generator - Free JSON-LD Structured Data Builder",
+  title: "Schema Markup Generator - JSON-LD Builder",
   description: "Generate JSON-LD structured data markup for Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, Person, and Organization schemas. Free visual builder.",
   slug: "schema-markup-generator",
   keywords: ["schema markup generator", "json-ld generator", "structured data", "rich snippets", "faq schema", "article schema", "product schema"],

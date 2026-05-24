@@ -95,6 +95,16 @@ const nextConfig: NextConfig = {
       destination: "/",
       permanent: true,
     },
+    {
+      source: "/author/byteverse",
+      destination: "/about",
+      permanent: true,
+    },
+    {
+      source: "/blog/how-to-learn-programming-2026-complete-guide",
+      destination: "/blog/how-to-learn-programming-2026-beginner-roadmap",
+      permanent: true,
+    },
   ],
   experimental: {
     optimizePackageImports: [

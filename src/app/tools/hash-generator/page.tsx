@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Hash Generator",
-  title: "Hash Generator Online - SHA-256, SHA-512, SHA-1 Hash Calculator",
+  title: "Hash Generator - SHA-256, SHA-512 & SHA-1",
   description: "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes instantly. Free online hash calculator using Web Crypto API. Secure, private, runs in your browser.",
   slug: "hash-generator",
   keywords: ["hash generator", "sha256 hash", "sha512 hash", "sha1 hash", "hash calculator", "online hash generator", "sha256 online", "text to hash", "hash tool"],

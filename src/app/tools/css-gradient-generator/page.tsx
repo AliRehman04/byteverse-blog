@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "CSS Gradient Generator",
-  title: "CSS Gradient Generator - Free Linear & Radial Gradient Builder",
+  title: "CSS Gradient Generator - Linear & Radial Builder",
   description: "Create beautiful CSS gradients visually. Build linear and radial gradients with multiple color stops, angle controls, and presets. Copy the CSS code instantly.",
   slug: "css-gradient-generator",
   keywords: ["css gradient generator", "gradient builder", "linear gradient", "radial gradient", "css background gradient", "color gradient maker"],

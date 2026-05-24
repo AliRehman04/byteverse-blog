@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "JWT Decoder",
-  title: "JWT Decoder Online - Free JSON Web Token Decoder & Inspector",
+  title: "JWT Decoder - Decode & Inspect JSON Web Tokens",
   description: "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
   slug: "jwt-decoder",
   keywords: ["jwt decoder", "jwt decoder online", "decode jwt", "json web token decoder", "jwt token decoder", "jwt inspector", "jwt debugger", "jwt parser"],

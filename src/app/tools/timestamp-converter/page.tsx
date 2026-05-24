@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Unix Timestamp Converter",
-  title: "Unix Timestamp Converter Online - Epoch Time to Date & Vice Versa",
+  title: "Unix Timestamp Converter - Epoch to Date Tool",
   description: "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
   slug: "timestamp-converter",
   keywords: ["unix timestamp converter", "epoch converter", "timestamp to date", "date to timestamp", "unix time converter", "epoch time converter", "unix timestamp to date online"],

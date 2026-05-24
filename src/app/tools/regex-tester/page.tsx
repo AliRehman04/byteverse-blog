@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Regex Tester",
-  title: "Regex Tester Online - Free Regular Expression Tester & Debugger",
+  title: "Regex Tester - Test Regular Expressions Online",
   description: "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
   slug: "regex-tester",
   keywords: ["regex tester", "regex tester online", "regular expression tester", "regex debugger", "regex match", "regex replace", "test regex", "regex validator"],

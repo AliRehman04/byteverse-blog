@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "HTML Tag Generator & Remover",
-  title: "HTML Tag Generator & Remover - Add or Strip HTML Tags Online",
+  title: "HTML Tag Generator & Remover - Online Tool",
   description:
     "Generate HTML tags from plain text or strip all tags from HTML code. Wrap text in paragraphs, headings, lists, bold, links, and more. 100% free, private, runs in your browser.",
   slug: "html-tag-generator",

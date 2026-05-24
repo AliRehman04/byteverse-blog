@@ -4,7 +4,7 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Code Formatter & Beautifier",
-  title: "Code Formatter Online - JSON, HTML, CSS, JS, SQL | Free Tool",
+  title: "Code Formatter - JSON, HTML, CSS, JS & SQL",
   description: "Format, beautify, and minify code instantly. Supports JSON, HTML, CSS, JavaScript, SQL, and XML. Free online code formatter — no sign-up required.",
   slug: "code-formatter",
   keywords: ["code formatter", "code beautifier", "json formatter", "html formatter", "css formatter", "javascript formatter", "sql formatter", "code minifier", "online code formatter"],

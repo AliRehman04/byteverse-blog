@@ -10,7 +10,7 @@ import {
   Braces, KeyRound, Tags, Binary, Type, FileText,
   Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
-  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2,
+  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, QrCode, Clock3,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
@@ -37,6 +37,7 @@ const toolCategories = [
       { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Words, chars & reading time" },
       { name: "HTML Editor", href: "/tools/html-editor", icon: CodeXml, desc: "Live HTML/CSS playground" },
       { name: "Code Formatter", href: "/tools/code-formatter", icon: Code, desc: "Format & beautify code" },
+      { name: "Cron Expression Generator", href: "/tools/cron-expression-generator", icon: Clock3, desc: "Build cron schedules visually" },
     ],
   },
   {
@@ -48,6 +49,7 @@ const toolCategories = [
       { name: "URL Encoder", href: "/tools/url-encoder-decoder", icon: Link2, desc: "Encode & decode URLs" },
       { name: "Timestamp Converter", href: "/tools/timestamp-converter", icon: Clock, desc: "Unix epoch ↔ date" },
       { name: "Slug Generator", href: "/tools/slug-generator", icon: TextCursorInput, desc: "URL-friendly text" },
+      { name: "QR Code Generator", href: "/tools/qr-code-generator", icon: QrCode, desc: "Custom QR codes" },
     ],
   },
   {
@@ -78,6 +80,8 @@ const toolCategories = [
     color: "text-pink-500",
     tools: [
       { name: "AI Content Detector", href: "/tools/ai-content-detector", icon: Brain, desc: "Detect AI-generated text" },
+      { name: "AI Prompt Generator", href: "/tools/ai-prompt-generator", icon: Wand2, desc: "Build better prompts fast" },
+      { name: "AI CV Builder", href: "/tools/ai-cv-builder", icon: FileText, desc: "Create CVs and PDFs" },
       { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", icon: FileSearch, desc: "Check text uniqueness" },
       { name: "Plagiarism Remover", href: "/tools/plagiarism-remover", icon: Wand2, desc: "Rewrite & humanize text" },
       { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
@@ -113,9 +117,11 @@ export function Header() {
 
   // Close mega menu on route change
   useEffect(() => {
-    setToolsOpen(false);
-    setMobileOpen(false);
-    setMobileToolsOpen(false);
+    queueMicrotask(() => {
+      setToolsOpen(false);
+      setMobileOpen(false);
+      setMobileToolsOpen(false);
+    });
   }, [pathname]);
 
   // Close on click outside

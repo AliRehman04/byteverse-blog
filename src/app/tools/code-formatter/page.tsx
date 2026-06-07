@@ -56,7 +56,7 @@ export default function CodeFormatterPage() {
 
         <h2>Why Format Your Code?</h2>
         <p>
-          Properly formatted code is easier to read, debug, and maintain. Whether you're cleaning up
+          Properly formatted code is easier to read, debug, and maintain. Whether you are cleaning up
           minified production code or formatting a messy config file, this tool helps you get clean,
           readable output in seconds.
         </p>

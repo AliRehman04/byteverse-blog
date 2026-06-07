@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from "@/lib/config";
 import {
   Braces,
   KeyRound,
@@ -29,6 +30,11 @@ import {
   FileCode,
   Video,
   Speech,
+  QrCode,
+  Clock3,
+  Sparkles,
+  FileImage,
+  BarChart3,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -50,7 +56,7 @@ export const metadata: Metadata = {
     "url encoder",
     "diff checker",
   ],
-  alternates: { canonical: "https://www.byteverse.fyi/tools" },
+  alternates: { canonical: `${siteConfig.url}/tools` },
 };
 
 const tools = [
@@ -80,6 +86,15 @@ const tools = [
     icon: Tags,
     color: "text-purple-500",
     bg: "bg-purple-500/10",
+  },
+  {
+    title: "SEO Title Analyzer",
+    description:
+      "Score blog titles for length, intent words, specificity, and click potential. Useful for improving search impressions into clicks.",
+    href: "/tools/seo-title-analyzer",
+    icon: BarChart3,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
   },
   {
     title: "Base64 Encoder & Decoder",
@@ -305,6 +320,51 @@ const tools = [
     icon: Speech,
     color: "text-teal-500",
     bg: "bg-teal-500/10",
+  },
+  {
+    title: "QR Code Generator",
+    description:
+      "Generate custom QR codes for URLs, text, WiFi, email, and more. Choose colors, size, and error correction level. Download as PNG or SVG.",
+    href: "/tools/qr-code-generator",
+    icon: QrCode,
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10",
+  },
+  {
+    title: "Image Compressor",
+    description:
+      "Compress, resize, and convert JPG, PNG, and WebP images in your browser. Preview savings and download optimized files.",
+    href: "/tools/image-compressor",
+    icon: FileImage,
+    color: "text-sky-500",
+    bg: "bg-sky-500/10",
+  },
+  {
+    title: "Cron Expression Generator",
+    description:
+      "Build cron expressions visually for crontab schedules. Generate every-minute, daily, weekly, monthly, and custom cron syntax.",
+    href: "/tools/cron-expression-generator",
+    icon: Clock3,
+    color: "text-amber-500",
+    bg: "bg-amber-500/10",
+  },
+  {
+    title: "AI Prompt Generator",
+    description:
+      "Build better prompts for ChatGPT, Claude, Gemini, coding assistants, marketing copy, and image generation with goals, tone, context, and constraints.",
+    href: "/tools/ai-prompt-generator",
+    icon: Sparkles,
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
+  },
+  {
+    title: "AI CV Builder",
+    description:
+      "Create a modern CV online with visual and code modes, AI writing help, profile image upload, templates, customization, and PDF download.",
+    href: "/tools/ai-cv-builder",
+    icon: FileText,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
   },
 ];
 

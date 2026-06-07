@@ -45,5 +45,11 @@ export const siteConfig = {
       description: "Side-by-side comparisons of popular tools so you can pick what actually fits your workflow",
       color: "#ef4444",
     },
+    {
+      name: "Cybersecurity",
+      slug: "cybersecurity",
+      description: "Online safety guides, VPN reviews, password tips, and privacy best practices to keep your data secure",
+      color: "#06b6d4",
+    },
   ],
 };

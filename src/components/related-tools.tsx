@@ -7,7 +7,7 @@ import {
   Regex, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
   Eye, Code, TextCursorInput, Paintbrush, Pipette, Square,
   Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, FileCode,
-  Video, Speech,
+  Video, Speech, QrCode, Clock3, FileImage,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -34,6 +34,8 @@ const TOOLS: Record<string, { name: string; desc: string; icon: LucideIcon; colo
   "color-converter": { name: "Color Converter", desc: "HEX, RGB & HSL conversion", icon: Pipette, color: "text-rose-500" },
   "box-shadow-generator": { name: "Box Shadow", desc: "Visual CSS shadow builder", icon: Square, color: "text-slate-500" },
   "ai-content-detector": { name: "AI Content Detector", desc: "Detect AI-generated text", icon: Brain, color: "text-pink-500" },
+  "ai-prompt-generator": { name: "AI Prompt Generator", desc: "Build better prompts for AI tools", icon: Wand2, color: "text-violet-500" },
+  "ai-cv-builder": { name: "AI CV Builder", desc: "Create modern CVs and PDFs", icon: FileText, color: "text-emerald-500" },
   "plagiarism-checker": { name: "Plagiarism Checker", desc: "Check text uniqueness", icon: FileSearch, color: "text-emerald-500" },
   "plagiarism-remover": { name: "Plagiarism Remover", desc: "Rewrite & humanize text", icon: Wand2, color: "text-fuchsia-500" },
   "html-editor": { name: "HTML Editor", desc: "Live HTML/CSS/JS playground", icon: CodeXml, color: "text-orange-500" },
@@ -41,6 +43,9 @@ const TOOLS: Record<string, { name: string; desc: string; icon: LucideIcon; colo
   "code-formatter": { name: "Code Formatter", desc: "Format & beautify code", icon: FileCode, color: "text-emerald-500" },
   "youtube-tag-generator": { name: "YouTube Tag Generator", desc: "Generate optimized YouTube tags", icon: Video, color: "text-red-500" },
   "text-to-speech": { name: "Text to Speech", desc: "Convert text to speech online", icon: Speech, color: "text-teal-500" },
+  "qr-code-generator": { name: "QR Code Generator", desc: "Generate custom QR codes", icon: QrCode, color: "text-indigo-500" },
+  "image-compressor": { name: "Image Compressor", desc: "Compress and resize images", icon: FileImage, color: "text-sky-500" },
+  "cron-expression-generator": { name: "Cron Expression Generator", desc: "Build cron schedules visually", icon: Clock3, color: "text-amber-500" },
 };
 
 /* ── Related Tools Map ────────────────────────────────── */
@@ -66,6 +71,8 @@ const RELATED: Record<string, string[]> = {
   "color-converter": ["css-gradient-generator", "box-shadow-generator", "html-editor"],
   "box-shadow-generator": ["css-gradient-generator", "color-converter", "html-editor"],
   "ai-content-detector": ["plagiarism-remover", "plagiarism-checker", "word-counter"],
+  "ai-prompt-generator": ["word-counter", "ai-content-detector", "plagiarism-remover", "text-to-speech"],
+  "ai-cv-builder": ["ai-prompt-generator", "word-counter", "plagiarism-remover", "text-to-speech"],
   "plagiarism-checker": ["plagiarism-remover", "ai-content-detector", "word-counter", "diff-checker"],
   "plagiarism-remover": ["plagiarism-checker", "ai-content-detector", "word-counter"],
   "html-editor": ["html-tag-generator", "css-gradient-generator", "json-formatter", "diff-checker"],
@@ -73,6 +80,9 @@ const RELATED: Record<string, string[]> = {
   "code-formatter": ["json-formatter", "html-editor", "diff-checker", "regex-tester"],
   "youtube-tag-generator": ["meta-tag-generator", "slug-generator", "og-preview", "word-counter"],
   "text-to-speech": ["word-counter", "ai-content-detector", "plagiarism-remover", "slug-generator"],
+  "qr-code-generator": ["image-compressor", "base64-encoder-decoder", "url-encoder-decoder", "color-converter"],
+  "image-compressor": ["color-converter", "qr-code-generator", "css-gradient-generator", "og-preview"],
+  "cron-expression-generator": ["timestamp-converter", "regex-tester", "code-formatter", "json-formatter"],
 };
 
 export function RelatedTools() {

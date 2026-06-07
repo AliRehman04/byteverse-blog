@@ -7,7 +7,6 @@ import {
   Square,
   Volume2,
   VolumeX,
-  Download,
   Copy,
   Check,
   RotateCcw,
@@ -26,14 +25,14 @@ export function TextToSpeechTool() {
   const [volume, setVolume] = useState(1);
   const [playState, setPlayState] = useState<PlayState>("idle");
   const [copied, setCopied] = useState(false);
-  const [charCount, setCharCount] = useState(0);
   const [supported, setSupported] = useState(true);
   const synthRef = useRef<SpeechSynthesis | null>(null);
+  const charCount = text.length;
 
   /* ── Load available voices ─────────────────────────── */
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) {
-      setSupported(false);
+      queueMicrotask(() => setSupported(false));
       return;
     }
 
@@ -57,10 +56,6 @@ export function TextToSpeechTool() {
       synthRef.current?.cancel();
     };
   }, []);
-
-  useEffect(() => {
-    setCharCount(text.length);
-  }, [text]);
 
   /* ── Speak ─────────────────────────────────────────── */
   const speak = useCallback(() => {

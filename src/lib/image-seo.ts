@@ -10,6 +10,8 @@ export type SeoImage = {
 
 const DEFAULT_WIDTH = 1200;
 const DEFAULT_HEIGHT = 675;
+const SITE_LOGO_WIDTH = 500;
+const SITE_LOGO_HEIGHT = 500;
 
 export function getAbsoluteImageUrl(src: string | null | undefined) {
   if (!src) return null;
@@ -46,6 +48,30 @@ export function extractMarkdownImages(content: string, fallbackAlt: string): Seo
   return images;
 }
 
+function getComparableImageUrl(src: string | null | undefined) {
+  const absoluteUrl = getAbsoluteImageUrl(src);
+  if (!absoluteUrl) return null;
+
+  try {
+    const url = new URL(absoluteUrl);
+    return `${url.origin}${url.pathname}`;
+  } catch {
+    return absoluteUrl.split("?")[0];
+  }
+}
+
+export function isSameImageUrl(a: string | null | undefined, b: string | null | undefined) {
+  const first = getComparableImageUrl(a);
+  const second = getComparableImageUrl(b);
+  return Boolean(first && second && first === second);
+}
+
+export function getPostDisplayImage(post: { coverImage: string | null; content?: string | null; title?: string }) {
+  if (post.coverImage) return post.coverImage;
+  const [firstMarkdownImage] = extractMarkdownImages(post.content || "", post.title || "ByteVerse article image");
+  return firstMarkdownImage?.url || null;
+}
+
 export function getPostSeoImages({
   title,
   coverImage,
@@ -69,7 +95,7 @@ export function getPostSeoImages({
   }
 
   for (const image of extractMarkdownImages(content, title)) {
-    if (!images.some((item) => item.url === image.url)) {
+    if (!images.some((item) => isSameImageUrl(item.url, image.url))) {
       images.push(image);
     }
   }
@@ -100,8 +126,52 @@ export function getImageCreditText(imageUrl: string) {
   return "Royalty-free stock photo";
 }
 
+export function getImageCopyrightNotice(imageUrl: string) {
+  if (imageUrl.startsWith(siteConfig.url)) {
+    return `Copyright ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`;
+  }
+  return "Royalty-free stock photo used under the source platform license.";
+}
+
+export function getImageCreator(imageUrl: string) {
+  if (imageUrl.startsWith(siteConfig.url)) {
+    return {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    };
+  }
+  if (imageUrl.includes("images.unsplash.com")) {
+    return {
+      "@type": "Organization",
+      name: "Unsplash contributors",
+      url: "https://unsplash.com/",
+    };
+  }
+  if (imageUrl.includes("images.pexels.com")) {
+    return {
+      "@type": "Organization",
+      name: "Pexels creators",
+      url: "https://www.pexels.com/",
+    };
+  }
+  if (imageUrl.includes("pixabay.com")) {
+    return {
+      "@type": "Organization",
+      name: "Pixabay contributors",
+      url: "https://pixabay.com/",
+    };
+  }
+  return {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+  };
+}
+
 export function toImageObjectSchema(image: SeoImage, representativeOfPage = false) {
   const isByteVerseAsset = image.url.startsWith(siteConfig.url);
+  const creator = getImageCreator(image.url);
 
   return {
     "@type": "ImageObject",
@@ -113,21 +183,25 @@ export function toImageObjectSchema(image: SeoImage, representativeOfPage = fals
     height: image.height,
     inLanguage: "en-US",
     representativeOfPage,
-    creator: isByteVerseAsset ? {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    } : undefined,
+    creator,
     copyrightHolder: isByteVerseAsset ? {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
     } : undefined,
-    copyrightNotice: isByteVerseAsset
-      ? `Copyright ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`
-      : "Royalty-free stock photo used under the source platform license.",
+    copyrightNotice: getImageCopyrightNotice(image.url),
     creditText: getImageCreditText(image.url),
     license: getImageLicenseUrl(image.url),
     acquireLicensePage: getImageAcquireLicensePage(image.url),
   };
+}
+
+export function getSiteLogoImageSchema() {
+  return toImageObjectSchema({
+    url: `${siteConfig.url}/logo.png`,
+    alt: `${siteConfig.name} logo`,
+    caption: `${siteConfig.name} logo`,
+    width: SITE_LOGO_WIDTH,
+    height: SITE_LOGO_HEIGHT,
+  });
 }

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { TextToSpeechTool } from "./text-to-speech-tool";
 import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Text to Speech Converter",
-  title: "Free Text to Speech Online - TTS Tool",
+  title: "Text to Speech Online - Free TTS Reader Tool",
   description:
-    "Convert text to speech online for free. Choose from 100+ voices, adjust speed, pitch, and volume. Works in your browser — no sign-up required.",
+    "Convert text to speech online for free. Paste text, choose a voice, adjust speed and pitch, then listen instantly in your browser. No sign-up required.",
   slug: "text-to-speech",
   keywords: [
     "text to speech",
@@ -57,11 +58,11 @@ export default function TextToSpeechPage() {
       <ToolJsonLd config={toolConfig} />
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-          Text to Speech Converter
+          Text to Speech Online
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Type or paste any text and hear it spoken aloud. Choose from dozens
-          of voices, adjust speed, pitch, and volume — all in your browser.
+          Type or paste any text and hear it spoken aloud for free. Choose from
+          browser voices, adjust speed, pitch, and volume, then listen instantly.
         </p>
       </div>
 
@@ -94,6 +95,15 @@ export default function TextToSpeechPage() {
           <li>Content creators previewing scripts and voiceovers</li>
           <li>Students studying and reviewing notes</li>
         </ul>
+
+        <h2>Related Voice Tools</h2>
+        <p>
+          If you need downloadable AI voiceovers, narration, or studio-quality
+          voices, compare the options in our{" "}
+          <Link href="/blog/best-ai-voice-generators-2026">
+            best AI voice generators guide
+          </Link>.
+        </p>
 
         <h2>Frequently Asked Questions</h2>
         {toolConfig.faqs.map((faq) => (

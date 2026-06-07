@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Eye, EyeOff, Star, FileText, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, Star, FileText, ChevronLeft, ChevronRight } from "lucide-react";
 
 const POSTS_PER_PAGE = 30;
 
@@ -40,7 +40,9 @@ export default function PostsPage() {
   };
 
   useEffect(() => {
-    fetchPosts();
+    queueMicrotask(() => {
+      void fetchPosts();
+    });
   }, []);
 
   const handleDelete = async (id: number) => {

@@ -31,7 +31,9 @@ export default function CategoriesPage() {
   };
 
   useEffect(() => {
-    fetchCategories();
+    queueMicrotask(() => {
+      void fetchCategories();
+    });
   }, []);
 
   const resetForm = () => {

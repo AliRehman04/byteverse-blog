@@ -75,7 +75,7 @@ export function NewsletterPopup() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-4">
+    <div className="fixed inset-0 z-90 flex items-end sm:items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={dismiss} />
       <div className="relative w-full max-w-md bg-card border border-border rounded-2xl shadow-2xl p-6 sm:p-8 animate-fade-in-up">
         <button

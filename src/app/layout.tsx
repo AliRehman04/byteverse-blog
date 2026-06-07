@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { AdSense } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/analytics";
 import { siteConfig } from "@/lib/config";
+import { getSiteLogoImageSchema } from "@/lib/image-seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -101,6 +102,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="alternate" type="application/rss+xml" title="ByteVerse RSS Feed" href="/feed.xml" />
         <script
           type="application/ld+json"
@@ -129,13 +131,18 @@ export default function RootLayout({
               name: siteConfig.name,
               url: siteConfig.url,
               description: siteConfig.description,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+                },
+                "query-input": "required name=search_term_string",
+              },
               publisher: {
                 "@type": "Organization",
                 name: siteConfig.name,
-                logo: {
-                  "@type": "ImageObject",
-                  url: `${siteConfig.url}/logo.png`,
-                },
+                logo: getSiteLogoImageSchema(),
               },
             }),
           }}

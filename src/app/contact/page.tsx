@@ -17,12 +17,44 @@ export const metadata: Metadata = {
       "Reach ByteVerse for questions, corrections, feedback, partnerships, and technology blog inquiries.",
     url: `${siteConfig.url}/contact`,
     type: "website",
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "Contact ByteVerse" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact ByteVerse | Tech Blog Support",
+    description:
+      "Reach ByteVerse for questions, corrections, feedback, partnerships, and technology blog inquiries.",
+    images: [siteConfig.ogImage],
   },
 };
 
 export default function ContactPage() {
+  const contactLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact ByteVerse",
+    description: "Contact ByteVerse for questions, feedback, corrections, partnerships, and technology blog inquiries.",
+    url: `${siteConfig.url}/contact`,
+    mainEntity: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: siteConfig.email,
+        contactType: "customer support",
+        areaServed: "Worldwide",
+        availableLanguage: "English",
+      },
+    },
+  };
+
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactLd) }}
+      />
       <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
         <section>
           <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Contact</p>
@@ -30,7 +62,7 @@ export default function ContactPage() {
             Get in touch with ByteVerse
           </h1>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-8">
-            Got a question, spotted an error, or want to suggest a topic? Drop us a message. We read every one.
+            Got a question, spotted an error, or want to suggest a topic? Drop us a message. We read every one and typically reply within 24 hours.
           </p>
 
           <div className="space-y-4">

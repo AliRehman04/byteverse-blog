@@ -32,7 +32,9 @@ export default function NewsletterAdmin() {
   };
 
   useEffect(() => {
-    fetchSubscribers();
+    queueMicrotask(() => {
+      void fetchSubscribers();
+    });
   }, []);
 
   const toggleActive = async (id: number, active: boolean) => {

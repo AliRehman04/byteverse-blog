@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Bot, Monitor, Lightbulb, Code2, Star } from "lucide-react";
+import { ArrowRight, Bot, Monitor, Lightbulb, Code2, Star, ShieldCheck } from "lucide-react";
 import { db } from "@/lib/db";
-import { categories } from "@/lib/db/schema";
+import { categories, posts } from "@/lib/db/schema";
+import { eq, count, sql as sqlFn } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -11,6 +12,7 @@ const categoryIcons: Record<string, React.ElementType> = {
   "productivity": Lightbulb,
   "coding": Code2,
   "software-reviews": Star,
+  "cybersecurity": ShieldCheck,
 };
 
 export const metadata: Metadata = {
@@ -21,7 +23,16 @@ export const metadata: Metadata = {
     title: "Browse All Categories | AI Tools, Tech Guides & More | ByteVerse",
     description:
       "Explore all ByteVerse content categories including AI tools, tech guides, productivity tips, coding tutorials, and software reviews.",
+    url: `${siteConfig.url}/categories`,
     type: "website",
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "ByteVerse Categories" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Browse All Categories | AI Tools, Tech Guides & More",
+    description:
+      "Explore all ByteVerse content categories including AI tools, step-by-step tech guides, productivity tips, coding tutorials, and honest software reviews.",
+    images: [siteConfig.ogImage],
   },
   alternates: {
     canonical: `${siteConfig.url}/categories`,
@@ -33,17 +44,54 @@ export default async function CategoriesPage() {
     ? await db.select().from(categories).orderBy(categories.name)
     : null;
 
+  // Get post count per category
+  const postCounts: Record<number, number> = {};
+  if (db) {
+    const counts = await db
+      .select({ categoryId: posts.categoryId, total: count() })
+      .from(posts)
+      .where(eq(posts.published, true))
+      .groupBy(posts.categoryId);
+    for (const c of counts) {
+      if (c.categoryId) postCounts[c.categoryId] = c.total;
+    }
+  }
+
   const cats = dbCategories && dbCategories.length > 0
     ? dbCategories.map((c) => ({
+        id: c.id,
         name: c.name,
         slug: c.slug,
         description: c.description || "",
         color: c.color,
+        postCount: postCounts[c.id] || 0,
       }))
-    : siteConfig.categories;
+    : siteConfig.categories.map((c) => ({ ...c, id: 0, postCount: 0 }));
+
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Browse All Categories",
+    description: "Explore all ByteVerse content categories including AI tools, tech guides, productivity tips, coding tutorials, and software reviews.",
+    url: `${siteConfig.url}/categories`,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: cats.length,
+      itemListElement: cats.map((cat, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: cat.name,
+        url: `${siteConfig.url}/category/${cat.slug}`,
+      })),
+    },
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
+      />
       {/* Page Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
         {/* Background effects */}
@@ -124,6 +172,11 @@ export default async function CategoriesPage() {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {cat.description}
               </p>
+              {cat.postCount > 0 && (
+                <p className="text-xs font-medium text-primary mt-3">
+                  {cat.postCount} {cat.postCount === 1 ? "article" : "articles"}
+                </p>
+              )}
 
               {/* Hover glow */}
               <div

@@ -35,7 +35,6 @@ export default function AdminLayout({
 
   useEffect(() => {
     if (pathname === "/admin/login") {
-      setAuthenticated(false);
       return;
     }
 

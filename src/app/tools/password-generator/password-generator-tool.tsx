@@ -47,7 +47,7 @@ export function PasswordGeneratorTool() {
   }, [length, upper, lower, numbers, symbols]);
 
   useEffect(() => {
-    generate();
+    queueMicrotask(() => generate());
   }, [generate]);
 
   const copyPassword = useCallback(async () => {

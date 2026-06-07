@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Plus, Pencil, Trash2, X, Upload, ZoomIn, ZoomOut, Move } from "lucide-react";
 
 interface Author {
@@ -29,7 +29,8 @@ function AvatarCropper({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
-  const [imgSrc, setImgSrc] = useState("");
+  const imgSrc = useMemo(() => URL.createObjectURL(file), [file]);
+  const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
   const [scale, setScale] = useState(1);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -37,11 +38,10 @@ function AvatarCropper({
   const PREVIEW = 256; // crop output px
 
   useEffect(() => {
-    const url = URL.createObjectURL(file);
-    setImgSrc(url);
     const img = new window.Image();
     img.onload = () => {
       imgRef.current = img;
+      setImageSize({ width: img.width, height: img.height });
       // fit image so shorter side fills the preview
       const minDim = Math.min(img.width, img.height);
       const fitScale = PREVIEW / minDim;
@@ -51,9 +51,9 @@ function AvatarCropper({
         y: (PREVIEW - img.height * fitScale) / 2,
       });
     };
-    img.src = url;
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+    img.src = imgSrc;
+    return () => URL.revokeObjectURL(imgSrc);
+  }, [imgSrc]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     setDragging(true);
@@ -116,8 +116,8 @@ function AvatarCropper({
                 position: "absolute",
                 left: pos.x,
                 top: pos.y,
-                width: imgRef.current ? imgRef.current.width * scale : "auto",
-                height: imgRef.current ? imgRef.current.height * scale : "auto",
+                width: imageSize ? imageSize.width * scale : "auto",
+                height: imageSize ? imageSize.height * scale : "auto",
                 pointerEvents: "none",
               }}
             />

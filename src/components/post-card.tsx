@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock, ArrowRight, Calendar } from "lucide-react";
 import { formatDate, shimmerBlur } from "@/lib/utils";
+import { getPostDisplayImage } from "@/lib/image-seo";
 import type { Post, Category } from "@/lib/db/schema";
 
 interface PostCardProps {
@@ -12,14 +13,16 @@ interface PostCardProps {
 
 /* ── Featured Hero Card (first post on blog page) ── */
 export function FeaturedPostCard({ post, category }: PostCardProps) {
+  const displayImage = getPostDisplayImage(post);
+
   return (
     <article className="group relative rounded-2xl overflow-hidden bg-card border border-border card-hover">
       <div className="grid md:grid-cols-2 gap-0">
         {/* Image */}
         <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] md:aspect-auto md:min-h-[280px] lg:min-h-[340px] overflow-hidden block">
-          {post.coverImage ? (
+          {displayImage ? (
             <Image
-              src={post.coverImage}
+              src={displayImage}
               alt={post.title}
               title={post.title}
               fill
@@ -94,13 +97,15 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
 
 /* ── Regular Post Card (horizontal on desktop) ── */
 export function PostCard({ post, category }: PostCardProps) {
+  const displayImage = getPostDisplayImage(post);
+
   return (
     <article className="group rounded-xl border border-border bg-card overflow-hidden card-hover flex flex-col sm:flex-row">
       {/* Image */}
       <Link href={`/blog/${post.slug}`} className="relative overflow-hidden bg-muted sm:w-[240px] md:w-[280px] lg:w-[320px] shrink-0 aspect-[16/10] sm:aspect-auto sm:min-h-[180px] block">
-        {post.coverImage ? (
+        {displayImage ? (
           <Image
-            src={post.coverImage}
+            src={displayImage}
             alt={post.title}
             title={post.title}
             fill
@@ -164,13 +169,15 @@ export function PostCard({ post, category }: PostCardProps) {
 
 /* ── Grid Post Card (vertical layout for homepage/category grids) ── */
 export function GridPostCard({ post, category }: PostCardProps) {
+  const displayImage = getPostDisplayImage(post);
+
   return (
     <article className="group rounded-xl border border-border bg-card overflow-hidden card-hover flex flex-col">
       {/* Image */}
       <Link href={`/blog/${post.slug}`} className="relative overflow-hidden bg-muted aspect-[16/10] block">
-        {post.coverImage ? (
+        {displayImage ? (
           <Image
-            src={post.coverImage}
+            src={displayImage}
             alt={post.title}
             title={post.title}
             fill

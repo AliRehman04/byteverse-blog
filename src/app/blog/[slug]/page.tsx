@@ -10,10 +10,22 @@ import { formatDate, shimmerBlur } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { AdUnit } from "@/components/adsense";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
-import { getPostSeoImages, toImageObjectSchema } from "@/lib/image-seo";
+import {
+  getImageAcquireLicensePage,
+  getImageCopyrightNotice,
+  getImageCreditText,
+  getImageCreator,
+  getImageLicenseUrl,
+  getPostDisplayImage,
+  getPostSeoImages,
+  getSiteLogoImageSchema,
+  isSameImageUrl,
+  toImageObjectSchema,
+} from "@/lib/image-seo";
 import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare } from "@/components/blog-post-widgets";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { KeyTakeaways } from "@/components/key-takeaways";
+import { AffiliateCTA } from "@/components/affiliate-cta";
 
 /* ── Recommended Tools by Category ────────────────────── */
 const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string }[]> = {
@@ -41,6 +53,11 @@ const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string 
     { name: "Meta Tag Generator", slug: "meta-tag-generator", desc: "SEO meta tags with preview" },
     { name: "Schema Markup", slug: "schema-markup-generator", desc: "JSON-LD structured data" },
     { name: "OG Preview", slug: "og-preview", desc: "Social media link preview" },
+  ],
+  cybersecurity: [
+    { name: "Password Generator", slug: "password-generator", desc: "Strong random passwords" },
+    { name: "Hash Generator", slug: "hash-generator", desc: "SHA-256, SHA-512 hashes" },
+    { name: "JWT Decoder", slug: "jwt-decoder", desc: "Decode & inspect JWTs" },
   ],
 };
 
@@ -101,13 +118,10 @@ function removeDuplicatedPostIntro(content: string, title: string, coverImage: s
     cleaned = cleaned.slice(headingMatch[0].length).trimStart();
   }
 
-  const imageMatch = cleaned.match(/^!\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)\s*(?:\r?\n|$)/);
-  if (imageMatch) {
-    const imageUrl = imageMatch[1];
-    const isCoverImage = coverImage ? imageUrl === coverImage : true;
-    if (isCoverImage) {
-      cleaned = cleaned.slice(imageMatch[0].length).trimStart();
-    }
+  if (coverImage) {
+    cleaned = cleaned.replace(/(?:^|\n{1,2})!\[[^\]]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)\s*(?=\n|$)/g, (match, imageUrl) => {
+      return isSameImageUrl(imageUrl, coverImage) ? "\n" : match;
+    }).trimStart();
   }
 
   return cleaned;
@@ -133,6 +147,8 @@ export async function generateMetadata({
     coverImage: post.coverImage,
     content: post.content,
   });
+  const primaryImage = seoImages[0]?.url || getPostDisplayImage(post);
+  const articleContent = removeDuplicatedPostIntro(post.content, post.title, primaryImage);
 
   return {
     title: post.metaTitle || post.title,
@@ -202,12 +218,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const wordCount = post.content.split(/\s+/).length;
   const readingMinutes = Math.ceil(wordCount / 200);
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
-  const articleContent = removeDuplicatedPostIntro(post.content, post.title, post.coverImage);
   const seoImages = getPostSeoImages({
     title: post.title,
     coverImage: post.coverImage,
     content: post.content,
   });
+  const primaryImage = seoImages[0]?.url || getPostDisplayImage(post);
+  const articleContent = removeDuplicatedPostIntro(post.content, post.title, primaryImage);
 
   // Auto-extract FAQs from content (matches ## FAQ or ### heading with ? in it)
   const faqRegex = /#{2,3}\s+(.+\?)\s*\n+([\s\S]*?)(?=\n#{2,3}\s|\n*$)/g;
@@ -252,10 +269,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}/logo.png`,
-      },
+      logo: getSiteLogoImageSchema(),
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -272,6 +286,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     } : {}),
     inLanguage: "en-US",
     isAccessibleForFree: true,
+    articleBody: post.content.replace(/[#*_`\[\]()!|>~-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 5000),
     ...(post.summary ? { abstract: post.summary.split("|").map(s => s.trim()).filter(Boolean).join(". ") + "." } : {}),
   };
 
@@ -478,21 +493,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-2 pb-10 md:pt-4 md:pb-14">
           <div className="min-w-0">
               {/* Cover Image */}
-              {post.coverImage && (
-                <div className="relative aspect-video rounded-2xl overflow-hidden mb-10 ring-1 ring-border shadow-lg">
-                  <Image
-                    src={post.coverImage}
-                    alt={seoImages[0]?.alt || post.title}
-                    title={post.title}
-                    fill
-                    priority
-                    unoptimized={post.coverImage.endsWith(".svg")}
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
-                    placeholder="blur"
-                    blurDataURL={shimmerBlur}
-                  />
-                </div>
+              {primaryImage && (
+                <figure className="mb-10" itemScope itemType="https://schema.org/ImageObject">
+                  <div className="relative aspect-video rounded-2xl overflow-hidden ring-1 ring-border shadow-lg">
+                    <Image
+                      src={primaryImage}
+                      alt={seoImages[0]?.alt || post.title}
+                      title={post.title}
+                      fill
+                      priority
+                      unoptimized={primaryImage.endsWith(".svg")}
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 800px"
+                      placeholder="blur"
+                      blurDataURL={shimmerBlur}
+                      itemProp="contentUrl"
+                    />
+                  </div>
+                  <meta itemProp="width" content="1200" />
+                  <meta itemProp="height" content="675" />
+                  <meta itemProp="description" content={seoImages[0]?.alt || post.title} />
+                  <span itemProp="creator" itemScope itemType="https://schema.org/Organization">
+                    <meta itemProp="name" content={getImageCreator(primaryImage).name} />
+                    <link itemProp="url" href={getImageCreator(primaryImage).url} />
+                  </span>
+                  <meta itemProp="creditText" content={getImageCreditText(primaryImage)} />
+                  <meta itemProp="copyrightNotice" content={getImageCopyrightNotice(primaryImage)} />
+                  <link itemProp="license" href={getImageLicenseUrl(primaryImage)} />
+                  <link itemProp="acquireLicensePage" href={getImageAcquireLicensePage(primaryImage)} />
+                  <meta itemProp="caption" content={`${post.title} visual summary`} />
+                </figure>
               )}
 
               {/* Ad before content */}
@@ -506,6 +536,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Markdown Content */}
               <MarkdownRenderer content={articleContent} />
+
+              {/* Affiliate Recommendations */}
+              <AffiliateCTA slug={post.slug} />
 
               {/* Ad after content */}
               <AdUnit slot="blog-bottom" format="horizontal" />
@@ -578,20 +611,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </Link>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {relatedPosts.map((related) => (
+                {relatedPosts.map((related) => {
+                  const relatedImage = getPostDisplayImage(related);
+                  return (
                   <Link
                     key={related.id}
                     href={`/blog/${related.slug}`}
                     className="group rounded-2xl overflow-hidden ring-1 ring-border bg-card hover:shadow-lg transition-all hover:-translate-y-0.5"
                   >
-                    {related.coverImage ? (
+                    {relatedImage ? (
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
-                          src={related.coverImage}
+                          src={relatedImage}
                           alt={related.title}
                           title={related.title}
                           fill
-                          unoptimized={related.coverImage.endsWith(".svg")}
+                          unoptimized={relatedImage.endsWith(".svg")}
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 640px) 100vw, 33vw"
                         />
@@ -616,7 +651,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       </div>
                     </div>
                   </Link>
-                ))}
+                  );
+                })}
               </div>
             </section>
           )}

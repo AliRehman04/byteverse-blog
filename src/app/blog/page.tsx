@@ -10,20 +10,43 @@ import { TrendingUp, FolderOpen, ChevronLeft, ChevronRight } from "lucide-react"
 
 const POSTS_PER_PAGE = 30;
 
-export const metadata: Metadata = {
-  title: "Blog | Latest Articles on AI, Tech & Productivity",
-  description:
-    "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse.",
-  openGraph: {
-    title: "Blog | Latest Articles on AI, Tech & Productivity | ByteVerse",
-    description:
-      "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews.",
-    type: "website",
-  },
-  alternates: {
-    canonical: `${siteConfig.url}/blog`,
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const { page: pageParam } = await searchParams;
+  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
+  const isFirstPage = currentPage === 1;
+  const pageLabel = isFirstPage ? "" : ` - Page ${currentPage}`;
+  const title = `Blog${pageLabel} | Latest Articles on AI, Tech & Productivity`;
+  const description = isFirstPage
+    ? "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse."
+    : `Page ${currentPage} of the ByteVerse blog. Browse articles on AI tools, tech guides, coding tutorials, and productivity tips.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `Blog${pageLabel} | Latest Articles on AI, Tech & Productivity | ByteVerse`,
+      description:
+        "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews.",
+      url: isFirstPage ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog?page=${currentPage}`,
+      type: "website",
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "ByteVerse Blog" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [siteConfig.ogImage],
+    },
+    alternates: {
+      canonical: isFirstPage ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog?page=${currentPage}`,
+    },
+    ...(isFirstPage ? {} : { robots: { index: false, follow: true } }),
+  };
+}
 
 export const revalidate = 60;
 

@@ -75,7 +75,7 @@ export function SchemaMarkupGeneratorTool() {
   const [copied, setCopied] = useState(false);
 
   const jsonLd = useMemo(() => {
-    let schema: Record<string, unknown> = { "@context": "https://schema.org" };
+    const schema: Record<string, unknown> = { "@context": "https://schema.org" };
 
     switch (schemaType) {
       case "Article":

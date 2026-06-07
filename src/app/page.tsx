@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { db } from "@/lib/db";
@@ -80,6 +80,7 @@ export default async function HomePage() {
 
   let latestPosts: (typeof posts.$inferSelect)[] = [];
   let allCategories: (typeof categories.$inferSelect)[] = [];
+  let totalPostCount = 0;
   if (db) {
     allCategories = await db.select().from(categories).orderBy(categories.id);
 
@@ -88,6 +89,8 @@ export default async function HomePage() {
       .from(posts)
       .where(eq(posts.published, true))
       .orderBy(desc(posts.createdAt), desc(posts.id));
+
+    totalPostCount = publishedPosts.length;
 
     const latestPostByCategory = new Map<number, typeof posts.$inferSelect>();
     for (const post of publishedPosts) {
@@ -108,6 +111,7 @@ export default async function HomePage() {
     "productivity": Lightbulb,
     "coding": Code2,
     "software-reviews": Star,
+    "cybersecurity": ShieldCheck,
   };
 
   return (
@@ -196,16 +200,22 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Stats bar */}
-              <div className="animate-fade-in-up stagger-4 mt-12 flex flex-wrap gap-8">
+              {/* Quality signals */}
+              <div className="animate-fade-in-up stagger-4 mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
                 {[
-                  { value: "Weekly", label: "New Guides" },
-                  { value: `${cats.length}`, label: "Categories" },
-                  { value: "Free", label: "AI & Tech Tutorials" },
+                  { value: "32+", label: "Free Tools", icon: Wrench, color: "text-cyan-300", bg: "bg-cyan-400/10" },
+                  { value: `${totalPostCount || "55"}+`, label: "Tested Guides", icon: FlaskConical, color: "text-violet-300", bg: "bg-violet-400/10" },
+                  { value: `${cats.length}`, label: "Topic Hubs", icon: Layers, color: "text-blue-300", bg: "bg-blue-400/10" },
+                  { value: "100%", label: "Client-Side Tools", icon: ShieldCheck, color: "text-emerald-300", bg: "bg-emerald-400/10" },
                 ].map((stat) => (
-                  <div key={stat.label}>
-                    <div className="text-2xl font-extrabold text-white">{stat.value}</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5 uppercase tracking-wider font-medium">{stat.label}</div>
+                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.055] px-3.5 py-3.5 backdrop-blur-sm shadow-lg shadow-black/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`flex h-7 w-7 items-center justify-center rounded-lg ${stat.bg}`}>
+                        <stat.icon size={14} className={stat.color} />
+                      </span>
+                      <div className="text-xl sm:text-2xl font-extrabold text-white leading-none">{stat.value}</div>
+                    </div>
+                    <div className="text-[10px] text-slate-300 uppercase tracking-wider font-semibold leading-tight">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -258,6 +268,61 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Popular Tools */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-2">Developer Toolkit</p>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Popular Free <span className="gradient-text">Tools</span>
+            </h2>
+          </div>
+          <Link
+            href="/tools"
+            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-300"
+          >
+            View All 28+ Tools <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            { title: "JSON Formatter", desc: "Format, validate & minify JSON instantly", href: "/tools/json-formatter", icon: Braces, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
+            { title: "AI Content Detector", desc: "Check if text is AI-generated or human-written", href: "/tools/ai-content-detector", icon: Bot, color: "text-pink-500", bg: "from-pink-500/10 to-rose-500/10" },
+            { title: "Password Generator", desc: "Create strong, random passwords instantly", href: "/tools/password-generator", icon: Shield, color: "text-green-500", bg: "from-green-500/10 to-emerald-500/10" },
+            { title: "Code Formatter", desc: "Beautify & format code in 10+ languages", href: "/tools/code-formatter", icon: Code2, color: "text-violet-500", bg: "from-violet-500/10 to-purple-500/10" },
+            { title: "Plagiarism Checker", desc: "Verify text originality and uniqueness", href: "/tools/plagiarism-checker", icon: Target, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },
+            { title: "Meta Tag Generator", desc: "Generate SEO-optimized meta tags with preview", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
+          ].map((tool, i) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className={`animate-fade-in-up stagger-${(i % 6) + 1} group p-5 rounded-2xl border border-border bg-card card-hover flex items-start gap-4`}
+            >
+              <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${tool.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                <tool.icon size={20} className={tool.color} />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-sm group-hover:text-primary transition-colors duration-200">{tool.title}</h3>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{tool.desc}</p>
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Try Now <ArrowRight size={12} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="sm:hidden mt-8 text-center">
+          <Link
+            href="/tools"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+          >
+            View All Tools <ArrowRight size={14} />
+          </Link>
         </div>
       </section>
 
@@ -346,19 +411,53 @@ export default async function HomePage() {
 
       {/* About ByteVerse */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">
+        <div className="text-center mb-12">
+          <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Our Promise</p>
+          <h2 className="text-3xl font-bold tracking-tight mb-3">
             Why <span className="gradient-text">ByteVerse</span>?
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            Most tech blogs rehash the same press releases. We don&apos;t. Every AI tool we review gets installed, tested, and compared before we write a word. Every coding tutorial runs on a real machine, not just in theory.
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Most tech blogs rehash the same press releases. We don&apos;t. Here&apos;s what makes us different.
           </p>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            We cover things like ChatGPT alternatives, React and Next.js projects, Python automation, Notion setups, and cloud deployment. These are the topics we work with ourselves. If it doesn&apos;t solve a real problem, we skip it.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Whether you&apos;re a student picking your first framework or a developer evaluating a new tool, the goal is simple: read a ByteVerse article and walk away knowing exactly what to do next.
-          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: FlaskConical,
+              title: "Tested, Not Guessed",
+              desc: "Every AI tool gets installed, tested, and compared before we write a word. Every tutorial runs on a real machine.",
+              color: "text-blue-500",
+              bg: "from-blue-500/10 to-cyan-500/10",
+            },
+            {
+              icon: Zap,
+              title: "No Fluff, No Filler",
+              desc: "If it doesn't solve a real problem, we skip it. ChatGPT alternatives, React projects, Python automation — topics we actually use.",
+              color: "text-amber-500",
+              bg: "from-amber-500/10 to-orange-500/10",
+            },
+            {
+              icon: MousePointerClick,
+              title: "Actionable Takeaways",
+              desc: "Whether you're a student picking your first framework or a dev evaluating a new tool — walk away knowing exactly what to do next.",
+              color: "text-emerald-500",
+              bg: "from-emerald-500/10 to-teal-500/10",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="group p-6 rounded-2xl border border-border bg-card card-hover text-center"
+            >
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <item.icon size={22} className={item.color} />
+              </div>
+              <h3 className="font-bold mb-2">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

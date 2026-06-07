@@ -6,6 +6,8 @@ import rehypeSlug from "rehype-slug";
 import { Children, isValidElement } from "react";
 import { ExternalLink } from "lucide-react";
 import { CopyButton } from "@/components/copy-button";
+import { getImageAcquireLicensePage, getImageCopyrightNotice, getImageCreator, getImageCreditText, getImageLicenseUrl } from "@/lib/image-seo";
+import { siteConfig } from "@/lib/config";
 
 // Allow safe HTML tags but block scripts, event handlers, etc.
 const sanitizeSchema = {
@@ -22,13 +24,94 @@ const sanitizeSchema = {
   },
 };
 
+/* ── Auto Internal Linking ── */
+const INTERNAL_LINKS: [RegExp, string][] = [
+  [/\b(JSON formatter)\b/gi, "/tools/json-formatter"],
+  [/\b(password generator)\b/gi, "/tools/password-generator"],
+  [/\b(meta tag generator)\b/gi, "/tools/meta-tag-generator"],
+  [/\b(Base64 encoder|Base64 decoder)\b/gi, "/tools/base64-encoder-decoder"],
+  [/\b(word counter)\b/gi, "/tools/word-counter"],
+  [/\b(regex tester)\b/gi, "/tools/regex-tester"],
+  [/\b(JWT decoder)\b/gi, "/tools/jwt-decoder"],
+  [/\b(hash generator)\b/gi, "/tools/hash-generator"],
+  [/\b(UUID generator)\b/gi, "/tools/uuid-generator"],
+  [/\b(diff checker)\b/gi, "/tools/diff-checker"],
+  [/\b(OG preview)\b/gi, "/tools/og-preview"],
+  [/\b(slug generator)\b/gi, "/tools/slug-generator"],
+  [/\b(color converter)\b/gi, "/tools/color-converter"],
+  [/\b(AI content detector)\b/gi, "/tools/ai-content-detector"],
+  [/\b(AI prompt generator|prompt generator)\b/gi, "/tools/ai-prompt-generator"],
+  [/\b(AI CV builder|AI resume builder|CV builder|resume builder)\b/gi, "/tools/ai-cv-builder"],
+  [/\b(plagiarism checker)\b/gi, "/tools/plagiarism-checker"],
+  [/\b(plagiarism remover)\b/gi, "/tools/plagiarism-remover"],
+  [/\b(code formatter)\b/gi, "/tools/code-formatter"],
+  [/\b(HTML editor)\b/gi, "/tools/html-editor"],
+  [/\b(QR code generator)\b/gi, "/tools/qr-code-generator"],
+  [/\b(text to speech)\b/gi, "/tools/text-to-speech"],
+  [/\b(YouTube tag generator)\b/gi, "/tools/youtube-tag-generator"],
+  [/\b(box shadow generator)\b/gi, "/tools/box-shadow-generator"],
+  [/\b(CSS gradient generator)\b/gi, "/tools/css-gradient-generator"],
+  [/\b(schema markup generator)\b/gi, "/tools/schema-markup-generator"],
+];
+
+function injectInternalLinks(md: string): string {
+  const linked = new Set<string>();
+  // Don't link inside headings, existing links, code blocks, or image alts
+  const protectedRanges: [number, number][] = [];
+  const protectPatterns = [
+    /^#{1,6}\s.+$/gm,             // headings
+    /\[([^\]]+)\]\([^)]+\)/g,     // existing markdown links
+    /`[^`]+`/g,                   // inline code
+    /```[\s\S]*?```/g,            // code blocks
+    /!\[([^\]]*)\]\([^)]+\)/g,    // images
+  ];
+  for (const pat of protectPatterns) {
+    let m;
+    while ((m = pat.exec(md)) !== null) {
+      protectedRanges.push([m.index, m.index + m[0].length]);
+    }
+  }
+
+  for (const [regex, url] of INTERNAL_LINKS) {
+    if (linked.has(url)) continue;
+    const cloned = new RegExp(regex.source, regex.flags);
+    md = md.replace(cloned, (match, _g1, offset) => {
+      // Only link first occurrence
+      if (linked.has(url)) return match;
+      // Skip if inside protected range
+      for (const [start, end] of protectedRanges) {
+        if (offset >= start && offset < end) return match;
+      }
+      linked.add(url);
+      return `[${match}](${url})`;
+    });
+  }
+  return md;
+}
+
+function isExternalHref(href?: string): boolean {
+  if (!href || href.startsWith("/") || href.startsWith("#")) return false;
+
+  try {
+    const linkUrl = new URL(href);
+    if (linkUrl.protocol !== "http:" && linkUrl.protocol !== "https:") return false;
+
+    const siteUrl = new URL(siteConfig.url);
+    const normalizeHost = (host: string) => host.replace(/^www\./, "");
+
+    return normalizeHost(linkUrl.hostname) !== normalizeHost(siteUrl.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export function MarkdownRenderer({ content }: { content: string }) {
+  const enrichedContent = injectInternalLinks(content);
   return (
     <div className="blog-content prose prose-lg max-w-none dark:prose-invert">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeSlug]}
-        children={content}
         components={{
           h2: ({ children, id, ...props }) => (
             <h2 id={id} className="group flex items-center gap-2 text-2xl font-extrabold tracking-tight mt-12 mb-4 pt-6 border-t border-border/50 scroll-mt-20" {...props}>
@@ -59,6 +142,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
             if (!src || typeof src !== "string") return null;
             const imageAlt = alt || title || "ByteVerse article illustration";
             const imageCaption = title || alt;
+            const imageCreator = getImageCreator(src);
             return (
               <figure className="my-10" itemScope itemType="https://schema.org/ImageObject">
                 <div className="relative rounded-xl overflow-hidden ring-1 ring-border shadow-md">
@@ -70,15 +154,21 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     height={675}
                     loading="lazy"
                     decoding="async"
-                    className="block w-full h-auto !m-0 object-cover"
+                    className="block w-full h-auto m-0! object-cover"
                     itemProp="contentUrl"
                   />
                 </div>
                 <meta itemProp="width" content="1200" />
                 <meta itemProp="height" content="675" />
                 <meta itemProp="description" content={imageAlt} />
-                <link itemProp="license" href={src.includes("unsplash.com") ? "https://unsplash.com/license" : src.includes("pexels.com") ? "https://www.pexels.com/license/" : src.includes("pixabay.com") ? "https://pixabay.com/service/license-summary/" : "/terms"} />
-                <link itemProp="acquireLicensePage" href={src.includes("unsplash.com") ? "https://unsplash.com/license" : src.includes("pexels.com") ? "https://www.pexels.com/license/" : src.includes("pixabay.com") ? "https://pixabay.com/service/license-summary/" : "/terms"} />
+                <span itemProp="creator" itemScope itemType="https://schema.org/Organization">
+                  <meta itemProp="name" content={imageCreator.name} />
+                  <link itemProp="url" href={imageCreator.url} />
+                </span>
+                <meta itemProp="creditText" content={getImageCreditText(src)} />
+                <meta itemProp="copyrightNotice" content={getImageCopyrightNotice(src)} />
+                <link itemProp="license" href={getImageLicenseUrl(src)} />
+                <link itemProp="acquireLicensePage" href={getImageAcquireLicensePage(src)} />
                 {imageCaption && imageCaption !== "" && (
                   <figcaption className="text-center text-sm text-muted-foreground mt-3 italic" itemProp="caption">
                     {imageCaption}
@@ -88,7 +178,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
             );
           },
           a: ({ href, children, ...props }) => {
-            const isExternal = href?.startsWith("http");
+            const isExternal = isExternalHref(href);
             return (
               <a
                 href={href}
@@ -103,7 +193,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
             );
           },
           blockquote: ({ children, ...props }) => (
-            <blockquote className="relative my-8 pl-6 py-4 pr-4 border-l-4 border-primary bg-primary/5 rounded-r-xl italic text-muted-foreground not-italic" {...props}>
+            <blockquote className="relative my-8 pl-6 py-4 pr-4 border-l-4 border-primary bg-primary/5 rounded-r-xl text-muted-foreground" {...props}>
               <span className="absolute top-3 left-3 text-4xl text-primary/20 font-serif leading-none">&ldquo;</span>
               {children}
             </blockquote>
@@ -127,7 +217,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
                   <span className="text-xs text-slate-500 ml-2">Code</span>
                 </div>
                 <CopyButton code={code} />
-                <pre className="!bg-transparent !border-0 !ring-0 !rounded-none !m-0 p-4 overflow-x-auto text-sm leading-relaxed text-slate-300" {...props}>
+                <pre className="bg-transparent! border-0! ring-0! rounded-none! m-0! p-4 overflow-x-auto text-sm leading-relaxed text-slate-300" {...props}>
                   {children}
                 </pre>
               </div>
@@ -188,7 +278,9 @@ export function MarkdownRenderer({ content }: { content: string }) {
             <strong className="font-bold text-foreground" {...props}>{children}</strong>
           ),
         }}
-      />
+      >
+        {enrichedContent}
+      </ReactMarkdown>
     </div>
   );
 }

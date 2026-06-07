@@ -11,7 +11,16 @@ export const metadata: Metadata = {
     title: "About ByteVerse | Your Trusted Tech Knowledge Hub",
     description:
       "ByteVerse is a tech blog run by Ali Rehman. We test AI tools, write coding guides, and share what actually works.",
+    url: `${siteConfig.url}/about`,
     type: "website",
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "About ByteVerse" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Your Trusted Tech Knowledge Hub",
+    description:
+      "ByteVerse is a tech blog run by Ali Rehman. We test AI tools, write coding guides, and share what actually works.",
+    images: [siteConfig.ogImage],
   },
   alternates: {
     canonical: `${siteConfig.url}/about`,
@@ -87,6 +96,7 @@ export default function AboutPage() {
       {/* Mission Cards */}
       <section className="section-alt border-b border-border">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <h2 className="sr-only">What ByteVerse Stands For</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               { icon: Target, title: "Our Mission", desc: "Break down complex tech into clear, usable guides. If you can't follow along, we rewrote it." },

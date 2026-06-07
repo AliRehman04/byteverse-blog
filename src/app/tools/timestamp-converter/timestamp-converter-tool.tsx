@@ -52,7 +52,7 @@ export function TimestampConverterTool() {
   const [timeInput, setTimeInput] = useState("00:00:00");
   const [copiedField, setCopiedField] = useState("");
 
-  const nowUnix = useMemo(() => Math.floor(Date.now() / 1000), []);
+  const [nowUnix] = useState(() => Math.floor(Date.now() / 1000));
 
   const setNow = useCallback(() => {
     const now = new Date();

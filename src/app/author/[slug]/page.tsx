@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Mail } from "lucide-react";
 import { db } from "@/lib/db";
 import { authors, posts } from "@/lib/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { formatDate } from "@/lib/utils";
 
@@ -83,7 +83,7 @@ export default async function AuthorPage({ params }: Props) {
         createdAt: posts.createdAt,
       })
       .from(posts)
-      .where(eq(posts.published, true))
+        .where(and(eq(posts.published, true), eq(posts.author, author.name)))
       .orderBy(desc(posts.createdAt))
       .limit(20);
   }

@@ -15,16 +15,18 @@ export function TableOfContents() {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    const article = document.querySelector(".blog-content");
-    if (!article) return;
+    queueMicrotask(() => {
+      const article = document.querySelector(".blog-content");
+      if (!article) return;
 
-    const elements = article.querySelectorAll("h2[id], h3[id]");
-    const items: TocItem[] = Array.from(elements).map((el) => ({
-      id: el.id,
-      text: el.textContent?.trim() || "",
-      level: el.tagName === "H2" ? 2 : 3,
-    }));
-    setHeadings(items);
+      const elements = article.querySelectorAll("h2[id], h3[id]");
+      const items: TocItem[] = Array.from(elements).map((el) => ({
+        id: el.id,
+        text: el.textContent?.trim() || "",
+        level: el.tagName === "H2" ? 2 : 3,
+      }));
+      setHeadings(items);
+    });
   }, []);
 
   // Intersection observer for active heading

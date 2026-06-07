@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, Clock, Loader2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 interface SearchResult {
   id: number;
@@ -44,8 +43,10 @@ export function SearchDialog() {
     if (open) {
       setTimeout(() => inputRef.current?.focus(), 100);
     } else {
-      setQuery("");
-      setResults([]);
+      queueMicrotask(() => {
+        setQuery("");
+        setResults([]);
+      });
     }
   }, [open]);
 
@@ -53,11 +54,13 @@ export function SearchDialog() {
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
     if (query.trim().length < 2) {
-      setResults([]);
-      setLoading(false);
+      queueMicrotask(() => {
+        setResults([]);
+        setLoading(false);
+      });
       return;
     }
-    setLoading(true);
+    queueMicrotask(() => setLoading(true));
     timerRef.current = setTimeout(async () => {
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`);

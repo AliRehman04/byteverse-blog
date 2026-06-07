@@ -58,6 +58,11 @@ export async function GET() {
     { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
     { name: "Plagiarism Remover & AI Humanizer", href: "/tools/plagiarism-remover", desc: "Rewrite text to remove plagiarism and humanize AI-generated content" },
     { name: "Code Formatter & Beautifier", href: "/tools/code-formatter", desc: "Format, beautify, and minify JSON, HTML, CSS, JavaScript, SQL, and XML code" },
+    { name: "Image Compressor", href: "/tools/image-compressor", desc: "Compress, resize, convert, preview, and download optimized JPG, PNG, and WebP images" },
+    { name: "Cron Expression Generator", href: "/tools/cron-expression-generator", desc: "Build standard 5-field cron expressions visually for crontab schedules" },
+    { name: "AI Prompt Generator", href: "/tools/ai-prompt-generator", desc: "Build better prompts for ChatGPT, Claude, Gemini, code assistants, and image models" },
+    { name: "AI CV Builder", href: "/tools/ai-cv-builder", desc: "Create modern CVs with visual and code modes, AI writing help, customization, and PDF download" },
+    { name: "SEO Title Analyzer", href: "/tools/seo-title-analyzer", desc: "Score blog titles for SEO length, search intent, specificity, readability, and click potential" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

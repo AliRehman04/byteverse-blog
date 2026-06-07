@@ -7,7 +7,6 @@ import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { GridPostCard } from "@/components/post-card";
-import { TextRotator } from "@/components/text-rotator";
 import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
 export const metadata: Metadata = {
@@ -169,19 +168,19 @@ export default async function HomePage() {
               {/* Badge */}
               <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-8">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Your Tech Knowledge Hub
+                QA-ready tech guides and tools
               </div>
 
               {/* Headline */}
               <h1 className="animate-fade-in-up stagger-1 text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
-                Master the World
+                ByteVerse
                 <br />
-                of <TextRotator />
+                <span className="text-blue-200">Built for sharper tech decisions</span>
               </h1>
 
               <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
-                We write about AI tools, coding, and tech. Tested first, then
-                explained so you can actually use it. No fluff, no filler.
+                Hands-on AI tool reviews, coding tutorials, and browser-based utilities.
+                Every guide is written to help you choose faster, build cleaner, and avoid filler.
               </p>
 
               {/* CTA Buttons */}
@@ -196,7 +195,7 @@ export default async function HomePage() {
                   href="/categories"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 bg-white/5 backdrop-blur-sm rounded-xl text-sm font-semibold hover:bg-white/10 hover:border-white/30 transition-all duration-200"
                 >
-                  Browse Categories
+                  Explore Topics
                 </Link>
               </div>
 

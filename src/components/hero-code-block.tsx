@@ -3,19 +3,19 @@
 import { useState, useEffect } from "react";
 
 const codeLines = [
-  { text: "const blog = new ByteVerse();", color: "text-blue-300" },
+  { text: "const site = await ByteVerse.audit();", color: "text-blue-300" },
   { text: "", color: "" },
-  { text: "// Discover AI tools & guides", color: "text-slate-500" },
-  { text: "const topics = [", color: "text-slate-200" },
-  { text: '  "AI Tools",', color: "text-emerald-400" },
-  { text: '  "Web Development",', color: "text-emerald-400" },
-  { text: '  "Productivity",', color: "text-emerald-400" },
-  { text: '  "Tech Guides",', color: "text-emerald-400" },
-  { text: "];", color: "text-slate-200" },
+  { text: "// Publish only what passes", color: "text-slate-500" },
+  { text: "site.check({", color: "text-slate-200" },
+  { text: "  content: 'tested',", color: "text-emerald-400" },
+  { text: "  links: 'clean',", color: "text-emerald-400" },
+  { text: "  schema: 'valid',", color: "text-emerald-400" },
+  { text: "  tools: 'client-side',", color: "text-emerald-400" },
+  { text: "});", color: "text-slate-200" },
   { text: "", color: "" },
-  { text: "blog.publish({", color: "text-violet-300" },
-  { text: "  quality: 'expert-level',", color: "text-amber-300" },
-  { text: "  style: 'beginner-friendly',", color: "text-amber-300" },
+  { text: "site.deploy({", color: "text-violet-300" },
+  { text: "  speed: 'optimized',", color: "text-amber-300" },
+  { text: "  readerTrust: 'high',", color: "text-amber-300" },
   { text: "});", color: "text-violet-300" },
 ];
 
@@ -46,7 +46,7 @@ export function HeroCodeBlock() {
             <div className="w-3 h-3 rounded-full bg-amber-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
           </div>
-          <span className="text-[11px] text-slate-500 ml-2 font-mono">byteverse.ts</span>
+          <span className="text-[11px] text-slate-500 ml-2 font-mono">qa-dashboard.ts</span>
         </div>
 
         {/* Code content */}
@@ -77,7 +77,7 @@ export function HeroCodeBlock() {
         <div className="px-3 py-2 rounded-xl bg-emerald-500/20 border border-emerald-400/20 backdrop-blur-sm">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="text-[11px] font-semibold text-emerald-300">Live</span>
+            <span className="text-[11px] font-semibold text-emerald-300">QA Passed</span>
           </div>
         </div>
       </div>

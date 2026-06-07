@@ -1,16 +1,25 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-const jwtSecret = process.env.JWT_SECRET;
-if (!jwtSecret && process.env.NODE_ENV === "production") {
-  throw new Error("JWT_SECRET must be set in production!");
+function getJwtSecret(required = false) {
+  const jwtSecret = process.env.JWT_SECRET;
+
+  if (!jwtSecret && process.env.NODE_ENV === "production") {
+    if (required) {
+      throw new Error("JWT_SECRET must be set in production!");
+    }
+    return null;
+  }
+
+  return new TextEncoder().encode(jwtSecret || "dev-only-secret-not-for-production");
 }
 
-const secret = new TextEncoder().encode(
-  jwtSecret || "dev-only-secret-not-for-production"
-);
-
 export async function createToken() {
+  const secret = getJwtSecret(true);
+  if (!secret) {
+    throw new Error("JWT_SECRET must be set in production!");
+  }
+
   return new SignJWT({ role: "admin", iat: Date.now() })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -20,6 +29,9 @@ export async function createToken() {
 
 export async function verifyToken(token: string) {
   try {
+    const secret = getJwtSecret();
+    if (!secret) return null;
+
     const { payload } = await jwtVerify(token, secret);
     return payload;
   } catch {

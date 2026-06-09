@@ -165,7 +165,7 @@ export default async function CategoriesPage() {
                 </div>
                 <ArrowRight
                   size={16}
-                  className="text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 mt-1 shrink-0"
+                  className="text-muted-foreground -translate-x-2 group-hover:text-primary group-hover:translate-x-0 transition-all duration-300 mt-1 shrink-0"
                 />
               </div>
 

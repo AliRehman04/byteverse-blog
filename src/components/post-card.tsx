@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Clock, ArrowRight, Calendar } from "lucide-react";
-import { formatDate, shimmerBlur } from "@/lib/utils";
+import { formatDate, shimmerBlur, getAccessibleBadgeStyle } from "@/lib/utils";
 import { getPostDisplayImage } from "@/lib/image-seo";
 import type { Post, Category } from "@/lib/db/schema";
 
@@ -44,8 +44,8 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
             </span>
             {category && (
               <span
-                className="px-3 py-1 text-xs font-semibold rounded-full text-white shadow-sm"
-                style={{ backgroundColor: category.color }}
+                className="px-3 py-1 text-xs font-semibold rounded-full shadow-sm"
+                style={getAccessibleBadgeStyle(category.color)}
               >
                 {category.name}
               </span>
@@ -121,8 +121,8 @@ export function PostCard({ post, category }: PostCardProps) {
         )}
         {category && (
           <span
-            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full text-white shadow-sm"
-            style={{ backgroundColor: category.color }}
+            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
+            style={getAccessibleBadgeStyle(category.color)}
           >
             {category.name}
           </span>
@@ -193,8 +193,8 @@ export function GridPostCard({ post, category }: PostCardProps) {
         )}
         {category && (
           <span
-            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full text-white shadow-sm"
-            style={{ backgroundColor: category.color }}
+            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
+            style={getAccessibleBadgeStyle(category.color)}
           >
             {category.name}
           </span>

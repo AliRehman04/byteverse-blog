@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
 import { eq, ne, desc, and } from "drizzle-orm";
 import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User, Wrench } from "lucide-react";
-import { formatDate, shimmerBlur } from "@/lib/utils";
+import { formatDate, shimmerBlur, getAccessibleBadgeStyle } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { AdUnit } from "@/components/adsense";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
@@ -92,7 +92,7 @@ function RecommendedTools({ categorySlug }: { categorySlug?: string | null }) {
           >
             <h3 className="font-semibold text-sm group-hover:text-primary transition-colors mb-1.5">{tool.name}</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">{tool.desc}</p>
-            <div className="mt-3 flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="mt-3 flex items-center gap-1 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
               Try it free <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
             </div>
           </Link>
@@ -428,7 +428,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <Link
                   href={`/category/${category.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-5 border border-white/10 backdrop-blur-sm"
-                  style={{ backgroundColor: category.color + "25", color: category.color }}
+                  style={getAccessibleBadgeStyle(category.color)}
                 >
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: category.color }} />
                   {category.name}
@@ -461,7 +461,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   )}
                   <div>
                     <span className="font-semibold text-white group-hover:text-blue-300 transition-colors block leading-tight">{post.author}</span>
-                    {authorData?.role && <span className="text-xs text-slate-500">{authorData.role}</span>}
+                    {authorData?.role && <span className="text-xs text-slate-400">{authorData.role}</span>}
                   </div>
                 </Link>
                 <span className="w-px h-5 bg-slate-600 hidden sm:block" />

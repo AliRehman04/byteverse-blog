@@ -143,7 +143,7 @@ export function RelatedTools() {
                 {/* Arrow indicator */}
                 <ArrowRight
                   size={14}
-                  className="absolute top-5 right-5 text-muted-foreground/0 group-hover:text-primary group-hover:translate-x-0.5 transition-all"
+                  className="absolute top-5 right-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all"
                 />
               </Link>
             );

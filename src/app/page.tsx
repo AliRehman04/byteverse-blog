@@ -307,7 +307,7 @@ export default async function HomePage() {
               <div className="min-w-0">
                 <h3 className="font-bold text-sm group-hover:text-primary transition-colors duration-200">{tool.title}</h3>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{tool.desc}</p>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground group-hover:text-primary mt-2 transition-colors duration-300">
                   Try Now <ArrowRight size={12} />
                 </span>
               </div>
@@ -399,7 +399,7 @@ export default async function HomePage() {
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                   {cat.description}
                 </p>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
                   Explore <ArrowRight size={12} />
                 </span>
               </Link>

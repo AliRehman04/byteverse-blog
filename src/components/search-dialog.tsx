@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, Clock, Loader2 } from "lucide-react";
 import Image from "next/image";
+import { getAccessibleBadgeStyle } from "@/lib/utils";
 
 interface SearchResult {
   id: number;
@@ -121,7 +122,7 @@ export function SearchDialog() {
               className="flex-1 py-4 bg-transparent text-foreground placeholder:text-muted-foreground outline-none text-base"
             />
             {query && (
-              <button onClick={() => setQuery("")} className="text-muted-foreground hover:text-foreground">
+              <button onClick={() => setQuery("")} className="text-muted-foreground hover:text-foreground" aria-label="Clear search">
                 <X size={16} />
               </button>
             )}
@@ -182,8 +183,8 @@ export function SearchDialog() {
                         <div className="flex items-center gap-2 mt-1">
                           {post.category && (
                             <span
-                              className="text-[10px] font-medium px-1.5 py-0.5 rounded-full text-white"
-                              style={{ backgroundColor: post.category.color }}
+                              className="text-[10px] font-medium px-1.5 py-0.5 rounded-full"
+                              style={getAccessibleBadgeStyle(post.category.color)}
                             >
                               {post.category.name}
                             </span>

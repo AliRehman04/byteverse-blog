@@ -65,7 +65,9 @@ export function Newsletter({ compact }: { compact?: boolean }) {
             <div className="absolute opacity-0 -z-10" aria-hidden="true" tabIndex={-1}>
               <input type="text" value={hp} onChange={e => setHp(e.target.value)} autoComplete="off" tabIndex={-1} />
             </div>
+            <label htmlFor="compact-newsletter-email" className="sr-only">Email address</label>
             <input
+              id="compact-newsletter-email"
               type="email"
               required
               value={email}

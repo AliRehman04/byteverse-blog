@@ -35,6 +35,10 @@ import {
   Sparkles,
   FileImage,
   BarChart3,
+  AlignLeft,
+  FileDown,
+  Table2,
+  ScrollText,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -365,6 +369,42 @@ const tools = [
     icon: FileText,
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
+  },
+  {
+    title: "Lorem Ipsum Generator",
+    description:
+      "Generate placeholder text for designs and layouts. Choose paragraphs, sentences, or words with customizable count and HTML wrapping.",
+    href: "/tools/lorem-ipsum-generator",
+    icon: AlignLeft,
+    color: "text-stone-500",
+    bg: "bg-stone-500/10",
+  },
+  {
+    title: "Markdown to HTML Converter",
+    description:
+      "Convert Markdown to clean, semantic HTML instantly. Supports headings, bold, italic, code blocks, links, images, lists, and blockquotes.",
+    href: "/tools/markdown-to-html",
+    icon: FileDown,
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+  },
+  {
+    title: "JSON to CSV Converter",
+    description:
+      "Convert JSON arrays to CSV or TSV format. Supports nested objects, custom delimiters, file upload, and download.",
+    href: "/tools/json-to-csv",
+    icon: Table2,
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+  },
+  {
+    title: "Privacy Policy Generator",
+    description:
+      "Generate a customized privacy policy for your website or app. Covers cookies, analytics, GDPR basics, and more. Download as Markdown.",
+    href: "/tools/privacy-policy-generator",
+    icon: ScrollText,
+    color: "text-purple-500",
+    bg: "bg-purple-500/10",
   },
 ];
 

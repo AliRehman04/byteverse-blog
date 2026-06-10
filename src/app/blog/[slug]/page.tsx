@@ -253,7 +253,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "BlogPosting",
     headline: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
-    image: seoImages.map((image, index) => toImageObjectSchema(image, index === 0)),
+    image: seoImages.length > 0 ? toImageObjectSchema(seoImages[0], true) : undefined,
     thumbnailUrl: seoImages[0]?.url,
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
@@ -285,15 +285,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     } : {}),
     inLanguage: "en-US",
     isAccessibleForFree: true,
-    articleBody: post.content.replace(/[#*_`\[\]()!|>~-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 5000),
-    ...(post.summary ? { abstract: post.summary.split("|").map(s => s.trim()).filter(Boolean).join(". ") + "." } : {}),
+    articleBody: post.content.replace(/[#*_`\[\]()!|>~-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 500),
   };
 
   // FAQ schema (auto-extracted from content headings with ?)
   const faqLd = faqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: faqs.slice(0, 5).map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {

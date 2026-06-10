@@ -170,38 +170,21 @@ export function getImageCreator(imageUrl: string) {
 }
 
 export function toImageObjectSchema(image: SeoImage, representativeOfPage = false) {
-  const isByteVerseAsset = image.url.startsWith(siteConfig.url);
-  const creator = getImageCreator(image.url);
-
   return {
     "@type": "ImageObject",
     url: image.url,
-    contentUrl: image.url,
     caption: image.caption,
-    description: image.alt,
     width: image.width,
     height: image.height,
-    inLanguage: "en-US",
     representativeOfPage,
-    creator,
-    copyrightHolder: isByteVerseAsset ? {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    } : undefined,
-    copyrightNotice: getImageCopyrightNotice(image.url),
-    creditText: getImageCreditText(image.url),
-    license: getImageLicenseUrl(image.url),
-    acquireLicensePage: getImageAcquireLicensePage(image.url),
   };
 }
 
 export function getSiteLogoImageSchema() {
-  return toImageObjectSchema({
+  return {
+    "@type": "ImageObject",
     url: `${siteConfig.url}/logo.png`,
-    alt: `${siteConfig.name} logo`,
-    caption: `${siteConfig.name} logo`,
     width: SITE_LOGO_WIDTH,
     height: SITE_LOGO_HEIGHT,
-  });
+  };
 }

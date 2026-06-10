@@ -80,7 +80,7 @@ export function generateToolJsonLd(config: ToolSeoConfig): object[] {
     schemas.push({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: config.faqs.map((faq) => ({
+      mainEntity: config.faqs.slice(0, 5).map((faq) => ({
         "@type": "Question",
         name: faq.question,
         acceptedAnswer: { "@type": "Answer", text: faq.answer },

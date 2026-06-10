@@ -115,35 +115,13 @@ export function MarkdownRenderer({ content }: { content: string }) {
         rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeSlug]}
         components={{
           h1: ({ children, id, ...props }) => (
-            <h2 id={id} className="group flex items-center gap-2 text-2xl font-extrabold tracking-tight mt-12 mb-4 pt-6 border-t border-border/50 scroll-mt-20" {...props}>
-              <span className="w-1 h-7 bg-primary rounded-full shrink-0" />
-              {children}
-            </h2>
-          ),
-          h2: ({ children, id, ...props }) => (
-            <h2 id={id} className="group flex items-center gap-2 text-2xl font-extrabold tracking-tight mt-12 mb-4 pt-6 border-t border-border/50 scroll-mt-20" {...props}>
-              <span className="w-1 h-7 bg-primary rounded-full shrink-0" />
-              {children}
-            </h2>
-          ),
-          h3: ({ children, id, ...props }) => (
-            <h3 id={id} className="text-xl font-bold tracking-tight mt-8 mb-3 scroll-mt-20" {...props}>
-              {children}
-            </h3>
+            <h2 id={id} {...props}>{children}</h2>
           ),
           p: ({ children, ...props }) => {
             const childArray = Children.toArray(children);
             const hasOnlyImage = childArray.length === 1 && isValidElement(childArray[0]) && childArray[0].type === "figure";
-
-            if (hasOnlyImage) {
-              return <>{children}</>;
-            }
-
-            return (
-              <p className="text-base sm:text-[1.0625rem] leading-[1.85] text-foreground/90 mb-6" {...props}>
-                {children}
-              </p>
-            );
+            if (hasOnlyImage) return <>{children}</>;
+            return <p {...props}>{children}</p>;
           },
           img: ({ src, alt, title }) => {
             if (!src || typeof src !== "string") return null;
@@ -188,25 +166,14 @@ export function MarkdownRenderer({ content }: { content: string }) {
           },
           a: ({ href, children, ...props }) => {
             const isExternal = isExternalHref(href);
+            if (!isExternal) return <a href={href} {...props}>{children}</a>;
             return (
-              <a
-                href={href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noopener noreferrer" : undefined}
-                className="text-primary font-medium underline underline-offset-[3px] decoration-primary/30 hover:decoration-primary transition-all inline-flex items-center gap-0.5"
-                {...props}
-              >
+              <a href={href} target="_blank" rel="noopener noreferrer" className="ext-link" {...props}>
                 {children}
-                {isExternal && <ExternalLink size={12} className="shrink-0 ml-0.5" />}
+                <ExternalLink size={12} className="shrink-0 ml-0.5 inline-block" />
               </a>
             );
           },
-          blockquote: ({ children, ...props }) => (
-            <blockquote className="relative my-8 pl-6 py-4 pr-4 border-l-4 border-primary bg-primary/5 rounded-r-xl text-muted-foreground" {...props}>
-              <span className="absolute top-3 left-3 text-4xl text-primary/20 font-serif leading-none">&ldquo;</span>
-              {children}
-            </blockquote>
-          ),
           pre: ({ children, ...props }) => {
             let code = "";
             try {
@@ -216,7 +183,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
               }
             } catch { /* ignore */ }
             return (
-              <div className="group relative my-8 rounded-xl overflow-hidden ring-1 ring-border bg-[#0d1117] dark:bg-[#0d1117]">
+              <div className="group relative my-8 rounded-xl overflow-hidden ring-1 ring-border bg-[#0d1117]">
                 <div className="flex items-center gap-2 px-4 py-2.5 bg-[#161b22] border-b border-white/5">
                   <span className="flex gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
@@ -233,58 +200,13 @@ export function MarkdownRenderer({ content }: { content: string }) {
             );
           },
           code: ({ children, className, ...props }) => {
-            const isInline = !className;
-            if (isInline) {
-              return (
-                <code className="px-1.5 py-0.5 rounded-md bg-muted text-primary font-mono text-[0.85em] font-medium" {...props}>
-                  {children}
-                </code>
-              );
+            if (!className) {
+              return <code className="px-1.5 py-0.5 rounded-md bg-muted text-primary font-mono text-[0.85em] font-medium" {...props}>{children}</code>;
             }
             return <code className={className} {...props}>{children}</code>;
           },
-          ul: ({ children, ...props }) => (
-            <ul className="my-6 space-y-2.5 list-none pl-0" {...props}>
-              {children}
-            </ul>
-          ),
-          ol: ({ children, ...props }) => (
-            <ol className="my-6 space-y-2.5 pl-0 counter-reset-list" {...props}>
-              {children}
-            </ol>
-          ),
-          li: ({ children, ...props }) => (
-            <li className="flex items-start gap-3 text-base sm:text-[1.0625rem] leading-[1.75]" {...props}>
-              <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-              <span className="flex-1">{children}</span>
-            </li>
-          ),
           table: ({ children, ...props }) => (
-            <div className="my-8 overflow-x-auto rounded-xl ring-1 ring-border">
-              <table className="w-full text-sm" {...props}>
-                {children}
-              </table>
-            </div>
-          ),
-          th: ({ children, ...props }) => (
-            <th className="px-4 py-3 text-left font-bold bg-muted text-foreground text-sm" {...props}>
-              {children}
-            </th>
-          ),
-          td: ({ children, ...props }) => (
-            <td className="px-4 py-3 border-t border-border text-sm" {...props}>
-              {children}
-            </td>
-          ),
-          hr: () => (
-            <div className="my-12 flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-border" />
-              <span className="w-1.5 h-1.5 rounded-full bg-border" />
-              <span className="w-1.5 h-1.5 rounded-full bg-border" />
-            </div>
-          ),
-          strong: ({ children, ...props }) => (
-            <strong className="font-bold text-foreground" {...props}>{children}</strong>
+            <div className="table-wrap"><table {...props}>{children}</table></div>
           ),
         }}
       >

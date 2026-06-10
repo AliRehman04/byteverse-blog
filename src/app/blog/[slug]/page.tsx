@@ -255,7 +255,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     description: post.metaDescription || post.excerpt,
     image: seoImages.map((image, index) => toImageObjectSchema(image, index === 0)),
     thumbnailUrl: seoImages[0]?.url,
-    primaryImageOfPage: seoImages[0] ? toImageObjectSchema(seoImages[0], true) : undefined,
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     wordCount,

@@ -113,6 +113,12 @@ export function MarkdownRenderer({ content }: { content: string }) {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema], rehypeSlug]}
         components={{
+          h1: ({ children, id, ...props }) => (
+            <h2 id={id} className="group flex items-center gap-2 text-2xl font-extrabold tracking-tight mt-12 mb-4 pt-6 border-t border-border/50 scroll-mt-20" {...props}>
+              <span className="w-1 h-7 bg-primary rounded-full shrink-0" />
+              {children}
+            </h2>
+          ),
           h2: ({ children, id, ...props }) => (
             <h2 id={id} className="group flex items-center gap-2 text-2xl font-extrabold tracking-tight mt-12 mb-4 pt-6 border-t border-border/50 scroll-mt-20" {...props}>
               <span className="w-1 h-7 bg-primary rounded-full shrink-0" />

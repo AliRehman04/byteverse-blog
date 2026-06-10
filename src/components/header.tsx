@@ -203,6 +203,7 @@ export function Header() {
                       </button>
 
                       {/* Mega Menu Dropdown */}
+                      {toolsOpen && (
                       <div
                         className={`fixed md:absolute top-[4.25rem] md:top-full left-1/2 -translate-x-1/2 pt-0 md:pt-2 transition-all duration-200 ${
                           toolsOpen
@@ -273,6 +274,7 @@ export function Header() {
                           </div>
                         </div>
                       </div>
+                      )}
                     </div>
                   );
                 }

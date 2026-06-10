@@ -439,7 +439,10 @@ export default function ToolsPage() {
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
           Fast, private, no sign-up required. Every tool runs entirely in your
-          browser - no data is sent to any server.
+          browser — no data is sent to any server.
+        </p>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-sm mt-3 leading-relaxed">
+          Whether you need to format JSON, generate secure passwords, test regular expressions, decode JWTs, compress images, build schema markup, or check content for plagiarism — we have {tools.length} free utilities built for developers, writers, and SEO professionals. All tools are open, instant, and work offline after loading.
         </p>
       </div>
 

@@ -9,6 +9,7 @@ interface PostCardProps {
   post: Post;
   category?: Category | null;
   featured?: boolean;
+  priority?: boolean;
 }
 
 /* ── Featured Hero Card (first post on blog page) ── */
@@ -96,7 +97,7 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
 }
 
 /* ── Regular Post Card (horizontal on desktop) ── */
-export function PostCard({ post, category }: PostCardProps) {
+export function PostCard({ post, category, priority }: PostCardProps) {
   const displayImage = getPostDisplayImage(post);
 
   return (
@@ -113,6 +114,7 @@ export function PostCard({ post, category }: PostCardProps) {
             sizes="(max-width: 640px) 100vw, 320px"
             placeholder="blur"
             blurDataURL={shimmerBlur}
+            {...(priority ? { priority: true } : { loading: "lazy" })}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
@@ -168,7 +170,7 @@ export function PostCard({ post, category }: PostCardProps) {
 }
 
 /* ── Grid Post Card (vertical layout for homepage/category grids) ── */
-export function GridPostCard({ post, category }: PostCardProps) {
+export function GridPostCard({ post, category, priority }: PostCardProps) {
   const displayImage = getPostDisplayImage(post);
 
   return (
@@ -185,6 +187,7 @@ export function GridPostCard({ post, category }: PostCardProps) {
             sizes="(max-width: 768px) 100vw, 33vw"
             placeholder="blur"
             blurDataURL={shimmerBlur}
+            {...(priority ? { priority: true } : { loading: "lazy" })}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">

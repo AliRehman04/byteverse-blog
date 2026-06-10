@@ -313,7 +313,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     } : {}),
     inLanguage: "en-US",
     isAccessibleForFree: true,
-    articleBody: post.content.replace(/[#*_`\[\]()!|>~-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 500),
   };
 
   // FAQ schema (auto-extracted from content headings with ?)
@@ -387,15 +386,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <article>
         <BlogPostWidgets slug={post.slug} url={postUrl} title={post.title} />
         {/* ========== HERO HEADER ========== */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 -left-20 w-60 h-60 bg-violet-500/10 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }} />
-          </div>
+        <section className="hero-bg relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
           <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm text-slate-400 mb-8 flex-wrap">

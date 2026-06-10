@@ -6,7 +6,6 @@ import { Footer } from "@/components/footer";
 import { AdSense } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/analytics";
 import { siteConfig } from "@/lib/config";
-import { getSiteLogoImageSchema } from "@/lib/image-seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -104,49 +103,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="alternate" type="application/rss+xml" title="ByteVerse RSS Feed" href="/feed.xml" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: siteConfig.name,
-              url: siteConfig.url,
-              logo: `${siteConfig.url}/logo.png`,
-              description: siteConfig.description,
-              contactPoint: {
-                "@type": "ContactPoint",
-                email: siteConfig.email,
-                contactType: "customer support",
-              },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: siteConfig.name,
-              url: siteConfig.url,
-              description: siteConfig.description,
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
-              publisher: {
-                "@type": "Organization",
-                name: siteConfig.name,
-                logo: getSiteLogoImageSchema(),
-              },
-            }),
-          }}
-        />
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

@@ -76,10 +76,9 @@ export default function AICVBuilderPage() {
       <ToolJsonLd config={toolConfig} />
 
       {/* Hero Header */}
-      <div className="relative mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 px-6 py-12 text-center text-white shadow-2xl shadow-indigo-500/20 sm:px-10 sm:py-16">
-        <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-white/5 blur-2xl" />
-        <div className="absolute left-1/2 top-0 h-24 w-64 -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+      <div className="relative mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 px-6 py-12 text-center text-white shadow-2xl shadow-indigo-500/20 sm:px-10 sm:py-16" style={{
+        background: "linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed), radial-gradient(ellipse 300px 300px at 0% 0%, rgba(255,255,255,0.1), transparent 70%), radial-gradient(ellipse 200px 200px at 100% 100%, rgba(255,255,255,0.05), transparent 70%)",
+      }}>
         <div className="relative">
           <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold backdrop-blur-sm">
             <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" /><span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" /></span>

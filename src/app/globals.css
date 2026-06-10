@@ -157,6 +157,49 @@ body {
   100% { background-position: -200% 0; }
 }
 
+/* ====== HERO BACKGROUND (CSS-only, zero extra DOM) ====== */
+.hero-bg::before,
+.hero-bg-home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg::before {
+  background:
+    radial-gradient(ellipse 500px 500px at 95% -5%, rgba(59,130,246,0.12), transparent 70%),
+    radial-gradient(ellipse 400px 400px at -5% 105%, rgba(139,92,246,0.08), transparent 70%);
+}
+
+.hero-bg-home::before {
+  background:
+    radial-gradient(ellipse 600px 600px at 85% -5%, rgba(59,130,246,0.15), transparent 70%),
+    radial-gradient(ellipse 500px 500px at -10% 50%, rgba(139,92,246,0.1), transparent 70%),
+    radial-gradient(ellipse 400px 400px at 75% 100%, rgba(6,182,212,0.08), transparent 70%);
+}
+
+.hero-bg::after,
+.hero-bg-home::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ====== CONTENT VISIBILITY (below-fold perf) ====== */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
 /* ====== ANIMATIONS ====== */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(16px); }

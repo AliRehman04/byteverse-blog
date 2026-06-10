@@ -62,7 +62,7 @@ export default function ContactPage() {
             Get in touch with ByteVerse
           </h1>
           <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-8">
-            Got a question, spotted an error, or want to suggest a topic? Drop us a message. We read every one and typically reply within 24 hours.
+            Got a question, spotted an error, or want to suggest a topic? Drop us a message. We read every one and typically reply within 24 hours. ByteVerse welcomes feedback on our AI tool reviews, coding tutorials, developer tools, and productivity guides from readers, creators, and tech professionals worldwide.
           </p>
 
           <div className="space-y-4">

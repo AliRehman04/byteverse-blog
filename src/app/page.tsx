@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Terminal, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
+import { getSiteLogoImageSchema } from "@/lib/image-seo";
 import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
-import { eq, desc, sql, count } from "drizzle-orm";
+import { eq, desc, sql, count, and } from "drizzle-orm";
 import { GridPostCard } from "@/components/post-card";
 import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
@@ -36,28 +37,28 @@ const features = [
   {
     icon: Sparkles,
     title: "AI Tool Reviews",
-    description: "We test AI tools hands-on and tell you what's worth your time.",
+    description: "We test AI tools hands-on and tell you what's worth your time — from writing assistants and image generators to code editors and chatbots.",
     color: "from-violet-500/10 to-purple-500/10",
     iconColor: "text-violet-600 dark:text-violet-400",
   },
   {
     icon: BookOpen,
     title: "Step-by-Step Guides",
-    description: "Clear tutorials you can follow along. No walls of jargon.",
+    description: "Clear tutorials you can follow along with real screenshots and code examples. No walls of jargon or filler content.",
     color: "from-blue-500/10 to-cyan-500/10",
     iconColor: "text-blue-600 dark:text-blue-400",
   },
   {
     icon: Cpu,
     title: "Coding Tutorials",
-    description: "Build real projects with JavaScript, Python, React, and more.",
+    description: "Build real projects with JavaScript, Python, React, Next.js, and TypeScript. Every tutorial includes working code you can copy and run.",
     color: "from-amber-500/10 to-orange-500/10",
     iconColor: "text-amber-600 dark:text-amber-400",
   },
   {
     icon: TrendingUp,
     title: "Productivity Hacks",
-    description: "Tools and setups that actually save you hours every week.",
+    description: "Discover tools, workflows, and automation setups that actually save you hours every week — Notion, Obsidian, VS Code, and more.",
     color: "from-emerald-500/10 to-teal-500/10",
     iconColor: "text-emerald-600 dark:text-emerald-400",
   },
@@ -90,22 +91,21 @@ export default async function HomePage() {
 
     // Get latest post per category using a single query with DISTINCT ON
     if (allCategories.length > 0) {
-      const latestPerCategory = await db
-        .select()
-        .from(posts)
-        .where(eq(posts.published, true))
-        .orderBy(posts.categoryId, desc(posts.createdAt))
-        .limit(allCategories.length * 2);
+      // Fetch latest post per category: one query per category in parallel
+      const dbRef = db;
+      const perCategoryResults = await Promise.all(
+        allCategories.map((cat) =>
+          dbRef
+            .select()
+            .from(posts)
+            .where(and(eq(posts.published, true), eq(posts.categoryId, cat.id)))
+            .orderBy(desc(posts.createdAt))
+            .limit(1)
+        )
+      );
 
-      const latestPostByCategory = new Map<number, typeof posts.$inferSelect>();
-      for (const post of latestPerCategory) {
-        if (post.categoryId && !latestPostByCategory.has(post.categoryId)) {
-          latestPostByCategory.set(post.categoryId, post);
-        }
-      }
-
-      latestPosts = allCategories
-        .map((category) => latestPostByCategory.get(category.id))
+      latestPosts = perCategoryResults
+        .map((rows) => rows[0])
         .filter((post): post is typeof posts.$inferSelect => Boolean(post));
     }
   }
@@ -122,50 +122,40 @@ export default async function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            logo: `${siteConfig.url}/logo.png`,
+            description: siteConfig.description,
+            contactPoint: { "@type": "ContactPoint", email: siteConfig.email, contactType: "customer support" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            description: siteConfig.description,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: { "@type": "EntryPoint", urlTemplate: `${siteConfig.url}/blog?q={search_term_string}` },
+              "query-input": "required name=search_term_string",
+            },
+            publisher: { "@type": "Organization", name: siteConfig.name, logo: getSiteLogoImageSchema() },
+          }),
+        }}
+      />
       {/* ===== HERO BANNER ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Gradient orbs - simplified on mobile via CSS */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 -left-32 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
-
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }} />
-
-          {/* Floating tech icons */}
-          <div className="hidden md:block">
-            <div className="absolute top-20 right-[15%] animate-float opacity-20">
-              <div className="w-12 h-12 rounded-xl bg-blue-400/20 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                <Code2 size={20} />
-              </div>
-            </div>
-            <div className="absolute top-40 left-[12%] animate-float-reverse opacity-15" style={{ animationDelay: "1s" }}>
-              <div className="w-14 h-14 rounded-xl bg-violet-400/20 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                <Braces size={22} />
-              </div>
-            </div>
-            <div className="absolute bottom-32 right-[10%] animate-float-slow opacity-15" style={{ animationDelay: "2s" }}>
-              <div className="w-10 h-10 rounded-lg bg-cyan-400/20 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                <Terminal size={16} />
-              </div>
-            </div>
-            <div className="absolute top-1/2 right-[25%] animate-float opacity-10" style={{ animationDelay: "3s" }}>
-              <div className="w-8 h-8 rounded-lg bg-pink-400/20 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                <Layers size={14} />
-              </div>
-            </div>
-          </div>
-
-          {/* Glowing dots */}
-          <div className="absolute top-32 left-[20%] w-2 h-2 bg-blue-400 rounded-full animate-pulse-ring" />
-          <div className="absolute bottom-40 left-[40%] w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse-ring" style={{ animationDelay: "1.5s" }} />
-          <div className="absolute top-1/2 right-[18%] w-2 h-2 bg-cyan-400 rounded-full animate-pulse-ring" style={{ animationDelay: "2.5s" }} />
-        </div>
+      <section className="hero-bg-home relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
 
         {/* Content */}
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-28 md:pt-28 md:pb-36">
@@ -188,6 +178,8 @@ export default async function HomePage() {
               <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
                 Hands-on AI tool reviews, coding tutorials, and browser-based utilities.
                 Every guide is written to help you choose faster, build cleaner, and avoid filler.
+                We cover the best AI writing tools, code editors, SEO utilities, image generators,
+                and developer productivity apps — all tested before we recommend them.
               </p>
 
               {/* CTA Buttons */}
@@ -278,7 +270,7 @@ export default async function HomePage() {
       </section>
 
       {/* Popular Tools */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+      <section className="cv-auto mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
         <div className="flex items-end justify-between mb-10">
           <div>
             <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-2">Developer Toolkit</p>
@@ -334,7 +326,7 @@ export default async function HomePage() {
 
       {/* Latest Posts */}
       {latestPosts.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <section className="cv-auto mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-2">Fresh Content</p>
@@ -351,11 +343,12 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {latestPosts.map((post) => (
+            {latestPosts.map((post, i) => (
               <GridPostCard
                 key={post.id}
                 post={post}
                 category={categoryMap.get(post.categoryId ?? 0)}
+                priority={i < 3}
               />
             ))}
           </div>
@@ -372,14 +365,14 @@ export default async function HomePage() {
       )}
 
       {/* Categories */}
-      <section className="section-alt border-y border-border">
+      <section className="cv-auto section-alt border-y border-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
           <div className="text-center mb-14">
             <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Topics</p>
             <h2 className="text-3xl font-bold tracking-tight mb-3">
               Explore <span className="gradient-text">Categories</span>
             </h2>
-            <p className="text-muted-foreground">Find exactly what you&apos;re looking for</p>
+            <p className="text-muted-foreground">Find exactly what you&apos;re looking for. Six curated topic areas covering AI tools, coding, productivity, cybersecurity, tech guides, and software reviews.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -416,14 +409,14 @@ export default async function HomePage() {
       </section>
 
       {/* About ByteVerse */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <section className="cv-auto mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="text-center mb-12">
           <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Our Promise</p>
           <h2 className="text-3xl font-bold tracking-tight mb-3">
             Why <span className="gradient-text">ByteVerse</span>?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Most tech blogs rehash the same press releases. We don&apos;t. Here&apos;s what makes us different.
+            Most tech blogs rehash the same press releases. We don&apos;t. ByteVerse is built by developers who test every tool, write every code snippet, and verify every recommendation before publishing. Our 38+ free browser-based tools and {totalPostCount || "55"}+ in-depth guides help you choose smarter, build faster, and stay ahead in a rapidly evolving tech landscape.
           </p>
         </div>
 

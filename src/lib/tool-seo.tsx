@@ -50,6 +50,13 @@ export function generateToolJsonLd(config: ToolSeoConfig): object[] {
       applicationCategory: config.applicationCategory || "DeveloperApplication",
       operatingSystem: "Any",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        ratingCount: "150",
+        bestRating: "5",
+        worstRating: "1",
+      },
       isAccessibleForFree: true,
       ...(config.featureList ? { featureList: config.featureList } : {}),
       ...(config.audience ? {

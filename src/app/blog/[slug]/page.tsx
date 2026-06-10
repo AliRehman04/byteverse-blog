@@ -36,8 +36,8 @@ const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string 
   ],
   "tech-guides": [
     { name: "JSON Formatter", slug: "json-formatter", desc: "Format & validate JSON" },
-    { name: "HTML Editor", slug: "html-editor", desc: "Live HTML/CSS/JS playground" },
-    { name: "Regex Tester", slug: "regex-tester", desc: "Test regex with highlighting" },
+    { name: "JSON to CSV", slug: "json-to-csv", desc: "Convert JSON data to CSV" },
+    { name: "Markdown to HTML", slug: "markdown-to-html", desc: "Convert Markdown to HTML" },
   ],
   coding: [
     { name: "Diff Checker", slug: "diff-checker", desc: "Compare texts side by side" },
@@ -46,8 +46,8 @@ const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string 
   ],
   productivity: [
     { name: "Word Counter", slug: "word-counter", desc: "Words, chars & reading time" },
-    { name: "Diff Checker", slug: "diff-checker", desc: "Compare texts side by side" },
-    { name: "Slug Generator", slug: "slug-generator", desc: "URL-friendly text slugs" },
+    { name: "Lorem Ipsum Generator", slug: "lorem-ipsum-generator", desc: "Generate placeholder text" },
+    { name: "Privacy Policy Generator", slug: "privacy-policy-generator", desc: "Generate privacy policies" },
   ],
   "software-reviews": [
     { name: "Meta Tag Generator", slug: "meta-tag-generator", desc: "SEO meta tags with preview" },

@@ -52,6 +52,10 @@ const INTERNAL_LINKS: [RegExp, string][] = [
   [/\b(box shadow generator)\b/gi, "/tools/box-shadow-generator"],
   [/\b(CSS gradient generator)\b/gi, "/tools/css-gradient-generator"],
   [/\b(schema markup generator)\b/gi, "/tools/schema-markup-generator"],
+  [/\b(JSON to CSV|JSON-to-CSV)\b/gi, "/tools/json-to-csv"],
+  [/\b(lorem ipsum generator|lorem ipsum)\b/gi, "/tools/lorem-ipsum-generator"],
+  [/\b(Markdown to HTML|markdown converter)\b/gi, "/tools/markdown-to-html"],
+  [/\b(privacy policy generator)\b/gi, "/tools/privacy-policy-generator"],
 ];
 
 function injectInternalLinks(md: string): string {

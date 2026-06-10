@@ -234,7 +234,7 @@ export function PrivacyPolicyTool() {
   const policyHtml = policy
     .replace(/^### (.+)$/gm, "<h3 class='text-lg font-semibold mt-6 mb-2'>$1</h3>")
     .replace(/^## (.+)$/gm, "<h2 class='text-xl font-bold mt-8 mb-3'>$1</h2>")
-    .replace(/^# (.+)$/gm, "<h1 class='text-2xl font-bold mb-4'>$1</h1>")
+    .replace(/^# (.+)$/gm, "<h2 class='text-2xl font-bold mb-4'>$1</h2>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/^- (.+)$/gm, "<li class='ml-4 list-disc'>$1</li>")
     .replace(/\n\n/g, "<br/><br/>")

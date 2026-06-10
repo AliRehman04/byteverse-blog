@@ -1,4 +1,4 @@
-import { RelatedTools } from "@/components/related-tools";
+import { LazyRelatedTools } from "@/components/lazy-related-tools";
 
 export default function ToolsLayout({
   children,
@@ -8,7 +8,7 @@ export default function ToolsLayout({
   return (
     <>
       {children}
-      <RelatedTools />
+      <LazyRelatedTools />
     </>
   );
 }

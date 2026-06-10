@@ -120,9 +120,9 @@ export default async function HomePage() {
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Gradient orbs - simplified on mobile via CSS */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl md:animate-float-slow" />
-          <div className="absolute top-1/2 -left-32 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl md:animate-float-reverse" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl md:animate-float" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 -left-32 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
 
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 opacity-[0.03]" style={{

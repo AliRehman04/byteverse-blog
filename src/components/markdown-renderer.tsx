@@ -107,6 +107,7 @@ function isExternalHref(href?: string): boolean {
 
 export function MarkdownRenderer({ content }: { content: string }) {
   const enrichedContent = injectInternalLinks(content);
+  let imageIndex = 0;
   return (
     <div className="blog-content prose prose-lg max-w-none dark:prose-invert">
       <ReactMarkdown
@@ -149,6 +150,8 @@ export function MarkdownRenderer({ content }: { content: string }) {
             const imageAlt = alt || title || "ByteVerse article illustration";
             const imageCaption = title || alt;
             const imageCreator = getImageCreator(src);
+            const isFirst = imageIndex === 0;
+            imageIndex++;
             return (
               <figure className="my-10" itemScope itemType="https://schema.org/ImageObject">
                 <div className="relative rounded-xl overflow-hidden ring-1 ring-border shadow-md">
@@ -158,8 +161,8 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     title={imageCaption || imageAlt}
                     width={1200}
                     height={675}
-                    loading="lazy"
-                    decoding="async"
+                    loading={isFirst ? "eager" : "lazy"}
+                    decoding={isFirst ? "sync" : "async"}
                     className="block w-full h-auto m-0! object-cover"
                     itemProp="contentUrl"
                   />

@@ -28,9 +28,18 @@ export default function BoxShadowGeneratorPage() {
       <BoxShadowGeneratorTool />
       <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
         <h2>CSS Box Shadow</h2>
-        <p>The <code>box-shadow</code> CSS property adds shadow effects around an element. You can stack multiple shadows, use inset for inner shadows, and control blur, spread, and color.</p>
+        <p>The <code>box-shadow</code> CSS property adds shadow effects around an element&apos;s frame, giving it depth and visual hierarchy. Shadows are one of the most effective ways to create a modern, layered UI without adding extra HTML elements. You can stack multiple shadows, use inset for inner shadows, and fine-tune blur radius, spread distance, and color opacity.</p>
         <h2>Syntax</h2>
         <p><code>box-shadow: [inset] x-offset y-offset blur spread color;</code></p>
+        <ul>
+          <li><strong>x-offset</strong> — Horizontal distance of the shadow. Positive values push it right, negative values push it left.</li>
+          <li><strong>y-offset</strong> — Vertical distance. Positive pushes down, negative pushes up.</li>
+          <li><strong>blur</strong> — How soft the shadow edges are. Higher values create a more diffused shadow.</li>
+          <li><strong>spread</strong> — Expands or contracts the shadow size. Positive values grow it, negative values shrink it.</li>
+          <li><strong>color</strong> — Shadow color, typically with transparency using rgba or hsla for realistic effects.</li>
+        </ul>
+        <h2>Tips for Better Shadows</h2>
+        <p>Use subtle, layered shadows instead of a single heavy shadow. Combine a tight, dark shadow for definition with a softer, wider shadow for ambient depth. Avoid pure black — use dark, slightly tinted colors with low opacity for a more natural look. The best box shadows are barely noticeable but make the entire design feel polished.</p>
       </section>
       <section className="mt-12 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
         <h2>Frequently Asked Questions</h2>

@@ -108,6 +108,20 @@ export default function ContactPage() {
           <ContactForm />
         </section>
       </div>
+
+      <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
+        <h2>Why Contact ByteVerse?</h2>
+        <p>ByteVerse is a community-driven tech blog that covers AI tools, coding tutorials, productivity tips, software reviews, and cybersecurity guides. We value reader feedback and use it to improve our content, fix inaccuracies, and prioritize new topics.</p>
+        <h2>What We Can Help With</h2>
+        <ul>
+          <li><strong>Content corrections</strong> — Spotted an error in one of our articles? Let us know and we will fix it promptly.</li>
+          <li><strong>Topic suggestions</strong> — Have a tool or technology you want us to review? We prioritize reader requests when planning new content.</li>
+          <li><strong>Partnership inquiries</strong> — Interested in guest posting, sponsored content, or cross-promotion? Reach out with your proposal.</li>
+          <li><strong>Technical questions</strong> — While we cannot provide personal tech support, we may turn common questions into full blog posts or tutorials.</li>
+          <li><strong>Bug reports</strong> — Found a broken link, layout issue, or tool bug? We appreciate reports that help us improve the site experience.</li>
+        </ul>
+        <p>We typically respond within 24 hours on business days. For urgent matters, email us directly at <a href="mailto:contact@byteverse.fyi">contact@byteverse.fyi</a>.</p>
+      </section>
     </main>
   );
 }

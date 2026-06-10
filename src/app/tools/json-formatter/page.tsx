@@ -45,18 +45,21 @@ export default function JsonFormatterPage() {
 
         <h2>What This Tool Does</h2>
         <ul>
-          <li><strong>Format/Beautify</strong> - Adds proper indentation (2 or 4 spaces)</li>
-          <li><strong>Validate</strong> - Checks if your JSON is valid and shows errors</li>
-          <li><strong>Minify</strong> - Removes all whitespace for smaller file size</li>
+          <li><strong>Format/Beautify</strong> — Adds proper indentation (2 or 4 spaces) so nested objects and arrays are easy to read</li>
+          <li><strong>Validate</strong> — Checks if your JSON is syntactically correct and pinpoints errors with line numbers</li>
+          <li><strong>Minify</strong> — Strips all whitespace and newlines for the smallest possible file size, ideal for API payloads and config files</li>
         </ul>
+
+        <h2>Why Formatting JSON Matters</h2>
+        <p>Raw JSON from APIs and databases is often minified — a single line of text that is nearly impossible to read. Properly formatted JSON with indentation makes it easy to spot nested structures, find specific keys, and debug issues. Validation catches syntax errors like trailing commas, missing quotes, and mismatched brackets before they cause runtime failures in your application.</p>
 
         <h2>Frequently Asked Questions</h2>
         <h3>Is my data safe?</h3>
-        <p>Yes. Everything runs in your browser. No data is sent to any server.</p>
+        <p>Yes. Everything runs in your browser using JavaScript. No data is sent to any server, and nothing is stored or logged.</p>
         <h3>What JSON errors does it catch?</h3>
-        <p>Missing commas, extra commas, unquoted keys, mismatched brackets, invalid values, and more.</p>
+        <p>Missing commas, trailing commas, unquoted keys, mismatched brackets and braces, invalid values, duplicate keys, and malformed Unicode escape sequences.</p>
         <h3>Can I use this for large JSON files?</h3>
-        <p>This tool handles files up to several MB comfortably. For very large files (50MB+), use a desktop tool.</p>
+        <p>This tool handles files up to several megabytes comfortably in modern browsers. For very large files (50MB+), consider using a desktop tool like VS Code or jq.</p>
       </section>
     </main>
   );

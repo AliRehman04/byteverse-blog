@@ -29,10 +29,14 @@ export default function ColorConverterPage() {
       <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
         <h2>Color Formats Explained</h2>
         <ul>
-          <li><strong>HEX</strong> &mdash; Hexadecimal notation (#RRGGBB) commonly used in CSS and design tools</li>
-          <li><strong>RGB</strong> &mdash; Red, Green, Blue values from 0-255, used in CSS and programming</li>
-          <li><strong>HSL</strong> &mdash; Hue (0-360°), Saturation (0-100%), Lightness (0-100%), ideal for color adjustments</li>
+          <li><strong>HEX</strong> — Hexadecimal notation (#RRGGBB) commonly used in CSS and design tools. Each pair of characters represents the red, green, and blue channels in base-16.</li>
+          <li><strong>RGB</strong> — Red, Green, Blue values from 0 to 255, used in CSS and programming. RGBA adds an alpha channel (0-1) for transparency.</li>
+          <li><strong>HSL</strong> — Hue (0-360°), Saturation (0-100%), Lightness (0-100%). HSL is ideal for creating color variations because adjusting lightness or saturation is intuitive compared to shifting RGB values.</li>
         </ul>
+        <h2>When to Use Each Format</h2>
+        <p>HEX is the most compact and widely supported notation — use it for simple, solid colors in CSS stylesheets. RGB and RGBA work best when you need to calculate colors programmatically or apply transparency. HSL shines when building design systems or creating hover effects, because you can lighten or darken a color by simply adjusting the lightness value without touching the hue.</p>
+        <h2>Color Conversion Tips</h2>
+        <p>Converting between color formats is lossless — you get the exact same color regardless of format. This tool converts instantly as you type, so you can experiment with different values and see all three formats update in real time. Use the visual color picker to find a color, then copy the format you need for your project.</p>
       </section>
       <section className="mt-12 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
         <h2>Frequently Asked Questions</h2>

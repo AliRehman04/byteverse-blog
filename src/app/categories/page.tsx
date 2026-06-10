@@ -186,6 +186,21 @@ export default async function CategoriesPage() {
             </Link>
           ))}
         </div>
+
+        {/* SEO content */}
+        <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
+          <h2>Explore ByteVerse Topics</h2>
+          <p>ByteVerse organizes its content into focused categories so you can find exactly what you need. Whether you are looking for in-depth AI tool comparisons, step-by-step coding tutorials, productivity workflows, cybersecurity best practices, or honest software reviews, each category offers curated articles written by experienced developers and tech enthusiasts.</p>
+          <h2>What You Will Find in Each Category</h2>
+          <ul>
+            <li><strong>AI Tools</strong> — Reviews and comparisons of the latest artificial intelligence platforms, from AI code editors and writing assistants to image generators and chatbots.</li>
+            <li><strong>Tech Guides</strong> — Practical how-to guides covering everything from setting up development environments to troubleshooting common tech problems.</li>
+            <li><strong>Productivity</strong> — Tips, tools, and strategies to work smarter, automate repetitive tasks, and manage your time more effectively.</li>
+            <li><strong>Coding</strong> — Tutorials, best practices, and project walkthroughs for web development, Python, JavaScript, and more.</li>
+            <li><strong>Software Reviews</strong> — Honest, tested reviews of developer tools, SaaS platforms, browser extensions, and desktop applications.</li>
+            <li><strong>Cybersecurity</strong> — Guides on staying safe online, protecting your data, understanding threats, and using security tools effectively.</li>
+          </ul>
+        </section>
       </div>
     </>
   );

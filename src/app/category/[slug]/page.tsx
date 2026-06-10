@@ -19,8 +19,9 @@ export async function generateMetadata({
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  // Try DB first
-  let cat: { name: string; description: string | null; slug: string } | null = null;
+  let cat: { name: string; description: string | null; slug: string; id?: number } | null = null;
+  let hasContent = false;
+
   if (db) {
     const result = await db
       .select()
@@ -28,6 +29,11 @@ export async function generateMetadata({
       .where(eq(categories.slug, slug))
       .limit(1);
     cat = result[0] || null;
+
+    if (cat && cat.id) {
+      const postCount = await db.select({ count: count() }).from(posts).where(and(eq(posts.categoryId, cat.id), eq(posts.published, true)));
+      hasContent = (postCount[0]?.count ?? 0) > 0;
+    }
   }
 
   if (!cat) {
@@ -35,16 +41,6 @@ export async function generateMetadata({
   }
 
   if (!cat) return { title: "Category Not Found" };
-
-  // Check if category has posts
-  let hasContent = false;
-  if (db) {
-    const catRecord = await db.select().from(categories).where(eq(categories.slug, slug)).limit(1);
-    if (catRecord[0]) {
-      const postCount = await db.select({ count: count() }).from(posts).where(and(eq(posts.categoryId, catRecord[0].id), eq(posts.published, true)));
-      hasContent = (postCount[0]?.count ?? 0) > 0;
-    }
-  }
 
   return {
     title: `${cat.name} Articles | Guides, Tips & Tutorials`,

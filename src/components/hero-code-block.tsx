@@ -23,14 +23,31 @@ export function HeroCodeBlock() {
   const [visibleLines, setVisibleLines] = useState(0);
 
   useEffect(() => {
-    if (visibleLines < codeLines.length) {
-      const timeout = setTimeout(
-        () => setVisibleLines((v) => v + 1),
-        visibleLines === 0 ? 600 : 120
-      );
-      return () => clearTimeout(timeout);
-    }
-  }, [visibleLines]);
+    // Use requestIdleCallback to avoid blocking main thread (TBT)
+    let cancelled = false;
+    const schedule = (fn: () => void, delay: number) => {
+      const timer = setTimeout(() => {
+        if (typeof requestIdleCallback !== "undefined") {
+          requestIdleCallback(() => { if (!cancelled) fn(); });
+        } else {
+          if (!cancelled) fn();
+        }
+      }, delay);
+      return timer;
+    };
+
+    let timer: ReturnType<typeof setTimeout>;
+    const step = (current: number) => {
+      if (cancelled || current >= codeLines.length) return;
+      timer = schedule(() => {
+        setVisibleLines(current + 1);
+        step(current + 1);
+      }, current === 0 ? 600 : 120);
+    };
+    step(0);
+
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, []);
 
   return (
     <div className="relative">

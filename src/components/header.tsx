@@ -168,7 +168,6 @@ export function Header() {
                 width={160}
                 height={40}
                 className="w-auto group-hover:scale-[1.02] transition-transform"
-                priority
               />
             </Link>
 

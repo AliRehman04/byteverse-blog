@@ -5,7 +5,7 @@ import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql, count } from "drizzle-orm";
 import { GridPostCard } from "@/components/post-card";
 import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
@@ -81,26 +81,33 @@ export default async function HomePage() {
   let allCategories: (typeof categories.$inferSelect)[] = [];
   let totalPostCount = 0;
   if (db) {
-    allCategories = await db.select().from(categories).orderBy(categories.id);
+    const [allCats, countResult] = await Promise.all([
+      db.select().from(categories).orderBy(categories.id),
+      db.select({ value: count() }).from(posts).where(eq(posts.published, true)),
+    ]);
+    allCategories = allCats;
+    totalPostCount = countResult[0]?.value ?? 0;
 
-    const publishedPosts = await db
-      .select()
-      .from(posts)
-      .where(eq(posts.published, true))
-      .orderBy(desc(posts.createdAt), desc(posts.id));
+    // Get latest post per category using a single query with DISTINCT ON
+    if (allCategories.length > 0) {
+      const latestPerCategory = await db
+        .select()
+        .from(posts)
+        .where(eq(posts.published, true))
+        .orderBy(posts.categoryId, desc(posts.createdAt))
+        .limit(allCategories.length * 2);
 
-    totalPostCount = publishedPosts.length;
-
-    const latestPostByCategory = new Map<number, typeof posts.$inferSelect>();
-    for (const post of publishedPosts) {
-      if (post.categoryId && !latestPostByCategory.has(post.categoryId)) {
-        latestPostByCategory.set(post.categoryId, post);
+      const latestPostByCategory = new Map<number, typeof posts.$inferSelect>();
+      for (const post of latestPerCategory) {
+        if (post.categoryId && !latestPostByCategory.has(post.categoryId)) {
+          latestPostByCategory.set(post.categoryId, post);
+        }
       }
-    }
 
-    latestPosts = allCategories
-      .map((category) => latestPostByCategory.get(category.id))
-      .filter((post): post is typeof posts.$inferSelect => Boolean(post));
+      latestPosts = allCategories
+        .map((category) => latestPostByCategory.get(category.id))
+        .filter((post): post is typeof posts.$inferSelect => Boolean(post));
+    }
   }
   const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
 

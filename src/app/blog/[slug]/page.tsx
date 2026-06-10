@@ -147,8 +147,6 @@ export async function generateMetadata({
     coverImage: post.coverImage,
     content: post.content,
   });
-  const primaryImage = seoImages[0]?.url || getPostDisplayImage(post);
-  const articleContent = removeDuplicatedPostIntro(post.content, post.title, primaryImage);
 
   return {
     title: post.metaTitle || post.title,
@@ -205,16 +203,46 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post || !post.published) notFound();
 
   let category = null;
-  if (post.categoryId) {
-    const catResult = await db
-      .select()
-      .from(categories)
-      .where(eq(categories.id, post.categoryId))
-      .limit(1);
-    category = catResult[0] || null;
-  }
+  const authorSlug = post.author.toLowerCase().replace(/\s+/g, "-");
+  let authorData = null;
+  let relatedPosts: (typeof post)[] = [];
 
-  // JSON-LD structured data (auto-generated from post data)
+  // Parallelize all secondary DB queries
+  const [catResult, authorResult, relatedResult] = await Promise.all([
+    post.categoryId
+      ? db.select().from(categories).where(eq(categories.id, post.categoryId)).limit(1)
+      : Promise.resolve([]),
+    db.select().from(authors).where(eq(authors.slug, authorSlug)).limit(1).catch(() => []),
+    post.categoryId
+      ? db.select().from(posts)
+          .where(and(eq(posts.categoryId, post.categoryId), ne(posts.id, post.id), eq(posts.published, true)))
+          .orderBy(desc(posts.createdAt))
+          .limit(3)
+          .catch(() => [] as (typeof post)[])
+      : Promise.resolve([] as (typeof post)[]),
+  ]);
+
+  category = catResult[0] || null;
+  authorData = authorResult[0] || null;
+  relatedPosts = relatedResult;
+
+  // Fill up related posts if needed
+  if (relatedPosts.length < 3) {
+    try {
+      const moreIds = [post.id, ...relatedPosts.map((p) => p.id)];
+      const more = await db
+        .select()
+        .from(posts)
+        .where(eq(posts.published, true))
+        .orderBy(desc(posts.views))
+        .limit(6);
+      for (const p of more) {
+        if (!moreIds.includes(p.id) && relatedPosts.length < 3) {
+          relatedPosts.push(p);
+        }
+      }
+    } catch { /* ignore */ }
+  }
   const wordCount = post.content.split(/\s+/).length;
   const readingMinutes = Math.ceil(wordCount / 200);
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
@@ -332,45 +360,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   };
 
   // Track views via client-side API call (ISR pages can't do server-side tracking reliably)
-
-  // Fetch author info from DB
-  const authorSlug = post.author.toLowerCase().replace(/\s+/g, "-");
-  let authorData = null;
-  try {
-    const authorResult = await db
-      .select()
-      .from(authors)
-      .where(eq(authors.slug, authorSlug))
-      .limit(1);
-    authorData = authorResult[0] || null;
-  } catch { /* ignore */ }
-
-  // Fetch related posts (same category, exclude current)
-  let relatedPosts: (typeof post)[] = [];
-  try {
-    if (post.categoryId) {
-      relatedPosts = await db
-        .select()
-        .from(posts)
-        .where(and(eq(posts.categoryId, post.categoryId), ne(posts.id, post.id), eq(posts.published, true)))
-        .orderBy(desc(posts.createdAt))
-        .limit(3);
-    }
-    if (relatedPosts.length < 3) {
-      const moreIds = [post.id, ...relatedPosts.map((p) => p.id)];
-      const more = await db
-        .select()
-        .from(posts)
-        .where(eq(posts.published, true))
-        .orderBy(desc(posts.views))
-        .limit(6);
-      for (const p of more) {
-        if (!moreIds.includes(p.id) && relatedPosts.length < 3) {
-          relatedPosts.push(p);
-        }
-      }
-    }
-  } catch { /* ignore */ }
 
   return (
     <>

@@ -44,7 +44,6 @@ export async function generateMetadata({
     alternates: {
       canonical: isFirstPage ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog?page=${currentPage}`,
     },
-    ...(isFirstPage ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

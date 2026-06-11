@@ -90,7 +90,7 @@ export function ReadingList() {
       {open && (
         <>
           <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
-          <div className="fixed top-0 right-0 z-50 w-[380px] max-w-[90vw] h-full bg-card border-l border-border shadow-2xl flex flex-col animate-fade-in-up">
+          <div className="fixed top-0 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] max-w-[90vw] h-full bg-card border-l rtl:border-l-0 rtl:border-r border-border shadow-2xl flex flex-col animate-fade-in-up">
             <div className="flex items-center justify-between px-5 py-4 border-b border-border">
               <h2 className="text-lg font-bold flex items-center gap-2">
                 <Bookmark size={18} className="text-primary" />

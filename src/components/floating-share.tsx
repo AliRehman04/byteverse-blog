@@ -34,7 +34,7 @@ export function FloatingShareBar({ url, title }: { url: string; title: string })
   return (
     <>
       {/* Desktop: fixed left sidebar */}
-      <div className={`hidden xl:flex fixed left-[max(1rem,calc((100vw-768px)/2-80px))] top-1/2 -translate-y-1/2 z-40 flex-col gap-2 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+      <div className={`hidden xl:flex fixed left-[max(1rem,calc((100vw-768px)/2-80px))] rtl:left-auto rtl:right-[max(1rem,calc((100vw-768px)/2-80px))] top-1/2 -translate-y-1/2 z-40 flex-col gap-2 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <a
           href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
           target="_blank"
@@ -78,7 +78,7 @@ export function FloatingShareBar({ url, title }: { url: string; title: string })
       </div>
 
       {/* Mobile: floating bottom button */}
-      <div className={`xl:hidden fixed bottom-6 left-6 z-40 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+      <div className={`xl:hidden fixed bottom-6 left-6 rtl:left-auto rtl:right-6 z-40 transition-opacity duration-300 ${hideNearFooter ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <button
           onClick={() => setOpen(!open)}
           className="p-3 rounded-full bg-card border border-border shadow-lg hover:bg-muted transition-colors"
@@ -87,7 +87,7 @@ export function FloatingShareBar({ url, title }: { url: string; title: string })
           <Share2 size={18} />
         </button>
         {open && (
-          <div className="absolute bottom-14 left-0 flex flex-col gap-2 animate-fade-in">
+          <div className="absolute bottom-14 left-0 rtl:left-auto rtl:right-0 flex flex-col gap-2 animate-fade-in">
             <a
               href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
               target="_blank"

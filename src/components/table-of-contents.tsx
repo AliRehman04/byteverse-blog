@@ -72,7 +72,7 @@ export function TableOfContents() {
       {!collapsed && (
         <ul className="mt-3 space-y-1 text-sm">
           {headings.map((item) => (
-            <li key={item.id} style={{ paddingLeft: item.level === 3 ? "1rem" : 0 }}>
+            <li key={item.id} style={{ paddingInlineStart: item.level === 3 ? "1rem" : undefined }}>
               <a
                 href={`#${item.id}`}
                 onClick={(e) => {

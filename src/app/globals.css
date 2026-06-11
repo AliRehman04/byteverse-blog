@@ -117,6 +117,10 @@ footer img.h-9.w-auto {
   left: -18px;
   position: relative;
 }
+[dir="rtl"] footer img.h-9.w-auto {
+  left: auto;
+  right: -18px;
+}
 
 footer a.flex.items-center.gap-2.mb-4 {
   height: 60px !important;
@@ -480,6 +484,10 @@ body {
   padding-left: 1.5em;
   margin-bottom: 1.5em;
 }
+[dir="rtl"] .prose ul, [dir="rtl"] .prose ol {
+  padding-left: 0;
+  padding-right: 1.5em;
+}
 
 .prose li {
   margin-bottom: 0.5em;
@@ -600,6 +608,12 @@ body {
   border-radius: 0 0.75rem 0.75rem 0;
   color: var(--muted-foreground);
 }
+[dir="rtl"] .blog-content blockquote {
+  border-left: none;
+  border-right: 4px solid var(--primary);
+  padding: 1rem 1.5rem 1rem 1rem;
+  border-radius: 0.75rem 0 0 0.75rem;
+}
 
 .blog-content blockquote::before {
   content: '\201C';
@@ -610,6 +624,10 @@ body {
   color: color-mix(in srgb, var(--primary) 20%, transparent);
   font-family: serif;
   line-height: 1;
+}
+[dir="rtl"] .blog-content blockquote::before {
+  left: auto;
+  right: 0.75rem;
 }
 
 .blog-content strong {
@@ -636,6 +654,10 @@ body {
   background: var(--muted);
   color: var(--foreground);
   font-size: 0.875rem;
+}
+[dir="rtl"] .blog-content th,
+[dir="rtl"] .blog-content td {
+  text-align: right;
 }
 
 .blog-content td {

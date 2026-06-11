@@ -33,7 +33,7 @@ export function ReadingProgress({ readingTime }: ReadingProgressProps) {
         />
       </div>
       {showTimeLeft && (
-        <div className="absolute top-[3px] right-4 pointer-events-none">
+        <div className="absolute top-[3px] right-4 rtl:right-auto rtl:left-4 pointer-events-none">
           <span className="inline-block px-2.5 py-1 text-[11px] font-semibold bg-primary text-white rounded-b-lg shadow-sm">
             {minutesLeft} min left
           </span>

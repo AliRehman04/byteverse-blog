@@ -58,7 +58,7 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
             </div>
           )}
           {/* Featured badge */}
-          <div className="absolute top-4 left-4 flex items-center gap-2">
+          <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 flex items-center gap-2">
             <span className="px-3 py-1 text-xs font-bold rounded-full bg-primary text-white shadow-lg">
               Featured
             </span>

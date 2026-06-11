@@ -14,6 +14,7 @@ import {
   UserPen,
   Mail,
   Search,
+  MessageSquare,
 } from "lucide-react";
 
 const navItems = [
@@ -23,6 +24,7 @@ const navItems = [
   { title: "Authors", href: "/admin/authors", icon: UserPen },
   { title: "Newsletter", href: "/admin/newsletter", icon: Mail },
   { title: "SEO", href: "/admin/seo", icon: Search },
+  { title: "Content Gaps", href: "/admin/content-gaps", icon: MessageSquare },
 ];
 
 export default function AdminLayout({

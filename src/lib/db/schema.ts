@@ -68,6 +68,17 @@ export const reactions = pgTable("reactions", {
   count: integer("count").notNull().default(0),
 });
 
+export const contentGaps = pgTable("content_gaps", {
+  id: serial("id").primaryKey(),
+  query: text("query").notNull(),
+  intent: varchar("intent", { length: 50 }).notNull().default("unknown"),
+  language: varchar("language", { length: 20 }).notNull().default("english"),
+  count: integer("count").notNull().default(1),
+  resolved: boolean("resolved").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 export type Post = typeof posts.$inferSelect;
 export type NewPost = typeof posts.$inferInsert;
 export type Category = typeof categories.$inferSelect;
@@ -76,3 +87,4 @@ export type Newsletter = typeof newsletter.$inferSelect;
 export type Author = typeof authors.$inferSelect;
 export type NewAuthor = typeof authors.$inferInsert;
 export type Reaction = typeof reactions.$inferSelect;
+export type ContentGap = typeof contentGaps.$inferSelect;

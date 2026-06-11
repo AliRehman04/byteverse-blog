@@ -29,9 +29,17 @@ function hideBanner() {
   // Remove the Google Translate top banner iframe
   const banner = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
   if (banner) banner.style.display = "none";
+  // Remove any skiptranslate divs that push content
+  document.querySelectorAll<HTMLElement>(".skiptranslate").forEach((el) => {
+    if (el.tagName === "DIV" || el.querySelector("iframe")) {
+      el.style.display = "none";
+      el.style.height = "0";
+    }
+  });
   // Reset body position Google Translate pushes down
   document.body.style.top = "0px";
   document.body.style.position = "";
+  document.body.style.marginTop = "0px";
 }
 
 export function LanguageSelector() {
@@ -65,9 +73,21 @@ export function LanguageSelector() {
       setTimeout(hideBanner, 2000);
       setTimeout(hideBanner, 4000);
     }
+
+    // Watch for Google Translate modifying body.style.top and reset it
+    const observer = new MutationObserver(() => {
+      if (document.body.style.top && document.body.style.top !== "0px") {
+        document.body.style.top = "0px";
+      }
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
+
     // Preload Google Translate on mount so it's ready when user clicks
     const timer = setTimeout(() => ensureLoaded(), 1000);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load Google Translate script

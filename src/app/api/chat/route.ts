@@ -12,15 +12,14 @@ const SITE_SCOPE = [
   "blog", "blogging", "content", "writing", "article", "post", "traffic", "monetize",
   "tool", "tools", "free tool", "online tool", "generator", "checker", "converter", "builder",
   "coding", "programming", "web development", "javascript", "python", "html", "css", "react", "nextjs",
-  "tech", "technology", "software", "app", "website", "digital", "online",
+  "tech", "technology", "software", "app", "website", "site", "digital", "online",
   "affiliate", "marketing", "earn", "money", "income", "freelance", "side hustle",
   "cybersecurity", "security", "password", "privacy", "hacking",
   "plagiarism", "cv", "resume", "job", "career",
   "image", "compress", "qr", "code", "json", "csv", "markdown", "html",
-  "vibe coding", "ai tools", "productivity", "automation",
+  "vibe coding", "ai tools", "productivity", "automation", "byteverse",
   // Hinglish scope words
-  "naukri", "kaam", "paise", "paisa", "kamana", "likhna", "website", "blog",
-  "coding", "tool", "tech", "seo", "ai",
+  "naukri", "kaam", "paise", "paisa", "kamana", "likhna",
 ];
 
 /* ── Complete Tools Knowledge Base ─────────────────────── */
@@ -107,7 +106,7 @@ const STOP_WORDS = new Set([
 ]);
 
 /* ── Intent Categories ──────────────────────────────────── */
-type Intent = "greeting" | "tool_query" | "blog_query" | "vague" | "help" | "thanks" | "out_of_scope";
+type Intent = "greeting" | "tool_query" | "blog_query" | "vague" | "help" | "thanks" | "out_of_scope" | "site_info";
 
 function isInScope(query: string, keywords: string[]): boolean {
   const q = query.toLowerCase();
@@ -131,6 +130,11 @@ function detectIntent(query: string, keywords: string[]): Intent {
   if (/^(shukriya|thanks|thank you|dhanyavad|meharbani)\b/i.test(q)) return "thanks";
   if (/^(help|madad|guide|how to use|kaise use)\b/i.test(q)) return "help";
 
+  // Site info — questions about the site itself
+  if (/\b(site|website|byteverse)\b/.test(q) && /\b(kya|what|about|related|baare|konsa|hai|ha|hain|kaisa|purpose|intro)\b/.test(q)) return "site_info";
+  if (/\b(yahan|yaha|idhar)\b/.test(q) && /\b(kya|what|milta|milega|available|hota)\b/.test(q)) return "site_info";
+  if (/\b(tum|aap|bot|you)\b/.test(q) && /\b(kya|kaun|who|what|kon)\b/.test(q) && /\b(ho|hai|ha|are|do)\b/.test(q)) return "site_info";
+
   // Check scope — must happen before tool/blog detection
   if (!isInScope(query, keywords)) return "out_of_scope";
 
@@ -153,7 +157,7 @@ function detectIntent(query: string, keywords: string[]): Intent {
 
 /* ── Detect Language ────────────────────────────────────── */
 function detectLanguage(query: string): "hinglish" | "english" {
-  const hinglishPatterns = /\b(kya|mujhe|muje|chahiye|chhaye|karo|kro|batao|dikhao|accha|acha|behtareen|zaroorat|madad|kaise|kahan|konsa|kitna|banana|bnana|paise|paisa|naukri|kaam|seekhna|sikhna|sikho|shuru|naya|yar|bhai|bro|haan|nahi|nai|krna|krne|krdo|krdein|wala|wale|wali|apko|apka|apki|mera|meri|mere|iska|iski|iske|humara|tumhara|unka|unki|unke|sab|sari|sara|koi|kuch|bohot|boht|bahut|thoda|zyada|kam|aur|ya|lekin|magar|isliye|kyunke|phir|pehle|baad|abhi|hona|chhaye|chahye|chaye|btao|bta|pta|chal|chalo)\b/gi;
+  const hinglishPatterns = /\b(kya|ha|hai|hain|mujhe|muje|chahiye|chhaye|karo|kro|batao|dikhao|accha|acha|behtareen|zaroorat|madad|kaise|kahan|konsa|kitna|banana|bnana|paise|paisa|naukri|kaam|seekhna|sikhna|sikho|shuru|naya|yar|bhai|bro|haan|nahi|nai|krna|krne|krdo|krdein|wala|wale|wali|apko|apka|apki|mera|meri|mere|iska|iski|iske|humara|tumhara|unka|unki|unke|sab|sari|sara|koi|kuch|bohot|boht|bahut|thoda|zyada|kam|aur|lekin|magar|isliye|kyunke|phir|pehle|baad|abhi|hona|chhaye|chahye|chaye|btao|bta|pta|chal|chalo|dekho|dakho|smj|samjh|pooch|poch|mila|milta|milega|hoga|hogi|hoge|kaisa|kaisi|kaise|yahan|idhar|udhar|abhi|abi|matlab|mtlb|sahi|galat|theek|thik)\b/gi;
   const matches = query.match(hinglishPatterns);
   return matches && matches.length >= 1 ? "hinglish" : "english";
 }
@@ -376,8 +380,8 @@ export async function POST(req: NextRequest) {
             "Hello! 👋 ByteVerse Bot yahan hai. Batayein — koi tool chahiye, article dhundhna hai, ya kuch aur?",
           ]
         : [
-            "Hello! 👋 I'm ByteVerse Bot. Ask me about our 35+ free tools, 100+ articles on AI, SEO, coding, and tech. How can I help?",
-            "Hey there! 👋 I can help you find tools, answer tech questions from our articles, or suggest useful resources. What do you need?",
+            "Hello! 👋 I'm ByteVerse Bot. I can help you find free tools, answer questions from our 100+ articles on AI, SEO, coding & tech. What do you need?",
+            "Hey there! 👋 Welcome to ByteVerse! Ask me about any of our 35+ free tools, tech articles, or topics like AI, SEO & blogging. How can I help?",
           ];
       return NextResponse.json({
         answer: greetings[Math.floor(Math.random() * greetings.length)],
@@ -400,6 +404,14 @@ export async function POST(req: NextRequest) {
         ? "Main ByteVerse Bot hoon! Aap mujhse ye pooch sakte hain:\n\n• Koi bhi tool dhundhein (jaise \"plagiarism checker\", \"cv builder\")\n• Articles se info poochein (jaise \"SEO kaise karein\", \"best AI tools\")\n• Tech topics explore karein (jaise \"vibe coding\", \"affiliate marketing\")\n\nBas apna sawal likhein! 🚀"
         : "I'm ByteVerse Bot! You can ask me:\n\n• Find any of our 35+ free tools (e.g. \"plagiarism checker\")\n• Get answers from our 100+ articles (e.g. \"SEO tips\", \"best AI tools\")\n• Explore topics like coding, AI, blogging, and earning online\n\nJust type your question! 🚀";
       return NextResponse.json({ answer: helpMsg, results: [], tools: [] });
+    }
+
+    // ── Site Info ──
+    if (intent === "site_info") {
+      const siteInfo = lang === "hinglish"
+        ? "ByteVerse ek tech platform hai jahan aapko milega:\n\n🛠️ 35+ Free Tools — Plagiarism Checker, AI Content Detector, CV Builder, Password Generator, Meta Tag Generator, aur bohot kuch\n\n📝 100+ Articles — AI tools, SEO tips, blogging strategies, coding tutorials, online earning, affiliate marketing\n\n🔍 Topics: AI, SEO, Web Development, Vibe Coding, Cybersecurity, Freelancing\n\nAap mujhse kisi bhi tool ya article ke baare mein pooch sakte hain! Kya dhundhna hai?"
+        : "ByteVerse is a tech platform where you'll find:\n\n🛠️ 35+ Free Tools — Plagiarism Checker, AI Content Detector, CV Builder, Password Generator, Meta Tag Generator, and many more\n\n📝 100+ Articles — AI tools, SEO tips, blogging strategies, coding tutorials, online earning, affiliate marketing\n\n🔍 Topics: AI, SEO, Web Development, Vibe Coding, Cybersecurity, Freelancing\n\nAsk me about any tool or article! What would you like to explore?";
+      return NextResponse.json({ answer: siteInfo, results: [], tools: [] });
     }
 
     // ── Out of Scope ──

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck, Flame, Eye } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck, Flame } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { getSiteLogoImageSchema } from "@/lib/image-seo";
@@ -408,11 +408,8 @@ export default async function HomePage() {
                             {cat.name}
                           </span>
                         )}
-                        <span className="flex items-center gap-1">
-                          <Eye size={12} /> {p.views.toLocaleString()} views
-                        </span>
                         {p.readingTime && (
-                          <span className="hidden sm:inline">{p.readingTime}</span>
+                          <span>{p.readingTime}</span>
                         )}
                       </div>
                     </div>

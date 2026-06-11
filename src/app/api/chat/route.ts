@@ -242,6 +242,20 @@ export async function POST(req: NextRequest) {
     const lang = detectLanguage(query);
     const queryLower = query.toLowerCase().trim();
 
+    // Quick check for simple intents — no LLM or DB needed
+    if (/^(hi|hello|hey|salam|assalam|aoa|hlo|hii+|namaste|sup|kya hal)\b/i.test(queryLower)) {
+      const greeting = lang === "hinglish"
+        ? "Assalam-o-Alaikum! 👋 Main ByteVerse Bot hoon — AI powered! AI tools, SEO, blogging, coding — kuch bhi poochein, main detail mein jawab dunga!"
+        : "Hello! 👋 I'm ByteVerse Bot — powered by AI! Ask me about AI tools, SEO, blogging, coding & more. I'll give you detailed answers from our 100+ articles!";
+      return NextResponse.json({ answer: greeting, results: [], tools: [] });
+    }
+    if (/^(shukriya|thanks|thank you|dhanyavad|meharbani)\b/i.test(queryLower)) {
+      const thanks = lang === "hinglish"
+        ? "Koi baat nahi! 😊 Agar aur kuch poochna ho to zaroor poochein."
+        : "You're welcome! 😊 Feel free to ask anything else.";
+      return NextResponse.json({ answer: thanks, results: [], tools: [] });
+    }
+
     // Extract & expand keywords
     let keywords = queryLower
       .replace(/[^\w\s]/g, "")
@@ -303,7 +317,7 @@ export async function POST(req: NextRequest) {
 
           return { title: post.title, slug: post.slug, excerpt: post.excerpt, score, bestParagraphs };
         })
-        .filter((p) => p.score > 0)
+        .filter((p) => p.score > 12)
         .sort((a, b) => b.score - a.score)
         .slice(0, 5);
     }

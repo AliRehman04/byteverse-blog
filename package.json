@@ -22,6 +22,7 @@
     "date-fns": "^4.2.1",
     "drizzle-orm": "^0.45.2",
     "gray-matter": "^4.0.3",
+    "groq-sdk": "^1.2.1",
     "highlight.js": "^11.11.1",
     "html2canvas": "^1.4.1",
     "jose": "^6.2.3",

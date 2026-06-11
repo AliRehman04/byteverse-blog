@@ -41,19 +41,38 @@ function convertFaqsToAccordion(md: string): string {
   const faqBody = nextH2 !== -1 ? faqContent.slice(0, nextH2) : faqContent;
   const afterFaq = nextH2 !== -1 ? faqContent.slice(nextH2) : "";
 
-  // Split FAQ body into individual Q&A pairs by ### headings
-  const qaPairs = faqBody.split(/^### /m).filter((s) => s.trim());
-  if (qaPairs.length === 0) return md;
+  // Try ### heading format first
+  const h3Pairs = faqBody.split(/^### /m).filter((s) => s.trim());
+  // Try **bold question** format: **Question?**\nAnswer
+  const boldPattern = /\*\*(.+?\?)\*\*\s*\n+([\s\S]*?)(?=\n\*\*[^*]+\?\*\*|\s*$)/g;
+  const boldPairs: { question: string; answer: string }[] = [];
+  let bm;
+  while ((bm = boldPattern.exec(faqBody)) !== null) {
+    const q = bm[1].trim();
+    const a = bm[2].trim();
+    if (q && a) boldPairs.push({ question: q, answer: a });
+  }
+
+  const pairs = h3Pairs.length > 1 ? "h3" : boldPairs.length > 0 ? "bold" : null;
+  if (!pairs) return md;
 
   let accordion = `<div class="faq-accordion">\n\n## Frequently Asked Questions\n\n`;
-  for (const pair of qaPairs) {
-    const newlineIdx = pair.indexOf("\n");
-    if (newlineIdx === -1) continue;
-    const question = pair.slice(0, newlineIdx).trim();
-    const answer = pair.slice(newlineIdx + 1).trim();
-    if (!question || !answer) continue;
-    accordion += `<details class="faq-item">\n<summary>${question}</summary>\n\n${answer}\n\n</details>\n\n`;
+
+  if (pairs === "h3") {
+    for (const pair of h3Pairs) {
+      const newlineIdx = pair.indexOf("\n");
+      if (newlineIdx === -1) continue;
+      const question = pair.slice(0, newlineIdx).trim();
+      const answer = pair.slice(newlineIdx + 1).trim();
+      if (!question || !answer) continue;
+      accordion += `<details class="faq-item">\n<summary>${question}</summary>\n\n${answer}\n\n</details>\n\n`;
+    }
+  } else {
+    for (const { question, answer } of boldPairs) {
+      accordion += `<details class="faq-item">\n<summary>${question}</summary>\n\n${answer}\n\n</details>\n\n`;
+    }
   }
+
   accordion += `</div>\n\n`;
 
   return beforeFaq + accordion + afterFaq;

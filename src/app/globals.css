@@ -7,6 +7,43 @@
 .goog-te-banner-frame, .skiptranslate { display: none !important; }
 body { top: 0 !important; }
 
+/* RTL layout support for Urdu/Arabic */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row, [dir="rtl"] .sm\:flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] header nav {
+  direction: rtl;
+}
+
+[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+[dir="rtl"] .text-left { text-align: right; }
+[dir="rtl"] .text-right { text-align: left; }
+
+[dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1rem; }
+[dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1rem; }
+
+[dir="rtl"] .gap-2 > .rotate-180,
+[dir="rtl"] svg[class*="rotate"] {
+  transform: scaleX(-1);
+}
+
+/* RTL: flip arrow icons */
+[dir="rtl"] .inline-flex.items-center svg:last-child {
+  transform: scaleX(-1);
+}
+
+/* RTL: proper font for Urdu/Arabic */
+[dir="rtl"] body {
+  font-family: "Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.8;
+}
+
 span.inline-block.relative.overflow-hidden {
   top: 12px;
 }

@@ -1,25 +1,34 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Globe, ChevronDown } from "lucide-react";
 
 const LANGUAGES = [
-  { code: "en", label: "English", country: "US" },
-  { code: "ur", label: "اردو", country: "PK" },
-  { code: "hi", label: "हिन्दी", country: "IN" },
-  { code: "ar", label: "العربية", country: "SA" },
-  { code: "es", label: "Español", country: "ES" },
-  { code: "zh-CN", label: "中文", country: "CN" },
+  { code: "en", label: "English", country: "US", rtl: false },
+  { code: "ur", label: "اردو", country: "PK", rtl: true },
+  { code: "hi", label: "हिन्दी", country: "IN", rtl: false },
+  { code: "ar", label: "العربية", country: "SA", rtl: true },
+  { code: "es", label: "Español", country: "ES", rtl: false },
+  { code: "zh-CN", label: "中文", country: "CN", rtl: false },
 ];
 
-/**
- * Language selector using Google Translate widget API.
- * Lazy-loads the script on first dropdown open for performance.
- */
+const RTL_CODES = new Set(["ur", "ar"]);
+
+function applyDirection(code: string) {
+  const html = document.documentElement;
+  if (RTL_CODES.has(code)) {
+    html.setAttribute("dir", "rtl");
+    html.setAttribute("lang", code);
+  } else {
+    html.setAttribute("dir", "ltr");
+    html.setAttribute("lang", code === "zh-CN" ? "zh" : code);
+  }
+}
+
 export function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("en");
-  const [loaded, setLoaded] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   // Close on outside click
@@ -31,22 +40,34 @@ export function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [open]);
 
-  // Detect existing translation from cookie
+  // Detect existing translation from cookie on mount
   useEffect(() => {
     const match = document.cookie.match(/googtrans=\/en\/([a-z-]+)/i);
     if (match) {
       const lang = LANGUAGES.find(
         (l) => l.code === match[1] || l.code.toLowerCase() === match[1].toLowerCase()
       );
-      if (lang) setCurrent(lang.code);
+      if (lang) {
+        setCurrent(lang.code);
+        applyDirection(lang.code);
+      }
     }
   }, []);
 
-  // Load Google Translate script on first dropdown open
-  const ensureLoaded = () => {
-    if (loaded || typeof window === "undefined") return;
+  // Load Google Translate script
+  const ensureLoaded = useCallback(() => {
+    if (scriptLoaded || typeof window === "undefined") return;
+
+    // Already have the widget initialized
+    const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    if (combo) {
+      setScriptLoaded(true);
+      return;
+    }
+
+    // Script tag already exists — widget may still be initializing
     if (document.getElementById("google-translate-script")) {
-      setLoaded(true);
+      setScriptLoaded(true);
       return;
     }
 
@@ -61,7 +82,7 @@ export function LanguageSelector() {
         },
         "google_translate_element"
       );
-      setLoaded(true);
+      setScriptLoaded(true);
     };
 
     const script = document.createElement("script");
@@ -70,11 +91,12 @@ export function LanguageSelector() {
       "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
     document.body.appendChild(script);
-  };
+  }, [scriptLoaded]);
 
   const selectLanguage = (code: string) => {
     setCurrent(code);
     setOpen(false);
+    applyDirection(code);
 
     if (code === "en") {
       // Remove translation — clear cookies and reload
@@ -86,7 +108,10 @@ export function LanguageSelector() {
       return;
     }
 
-    // Try the Google Translate combo select
+    // Set the cookie first so Google Translate picks it up
+    document.cookie = `googtrans=/en/${code}; path=/;`;
+    document.cookie = `googtrans=/en/${code}; path=/; domain=.${window.location.hostname}`;
+
     const trySelect = () => {
       const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
       if (select) {
@@ -98,11 +123,12 @@ export function LanguageSelector() {
     };
 
     if (!trySelect()) {
-      // Widget not ready yet — retry with interval
+      // Ensure script is loaded and retry
+      ensureLoaded();
       const interval = setInterval(() => {
         if (trySelect()) clearInterval(interval);
       }, 300);
-      setTimeout(() => clearInterval(interval), 5000);
+      setTimeout(() => clearInterval(interval), 8000);
     }
   };
 
@@ -134,6 +160,7 @@ export function LanguageSelector() {
                   ? "bg-primary/10 text-primary font-semibold"
                   : "text-foreground"
               }`}
+              dir={lang.rtl ? "rtl" : "ltr"}
             >
               <span className="text-xs font-bold text-muted-foreground w-6">{lang.country}</span>
               <span>{lang.label}</span>

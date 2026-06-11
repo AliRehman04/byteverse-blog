@@ -70,21 +70,12 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
                 {category.name}
               </span>
             )}
-            {freshness && (
-              <span
-                className="px-2.5 py-1 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
-                style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
-              >
-                {freshness.icon === "new" ? <Sparkles size={10} /> : <RefreshCw size={10} />}
-                {freshness.label}
-              </span>
-            )}
           </div>
         </Link>
 
         {/* Content */}
         <div className="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center">
-          <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4 flex-wrap">
             <span className="flex items-center gap-1.5">
               <Calendar size={12} />
               <time dateTime={post.createdAt.toISOString()}>
@@ -99,6 +90,15 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
                   {post.readingTime}
                 </span>
               </>
+            )}
+            {freshness && (
+              <span
+                className="px-2 py-0.5 text-[10px] font-bold rounded-full flex items-center gap-1"
+                style={{ backgroundColor: freshness.color + "18", color: freshness.color }}
+              >
+                {freshness.icon === "new" ? <Sparkles size={10} /> : <RefreshCw size={10} />}
+                {freshness.label}
+              </span>
             )}
           </div>
 
@@ -159,21 +159,12 @@ export function PostCard({ post, category, priority }: PostCardProps) {
               {category.name}
             </span>
           )}
-          {freshness && (
-            <span
-              className="px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
-              style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
-            >
-              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
-              {freshness.label}
-            </span>
-          )}
         </div>
       </Link>
 
       {/* Content */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-center">
-        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2.5">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2.5 flex-wrap">
           <time dateTime={post.createdAt.toISOString()}>
             {formatDate(post.createdAt)}
           </time>
@@ -185,6 +176,15 @@ export function PostCard({ post, category, priority }: PostCardProps) {
                 {post.readingTime}
               </span>
             </>
+          )}
+          {freshness && (
+            <span
+              className="px-2 py-0.5 text-[10px] font-bold rounded-full flex items-center gap-1"
+              style={{ backgroundColor: freshness.color + "18", color: freshness.color }}
+            >
+              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
+              {freshness.label}
+            </span>
           )}
         </div>
 
@@ -244,21 +244,12 @@ export function GridPostCard({ post, category, priority }: PostCardProps) {
               {category.name}
             </span>
           )}
-          {freshness && (
-            <span
-              className="px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
-              style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
-            >
-              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
-              {freshness.label}
-            </span>
-          )}
         </div>
       </Link>
 
       {/* Content */}
       <div className="p-4 sm:p-5 flex flex-col flex-1">
-        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2.5">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2.5 flex-wrap">
           <time dateTime={post.createdAt.toISOString()}>
             {formatDate(post.createdAt)}
           </time>
@@ -270,6 +261,15 @@ export function GridPostCard({ post, category, priority }: PostCardProps) {
                 {post.readingTime}
               </span>
             </>
+          )}
+          {freshness && (
+            <span
+              className="px-2 py-0.5 text-[10px] font-bold rounded-full flex items-center gap-1"
+              style={{ backgroundColor: freshness.color + "18", color: freshness.color }}
+            >
+              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
+              {freshness.label}
+            </span>
           )}
         </div>
 

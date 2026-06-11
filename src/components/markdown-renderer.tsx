@@ -49,7 +49,7 @@ function convertFaqsToAccordion(md: string): string {
   let bm;
   while ((bm = boldPattern.exec(faqBody)) !== null) {
     const q = bm[1].trim();
-    const a = bm[2].trim();
+    const a = bm[2].trim().replace(/^\+/, "");
     if (q && a) boldPairs.push({ question: q, answer: a });
   }
 
@@ -63,7 +63,7 @@ function convertFaqsToAccordion(md: string): string {
       const newlineIdx = pair.indexOf("\n");
       if (newlineIdx === -1) continue;
       const question = pair.slice(0, newlineIdx).trim();
-      const answer = pair.slice(newlineIdx + 1).trim();
+      const answer = pair.slice(newlineIdx + 1).trim().replace(/^\+/, "");
       if (!question || !answer) continue;
       accordion += `<details class="faq-item">\n<summary>${question}</summary>\n\n${answer}\n\n</details>\n\n`;
     }

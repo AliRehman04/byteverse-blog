@@ -4,12 +4,12 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Globe, ChevronDown } from "lucide-react";
 
 const LANGUAGES = [
-  { code: "en", label: "English", country: "US", rtl: false },
-  { code: "ur", label: "اردو", country: "PK", rtl: true },
-  { code: "hi", label: "हिन्दी", country: "IN", rtl: false },
-  { code: "ar", label: "العربية", country: "SA", rtl: true },
-  { code: "es", label: "Español", country: "ES", rtl: false },
-  { code: "zh-CN", label: "中文", country: "CN", rtl: false },
+  { code: "en", label: "English", short: "EN", rtl: false },
+  { code: "ur", label: "Urdu", short: "UR", rtl: true },
+  { code: "hi", label: "Hindi", short: "HI", rtl: false },
+  { code: "ar", label: "Arabic", short: "AR", rtl: true },
+  { code: "es", label: "Español", short: "ES", rtl: false },
+  { code: "zh-CN", label: "Chinese", short: "ZH", rtl: false },
 ];
 
 const RTL_CODES = new Set(["ur", "ar"]);
@@ -212,25 +212,24 @@ export function LanguageSelector() {
         title="Change language"
       >
         <Globe size={16} />
-        <span className="hidden sm:inline text-xs font-medium">{currentLang.country}</span>
+        <span className="hidden sm:inline text-xs font-medium">{currentLang.short}</span>
         <ChevronDown size={12} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
-        <div className="absolute top-full right-0 mt-2 w-44 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50 animate-fade-in">
+        <div className="absolute top-full right-0 mt-2 w-40 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50 animate-fade-in">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               onClick={() => selectLanguage(lang.code)}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-muted transition-colors ${
+              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 text-sm hover:bg-muted transition-colors ${
                 current === lang.code
                   ? "bg-primary/10 text-primary font-semibold"
                   : "text-foreground"
               }`}
-              dir={lang.rtl ? "rtl" : "ltr"}
             >
-              <span className="text-xs font-bold text-muted-foreground w-6">{lang.country}</span>
-              <span>{lang.label}</span>
+              <span className="text-[11px] font-bold text-muted-foreground w-5 shrink-0">{lang.short}</span>
+              <span className="truncate">{lang.label}</span>
             </button>
           ))}
         </div>

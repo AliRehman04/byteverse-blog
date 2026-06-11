@@ -33,12 +33,10 @@ body.translated-ltr, body.translated-rtl { top: 0 !important; }
 body { top: 0 !important; margin-top: 0 !important; }
 
 /* RTL layout support for Urdu/Arabic */
+/* NOTE: dir="rtl" on <html> already reverses flex-row, grid, and text direction.
+   We only add overrides for physical properties Tailwind generates (margins/paddings). */
 [dir="rtl"] {
   text-align: right;
-}
-
-[dir="rtl"] .flex-row, [dir="rtl"] .sm\:flex-row {
-  flex-direction: row-reverse;
 }
 
 [dir="rtl"] header nav {
@@ -52,11 +50,6 @@ body { top: 0 !important; margin-top: 0 !important; }
 
 [dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1rem; }
 [dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1rem; }
-
-[dir="rtl"] .gap-2 > .rotate-180,
-[dir="rtl"] svg[class*="rotate"] {
-  transform: scaleX(-1);
-}
 
 /* RTL: flip arrow icons */
 [dir="rtl"] .inline-flex.items-center svg:last-child {
@@ -149,6 +142,7 @@ body {
   font-family: var(--font-sans, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .ad-container,

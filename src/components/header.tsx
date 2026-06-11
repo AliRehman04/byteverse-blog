@@ -163,17 +163,17 @@ export function Header() {
             : "bg-background border-b border-transparent"
         }`}
       >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 overflow-hidden">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-2 group shrink-0">
               <Image
                 src="/logo.png"
                 alt="ByteVerse"
                 title="ByteVerse - AI Tools, Tech Guides & Productivity"
                 width={160}
                 height={40}
-                className="w-auto group-hover:scale-[1.02] transition-transform"
+                className="w-auto max-w-[120px] sm:max-w-none group-hover:scale-[1.02] transition-transform"
               />
             </Link>
 
@@ -301,7 +301,7 @@ export function Header() {
             </nav>
 
             {/* Right side */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               <SearchDialog />
               <ReadingList />
               <LanguageSelector />

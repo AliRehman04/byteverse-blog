@@ -334,34 +334,6 @@ export default function AiContentDetectorPage() {
         </div>
       </section>
 
-      {/* ── Related Tools ── */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-            Related Tools
-          </h2>
-          <p className="text-muted-foreground text-sm sm:text-base mt-3">
-            Pair these tools with the AI detector for a complete content verification workflow.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {relatedTools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="group relative overflow-hidden p-6 rounded-2xl border border-border bg-card hover:border-orange-500/30 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-orange-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className={`relative w-12 h-12 rounded-xl ${tool.bg} flex items-center justify-center mb-4 ring-1 ring-inset ring-black/5 dark:ring-white/5`}>
-                <tool.icon size={22} className={tool.color} />
-              </div>
-              <h3 className="relative font-bold text-foreground mb-1.5 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">{tool.title}</h3>
-              <p className="relative text-xs text-muted-foreground leading-relaxed">{tool.desc}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

@@ -24,6 +24,40 @@ const sanitizeSchema = {
   },
 };
 
+/* ── FAQ Accordion Converter ── */
+function convertFaqsToAccordion(md: string): string {
+  // Match "## Frequently Asked Questions" or "## FAQ" section
+  const faqHeadingPattern = /^## (?:Frequently Asked Questions|FAQ)\s*$/im;
+  const faqMatch = faqHeadingPattern.exec(md);
+  if (!faqMatch) return md;
+
+  const faqStart = faqMatch.index;
+  const beforeFaq = md.slice(0, faqStart);
+  const faqContent = md.slice(faqStart + faqMatch[0].length);
+
+  // Find where FAQ section ends (next ## heading or end of content)
+  const nextH2 = faqContent.search(/^## /m);
+  const faqBody = nextH2 !== -1 ? faqContent.slice(0, nextH2) : faqContent;
+  const afterFaq = nextH2 !== -1 ? faqContent.slice(nextH2) : "";
+
+  // Split FAQ body into individual Q&A pairs by ### headings
+  const qaPairs = faqBody.split(/^### /m).filter((s) => s.trim());
+  if (qaPairs.length === 0) return md;
+
+  let accordion = `<div class="faq-accordion">\n\n## Frequently Asked Questions\n\n`;
+  for (const pair of qaPairs) {
+    const newlineIdx = pair.indexOf("\n");
+    if (newlineIdx === -1) continue;
+    const question = pair.slice(0, newlineIdx).trim();
+    const answer = pair.slice(newlineIdx + 1).trim();
+    if (!question || !answer) continue;
+    accordion += `<details class="faq-item">\n<summary>${question}</summary>\n\n${answer}\n\n</details>\n\n`;
+  }
+  accordion += `</div>\n\n`;
+
+  return beforeFaq + accordion + afterFaq;
+}
+
 /* ── Auto Internal Linking ── */
 const INTERNAL_LINKS: [RegExp, string][] = [
   [/\b(JSON formatter)\b/gi, "/tools/json-formatter"],
@@ -110,7 +144,7 @@ function isExternalHref(href?: string): boolean {
 }
 
 export function MarkdownRenderer({ content }: { content: string }) {
-  const enrichedContent = injectInternalLinks(content);
+  const enrichedContent = injectInternalLinks(convertFaqsToAccordion(content));
   let imageIndex = 0;
   return (
     <div className="blog-content prose prose-lg max-w-none dark:prose-invert">

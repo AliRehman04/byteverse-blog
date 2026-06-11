@@ -116,9 +116,31 @@ export function LanguageSelector() {
     // Set cookies for Google Translate
     const domain = window.location.hostname;
     if (code === "en") {
-      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${domain}`;
-      window.location.reload();
+      // First try to restore original via Google Translate widget
+      const iframe = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
+      if (iframe?.contentDocument) {
+        const restoreBtn = iframe.contentDocument.querySelector<HTMLButtonElement>("#\\:1\\.restore, button.goog-close-link, [id$='.restore']");
+        if (restoreBtn) restoreBtn.click();
+      }
+      // Also try the combo box approach
+      const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+      if (select) {
+        select.value = "en";
+        select.dispatchEvent(new Event("change"));
+      }
+      // Clear all possible googtrans cookie variations
+      const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      document.cookie = `googtrans=; ${expiry}; path=/;`;
+      document.cookie = `googtrans=; ${expiry}; path=/; domain=${domain}`;
+      document.cookie = `googtrans=; ${expiry}; path=/; domain=.${domain}`;
+      // Also clear the root domain (e.g. byteverse.fyi without www)
+      const rootDomain = domain.replace(/^www\./, "");
+      if (rootDomain !== domain) {
+        document.cookie = `googtrans=; ${expiry}; path=/; domain=.${rootDomain}`;
+        document.cookie = `googtrans=; ${expiry}; path=/; domain=${rootDomain}`;
+      }
+      // Small delay to let widget process, then reload
+      setTimeout(() => window.location.reload(), 100);
       return;
     }
 

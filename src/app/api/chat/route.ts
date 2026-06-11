@@ -298,17 +298,21 @@ export async function POST(req: NextRequest) {
 
           let score = 0;
           let titleMatches = 0;
+          let distinctMatches = 0;
 
           for (const kw of keywords) {
             if (kw.length < 2) continue;
-            if (titleLower.includes(kw)) { score += 15; titleMatches++; }
-            if (postKeywords.includes(kw)) score += 8;
-            if (summaryLower.includes(kw)) score += 6;
-            if (excerptLower.includes(kw)) score += 5;
+            let matched = false;
+            if (titleLower.includes(kw)) { score += 15; titleMatches++; matched = true; }
+            if (postKeywords.includes(kw)) { score += 8; matched = true; }
+            if (summaryLower.includes(kw)) { score += 6; matched = true; }
+            if (excerptLower.includes(kw)) { score += 5; matched = true; }
             const contentHits = contentLower.split(kw).length - 1;
-            score += Math.min(contentHits, 5) * 2;
+            if (contentHits > 0) { score += Math.min(contentHits, 5) * 2; matched = true; }
+            if (matched) distinctMatches++;
           }
 
+          if (distinctMatches < 2) score = 0;
           if (titleMatches >= 2) score += titleMatches * 8;
 
           const bestParagraphs = score > 0
@@ -317,7 +321,7 @@ export async function POST(req: NextRequest) {
 
           return { title: post.title, slug: post.slug, excerpt: post.excerpt, score, bestParagraphs };
         })
-        .filter((p) => p.score > 12)
+        .filter((p) => p.score > 20)
         .sort((a, b) => b.score - a.score)
         .slice(0, 5);
     }

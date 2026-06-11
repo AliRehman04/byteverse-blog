@@ -11,6 +11,7 @@ const Comments = dynamic(() => import("@/components/comments").then((m) => m.Com
 const TableOfContents = dynamic(() => import("@/components/table-of-contents").then((m) => m.TableOfContents), { ssr: false });
 const ShareButtons = dynamic(() => import("@/components/share-buttons").then((m) => m.ShareButtons), { ssr: false });
 const BookmarkButton = dynamic(() => import("@/components/bookmark").then((m) => m.BookmarkButton), { ssr: false });
+const CardBookmarkBtn = dynamic(() => import("@/components/bookmark").then((m) => m.CardBookmarkButton), { ssr: false });
 const Reactions = dynamic(() => import("@/components/reactions").then((m) => m.Reactions), { ssr: false });
 
 interface Props {
@@ -46,6 +47,10 @@ export function BlogPostShare({ url, title }: { url: string; title: string }) {
 
 export function BlogPostBookmark({ slug, title }: { slug: string; title: string }) {
   return <BookmarkButton slug={slug} title={title} />;
+}
+
+export function CardBookmarkButton({ slug, title }: { slug: string; title: string }) {
+  return <CardBookmarkBtn slug={slug} title={title} />;
 }
 
 export function BlogPostReactions({ slug }: { slug: string }) {

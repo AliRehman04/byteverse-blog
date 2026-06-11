@@ -61,6 +61,45 @@ export function BookmarkButton({ slug, title }: { slug: string; title: string })
   );
 }
 
+/** Small icon-only bookmark button for post cards */
+export function CardBookmarkButton({ slug, title }: { slug: string; title: string }) {
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    setSaved(getBookmarks().some((b) => b.slug === slug));
+  }, [slug]);
+
+  const toggle = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const bookmarks = getBookmarks();
+    const exists = bookmarks.findIndex((b) => b.slug === slug);
+    if (exists >= 0) {
+      bookmarks.splice(exists, 1);
+      setSaved(false);
+    } else {
+      bookmarks.unshift({ slug, title, savedAt: Date.now() });
+      setSaved(true);
+    }
+    saveBookmarks(bookmarks);
+  }, [slug, title]);
+
+  return (
+    <button
+      onClick={toggle}
+      className={`p-1.5 rounded-lg backdrop-blur-sm transition-all ${
+        saved
+          ? "bg-primary/90 text-white shadow-lg"
+          : "bg-black/50 text-white/80 hover:bg-black/70 hover:text-white opacity-0 group-hover:opacity-100"
+      }`}
+      title={saved ? "Remove from reading list" : "Save to reading list"}
+      aria-label={saved ? "Remove from reading list" : "Save to reading list"}
+    >
+      {saved ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
+    </button>
+  );
+}
+
 /** Reading list panel — shows all saved bookmarks */
 export function ReadingList() {
   const [open, setOpen] = useState(false);

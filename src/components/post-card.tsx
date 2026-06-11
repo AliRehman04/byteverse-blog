@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Clock, ArrowRight, Calendar, Sparkles, RefreshCw } from "lucide-react";
 import { formatDate, shimmerBlur, getAccessibleBadgeStyle } from "@/lib/utils";
 import { getPostDisplayImage } from "@/lib/image-seo";
+import { CardBookmarkButton } from "@/components/blog-post-widgets";
 import type { Post, Category } from "@/lib/db/schema";
 
 /** Returns a freshness badge config or null */
@@ -70,6 +71,9 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
                 {category.name}
               </span>
             )}
+          </div>
+          <div className="absolute top-4 right-4 rtl:right-auto rtl:left-4">
+            <CardBookmarkButton slug={post.slug} title={post.title} />
           </div>
         </Link>
 
@@ -160,6 +164,9 @@ export function PostCard({ post, category, priority }: PostCardProps) {
             </span>
           )}
         </div>
+        <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3">
+          <CardBookmarkButton slug={post.slug} title={post.title} />
+        </div>
       </Link>
 
       {/* Content */}
@@ -244,6 +251,9 @@ export function GridPostCard({ post, category, priority }: PostCardProps) {
               {category.name}
             </span>
           )}
+        </div>
+        <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3">
+          <CardBookmarkButton slug={post.slug} title={post.title} />
         </div>
       </Link>
 

@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://giscus.app https://pagead2.googlesyndication.com https://adservice.google.com https://translate.google.com https://*.googleapis.com https://*.gstatic.com",
             "style-src 'self' 'unsafe-inline' https://*.googleapis.com https://*.gstatic.com",
-            "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://res.cloudinary.com https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://translate.google.com https://*.googleapis.com https://*.gstatic.com",
+            "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://res.cloudinary.com https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://translate.google.com https://*.googleapis.com https://*.gstatic.com https://www.google.com",
             "font-src 'self' https://*.gstatic.com https://*.googleapis.com",
             "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://*.googleapis.com https://translate.google.com https://*.gstatic.com",
             "frame-src 'self' https://giscus.app https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google.com https://translate.google.com",

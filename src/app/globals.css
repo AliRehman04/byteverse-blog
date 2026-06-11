@@ -4,7 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Hide Google Translate bar — keep widget off-screen but rendered */
-.goog-te-banner-frame { display: none !important; }
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame { display: none !important; height: 0 !important; }
+.skiptranslate > iframe { display: none !important; height: 0 !important; }
 #google_translate_element {
   position: fixed !important;
   top: -200px !important;

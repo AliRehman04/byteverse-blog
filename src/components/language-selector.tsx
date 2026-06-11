@@ -56,7 +56,7 @@ export function LanguageSelector() {
 
   // Load Google Translate script
   const ensureLoaded = useCallback(() => {
-    if (scriptLoaded || typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
     // Already have the widget initialized
     const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
@@ -67,8 +67,15 @@ export function LanguageSelector() {
 
     // Script tag already exists — widget may still be initializing
     if (document.getElementById("google-translate-script")) {
-      setScriptLoaded(true);
       return;
+    }
+
+    // Create hidden container if it doesn't exist
+    if (!document.getElementById("google_translate_element")) {
+      const div = document.createElement("div");
+      div.id = "google_translate_element";
+      div.style.display = "none";
+      document.body.appendChild(div);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,27 +98,26 @@ export function LanguageSelector() {
       "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
     document.body.appendChild(script);
-  }, [scriptLoaded]);
+  }, []);
 
   const selectLanguage = (code: string) => {
     setCurrent(code);
     setOpen(false);
     applyDirection(code);
 
+    // Set cookies for Google Translate
+    const domain = window.location.hostname;
     if (code === "en") {
-      // Remove translation — clear cookies and reload
       document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." +
-        window.location.hostname;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${domain}`;
       window.location.reload();
       return;
     }
 
-    // Set the cookie first so Google Translate picks it up
     document.cookie = `googtrans=/en/${code}; path=/;`;
-    document.cookie = `googtrans=/en/${code}; path=/; domain=.${window.location.hostname}`;
+    document.cookie = `googtrans=/en/${code}; path=/; domain=.${domain}`;
 
+    // Try to use existing widget first
     const trySelect = () => {
       const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
       if (select) {
@@ -122,14 +128,21 @@ export function LanguageSelector() {
       return false;
     };
 
-    if (!trySelect()) {
-      // Ensure script is loaded and retry
-      ensureLoaded();
-      const interval = setInterval(() => {
-        if (trySelect()) clearInterval(interval);
-      }, 300);
-      setTimeout(() => clearInterval(interval), 8000);
-    }
+    if (trySelect()) return;
+
+    // Widget not ready — load it, retry, then reload as fallback
+    ensureLoaded();
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      if (trySelect()) {
+        clearInterval(interval);
+      } else if (attempts > 15) {
+        clearInterval(interval);
+        // Cookie is set — reload to let Google Translate pick it up
+        window.location.reload();
+      }
+    }, 400);
   };
 
   const currentLang = LANGUAGES.find((l) => l.code === current) || LANGUAGES[0];
@@ -169,8 +182,7 @@ export function LanguageSelector() {
         </div>
       )}
 
-      {/* Hidden Google Translate element */}
-      <div id="google_translate_element" className="!hidden" />
+      {/* Google Translate element created dynamically by ensureLoaded() */}
     </div>
   );
 }

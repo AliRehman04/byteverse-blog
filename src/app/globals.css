@@ -3,8 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Hide Google Translate bar */
-.goog-te-banner-frame, .skiptranslate { display: none !important; }
+/* Hide Google Translate bar — keep body visible */
+.goog-te-banner-frame { display: none !important; }
+#google_translate_element { display: none !important; }
+body.translated-ltr, body.translated-rtl { top: 0 !important; }
 body { top: 0 !important; }
 
 /* RTL layout support for Urdu/Arabic */

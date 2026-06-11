@@ -75,6 +75,15 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
   alternates: {
     canonical: siteConfig.url,
+    languages: {
+      "en": siteConfig.url,
+      "ur": siteConfig.url,
+      "hi": siteConfig.url,
+      "ar": siteConfig.url,
+      "es": siteConfig.url,
+      "zh-CN": siteConfig.url,
+      "x-default": siteConfig.url,
+    },
   },
   icons: {
     icon: [
@@ -99,6 +108,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <link rel="preconnect" href="https://translate.googleapis.com" />
+        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />

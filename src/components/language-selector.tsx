@@ -4,23 +4,25 @@ import { useState, useRef, useEffect } from "react";
 import { Globe, ChevronDown } from "lucide-react";
 
 const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "ur", label: "اردو", flag: "🇵🇰" },
-  { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
-  { code: "ar", label: "العربية", flag: "🇸🇦" },
-  { code: "es", label: "Español", flag: "🇪🇸" },
-  { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "en", label: "English", country: "US" },
+  { code: "ur", label: "اردو", country: "PK" },
+  { code: "hi", label: "हिन्दी", country: "IN" },
+  { code: "ar", label: "العربية", country: "SA" },
+  { code: "es", label: "Español", country: "ES" },
+  { code: "zh-CN", label: "中文", country: "CN" },
 ];
 
 /**
- * Language selector that triggers Google Translate or browser-level translation.
- * Uses the Google Translate element API for reliable translation.
+ * Language selector using Google Translate widget API.
+ * Lazy-loads the script on first dropdown open for performance.
  */
 export function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("en");
+  const [loaded, setLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+  // Close on outside click
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
@@ -29,37 +31,78 @@ export function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [open]);
 
-  // Initialize Google Translate widget (hidden) on first mount
+  // Detect existing translation from cookie
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (document.getElementById("google-translate-script")) return;
+    const match = document.cookie.match(/googtrans=\/en\/([a-z-]+)/i);
+    if (match) {
+      const lang = LANGUAGES.find(
+        (l) => l.code === match[1] || l.code.toLowerCase() === match[1].toLowerCase()
+      );
+      if (lang) setCurrent(lang.code);
+    }
+  }, []);
 
-    // Add the Google Translate init function
+  // Load Google Translate script on first dropdown open
+  const ensureLoaded = () => {
+    if (loaded || typeof window === "undefined") return;
+    if (document.getElementById("google-translate-script")) {
+      setLoaded(true);
+      return;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).googleTranslateElementInit = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       new (window as any).google.translate.TranslateElement(
-        { pageLanguage: "en", autoDisplay: false },
+        {
+          pageLanguage: "en",
+          autoDisplay: false,
+          includedLanguages: "en,ur,hi,ar,es,zh-CN",
+        },
         "google_translate_element"
       );
+      setLoaded(true);
     };
 
     const script = document.createElement("script");
     script.id = "google-translate-script";
-    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.src =
+      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
     document.body.appendChild(script);
-  }, []);
+  };
 
   const selectLanguage = (code: string) => {
     setCurrent(code);
     setOpen(false);
 
-    // Trigger Google Translate
-    const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
-    if (select) {
-      select.value = code;
-      select.dispatchEvent(new Event("change"));
+    if (code === "en") {
+      // Remove translation — clear cookies and reload
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." +
+        window.location.hostname;
+      window.location.reload();
+      return;
+    }
+
+    // Try the Google Translate combo select
+    const trySelect = () => {
+      const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+      if (select) {
+        select.value = code;
+        select.dispatchEvent(new Event("change"));
+        return true;
+      }
+      return false;
+    };
+
+    if (!trySelect()) {
+      // Widget not ready yet — retry with interval
+      const interval = setInterval(() => {
+        if (trySelect()) clearInterval(interval);
+      }, 300);
+      setTimeout(() => clearInterval(interval), 5000);
     }
   };
 
@@ -68,12 +111,15 @@ export function LanguageSelector() {
   return (
     <div ref={ref} className="relative">
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          ensureLoaded();
+          setOpen(!open);
+        }}
         className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         title="Change language"
       >
         <Globe size={16} />
-        <span className="hidden sm:inline text-xs">{currentLang.flag}</span>
+        <span className="hidden sm:inline text-xs font-medium">{currentLang.country}</span>
         <ChevronDown size={12} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
@@ -84,10 +130,12 @@ export function LanguageSelector() {
               key={lang.code}
               onClick={() => selectLanguage(lang.code)}
               className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-muted transition-colors ${
-                current === lang.code ? "bg-primary/10 text-primary font-semibold" : "text-foreground"
+                current === lang.code
+                  ? "bg-primary/10 text-primary font-semibold"
+                  : "text-foreground"
               }`}
             >
-              <span className="text-base">{lang.flag}</span>
+              <span className="text-xs font-bold text-muted-foreground w-6">{lang.country}</span>
               <span>{lang.label}</span>
             </button>
           ))}
@@ -95,7 +143,7 @@ export function LanguageSelector() {
       )}
 
       {/* Hidden Google Translate element */}
-      <div id="google_translate_element" className="hidden" />
+      <div id="google_translate_element" className="!hidden" />
     </div>
   );
 }

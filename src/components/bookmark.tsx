@@ -84,7 +84,6 @@ export function ReadingList() {
         title="Reading List"
       >
         <Bookmark size={16} />
-        <span className="hidden sm:inline">Reading List</span>
       </button>
 
       {/* Slide-over panel */}

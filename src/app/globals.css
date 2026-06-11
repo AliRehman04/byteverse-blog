@@ -3,10 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Hide Google Translate bar — keep widget off-screen but rendered */
+/* Hide Google Translate banner completely */
 .goog-te-banner-frame,
-iframe.goog-te-banner-frame { display: none !important; height: 0 !important; }
-.skiptranslate > iframe { display: none !important; height: 0 !important; }
+iframe.goog-te-banner-frame,
+.skiptranslate > iframe,
+body > .skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  border: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  overflow: hidden !important;
+}
 #google_translate_element {
   position: fixed !important;
   top: -200px !important;
@@ -19,7 +30,7 @@ iframe.goog-te-banner-frame { display: none !important; height: 0 !important; }
   z-index: -1 !important;
 }
 body.translated-ltr, body.translated-rtl { top: 0 !important; }
-body { top: 0 !important; }
+body { top: 0 !important; margin-top: 0 !important; }
 
 /* RTL layout support for Urdu/Arabic */
 [dir="rtl"] {

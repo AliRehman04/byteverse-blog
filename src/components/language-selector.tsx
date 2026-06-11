@@ -25,6 +25,15 @@ function applyDirection(code: string) {
   }
 }
 
+function hideBanner() {
+  // Remove the Google Translate top banner iframe
+  const banner = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
+  if (banner) banner.style.display = "none";
+  // Reset body position Google Translate pushes down
+  document.body.style.top = "0px";
+  document.body.style.position = "";
+}
+
 export function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("en");
@@ -51,6 +60,10 @@ export function LanguageSelector() {
         setCurrent(lang.code);
         applyDirection(lang.code);
       }
+      // Hide banner on page load when already translated
+      setTimeout(hideBanner, 500);
+      setTimeout(hideBanner, 2000);
+      setTimeout(hideBanner, 4000);
     }
     // Preload Google Translate on mount so it's ready when user clicks
     const timer = setTimeout(() => ensureLoaded(), 1000);
@@ -118,6 +131,10 @@ export function LanguageSelector() {
       if (select) {
         select.value = code;
         select.dispatchEvent(new Event("change"));
+        // Hide banner after a short delay to let it render
+        setTimeout(hideBanner, 500);
+        setTimeout(hideBanner, 1500);
+        setTimeout(hideBanner, 3000);
         return true;
       }
       return false;

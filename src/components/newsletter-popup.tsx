@@ -14,22 +14,34 @@ export function NewsletterPopup() {
     // Don't show if already dismissed or subscribed
     if (localStorage.getItem("newsletter-dismissed")) return;
 
-    const onScroll = () => {
-      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      if (scrollPercent > 40) {
+    // Exit-intent detection (mouse leaves viewport from top)
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
         setShow(true);
+        document.removeEventListener("mouseleave", onMouseLeave);
         window.removeEventListener("scroll", onScroll);
       }
     };
 
-    // Delay listener to not show on quick visits
+    const onScroll = () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent > 40) {
+        setShow(true);
+        document.removeEventListener("mouseleave", onMouseLeave);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+
+    // Delay listeners to not trigger on quick visits
     const timer = setTimeout(() => {
       window.addEventListener("scroll", onScroll, { passive: true });
+      document.addEventListener("mouseleave", onMouseLeave);
     }, 5000);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 

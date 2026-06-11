@@ -1,9 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ArrowRight, Calendar } from "lucide-react";
+import { Clock, ArrowRight, Calendar, Sparkles, RefreshCw } from "lucide-react";
 import { formatDate, shimmerBlur, getAccessibleBadgeStyle } from "@/lib/utils";
 import { getPostDisplayImage } from "@/lib/image-seo";
 import type { Post, Category } from "@/lib/db/schema";
+
+/** Returns a freshness badge config or null */
+function getFreshnessBadge(post: Post): { label: string; icon: "new" | "updated"; color: string } | null {
+  const now = Date.now();
+  const created = new Date(post.createdAt).getTime();
+  const updated = new Date(post.updatedAt).getTime();
+  const daysSinceCreated = (now - created) / 86400000;
+  const wasUpdated = updated - created > 86400000; // updated > 1 day after creation
+
+  if (daysSinceCreated < 7) {
+    return { label: "New", icon: "new", color: "#8b5cf6" };
+  }
+  if (wasUpdated) {
+    const month = new Date(post.updatedAt).toLocaleString("en-US", { month: "short", year: "numeric" });
+    return { label: `Updated ${month}`, icon: "updated", color: "#16a34a" };
+  }
+  return null;
+}
 
 interface PostCardProps {
   post: Post;
@@ -15,6 +33,7 @@ interface PostCardProps {
 /* ── Featured Hero Card (first post on blog page) ── */
 export function FeaturedPostCard({ post, category }: PostCardProps) {
   const displayImage = getPostDisplayImage(post);
+  const freshness = getFreshnessBadge(post);
 
   return (
     <article className="group relative rounded-2xl overflow-hidden bg-card border border-border card-hover">
@@ -49,6 +68,15 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
                 style={getAccessibleBadgeStyle(category.color)}
               >
                 {category.name}
+              </span>
+            )}
+            {freshness && (
+              <span
+                className="px-2.5 py-1 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
+                style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
+              >
+                {freshness.icon === "new" ? <Sparkles size={10} /> : <RefreshCw size={10} />}
+                {freshness.label}
               </span>
             )}
           </div>
@@ -99,6 +127,7 @@ export function FeaturedPostCard({ post, category }: PostCardProps) {
 /* ── Regular Post Card (horizontal on desktop) ── */
 export function PostCard({ post, category, priority }: PostCardProps) {
   const displayImage = getPostDisplayImage(post);
+  const freshness = getFreshnessBadge(post);
 
   return (
     <article className="group rounded-xl border border-border bg-card overflow-hidden card-hover flex flex-col sm:flex-row">
@@ -121,14 +150,25 @@ export function PostCard({ post, category, priority }: PostCardProps) {
             <span className="text-3xl opacity-40">📝</span>
           </div>
         )}
-        {category && (
-          <span
-            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
-            style={getAccessibleBadgeStyle(category.color)}
-          >
-            {category.name}
-          </span>
-        )}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+          {category && (
+            <span
+              className="px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
+              style={getAccessibleBadgeStyle(category.color)}
+            >
+              {category.name}
+            </span>
+          )}
+          {freshness && (
+            <span
+              className="px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
+              style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
+            >
+              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
+              {freshness.label}
+            </span>
+          )}
+        </div>
       </Link>
 
       {/* Content */}
@@ -172,6 +212,7 @@ export function PostCard({ post, category, priority }: PostCardProps) {
 /* ── Grid Post Card (vertical layout for homepage/category grids) ── */
 export function GridPostCard({ post, category, priority }: PostCardProps) {
   const displayImage = getPostDisplayImage(post);
+  const freshness = getFreshnessBadge(post);
 
   return (
     <article className="group rounded-xl border border-border bg-card overflow-hidden card-hover flex flex-col">
@@ -194,14 +235,25 @@ export function GridPostCard({ post, category, priority }: PostCardProps) {
             <span className="text-3xl opacity-40">📝</span>
           </div>
         )}
-        {category && (
-          <span
-            className="absolute top-3 left-3 px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
-            style={getAccessibleBadgeStyle(category.color)}
-          >
-            {category.name}
-          </span>
-        )}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+          {category && (
+            <span
+              className="px-2.5 py-0.5 text-[11px] font-semibold rounded-full shadow-sm"
+              style={getAccessibleBadgeStyle(category.color)}
+            >
+              {category.name}
+            </span>
+          )}
+          {freshness && (
+            <span
+              className="px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm flex items-center gap-1"
+              style={{ backgroundColor: freshness.color + "20", color: freshness.color }}
+            >
+              {freshness.icon === "new" ? <Sparkles size={9} /> : <RefreshCw size={9} />}
+              {freshness.label}
+            </span>
+          )}
+        </div>
       </Link>
 
       {/* Content */}

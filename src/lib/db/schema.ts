@@ -61,6 +61,13 @@ export const authors = pgTable("authors", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+export const reactions = pgTable("reactions", {
+  id: serial("id").primaryKey(),
+  postSlug: varchar("post_slug", { length: 255 }).notNull(),
+  type: varchar("type", { length: 20 }).notNull().default("like"),
+  count: integer("count").notNull().default(0),
+});
+
 export type Post = typeof posts.$inferSelect;
 export type NewPost = typeof posts.$inferInsert;
 export type Category = typeof categories.$inferSelect;
@@ -68,3 +75,4 @@ export type NewCategory = typeof categories.$inferInsert;
 export type Newsletter = typeof newsletter.$inferSelect;
 export type Author = typeof authors.$inferSelect;
 export type NewAuthor = typeof authors.$inferInsert;
+export type Reaction = typeof reactions.$inferSelect;

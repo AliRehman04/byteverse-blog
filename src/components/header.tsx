@@ -13,6 +13,8 @@ import {
   Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, QrCode, Clock3,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ReadingList } from "@/components/bookmark";
+import { LanguageSelector } from "@/components/language-selector";
 import { siteConfig } from "@/lib/config";
 
 const SearchDialog = dynamic(
@@ -301,6 +303,8 @@ export function Header() {
             {/* Right side */}
             <div className="flex items-center gap-3">
               <SearchDialog />
+              <ReadingList />
+              <LanguageSelector />
               <ThemeToggle />
               <Link
                 href="/blog"

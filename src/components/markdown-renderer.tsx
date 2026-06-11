@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import { Children, isValidElement } from "react";
 import { ExternalLink } from "lucide-react";
 import { CopyButton } from "@/components/copy-button";
+import { CodePlayground } from "@/components/code-playground";
 import { getImageAcquireLicensePage, getImageCopyrightNotice, getImageCreator, getImageCreditText, getImageLicenseUrl } from "@/lib/image-seo";
 import { siteConfig } from "@/lib/config";
 
@@ -59,7 +60,7 @@ function convertFaqsToAccordion(md: string): string {
 }
 
 /* ── Auto Internal Linking ── */
-const INTERNAL_LINKS: [RegExp, string][] = [
+const TOOL_LINKS: [RegExp, string][] = [
   [/\b(JSON formatter)\b/gi, "/tools/json-formatter"],
   [/\b(password generator)\b/gi, "/tools/password-generator"],
   [/\b(meta tag generator)\b/gi, "/tools/meta-tag-generator"],
@@ -92,7 +93,25 @@ const INTERNAL_LINKS: [RegExp, string][] = [
   [/\b(privacy policy generator)\b/gi, "/tools/privacy-policy-generator"],
 ];
 
-function injectInternalLinks(md: string): string {
+export interface PostLink {
+  title: string;
+  slug: string;
+}
+
+/** Build regex links from DB post titles — matches 3+ word titles in content */
+function buildPostLinks(postLinks: PostLink[], currentSlug?: string): [RegExp, string][] {
+  return postLinks
+    .filter((p) => p.slug !== currentSlug && p.title.split(/\s+/).length >= 3)
+    .map((p) => {
+      const escaped = p.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return [new RegExp(`\\b(${escaped})\\b`, "gi"), `/blog/${p.slug}`] as [RegExp, string];
+    });
+}
+
+function injectInternalLinks(md: string, postLinks: PostLink[] = [], currentSlug?: string): string {
+  const dynamicPostLinks = buildPostLinks(postLinks, currentSlug);
+  // Tool links first (higher priority), then blog post links
+  const allLinks: [RegExp, string][] = [...TOOL_LINKS, ...dynamicPostLinks];
   const linked = new Set<string>();
   // Don't link inside headings, existing links, code blocks, or image alts
   const protectedRanges: [number, number][] = [];
@@ -110,7 +129,7 @@ function injectInternalLinks(md: string): string {
     }
   }
 
-  for (const [regex, url] of INTERNAL_LINKS) {
+  for (const [regex, url] of allLinks) {
     if (linked.has(url)) continue;
     const cloned = new RegExp(regex.source, regex.flags);
     md = md.replace(cloned, (match, _g1, offset) => {
@@ -143,8 +162,14 @@ function isExternalHref(href?: string): boolean {
   }
 }
 
-export function MarkdownRenderer({ content }: { content: string }) {
-  const enrichedContent = injectInternalLinks(convertFaqsToAccordion(content));
+interface MarkdownRendererProps {
+  content: string;
+  postLinks?: PostLink[];
+  currentSlug?: string;
+}
+
+export function MarkdownRenderer({ content, postLinks = [], currentSlug }: MarkdownRendererProps) {
+  const enrichedContent = injectInternalLinks(convertFaqsToAccordion(content), postLinks, currentSlug);
   let imageIndex = 0;
   return (
     <div className="blog-content prose prose-lg max-w-none dark:prose-invert">
@@ -214,13 +239,19 @@ export function MarkdownRenderer({ content }: { content: string }) {
           },
           pre: ({ children, ...props }) => {
             let code = "";
+            let lang = "";
             try {
-              const codeEl = children as React.ReactElement<{ children?: string }>;
+              const codeEl = children as React.ReactElement<{ children?: string; className?: string }>;
               if (typeof codeEl?.props?.children === "string") {
                 code = codeEl.props.children;
               }
+              if (codeEl?.props?.className) {
+                const m = codeEl.props.className.match(/language-(\w+)/);
+                if (m) lang = m[1];
+              }
             } catch { /* ignore */ }
-            return (
+
+            const codeBlock = (
               <div className="group relative my-8 rounded-xl overflow-hidden ring-1 ring-border bg-[#0d1117]">
                 <div className="flex items-center gap-2 px-4 py-2.5 bg-[#161b22] border-b border-white/5">
                   <span className="flex gap-1.5">
@@ -228,7 +259,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
                     <span className="w-3 h-3 rounded-full bg-[#28c840]" />
                   </span>
-                  <span className="text-xs text-slate-500 ml-2">Code</span>
+                  <span className="text-xs text-slate-500 ml-2">{lang || "Code"}</span>
                 </div>
                 <CopyButton code={code} />
                 <pre className="bg-transparent! border-0! ring-0! rounded-none! m-0! p-4 overflow-x-auto text-sm leading-relaxed text-slate-300" {...props}>
@@ -236,6 +267,12 @@ export function MarkdownRenderer({ content }: { content: string }) {
                 </pre>
               </div>
             );
+
+            if (/^(javascript|js|typescript|ts|html)$/.test(lang) && code.length > 0) {
+              return <CodePlayground code={code} language={lang}>{codeBlock}</CodePlayground>;
+            }
+
+            return codeBlock;
           },
           code: ({ children, className, ...props }) => {
             if (!className) {
@@ -244,8 +281,16 @@ export function MarkdownRenderer({ content }: { content: string }) {
             return <code className={className} {...props}>{children}</code>;
           },
           table: ({ children, ...props }) => (
-            <div className="table-wrap"><table {...props}>{children}</table></div>
+            <div className="table-wrap comparison-table"><table {...props}>{children}</table></div>
           ),
+          td: ({ children, ...props }) => {
+            const text = typeof children === "string" ? children.trim() : String(children ?? "").replace(/,/g, "").trim();
+            const isCheck = /^(✓|✔|yes|included|unlimited)$/i.test(text);
+            const isCross = /^(✗|✘|✕|no|none|limited|—|-)$/i.test(text);
+            if (isCheck) return <td {...props} className="comparison-yes">✔ {text}</td>;
+            if (isCross) return <td {...props} className="comparison-no">✗ {text}</td>;
+            return <td {...props}>{children}</td>;
+          },
         }}
       >
         {enrichedContent}

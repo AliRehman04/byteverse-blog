@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck, Flame, Eye } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { getSiteLogoImageSchema } from "@/lib/image-seo";
@@ -80,14 +80,17 @@ export default async function HomePage() {
 
   let latestPosts: (typeof posts.$inferSelect)[] = [];
   let allCategories: (typeof categories.$inferSelect)[] = [];
+  let popularPosts: (typeof posts.$inferSelect)[] = [];
   let totalPostCount = 0;
   if (db) {
-    const [allCats, countResult] = await Promise.all([
+    const [allCats, countResult, topViewed] = await Promise.all([
       db.select().from(categories).orderBy(categories.id),
       db.select({ value: count() }).from(posts).where(eq(posts.published, true)),
+      db.select().from(posts).where(eq(posts.published, true)).orderBy(desc(posts.views)).limit(6),
     ]);
     allCategories = allCats;
     totalPostCount = countResult[0]?.value ?? 0;
+    popularPosts = topViewed;
 
     // Get latest post per category using a single query with DISTINCT ON
     if (allCategories.length > 0) {
@@ -360,6 +363,66 @@ export default async function HomePage() {
             >
               View All Articles <ArrowRight size={14} />
             </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Popular Posts (data-driven by views) */}
+      {popularPosts.length > 0 && (
+        <section className="cv-auto section-alt border-y border-border">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+            <div className="flex items-end justify-between mb-10">
+              <div>
+                <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-2">Most Read</p>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  Popular <span className="gradient-text">Articles</span>
+                </h2>
+              </div>
+              <Link
+                href="/blog"
+                className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-300"
+              >
+                View All <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            <div className="grid gap-4">
+              {popularPosts.map((p, i) => {
+                const cat = categoryMap.get(p.categoryId ?? 0);
+                return (
+                  <Link
+                    key={p.id}
+                    href={`/blog/${p.slug}`}
+                    className="group flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border border-border bg-card card-hover"
+                  >
+                    <span className={`shrink-0 flex items-center justify-center w-10 h-10 rounded-xl font-extrabold text-sm ${i < 3 ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
+                      {i + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold text-sm sm:text-base group-hover:text-primary transition-colors truncate">
+                        {p.title}
+                      </h3>
+                      <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
+                        {cat && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold" style={{ backgroundColor: cat.color + "18", color: cat.color }}>
+                            {cat.name}
+                          </span>
+                        )}
+                        <span className="flex items-center gap-1">
+                          <Eye size={12} /> {p.views.toLocaleString()} views
+                        </span>
+                        {p.readingTime && (
+                          <span className="hidden sm:inline">{p.readingTime}</span>
+                        )}
+                      </div>
+                    </div>
+                    {i < 3 && (
+                      <Flame size={18} className="shrink-0 text-orange-400 hidden sm:block" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </section>
       )}

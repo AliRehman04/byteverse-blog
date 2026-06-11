@@ -10,17 +10,20 @@ const ViewTracker = dynamic(() => import("@/components/view-tracker").then((m) =
 const Comments = dynamic(() => import("@/components/comments").then((m) => m.Comments), { ssr: false });
 const TableOfContents = dynamic(() => import("@/components/table-of-contents").then((m) => m.TableOfContents), { ssr: false });
 const ShareButtons = dynamic(() => import("@/components/share-buttons").then((m) => m.ShareButtons), { ssr: false });
+const BookmarkButton = dynamic(() => import("@/components/bookmark").then((m) => m.BookmarkButton), { ssr: false });
+const Reactions = dynamic(() => import("@/components/reactions").then((m) => m.Reactions), { ssr: false });
 
 interface Props {
   slug: string;
   url: string;
   title: string;
+  readingMinutes?: number;
 }
 
-export function BlogPostWidgets({ slug, url, title }: Props) {
+export function BlogPostWidgets({ slug, url, title, readingMinutes }: Props) {
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgress readingTime={readingMinutes} />
       <BackToTop />
       <NewsletterPopup />
       <FloatingShareBar url={url} title={title} />
@@ -39,4 +42,12 @@ export function BlogPostComments() {
 
 export function BlogPostShare({ url, title }: { url: string; title: string }) {
   return <ShareButtons url={url} title={title} />;
+}
+
+export function BlogPostBookmark({ slug, title }: { slug: string; title: string }) {
+  return <BookmarkButton slug={slug} title={title} />;
+}
+
+export function BlogPostReactions({ slug }: { slug: string }) {
+  return <Reactions slug={slug} />;
 }

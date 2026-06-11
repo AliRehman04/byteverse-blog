@@ -13,6 +13,7 @@ import {
   ChevronRight,
   UserPen,
   Mail,
+  Search,
 } from "lucide-react";
 
 const navItems = [
@@ -21,6 +22,7 @@ const navItems = [
   { title: "Categories", href: "/admin/categories", icon: FolderOpen },
   { title: "Authors", href: "/admin/authors", icon: UserPen },
   { title: "Newsletter", href: "/admin/newsletter", icon: Mail },
+  { title: "SEO", href: "/admin/seo", icon: Search },
 ];
 
 export default function AdminLayout({

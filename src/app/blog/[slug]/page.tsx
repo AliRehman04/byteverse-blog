@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { posts, categories, authors } from "@/lib/db/schema";
-import { eq, ne, desc, and } from "drizzle-orm";
-import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User, Wrench } from "lucide-react";
+import { eq, ne, desc, and, asc } from "drizzle-orm";
+import { Clock, Calendar, ArrowLeft, Share2, ChevronRight, User, Wrench, RefreshCw, BookOpen } from "lucide-react";
 import { formatDate, shimmerBlur, getAccessibleBadgeStyle } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { AdUnit } from "@/components/adsense";
@@ -22,7 +22,7 @@ import {
   isSameImageUrl,
   toImageObjectSchema,
 } from "@/lib/image-seo";
-import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare } from "@/components/blog-post-widgets";
+import { BlogPostWidgets, BlogPostToc, BlogPostComments, BlogPostShare, BlogPostBookmark, BlogPostReactions } from "@/components/blog-post-widgets";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { KeyTakeaways } from "@/components/key-takeaways";
 import { AffiliateCTA } from "@/components/affiliate-cta";
@@ -174,6 +174,9 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `${siteConfig.url}/blog/${slug}`,
+      types: {
+        "application/amp+html": `${siteConfig.url}/stories/${slug}`,
+      },
     },
   };
 }
@@ -208,7 +211,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   let relatedPosts: (typeof post)[] = [];
 
   // Parallelize all secondary DB queries
-  const [catResult, authorResult, relatedResult] = await Promise.all([
+  const [catResult, authorResult, relatedResult, allPostLinks, clusterPosts] = await Promise.all([
     post.categoryId
       ? db.select().from(categories).where(eq(categories.id, post.categoryId)).limit(1)
       : Promise.resolve([]),
@@ -220,6 +223,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           .limit(3)
           .catch(() => [] as (typeof post)[])
       : Promise.resolve([] as (typeof post)[]),
+    db.select({ title: posts.title, slug: posts.slug })
+      .from(posts)
+      .where(eq(posts.published, true))
+      .catch(() => [] as { title: string; slug: string }[]),
+    post.categoryId
+      ? db.select({ id: posts.id, title: posts.title, slug: posts.slug })
+          .from(posts)
+          .where(and(eq(posts.categoryId, post.categoryId), eq(posts.published, true)))
+          .orderBy(asc(posts.createdAt))
+          .limit(20)
+          .catch(() => [] as { id: number; title: string; slug: string }[])
+      : Promise.resolve([] as { id: number; title: string; slug: string }[]),
   ]);
 
   category = catResult[0] || null;
@@ -384,7 +399,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       <article>
-        <BlogPostWidgets slug={post.slug} url={postUrl} title={post.title} />
+        <BlogPostWidgets slug={post.slug} url={postUrl} title={post.title} readingMinutes={readingMinutes} />
         {/* ========== HERO HEADER ========== */}
         <section className="hero-bg relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
           <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
@@ -447,6 +462,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Calendar size={14} />
                   {formatDate(post.createdAt)}
                 </span>
+                {post.updatedAt.getTime() - post.createdAt.getTime() > 86400000 && (
+                  <>
+                    <span className="w-1 h-1 rounded-full bg-slate-500" />
+                    <span className="flex items-center gap-1.5 text-emerald-400">
+                      <RefreshCw size={13} />
+                      Updated {formatDate(post.updatedAt)}
+                    </span>
+                  </>
+                )}
                 {post.readingTime && (
                   <>
                     <span className="w-1 h-1 rounded-full bg-slate-500" />
@@ -506,6 +530,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {/* Ad before content */}
               <AdUnit slot="blog-top" format="horizontal" />
 
+              {/* Post Series / Cluster Navigation */}
+              {clusterPosts.length > 2 && category && (
+                <nav className="my-8 p-5 rounded-2xl border border-border bg-muted/30">
+                  <div className="flex items-center gap-2 mb-3">
+                    <BookOpen size={16} className="text-primary" />
+                    <h3 className="text-sm font-bold">
+                      More in <span style={{ color: category.color }}>{category.name}</span>
+                    </h3>
+                    <span className="text-xs text-muted-foreground ml-auto">{clusterPosts.length} articles</span>
+                  </div>
+                  <ol className="space-y-1">
+                    {clusterPosts.map((cp, i) => {
+                      const isCurrent = cp.slug === post.slug;
+                      return (
+                        <li key={cp.id}>
+                          {isCurrent ? (
+                            <span className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-primary/10 text-primary text-sm font-semibold">
+                              <span className="shrink-0 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">{i + 1}</span>
+                              {cp.title}
+                              <span className="text-[10px] uppercase tracking-wider ml-auto shrink-0 opacity-70">Reading</span>
+                            </span>
+                          ) : (
+                            <Link
+                              href={`/blog/${cp.slug}`}
+                              className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-muted text-sm text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                              <span className="shrink-0 w-5 h-5 rounded-full bg-muted-foreground/15 flex items-center justify-center text-[10px] font-bold">{i + 1}</span>
+                              <span className="truncate">{cp.title}</span>
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </nav>
+              )}
+
               {/* Key Takeaways */}
               {post.summary && <KeyTakeaways summary={post.summary} />}
 
@@ -513,7 +574,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <BlogPostToc />
 
               {/* Markdown Content */}
-              <MarkdownRenderer content={articleContent} />
+              <MarkdownRenderer content={articleContent} postLinks={allPostLinks} currentSlug={post.slug} />
 
               {/* Affiliate Recommendations */}
               <AffiliateCTA slug={post.slug} />
@@ -523,11 +584,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Share Buttons */}
               <div className="mt-10 pt-8 border-t border-border">
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
-                  <Share2 size={14} />
-                  Share this article
-                </p>
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                    <Share2 size={14} />
+                    Share this article
+                  </p>
+                  <BlogPostBookmark slug={post.slug} title={post.title} />
+                </div>
                 <BlogPostShare url={postUrl} title={post.title} />
+              </div>
+
+              {/* Reactions */}
+              <div className="mt-6 pt-6 border-t border-border">
+                <BlogPostReactions slug={post.slug} />
               </div>
 
               {/* Comments */}

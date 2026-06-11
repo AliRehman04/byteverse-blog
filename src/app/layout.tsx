@@ -5,6 +5,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AdSense } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/analytics";
+import { Chatbot } from "@/components/chatbot";
+import { ServiceWorkerRegister } from "@/components/sw-register";
 import { siteConfig } from "@/lib/config";
 import "./globals.css";
 
@@ -110,6 +112,8 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
+        <Chatbot />
+        <ServiceWorkerRegister />
         <AdSense />
         <GoogleAnalytics />
       </body>

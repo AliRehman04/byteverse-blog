@@ -78,6 +78,17 @@ body[style*="top"] { top: 0 !important; }
   hyphens: auto;
 }
 
+/* RTL: scale down font sizes since Arabic/Nastaliq glyphs render larger */
+[dir="rtl"] h1 { font-size: 0.85em; }
+[dir="rtl"] h2 { font-size: 0.9em; }
+[dir="rtl"] .text-4xl,
+[dir="rtl"] .text-5xl,
+[dir="rtl"] .sm\:text-5xl,
+[dir="rtl"] .md\:text-6xl {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  line-height: 1.3;
+}
+
 span.inline-block.relative.overflow-hidden {
   top: 12px;
 }
@@ -150,6 +161,10 @@ footer a.flex.items-center.gap-2.mb-4 {
 
 * {
   border-color: var(--border);
+}
+
+html {
+  overflow-x: hidden;
 }
 
 body {

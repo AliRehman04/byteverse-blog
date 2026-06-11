@@ -40,7 +40,7 @@ export function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [open]);
 
-  // Detect existing translation from cookie on mount
+  // Detect existing translation from cookie on mount + preload script
   useEffect(() => {
     const match = document.cookie.match(/googtrans=\/en\/([a-z-]+)/i);
     if (match) {
@@ -52,7 +52,10 @@ export function LanguageSelector() {
         applyDirection(lang.code);
       }
     }
-  }, []);
+    // Preload Google Translate on mount so it's ready when user clicks
+    const timer = setTimeout(() => ensureLoaded(), 1000);
+    return () => clearTimeout(timer);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load Google Translate script
   const ensureLoaded = useCallback(() => {
@@ -70,21 +73,13 @@ export function LanguageSelector() {
       return;
     }
 
-    // Create hidden container if it doesn't exist
-    if (!document.getElementById("google_translate_element")) {
-      const div = document.createElement("div");
-      div.id = "google_translate_element";
-      div.style.display = "none";
-      document.body.appendChild(div);
-    }
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).googleTranslateElementInit = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       new (window as any).google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          autoDisplay: false,
+          autoDisplay: true,
           includedLanguages: "en,ur,hi,ar,es,zh-CN",
         },
         "google_translate_element"
@@ -182,7 +177,8 @@ export function LanguageSelector() {
         </div>
       )}
 
-      {/* Google Translate element created dynamically by ensureLoaded() */}
+      {/* Google Translate widget — off-screen but rendered for API to work */}
+      <div id="google_translate_element" />
     </div>
   );
 }

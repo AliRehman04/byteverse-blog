@@ -3,9 +3,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Hide Google Translate bar — keep body visible */
+/* Hide Google Translate bar — keep widget off-screen but rendered */
 .goog-te-banner-frame { display: none !important; }
-#google_translate_element { display: none !important; }
+#google_translate_element {
+  position: fixed !important;
+  top: -200px !important;
+  left: -200px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
 body.translated-ltr, body.translated-rtl { top: 0 !important; }
 body { top: 0 !important; }
 

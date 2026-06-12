@@ -39,6 +39,7 @@ import {
   FileDown,
   Table2,
   ScrollText,
+  FileType,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -405,6 +406,15 @@ const tools = [
     icon: ScrollText,
     color: "text-purple-500",
     bg: "bg-purple-500/10",
+  },
+  {
+    title: "JSON to TypeScript Converter",
+    description:
+      "Generate TypeScript interfaces or types from JSON data. Supports nested objects, arrays, optional props, and export declarations.",
+    href: "/tools/json-to-typescript",
+    icon: FileType,
+    color: "text-sky-500",
+    bg: "bg-sky-500/10",
   },
 ];
 

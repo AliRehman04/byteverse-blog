@@ -110,6 +110,7 @@ const TOOL_LINKS: [RegExp, string][] = [
   [/\b(lorem ipsum generator|lorem ipsum)\b/gi, "/tools/lorem-ipsum-generator"],
   [/\b(Markdown to HTML|markdown converter)\b/gi, "/tools/markdown-to-html"],
   [/\b(privacy policy generator)\b/gi, "/tools/privacy-policy-generator"],
+  [/\b(JSON to TypeScript|JSON-to-TypeScript|json to ts)\b/gi, "/tools/json-to-typescript"],
 ];
 
 export interface PostLink {

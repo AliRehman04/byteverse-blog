@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["privacy policy", "data protection", "cookies policy"],
   title: "Privacy Policy | How We Protect Your Data",
   description:
     "Read the ByteVerse privacy policy covering data collection, cookies, analytics, newsletter emails, and how your information is protected.",

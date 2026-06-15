@@ -42,7 +42,8 @@ import {
   FileType,
 } from "lucide-react";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
   title: "Free Developer Tools - ByteVerse",
   description:
     "Free online tools for developers. JSON formatter, password generator, meta tag generator, Base64 encoder, word counter, and more. Fast, private, no sign-up.",

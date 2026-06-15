@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["terms of service", "usage guidelines", "content policy"],
   title: "Terms of Service | Rules & Guidelines",
   description: `Review the ByteVerse terms of service covering content usage, affiliate links, intellectual property, user responsibilities, and site disclaimers.`,
   alternates: {

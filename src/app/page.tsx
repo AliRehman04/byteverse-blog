@@ -13,6 +13,7 @@ import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 export const metadata: Metadata = {
   title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
   description: siteConfig.description,
+  publisher: siteConfig.name,
   openGraph: {
     type: "website",
     locale: "en_US",

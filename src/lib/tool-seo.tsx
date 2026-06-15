@@ -20,6 +20,7 @@ export function generateToolMetadata(config: ToolSeoConfig): Metadata {
     title: config.title,
     description: config.description,
     keywords: config.keywords,
+    publisher: "ByteVerse",
     alternates: { canonical: url },
     openGraph: {
       title: `${config.title} | ByteVerse`,

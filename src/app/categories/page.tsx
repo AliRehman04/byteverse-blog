@@ -15,7 +15,9 @@ const categoryIcons: Record<string, React.ElementType> = {
   "cybersecurity": ShieldCheck,
 };
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["AI tools", "tech guides", "productivity", "coding tutorials", "software reviews", "cybersecurity"],
   title: "Browse All Categories | AI Tools, Tech Guides & More",
   description:
     "Explore all ByteVerse content categories including AI tools, step-by-step tech guides, productivity tips, coding tutorials, and honest software reviews.",

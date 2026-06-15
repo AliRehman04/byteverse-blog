@@ -4,7 +4,9 @@ import { Mail, MessageSquare, ShieldCheck } from "lucide-react";
 import { ContactForm } from "./contact-form";
 import { siteConfig } from "@/lib/config";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["contact ByteVerse", "tech blog contact", "feedback", "partnerships"],
   title: "Contact | ByteVerse",
   description:
     "Contact ByteVerse for questions, feedback, corrections, partnerships, and technology blog inquiries.",

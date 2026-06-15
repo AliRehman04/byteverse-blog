@@ -7,7 +7,9 @@ import { siteConfig } from "@/lib/config";
 import { getPostDisplayImage } from "@/lib/image-seo";
 import { BookOpen, ArrowRight } from "lucide-react";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["web stories", "AI tools stories", "tech guides", "visual stories"],
   title: `Web Stories | ${siteConfig.name}`,
   description: "Visual stories covering AI tools, coding tutorials, and tech guides. Swipe through quick insights from ByteVerse.",
   alternates: { canonical: `${siteConfig.url}/stories` },

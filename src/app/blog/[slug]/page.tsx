@@ -151,7 +151,8 @@ export async function generateMetadata({
   return {
     title: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
-    keywords: post.keywords || undefined,
+    ...(post.keywords ? { keywords: post.keywords } : {}),
+    publisher: siteConfig.name,
     openGraph: {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,

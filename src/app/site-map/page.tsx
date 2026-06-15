@@ -5,7 +5,9 @@ import { authors, categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
-export const metadata: Metadata = {
+
+  publisher: "ByteVerse",
+  keywords: ["sitemap", "ByteVerse pages", "blog directory"],
   title: "HTML Sitemap",
   description: "Browse all major ByteVerse pages including blog posts, categories, authors, and tools.",
   alternates: {

@@ -27,6 +27,8 @@ export async function generateMetadata({
   return {
     title,
     description,
+    publisher: "ByteVerse",
+    keywords: ["AI tools", "tech guides", "coding tutorials", "software reviews", "productivity", "technology blog"],
     openGraph: {
       title: `Blog${pageLabel} | Latest Articles on AI, Tech & Productivity | ByteVerse`,
       description:

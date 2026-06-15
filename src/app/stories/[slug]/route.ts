@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { getPostDisplayImage } from "@/lib/image-seo";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 /** Extract key points from markdown content for story slides */
 function extractSlides(content: string, title: string): { heading: string; text: string }[] {
@@ -242,7 +242,7 @@ export async function GET(
   return new Response(ampStoryHtml, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
     },
   });
 }

@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/config";
 
 const LAST_MODIFIED = new Date("2026-06-06T00:00:00.000Z");
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url.replace(/\/$/, "");

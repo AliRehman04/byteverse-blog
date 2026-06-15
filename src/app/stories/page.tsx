@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/config";
 import { getPostDisplayImage } from "@/lib/image-seo";
 import { BookOpen, ArrowRight } from "lucide-react";
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   keywords: ["web stories", "AI tools stories", "tech guides", "visual stories"],
   title: `Web Stories | ${siteConfig.name}`,
@@ -15,7 +15,7 @@ import { BookOpen, ArrowRight } from "lucide-react";
   alternates: { canonical: `${siteConfig.url}/stories` },
 };
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 export default async function StoriesPage() {
   if (!db) return <p>No stories available.</p>;

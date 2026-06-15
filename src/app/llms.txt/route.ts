@@ -3,7 +3,7 @@ import { posts, categories } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
-export const revalidate = 3600; // refresh every hour
+export const revalidate = 21600; // refresh every 6 hours
 
 export async function GET() {
   const base = siteConfig.url;
@@ -111,7 +111,7 @@ export async function GET() {
   return new Response(body, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
     },
   });
 }

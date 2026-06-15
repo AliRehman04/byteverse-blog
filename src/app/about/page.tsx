@@ -3,7 +3,7 @@ import { Target, Users, Heart, Mail, Shield, Search } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   keywords: ["about ByteVerse", "tech blog", "AI tools blog", "Ali Rehman"],
   title: "About | Your Trusted Tech Knowledge Hub",

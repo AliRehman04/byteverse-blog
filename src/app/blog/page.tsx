@@ -49,7 +49,7 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 60;
+export const revalidate = 21600;
 
 export default async function BlogPage({
   searchParams,

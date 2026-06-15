@@ -15,7 +15,7 @@ const categoryIcons: Record<string, React.ElementType> = {
   "cybersecurity": ShieldCheck,
 };
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   keywords: ["AI tools", "tech guides", "productivity", "coding tutorials", "software reviews", "cybersecurity"],
   title: "Browse All Categories | AI Tools, Tech Guides & More",
@@ -40,6 +40,8 @@ const categoryIcons: Record<string, React.ElementType> = {
     canonical: `${siteConfig.url}/categories`,
   },
 };
+
+export const revalidate = 21600;
 
 export default async function CategoriesPage() {
   const dbCategories = db

@@ -3,6 +3,8 @@ import { posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
+export const revalidate = 21600;
+
 export async function GET() {
   const allPosts = db
     ? await db
@@ -43,7 +45,7 @@ ${items}
   return new Response(feed, {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
     },
   });
 }

@@ -10,8 +10,20 @@ interface CategoryPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 21600;
+
 function getCategorySeoDescription(categoryName: string) {
   return `Explore ${categoryName.toLowerCase()} articles on ByteVerse, including practical tutorials, tools, tips, reviews, and step-by-step guides for tech readers.`;
+}
+
+export async function generateStaticParams() {
+  if (!db) return siteConfig.categories.map((category) => ({ slug: category.slug }));
+
+  const allCategories = await db
+    .select({ slug: categories.slug })
+    .from(categories);
+
+  return allCategories.map((category) => ({ slug: category.slug }));
 }
 
 export async function generateMetadata({

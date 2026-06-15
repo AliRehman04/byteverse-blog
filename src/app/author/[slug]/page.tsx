@@ -9,7 +9,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { formatDate } from "@/lib/utils";
 
-export const revalidate = 60;
+export const revalidate = 21600;
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -33,6 +33,16 @@ function getAuthorSeoTitle(author: { name: string; role: string }) {
 
 function getAuthorSeoDescription(author: { name: string; role: string }) {
   return `Read ${author.name}'s ByteVerse articles on React, Next.js, JavaScript, backend APIs, AI tools, and practical web development guides.`;
+}
+
+export async function generateStaticParams() {
+  if (!db) return [];
+
+  const allAuthors = await db
+    .select({ slug: authors.slug })
+    .from(authors);
+
+  return allAuthors.map((author) => ({ slug: author.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

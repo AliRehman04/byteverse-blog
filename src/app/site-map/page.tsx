@@ -5,7 +5,7 @@ import { authors, categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   keywords: ["sitemap", "ByteVerse pages", "blog directory"],
   title: "HTML Sitemap",
@@ -66,7 +66,7 @@ function LinkList({ items }: { items: readonly (readonly [string, string])[] }) 
   );
 }
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 
 export default async function HtmlSitemapPage() {
   const latestPosts = db

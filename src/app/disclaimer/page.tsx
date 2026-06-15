@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   keywords: ["disclaimer", "affiliate disclosure", "content notice"],
   title: "Disclaimer | Affiliate Disclosure & Content Notice",

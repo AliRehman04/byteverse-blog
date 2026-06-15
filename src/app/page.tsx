@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 21600;
+
 const features = [
   {
     icon: Sparkles,

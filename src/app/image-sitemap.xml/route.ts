@@ -5,8 +5,7 @@ import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { getImageLicenseUrl, getPostSeoImages } from "@/lib/image-seo";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 21600;
 
 function escapeXml(value: string) {
   return value
@@ -65,7 +64,7 @@ export async function GET() {
   return new NextResponse(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      "Cache-Control": "public, max-age=3600, s-maxage=21600, stale-while-revalidate=86400",
     },
   });
 }

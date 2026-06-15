@@ -42,7 +42,7 @@ import {
   FileType,
 } from "lucide-react";
 
-
+export const metadata: Metadata = {
   publisher: "ByteVerse",
   title: "Free Developer Tools - ByteVerse",
   description:

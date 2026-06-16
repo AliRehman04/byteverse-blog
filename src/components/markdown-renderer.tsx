@@ -251,7 +251,7 @@ export function MarkdownRenderer({ content, postLinks = [], currentSlug }: Markd
             const isExternal = isExternalHref(href);
             if (!isExternal) return <a href={href} {...props}>{children}</a>;
             return (
-              <a href={href} target="_blank" rel="noopener" className="ext-link" {...props}>
+              <a href={href} target="_blank" rel="noopener noreferrer" className="ext-link" {...props}>
                 {children}
                 <ExternalLink size={12} className="shrink-0 ml-0.5 inline-block" />
               </a>

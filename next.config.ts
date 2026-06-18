@@ -110,6 +110,11 @@ const nextConfig: NextConfig = {
       destination: "/blog/how-to-learn-programming-2026-beginner-roadmap",
       permanent: true,
     },
+    {
+      source: "/blog/10-best-ai-marketing-tools-in-2026-tested-for-real-campaigns",
+      destination: "/blog/best-ai-marketing-tools-2026",
+      permanent: true,
+    },
   ],
   experimental: {
     optimizePackageImports: [

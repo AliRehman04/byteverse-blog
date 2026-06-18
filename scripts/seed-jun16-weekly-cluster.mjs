@@ -1253,15 +1253,16 @@ async function seed() {
 
     const rt = readingTime(post.content);
     const words = post.content.trim().split(/\s+/).length;
+    const publishDate = new Date(`${post.day}T09:00:00.000Z`);
 
     const [saved] = await sql`
       INSERT INTO posts (
         title, slug, excerpt, content, cover_image, category_id, author, published, featured,
-        meta_title, meta_description, keywords, summary, reading_time, updated_at
+        meta_title, meta_description, keywords, summary, reading_time, created_at, updated_at
       ) VALUES (
         ${post.title}, ${post.slug}, ${post.excerpt}, ${post.content}, ${post.coverImage}, ${categoryId},
         ${"Ali Rehman"}, ${publish}, false, ${post.metaTitle}, ${post.metaDescription}, ${post.keywords},
-        ${post.summary}, ${rt}, NOW()
+        ${post.summary}, ${rt}, ${publishDate}, ${publishDate}
       )
       ON CONFLICT (slug) DO UPDATE SET
         title = excluded.title,
@@ -1275,7 +1276,8 @@ async function seed() {
         summary = excluded.summary,
         reading_time = excluded.reading_time,
         published = excluded.published,
-        updated_at = NOW()
+        created_at = excluded.created_at,
+        updated_at = excluded.updated_at
       RETURNING id, slug
     `;
 

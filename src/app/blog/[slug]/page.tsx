@@ -140,7 +140,12 @@ export async function generateMetadata({
     .limit(1);
 
   const post = result[0];
-  if (!post) return { title: "Post Not Found" };
+  if (!post || !post.published) {
+    return {
+      title: "Post Not Found",
+      robots: { index: false, follow: true },
+    };
+  }
 
   const seoImages = getPostSeoImages({
     title: post.title,

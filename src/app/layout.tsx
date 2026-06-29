@@ -75,15 +75,6 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
   alternates: {
     canonical: siteConfig.url,
-    languages: {
-      "en": siteConfig.url,
-      "ur": siteConfig.url,
-      "hi": siteConfig.url,
-      "ar": siteConfig.url,
-      "es": siteConfig.url,
-      "zh-CN": siteConfig.url,
-      "x-default": siteConfig.url,
-    },
   },
   icons: {
     icon: [

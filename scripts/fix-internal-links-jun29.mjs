@@ -24,6 +24,24 @@ const replacements = [
     from: "/blog/google-search-console-for-new-blogs-2026-beginner-guide",
     to: "/blog/google-search-console-new-blogs-2026",
   },
+  // Also fix full-URL variants with old domain
+  {
+    from: "https://byteverse.blog/blog/blog-seo-checklist-before-publishing-in-2026",
+    to: "/blog/blog-seo-checklist-before-publishing-2026",
+  },
+  {
+    from: "https://byteverse.blog/blog/google-search-console-for-new-blogs-2026-beginner-guide",
+    to: "/blog/google-search-console-new-blogs-2026",
+  },
+  // Full-URL variants with current domain
+  {
+    from: "https://www.byteverse.fyi/blog/blog-seo-checklist-before-publishing-in-2026",
+    to: "/blog/blog-seo-checklist-before-publishing-2026",
+  },
+  {
+    from: "https://www.byteverse.fyi/blog/google-search-console-for-new-blogs-2026-beginner-guide",
+    to: "/blog/google-search-console-new-blogs-2026",
+  },
 ];
 
 async function main() {

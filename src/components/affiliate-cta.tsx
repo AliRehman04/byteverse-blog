@@ -12,6 +12,7 @@ interface AffiliateProduct {
   icon: React.ElementType;
   color: string; // tailwind bg class
   badge?: string;
+  sponsored?: boolean;
 }
 
 const PRODUCTS: Record<string, AffiliateProduct> = {
@@ -102,6 +103,7 @@ const PRODUCTS: Record<string, AffiliateProduct> = {
     icon: Zap,
     color: "from-gray-700 to-gray-900",
     badge: "FREE TIER",
+    sponsored: false,
   },
   canva: {
     name: "Canva Pro",
@@ -217,7 +219,7 @@ export function AffiliateCTA({ slug }: { slug: string }) {
               key={product.name}
               href={product.url}
               target="_blank"
-              rel="noopener noreferrer nofollow sponsored"
+              rel={product.sponsored === false ? "noopener noreferrer" : "noopener noreferrer nofollow sponsored"}
               className="group relative overflow-hidden rounded-2xl p-5 sm:p-6 text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
             >
               {/* Gradient background */}

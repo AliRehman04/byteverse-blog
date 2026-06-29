@@ -297,8 +297,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
   }
 
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const blogPostingLd = {
     "@type": "BlogPosting",
     headline: post.metaTitle || post.title,
     description: post.metaDescription || post.excerpt,
@@ -336,38 +335,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     isAccessibleForFree: true,
   };
 
-  // FAQ schema (auto-extracted from content headings with ?)
-  const faqLd = faqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.slice(0, 5).map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  } : null;
-
-  // HowTo schema (auto-extracted from numbered steps under "How to" headings)
-  const howToLd = howToSteps.length >= 2 && howToMatch ? {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: howToMatch[1].trim(),
-    description: post.metaDescription || post.excerpt,
-    step: howToSteps.map((step, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: step.name,
-      text: step.text,
-    })),
-    totalTime: `PT${readingMinutes}M`,
-  } : null;
-
-  // Breadcrumb schema
   const breadcrumbLd = {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
@@ -379,30 +347,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     ],
   };
 
+  // Combined JSON-LD @graph (single script tag instead of 4)
+  const graphItems: Record<string, unknown>[] = [blogPostingLd, breadcrumbLd];
+
+  if (faqs.length > 0) {
+    graphItems.push({
+      "@type": "FAQPage",
+      mainEntity: faqs.slice(0, 5).map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
+
+  if (howToSteps.length >= 2 && howToMatch) {
+    graphItems.push({
+      "@type": "HowTo",
+      name: howToMatch[1].trim(),
+      description: post.metaDescription || post.excerpt,
+      step: howToSteps.map((step, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        name: step.name,
+        text: step.text,
+      })),
+      totalTime: `PT${readingMinutes}M`,
+    });
+  }
+
+  const combinedLd = { "@context": "https://schema.org", "@graph": graphItems };
+
   // Track views via client-side API call (ISR pages can't do server-side tracking reliably)
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
-      {faqLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-        />
-      )}
-      {howToLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
-        />
-      )}
 
       <article>
         <BlogPostWidgets slug={post.slug} url={postUrl} title={post.title} readingMinutes={readingMinutes} />

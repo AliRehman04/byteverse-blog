@@ -115,6 +115,41 @@ const nextConfig: NextConfig = {
       destination: "/blog/best-ai-marketing-tools-2026",
       permanent: true,
     },
+    {
+      source: "/blog/90-day-blog-content-plan-new-websites-2026",
+      destination: "/blog/90-day-blog-content-plan-for-new-websites-in-2026",
+      permanent: true,
+    },
+    {
+      source: "/blog/best-ai-photo-editors-2026",
+      destination: "/blog/9-best-ai-photo-editors-in-2026-free-and-paid",
+      permanent: true,
+    },
+    {
+      source: "/blog/best-ai-social-media-tools-2026",
+      destination: "/blog/9-best-ai-social-media-tools-in-2026-tested",
+      permanent: true,
+    },
+    {
+      source: "/blog/blog-post-ideas-new-bloggers-2026",
+      destination: "/blog/50-blog-post-ideas-for-new-bloggers-in-2026",
+      permanent: true,
+    },
+    {
+      source: "/blog/blog-seo-checklist-before-publishing-2026",
+      destination: "/blog/blog-seo-checklist-before-publishing-in-2026",
+      permanent: true,
+    },
+    {
+      source: "/blog/build-topical-authority-new-blog-2026",
+      destination: "/blog/how-to-build-topical-authority-for-a-new-blog-in-2026",
+      permanent: true,
+    },
+    {
+      source: "/blog/google-search-console-new-blogs-2026",
+      destination: "/blog/google-search-console-for-new-blogs-2026-beginner-guide",
+      permanent: true,
+    },
   ],
   experimental: {
     optimizePackageImports: [

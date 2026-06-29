@@ -87,7 +87,7 @@ export async function GET(
   <title>${escapeHtml(post.title)} - ByteVerse</title>
   <link rel="canonical" href="${storyUrl}">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;animation:none}</style></noscript>
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;animation:none}</style></noscript>
   <style amp-custom>
     .slide-content {
       display: flex;
@@ -223,18 +223,22 @@ export async function GET(
       </amp-story-grid-layer>
     </amp-story-page>
 
-    <amp-story-bookend src="data:application/json,${encodeURIComponent(JSON.stringify({
-      bookendVersion: "v1.0",
-      shareProviders: [
-        { provider: "twitter" },
-        { provider: "linkedin" },
-        { provider: "email" },
-      ],
-      components: [
-        { type: "heading", text: "More from ByteVerse" },
-        { type: "cta-link", links: [{ text: "Visit ByteVerse", url: siteConfig.url }] },
-      ],
-    }))}" layout="nodisplay"></amp-story-bookend>
+    <amp-story-bookend layout="nodisplay">
+      <script type="application/json">
+      ${JSON.stringify({
+        bookendVersion: "v1.0",
+        shareProviders: [
+          { provider: "twitter" },
+          { provider: "linkedin" },
+          { provider: "email" },
+        ],
+        components: [
+          { type: "heading", text: "More from ByteVerse" },
+          { type: "cta-link", links: [{ text: "Visit ByteVerse", url: siteConfig.url }] },
+        ],
+      }, null, 2)}
+      </script>
+    </amp-story-bookend>
   </amp-story>
 </body>
 </html>`;

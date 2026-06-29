@@ -4,7 +4,7 @@ import { posts, categories, authors } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
-const LAST_MODIFIED = new Date("2026-06-06T00:00:00.000Z");
+const LAST_MODIFIED = new Date("2026-06-29T00:00:00.000Z");
 
 export const revalidate = 21600;
 

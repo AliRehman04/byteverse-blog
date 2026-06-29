@@ -115,6 +115,16 @@ const nextConfig: NextConfig = {
       destination: "/blog/best-ai-marketing-tools-2026",
       permanent: true,
     },
+    {
+      source: "/blog/blog-seo-checklist-before-publishing-in-2026",
+      destination: "/blog/blog-seo-checklist-before-publishing-2026",
+      permanent: true,
+    },
+    {
+      source: "/blog/google-search-console-for-new-blogs-2026-beginner-guide",
+      destination: "/blog/google-search-console-new-blogs-2026",
+      permanent: true,
+    },
   ],
   experimental: {
     optimizePackageImports: [

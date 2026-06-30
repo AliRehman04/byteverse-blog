@@ -111,6 +111,7 @@ const TOOL_LINKS: [RegExp, string][] = [
   [/\b(Markdown to HTML|markdown converter)\b/gi, "/tools/markdown-to-html"],
   [/\b(privacy policy generator)\b/gi, "/tools/privacy-policy-generator"],
   [/\b(JSON to TypeScript|JSON-to-TypeScript|json to ts)\b/gi, "/tools/json-to-typescript"],
+  [/\b(flexbox generator|CSS flexbox generator|flex layout builder)\b/gi, "/tools/flexbox-generator"],
 ];
 
 export interface PostLink {

@@ -40,6 +40,7 @@ import {
   Table2,
   ScrollText,
   FileType,
+  Rows3,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -416,6 +417,15 @@ const tools = [
     icon: FileType,
     color: "text-sky-500",
     bg: "bg-sky-500/10",
+  },
+  {
+    title: "CSS Flexbox Generator",
+    description:
+      "Build Flexbox layouts visually with live preview. Set direction, alignment, wrapping, and gap. Copy production-ready CSS instantly.",
+    href: "/tools/flexbox-generator",
+    icon: Rows3,
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
   },
 ];
 

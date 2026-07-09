@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.byteverse.fyi",
+      },
+      {
+        protocol: "https",
+        hostname: "byteverse.fyi",
+      },
     ],
     minimumCacheTTL: 2678400, // 31 days — cache optimized images longer
   },

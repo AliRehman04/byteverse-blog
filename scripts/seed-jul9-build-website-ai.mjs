@@ -23,10 +23,10 @@ const post = {
     "how to build a website with ai, ai website builder guide, build website with ai 2026, ai web design, create website using ai, no code website ai, ai website tutorial",
   summary:
     "You can build a professional website with AI in 2026 using three paths: AI website builders, no-code platforms with AI features, or AI-assisted coding.|AI builders are fastest for simple sites, while AI-assisted coding gives full control for custom projects.|Whichever path you choose, human review of design, content, and SEO is what separates a polished site from an obviously generic one.",
-  coverImage: img("1547658719-da2b51169166"),
+  coverImage: "/blog/how-to-build-website-with-ai-2026.webp",
   content: `Building a website used to require weeks of learning or thousands in agency fees. In 2026, AI has collapsed that timeline to hours. You can describe the site you want in plain language and watch an AI builder generate the structure, design, and starter content. But the speed creates a new problem: thousands of generic AI-generated sites that all look the same and rank for nothing.
 
-![Building a website with AI tools on a laptop](${img("1547658719-da2b51169166")} "How to build a website with AI in 2026")
+![Woman building a website with AI robotic arms assembling page sections on a laptop](/blog/how-to-build-website-with-ai-2026.webp "How to build a website with AI in 2026")
 
 This guide walks through the complete process of building a website with AI the right way: choosing the correct path for your needs, generating the site, then applying the human-level polish in design, content, and SEO that separates a professional result from an obvious template. Whether you need a portfolio, business site, or blog, the process here applies. If you want to see the tools ranked first, our roundup of the [best AI website builders in 2026](/blog/best-ai-website-builders-2026) compares the top options in depth.
 

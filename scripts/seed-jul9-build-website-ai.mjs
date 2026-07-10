@@ -66,8 +66,6 @@ This 15-minute exercise is the difference between an AI generating something usa
 
 ## Step 2: Generate Your Site
 
-![AI generating a website layout on a laptop screen](${img("1517180102446-f3ece451e9d8")} "AI website builders generate site structure in minutes")
-
 With your plan ready, pick your path and generate.
 
 ### Using an AI Builder
@@ -83,8 +81,6 @@ If you chose the coding path, start with a modern framework and let your AI assi
 For a practical example of this workflow applied to a real project, our guide on [building a portfolio website](/blog/build-portfolio-website-2026) walks through the process for developers.
 
 ## Step 3: Replace Generic Content with Real Substance
-
-![Designer refining website content and layout on a screen](${img("1559028012-481c04fa702d")} "Real content and custom design set your site apart")
 
 Here is where most AI-built websites fail. The AI generates placeholder copy that sounds professional but says nothing: "We deliver innovative solutions tailored to your unique needs." Visitors recognize this instantly, and so does Google.
 
@@ -103,8 +99,6 @@ Stock photos and default AI builder images make sites look identical. Custom vis
 
 ## Step 4: Optimize for Search from Day One
 
-![SEO analytics dashboard showing website search performance](${img("1487014679447-9f8336841d58")} "Optimize titles, keywords, and metadata for search from day one")
-
 An AI-generated site is not automatically an SEO-ready site. Search optimization is the layer most builders skip, and it is why so many AI sites get zero traffic.
 
 Cover these essentials before launch:
@@ -118,8 +112,6 @@ Cover these essentials before launch:
 If your site includes a blog, plan it properly from the start. Content is how small sites win search traffic over time, and our guide on [how to get traffic to a new blog](/blog/how-to-get-traffic-to-a-new-blog-2026) lays out the strategy that works for new domains.
 
 ## Step 5: Test Performance Before Launch
-
-![Testing a website on a mobile phone before launch](${img("1551650975-87deedd944c3")} "Test speed and mobile rendering before you launch")
 
 Speed is a ranking factor and a conversion factor. AI builders sometimes generate bloated pages with oversized images and unnecessary scripts.
 

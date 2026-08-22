@@ -23,8 +23,14 @@ const toolConfig = {
   ],
   keywords: [
     "ai cv builder",
+    "ai cv builder free",
+    "ai cv builder free online",
+    "free ai cv builder and download pdf",
     "ai resume builder",
     "free cv maker",
+    "free resume builder and download",
+    "free resume builder without payment",
+    "free resume builder ats friendly",
     "resume builder pdf",
     "online cv editor",
     "modern resume template",
@@ -36,14 +42,14 @@ const toolConfig = {
   ],
   faqs: [
     {
-      question: "Can I download the CV as a PDF?",
+      question: "Can I download the CV as a PDF for free?",
       answer:
-        "Yes. The tool can export your CV preview as a PDF directly in the browser. You can also use your browser print dialog if you want manual control over page settings.",
+        "Yes — PDF export runs in your browser, free, with no account, no watermark, and no payment step. Build, preview, and download in one sitting.",
     },
     {
       question: "Is the AI CV Builder free to use?",
       answer:
-        "Yes. The editor, templates, visual customization, code mode, and browser PDF export are free to use. AI writing actions depend on the server-side AI provider configuration.",
+        "Yes. The editor, all 6 templates, visual customization, code mode, and browser PDF export are free to use. AI writing actions depend on the server-side AI provider configuration.",
     },
     {
       question: "Is this CV builder ATS friendly?",
@@ -76,7 +82,7 @@ export default function AICVBuilderPage() {
       <ToolJsonLd config={toolConfig} />
 
       {/* Hero Header */}
-      <div className="relative mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 px-6 py-12 text-center text-white shadow-2xl shadow-indigo-500/20 sm:px-10 sm:py-16" style={{
+      <div className="relative mb-12 overflow-hidden rounded-3xl bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 px-6 py-12 text-center text-white shadow-2xl shadow-indigo-500/20 sm:px-10 sm:py-16" style={{
         background: "linear-gradient(135deg, #2563eb, #4f46e5, #7c3aed), radial-gradient(ellipse 300px 300px at 0% 0%, rgba(255,255,255,0.1), transparent 70%), radial-gradient(ellipse 200px 200px at 100% 100%, rgba(255,255,255,0.05), transparent 70%)",
       }}>
         <div className="relative">
@@ -84,9 +90,9 @@ export default function AICVBuilderPage() {
             <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" /><span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" /></span>
             Free &middot; No Sign-up Required
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">AI CV Builder</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">AI CV Builder — Free, with PDF Download</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100 sm:text-xl">
-            Create a stunning, ATS-friendly resume in minutes. Visual editor, 6 premium templates, AI writing, and instant PDF download.
+            Create a stunning, ATS-friendly resume in minutes — free, no payment, no sign-up. Visual editor, 6 templates, AI writing, and instant PDF download.
           </p>
           <div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 backdrop-blur-sm">✓ Visual &amp; Code Mode</span>
@@ -117,7 +123,7 @@ export default function AICVBuilderPage() {
         </ul>
         <h2>Who This CV Builder Is For</h2>
         <p>
-          This tool is built for job seekers who want a practical resume workflow: students applying for internships, developers updating a portfolio CV, freelancers preparing client proposals, and professionals who need a clean PDF quickly. If you want a deeper comparison of resume software, read our guide to the <Link href="/blog/best-ai-resume-builders-2026">best AI resume builders in 2026</Link>.
+          This tool is built for job seekers who want a practical resume workflow: students applying for internships, developers updating a portfolio CV, freelancers preparing client proposals, and professionals who need a clean PDF quickly. If you want a deeper comparison of resume software, read our guide to the <Link href="/blog/best-ai-resume-builders-2026">best AI resume builders in 2026</Link> — and for the writing itself, the <Link href="/blog/how-to-write-resume-with-ai-2026">AI resume writing workflow</Link> keeps the content sounding like you. When the CV is ready, the <Link href="/blog/linkedin-for-developers-2026">LinkedIn optimization playbook</Link> and <Link href="/blog/how-to-get-first-tech-job-2026">first tech job guide</Link> cover where to point it.
         </p>
         <h2>ATS-Friendly Resume Tips</h2>
         <ul>

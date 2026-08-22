@@ -31,6 +31,16 @@ const toolConfig = {
   ],
   faqs: [
     {
+      question: "How do I check similarity between two texts?",
+      answer:
+        "Choose Compare Texts mode, paste both documents side by side, and the tool scores their overlap using Jaccard similarity, cosine similarity, and 5-word phrase matching — with the most similar sentences highlighted.",
+    },
+    {
+      question: "Is this similarity checker really free and unlimited?",
+      answer:
+        "Yes — free, no word limits, no daily caps, no sign-up. Because everything runs in your browser instead of on a server, there is nothing to meter.",
+    },
+    {
       question: "How does plagiarism checking work?",
       answer:
         "The tool offers two modes: Uniqueness Check analyzes each sentence for personal, generic, or textbook-style patterns and provides Google search links for manual verification. Compare Texts uses Jaccard similarity, cosine similarity, and n-gram matching to measure overlap between two documents.",
@@ -172,11 +182,12 @@ export default function PlagiarismCheckerPage() {
               100% Free &middot; No Signup Required
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-              Detect Plagiarism<br className="hidden sm:block" />
-              <span className="bg-linear-to-r from-violet-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Before It Detects You</span>
+              Similarity & Plagiarism Checker<br className="hidden sm:block" />
+              <span className="bg-linear-to-r from-violet-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Free, Private, Unlimited</span>
             </h1>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
-              Check text uniqueness or compare two documents for similarity. Uses advanced n-gram analysis, cosine similarity, and sentence matching — entirely in your browser.
+              Check text uniqueness or check similarity between two texts — free online, no word limits, no sign-up.
+              Advanced n-gram analysis, cosine similarity, and sentence matching run entirely in your browser.
             </p>
           </div>
         </div>
@@ -357,6 +368,33 @@ export default function PlagiarismCheckerPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Related Tools ── */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+            Related Free Tools
+          </h2>
+          <p className="text-muted-foreground text-sm sm:text-base mt-3">
+            Finish the job — rewrite, verify, and polish your text with these companions.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {relatedTools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group p-5 rounded-2xl border border-border bg-card hover:border-violet-500/30 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className={`w-11 h-11 rounded-xl ${tool.bg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                <tool.icon size={20} className={tool.color} />
+              </div>
+              <h3 className="font-bold text-sm group-hover:text-violet-500 transition-colors duration-200">{tool.title}</h3>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{tool.desc}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

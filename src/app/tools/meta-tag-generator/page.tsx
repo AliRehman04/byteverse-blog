@@ -5,10 +5,10 @@ import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "Meta Tag Generator",
-  title: "SEO Meta Tags Generator - Free Meta Tag Tool",
-  description: "Generate SEO meta tags, title tags, meta descriptions, Open Graph tags, Twitter cards, and canonical tags for free. Preview and copy clean HTML.",
+  title: "Meta Tag Generator - Free SEO, Google & Social Tags",
+  description: "Free meta tag generator for SEO: create title tags, meta descriptions, Open Graph, Twitter cards, and canonical tags for Google and social media. Copy clean HTML.",
   slug: "meta-tag-generator",
-  keywords: ["meta tag generator", "seo meta tags", "open graph generator", "html meta tags", "seo tool", "meta description generator"],
+  keywords: ["meta tag generator", "meta tags generator", "seo meta tags generator", "google meta tag generator", "free meta tag generator", "social media meta tags generator", "meta tag maker", "meta tag creator", "generate meta tags", "open graph generator", "meta description generator"],
   faqs: [
     { question: "How long should my title tag be?", answer: "Keep it under 60 characters. Google truncates longer titles in search results." },
     { question: "How long should my meta description be?", answer: "Aim for 150-160 characters. This gives you enough space to describe the page without getting cut off." },

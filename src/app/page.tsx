@@ -11,7 +11,7 @@ import { GridPostCard } from "@/components/post-card";
 import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+  title: `${siteConfig.name} — Free AI & SEO Tools, Tech Guides & Reviews`,
   description: siteConfig.description,
   publisher: siteConfig.name,
   openGraph: {
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+    title: `${siteConfig.name} — Free AI & SEO Tools, Tech Guides & Reviews`,
     description: siteConfig.description,
     images: [{ url: `${siteConfig.url}/opengraph-image`, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | AI Tools, Tech Guides & Productivity`,
+    title: `${siteConfig.name} — Free AI & SEO Tools, Tech Guides & Reviews`,
     description: siteConfig.description,
     images: [`${siteConfig.url}/opengraph-image`],
   },
@@ -161,7 +161,7 @@ export default async function HomePage() {
         }}
       />
       {/* ===== HERO BANNER ===== */}
-      <section className="hero-bg-home relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
+      <section className="hero-bg-home relative overflow-hidden bg-linear-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
 
         {/* Content */}
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 pb-28 md:pt-28 md:pb-36">
@@ -171,21 +171,24 @@ export default async function HomePage() {
               {/* Badge */}
               <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-8">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                QA-ready tech guides and tools
+                ByteVerse · 40+ free tools, zero sign-ups
               </div>
 
               {/* Headline */}
-              <h1 className="animate-fade-in-up stagger-1 text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
-                ByteVerse
+              <h1 className="animate-fade-in-up stagger-1 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                Free AI & Developer Tools
                 <br />
-                <span className="text-blue-200">Built for sharper tech decisions</span>
+                <span className="text-blue-200">Plus Guides That Cut the Fluff</span>
               </h1>
 
               <p className="animate-fade-in-up stagger-2 text-base sm:text-lg text-slate-300 mb-10 max-w-xl leading-relaxed">
-                Hands-on AI tool reviews, coding tutorials, and browser-based utilities.
-                Every guide is written to help you choose faster, build cleaner, and avoid filler.
-                We cover the best AI writing tools, code editors, SEO utilities, image generators,
-                and developer productivity apps — all tested before we recommend them.
+                Use 40+ free browser-based utilities — from an{" "}
+                <Link href="/tools/seo-title-analyzer" className="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200 transition-colors">SEO title checker</Link>{" "}
+                and{" "}
+                <Link href="/tools/meta-tag-generator" className="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200 transition-colors">meta tag generator</Link>{" "}
+                to a{" "}
+                <Link href="/tools/plagiarism-checker" className="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200 transition-colors">similarity checker</Link>{" "}
+                — alongside hands-on AI tool reviews, coding tutorials, and tech guides. Everything tested before we recommend it.
               </p>
 
               {/* CTA Buttons */}
@@ -207,12 +210,12 @@ export default async function HomePage() {
               {/* Quality signals */}
               <div className="animate-fade-in-up stagger-4 mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
                 {[
-                  { value: "38+", label: "Free Tools", icon: Wrench, color: "text-cyan-300", bg: "bg-cyan-400/10" },
+                  { value: "40+", label: "Free Tools", icon: Wrench, color: "text-cyan-300", bg: "bg-cyan-400/10" },
                   { value: `${totalPostCount || "55"}+`, label: "Tested Guides", icon: FlaskConical, color: "text-violet-300", bg: "bg-violet-400/10" },
                   { value: `${cats.length}`, label: "Topic Hubs", icon: Layers, color: "text-blue-300", bg: "bg-blue-400/10" },
                   { value: "100%", label: "Client-Side Tools", icon: ShieldCheck, color: "text-emerald-300", bg: "bg-emerald-400/10" },
                 ].map((stat) => (
-                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.055] px-3.5 py-3.5 backdrop-blur-sm shadow-lg shadow-black/10">
+                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5.5 px-3.5 py-3.5 backdrop-blur-sm shadow-lg shadow-black/10">
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`flex h-7 w-7 items-center justify-center rounded-lg ${stat.bg}`}>
                         <stat.icon size={14} className={stat.color} />
@@ -262,7 +265,7 @@ export default async function HomePage() {
                 key={feature.title}
                 className={`animate-fade-in-up stagger-${i + 1} group p-6 rounded-2xl border border-border bg-card card-hover`}
               >
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon size={20} className={feature.iconColor} />
                 </div>
                 <h3 className="font-bold mb-2">{feature.title}</h3>
@@ -288,25 +291,25 @@ export default async function HomePage() {
             href="/tools"
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-300"
           >
-            View All 28+ Tools <ArrowRight size={14} />
+            View All 40+ Tools <ArrowRight size={14} />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            { title: "JSON Formatter", desc: "Format, validate & minify JSON instantly", href: "/tools/json-formatter", icon: Braces, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
-            { title: "AI Content Detector", desc: "Check if text is AI-generated or human-written", href: "/tools/ai-content-detector", icon: Bot, color: "text-pink-500", bg: "from-pink-500/10 to-rose-500/10" },
-            { title: "Password Generator", desc: "Create strong, random passwords instantly", href: "/tools/password-generator", icon: Shield, color: "text-green-500", bg: "from-green-500/10 to-emerald-500/10" },
-            { title: "Code Formatter", desc: "Beautify & format code in 10+ languages", href: "/tools/code-formatter", icon: Code2, color: "text-violet-500", bg: "from-violet-500/10 to-purple-500/10" },
-            { title: "Plagiarism Checker", desc: "Verify text originality and uniqueness", href: "/tools/plagiarism-checker", icon: Target, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },
-            { title: "Meta Tag Generator", desc: "Generate SEO-optimized meta tags with preview", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
+            { title: "SEO Title Checker", desc: "Score titles for length, intent & click potential", href: "/tools/seo-title-analyzer", icon: Target, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
+            { title: "Meta Tag Generator", desc: "SEO, Open Graph & Twitter tags with live preview", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
+            { title: "Similarity & Plagiarism Checker", desc: "Check text uniqueness — private, in your browser", href: "/tools/plagiarism-checker", icon: Shield, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },
+            { title: "UUID Generator", desc: "Random UUID v4 — bulk generate, validate, copy", href: "/tools/uuid-generator", icon: Braces, color: "text-green-500", bg: "from-green-500/10 to-emerald-500/10" },
+            { title: "Cron Expression Generator", desc: "Build crontab schedules visually, in plain English", href: "/tools/cron-expression-generator", icon: Code2, color: "text-violet-500", bg: "from-violet-500/10 to-purple-500/10" },
+            { title: "Schema Markup Generator", desc: "JSON-LD structured data for rich results", href: "/tools/schema-markup-generator", icon: Bot, color: "text-pink-500", bg: "from-pink-500/10 to-rose-500/10" },
           ].map((tool, i) => (
             <Link
               key={tool.href}
               href={tool.href}
               className={`animate-fade-in-up stagger-${(i % 6) + 1} group p-5 rounded-2xl border border-border bg-card card-hover flex items-start gap-4`}
             >
-              <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${tool.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-11 h-11 rounded-xl bg-linear-to-br ${tool.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                 <tool.icon size={20} className={tool.color} />
               </div>
               <div className="min-w-0">
@@ -402,7 +405,7 @@ export default async function HomePage() {
                       {i + 1}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <h3 className="font-bold text-sm sm:text-base group-hover:text-primary transition-colors truncate">
+                      <h3 className="font-bold text-sm sm:text-base group-hover:text-primary transition-colors line-clamp-2">
                         {p.title}
                       </h3>
                       <div className="flex items-center gap-3 mt-1.5 text-xs text-muted-foreground">
@@ -479,7 +482,7 @@ export default async function HomePage() {
             Why <span className="gradient-text">ByteVerse</span>?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Most tech blogs rehash the same press releases. We don&apos;t. ByteVerse is built by developers who test every tool, write every code snippet, and verify every recommendation before publishing. Our 38+ free browser-based tools and {totalPostCount || "55"}+ in-depth guides help you choose smarter, build faster, and stay ahead in a rapidly evolving tech landscape.
+            Most tech blogs rehash the same press releases. We don&apos;t. ByteVerse is built by developers who test every tool, write every code snippet, and verify every recommendation before publishing. Our 40+ free browser-based tools and {totalPostCount || "55"}+ in-depth guides help you choose smarter, build faster, and stay ahead in a rapidly evolving tech landscape.
           </p>
         </div>
 
@@ -511,7 +514,7 @@ export default async function HomePage() {
               key={item.title}
               className="group p-6 rounded-2xl border border-border bg-card card-hover text-center"
             >
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${item.bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <item.icon size={22} className={item.color} />
               </div>
               <h3 className="font-bold mb-2">{item.title}</h3>
@@ -520,6 +523,46 @@ export default async function HomePage() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="cv-auto section-alt border-t border-border">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  { "@type": "Question", name: "Are ByteVerse tools really free?", acceptedAnswer: { "@type": "Answer", text: "Yes. All 40+ tools are completely free with no sign-up, no login, and no usage limits. They run in your browser." } },
+                  { "@type": "Question", name: "Do the tools upload or store my data?", acceptedAnswer: { "@type": "Answer", text: "No. Every tool is client-side — your text, code, and files are processed in your browser and never sent to a server." } },
+                  { "@type": "Question", name: "What topics does ByteVerse cover?", acceptedAnswer: { "@type": "Answer", text: "AI tool reviews, coding tutorials, SEO and developer utilities, productivity workflows, software comparisons, and cybersecurity guides — all tested hands-on." } },
+                  { "@type": "Question", name: "How often is new content published?", acceptedAnswer: { "@type": "Answer", text: "New guides and reviews are published multiple times a week, and existing posts are refreshed when tools or prices change." } },
+                ],
+              }),
+            }}
+          />
+          <div className="text-center mb-10">
+            <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">FAQ</p>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Common <span className="gradient-text">Questions</span>
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            {[
+              { q: "Are ByteVerse tools really free?", a: "Yes. All 40+ tools are completely free with no sign-up, no login, and no usage limits. They run entirely in your browser." },
+              { q: "Do the tools upload or store my data?", a: "No. Every tool is client-side — your text, code, and files are processed in your browser and never sent to a server." },
+              { q: "What topics does ByteVerse cover?", a: "AI tool reviews, coding tutorials, SEO and developer utilities, productivity workflows, software comparisons, and cybersecurity guides — all tested hands-on before publishing." },
+              { q: "How often is new content published?", a: "New guides and reviews go up multiple times a week, and existing posts are refreshed when tools, prices, or best practices change." },
+            ].map((faq) => (
+              <div key={faq.q} className="p-5 rounded-2xl border border-border bg-card">
+                <h3 className="font-bold text-sm sm:text-base mb-1.5">{faq.q}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

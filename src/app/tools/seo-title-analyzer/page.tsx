@@ -3,19 +3,30 @@ import { SeoTitleAnalyzerTool } from "./seo-title-analyzer-tool";
 import { ToolJsonLd, generateToolMetadata } from "@/lib/tool-seo";
 
 const toolConfig = {
-  name: "SEO Title Analyzer",
-  title: "SEO Title Analyzer - Free Blog Headline Checker",
+  name: "SEO Title Checker",
+  title: "SEO Title Checker - Free Title & Headline Analyzer",
   description:
-    "Analyze blog titles for length, word count, intent words, specificity, and click potential. Improve SEO headlines before publishing.",
+    "Check SEO titles free online: score length, word count, intent words, specificity, and click potential. Instant title check for blog posts and pages.",
   slug: "seo-title-analyzer",
   keywords: [
+    "seo title checker",
+    "seo title check",
+    "title checker",
+    "seo title checker free online",
+    "seo headline checker",
+    "headline checker",
     "seo title analyzer",
     "blog title checker",
-    "headline analyzer",
-    "seo headline tool",
-    "title score tool",
+    "title analyzer",
+    "seo title preview",
+    "title optimizer tool",
+    "seo title score",
   ],
   faqs: [
+    {
+      question: "How do I check my SEO title for free?",
+      answer: "Paste your title into the checker above. It instantly scores length, word count, intent words, specificity, and keyword stuffing risk — no login, no limits, free online.",
+    },
     {
       question: "What makes a good SEO title?",
       answer: "A strong SEO title is specific, matches search intent, stays readable in search results, and gives people a clear reason to click.",
@@ -38,9 +49,9 @@ export default function SeoTitleAnalyzerPage() {
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <ToolJsonLd config={toolConfig} />
       <div className="mx-auto mb-10 max-w-3xl text-center">
-        <h1 className="mb-3 text-3xl font-bold sm:text-4xl">SEO Title Analyzer</h1>
+        <h1 className="mb-3 text-3xl font-bold sm:text-4xl">SEO Title Checker & Analyzer</h1>
         <p className="text-muted-foreground">
-          Check blog titles before you publish. This tool scores your headline for length, clarity, search intent, and click potential.
+          Check SEO titles before you publish — free and online. This tool scores your headline for length, clarity, search intent, and click potential.
         </p>
       </div>
 

@@ -7,7 +7,7 @@ const toolConfig = {
   title: "UUID Generator Online - Free UUID v4 Generator & Validator",
   description: "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
   slug: "uuid-generator",
-  keywords: ["uuid generator", "uuid generator online", "generate uuid", "uuid v4", "random uuid", "guid generator", "uuid validator", "bulk uuid generator"],
+  keywords: ["uuid generator", "uuid generator online", "uuid v4 generator", "uuidv4 generator", "free uuid generator", "random uuid generator", "generate uuid v4", "generate uuid online", "guid generator", "uuid validator", "bulk uuid generator"],
   faqs: [
     { question: "Is my data safe?", answer: "Yes. UUIDs are generated using your browser's Web Crypto API. Nothing is sent to any server." },
     { question: "Can two UUIDs be the same?", answer: "Theoretically possible but practically impossible. With 122 random bits in a v4 UUID, you would need to generate 2.71 quintillion UUIDs to have a 50% chance of a collision." },

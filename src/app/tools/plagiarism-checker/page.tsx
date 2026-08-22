@@ -10,12 +10,17 @@ import {
 } from "lucide-react";
 
 const toolConfig = {
-  name: "Plagiarism Checker",
-  title: "Plagiarism Checker - Free Online Text Similarity Tool",
+  name: "Similarity & Plagiarism Checker",
+  title: "Similarity Checker - Free Plagiarism & Uniqueness Tool",
   description:
-    "Check text uniqueness and compare documents for plagiarism. Uses n-gram analysis, cosine similarity, and sentence matching. 100% free, private, runs in your browser.",
+    "Free similarity checker: check text uniqueness and compare documents for plagiarism online. N-gram analysis, cosine similarity, sentence matching — 100% private, in-browser.",
   slug: "plagiarism-checker",
   keywords: [
+    "similarity checker",
+    "similarity check",
+    "check for similarity for free",
+    "uniqueness checker",
+    "similarity detector",
     "plagiarism checker",
     "plagiarism detector",
     "text similarity checker",

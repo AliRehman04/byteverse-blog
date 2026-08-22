@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "ByteVerse",
   description:
-    "No-fluff guides on AI tools, coding, and productivity. We test everything before we write about it.",
+    "40+ free online tools — SEO title checker, meta tag generator, UUID, cron & schema tools — plus hands-on AI reviews, coding tutorials, and tech guides.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.byteverse.fyi",
   ogImage: "/opengraph-image",
   author: "ByteVerse Team",

@@ -10,13 +10,17 @@ const toolConfig = {
   slug: "cron-expression-generator",
   keywords: [
     "cron expression generator",
-    "cron builder",
+    "cron generator",
     "crontab generator",
-    "cron schedule generator",
+    "cron expression builder",
     "cron expression maker",
-    "linux cron expression",
+    "cron expression online",
+    "cron expression tester",
+    "crontab builder",
+    "cron schedule generator",
+    "quartz cron expression generator",
     "visual cron builder",
-    "cron syntax helper",
+    "cron syntax generator",
   ],
   faqs: [
     {

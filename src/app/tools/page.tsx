@@ -122,6 +122,15 @@ const tools = [
     bg: "bg-cyan-500/10",
   },
   {
+    title: "Readability Checker",
+    description:
+      "Check Flesch Reading Ease and grade level instantly. Flags long sentences and complex words with fix advice.",
+    href: "/tools/readability-checker",
+    icon: BarChart3,
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+  },
+  {
     title: "llms.txt Generator & Validator",
     description:
       "Create and validate llms.txt files. Check format compliance, detect issues, and help AI models understand your site.",

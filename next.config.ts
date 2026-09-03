@@ -79,6 +79,15 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      source: "/blog",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=21600, stale-while-revalidate=86400",
+        },
+      ],
+    },
+    {
       source: "/fonts/(.*)",
       headers: [
         {

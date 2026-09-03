@@ -9,7 +9,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { formatDate } from "@/lib/utils";
 
-export const revalidate = 21600;
+export const revalidate = 86400;
 
 type Props = {
   params: Promise<{ slug: string }>;

@@ -3,7 +3,7 @@ import { posts, categories } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 
-export const revalidate = 21600; // refresh every 6 hours
+export const revalidate = 86400; // refresh daily
 
 export async function GET() {
   const base = siteConfig.url;

@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
 import { getImageLicenseUrl, getPostSeoImages } from "@/lib/image-seo";
 
-export const revalidate = 21600;
+export const revalidate = 86400;
 
 function escapeXml(value: string) {
   return value

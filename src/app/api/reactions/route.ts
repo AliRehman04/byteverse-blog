@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { reactions } from "@/lib/db/schema";
 import { eq, and, sql } from "drizzle-orm";
+import { rateLimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 const VALID_TYPES = ["like", "love", "clap", "fire", "think"] as const;
 
-/** GET /api/reactions?slug=my-post — get all reaction counts */
+/** GET /api/reactions?slug=my-post — get all reaction counts (CDN-cached to protect DB quota) */
 export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get("slug");
   if (!slug || !db) {
@@ -22,15 +23,23 @@ export async function GET(req: NextRequest) {
     result[r.type] = r.count;
   }
 
-  return NextResponse.json({ reactions: result });
+  // Cache at the CDN so repeat pageviews don't wake the database.
+  return NextResponse.json(
+    { reactions: result },
+    { headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" } }
+  );
 }
 
 /** POST /api/reactions — increment a reaction */
 export async function POST(req: NextRequest) {
   try {
+    const ip = getClientIp(req);
+    const rl = rateLimit(`reactions:${ip}`, { limit: 15, windowSeconds: 60 });
+    if (!rl.success) return rateLimitResponse(rl.resetAt);
+
     const { slug, type } = await req.json();
 
-    if (!slug || !type || !VALID_TYPES.includes(type) || !db) {
+    if (!slug || typeof slug !== "string" || slug.length > 200 || !/^[a-z0-9-]+$/.test(slug) || !type || !VALID_TYPES.includes(type) || !db) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 

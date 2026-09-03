@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/stories` },
 };
 
-export const revalidate = 21600;
+export const revalidate = 86400;
 
 export default async function StoriesPage() {
   if (!db) return <p>No stories available.</p>;

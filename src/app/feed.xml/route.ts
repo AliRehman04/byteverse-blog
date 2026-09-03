@@ -15,6 +15,11 @@ export async function GET() {
         .limit(50)
     : [];
 
+  const lastBuildDate = allPosts.reduce(
+    (latest, post) => (post.updatedAt.getTime() > latest.getTime() ? post.updatedAt : latest),
+    allPosts[0]?.updatedAt ?? new Date("2026-01-01T00:00:00.000Z")
+  );
+
   const items = allPosts
     .map(
       (post) => `    <item>
@@ -36,7 +41,7 @@ export async function GET() {
     <link>${siteConfig.url}</link>
     <description>${siteConfig.description}</description>
     <language>en-us</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${lastBuildDate.toUTCString()}</lastBuildDate>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>

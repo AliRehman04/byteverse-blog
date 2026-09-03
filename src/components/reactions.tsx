@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const REACTION_TYPES = [
   { type: "like", emoji: "👍", label: "Like" },
@@ -36,14 +36,38 @@ export function Reactions({ slug }: { slug: string }) {
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [reacted, setReacted] = useState<Set<string>>(new Set());
   const [animating, setAnimating] = useState<string | null>(null);
+  const [visible, setVisible] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  // Fetch counts only when the widget scrolls into view — bots and bouncers never trigger it.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
+    if (!visible) return;
     setReacted(getReactedTypes(slug));
     fetch(`/api/reactions?slug=${encodeURIComponent(slug)}`)
       .then((r) => r.json())
       .then((d) => setCounts(d.reactions || {}))
       .catch(() => {});
-  }, [slug]);
+  }, [slug, visible]);
 
   const react = useCallback(
     async (type: string) => {
@@ -72,7 +96,7 @@ export function Reactions({ slug }: { slug: string }) {
   );
 
   return (
-    <div className="flex items-center gap-2 flex-wrap">
+    <div ref={rootRef} className="flex items-center gap-2 flex-wrap">
       <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider mr-1">React</span>
       {REACTION_TYPES.map((r) => {
         const count = counts[r.type] || 0;

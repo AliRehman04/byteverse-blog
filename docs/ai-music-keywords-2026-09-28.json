@@ -1,0 +1,114 @@
+{
+  "checkedOn": "2026-09-28",
+  "slug": "how-to-make-ai-music-2026",
+  "publication": "Saved as hidden draft #228; published=false, featured=false, scheduled_at=null; no publication, scheduling, commit, push or deployment performed",
+  "validation": {
+    "checkedOn": "2026-09-28",
+    "wordCountWithoutImageTextUrlsAndCredits": 2819,
+    "uniqueContextualInternalLinks": 12,
+    "liveInternalTargets200": 12,
+    "faqCount": 7,
+    "tableCount": 2,
+    "coverImages": 1,
+    "bodyImages": 4,
+    "metaTitleCharacters": 50,
+    "metaDescriptionCharacters": 148,
+    "existingPostsUnchanged": 159,
+    "existingPostsChecksumExcludingViews": "155b155cbf7d3048f1af782180e53f47",
+    "publicDraftRoute": "HTTP 200 soft-404 with Post Not Found title and noindex; draft body absent",
+    "absentFrom": ["/blog", "/sitemap.xml", "/feed.xml"],
+    "images": "All five CDN URLs healthy and site-unique by photo ID; actual images viewed; photographer source pages and Pexels blog-use license verified. Two source fetches returned 403 but opened successfully in the browser.",
+    "rendering": "Existing FAQ converter and Markdown plugins rendered 7 details, 2 tables, 4 body images in an isolated loopback preview. DOM checks at 1280/390/320px showed no horizontal page overflow and all five images loaded.",
+    "limits": "Preview used isolated styling, not the production Next layout. Browser click stability timed out, so native FAQ-click interaction was not verified. No Next build or audio-generation test performed. Script syntax, targeted ESLint, JSON parse and editor diagnostics passed."
+  },
+  "siteGap": {
+    "postsInspected": 159,
+    "publishedPosts": 159,
+    "unresolvedOnSiteSearchGaps": 0,
+    "dedicatedMusicSlugFound": false,
+    "relatedClusters": ["YouTube creation", "podcasts", "AI voice tools", "AI video editing", "prompt engineering"],
+    "limitation": "A missing dedicated slug is an editorial opportunity, not evidence of search volume or a reason for zero traffic. Existing posts may mention music."
+  },
+  "targeting": {
+    "primary": "how to make ai music for free",
+    "secondary": ["how to use suno ai for free", "ai music generator with vocals", "ai music generator from lyrics", "suno prompt examples", "suno free download", "suno commercial use", "ai music for youtube"],
+    "angle": "One practical Suno workflow with original prompt and lyric examples; separate free creation, download eligibility, commercial-use licensing and human-authored copyright.",
+    "notPromised": ["unlimited generation", "guaranteed free MP3 downloads", "no sign-up", "copyright-free output", "search rankings", "traffic growth"],
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "gscPageOrQueryMetrics": null
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&q=",
+    "initialLocale": "Not explicitly specified; observed suggestions only",
+    "initialSeeds": [
+      {"query": "how to make ai music", "observed": ["how to make ai music", "how to make ai music for free", "how to make ai music video", "how to make ai music video for free", "how to make ai music covers", "how to make ai music for youtube", "how to make ai music and make money", "how to make ai music videos for youtube", "how to make ai music with artist voice", "how to make ai music sound real"]},
+      {"query": "how to make ai music free", "observed": ["how to make ai music free", "how to make ai generated music free", "how to make ai music video free", "how to make ai music covers free", "how to create ai music video free", "how to make music using ai free", "how to make ai music with my voice for free", "how to make copyright free ai music", "app to make ai music free", "make ai music free online"]},
+      {"query": "ai music generator", "observed": ["ai music generator", "ai music generator free", "ai music generator from text", "ai music generator free online", "ai music generator free with vocals", "ai music generator from text with vocals", "ai music generator free unlimited mp3", "ai music generator online", "ai music generator from lyrics", "ai music generator free download mp3 apk"]},
+      {"query": "free ai music generator", "observed": ["free ai music generator", "free ai music generator from text", "free ai music generator with vocals", "free ai music generator with free download mp3", "free ai music generator no sign up", "free ai music generator online", "free ai music generator with commercial license", "free ai music generator and download", "free ai music generator from lyrics"], "note": "Final suggestion was extraction-truncated and omitted."},
+      {"query": "suno ai", "observed": ["suno ai", "suno ai downloader", "suno ai free", "suno ai music", "suno ai app", "suno ai song download", "suno ai music generator", "suno ai free download", "suno ai music downloader", "suno ai app download"]},
+      {"query": "how to use suno", "observed": ["how to use suno ai", "how to use suno", "how to use suno studio", "how to use suno ai music", "how to use suno to create a song", "how to use suno ai for free", "how to use suno ai pro for free", "how to use suno app", "how to use suno ai better", "how to use suno studio for free"]}
+    ],
+    "followUpLocale": "hl=en&gl=us; language/country parameters, not verified physical search location",
+    "followUpSeeds": [
+      {"query": "suno free download", "observed": ["suno free download", "suno free download link", "suno free download mp3", "suno free download apk", "suno free download music", "suno free download video", "suno ai free download", "suno free plan download caps", "suno studio free download", "suno v5 free download"]},
+      {"query": "suno commercial use", "observed": ["suno commercial use", "suno commercial use rights", "suno commercial use license", "suno commercial use reddit", "suno commercial use terms", "suno commercial use policy", "suno commercial use meaning", "suno commercial license", "suno commercial license download", "suno ai commercial use"]},
+      {"query": "suno prompt examples", "observed": ["suno prompt examples", "suno prompt examples reddit", "suno prompt sample", "suno ai prompt examples", "suno song prompt examples", "suno style prompt examples", "best suno prompt examples", "suno lyric prompt examples"]},
+      {"query": "ai music for youtube", "observed": ["ai music for youtube", "ai music for youtube videos", "ai music for youtube reddit", "ai music generator for youtube videos", "ai music generator for youtube", "free ai music for youtube", "create ai music for youtube", "make ai music for youtube", "suno ai music for youtube"], "note": "Final suggestion was extraction-truncated and omitted."}
+    ],
+    "interpretation": "Autocomplete provides phrasing and intent ideas, not volumes, growth, ranking difficulty or demand guarantees. Queries about bypassing copyright controls are not tutorial targets."
+  },
+  "serpObservations": [
+    {
+      "url": "https://www.google.com/search?q=how+to+make+ai+music+free&hl=en&gl=us",
+      "observed": "AI Overview, Canva and other generator landing pages, Reddit and YouTube tutorials; visible product results included Beatoven.ai and ElevenLabs.",
+      "peopleAlsoAsk": ["Is making AI music legal?", "How do I create my own AI music?", "Can Chatgpt make a song?", "Does Spotify ban AI music?"],
+      "editorialImplication": "Mixed tool/tutorial intent and established competitors; not evidence that the broad query is easy. A dated, specific workflow must add value beyond a generator list. AI Overview claims were not used as factual evidence."
+    },
+    {
+      "url": "https://www.google.com/search?q=how+to+use+suno+free+with+own+lyrics&hl=en&gl=us",
+      "observed": "Tutorial videos, Reddit discussions and Justia questions about custom lyrics, free plans and ownership; several visible items dated 2024-2025.",
+      "peopleAlsoAsk": ["How to use your own lyrics in Suno?", "Can you put your own song into Suno?", "Can you make a song on Suno without paying?"],
+      "editorialImplication": "Explain Custom mode and lyric ownership separately from the generated recording's license. No unsupported answer about every distributor or country."
+    }
+  ],
+  "competitorPage": {
+    "url": "https://www.canva.com/features/ai-music-generator/",
+    "observed": "Product-led soundtrack workflow using mood/genre/duration; FAQ advertises 900 monthly tokens and up to 10 soundtracks daily.",
+    "scope": "Inspected as competing content, not benchmarked; its claims are not generalized to Suno or other providers."
+  },
+  "primarySources": [
+    {"url": "https://suno.com/pricing", "supports": "Free: 50 credits/day, v6-mini, shared queue, no monthly song downloads, no commercial rights, no stems. Pro: 20 downloads/month; Premier: 60 and Studio. No pricing amounts quoted in article."},
+    {"url": "https://help.suno.com/en/articles/13924481", "supports": "v6 family and retired prior models; natural-language section/lyric edits; ordinary generation creates two songs for 10 credits; image/video inputs and Max Mode can increase costs."},
+    {"url": "https://suno.com/release-notes/introducing-v6", "supports": "September 9, 2026 v6 release; v6 and v6-wild paid, v6-mini available to everyone."},
+    {"url": "https://help.suno.com/en/articles/2462273", "supports": "Create > Simple mode and description-based generation."},
+    {"url": "https://help.suno.com/en/articles/2415873", "supports": "Create > Custom, own lyrics field; users retain rights to original input lyrics."},
+    {"url": "https://help.suno.com/en/articles/2409921", "supports": "Library/Workspace > More Actions > Download; options vary."},
+    {"url": "https://help.suno.com/en/articles/13926081", "supports": "MP3 available across plans subject to entitlement, WAV Pro/Premier on web, Studio MIDI Premier."},
+    {"url": "https://help.suno.com/en/articles/13925185", "supports": "Get Stems Pro/Premier only; extraction can spend credits; Studio has separate workflow."},
+    {"url": "https://help.suno.com/en/articles/13876865", "supports": "Before Sept3 accounts: up to seven lifetime trial downloads; later accounts may occasionally receive trials; trial downloads not commercial."},
+    {"url": "https://help.suno.com/en/articles/13926401", "supports": "Newer trial FAQ says each free account includes up to seven lifetime trials; non-commercial only; in-app listening/sharing remains available after trial downloads are exhausted.", "conflict": "Broader wording than account-date eligibility in 13876865 and dated announcement. Article explicitly tells readers to verify account balance rather than promise seven downloads."},
+    {"url": "https://suno.com/blog/suno-updates-tos", "supports": "Dated download-policy announcement, account-date distinction, trial restrictions, 20/60 paid monthly downloads, Studio exception."},
+    {"url": "https://suno.com/terms-september-2026", "supports": "Permitted official download required for commercial use; free tier non-commercial; Remix restriction even for paid accounts unless separate offering; own-voice-only Voice Models; no stream ripping; no guaranteed uniqueness or copyright. Effective Sept3, 2026."},
+    {"url": "https://help.suno.com/en/articles/9601665", "supports": "Songs downloaded while subscribed receive commercial-use rights, distinct from copyright protection."},
+    {"url": "https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership", "supports": "Official notice dated Feb18, 2026 states audio, video and stem downloads disabled; not recommended as an export workaround."},
+    {"url": "https://help.udio.com/en/articles/10739134-credits-and-credit-limits", "supports": "Free generation allowance documented; no unlimited claim."},
+    {"url": "https://www.copyright.gov/newsnet/2025/1060.html", "supports": "US Copyright Office: sufficient human expressive authorship required; mere prompts insufficient; protectable human contributions distinct from AI-generated portions."},
+    {"url": "https://support.google.com/youtube/answer/3376882?hl=en", "supports": "Non-AI alternative: Audio Library MP3 downloads, license/attribution conditions and monetization for eligible YPP channels."},
+    {"url": "https://support.google.com/youtube/answer/14328491?hl=en", "supports": "AI-use disclosure requirements; disclosure itself does not reduce monetization eligibility. No earnings promise."}
+  ],
+  "researchLimitations": [
+    "No Suno/Udio songs generated or audio-quality benchmark performed; prompts are original illustrative starting points.",
+    "Wikipedia was used only for discovery. Final article relies on primary sources and omits the litigation timeline rather than treating allegations as facts.",
+    "US Copyright Office PDF extraction failed; its official HTML announcement was read instead.",
+    "No fresh GSC metrics, search-volume tool, keyword-difficulty data or controlled before/after traffic measurement available."
+  ],
+  "inboundLinksForPublishReviewOnly": ["best-ai-tools-for-youtube-creators-2026", "best-ai-tools-for-podcasters-2026", "best-ai-voice-generators-2026", "best-ai-content-creation-tools-2026"],
+  "images": [
+    {"role": "cover", "id": 5749192, "source": "https://www.pexels.com/photo/a-man-using-a-laptop-5749192/"},
+    {"role": "body", "id": 8133244, "source": "https://www.pexels.com/photo/music-producer-working-in-a-studio-8133244/"},
+    {"role": "body", "id": 4988132, "source": "https://www.pexels.com/photo/microphones-inside-the-recording-studio-4988132/"},
+    {"role": "body", "id": 5657668, "source": "https://www.pexels.com/photo/a-person-touching-the-audio-mixer-infront-of-computer-5657668/"},
+    {"role": "body", "id": 11044768, "source": "https://www.pexels.com/photo/computers-and-musical-equipment-in-a-music-studio-11044768/"}
+  ]
+}

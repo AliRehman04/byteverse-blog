@@ -146,7 +146,7 @@ export default function ReadabilityCheckerPage() {
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mt-4">
           The benchmark most writers miss: mainstream success lives lower than pride wants. Bestselling
           novels average grade 7; the most-shared articles online cluster around grade 8. Writing
-          "down" is not dumbing down — it is respect for the reader's time, and it is the house style
+          &quot;down&quot; is not dumbing down — it is respect for the reader&apos;s time, and it is the house style
           of every publication people actually finish.
         </p>
       </section>
@@ -213,7 +213,7 @@ export default function ReadabilityCheckerPage() {
           <div className="p-5 rounded-2xl border border-border bg-card">
             <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><Wrench size={16} className="text-primary" /> Related Free Tools</h3>
             <ul className="grid gap-2 text-sm">
-              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — score your headline next</Link></li>
+              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — compare title drafts and previews</Link></li>
               <li><Link href="/tools/word-counter" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Word Counter — length, reading and speaking time</Link></li>
               <li><Link href="/tools/plagiarism-checker" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Similarity Checker — verify originality</Link></li>
               <li><Link href="/tools/ai-content-detector" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> AI Content Detector — human or AI text?</Link></li>

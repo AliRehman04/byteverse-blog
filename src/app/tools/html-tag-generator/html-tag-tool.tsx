@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { SafeHtmlPreview } from "@/components/safe-html-preview";
 import {
   Tags, Eraser, Copy, Check, RotateCcw,
   Heading1, Heading2, Heading3, Bold, Italic, Underline,
@@ -431,9 +432,9 @@ export function HtmlTagTool() {
           {mode === "generate" && (
             <div className="mt-4 pt-4 border-t border-border/50">
               <span className="text-xs font-medium text-muted-foreground block mb-2">Live Preview</span>
-              <div
-                className="bg-white dark:bg-gray-900 rounded-lg p-4 text-sm prose prose-sm dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: outputText }}
+              <SafeHtmlPreview
+                title="Generated HTML preview"
+                html={outputText}
               />
             </div>
           )}

@@ -1,0 +1,2548 @@
+{
+  "checkedAt": "2026-09-28T06:15:15.934Z",
+  "baseUrl": "https://www.byteverse.fyi",
+  "limits": [
+    "Autocomplete documents suggested phrases, NOT monthly volume, demand size, Google position or difficulty.",
+    "hl=en/gl=us are requested parameters, not guaranteed audience-location measurement.",
+    "HTTP/canonical/robots checks do not prove Google indexing. No Search Console property data was available to this audit.",
+    "Word estimates include tool UI; neither HTML-to-text ratio nor word count is used as a ranking score.",
+    "Explicit stored blog links exclude renderer-inserted links, recommendations and navigation.",
+    "A GA script reference does not prove that events are collected correctly."
+  ],
+  "summary": {
+    "toolCount": 41,
+    "liveOk": null,
+    "missingFromSitemap": null,
+    "nonSelfCanonical": null,
+    "noindex": null,
+    "withApplicationRatings": null,
+    "keywordRequestsSucceeded": 82,
+    "robotsText": null
+  },
+  "tools": [
+    {
+      "slug": "ai-content-detector",
+      "name": "AI Content Detector",
+      "url": "https://www.byteverse.fyi/tools/ai-content-detector",
+      "sourceTitle": "AI Content Detector - Free AI Text Detection Tool",
+      "sourceDescription": "Detect AI-generated text using advanced linguistic analysis. Check if content was written by ChatGPT, Claude, or other AI models. 100% free, private, runs in your browser.",
+      "sourceKeywords": [
+        "ai content detector",
+        "ai text detector",
+        "chatgpt detector",
+        "ai writing detector",
+        "ai detection tool",
+        "detect ai content",
+        "ai checker"
+      ],
+      "seeds": [
+        "ai content detector",
+        "ai detector false positive"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "ai content detector",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=ai+content+detector",
+          "checkedAt": "2026-09-28T06:15:06.974Z",
+          "suggestions": [
+            "ai content detector",
+            "ai content detector free",
+            "ai content detector instagram",
+            "ai content detector turnitin",
+            "ai content detector facebook",
+            "ai content detector scribbr",
+            "ai content detector copyleaks",
+            "ai content detector writer",
+            "ai content detector quillbot",
+            "ai content detector grammarly"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "ai detector false positive",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=ai+detector+false+positive",
+          "checkedAt": "2026-09-28T06:15:07.182Z",
+          "suggestions": [
+            "ai detector false positive",
+            "ai detector false positive rate",
+            "ai detector false positive reddit",
+            "ai detection false positive",
+            "ai detection false positive rate",
+            "ai detection false positive neurodivergent",
+            "ai detection false positive reddit",
+            "copyleaks ai detector false positive",
+            "ai image detector false positive",
+            "turnitin ai detection false positive"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "ai-cv-builder",
+      "name": "AI CV Builder",
+      "url": "https://www.byteverse.fyi/tools/ai-cv-builder",
+      "sourceTitle": "AI CV Builder - Free Resume Maker with PDF Download",
+      "sourceDescription": "Create a modern ATS-friendly CV online with visual editing, JSON code mode, templates, AI writing help, profile photo support, section reordering, and PDF download.",
+      "sourceKeywords": [
+        "ai cv builder",
+        "ai cv builder free",
+        "ai cv builder free online",
+        "free ai cv builder and download pdf",
+        "ai resume builder",
+        "free cv maker",
+        "free resume builder and download",
+        "free resume builder without payment",
+        "free resume builder ats friendly",
+        "resume builder pdf",
+        "online cv editor",
+        "modern resume template",
+        "ats resume builder",
+        "cv pdf download",
+        "ats friendly cv builder",
+        "ai resume pdf maker",
+        "free online cv builder"
+      ],
+      "seeds": [
+        "free resume builder",
+        "resume builder free pdf download"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "free resume builder",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=free+resume+builder",
+          "checkedAt": "2026-09-28T06:15:06.938Z",
+          "suggestions": [
+            "free resume builder",
+            "free resume builder and download",
+            "free resume builder no sign up",
+            "free resume builder online",
+            "free resume builder ai",
+            "free resume builder app",
+            "free resume builder reddit",
+            "free resume builder no payment",
+            "free resume builder template",
+            "free resume builder no charge"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "resume builder free pdf download",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=resume+builder+free+pdf+download",
+          "checkedAt": "2026-09-28T06:15:07.159Z",
+          "suggestions": [
+            "resume builder free pdf download",
+            "resume maker free pdf download",
+            "cv builder free pdf download",
+            "resume maker free download pdf india",
+            "ai resume builder free pdf download",
+            "chatgpt resume builder free download pdf",
+            "cv maker free download pdf for freshers",
+            "resume builder online free download pdf",
+            "online resume maker free pdf download",
+            "cv maker free download pdf no payment"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "ai-prompt-generator",
+      "name": "AI Prompt Generator",
+      "url": "https://www.byteverse.fyi/tools/ai-prompt-generator",
+      "sourceTitle": "AI Prompt Generator - Free Prompt Builder",
+      "sourceDescription": "Create stronger prompts for ChatGPT, Claude, Gemini, image models, coding assistants, marketing copy, blog writing, and more. Build prompts with goals, tone, context, and constraints.",
+      "sourceKeywords": [
+        "ai prompt generator",
+        "prompt builder",
+        "chatgpt prompt generator",
+        "claude prompt builder",
+        "ai prompt tool",
+        "prompt engineering tool",
+        "image prompt generator",
+        "prompt template generator"
+      ],
+      "seeds": [
+        "ai prompt generator",
+        "chatgpt prompt generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "ai prompt generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=ai+prompt+generator",
+          "checkedAt": "2026-09-28T06:15:07.358Z",
+          "suggestions": [
+            "ai prompt generator",
+            "ai prompt generator free",
+            "ai prompt generator from image",
+            "ai prompt generator perchance",
+            "ai prompt generator video",
+            "ai prompt generator text",
+            "ai prompt generator chatgpt",
+            "ai prompt generator no filter",
+            "ai prompt generator jobs",
+            "ai prompt generator for claude"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "chatgpt prompt generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=chatgpt+prompt+generator",
+          "checkedAt": "2026-09-28T06:15:07.574Z",
+          "suggestions": [
+            "chatgpt prompt generator",
+            "chatgpt prompt generator image",
+            "chatgpt prompt generator for photo editing",
+            "chatgpt prompt generator openai",
+            "chatgpt prompt generator ideas",
+            "chatgpt prompt generator image free",
+            "chatgpt prompt generator text",
+            "chatgpt prompt generator app",
+            "chatgpt prompt generator link",
+            "chatgpt prompt generator copy and paste"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "base64-encoder-decoder",
+      "name": "Base64 Encoder & Decoder",
+      "url": "https://www.byteverse.fyi/tools/base64-encoder-decoder",
+      "sourceTitle": "Base64 Encoder & Decoder - Free Online Tool",
+      "sourceDescription": "Encode or decode Base64 strings instantly. Supports text and UTF-8. Free, fast, and runs entirely in your browser.",
+      "sourceKeywords": [
+        "base64 encoder",
+        "base64 decoder",
+        "base64 online",
+        "encode base64",
+        "decode base64",
+        "base64 tool"
+      ],
+      "seeds": [
+        "base64 decoder",
+        "base64 decode utf8"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "base64 decoder",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=base64+decoder",
+          "checkedAt": "2026-09-28T06:15:07.407Z",
+          "suggestions": [
+            "base64 decoder",
+            "base64 decoder online",
+            "base64 decoder image",
+            "base64 decoder tool",
+            "base64 decoder to pdf",
+            "base64 decoder dcode",
+            "base64 decoder and encoder",
+            "base64 decode python",
+            "base64 decode linux",
+            "base64 decoder website"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "base64 decode utf8",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=base64+decode+utf8",
+          "checkedAt": "2026-09-28T06:15:07.638Z",
+          "suggestions": [
+            "base64 decode utf8",
+            "base64 decode utf8 python",
+            "base64 decode utf8 php",
+            "decode base64 utf8 javascript",
+            "powershell base64 decode utf8",
+            "linux base64 decode utf8",
+            "java base64 decode utf8",
+            "bash base64 decode utf8",
+            "mysql base64 decode utf8",
+            "c# base64 decode utf8"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "box-shadow-generator",
+      "name": "Box Shadow Generator",
+      "url": "https://www.byteverse.fyi/tools/box-shadow-generator",
+      "sourceTitle": "Box Shadow Generator - Free CSS Box-Shadow Builder",
+      "sourceDescription": "Create CSS box-shadow effects visually. Adjust offset, blur, spread, color, opacity, and multiple layers. Copy the generated CSS code instantly.",
+      "sourceKeywords": [
+        "box shadow generator",
+        "css box shadow",
+        "shadow generator",
+        "css shadow builder",
+        "box shadow css",
+        "drop shadow generator"
+      ],
+      "seeds": [
+        "box shadow generator",
+        "css inset shadow generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "box shadow generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=box+shadow+generator",
+          "checkedAt": "2026-09-28T06:15:07.792Z",
+          "suggestions": [
+            "box shadow generator",
+            "box shadow generator css",
+            "box shadow generator tailwind",
+            "box shadow generator online",
+            "box shadow generator react native",
+            "box shadow generator cssmatic",
+            "box shadow generator examples",
+            "box shadow generator html",
+            "box shadow generator flutter",
+            "box shadow generator inset"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "css inset shadow generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=css+inset+shadow+generator",
+          "checkedAt": "2026-09-28T06:15:08.041Z",
+          "suggestions": [
+            "css inset shadow generator",
+            "css box shadow generator",
+            "css inner shadow generator",
+            "css box shadow generator online",
+            "css box shadow generator bottom only",
+            "css box shadow generator all sides",
+            "css inset box shadow generator",
+            "tailwind css box shadow generator",
+            "css box shadow gradient generator",
+            "css inner box shadow generator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "code-formatter",
+      "name": "Code Formatter & Beautifier",
+      "url": "https://www.byteverse.fyi/tools/code-formatter",
+      "sourceTitle": "Code Formatter Online - JSON, HTML, CSS, JS & SQL",
+      "sourceDescription": "Free online code formatter and beautifier: format or minify JSON, HTML, CSS, JavaScript, SQL, and XML instantly with auto language detection. No sign-up.",
+      "sourceKeywords": [
+        "code formatter",
+        "code formatter online",
+        "online code formatter",
+        "code beautifier",
+        "code beautifier online",
+        "code prettifier tool",
+        "format code online",
+        "code formatter html",
+        "json formatter",
+        "html formatter",
+        "css formatter",
+        "javascript formatter",
+        "sql formatter",
+        "code minifier"
+      ],
+      "seeds": [
+        "code formatter",
+        "javascript formatter online"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "code formatter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=code+formatter",
+          "checkedAt": "2026-09-28T06:15:07.939Z",
+          "suggestions": [
+            "code formatter",
+            "code formatter online",
+            "code formatter word add-in",
+            "code formatter vscode",
+            "code formatter for word",
+            "code formatter java",
+            "code formatter html",
+            "code formatter in vs code",
+            "code formatter python",
+            "code formatter in intellij"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "javascript formatter online",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=javascript+formatter+online",
+          "checkedAt": "2026-09-28T06:15:08.174Z",
+          "suggestions": [
+            "javascript formatter online",
+            "javascript formatter online free",
+            "javascript format online",
+            "javascript format online tool",
+            "js format online",
+            "javascript beautifier online",
+            "javascript indentation online",
+            "javascript prettify online",
+            "javascript code formatter online",
+            "html javascript formatter online"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "color-converter",
+      "name": "Color Converter",
+      "url": "https://www.byteverse.fyi/tools/color-converter",
+      "sourceTitle": "Color Converter - Free HEX, RGB & HSL Color Tool",
+      "sourceDescription": "Convert colors between HEX, RGB, and HSL formats instantly. Visual color picker with sliders, live preview, and one-click copy for all formats.",
+      "sourceKeywords": [
+        "color converter",
+        "hex to rgb",
+        "rgb to hsl",
+        "color picker",
+        "hex to hsl",
+        "css color converter"
+      ],
+      "seeds": [
+        "hex to rgb",
+        "rgb to hsl converter"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "hex to rgb",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=hex+to+rgb",
+          "checkedAt": "2026-09-28T06:15:08.242Z",
+          "suggestions": [
+            "hex to rgb",
+            "hex to rgba",
+            "hex to rgb converter",
+            "hex to rgba converter",
+            "hex to rgb and cmyk",
+            "hex to rgb color",
+            "hex to rgb conversion",
+            "hex to rgb formula",
+            "hex to rgb code",
+            "hex to rgb color converter"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "rgb to hsl converter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=rgb+to+hsl+converter",
+          "checkedAt": "2026-09-28T06:15:08.445Z",
+          "suggestions": [
+            "rgb to hsl converter",
+            "rgb to hsl converter online",
+            "rgb to hsv converter",
+            "rgb to hue converter",
+            "rgb to hsv converter online",
+            "rgb to hsl color converter",
+            "rgb to hsl conversion",
+            "rgb to hsl conversion formula",
+            "rgb to hsv image converter online",
+            "rgb to hsv image converter"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "cron-expression-generator",
+      "name": "Cron Expression Generator",
+      "url": "https://www.byteverse.fyi/tools/cron-expression-generator",
+      "sourceTitle": "Cron Expression Generator - Free Crontab Builder",
+      "sourceDescription": "Build cron expressions visually with plain-English explanations. Every 5 minutes, hourly, daily, weekdays — copy valid crontab syntax instantly, free.",
+      "sourceKeywords": [
+        "cron expression generator",
+        "cron generator",
+        "crontab generator",
+        "cron expression builder",
+        "cron expression maker",
+        "cron expression online",
+        "cron expression tester",
+        "cron expression validator",
+        "cron expression translator",
+        "cron job every 5 minutes",
+        "crontab builder",
+        "cron schedule generator",
+        "quartz cron expression generator",
+        "visual cron builder",
+        "cron syntax generator"
+      ],
+      "seeds": [
+        "cron expression generator",
+        "cron expression next run"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "cron expression generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=cron+expression+generator",
+          "checkedAt": "2026-09-28T06:15:08.391Z",
+          "suggestions": [
+            "cron expression generator",
+            "cron expression generator online",
+            "cron expression generator quartz",
+            "cron expression generator salesforce",
+            "cron expression generator 6 fields",
+            "cron expression generator for uipath",
+            "cron expression generator with seconds",
+            "what is cron expression",
+            "cron expression for today",
+            "cron expression for daily schedule"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "cron expression next run",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=cron+expression+next+run",
+          "checkedAt": "2026-09-28T06:15:08.590Z",
+          "suggestions": [
+            "cron expression next run time",
+            "cron expression next execution",
+            "java cron expression get next run time",
+            "cron expression to run every 30 seconds"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "css-gradient-generator",
+      "name": "CSS Gradient Generator",
+      "url": "https://www.byteverse.fyi/tools/css-gradient-generator",
+      "sourceTitle": "CSS Gradient Generator - Linear & Radial Builder",
+      "sourceDescription": "Create beautiful CSS gradients visually. Build linear and radial gradients with multiple color stops, angle controls, and presets. Copy the CSS code instantly.",
+      "sourceKeywords": [
+        "css gradient generator",
+        "gradient builder",
+        "linear gradient",
+        "radial gradient",
+        "css background gradient",
+        "color gradient maker"
+      ],
+      "seeds": [
+        "css gradient generator",
+        "css radial gradient generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "css gradient generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=css+gradient+generator",
+          "checkedAt": "2026-09-28T06:15:08.667Z",
+          "suggestions": [
+            "css gradient generator",
+            "css gradient generator online",
+            "css gradient generator background",
+            "css gradient generator from image",
+            "css gradient generator tailwind",
+            "css gradient generator tool",
+            "css gradient generator animation",
+            "css gradient generator 3 colors",
+            "css gradient generator transparent",
+            "css gradient generator text"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "css radial gradient generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=css+radial+gradient+generator",
+          "checkedAt": "2026-09-28T06:15:09.079Z",
+          "suggestions": [
+            "css radial gradient generator",
+            "css radial gradient generator ellipse",
+            "css radial gradient generator position",
+            "css circular gradient generator",
+            "css radial gradient maker",
+            "tailwind css radial gradient generator",
+            "css background radial gradient generator",
+            "css circle radial gradient generator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "diff-checker",
+      "name": "Diff Checker",
+      "url": "https://www.byteverse.fyi/tools/diff-checker",
+      "sourceTitle": "Diff Checker - Compare Text & Find Differences",
+      "sourceDescription": "Compare two texts side by side and find differences instantly. Line-by-line diff with additions, deletions, and unchanged lines. Free, private, runs in your browser.",
+      "sourceKeywords": [
+        "diff checker",
+        "diff checker online",
+        "text compare",
+        "text diff",
+        "compare text online",
+        "difference finder",
+        "code diff",
+        "file compare"
+      ],
+      "seeds": [
+        "diff checker",
+        "compare two texts"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "diff checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=diff+checker",
+          "checkedAt": "2026-09-28T06:15:08.871Z",
+          "suggestions": [
+            "diff checker",
+            "diff checker online",
+            "diff checker vscode",
+            "diff checker json",
+            "diff checker text",
+            "diff checker excel",
+            "diff checker tool",
+            "diff checker pdf",
+            "diff checker code",
+            "diff checker online free"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "compare two texts",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=compare+two+texts",
+          "checkedAt": "2026-09-28T06:15:09.090Z",
+          "suggestions": [
+            "compare two texts",
+            "compare two texts for differences",
+            "compare two texts online",
+            "compare two texts for differences online",
+            "compare two texts and highlight differences",
+            "compare two texts for plagiarism",
+            "compare two texts to find differences",
+            "compare two texts side by side",
+            "compare two texts for similarity",
+            "compare two text in word"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "flexbox-generator",
+      "name": "CSS Flexbox Generator",
+      "url": "https://www.byteverse.fyi/tools/flexbox-generator",
+      "sourceTitle": "CSS Flexbox Generator - Visual Layout Builder",
+      "sourceDescription": "Build CSS Flexbox layouts visually. Set flex-direction, justify-content, align-items, gap, and wrap with live preview. Copy production-ready CSS instantly.",
+      "sourceKeywords": [
+        "css flexbox generator",
+        "flexbox playground",
+        "flex layout builder",
+        "css flex tool",
+        "flexbox visual editor",
+        "flexbox css generator online"
+      ],
+      "seeds": [
+        "flexbox generator",
+        "css flexbox playground"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "flexbox generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=flexbox+generator",
+          "checkedAt": "2026-09-28T06:15:09.272Z",
+          "suggestions": [
+            "flexbox generator",
+            "flexbox generator drag and drop",
+            "flexbox generator css",
+            "flexbox generator tailwind",
+            "flexbox generator online",
+            "flexbox generator ai",
+            "flexbox generator html",
+            "flex generator",
+            "flex generator css",
+            "flex generator ai"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "css flexbox playground",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=css+flexbox+playground",
+          "checkedAt": "2026-09-28T06:15:09.486Z",
+          "suggestions": [
+            "css flexbox playground",
+            "css flex playground",
+            "css display flex playground",
+            "difference between flexbox and css grid",
+            "flex css example"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "hash-generator",
+      "name": "Hash Generator",
+      "url": "https://www.byteverse.fyi/tools/hash-generator",
+      "sourceTitle": "Hash Generator Online - SHA-256, SHA-512 & SHA-1",
+      "sourceDescription": "Free online hash generator: SHA-256, SHA-512, SHA-384, and SHA-1 from any text, instantly. Web Crypto API — private, in-browser, no upload.",
+      "sourceKeywords": [
+        "hash generator",
+        "hash generator online",
+        "sha256 generator",
+        "sha256 generator online",
+        "sha256 generator from text",
+        "hash generator sha256",
+        "sha512 generator",
+        "sha256 hash",
+        "sha512 hash",
+        "sha1 hash",
+        "hash calculator",
+        "online hash generator",
+        "text to hash",
+        "checksum generator"
+      ],
+      "seeds": [
+        "sha256 generator",
+        "file hash checker"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "sha256 generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=sha256+generator",
+          "checkedAt": "2026-09-28T06:15:09.353Z",
+          "suggestions": [
+            "sha256 generator",
+            "sha256 generator tool",
+            "sha256 generator online",
+            "sha256 generator from file",
+            "sha256 generator tool schneider",
+            "sha256 generator with salt",
+            "sha256 generator random",
+            "sha256 generator with key",
+            "sha256 generator windows",
+            "sha256 generator from text"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "file hash checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=file+hash+checker",
+          "checkedAt": "2026-09-28T06:15:09.550Z",
+          "suggestions": [
+            "file hash checker",
+            "file hash checker virus",
+            "file hash checker windows",
+            "file hash checker online",
+            "file hash checker download",
+            "file hash checker malware",
+            "file hash checker tool",
+            "file hash checker linux",
+            "file hash checker powershell",
+            "file hash checker like virustotal"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "html-editor",
+      "name": "Live HTML Editor",
+      "url": "https://www.byteverse.fyi/tools/html-editor",
+      "sourceTitle": "HTML Editor Online - Free, with Live Preview",
+      "sourceDescription": "Free online HTML editor with live preview — write HTML, CSS, and JavaScript and see results instantly. 7 templates, mobile preview, fullscreen. No sign-up.",
+      "sourceKeywords": [
+        "html editor online",
+        "html editor online free",
+        "html editor online with preview",
+        "html editor online free with preview",
+        "live html editor",
+        "html editor",
+        "run html online",
+        "test html online",
+        "html playground",
+        "online html editor",
+        "html css editor",
+        "html preview",
+        "html css javascript editor"
+      ],
+      "seeds": [
+        "html editor online",
+        "html css javascript playground"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "html editor online",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=html+editor+online",
+          "checkedAt": "2026-09-28T06:15:09.691Z",
+          "suggestions": [
+            "html editor online",
+            "html editor online free",
+            "html editor online with preview",
+            "html editor online free with preview",
+            "html editor online wysiwyg",
+            "html editor online compiler",
+            "html editor online download",
+            "html editor online free download",
+            "html editor online w3schools",
+            "html editor online ai"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "html css javascript playground",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=html+css+javascript+playground",
+          "checkedAt": "2026-09-28T06:15:09.925Z",
+          "suggestions": [
+            "html css javascript playground",
+            "html css js playground",
+            "html css js playground online",
+            "html and javascript playground",
+            "html css javascript online playground",
+            "html css javascript mozilla playground",
+            "html css and javascript playground liveweave",
+            "html css javascript code playground"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "html-tag-generator",
+      "name": "HTML Tag Generator & Remover",
+      "url": "https://www.byteverse.fyi/tools/html-tag-generator",
+      "sourceTitle": "HTML Tag Generator & Remover - Online Tool",
+      "sourceDescription": "Generate HTML tags from plain text or strip all tags from HTML code. Wrap text in paragraphs, headings, lists, bold, links, and more. 100% free, private, runs in your browser.",
+      "sourceKeywords": [
+        "html tag generator",
+        "html tag remover",
+        "strip html tags",
+        "remove html tags",
+        "text to html",
+        "html to text",
+        "wrap text in html",
+        "html tag stripper"
+      ],
+      "seeds": [
+        "html tag remover",
+        "text to html converter"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "html tag remover",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=html+tag+remover",
+          "checkedAt": "2026-09-28T06:15:09.758Z",
+          "suggestions": [
+            "html tag remover",
+            "html tag remover online",
+            "html tag remove regex",
+            "html tag removal python",
+            "what is tag remover",
+            "clean html tags"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "text to html converter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=text+to+html+converter",
+          "checkedAt": "2026-09-28T06:15:09.959Z",
+          "suggestions": [
+            "text to html converter",
+            "text to html converter online",
+            "text to html converter free",
+            "text to html converter online free",
+            "text to html converter download",
+            "text to html converter ai",
+            "text to html converter w3schools",
+            "text to html converter file",
+            "text to html converter for amazon",
+            "text to html converter by code beautify"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "image-compressor",
+      "name": "Image Compressor",
+      "url": "https://www.byteverse.fyi/tools/image-compressor",
+      "sourceTitle": "Image Compressor - Free Online Image Optimizer",
+      "sourceDescription": "Compress JPG, PNG, and WebP images online. Resize photos, adjust quality, convert formats, preview results, and download optimized images. Free and private.",
+      "sourceKeywords": [
+        "image compressor",
+        "compress image online",
+        "photo compressor",
+        "image optimizer",
+        "reduce image size",
+        "jpg compressor",
+        "png compressor",
+        "webp converter",
+        "resize image online"
+      ],
+      "seeds": [
+        "image compressor",
+        "compress image to 100kb"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "image compressor",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=image+compressor",
+          "checkedAt": "2026-09-28T06:15:10.120Z",
+          "suggestions": [
+            "image compressor",
+            "image compressor free",
+            "image compressor for discord",
+            "image compressor online",
+            "image compressor to 5mb",
+            "image compressor to 20kb",
+            "image compressor free online",
+            "image compressor to 1mb",
+            "image compressor to 200kb",
+            "image compressor to 50kb"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "compress image to 100kb",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=compress+image+to+100kb",
+          "checkedAt": "2026-09-28T06:15:10.316Z",
+          "suggestions": [
+            "compress image to 100kb",
+            "compress image to 100kb online",
+            "compress image to 100kb free online",
+            "compress image to 100kb jpg",
+            "compress image to 100kb to 200kb",
+            "compress image to 100kb pdf",
+            "compress image to 100kb free",
+            "compress image to 100kb i love pdf",
+            "compress image to 100kb jpg format",
+            "compress image to 100kb without losing quality"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "json-formatter",
+      "name": "JSON Formatter & Validator",
+      "url": "https://www.byteverse.fyi/tools/json-formatter",
+      "sourceTitle": "JSON Formatter & Validator Online - Free Tool",
+      "sourceDescription": "Format, validate, and minify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, and one-click copy.",
+      "sourceKeywords": [
+        "json formatter",
+        "json validator",
+        "json beautifier",
+        "json minifier",
+        "format json online",
+        "json tool"
+      ],
+      "seeds": [
+        "json formatter",
+        "json formatter online"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "json formatter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+formatter",
+          "checkedAt": "2026-09-28T06:15:10.168Z",
+          "suggestions": [
+            "json formatter",
+            "json formatter online",
+            "json formatter and validator",
+            "json formatter chrome extension",
+            "json formatter notepad++",
+            "json formatter extension",
+            "json formatter vscode",
+            "json formatter online free",
+            "json formatter.org",
+            "json formatter chrome"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "json formatter online",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+formatter+online",
+          "checkedAt": "2026-09-28T06:15:10.366Z",
+          "suggestions": [
+            "json formatter online",
+            "json formatter online free",
+            "json formatter online beautify",
+            "json formatter online code beautify",
+            "json formatter online viewer",
+            "json formatter online compare",
+            "json formatter online editor",
+            "json formatter online extension",
+            "json formatter online validator",
+            "json formatter online remove escape characters"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "json-to-csv",
+      "name": "JSON to CSV Converter",
+      "url": "https://www.byteverse.fyi/tools/json-to-csv",
+      "sourceTitle": "JSON to CSV Converter - Free Online Tool",
+      "sourceDescription": "Convert JSON arrays to CSV or TSV format instantly. Supports nested objects, custom delimiters, file upload, and download. Runs entirely in your browser.",
+      "sourceKeywords": [
+        "json to csv",
+        "json to csv converter",
+        "convert json to csv",
+        "json to csv online",
+        "json to tsv",
+        "json csv converter"
+      ],
+      "seeds": [
+        "json to csv",
+        "nested json to csv"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "json to csv",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+to+csv",
+          "checkedAt": "2026-09-28T06:15:10.502Z",
+          "suggestions": [
+            "json to csv",
+            "json to csv converter",
+            "json to csv python",
+            "json to csv converter online",
+            "json to csv in excel",
+            "json to csv online",
+            "json to csv converter free",
+            "json to csv free",
+            "json to csv file",
+            "json to csv linux"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "nested json to csv",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=nested+json+to+csv",
+          "checkedAt": "2026-09-28T06:15:10.694Z",
+          "suggestions": [
+            "nested json to csv",
+            "nested json to csv converter",
+            "nested json to csv python",
+            "nested json to csv online",
+            "nested json to csv powershell",
+            "complex json to csv",
+            "convert nested json to csv powershell",
+            "convert nested json to csv python pandas",
+            "convert nested json to csv python",
+            "jq nested json to csv"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "json-to-typescript",
+      "name": "JSON to TypeScript Converter",
+      "url": "https://www.byteverse.fyi/tools/json-to-typescript",
+      "sourceTitle": "JSON to TypeScript Converter - Interface & Type Online",
+      "sourceDescription": "Convert JSON to TypeScript interfaces or types online, free. Handles nested objects, arrays, optional props, readonly, and exports — 100% in your browser.",
+      "sourceKeywords": [
+        "json to typescript",
+        "json to typescript interface",
+        "json to typescript type",
+        "json to typescript converter",
+        "json to typescript online",
+        "json to typescript type generator",
+        "json to ts",
+        "json to types",
+        "json to interface",
+        "json to interface typescript",
+        "generate typescript types from json",
+        "typescript interface generator",
+        "typescript from json"
+      ],
+      "seeds": [
+        "json to typescript",
+        "json to typescript interface"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "json to typescript",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+to+typescript",
+          "checkedAt": "2026-09-28T06:15:10.576Z",
+          "suggestions": [
+            "json to typescript",
+            "json to typescript interface",
+            "json to typescript converter",
+            "json to typescript type",
+            "json to typescript object",
+            "json to typescript class",
+            "json to typescript model",
+            "json to typescript interface online",
+            "json to typescript online",
+            "json to typescript type generator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "json to typescript interface",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+to+typescript+interface",
+          "checkedAt": "2026-09-28T06:15:10.767Z",
+          "suggestions": [
+            "json to typescript interface",
+            "json to typescript interface online",
+            "json to typescript interface generator",
+            "json to typescript interface vscode",
+            "json to typescript interface converter",
+            "json to typescript interface vscode extension",
+            "json to typescript interface npm",
+            "json to ts interface online",
+            "json schema to typescript interface",
+            "json object to typescript interface"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "jwt-decoder",
+      "name": "JWT Decoder",
+      "url": "https://www.byteverse.fyi/tools/jwt-decoder",
+      "sourceTitle": "JWT Decoder - Decode & Inspect JSON Web Tokens",
+      "sourceDescription": "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
+      "sourceKeywords": [
+        "jwt decoder",
+        "jwt decoder online",
+        "decode jwt",
+        "json web token decoder",
+        "jwt token decoder",
+        "jwt inspector",
+        "jwt debugger",
+        "jwt parser"
+      ],
+      "seeds": [
+        "jwt decoder",
+        "jwt token expiry checker"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "jwt decoder",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=jwt+decoder",
+          "checkedAt": "2026-09-28T06:15:10.885Z",
+          "suggestions": [
+            "jwt decoder",
+            "jwt decoder online",
+            "jwt decoder and encoder",
+            "jwt decoder flutter",
+            "jwt decoder github",
+            "jwt decoder fusionauth docs",
+            "jwt decoder cli",
+            "jwt decoder offline",
+            "jwt decoder python",
+            "jwt decoder tool"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "jwt token expiry checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=jwt+token+expiry+checker",
+          "checkedAt": "2026-09-28T06:15:11.157Z",
+          "suggestions": [
+            "jwt token expiry checker",
+            "jwt token expiry check",
+            "jwt token expiry check online",
+            "jwt token expiry date",
+            "jwt token validity check",
+            "jwt token expiry time check",
+            "do tokens expire",
+            "check book token value",
+            "check token price"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "llms-txt-generator-validator",
+      "name": "llms.txt Generator & Validator",
+      "url": "https://www.byteverse.fyi/tools/llms-txt-generator-validator",
+      "sourceTitle": "LLMs.txt Generator & Validator - Free Checker Online",
+      "sourceDescription": "Generate a spec-compliant llms.txt file or validate an existing one — free online checker with format rules, live example, and AI SEO guidance.",
+      "sourceKeywords": [
+        "llms.txt generator",
+        "llms.txt validator",
+        "llms.txt checker",
+        "llms txt generator free",
+        "llms txt generator online",
+        "llms.txt file generator",
+        "llms.txt example",
+        "llms.txt format",
+        "llms.txt what is it",
+        "llms.txt seo",
+        "llms.txt google",
+        "ai website optimization"
+      ],
+      "seeds": [
+        "llms.txt generator",
+        "llms.txt validator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "llms.txt generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=llms.txt+generator",
+          "checkedAt": "2026-09-28T06:15:10.957Z",
+          "suggestions": [
+            "llms.txt generator",
+            "llms.txt generator free",
+            "llms txt generator wordpress",
+            "llms txt generator online",
+            "llms txt generator github",
+            "llms txt generator tool",
+            "llms txt generator firecrawl",
+            "llms txt generator shopify",
+            "llms txt generator wordpress plugin",
+            "llms.txt generator online free"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "llms.txt validator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=llms.txt+validator",
+          "checkedAt": "2026-09-28T06:15:11.187Z",
+          "suggestions": [
+            "llms.txt validator",
+            "llms txt validator online",
+            "llms txt validator tool",
+            "llms txt validator hostinger",
+            "llms txt checker",
+            "llms txt checker online",
+            "llms txt verifier",
+            "llms txt checker tool",
+            "llms.txt checker chrome extension",
+            "llm text validator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "name": "Lorem Ipsum Generator",
+      "url": "https://www.byteverse.fyi/tools/lorem-ipsum-generator",
+      "sourceTitle": "Lorem Ipsum Generator - Free Placeholder Text",
+      "sourceDescription": "Generate lorem ipsum placeholder text for your designs and layouts. Choose paragraphs, sentences, or words with customizable count and HTML wrapping.",
+      "sourceKeywords": [
+        "lorem ipsum generator",
+        "placeholder text",
+        "dummy text generator",
+        "lorem ipsum",
+        "filler text",
+        "lipsum generator"
+      ],
+      "seeds": [
+        "lorem ipsum generator",
+        "placeholder text generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "lorem ipsum generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=lorem+ipsum+generator",
+          "checkedAt": "2026-09-28T06:15:11.364Z",
+          "suggestions": [
+            "lorem ipsum generator",
+            "lorem ipsum generator character count",
+            "lorem ipsum generator characters",
+            "lorem ipsum generator funny",
+            "lorem ipsum generator word",
+            "lorem ipsum generator text",
+            "lorem ipsum generator fun",
+            "lorem ipsum generator figma",
+            "lorem ipsum generator free",
+            "lorem ipsum generator 500 characters"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "placeholder text generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=placeholder+text+generator",
+          "checkedAt": "2026-09-28T06:15:11.567Z",
+          "suggestions": [
+            "placeholder text generator",
+            "placeholder text generator english",
+            "dummy text generator",
+            "dummy text generator english",
+            "dummy text generator lorem ipsum",
+            "dummy text generator not lorem ipsum",
+            "dummy text generator extension",
+            "dummy text generator online",
+            "dummy text generator without space",
+            "dummy text generator chrome extension"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "markdown-to-html",
+      "name": "Markdown to HTML Converter",
+      "url": "https://www.byteverse.fyi/tools/markdown-to-html",
+      "sourceTitle": "Markdown to HTML Converter - Free Online Tool",
+      "sourceDescription": "Convert Markdown to clean HTML instantly. Supports headings, bold, italic, code blocks, links, images, lists, blockquotes, and more. Live preview included.",
+      "sourceKeywords": [
+        "markdown to html",
+        "markdown converter",
+        "md to html",
+        "markdown to html converter",
+        "convert markdown",
+        "markdown preview"
+      ],
+      "seeds": [
+        "markdown to html",
+        "markdown table to html"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "markdown to html",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=markdown+to+html",
+          "checkedAt": "2026-09-28T06:15:11.389Z",
+          "suggestions": [
+            "markdown to html",
+            "markdown to html converter",
+            "markdown to html python",
+            "markdown to html online",
+            "markdown to html js",
+            "markdown to html vscode",
+            "markdown to html table",
+            "markdown to html linux",
+            "markdown to html skill",
+            "markdown to html library"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "markdown table to html",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=markdown+table+to+html",
+          "checkedAt": "2026-09-28T06:15:11.640Z",
+          "suggestions": [
+            "markdown table to html",
+            "markdown table to html python",
+            "markdown table to html online",
+            "markdown table to html converter",
+            "convert markdown table to html python",
+            "convert markdown table to html javascript",
+            "markdown table html tags",
+            "n8n markdown to html table",
+            "html table to markdown extension",
+            "pandoc markdown to html table"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "meta-tag-generator",
+      "name": "Meta Tag Generator",
+      "url": "https://www.byteverse.fyi/tools/meta-tag-generator",
+      "sourceTitle": "Meta Tag Generator - Free SEO, Google & Social Tags",
+      "sourceDescription": "Free meta tag generator for SEO: create title tags, meta descriptions, Open Graph, Twitter cards, and canonical tags for Google and social media. Copy clean HTML.",
+      "sourceKeywords": [
+        "meta tag generator",
+        "meta tags generator",
+        "seo meta tags generator",
+        "google meta tag generator",
+        "free meta tag generator",
+        "social media meta tags generator",
+        "meta tag builder",
+        "meta tag maker",
+        "meta tag creator",
+        "meta tag code generator",
+        "generate meta tags",
+        "open graph generator",
+        "open graph tag generator",
+        "twitter card generator",
+        "meta description generator",
+        "meta description generator free"
+      ],
+      "seeds": [
+        "meta tag generator",
+        "open graph meta tag generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "meta tag generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=meta+tag+generator",
+          "checkedAt": "2026-09-28T06:15:11.772Z",
+          "suggestions": [
+            "meta tag generator",
+            "meta tag generator from url",
+            "meta tag generator free",
+            "meta tag generator tool",
+            "meta tag generator ai",
+            "meta tag generator online",
+            "meta tag generator for blogger",
+            "meta tag generator for website",
+            "meta tag generator html",
+            "meta tags generator font"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "open graph meta tag generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=open+graph+meta+tag+generator",
+          "checkedAt": "2026-09-28T06:15:11.987Z",
+          "suggestions": [
+            "open graph meta tag generator",
+            "facebook open graph meta tags generator",
+            "open graph meta tags example",
+            "what is open graph meta tags",
+            "how to add open graph meta tags",
+            "open graph tags example"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "og-preview",
+      "name": "Open Graph Preview",
+      "url": "https://www.byteverse.fyi/tools/og-preview",
+      "sourceTitle": "Open Graph Preview - Free OG & Twitter Card Checker",
+      "sourceDescription": "Preview how your links appear on Facebook, Twitter, LinkedIn, and Google. Generate Open Graph and Twitter Card meta tags instantly.",
+      "sourceKeywords": [
+        "open graph preview",
+        "og preview",
+        "twitter card preview",
+        "social media preview",
+        "meta tag preview",
+        "og image checker"
+      ],
+      "seeds": [
+        "open graph preview",
+        "open graph checker"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "open graph preview",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=open+graph+preview",
+          "checkedAt": "2026-09-28T06:15:11.853Z",
+          "suggestions": [
+            "open graph preview",
+            "open graph preview tool",
+            "open graph preview extension",
+            "open graph preview checker",
+            "open graph preview image",
+            "open graph preview localhost",
+            "open graph preview chrome extension",
+            "open graph preview firefox",
+            "open graph preview online",
+            "open graph preview chrome"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "open graph checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=open+graph+checker",
+          "checkedAt": "2026-09-28T06:15:12.056Z",
+          "suggestions": [
+            "open graph checker",
+            "open graph checker tool",
+            "open graph checker extension",
+            "open graph checker online",
+            "open graph checker chrome extension",
+            "open graph checker localhost",
+            "open graph checker whatsapp",
+            "open graph checker meta",
+            "open graph checker local",
+            "facebook graph checker"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "password-generator",
+      "name": "Password Generator",
+      "url": "https://www.byteverse.fyi/tools/password-generator",
+      "sourceTitle": "Password Generator - Free Secure Password Tool",
+      "sourceDescription": "Generate strong, random passwords instantly. Customize length, symbols, numbers, and more. 100% client-side, nothing stored.",
+      "sourceKeywords": [
+        "password generator",
+        "random password",
+        "secure password",
+        "strong password generator",
+        "password tool"
+      ],
+      "seeds": [
+        "password generator",
+        "passphrase generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "password generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=password+generator",
+          "checkedAt": "2026-09-28T06:15:12.170Z",
+          "suggestions": [
+            "password generator",
+            "password generator 12 characters",
+            "password generator 15 characters",
+            "password generator 8 characters",
+            "password generator free",
+            "password generator 16 characters",
+            "password generator 20 characters",
+            "password generator with words",
+            "password generator 14 characters",
+            "password generator lastpass"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "passphrase generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=passphrase+generator",
+          "checkedAt": "2026-09-28T06:15:12.351Z",
+          "suggestions": [
+            "passphrase generator",
+            "passphrase generator free",
+            "passphrase generator 12 characters",
+            "passphrase generator 16 characters",
+            "passphrase generator words",
+            "passphrase generator 15 characters",
+            "passphrase generator 3 words",
+            "passphrase generator bitwarden",
+            "passphrase generator 8 characters",
+            "passphrase generator keeper"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "plagiarism-checker",
+      "name": "Similarity & Plagiarism Checker",
+      "url": "https://www.byteverse.fyi/tools/plagiarism-checker",
+      "sourceTitle": "Similarity Checker - Free Plagiarism & Uniqueness Tool",
+      "sourceDescription": "Free similarity checker: check text uniqueness and compare documents for plagiarism online. N-gram analysis, cosine similarity, sentence matching — 100% private, in-browser.",
+      "sourceKeywords": [
+        "similarity checker",
+        "similarity check",
+        "check for similarity for free",
+        "uniqueness checker",
+        "similarity detector",
+        "plagiarism checker",
+        "plagiarism detector",
+        "text similarity checker",
+        "duplicate content checker",
+        "free plagiarism checker",
+        "compare texts online",
+        "content uniqueness checker"
+      ],
+      "seeds": [
+        "plagiarism checker",
+        "compare two documents similarity"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "plagiarism checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=plagiarism+checker",
+          "checkedAt": "2026-09-28T06:15:12.272Z",
+          "suggestions": [
+            "plagiarism checker",
+            "plagiarism checker free",
+            "plagiarism checker free online",
+            "plagiarism checker grammarly",
+            "plagiarism checker turnitin",
+            "plagiarism checker ai",
+            "plagiarism checker turnitin free",
+            "plagiarism checker and ai detector",
+            "plagiarism checker reddit",
+            "plagiarism checker chegg"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "compare two documents similarity",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=compare+two+documents+similarity",
+          "checkedAt": "2026-09-28T06:15:12.480Z",
+          "suggestions": [
+            "compare two documents similarity",
+            "compare two files similarity",
+            "compare two papers for similarity",
+            "compare two documents for similarities free",
+            "compare two documents for similarities free online",
+            "compare two documents for difference",
+            "how to compare two word documents for similarity",
+            "compare similarity between two documents"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "plagiarism-remover",
+      "name": "Plagiarism Remover & AI Humanizer",
+      "url": "https://www.byteverse.fyi/tools/plagiarism-remover",
+      "sourceTitle": "Free Plagiarism Remover & AI Humanizer â€” Rewrite Text Online",
+      "sourceDescription": "Remove plagiarism and humanize AI-generated text instantly. Replaces AI phrases, swaps synonyms, adds contractions, and makes content unique. 100% free, private, client-side tool.",
+      "sourceKeywords": [
+        "plagiarism remover",
+        "ai humanizer",
+        "text rewriter",
+        "remove plagiarism",
+        "humanize ai text",
+        "paraphrasing tool",
+        "rewrite text online",
+        "remove ai detection",
+        "make text unique",
+        "free plagiarism remover online",
+        "ai text humanizer free",
+        "plagiarism rewriter tool",
+        "bypass ai detection",
+        "undetectable ai text"
+      ],
+      "seeds": [
+        "paraphrasing tool",
+        "plagiarism remover"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "paraphrasing tool",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=paraphrasing+tool",
+          "checkedAt": "2026-09-28T06:15:12.554Z",
+          "suggestions": [
+            "paraphrasing tool",
+            "paraphrasing tool free",
+            "paraphrasing tool - quillbot ai",
+            "paraphrasing tool quillbot",
+            "paraphrasing tool online",
+            "paraphrasing tool online free",
+            "paraphrasing tool without ai",
+            "paraphrasing tool ai",
+            "paraphrasing tool ahrefs",
+            "paraphrasing tool no ai"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "plagiarism remover",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=plagiarism+remover",
+          "checkedAt": "2026-09-28T06:15:12.751Z",
+          "suggestions": [
+            "plagiarism remover",
+            "plagiarism remover free",
+            "plagiarism remover.net",
+            "plagiarism remover online free",
+            "plagiarism remover online",
+            "plagiarism remover ai",
+            "plagiarism remover free unlimited words",
+            "plagiarism remover tool",
+            "plagiarism remover from pdf",
+            "plagiarism remover tool free"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "privacy-policy-generator",
+      "name": "Privacy Policy Generator",
+      "url": "https://www.byteverse.fyi/tools/privacy-policy-generator",
+      "sourceTitle": "Privacy Policy Generator - Free Online Tool",
+      "sourceDescription": "Generate a customized privacy policy for your website or app in seconds. Covers cookies, analytics, newsletter signups, user accounts, and GDPR basics. Download as Markdown.",
+      "sourceKeywords": [
+        "privacy policy generator",
+        "free privacy policy",
+        "privacy policy template",
+        "website privacy policy",
+        "gdpr privacy policy",
+        "privacy policy maker"
+      ],
+      "seeds": [
+        "privacy policy generator",
+        "privacy policy for website"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "privacy policy generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=privacy+policy+generator",
+          "checkedAt": "2026-09-28T06:15:12.684Z",
+          "suggestions": [
+            "privacy policy generator",
+            "privacy policy generator free",
+            "privacy policy generator reddit",
+            "privacy policy generator for website",
+            "privacy policy generator firebase",
+            "privacy policy generator.info",
+            "privacy policy generator for blogger",
+            "privacy policy generator for meta ads",
+            "privacy policy generator for app",
+            "privacy policy generator ai"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "privacy policy for website",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=privacy+policy+for+website",
+          "checkedAt": "2026-09-28T06:15:12.887Z",
+          "suggestions": [
+            "privacy policy for website",
+            "privacy policy for website free",
+            "privacy policy for website template",
+            "privacy policy for website example",
+            "privacy policy for website uk",
+            "privacy policy for website australia",
+            "privacy policy for website south africa",
+            "privacy policy for website india",
+            "privacy policy for website pdf",
+            "privacy policy for website canada"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "qr-code-generator",
+      "name": "QR Code Generator",
+      "url": "https://www.byteverse.fyi/tools/qr-code-generator",
+      "sourceTitle": "QR Code Generator - Free Online QR Maker",
+      "sourceDescription": "Generate custom QR codes for URLs, text, WiFi, email, and phone numbers. Choose colors, size, and error correction. Download as PNG or SVG. 100% free, no sign-up.",
+      "sourceKeywords": [
+        "qr code generator",
+        "free qr code maker",
+        "qr code creator",
+        "custom qr code",
+        "qr code online",
+        "generate qr code",
+        "wifi qr code",
+        "qr code download"
+      ],
+      "seeds": [
+        "qr code generator",
+        "wifi qr code generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "qr code generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=qr+code+generator",
+          "checkedAt": "2026-09-28T06:15:12.938Z",
+          "suggestions": [
+            "qr code generator",
+            "qr code generator free",
+            "qr code generator canva",
+            "qr code generator free no expiration",
+            "qr code generator google",
+            "qr code generator adobe",
+            "qr code generator free online",
+            "qr code generator monkey",
+            "qr code generator free no sign up",
+            "qr code generator no sign up"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "wifi qr code generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=wifi+qr+code+generator",
+          "checkedAt": "2026-09-28T06:15:13.149Z",
+          "suggestions": [
+            "wifi qr code generator",
+            "wifi qr code generator with logo",
+            "wifi qr code generator with logo free",
+            "wifi qr code generator free",
+            "wifi qr code generator free no sign up",
+            "wifi qr code generator 3d print",
+            "wifi qr code generator github",
+            "wifi qr code generator canva",
+            "wifi qr code generator for pc",
+            "wifi qr code generator & scanner"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "readability-checker",
+      "name": "Readability Checker",
+      "url": "https://www.byteverse.fyi/tools/readability-checker",
+      "sourceTitle": "Readability Checker - Free Flesch Score Test Online",
+      "sourceDescription": "Check readability score online free: Flesch Reading Ease, Flesch-Kincaid grade level, long-sentence flags, and fix advice — instant, private, no sign-up.",
+      "sourceKeywords": [
+        "readability checker",
+        "readability checker online",
+        "readability checker free online",
+        "readability score",
+        "check readability score online",
+        "readability test",
+        "flesch kincaid calculator",
+        "flesch reading ease checker",
+        "readability checker flesch kincaid",
+        "grade level checker",
+        "readability checker tool",
+        "reading level checker"
+      ],
+      "seeds": [
+        "readability checker",
+        "flesch reading ease checker"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "readability checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=readability+checker",
+          "checkedAt": "2026-09-28T06:15:13.096Z",
+          "suggestions": [
+            "readability checker",
+            "readability checker grade level",
+            "readability checker free",
+            "readability checker word",
+            "readability checker flesch kincaid",
+            "readability checker color",
+            "readability checker uk",
+            "readability checker nhs",
+            "readability checker australia"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "flesch reading ease checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=flesch+reading+ease+checker",
+          "checkedAt": "2026-09-28T06:15:13.328Z",
+          "suggestions": [
+            "flesch reading ease checker",
+            "flesch reading ease test",
+            "flesch reading ease test online",
+            "flesch reading ease test scale",
+            "flesch reading ease test score",
+            "flesch reading ease test (free)",
+            "flesch reading ease score checker",
+            "flesch kincaid reading ease test",
+            "what is the flesch reading ease"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "regex-tester",
+      "name": "Regex Tester",
+      "url": "https://www.byteverse.fyi/tools/regex-tester",
+      "sourceTitle": "Regex Tester - Test Regular Expressions Online",
+      "sourceDescription": "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
+      "sourceKeywords": [
+        "regex tester",
+        "regex tester online",
+        "regular expression tester",
+        "regex debugger",
+        "regex match",
+        "regex replace",
+        "test regex",
+        "regex validator"
+      ],
+      "seeds": [
+        "regex tester",
+        "javascript regex tester"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "regex tester",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=regex+tester",
+          "checkedAt": "2026-09-28T06:15:13.551Z",
+          "suggestions": [
+            "regex tester",
+            "regex tester online",
+            "regex tester python",
+            "regex tester c#",
+            "regex tester javascript",
+            "regex tester java",
+            "regex tester js",
+            "regex tester .net",
+            "regex tester php",
+            "regex tester powershell"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "javascript regex tester",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=javascript+regex+tester",
+          "checkedAt": "2026-09-28T06:15:13.785Z",
+          "suggestions": [
+            "javascript regex tester",
+            "javascript regex tester online",
+            "js regex tester",
+            "javascript regular expression tester",
+            "js regex tester online",
+            "javascript regex testing",
+            "javascript regex checker",
+            "javascript regex match tester",
+            "javascript replace regex tester",
+            "node js regex tester"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "robots-txt-generator",
+      "name": "robots.txt Generator",
+      "url": "https://www.byteverse.fyi/tools/robots-txt-generator",
+      "sourceTitle": "robots.txt Generator - Free Robots.txt File Builder",
+      "sourceDescription": "Generate robots.txt files with a visual builder. Add user-agent rules, sitemaps, and crawl delays. Includes presets for WordPress, AI bot blocking, and more.",
+      "sourceKeywords": [
+        "robots.txt generator",
+        "robots.txt builder",
+        "robots txt creator",
+        "block ai bots",
+        "crawl delay",
+        "user agent rules"
+      ],
+      "seeds": [
+        "robots.txt generator",
+        "robots.txt tester"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "robots.txt generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=robots.txt+generator",
+          "checkedAt": "2026-09-28T06:15:13.639Z",
+          "suggestions": [
+            "robots.txt generator",
+            "robots.txt generator for blogger",
+            "robots.txt generator free",
+            "robots txt generator for wordpress",
+            "robots txt generator online",
+            "robots txt generator small seo tools",
+            "robots txt generator google",
+            "robots.txt generator tool",
+            "robots txt generator ai",
+            "robots txt generator php"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "robots.txt tester",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=robots.txt+tester",
+          "checkedAt": "2026-09-28T06:15:13.846Z",
+          "suggestions": [
+            "robots.txt tester",
+            "robots.txt tester tool",
+            "robots txt tester google",
+            "robots txt tester online",
+            "robots txt tester google search console",
+            "robots txt tester search console",
+            "robots txt tester gsc",
+            "robots txt test",
+            "robots txt test online",
+            "robots txt test google"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "schema-markup-generator",
+      "name": "Schema Markup Generator",
+      "url": "https://www.byteverse.fyi/tools/schema-markup-generator",
+      "sourceTitle": "Schema Markup Generator (JSON-LD) - Free & Valid",
+      "sourceDescription": "Free schema markup generator (JSON-LD): build Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, Person, and Organization structured data visually.",
+      "sourceKeywords": [
+        "schema markup generator",
+        "schema markup generator (json-ld)",
+        "json-ld generator",
+        "json ld schema generator",
+        "structured data generator",
+        "schema generator",
+        "free schema markup generator",
+        "google schema markup generator",
+        "structured data markup generator",
+        "json-ld code generator",
+        "schema markup generator for website",
+        "faq schema generator",
+        "article schema generator",
+        "product schema generator",
+        "rich snippets"
+      ],
+      "seeds": [
+        "schema markup generator",
+        "json ld generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "schema markup generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=schema+markup+generator",
+          "checkedAt": "2026-09-28T06:15:14.002Z",
+          "suggestions": [
+            "schema markup generator",
+            "schema markup generator (json-ld) technicalseo.com",
+            "schema markup generator tool",
+            "schema markup generator free",
+            "schema markup generator dentsu",
+            "schema markup generator (json-ld)",
+            "schema markup generator merkle",
+            "schema markup generator google",
+            "schema markup generator extension",
+            "schema markup generator by rank ranger"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "json ld generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=json+ld+generator",
+          "checkedAt": "2026-09-28T06:15:14.219Z",
+          "suggestions": [
+            "json ld generator",
+            "json ld generator google",
+            "json ld generator online",
+            "json schema generator",
+            "json schema generator online",
+            "json schema generator java",
+            "json schema generator npm",
+            "json schema generator python",
+            "json schema generator c#",
+            "json schema generator tool"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "seo-title-analyzer",
+      "name": "SEO Title Checker",
+      "url": "https://www.byteverse.fyi/tools/seo-title-analyzer",
+      "sourceTitle": "SEO Title Checker - Free Title & Headline Analyzer",
+      "sourceDescription": "Check SEO titles free online: score length, word count, intent words, specificity, and click potential. Instant title check — no login, no limits.",
+      "sourceKeywords": [
+        "seo title checker",
+        "seo title check",
+        "title checker",
+        "seo title checker free online",
+        "seo title tester",
+        "seo title length checker",
+        "seo headline checker",
+        "headline checker",
+        "headline analyzer",
+        "free headline analyzer",
+        "seo title analyzer",
+        "blog title checker",
+        "title analyzer",
+        "seo title preview",
+        "title optimizer tool",
+        "seo title score",
+        "seo article title checker"
+      ],
+      "seeds": [
+        "seo title checker",
+        "title length checker"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "seo title checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=seo+title+checker",
+          "checkedAt": "2026-09-28T06:15:14.044Z",
+          "suggestions": [
+            "seo title checker",
+            "seo title checker youtube",
+            "seo title checker free",
+            "seo title checker extension",
+            "seo heading checker",
+            "seo heading checker extension",
+            "seo title check",
+            "seo title tester",
+            "seo title tool",
+            "seo title length checker"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "title length checker",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=title+length+checker",
+          "checkedAt": "2026-09-28T06:15:14.238Z",
+          "suggestions": [
+            "title length checker",
+            "title length checker youtube",
+            "name length checker",
+            "title character limit checker",
+            "title length check",
+            "title length calculator",
+            "meta title length checker",
+            "seo title length checker",
+            "title tag length checker",
+            "title description length checker"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "slug-generator",
+      "name": "Slug Generator",
+      "url": "https://www.byteverse.fyi/tools/slug-generator",
+      "sourceTitle": "Slug Generator - Free URL Slug Converter",
+      "sourceDescription": "Convert any text into a clean, URL-friendly slug. Customize separators, max length, prefix, and suffix. Handles accented characters, special symbols, and unicode.",
+      "sourceKeywords": [
+        "slug generator",
+        "url slug converter",
+        "url friendly text",
+        "slugify",
+        "seo url generator"
+      ],
+      "seeds": [
+        "slug generator",
+        "url slug generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "slug generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=slug+generator",
+          "checkedAt": "2026-09-28T06:15:14.420Z",
+          "suggestions": [
+            "slug generator",
+            "slug generator npm",
+            "slug generator online",
+            "slug generator python",
+            "slug generator js",
+            "slug generator extension",
+            "slug generator tool",
+            "slug generator java",
+            "slug generator laravel",
+            "slug generator c#"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "url slug generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=url+slug+generator",
+          "checkedAt": "2026-09-28T06:15:14.700Z",
+          "suggestions": [
+            "url slug generator",
+            "url slug generator slugify online",
+            "url slug generator online",
+            "website slug generator",
+            "url slug creator",
+            "bulk url slug generator",
+            "seo friendly url slug generator",
+            "url slug example",
+            "what is a slug url",
+            "slug meaning url"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "text-to-speech",
+      "name": "Text to Speech Converter",
+      "url": "https://www.byteverse.fyi/tools/text-to-speech",
+      "sourceTitle": "Text to Speech Online - Free, Unlimited, No Login",
+      "sourceDescription": "Free text to speech online — unlimited, no login, no word limits. Paste text, pick from 30+ language voices, adjust speed and pitch, listen instantly.",
+      "sourceKeywords": [
+        "text to speech online",
+        "text to speech online free",
+        "text to speech online free unlimited",
+        "text to speech free without login",
+        "text to speech free",
+        "text to speech",
+        "tts online free",
+        "read text aloud online",
+        "text to voice",
+        "online tts",
+        "speech synthesis",
+        "text reader",
+        "listen to text online"
+      ],
+      "seeds": [
+        "text to speech",
+        "text to speech mp3 download"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "text to speech",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=text+to+speech",
+          "checkedAt": "2026-09-28T06:15:14.434Z",
+          "suggestions": [
+            "text to speech",
+            "text to speech free",
+            "text to speech reader",
+            "text to speech ai",
+            "text to speech google",
+            "text to speech online",
+            "text to speech no ai",
+            "text to speech app",
+            "text to speech voices",
+            "text to speech generator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "text to speech mp3 download",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=text+to+speech+mp3+download",
+          "checkedAt": "2026-09-28T06:15:14.654Z",
+          "suggestions": [
+            "text to speech mp3 download",
+            "text to speech mp3 download free",
+            "text to speech mp3 download hindi",
+            "text to speech mp3 download online",
+            "text to speech download mp3 free unlimited",
+            "text to speech download mp3 file",
+            "text to speech download mp3 ai",
+            "text to voice mp3 download",
+            "wigman text to speech mp3 download",
+            "google text to speech mp3 download"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "timestamp-converter",
+      "name": "Unix Timestamp Converter",
+      "url": "https://www.byteverse.fyi/tools/timestamp-converter",
+      "sourceTitle": "Unix Timestamp Converter - Epoch to Date Tool",
+      "sourceDescription": "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
+      "sourceKeywords": [
+        "unix timestamp converter",
+        "epoch converter",
+        "timestamp to date",
+        "date to timestamp",
+        "unix time converter",
+        "epoch time converter",
+        "unix timestamp to date online"
+      ],
+      "seeds": [
+        "timestamp converter",
+        "unix timestamp milliseconds converter"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "timestamp converter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=timestamp+converter",
+          "checkedAt": "2026-09-28T06:15:14.870Z",
+          "suggestions": [
+            "timestamp converter",
+            "timestamp converter discord",
+            "timestamp converter - sesh.fyi",
+            "timestamp converter online",
+            "timestamp converter epoch",
+            "timestamp converter utc",
+            "timestamp converter calculator",
+            "timestamp converter to date",
+            "timestamp converter youtube",
+            "timestamp converter to ist"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "unix timestamp milliseconds converter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=unix+timestamp+milliseconds+converter",
+          "checkedAt": "2026-09-28T06:15:15.070Z",
+          "suggestions": [
+            "unix timestamp milliseconds converter",
+            "unix time milliseconds converter",
+            "unix timestamp milliseconds calculator",
+            "unix epoch time milliseconds converter",
+            "current unix timestamp milliseconds",
+            "unix timestamp seconds or milliseconds"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "name": "URL Encoder & Decoder",
+      "url": "https://www.byteverse.fyi/tools/url-encoder-decoder",
+      "sourceTitle": "URL Encoder & Decoder Online - Free Percent Encoding Tool",
+      "sourceDescription": "Encode and decode URLs instantly. Supports encodeURIComponent and encodeURI modes, URL parser, and common encoding reference. Free, private, runs in your browser.",
+      "sourceKeywords": [
+        "url encoder",
+        "url decoder",
+        "url encode online",
+        "url decode online",
+        "percent encoding",
+        "urlencode",
+        "urldecode",
+        "url parser"
+      ],
+      "seeds": [
+        "url decoder",
+        "url encode query parameters"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "url decoder",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=url+decoder",
+          "checkedAt": "2026-09-28T06:15:14.885Z",
+          "suggestions": [
+            "url decoder",
+            "url decoder online",
+            "url decoder/encoder",
+            "url decoder tool",
+            "url decoder proofpoint",
+            "url decoder encoder",
+            "url decoder free",
+            "url decoder base64",
+            "url decoder in inspect",
+            "url decoder online tool"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "url encode query parameters",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=url+encode+query+parameters",
+          "checkedAt": "2026-09-28T06:15:15.102Z",
+          "suggestions": [
+            "url encode query parameters",
+            "url encode query parameters javascript",
+            "url encode query parameters online",
+            "url encode query parameters python",
+            "url encode query string",
+            "curl url encode query parameters",
+            "postman url encode query parameters",
+            "java url encode query parameters",
+            "spring url encode query parameters",
+            "c# url encode query parameters"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "uuid-generator",
+      "name": "UUID Generator",
+      "url": "https://www.byteverse.fyi/tools/uuid-generator",
+      "sourceTitle": "UUID Generator Online - Free UUID v4 Generator & Validator",
+      "sourceDescription": "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
+      "sourceKeywords": [
+        "uuid generator",
+        "uuid generator online",
+        "uuid v4 generator",
+        "uuidv4 generator",
+        "free uuid generator",
+        "random uuid generator",
+        "generate uuid v4",
+        "generate uuid online",
+        "uuid v4 format",
+        "uuid v4 vs v7",
+        "guid generator",
+        "uuid validator",
+        "bulk uuid generator",
+        "uuid generator javascript",
+        "uuid generator python"
+      ],
+      "seeds": [
+        "uuid generator",
+        "uuid v7 generator"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "uuid generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=uuid+generator",
+          "checkedAt": "2026-09-28T06:15:15.268Z",
+          "suggestions": [
+            "uuid generator",
+            "uuid generator v4",
+            "uuid generator online",
+            "uuid generator minecraft bedrock",
+            "uuid generator python",
+            "uuid generator java",
+            "uuid generator javascript",
+            "uuid generator v7",
+            "uuid generator minecraft",
+            "uuid generator minecraft java"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "uuid v7 generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=uuid+v7+generator",
+          "checkedAt": "2026-09-28T06:15:15.472Z",
+          "suggestions": [
+            "uuid v7 generator",
+            "uuid v7 generator java",
+            "uuid v7 generator online",
+            "uuid v7 generator postgres",
+            "uuid v7 generator c#",
+            "uuid v7 generator js",
+            "uuid v7 generator python",
+            "uid v7 generator",
+            "hibernate uuid v7 generator",
+            "random uuid v7 generator"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "word-counter",
+      "name": "Word & Character Counter",
+      "url": "https://www.byteverse.fyi/tools/word-counter",
+      "sourceTitle": "Word & Character Counter - Free Online Tool",
+      "sourceDescription": "Count words, characters, sentences, paragraphs, and estimated reading time instantly. Free tool for writers, students, and developers.",
+      "sourceKeywords": [
+        "word counter",
+        "character counter",
+        "word count tool",
+        "character count online",
+        "reading time calculator",
+        "text counter"
+      ],
+      "seeds": [
+        "word counter",
+        "word counter characters"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "word counter",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=word+counter",
+          "checkedAt": "2026-09-28T06:15:15.313Z",
+          "suggestions": [
+            "word counter",
+            "word counter free",
+            "word counter online",
+            "word counter tool",
+            "word counter google docs",
+            "word counter grammarly",
+            "word counter pdf",
+            "word count on google docs",
+            "word counter google",
+            "word counter for books"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "word counter characters",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=word+counter+characters",
+          "checkedAt": "2026-09-28T06:15:15.540Z",
+          "suggestions": [
+            "word counter characters",
+            "word count characters",
+            "word count characters in selection",
+            "word count characters with spaces",
+            "word count characters including spaces",
+            "word count characters without spaces",
+            "word count characters online",
+            "word count characters linux",
+            "word count character excel",
+            "word count character limit"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    },
+    {
+      "slug": "youtube-tag-generator",
+      "name": "YouTube Tag Generator",
+      "url": "https://www.byteverse.fyi/tools/youtube-tag-generator",
+      "sourceTitle": "YouTube Tag Generator - Free Video Tag & Keyword Tool",
+      "sourceDescription": "Generate optimized YouTube tags instantly. Enter your video title or keyword and get relevant, SEO-friendly tags to boost your video rankings and reach a wider audience.",
+      "sourceKeywords": [
+        "youtube tag generator",
+        "youtube tags",
+        "video tag generator",
+        "youtube seo tags",
+        "youtube keyword tool",
+        "free youtube tags",
+        "rapidtags alternative",
+        "youtube video optimization",
+        "youtube tag finder",
+        "generate tags for youtube"
+      ],
+      "seeds": [
+        "youtube tag generator",
+        "youtube tags from title"
+      ],
+      "keywordResearch": [
+        {
+          "seed": "youtube tag generator",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=youtube+tag+generator",
+          "checkedAt": "2026-09-28T06:15:15.717Z",
+          "suggestions": [
+            "youtube tag generator",
+            "youtube tag generator free",
+            "youtube tag generator and optimizer",
+            "youtube tag generator ai",
+            "youtube tag generator by link",
+            "youtube tag generator url",
+            "youtube tag generator seo",
+            "youtube tag generator tool",
+            "youtube tag generator viral",
+            "youtube tag generator keyword tool"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        },
+        {
+          "seed": "youtube tags from title",
+          "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=youtube+tags+from+title",
+          "checkedAt": "2026-09-28T06:15:15.933Z",
+          "suggestions": [
+            "youtube tags from title",
+            "youtube tags generator from title",
+            "youtube tags title extractor",
+            "youtube tags in title or description"
+          ],
+          "monthlySearchVolume": null,
+          "keywordDifficulty": null
+        }
+      ]
+    }
+  ]
+}

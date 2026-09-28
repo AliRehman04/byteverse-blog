@@ -201,7 +201,7 @@ export default function MetaTagGeneratorPage() {
           <div className="p-5 rounded-2xl border border-border bg-card">
             <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><Wrench size={16} className="text-primary" /> Related Free Tools</h3>
             <ul className="grid gap-2 text-sm">
-              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — score the title before you tag it</Link></li>
+              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — measure length and preview your title</Link></li>
               <li><Link href="/tools/og-preview" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> OG Preview — test how links unfurl</Link></li>
               <li><Link href="/tools/schema-markup-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Schema Markup Generator — JSON-LD structured data</Link></li>
               <li><Link href="/tools/robots-txt-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Robots.txt Generator — crawler rules</Link></li>

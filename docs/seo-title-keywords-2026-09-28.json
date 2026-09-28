@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-09-28T07:16:20.171Z",
+  "tool": "seo-title-analyzer",
+  "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=SEED",
+  "localeRequested": "English, US parameter; not verified geographic demand",
+  "monthlyVolume": null,
+  "keywordDifficulty": null,
+  "gscPageData": "Not available; previous sitewide data is not a current tool-page report",
+  "results": [
+    { "seed": "seo title checker", "suggestions": ["seo title checker", "seo title checker youtube", "seo title checker free", "seo title checker extension", "seo heading checker", "seo heading checker extension", "seo title check", "seo title tester", "seo title tool", "seo title length checker"] },
+    { "seed": "seo title length checker", "suggestions": ["seo title length checker", "seo title length checker online", "seo title character limit checker", "seo title length check", "seo meta title length checker", "seo title and description length checker", "seo meta title and description length checker", "seo title length"] },
+    { "seed": "title tag length checker pixels", "suggestions": [] },
+    { "seed": "google title preview", "suggestions": [] },
+    { "seed": "serp preview tool", "suggestions": ["serp preview tool", "serp preview tool chrome", "serp preview tool extension", "portent serp preview tool", "google serp preview tool", "serp snippet preview tool", "free serp preview tool", "mangools serp preview tool", "portent's google serp preview tool", "google serp snippet preview tool"] },
+    { "seed": "seo headline analyzer", "suggestions": ["seo headline analyzer", "seo headline analyzer free", "seo title analyzer", "seo headline tester", "ai seo headline analyzer", "all in one seo headline analyzer", "what is an seo headline"] },
+    { "seed": "title and meta description checker", "suggestions": ["title and meta description checker", "title tag and meta description checker", "page title and meta description checker", "title and meta description length checker", "seo title and meta description checker", "website title and meta description checker", "se ranking title and meta description checker", "meta title and meta description check", "meta title and description checker extension chrome", "meta title and description checker extension"] },
+    { "seed": "seo title character limit", "suggestions": ["seo title character limit", "seo title character limit checker", "seo title word limit", "seo headline character limit'", "seo title character count", "seo title character length", "seo meta title character limit", "seo page title character limit", "google seo title character limit", "seo title tag character limit"] },
+    { "seed": "google rewrites title tag", "suggestions": ["google writing title tags", "title tag in seo", "title tag examples"] },
+    { "seed": "check title tag from url", "suggestions": [] },
+    { "seed": "seo title checker mobile", "suggestions": [] },
+    { "seed": "blog title examples", "suggestions": ["blog title examples", "blog title examples for students", "blog name examples", "blog header examples", "blog headline examples", "blog name examples for students", "blog title ideas", "blog title ideas about life", "blog title ideas for students", "blog title ideas tumblr"] }
+  ],
+  "decision": {
+    "primary": "seo title checker",
+    "secondary": ["seo title length checker", "serp preview tool", "title and meta description checker"],
+    "featureAngles": ["approximate pixel width", "brand suffix included in counts", "desktop and mobile preview", "compare three drafts"],
+    "notTargeted": ["YouTube optimization", "browser extension", "AI-generated headlines", "live URL audit", "ranking prediction"],
+    "limits": "Autocomplete is phrase evidence, not volume, difficulty or a guarantee. Empty results do not prove no demand. Feature angles are product decisions, not all observed queries."
+  },
+  "serp": {
+    "engine": "DuckDuckGo; not a Google ranking report",
+    "queryUrl": "https://html.duckduckgo.com/html/?q=seo+title+length+checker+pixels+preview",
+    "observedUrls": ["https://titlelengthchecker.com/", "https://kittokit.com/en/seo-title-length-checker", "https://www.rewritepal.com/tools/seo-title-tag-checker", "https://toolsluv.com/tools/seo-title-checker/", "https://pixellize.io/title-description-checker"],
+    "productPagesRead": ["https://www.rewritepal.com/tools/seo-title-tag-checker", "https://mangools.com/free-seo-tools/serp-simulator"],
+    "observedFeatures": ["character and pixel metrics", "brand or site name", "search snippet preview", "desktop/mobile controls", "copy HTML"],
+    "differentiation": "Transparent measurement assumptions, responsive visible width, Unicode counts, no invented CTR score, session-only comparison. Competitor features were read, not benchmarked."
+  },
+  "officialSources": [
+    { "url": "https://developers.google.com/search/docs/appearance/title-link", "findings": ["No fixed title element length limit; title links truncate to available device width", "Use descriptive concise titles and avoid repetition", "Google can use title, H1, other on-page content and link text", "Concise branding is permitted; it can be omitted or rewritten in results"] },
+    { "url": "https://developers.google.com/search/docs/appearance/snippet", "findings": ["Snippets are query-dependent and primarily generated from page content", "Google sometimes uses the meta description", "No fixed meta description length limit guarantees display"] }
+  ]
+}

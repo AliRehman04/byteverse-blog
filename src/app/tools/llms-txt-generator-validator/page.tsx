@@ -202,7 +202,7 @@ export default function LlmsTxtPage() {
               <li><Link href="/tools/robots-txt-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Robots.txt Generator — crawler access rules</Link></li>
               <li><Link href="/tools/schema-markup-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Schema Markup Generator — JSON-LD structured data</Link></li>
               <li><Link href="/tools/meta-tag-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Meta Tag Generator — titles and descriptions</Link></li>
-              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — score your headlines</Link></li>
+              <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — measure and preview your title</Link></li>
             </ul>
           </div>
           <div className="p-5 rounded-2xl border border-border bg-card">

@@ -1,0 +1,2425 @@
+{
+  "checkedAt": "2026-09-28T06:14:27.640Z",
+  "baseUrl": "https://www.byteverse.fyi",
+  "limits": [
+    "Autocomplete documents suggested phrases, NOT monthly volume, demand size, Google position or difficulty.",
+    "hl=en/gl=us are requested parameters, not guaranteed audience-location measurement.",
+    "HTTP/canonical/robots checks do not prove Google indexing. No Search Console property data was available to this audit.",
+    "Word estimates include tool UI; neither HTML-to-text ratio nor word count is used as a ranking score.",
+    "Explicit stored blog links exclude renderer-inserted links, recommendations and navigation.",
+    "A GA script reference does not prove that events are collected correctly."
+  ],
+  "summary": {
+    "toolCount": 41,
+    "liveOk": 41,
+    "missingFromSitemap": [
+      "flexbox-generator",
+      "json-to-csv",
+      "json-to-typescript",
+      "lorem-ipsum-generator",
+      "markdown-to-html",
+      "privacy-policy-generator",
+      "readability-checker"
+    ],
+    "nonSelfCanonical": [],
+    "noindex": [],
+    "withApplicationRatings": 40,
+    "keywordRequestsSucceeded": 0,
+    "robotsText": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\n\nSitemap: https://www.byteverse.fyi/sitemap.xml\nSitemap: https://www.byteverse.fyi/image-sitemap.xml\n"
+  },
+  "tools": [
+    {
+      "slug": "ai-content-detector",
+      "name": "AI Content Detector",
+      "url": "https://www.byteverse.fyi/tools/ai-content-detector",
+      "sourceTitle": "AI Content Detector - Free AI Text Detection Tool",
+      "sourceDescription": "Detect AI-generated text using advanced linguistic analysis. Check if content was written by ChatGPT, Claude, or other AI models. 100% free, private, runs in your browser.",
+      "sourceKeywords": [
+        "ai content detector",
+        "ai text detector",
+        "chatgpt detector",
+        "ai writing detector",
+        "ai detection tool",
+        "detect ai content",
+        "ai checker"
+      ],
+      "seeds": [
+        "ai content detector",
+        "ai detector false positive"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/ai-content-detector",
+        "title": "AI Content Detector - Free AI Text Detection Tool | ByteVerse",
+        "description": "Detect AI-generated text using advanced linguistic analysis. Check if content was written by ChatGPT, Claude, or other AI models. 100% free, private, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/ai-content-detector",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Is It Human or Written by AI?"
+        ],
+        "htmlBytes": 106315,
+        "approximateMainWords": 605,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "do-ai-content-detectors-work-2026"
+      ]
+    },
+    {
+      "slug": "ai-cv-builder",
+      "name": "AI CV Builder",
+      "url": "https://www.byteverse.fyi/tools/ai-cv-builder",
+      "sourceTitle": "AI CV Builder - Free Resume Maker with PDF Download",
+      "sourceDescription": "Create a modern ATS-friendly CV online with visual editing, JSON code mode, templates, AI writing help, profile photo support, section reordering, and PDF download.",
+      "sourceKeywords": [
+        "ai cv builder",
+        "ai cv builder free",
+        "ai cv builder free online",
+        "free ai cv builder and download pdf",
+        "ai resume builder",
+        "free cv maker",
+        "free resume builder and download",
+        "free resume builder without payment",
+        "free resume builder ats friendly",
+        "resume builder pdf",
+        "online cv editor",
+        "modern resume template",
+        "ats resume builder",
+        "cv pdf download",
+        "ats friendly cv builder",
+        "ai resume pdf maker",
+        "free online cv builder"
+      ],
+      "seeds": [
+        "free resume builder",
+        "resume builder free pdf download"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/ai-cv-builder",
+        "title": "AI CV Builder - Free Resume Maker with PDF Download | ByteVerse",
+        "description": "Create a modern ATS-friendly CV online with visual editing, JSON code mode, templates, AI writing help, profile photo support, section reordering, and PDF download.",
+        "canonical": "https://www.byteverse.fyi/tools/ai-cv-builder",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "AI CV Builder — Free, with PDF Download"
+        ],
+        "htmlBytes": 147397,
+        "approximateMainWords": 1181,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/best-ai-resume-builders-2026",
+          "/blog/how-to-write-resume-with-ai-2026",
+          "/blog/linkedin-for-developers-2026",
+          "/blog/how-to-get-first-tech-job-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "affiliate-marketing-for-beginners-2026",
+        "ai-side-hustles-2026",
+        "how-to-get-first-tech-job-2026",
+        "how-to-write-resume-with-ai-2026"
+      ]
+    },
+    {
+      "slug": "ai-prompt-generator",
+      "name": "AI Prompt Generator",
+      "url": "https://www.byteverse.fyi/tools/ai-prompt-generator",
+      "sourceTitle": "AI Prompt Generator - Free Prompt Builder",
+      "sourceDescription": "Create stronger prompts for ChatGPT, Claude, Gemini, image models, coding assistants, marketing copy, blog writing, and more. Build prompts with goals, tone, context, and constraints.",
+      "sourceKeywords": [
+        "ai prompt generator",
+        "prompt builder",
+        "chatgpt prompt generator",
+        "claude prompt builder",
+        "ai prompt tool",
+        "prompt engineering tool",
+        "image prompt generator",
+        "prompt template generator"
+      ],
+      "seeds": [
+        "ai prompt generator",
+        "chatgpt prompt generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/ai-prompt-generator",
+        "title": "AI Prompt Generator - Free Prompt Builder | ByteVerse",
+        "description": "Create stronger prompts for ChatGPT, Claude, Gemini, image models, coding assistants, marketing copy, blog writing, and more. Build prompts with goals, tone, context, and constraints.",
+        "canonical": "https://www.byteverse.fyi/tools/ai-prompt-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "AI Prompt Generator"
+        ],
+        "htmlBytes": 64901,
+        "approximateMainWords": 567,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-ai-customer-service-chatbots-2026",
+        "how-to-get-traffic-to-a-new-blog-2026",
+        "best-vibe-coding-tools-2026",
+        "how-to-use-perplexity-ai-2026-complete-guide",
+        "how-to-use-google-gemini-2026-complete-guide",
+        "how-to-use-chatgpt-2026-complete-guide",
+        "best-ai-spreadsheet-tools-2026",
+        "best-ai-sales-tools-2026",
+        "how-to-use-claude-ai-2026-complete-guide",
+        "best-ai-agent-builders-2026",
+        "best-ai-pdf-tools-2026",
+        "best-ai-data-analysis-tools-2026",
+        "prompt-engineering-guide-2026-write-better-ai-prompts",
+        "best-ai-seo-tools-2026"
+      ]
+    },
+    {
+      "slug": "base64-encoder-decoder",
+      "name": "Base64 Encoder & Decoder",
+      "url": "https://www.byteverse.fyi/tools/base64-encoder-decoder",
+      "sourceTitle": "Base64 Encoder & Decoder - Free Online Tool",
+      "sourceDescription": "Encode or decode Base64 strings instantly. Supports text and UTF-8. Free, fast, and runs entirely in your browser.",
+      "sourceKeywords": [
+        "base64 encoder",
+        "base64 decoder",
+        "base64 online",
+        "encode base64",
+        "decode base64",
+        "base64 tool"
+      ],
+      "seeds": [
+        "base64 decoder",
+        "base64 decode utf8"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/base64-encoder-decoder",
+        "title": "Base64 Encoder &amp; Decoder - Free Online Tool | ByteVerse",
+        "description": "Encode or decode Base64 strings instantly. Supports text and UTF-8. Free, fast, and runs entirely in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/base64-encoder-decoder",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Base64 Encoder &amp; Decoder"
+        ],
+        "htmlBytes": 55342,
+        "approximateMainWords": 303,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "box-shadow-generator",
+      "name": "Box Shadow Generator",
+      "url": "https://www.byteverse.fyi/tools/box-shadow-generator",
+      "sourceTitle": "Box Shadow Generator - Free CSS Box-Shadow Builder",
+      "sourceDescription": "Create CSS box-shadow effects visually. Adjust offset, blur, spread, color, opacity, and multiple layers. Copy the generated CSS code instantly.",
+      "sourceKeywords": [
+        "box shadow generator",
+        "css box shadow",
+        "shadow generator",
+        "css shadow builder",
+        "box shadow css",
+        "drop shadow generator"
+      ],
+      "seeds": [
+        "box shadow generator",
+        "css inset shadow generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/box-shadow-generator",
+        "title": "Box Shadow Generator - Free CSS Box-Shadow Builder | ByteVerse",
+        "description": "Create CSS box-shadow effects visually. Adjust offset, blur, spread, color, opacity, and multiple layers. Copy the generated CSS code instantly.",
+        "canonical": "https://www.byteverse.fyi/tools/box-shadow-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Box Shadow Generator"
+        ],
+        "htmlBytes": 61021,
+        "approximateMainWords": 358,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "code-formatter",
+      "name": "Code Formatter & Beautifier",
+      "url": "https://www.byteverse.fyi/tools/code-formatter",
+      "sourceTitle": "Code Formatter Online - JSON, HTML, CSS, JS & SQL",
+      "sourceDescription": "Free online code formatter and beautifier: format or minify JSON, HTML, CSS, JavaScript, SQL, and XML instantly with auto language detection. No sign-up.",
+      "sourceKeywords": [
+        "code formatter",
+        "code formatter online",
+        "online code formatter",
+        "code beautifier",
+        "code beautifier online",
+        "code prettifier tool",
+        "format code online",
+        "code formatter html",
+        "json formatter",
+        "html formatter",
+        "css formatter",
+        "javascript formatter",
+        "sql formatter",
+        "code minifier"
+      ],
+      "seeds": [
+        "code formatter",
+        "javascript formatter online"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/code-formatter",
+        "title": "Code Formatter Online - JSON, HTML, CSS, JS &amp; SQL | ByteVerse",
+        "description": "Free online code formatter and beautifier: format or minify JSON, HTML, CSS, JavaScript, SQL, and XML instantly with auto language detection. No sign-up.",
+        "canonical": "https://www.byteverse.fyi/tools/code-formatter",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Code Formatter &amp; Beautifier Online"
+        ],
+        "htmlBytes": 91662,
+        "approximateMainWords": 520,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/website-speed-optimization-checklist-2026-core-web-vitals",
+          "/blog/best-vscode-extensions-2026",
+          "/blog/javascript-roadmap-2026-beginner-job-ready",
+          "/blog/git-github-beginners-guide-2026",
+          "/blog/typescript-for-beginners-2026-complete-guide"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "vscode-tips-and-tricks-2026",
+        "how-to-learn-python-2026-beginner-roadmap"
+      ]
+    },
+    {
+      "slug": "color-converter",
+      "name": "Color Converter",
+      "url": "https://www.byteverse.fyi/tools/color-converter",
+      "sourceTitle": "Color Converter - Free HEX, RGB & HSL Color Tool",
+      "sourceDescription": "Convert colors between HEX, RGB, and HSL formats instantly. Visual color picker with sliders, live preview, and one-click copy for all formats.",
+      "sourceKeywords": [
+        "color converter",
+        "hex to rgb",
+        "rgb to hsl",
+        "color picker",
+        "hex to hsl",
+        "css color converter"
+      ],
+      "seeds": [
+        "hex to rgb",
+        "rgb to hsl converter"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/color-converter",
+        "title": "Color Converter - Free HEX, RGB &amp; HSL Color Tool | ByteVerse",
+        "description": "Convert colors between HEX, RGB, and HSL formats instantly. Visual color picker with sliders, live preview, and one-click copy for all formats.",
+        "canonical": "https://www.byteverse.fyi/tools/color-converter",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Color Converter"
+        ],
+        "htmlBytes": 60449,
+        "approximateMainWords": 354,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-ai-logo-generators-2026"
+      ]
+    },
+    {
+      "slug": "cron-expression-generator",
+      "name": "Cron Expression Generator",
+      "url": "https://www.byteverse.fyi/tools/cron-expression-generator",
+      "sourceTitle": "Cron Expression Generator - Free Crontab Builder",
+      "sourceDescription": "Build cron expressions visually with plain-English explanations. Every 5 minutes, hourly, daily, weekdays — copy valid crontab syntax instantly, free.",
+      "sourceKeywords": [
+        "cron expression generator",
+        "cron generator",
+        "crontab generator",
+        "cron expression builder",
+        "cron expression maker",
+        "cron expression online",
+        "cron expression tester",
+        "cron expression validator",
+        "cron expression translator",
+        "cron job every 5 minutes",
+        "crontab builder",
+        "cron schedule generator",
+        "quartz cron expression generator",
+        "visual cron builder",
+        "cron syntax generator"
+      ],
+      "seeds": [
+        "cron expression generator",
+        "cron expression next run"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/cron-expression-generator",
+        "title": "Cron Expression Generator - Free Crontab Builder | ByteVerse",
+        "description": "Build cron expressions visually with plain-English explanations. Every 5 minutes, hourly, daily, weekdays — copy valid crontab syntax instantly, free.",
+        "canonical": "https://www.byteverse.fyi/tools/cron-expression-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Cron Expression Generator &amp; Crontab Builder"
+        ],
+        "htmlBytes": 100224,
+        "approximateMainWords": 842,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/ai-automation-roadmap-2026-what-to-automate-first",
+          "/blog/linux-wsl-setup-guide-2026-windows-developers",
+          "/blog/how-to-build-ai-agent-without-coding-2026",
+          "/blog/best-free-apis-for-developers-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "css-gradient-generator",
+      "name": "CSS Gradient Generator",
+      "url": "https://www.byteverse.fyi/tools/css-gradient-generator",
+      "sourceTitle": "CSS Gradient Generator - Linear & Radial Builder",
+      "sourceDescription": "Create beautiful CSS gradients visually. Build linear and radial gradients with multiple color stops, angle controls, and presets. Copy the CSS code instantly.",
+      "sourceKeywords": [
+        "css gradient generator",
+        "gradient builder",
+        "linear gradient",
+        "radial gradient",
+        "css background gradient",
+        "color gradient maker"
+      ],
+      "seeds": [
+        "css gradient generator",
+        "css radial gradient generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/css-gradient-generator",
+        "title": "CSS Gradient Generator - Linear &amp; Radial Builder | ByteVerse",
+        "description": "Create beautiful CSS gradients visually. Build linear and radial gradients with multiple color stops, angle controls, and presets. Copy the CSS code instantly.",
+        "canonical": "https://www.byteverse.fyi/tools/css-gradient-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "CSS Gradient Generator"
+        ],
+        "htmlBytes": 59043,
+        "approximateMainWords": 230,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "diff-checker",
+      "name": "Diff Checker",
+      "url": "https://www.byteverse.fyi/tools/diff-checker",
+      "sourceTitle": "Diff Checker - Compare Text & Find Differences",
+      "sourceDescription": "Compare two texts side by side and find differences instantly. Line-by-line diff with additions, deletions, and unchanged lines. Free, private, runs in your browser.",
+      "sourceKeywords": [
+        "diff checker",
+        "diff checker online",
+        "text compare",
+        "text diff",
+        "compare text online",
+        "difference finder",
+        "code diff",
+        "file compare"
+      ],
+      "seeds": [
+        "diff checker",
+        "compare two texts"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/diff-checker",
+        "title": "Diff Checker - Compare Text &amp; Find Differences | ByteVerse",
+        "description": "Compare two texts side by side and find differences instantly. Line-by-line diff with additions, deletions, and unchanged lines. Free, private, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/diff-checker",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Diff Checker — Text Compare Tool"
+        ],
+        "htmlBytes": 56807,
+        "approximateMainWords": 237,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "flexbox-generator",
+      "name": "CSS Flexbox Generator",
+      "url": "https://www.byteverse.fyi/tools/flexbox-generator",
+      "sourceTitle": "CSS Flexbox Generator - Visual Layout Builder",
+      "sourceDescription": "Build CSS Flexbox layouts visually. Set flex-direction, justify-content, align-items, gap, and wrap with live preview. Copy production-ready CSS instantly.",
+      "sourceKeywords": [
+        "css flexbox generator",
+        "flexbox playground",
+        "flex layout builder",
+        "css flex tool",
+        "flexbox visual editor",
+        "flexbox css generator online"
+      ],
+      "seeds": [
+        "flexbox generator",
+        "css flexbox playground"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/flexbox-generator",
+        "title": "CSS Flexbox Generator - Visual Layout Builder | ByteVerse",
+        "description": "Build CSS Flexbox layouts visually. Set flex-direction, justify-content, align-items, gap, and wrap with live preview. Copy production-ready CSS instantly.",
+        "canonical": "https://www.byteverse.fyi/tools/flexbox-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "CSS Flexbox Generator"
+        ],
+        "htmlBytes": 62672,
+        "approximateMainWords": 363,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "hash-generator",
+      "name": "Hash Generator",
+      "url": "https://www.byteverse.fyi/tools/hash-generator",
+      "sourceTitle": "Hash Generator Online - SHA-256, SHA-512 & SHA-1",
+      "sourceDescription": "Free online hash generator: SHA-256, SHA-512, SHA-384, and SHA-1 from any text, instantly. Web Crypto API — private, in-browser, no upload.",
+      "sourceKeywords": [
+        "hash generator",
+        "hash generator online",
+        "sha256 generator",
+        "sha256 generator online",
+        "sha256 generator from text",
+        "hash generator sha256",
+        "sha512 generator",
+        "sha256 hash",
+        "sha512 hash",
+        "sha1 hash",
+        "hash calculator",
+        "online hash generator",
+        "text to hash",
+        "checksum generator"
+      ],
+      "seeds": [
+        "sha256 generator",
+        "file hash checker"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/hash-generator",
+        "title": "Hash Generator Online - SHA-256, SHA-512 &amp; SHA-1 | ByteVerse",
+        "description": "Free online hash generator: SHA-256, SHA-512, SHA-384, and SHA-1 from any text, instantly. Web Crypto API — private, in-browser, no upload.",
+        "canonical": "https://www.byteverse.fyi/tools/hash-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Hash Generator Online — SHA-256, SHA-512 &amp; More"
+        ],
+        "htmlBytes": 85303,
+        "approximateMainWords": 638,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/how-to-create-strong-passwords-2026",
+          "/blog/two-factor-authentication-guide-2026",
+          "/blog/online-security-checklist-2026-passkeys-2fa",
+          "/blog/git-github-beginners-guide-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "html-editor",
+      "name": "Live HTML Editor",
+      "url": "https://www.byteverse.fyi/tools/html-editor",
+      "sourceTitle": "HTML Editor Online - Free, with Live Preview",
+      "sourceDescription": "Free online HTML editor with live preview — write HTML, CSS, and JavaScript and see results instantly. 7 templates, mobile preview, fullscreen. No sign-up.",
+      "sourceKeywords": [
+        "html editor online",
+        "html editor online free",
+        "html editor online with preview",
+        "html editor online free with preview",
+        "live html editor",
+        "html editor",
+        "run html online",
+        "test html online",
+        "html playground",
+        "online html editor",
+        "html css editor",
+        "html preview",
+        "html css javascript editor"
+      ],
+      "seeds": [
+        "html editor online",
+        "html css javascript playground"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/html-editor",
+        "title": "HTML Editor Online - Free, with Live Preview | ByteVerse",
+        "description": "Free online HTML editor with live preview — write HTML, CSS, and JavaScript and see results instantly. 7 templates, mobile preview, fullscreen. No sign-up.",
+        "canonical": "https://www.byteverse.fyi/tools/html-editor",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "HTML Editor Online — Free, with Live Preview"
+        ],
+        "htmlBytes": 99889,
+        "approximateMainWords": 688,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/how-to-learn-programming-2026-beginner-roadmap",
+          "/blog/javascript-roadmap-2026-beginner-job-ready",
+          "/blog/build-portfolio-website-2026",
+          "/blog/tailwind-css-4-guide-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "html-tag-generator",
+      "name": "HTML Tag Generator & Remover",
+      "url": "https://www.byteverse.fyi/tools/html-tag-generator",
+      "sourceTitle": "HTML Tag Generator & Remover - Online Tool",
+      "sourceDescription": "Generate HTML tags from plain text or strip all tags from HTML code. Wrap text in paragraphs, headings, lists, bold, links, and more. 100% free, private, runs in your browser.",
+      "sourceKeywords": [
+        "html tag generator",
+        "html tag remover",
+        "strip html tags",
+        "remove html tags",
+        "text to html",
+        "html to text",
+        "wrap text in html",
+        "html tag stripper"
+      ],
+      "seeds": [
+        "html tag remover",
+        "text to html converter"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/html-tag-generator",
+        "title": "HTML Tag Generator &amp; Remover - Online Tool | ByteVerse",
+        "description": "Generate HTML tags from plain text or strip all tags from HTML code. Wrap text in paragraphs, headings, lists, bold, links, and more. 100% free, private, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/html-tag-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "HTML Tag Generator &amp; Remover"
+        ],
+        "htmlBytes": 70766,
+        "approximateMainWords": 379,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "image-compressor",
+      "name": "Image Compressor",
+      "url": "https://www.byteverse.fyi/tools/image-compressor",
+      "sourceTitle": "Image Compressor - Free Online Image Optimizer",
+      "sourceDescription": "Compress JPG, PNG, and WebP images online. Resize photos, adjust quality, convert formats, preview results, and download optimized images. Free and private.",
+      "sourceKeywords": [
+        "image compressor",
+        "compress image online",
+        "photo compressor",
+        "image optimizer",
+        "reduce image size",
+        "jpg compressor",
+        "png compressor",
+        "webp converter",
+        "resize image online"
+      ],
+      "seeds": [
+        "image compressor",
+        "compress image to 100kb"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/image-compressor",
+        "title": "Image Compressor - Free Online Image Optimizer | ByteVerse",
+        "description": "Compress JPG, PNG, and WebP images online. Resize photos, adjust quality, convert formats, preview results, and download optimized images. Free and private.",
+        "canonical": "https://www.byteverse.fyi/tools/image-compressor",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Image Compressor"
+        ],
+        "htmlBytes": 62348,
+        "approximateMainWords": 335,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "free-seo-audit-website-2026-step-by-step",
+        "how-to-optimize-images-for-web-2026",
+        "how-to-build-website-with-ai-2026"
+      ]
+    },
+    {
+      "slug": "json-formatter",
+      "name": "JSON Formatter & Validator",
+      "url": "https://www.byteverse.fyi/tools/json-formatter",
+      "sourceTitle": "JSON Formatter & Validator Online - Free Tool",
+      "sourceDescription": "Format, validate, and minify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, and one-click copy.",
+      "sourceKeywords": [
+        "json formatter",
+        "json validator",
+        "json beautifier",
+        "json minifier",
+        "format json online",
+        "json tool"
+      ],
+      "seeds": [
+        "json formatter",
+        "json formatter online"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/json-formatter",
+        "title": "JSON Formatter &amp; Validator Online - Free Tool | ByteVerse",
+        "description": "Format, validate, and minify JSON instantly. Free online JSON formatter with syntax highlighting, error detection, and one-click copy.",
+        "canonical": "https://www.byteverse.fyi/tools/json-formatter",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "JSON Formatter &amp; Validator"
+        ],
+        "htmlBytes": 57237,
+        "approximateMainWords": 283,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "json-to-csv",
+      "name": "JSON to CSV Converter",
+      "url": "https://www.byteverse.fyi/tools/json-to-csv",
+      "sourceTitle": "JSON to CSV Converter - Free Online Tool",
+      "sourceDescription": "Convert JSON arrays to CSV or TSV format instantly. Supports nested objects, custom delimiters, file upload, and download. Runs entirely in your browser.",
+      "sourceKeywords": [
+        "json to csv",
+        "json to csv converter",
+        "convert json to csv",
+        "json to csv online",
+        "json to tsv",
+        "json csv converter"
+      ],
+      "seeds": [
+        "json to csv",
+        "nested json to csv"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/json-to-csv",
+        "title": "JSON to CSV Converter - Free Online Tool | ByteVerse",
+        "description": "Convert JSON arrays to CSV or TSV format instantly. Supports nested objects, custom delimiters, file upload, and download. Runs entirely in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/json-to-csv",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "JSON to CSV Converter"
+        ],
+        "htmlBytes": 56827,
+        "approximateMainWords": 195,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "how-to-use-ai-in-excel-google-sheets-2026"
+      ]
+    },
+    {
+      "slug": "json-to-typescript",
+      "name": "JSON to TypeScript Converter",
+      "url": "https://www.byteverse.fyi/tools/json-to-typescript",
+      "sourceTitle": "JSON to TypeScript Converter - Interface & Type Online",
+      "sourceDescription": "Convert JSON to TypeScript interfaces or types online, free. Handles nested objects, arrays, optional props, readonly, and exports — 100% in your browser.",
+      "sourceKeywords": [
+        "json to typescript",
+        "json to typescript interface",
+        "json to typescript type",
+        "json to typescript converter",
+        "json to typescript online",
+        "json to typescript type generator",
+        "json to ts",
+        "json to types",
+        "json to interface",
+        "json to interface typescript",
+        "generate typescript types from json",
+        "typescript interface generator",
+        "typescript from json"
+      ],
+      "seeds": [
+        "json to typescript",
+        "json to typescript interface"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/json-to-typescript",
+        "title": "JSON to TypeScript Converter - Interface &amp; Type Online | ByteVerse",
+        "description": "Convert JSON to TypeScript interfaces or types online, free. Handles nested objects, arrays, optional props, readonly, and exports — 100% in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/json-to-typescript",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "JSON to TypeScript Converter — Interfaces &amp; Types"
+        ],
+        "htmlBytes": 96404,
+        "approximateMainWords": 591,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/typescript-for-beginners-2026-complete-guide",
+          "/blog/react-19-best-practices-2026-faster-apps",
+          "/blog/best-free-apis-for-developers-2026",
+          "/blog/best-vscode-extensions-2026-web-developers"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "jwt-decoder",
+      "name": "JWT Decoder",
+      "url": "https://www.byteverse.fyi/tools/jwt-decoder",
+      "sourceTitle": "JWT Decoder - Decode & Inspect JSON Web Tokens",
+      "sourceDescription": "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
+      "sourceKeywords": [
+        "jwt decoder",
+        "jwt decoder online",
+        "decode jwt",
+        "json web token decoder",
+        "jwt token decoder",
+        "jwt inspector",
+        "jwt debugger",
+        "jwt parser"
+      ],
+      "seeds": [
+        "jwt decoder",
+        "jwt token expiry checker"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/jwt-decoder",
+        "title": "JWT Decoder - Decode &amp; Inspect JSON Web Tokens | ByteVerse",
+        "description": "Decode and inspect JWT tokens instantly. View header, payload, claims, expiration status, and signature. Free, secure, runs entirely in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/jwt-decoder",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "JWT Decoder &amp; Inspector"
+        ],
+        "htmlBytes": 54116,
+        "approximateMainWords": 221,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "llms-txt-generator-validator",
+      "name": "llms.txt Generator & Validator",
+      "url": "https://www.byteverse.fyi/tools/llms-txt-generator-validator",
+      "sourceTitle": "LLMs.txt Generator & Validator - Free Checker Online",
+      "sourceDescription": "Generate a spec-compliant llms.txt file or validate an existing one — free online checker with format rules, live example, and AI SEO guidance.",
+      "sourceKeywords": [
+        "llms.txt generator",
+        "llms.txt validator",
+        "llms.txt checker",
+        "llms txt generator free",
+        "llms txt generator online",
+        "llms.txt file generator",
+        "llms.txt example",
+        "llms.txt format",
+        "llms.txt what is it",
+        "llms.txt seo",
+        "llms.txt google",
+        "ai website optimization"
+      ],
+      "seeds": [
+        "llms.txt generator",
+        "llms.txt validator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/llms-txt-generator-validator",
+        "title": "LLMs.txt Generator &amp; Validator - Free Checker Online | ByteVerse",
+        "description": "Generate a spec-compliant llms.txt file or validate an existing one — free online checker with format rules, live example, and AI SEO guidance.",
+        "canonical": "https://www.byteverse.fyi/tools/llms-txt-generator-validator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "LLMs.txt Generator &amp; Validator"
+        ],
+        "htmlBytes": 98265,
+        "approximateMainWords": 793,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/how-to-rank-in-ai-search-2026",
+          "/blog/best-ai-search-engines-2026",
+          "/blog/website-not-showing-on-google-fixes-2026",
+          "/blog/free-seo-audit-website-2026-step-by-step"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "lorem-ipsum-generator",
+      "name": "Lorem Ipsum Generator",
+      "url": "https://www.byteverse.fyi/tools/lorem-ipsum-generator",
+      "sourceTitle": "Lorem Ipsum Generator - Free Placeholder Text",
+      "sourceDescription": "Generate lorem ipsum placeholder text for your designs and layouts. Choose paragraphs, sentences, or words with customizable count and HTML wrapping.",
+      "sourceKeywords": [
+        "lorem ipsum generator",
+        "placeholder text",
+        "dummy text generator",
+        "lorem ipsum",
+        "filler text",
+        "lipsum generator"
+      ],
+      "seeds": [
+        "lorem ipsum generator",
+        "placeholder text generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/lorem-ipsum-generator",
+        "title": "Lorem Ipsum Generator - Free Placeholder Text | ByteVerse",
+        "description": "Generate lorem ipsum placeholder text for your designs and layouts. Choose paragraphs, sentences, or words with customizable count and HTML wrapping.",
+        "canonical": "https://www.byteverse.fyi/tools/lorem-ipsum-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Lorem Ipsum Generator"
+        ],
+        "htmlBytes": 56108,
+        "approximateMainWords": 204,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "markdown-to-html",
+      "name": "Markdown to HTML Converter",
+      "url": "https://www.byteverse.fyi/tools/markdown-to-html",
+      "sourceTitle": "Markdown to HTML Converter - Free Online Tool",
+      "sourceDescription": "Convert Markdown to clean HTML instantly. Supports headings, bold, italic, code blocks, links, images, lists, blockquotes, and more. Live preview included.",
+      "sourceKeywords": [
+        "markdown to html",
+        "markdown converter",
+        "md to html",
+        "markdown to html converter",
+        "convert markdown",
+        "markdown preview"
+      ],
+      "seeds": [
+        "markdown to html",
+        "markdown table to html"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/markdown-to-html",
+        "title": "Markdown to HTML Converter - Free Online Tool | ByteVerse",
+        "description": "Convert Markdown to clean HTML instantly. Supports headings, bold, italic, code blocks, links, images, lists, blockquotes, and more. Live preview included.",
+        "canonical": "https://www.byteverse.fyi/tools/markdown-to-html",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Markdown to HTML Converter"
+        ],
+        "htmlBytes": 57440,
+        "approximateMainWords": 283,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "meta-tag-generator",
+      "name": "Meta Tag Generator",
+      "url": "https://www.byteverse.fyi/tools/meta-tag-generator",
+      "sourceTitle": "Meta Tag Generator - Free SEO, Google & Social Tags",
+      "sourceDescription": "Free meta tag generator for SEO: create title tags, meta descriptions, Open Graph, Twitter cards, and canonical tags for Google and social media. Copy clean HTML.",
+      "sourceKeywords": [
+        "meta tag generator",
+        "meta tags generator",
+        "seo meta tags generator",
+        "google meta tag generator",
+        "free meta tag generator",
+        "social media meta tags generator",
+        "meta tag builder",
+        "meta tag maker",
+        "meta tag creator",
+        "meta tag code generator",
+        "generate meta tags",
+        "open graph generator",
+        "open graph tag generator",
+        "twitter card generator",
+        "meta description generator",
+        "meta description generator free"
+      ],
+      "seeds": [
+        "meta tag generator",
+        "open graph meta tag generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/meta-tag-generator",
+        "title": "Meta Tag Generator - Free SEO, Google &amp; Social Tags | ByteVerse",
+        "description": "Free meta tag generator for SEO: create title tags, meta descriptions, Open Graph, Twitter cards, and canonical tags for Google and social media. Copy clean HTML.",
+        "canonical": "https://www.byteverse.fyi/tools/meta-tag-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Meta Tag Generator for SEO &amp; Social"
+        ],
+        "htmlBytes": 101300,
+        "approximateMainWords": 747,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/seo-meta-tags-generator-guide-2026",
+          "/blog/how-to-write-seo-titles-2026",
+          "/blog/blog-seo-checklist-before-publishing-in-2026",
+          "/blog/how-to-rank-in-ai-search-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "low-competition-keywords-for-new-blogs-2026",
+        "how-to-get-traffic-to-a-new-blog-2026",
+        "seo-meta-tags-generator-guide-2026",
+        "how-many-blog-posts-before-traffic-starts-2026",
+        "how-to-write-seo-friendly-blog-posts-2026",
+        "how-to-write-seo-titles-2026",
+        "ai-automation-roadmap-2026-what-to-automate-first",
+        "how-to-build-website-with-ai-2026",
+        "best-ai-data-analysis-tools-2026",
+        "best-ai-seo-tools-2026",
+        "best-free-hosting-platforms-2026"
+      ]
+    },
+    {
+      "slug": "og-preview",
+      "name": "Open Graph Preview",
+      "url": "https://www.byteverse.fyi/tools/og-preview",
+      "sourceTitle": "Open Graph Preview - Free OG & Twitter Card Checker",
+      "sourceDescription": "Preview how your links appear on Facebook, Twitter, LinkedIn, and Google. Generate Open Graph and Twitter Card meta tags instantly.",
+      "sourceKeywords": [
+        "open graph preview",
+        "og preview",
+        "twitter card preview",
+        "social media preview",
+        "meta tag preview",
+        "og image checker"
+      ],
+      "seeds": [
+        "open graph preview",
+        "open graph checker"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/og-preview",
+        "title": "Open Graph Preview - Free OG &amp; Twitter Card Checker | ByteVerse",
+        "description": "Preview how your links appear on Facebook, Twitter, LinkedIn, and Google. Generate Open Graph and Twitter Card meta tags instantly.",
+        "canonical": "https://www.byteverse.fyi/tools/og-preview",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Open Graph Preview"
+        ],
+        "htmlBytes": 61095,
+        "approximateMainWords": 268,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "seo-meta-tags-generator-guide-2026"
+      ]
+    },
+    {
+      "slug": "password-generator",
+      "name": "Password Generator",
+      "url": "https://www.byteverse.fyi/tools/password-generator",
+      "sourceTitle": "Password Generator - Free Secure Password Tool",
+      "sourceDescription": "Generate strong, random passwords instantly. Customize length, symbols, numbers, and more. 100% client-side, nothing stored.",
+      "sourceKeywords": [
+        "password generator",
+        "random password",
+        "secure password",
+        "strong password generator",
+        "password tool"
+      ],
+      "seeds": [
+        "password generator",
+        "passphrase generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/password-generator",
+        "title": "Password Generator - Free Secure Password Tool | ByteVerse",
+        "description": "Generate strong, random passwords instantly. Customize length, symbols, numbers, and more. 100% client-side, nothing stored.",
+        "canonical": "https://www.byteverse.fyi/tools/password-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Password Generator"
+        ],
+        "htmlBytes": 56098,
+        "approximateMainWords": 198,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "online-security-checklist-2026-passkeys-2fa",
+        "best-password-managers-2026"
+      ]
+    },
+    {
+      "slug": "plagiarism-checker",
+      "name": "Similarity & Plagiarism Checker",
+      "url": "https://www.byteverse.fyi/tools/plagiarism-checker",
+      "sourceTitle": "Similarity Checker - Free Plagiarism & Uniqueness Tool",
+      "sourceDescription": "Free similarity checker: check text uniqueness and compare documents for plagiarism online. N-gram analysis, cosine similarity, sentence matching — 100% private, in-browser.",
+      "sourceKeywords": [
+        "similarity checker",
+        "similarity check",
+        "check for similarity for free",
+        "uniqueness checker",
+        "similarity detector",
+        "plagiarism checker",
+        "plagiarism detector",
+        "text similarity checker",
+        "duplicate content checker",
+        "free plagiarism checker",
+        "compare texts online",
+        "content uniqueness checker"
+      ],
+      "seeds": [
+        "plagiarism checker",
+        "compare two documents similarity"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/plagiarism-checker",
+        "title": "Similarity Checker - Free Plagiarism &amp; Uniqueness Tool | ByteVerse",
+        "description": "Free similarity checker: check text uniqueness and compare documents for plagiarism online. N-gram analysis, cosine similarity, sentence matching — 100% private, in-browser.",
+        "canonical": "https://www.byteverse.fyi/tools/plagiarism-checker",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Similarity &amp; Plagiarism Checker Free, Private, Unlimited"
+        ],
+        "htmlBytes": 123185,
+        "approximateMainWords": 738,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-ai-tools-for-students-2026-free-study-apps",
+        "do-ai-content-detectors-work-2026",
+        "best-ai-writing-tools-2026"
+      ]
+    },
+    {
+      "slug": "plagiarism-remover",
+      "name": "Plagiarism Remover & AI Humanizer",
+      "url": "https://www.byteverse.fyi/tools/plagiarism-remover",
+      "sourceTitle": "Free Plagiarism Remover & AI Humanizer â€” Rewrite Text Online",
+      "sourceDescription": "Remove plagiarism and humanize AI-generated text instantly. Replaces AI phrases, swaps synonyms, adds contractions, and makes content unique. 100% free, private, client-side tool.",
+      "sourceKeywords": [
+        "plagiarism remover",
+        "ai humanizer",
+        "text rewriter",
+        "remove plagiarism",
+        "humanize ai text",
+        "paraphrasing tool",
+        "rewrite text online",
+        "remove ai detection",
+        "make text unique",
+        "free plagiarism remover online",
+        "ai text humanizer free",
+        "plagiarism rewriter tool",
+        "bypass ai detection",
+        "undetectable ai text"
+      ],
+      "seeds": [
+        "paraphrasing tool",
+        "plagiarism remover"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/plagiarism-remover",
+        "title": "Free Plagiarism Remover &amp; AI Humanizer â€” Rewrite Text Online | ByteVerse",
+        "description": "Remove plagiarism and humanize AI-generated text instantly. Replaces AI phrases, swaps synonyms, adds contractions, and makes content unique. 100% free, private, client-side tool.",
+        "canonical": "https://www.byteverse.fyi/tools/plagiarism-remover",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Make AI Text Sound Undeniably Human"
+        ],
+        "htmlBytes": 117699,
+        "approximateMainWords": 790,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/10-best-free-ai-tools-in-2026-that-will-blow-your-mind"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "do-ai-content-detectors-work-2026"
+      ]
+    },
+    {
+      "slug": "privacy-policy-generator",
+      "name": "Privacy Policy Generator",
+      "url": "https://www.byteverse.fyi/tools/privacy-policy-generator",
+      "sourceTitle": "Privacy Policy Generator - Free Online Tool",
+      "sourceDescription": "Generate a customized privacy policy for your website or app in seconds. Covers cookies, analytics, newsletter signups, user accounts, and GDPR basics. Download as Markdown.",
+      "sourceKeywords": [
+        "privacy policy generator",
+        "free privacy policy",
+        "privacy policy template",
+        "website privacy policy",
+        "gdpr privacy policy",
+        "privacy policy maker"
+      ],
+      "seeds": [
+        "privacy policy generator",
+        "privacy policy for website"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/privacy-policy-generator",
+        "title": "Privacy Policy Generator - Free Online Tool | ByteVerse",
+        "description": "Generate a customized privacy policy for your website or app in seconds. Covers cookies, analytics, newsletter signups, user accounts, and GDPR basics. Download as Markdown.",
+        "canonical": "https://www.byteverse.fyi/tools/privacy-policy-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Privacy Policy Generator"
+        ],
+        "htmlBytes": 64452,
+        "approximateMainWords": 873,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "qr-code-generator",
+      "name": "QR Code Generator",
+      "url": "https://www.byteverse.fyi/tools/qr-code-generator",
+      "sourceTitle": "QR Code Generator - Free Online QR Maker",
+      "sourceDescription": "Generate custom QR codes for URLs, text, WiFi, email, and phone numbers. Choose colors, size, and error correction. Download as PNG or SVG. 100% free, no sign-up.",
+      "sourceKeywords": [
+        "qr code generator",
+        "free qr code maker",
+        "qr code creator",
+        "custom qr code",
+        "qr code online",
+        "generate qr code",
+        "wifi qr code",
+        "qr code download"
+      ],
+      "seeds": [
+        "qr code generator",
+        "wifi qr code generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/qr-code-generator",
+        "title": "QR Code Generator - Free Online QR Maker | ByteVerse",
+        "description": "Generate custom QR codes for URLs, text, WiFi, email, and phone numbers. Choose colors, size, and error correction. Download as PNG or SVG. 100% free, no sign-up.",
+        "canonical": "https://www.byteverse.fyi/tools/qr-code-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "QR Code Generator"
+        ],
+        "htmlBytes": 66569,
+        "approximateMainWords": 398,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "readability-checker",
+      "name": "Readability Checker",
+      "url": "https://www.byteverse.fyi/tools/readability-checker",
+      "sourceTitle": "Readability Checker - Free Flesch Score Test Online",
+      "sourceDescription": "Check readability score online free: Flesch Reading Ease, Flesch-Kincaid grade level, long-sentence flags, and fix advice — instant, private, no sign-up.",
+      "sourceKeywords": [
+        "readability checker",
+        "readability checker online",
+        "readability checker free online",
+        "readability score",
+        "check readability score online",
+        "readability test",
+        "flesch kincaid calculator",
+        "flesch reading ease checker",
+        "readability checker flesch kincaid",
+        "grade level checker",
+        "readability checker tool",
+        "reading level checker"
+      ],
+      "seeds": [
+        "readability checker",
+        "flesch reading ease checker"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/readability-checker",
+        "title": "Readability Checker - Free Flesch Score Test Online | ByteVerse",
+        "description": "Check readability score online free: Flesch Reading Ease, Flesch-Kincaid grade level, long-sentence flags, and fix advice — instant, private, no sign-up.",
+        "canonical": "https://www.byteverse.fyi/tools/readability-checker",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Readability Checker — Free Flesch Score Test"
+        ],
+        "htmlBytes": 95306,
+        "approximateMainWords": 871,
+        "inSitemap": false,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/how-to-rank-in-ai-search-2026",
+          "/blog/how-to-write-seo-friendly-blog-posts-2026",
+          "/blog/how-to-write-blog-posts-with-ai-2026",
+          "/blog/how-to-write-seo-titles-2026",
+          "/blog/blog-seo-checklist-before-publishing-in-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "regex-tester",
+      "name": "Regex Tester",
+      "url": "https://www.byteverse.fyi/tools/regex-tester",
+      "sourceTitle": "Regex Tester - Test Regular Expressions Online",
+      "sourceDescription": "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
+      "sourceKeywords": [
+        "regex tester",
+        "regex tester online",
+        "regular expression tester",
+        "regex debugger",
+        "regex match",
+        "regex replace",
+        "test regex",
+        "regex validator"
+      ],
+      "seeds": [
+        "regex tester",
+        "javascript regex tester"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/regex-tester",
+        "title": "Regex Tester - Test Regular Expressions Online | ByteVerse",
+        "description": "Test and debug regular expressions in real time. Live highlighting, match details, capture groups, replace mode, and common pattern presets. Free, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/regex-tester",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Regex Tester &amp; Debugger"
+        ],
+        "htmlBytes": 61745,
+        "approximateMainWords": 318,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "how-to-learn-python-2026-beginner-roadmap"
+      ]
+    },
+    {
+      "slug": "robots-txt-generator",
+      "name": "robots.txt Generator",
+      "url": "https://www.byteverse.fyi/tools/robots-txt-generator",
+      "sourceTitle": "robots.txt Generator - Free Robots.txt File Builder",
+      "sourceDescription": "Generate robots.txt files with a visual builder. Add user-agent rules, sitemaps, and crawl delays. Includes presets for WordPress, AI bot blocking, and more.",
+      "sourceKeywords": [
+        "robots.txt generator",
+        "robots.txt builder",
+        "robots txt creator",
+        "block ai bots",
+        "crawl delay",
+        "user agent rules"
+      ],
+      "seeds": [
+        "robots.txt generator",
+        "robots.txt tester"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/robots-txt-generator",
+        "title": "robots.txt Generator - Free Robots.txt File Builder | ByteVerse",
+        "description": "Generate robots.txt files with a visual builder. Add user-agent rules, sitemaps, and crawl delays. Includes presets for WordPress, AI bot blocking, and more.",
+        "canonical": "https://www.byteverse.fyi/tools/robots-txt-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "robots.txt Generator"
+        ],
+        "htmlBytes": 58512,
+        "approximateMainWords": 204,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-free-hosting-platforms-2026"
+      ]
+    },
+    {
+      "slug": "schema-markup-generator",
+      "name": "Schema Markup Generator",
+      "url": "https://www.byteverse.fyi/tools/schema-markup-generator",
+      "sourceTitle": "Schema Markup Generator (JSON-LD) - Free & Valid",
+      "sourceDescription": "Free schema markup generator (JSON-LD): build Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, Person, and Organization structured data visually.",
+      "sourceKeywords": [
+        "schema markup generator",
+        "schema markup generator (json-ld)",
+        "json-ld generator",
+        "json ld schema generator",
+        "structured data generator",
+        "schema generator",
+        "free schema markup generator",
+        "google schema markup generator",
+        "structured data markup generator",
+        "json-ld code generator",
+        "schema markup generator for website",
+        "faq schema generator",
+        "article schema generator",
+        "product schema generator",
+        "rich snippets"
+      ],
+      "seeds": [
+        "schema markup generator",
+        "json ld generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/schema-markup-generator",
+        "title": "Schema Markup Generator (JSON-LD) - Free &amp; Valid | ByteVerse",
+        "description": "Free schema markup generator (JSON-LD): build Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, Person, and Organization structured data visually.",
+        "canonical": "https://www.byteverse.fyi/tools/schema-markup-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Schema Markup Generator (JSON-LD)"
+        ],
+        "htmlBytes": 99137,
+        "approximateMainWords": 626,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/seo-meta-tags-generator-guide-2026",
+          "/blog/how-to-rank-in-ai-search-2026",
+          "/blog/blog-seo-checklist-before-publishing-in-2026",
+          "/blog/free-seo-audit-website-2026-step-by-step"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "seo-meta-tags-generator-guide-2026",
+        "best-ai-search-engines-2026"
+      ]
+    },
+    {
+      "slug": "seo-title-analyzer",
+      "name": "SEO Title Checker",
+      "url": "https://www.byteverse.fyi/tools/seo-title-analyzer",
+      "sourceTitle": "SEO Title Checker - Free Title & Headline Analyzer",
+      "sourceDescription": "Check SEO titles free online: score length, word count, intent words, specificity, and click potential. Instant title check — no login, no limits.",
+      "sourceKeywords": [
+        "seo title checker",
+        "seo title check",
+        "title checker",
+        "seo title checker free online",
+        "seo title tester",
+        "seo title length checker",
+        "seo headline checker",
+        "headline checker",
+        "headline analyzer",
+        "free headline analyzer",
+        "seo title analyzer",
+        "blog title checker",
+        "title analyzer",
+        "seo title preview",
+        "title optimizer tool",
+        "seo title score",
+        "seo article title checker"
+      ],
+      "seeds": [
+        "seo title checker",
+        "title length checker"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/seo-title-analyzer",
+        "title": "SEO Title Checker - Free Title &amp; Headline Analyzer | ByteVerse",
+        "description": "Check SEO titles free online: score length, word count, intent words, specificity, and click potential. Instant title check — no login, no limits.",
+        "canonical": "https://www.byteverse.fyi/tools/seo-title-analyzer",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "SEO Title Checker &amp; Headline Analyzer"
+        ],
+        "htmlBytes": 106839,
+        "approximateMainWords": 857,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/how-to-write-seo-titles-2026",
+          "/blog/blog-seo-checklist-before-publishing-in-2026",
+          "/blog/how-to-write-seo-friendly-blog-posts-2026",
+          "/blog/seo-meta-tags-generator-guide-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "low-competition-keywords-for-new-blogs-2026",
+        "how-to-get-traffic-to-a-new-blog-2026",
+        "how-many-blog-posts-before-traffic-starts-2026",
+        "free-seo-audit-website-2026-step-by-step",
+        "90-day-blog-content-plan-for-new-websites-in-2026",
+        "how-to-update-old-blog-posts-for-more-traffic-in-2026",
+        "blog-seo-checklist-before-publishing-in-2026",
+        "how-to-write-seo-friendly-blog-posts-2026",
+        "how-to-write-seo-titles-2026",
+        "google-search-console-for-new-blogs-2026-beginner-guide",
+        "how-to-build-topical-authority-for-a-new-blog-in-2026",
+        "50-blog-post-ideas-for-new-bloggers-in-2026",
+        "ai-automation-roadmap-2026-what-to-automate-first",
+        "how-to-do-keyword-research-free-2026",
+        "best-ai-seo-tools-2026"
+      ]
+    },
+    {
+      "slug": "slug-generator",
+      "name": "Slug Generator",
+      "url": "https://www.byteverse.fyi/tools/slug-generator",
+      "sourceTitle": "Slug Generator - Free URL Slug Converter",
+      "sourceDescription": "Convert any text into a clean, URL-friendly slug. Customize separators, max length, prefix, and suffix. Handles accented characters, special symbols, and unicode.",
+      "sourceKeywords": [
+        "slug generator",
+        "url slug converter",
+        "url friendly text",
+        "slugify",
+        "seo url generator"
+      ],
+      "seeds": [
+        "slug generator",
+        "url slug generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/slug-generator",
+        "title": "Slug Generator - Free URL Slug Converter | ByteVerse",
+        "description": "Convert any text into a clean, URL-friendly slug. Customize separators, max length, prefix, and suffix. Handles accented characters, special symbols, and unicode.",
+        "canonical": "https://www.byteverse.fyi/tools/slug-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Slug Generator"
+        ],
+        "htmlBytes": 58403,
+        "approximateMainWords": 219,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "low-competition-keywords-for-new-blogs-2026",
+        "how-to-get-traffic-to-a-new-blog-2026",
+        "free-seo-audit-website-2026-step-by-step",
+        "how-to-write-seo-friendly-blog-posts-2026",
+        "how-to-do-keyword-research-free-2026"
+      ]
+    },
+    {
+      "slug": "text-to-speech",
+      "name": "Text to Speech Converter",
+      "url": "https://www.byteverse.fyi/tools/text-to-speech",
+      "sourceTitle": "Text to Speech Online - Free, Unlimited, No Login",
+      "sourceDescription": "Free text to speech online — unlimited, no login, no word limits. Paste text, pick from 30+ language voices, adjust speed and pitch, listen instantly.",
+      "sourceKeywords": [
+        "text to speech online",
+        "text to speech online free",
+        "text to speech online free unlimited",
+        "text to speech free without login",
+        "text to speech free",
+        "text to speech",
+        "tts online free",
+        "read text aloud online",
+        "text to voice",
+        "online tts",
+        "speech synthesis",
+        "text reader",
+        "listen to text online"
+      ],
+      "seeds": [
+        "text to speech",
+        "text to speech mp3 download"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/text-to-speech",
+        "title": "Text to Speech Online - Free, Unlimited, No Login | ByteVerse",
+        "description": "Free text to speech online — unlimited, no login, no word limits. Paste text, pick from 30+ language voices, adjust speed and pitch, listen instantly.",
+        "canonical": "https://www.byteverse.fyi/tools/text-to-speech",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Text to Speech Online — Free &amp; Unlimited"
+        ],
+        "htmlBytes": 101569,
+        "approximateMainWords": 738,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/best-free-text-to-speech-tools-2026",
+          "/blog/best-ai-voice-generators-2026",
+          "/blog/faceless-youtube-channel-with-ai-2026",
+          "/blog/best-ai-tools-for-podcasters-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-ai-voice-generators-2026",
+        "best-free-text-to-speech-tools-2026",
+        "how-to-edit-videos-with-ai-2026"
+      ]
+    },
+    {
+      "slug": "timestamp-converter",
+      "name": "Unix Timestamp Converter",
+      "url": "https://www.byteverse.fyi/tools/timestamp-converter",
+      "sourceTitle": "Unix Timestamp Converter - Epoch to Date Tool",
+      "sourceDescription": "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
+      "sourceKeywords": [
+        "unix timestamp converter",
+        "epoch converter",
+        "timestamp to date",
+        "date to timestamp",
+        "unix time converter",
+        "epoch time converter",
+        "unix timestamp to date online"
+      ],
+      "seeds": [
+        "timestamp converter",
+        "unix timestamp milliseconds converter"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/timestamp-converter",
+        "title": "Unix Timestamp Converter - Epoch to Date Tool | ByteVerse",
+        "description": "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds, multiple output formats, and relative time. Free and private.",
+        "canonical": "https://www.byteverse.fyi/tools/timestamp-converter",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Unix Timestamp Converter"
+        ],
+        "htmlBytes": 55290,
+        "approximateMainWords": 226,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "url-encoder-decoder",
+      "name": "URL Encoder & Decoder",
+      "url": "https://www.byteverse.fyi/tools/url-encoder-decoder",
+      "sourceTitle": "URL Encoder & Decoder Online - Free Percent Encoding Tool",
+      "sourceDescription": "Encode and decode URLs instantly. Supports encodeURIComponent and encodeURI modes, URL parser, and common encoding reference. Free, private, runs in your browser.",
+      "sourceKeywords": [
+        "url encoder",
+        "url decoder",
+        "url encode online",
+        "url decode online",
+        "percent encoding",
+        "urlencode",
+        "urldecode",
+        "url parser"
+      ],
+      "seeds": [
+        "url decoder",
+        "url encode query parameters"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/url-encoder-decoder",
+        "title": "URL Encoder &amp; Decoder Online - Free Percent Encoding Tool | ByteVerse",
+        "description": "Encode and decode URLs instantly. Supports encodeURIComponent and encodeURI modes, URL parser, and common encoding reference. Free, private, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/url-encoder-decoder",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "URL Encoder &amp; Decoder"
+        ],
+        "htmlBytes": 53152,
+        "approximateMainWords": 260,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "uuid-generator",
+      "name": "UUID Generator",
+      "url": "https://www.byteverse.fyi/tools/uuid-generator",
+      "sourceTitle": "UUID Generator Online - Free UUID v4 Generator & Validator",
+      "sourceDescription": "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
+      "sourceKeywords": [
+        "uuid generator",
+        "uuid generator online",
+        "uuid v4 generator",
+        "uuidv4 generator",
+        "free uuid generator",
+        "random uuid generator",
+        "generate uuid v4",
+        "generate uuid online",
+        "uuid v4 format",
+        "uuid v4 vs v7",
+        "guid generator",
+        "uuid validator",
+        "bulk uuid generator",
+        "uuid generator javascript",
+        "uuid generator python"
+      ],
+      "seeds": [
+        "uuid generator",
+        "uuid v7 generator"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/uuid-generator",
+        "title": "UUID Generator Online - Free UUID v4 Generator &amp; Validator | ByteVerse",
+        "description": "Generate random UUIDs (v4) instantly. Bulk generation up to 100, copy with one click, validate existing UUIDs. Free, secure, runs in your browser.",
+        "canonical": "https://www.byteverse.fyi/tools/uuid-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "UUID Generator &amp; Validator (v4 Online)"
+        ],
+        "htmlBytes": 92192,
+        "approximateMainWords": 641,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [
+          "/blog/best-free-apis-for-developers-2026",
+          "/blog/javascript-roadmap-2026-beginner-job-ready",
+          "/blog/how-to-learn-python-2026-beginner-roadmap",
+          "/blog/git-github-beginners-guide-2026"
+        ],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": []
+    },
+    {
+      "slug": "word-counter",
+      "name": "Word & Character Counter",
+      "url": "https://www.byteverse.fyi/tools/word-counter",
+      "sourceTitle": "Word & Character Counter - Free Online Tool",
+      "sourceDescription": "Count words, characters, sentences, paragraphs, and estimated reading time instantly. Free tool for writers, students, and developers.",
+      "sourceKeywords": [
+        "word counter",
+        "character counter",
+        "word count tool",
+        "character count online",
+        "reading time calculator",
+        "text counter"
+      ],
+      "seeds": [
+        "word counter",
+        "word counter characters"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/word-counter",
+        "title": "Word &amp; Character Counter - Free Online Tool | ByteVerse",
+        "description": "Count words, characters, sentences, paragraphs, and estimated reading time instantly. Free tool for writers, students, and developers.",
+        "canonical": "https://www.byteverse.fyi/tools/word-counter",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "Word &amp; Character Counter"
+        ],
+        "htmlBytes": 57468,
+        "approximateMainWords": 192,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "best-ai-customer-service-chatbots-2026",
+        "affiliate-marketing-for-beginners-2026",
+        "how-to-get-traffic-to-a-new-blog-2026",
+        "how-many-blog-posts-before-traffic-starts-2026",
+        "how-to-write-seo-friendly-blog-posts-2026"
+      ]
+    },
+    {
+      "slug": "youtube-tag-generator",
+      "name": "YouTube Tag Generator",
+      "url": "https://www.byteverse.fyi/tools/youtube-tag-generator",
+      "sourceTitle": "YouTube Tag Generator - Free Video Tag & Keyword Tool",
+      "sourceDescription": "Generate optimized YouTube tags instantly. Enter your video title or keyword and get relevant, SEO-friendly tags to boost your video rankings and reach a wider audience.",
+      "sourceKeywords": [
+        "youtube tag generator",
+        "youtube tags",
+        "video tag generator",
+        "youtube seo tags",
+        "youtube keyword tool",
+        "free youtube tags",
+        "rapidtags alternative",
+        "youtube video optimization",
+        "youtube tag finder",
+        "generate tags for youtube"
+      ],
+      "seeds": [
+        "youtube tag generator",
+        "youtube tags from title"
+      ],
+      "live": {
+        "status": 200,
+        "finalUrl": "https://www.byteverse.fyi/tools/youtube-tag-generator",
+        "title": "YouTube Tag Generator - Free Video Tag &amp; Keyword Tool | ByteVerse",
+        "description": "Generate optimized YouTube tags instantly. Enter your video title or keyword and get relevant, SEO-friendly tags to boost your video rankings and reach a wider audience.",
+        "canonical": "https://www.byteverse.fyi/tools/youtube-tag-generator",
+        "robots": [
+          "index, follow",
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "xRobotsTag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        "h1": [
+          "YouTube Tag Generator"
+        ],
+        "htmlBytes": 60219,
+        "approximateMainWords": 369,
+        "inSitemap": true,
+        "linkedFromDirectory": true,
+        "mainBlogLinks": [],
+        "relatedToolsInInitialHtml": false,
+        "applicationRatings": [
+          {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        ],
+        "gaScriptReferencePresent": true
+      },
+      "explicitBlogLinkSources": [
+        "how-to-start-youtube-channel-2026",
+        "how-to-edit-videos-with-ai-2026"
+      ]
+    }
+  ]
+}

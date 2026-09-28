@@ -1,223 +1,163 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Ruler, Type, Target, Hash, AlertTriangle, Eye, Wrench, BookOpen } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, BookOpen, Monitor, Ruler, ShieldCheck, Sparkles } from "lucide-react";
 import { SeoTitleAnalyzerTool } from "./seo-title-analyzer-tool";
 import { ToolJsonLd, generateToolMetadata } from "@/lib/tool-seo";
 
 const toolConfig = {
   name: "SEO Title Checker",
-  title: "SEO Title Checker - Free Title & Headline Analyzer",
+  title: "SEO Title Checker: Length, Pixels & SERP Preview",
   description:
-    "Check SEO titles free online: score length, word count, intent words, specificity, and click potential. Instant title check — no login, no limits.",
+    "Free SEO title checker with character counts, estimated pixel width, desktop/mobile SERP previews, brand suffixes and draft comparison. No sign-up.",
   slug: "seo-title-analyzer",
   keywords: [
     "seo title checker",
-    "seo title check",
-    "title checker",
-    "seo title checker free online",
-    "seo title tester",
     "seo title length checker",
-    "seo headline checker",
-    "headline checker",
-    "headline analyzer",
-    "free headline analyzer",
-    "seo title analyzer",
-    "blog title checker",
-    "title analyzer",
-    "seo title preview",
-    "title optimizer tool",
-    "seo title score",
-    "seo article title checker",
+    "title length checker",
+    "serp preview tool",
+    "title and meta description checker",
+    "title tag pixel width",
   ],
+  applicationCategory: "BusinessApplication",
+  audience: "Bloggers, editors, developers and website owners",
   featureList: [
-    "Instant title score",
-    "Length and word count check",
-    "Search intent word detection",
-    "Specificity and number signals",
-    "Keyword stuffing warning",
+    "Unicode-aware character counts including brand suffixes",
+    "Approximate title pixel width using the browser's Arial font",
+    "Responsive desktop and mobile search-result mockups",
+    "Literal target-phrase and repeated-word checks",
+    "Compare up to three drafts in this tab",
+    "Copy the full title or escaped HTML title element",
   ],
   faqs: [
     {
-      question: "How do I check my SEO title for free?",
-      answer: "Paste your title into the checker above. It instantly scores length, word count, intent words, specificity, and keyword stuffing risk — no login, no limits, free online.",
+      question: "How do I check my SEO title length online?",
+      answer: "Paste your main title, optionally add a brand suffix, then review the full character count, approximate pixel width and desktop/mobile previews. You can compare three drafts and copy the chosen title. No account or payment is required.",
     },
     {
-      question: "How long should an SEO title be?",
-      answer: "A practical target is 45 to 65 characters. Google truncates most desktop titles around 60 characters, and mobile shows slightly more — the checker flags titles outside the safe range.",
+      question: "Does Google have a 60-character title limit?",
+      answer: "No. Google's documentation says there is no fixed length limit for a title element; the displayed title link is truncated as needed to fit device width. A character target is an editing guideline, not a guarantee. Keep the topic clear and check the full title, including any brand suffix.",
     },
     {
-      question: "What is the difference between a title checker and a headline analyzer?",
-      answer: "They are the same category of tool. A title checker focuses on search result limits (length, truncation), while a headline analyzer scores click psychology (intent words, specificity). This tool does both in one pass.",
+      question: "Why measure pixel width as well as characters?",
+      answer: "Letters have different widths: W takes more space than i in the same proportional font. This tool measures the title at 20px Arial using your browser, then fits it to the visible preview. Fonts, device sizes and Google's layouts vary, so these are estimates rather than exact Google measurements.",
     },
     {
-      question: "Does my title tag affect Google rankings?",
-      answer: "Yes — the title tag is a direct, confirmed ranking signal, and it also controls click-through rate. A clearer title can lift traffic on an already-ranking page without changing the article.",
+      question: "Can this checker get the title from a website URL?",
+      answer: "No. The URL field only changes the mockup's address; it does not fetch a page or inspect its metadata. Paste the title from your CMS or page source. This keeps title analysis local and avoids sending draft text or URLs to an analysis service.",
     },
     {
-      question: "Can I use this for YouTube titles or book titles?",
-      answer: "Yes. Length limits differ (YouTube shows about 70 characters), but the scoring principles — specificity, intent words, curiosity without clickbait — apply to YouTube videos, books, and newsletters alike.",
+      question: "Will a title that fits this preview rank higher or get more clicks?",
+      answer: "Not necessarily. Preview fit is a layout observation, not an SEO score. Google can generate a different title or snippet from the page and other signals. Write an accurate title, improve the page behind it, and evaluate actual queries, impressions, position and clicks in Search Console after publishing.",
     },
   ],
 };
 
 export const metadata: Metadata = generateToolMetadata(toolConfig);
 
-const scoreChecks = [
-  { icon: Ruler, title: "Length & Truncation", desc: "Character count against Google's desktop and mobile display limits, so your title never gets cut mid-promise." },
-  { icon: Type, title: "Word Count & Clarity", desc: "6-11 words is the readability sweet spot. Too short reads vague, too long gets skimmed past." },
-  { icon: Target, title: "Search Intent Words", desc: "Detects intent markers — best, how, guide, review, checklist, vs — that match what searchers actually type." },
-  { icon: Hash, title: "Specificity Signals", desc: "Numbers, years, and concrete details lift click-through rate. Vague titles lose to specific ones." },
-  { icon: AlertTriangle, title: "Keyword Stuffing Risk", desc: "Flags repeated keywords that read spammy to users and to Google's title rewrite system." },
-  { icon: Eye, title: "Click Potential", desc: "An overall score combining every factor — aim for green before you publish." },
-];
-
-const titleMistakes = [
-  { mistake: "Front-loading the brand", fix: "Put the keyword promise first, brand last — searchers scan the first 3 words." },
-  { mistake: "Titles over 65 characters", fix: "Google truncates or rewrites them; keep the full promise visible." },
-  { mistake: "No number, no year, no specifics", fix: "\u201C7 Ways\u2026 in 2026\u201D beats \u201CSome Ways\u201D in every CTR study." },
-  { mistake: "Clickbait that under-delivers", fix: "High clicks with instant bounces teach Google to demote the page." },
-  { mistake: "Same keyword twice", fix: "Repetition wastes characters and triggers rewrite — use a synonym or benefit instead." },
+const examples = [
+  { type: "Tutorial", before: "Image Tips and Tricks", after: "How to Compress a JPG to Under 100KB", why: "Names a task and a constraint. Only use this promise when the page actually explains how to meet it." },
+  { type: "Product", before: "The Everyday Collection", after: "Canvas Tote Bag with Zip & Inside Pocket", why: "Describes the item and distinguishing features instead of relying on a collection name alone." },
+  { type: "Comparison", before: "JSON YAML Guide", after: "JSON vs YAML: Syntax, Comments & Use Cases", why: "Makes the comparison explicit and previews the criteria the article covers." },
+  { type: "Utility", before: "SEO Title Checker | Title Checker | Check SEO Title", after: "SEO Title Checker: Length, Pixels & Preview", why: "Uses the topic once, then describes the useful outputs. Repeating variations is not extra value." },
 ];
 
 export default function SeoTitleAnalyzerPage() {
   return (
-    <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
       <ToolJsonLd config={toolConfig} />
-
-      {/* Header */}
-      <div className="mx-auto mb-10 max-w-3xl text-center">
-        <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Free SEO Tool · No Sign-up</p>
-        <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl">SEO Title Checker & Headline Analyzer</h1>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          Check your SEO title free online before you publish. Instant score for length, word count,
-          search intent, specificity, and click potential — the same checks that decide whether a
-          ranking page actually earns the click.
-        </p>
-      </div>
-
+      <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+        <Link href="/" className="hover:text-primary">Home</Link><ChevronRight size={12} aria-hidden="true" />
+        <Link href="/tools" className="hover:text-primary">Tools</Link><ChevronRight size={12} aria-hidden="true" />
+        <span aria-current="page">SEO Title Checker</span>
+      </nav>
+      <header className="relative mb-9 overflow-hidden rounded-3xl border border-primary/15 bg-linear-to-br from-blue-50 via-background to-violet-50 px-6 py-9 dark:from-blue-950/30 dark:via-background dark:to-violet-950/20 sm:px-10">
+        <div className="pointer-events-none absolute -right-8 -top-16 size-56 rounded-full border-30 border-primary/5" aria-hidden="true" />
+        <div className="relative max-w-3xl">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary"><Sparkles size={13} aria-hidden="true" />Measure first. Publish with context.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">SEO title checker<span className="mt-2 block text-2xl font-medium text-muted-foreground sm:text-3xl">A clearer title starts here.</span></h1>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Check title length, estimate pixel width and preview your search snippet. Include your brand, compare a few drafts and keep the version that accurately describes your page—not the one with a made-up SEO score.</p>
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5"><Ruler size={14} className="text-primary" aria-hidden="true" />Characters + pixels</span>
+            <span className="inline-flex items-center gap-1.5"><Monitor size={14} className="text-primary" aria-hidden="true" />Desktop + mobile</span>
+            <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-primary" aria-hidden="true" />Free · No sign-up</span>
+          </div>
+        </div>
+      </header>
       <SeoTitleAnalyzerTool />
+      <nav aria-label="Title checker guide" className="mt-10 flex flex-wrap justify-center gap-x-5 gap-y-3 border-y border-border py-4 text-sm text-muted-foreground">
+        <a href="#how-to-check" className="hover:text-primary">How to use</a><a href="#title-length" className="hover:text-primary">Length &amp; pixels</a><a href="#title-examples" className="hover:text-primary">Title examples</a><a href="#title-method" className="hover:text-primary">Method &amp; limits</a><a href="#title-faq" className="hover:text-primary">FAQs</a>
+      </nav>
 
-      {/* How to use */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-3xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6 text-center">How to Check Your SEO Title in 3 Steps</h2>
-        <ol className="grid gap-4">
+      <section id="how-to-check" className="mt-14 scroll-mt-24">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">From draft to decision</p>
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">How to check an SEO title in three steps</h2>
+        <ol className="mt-6 grid gap-4 md:grid-cols-3">
           {[
-            { step: "Paste or type your title", detail: "Drop in a draft title — blog post, product page, video, or newsletter subject." },
-            { step: "Read the instant score", detail: "Length, word count, intent words, specificity, and stuffing risk are scored in real time as you type." },
-            { step: "Fix the red flags and re-check", detail: "Tighten length, add a number or year, front-load the keyword — watch the score turn green, then publish." },
+            { title: "Paste the actual title", text: "Use the text from your CMS title field, without HTML. Add a brand only if it is appended on the live page. An optional target phrase checks literal wording; it does not discover keywords for you." },
+            { title: "Preview the full result", text: "Switch between desktop and mobile. Notice what disappears when space is tighter. Include a description if helpful, but remember Google can choose a different snippet from your content." },
+            { title: "Compare, then verify", text: "Save up to three drafts. Compare the promise, repetition and measured width—not just the shortest title. Copy the chosen text, then check that your CMS has not added the brand a second time." },
           ].map((item, i) => (
-            <li key={item.step} className="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card">
-              <span className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary font-extrabold text-sm">{i + 1}</span>
-              <div className="min-w-0">
-                <h3 className="font-bold text-sm sm:text-base">{item.step}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-1">{item.detail}</p>
-              </div>
-            </li>
+            <li key={item.title} className="rounded-2xl border border-border bg-card p-5"><span className="text-sm font-bold text-primary">0{i + 1}</span><h3 className="mt-3 font-semibold">{item.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p></li>
           ))}
         </ol>
       </section>
 
-      {/* What it scores */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-5xl">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">What This SEO Title Checker Scores</h2>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-            Six checks, each backed by how Google actually displays and rewrites titles in 2026.
-          </p>
+      <section id="title-length" className="mt-14 grid scroll-mt-24 items-start gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Title length: characters count text, pixels explain fit</h2>
+          <p>A 60-character title is not automatically safe, and a 61-character title is not automatically bad. <a href="https://developers.google.com/search/docs/appearance/title-link" className="text-primary underline underline-offset-4">Google&apos;s title-link guidance</a> says there is no fixed title-element length limit. Displayed title links are shortened to fit the available space. That space depends on the device and result layout.</p>
+          <p>Wide letters, capitals, punctuation and your brand all use space. Ten capital Ws and ten lowercase is have the same character count but very different widths. The checker measures the complete title in your browser using 20px Arial. It counts the separator and brand, then wraps or clips at the visible preview width. The displayed pixel value is the full, unwrapped width in CSS pixels.</p>
+          <p>Our desktop model uses one line up to 580px; the mobile model uses two lines up to 360px. On a smaller screen, the preview uses the space actually available. These are transparent simulation choices, not permanent Google specifications. A title that fits still needs to make sense and match the page. Do not cut an important product attribute just to get a fit label.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {scoreChecks.map((check) => (
-            <div key={check.title} className="p-5 rounded-2xl border border-border bg-card">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
-                  <check.icon size={18} className="text-primary" />
-                </span>
-                <h3 className="font-bold text-sm sm:text-base">{check.title}</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{check.desc}</p>
-            </div>
-          ))}
+        <div className="rounded-2xl border border-border bg-muted/40 p-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Same count. Different footprint.</p>
+          <div className="mt-5 space-y-5" style={{ fontFamily: "Arial, sans-serif" }}><div><p className="text-xl text-primary">WWWWWWWWWW</p><p className="mt-1 text-xs text-muted-foreground">10 wider characters</p></div><div><p className="text-xl text-primary">iiiiiiiiii</p><p className="mt-1 text-xs text-muted-foreground">10 narrower characters</p></div></div>
+          <p className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">Useful question: “Can a reader see the page&apos;s main promise?” Not: “Did I hit exactly 60 characters?”</p>
         </div>
       </section>
 
-      {/* Length rules */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-3xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">SEO Title Length: The 2026 Rules</h2>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
-          Google measures titles in pixels, not characters — but character counts are the practical
-          proxy every SEO uses. The safe ranges by placement:
-        </p>
-        <div className="overflow-x-auto rounded-2xl border border-border">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border bg-muted/50 text-left">
-                <th className="p-3.5 font-bold">Placement</th>
-                <th className="p-3.5 font-bold">Safe length</th>
-                <th className="p-3.5 font-bold">What happens beyond it</th>
-              </tr>
-            </thead>
-            <tbody className="text-muted-foreground">
-              <tr className="border-b border-border"><td className="p-3.5 font-semibold text-foreground">Google desktop</td><td className="p-3.5">50–60 chars</td><td className="p-3.5">Truncated with … or rewritten</td></tr>
-              <tr className="border-b border-border"><td className="p-3.5 font-semibold text-foreground">Google mobile</td><td className="p-3.5">up to ~65 chars</td><td className="p-3.5">Slightly more room, still truncates</td></tr>
-              <tr className="border-b border-border"><td className="p-3.5 font-semibold text-foreground">YouTube</td><td className="p-3.5">~70 chars</td><td className="p-3.5">Cut in suggested-video sidebars</td></tr>
-              <tr><td className="p-3.5 font-semibold text-foreground">Email subject</td><td className="p-3.5">30–50 chars</td><td className="p-3.5">Clipped on mobile inboxes</td></tr>
-            </tbody>
-          </table>
+      <section id="title-examples" className="mt-14 scroll-mt-24">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Title examples: make the purpose visible</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">These are illustrative edits, not measured CTR winners. Each version states a useful distinction without adding an unsupported year, statistic or superlative. For more writing patterns, use our <Link href="/blog/how-to-write-seo-titles-2026" className="text-primary underline underline-offset-4">SEO title-writing guide</Link>, and check its advice against the current Google guidance linked here.</p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">{examples.map(example => <article key={example.type} className="rounded-2xl border border-border bg-card p-5"><p className="text-[11px] font-semibold uppercase tracking-widest text-primary">{example.type}</p><p className="mt-3 text-sm text-muted-foreground"><span className="font-medium">Before:</span> {example.before}</p><p className="mt-2 flex items-start gap-2 text-sm font-semibold"><Check size={15} className="mt-0.5 shrink-0 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /><span>{example.after}</span></p><p className="mt-3 text-xs leading-relaxed text-muted-foreground">{example.why}</p></article>)}</div>
+      </section>
+
+      <section id="title-method" className="mt-14 scroll-mt-24 rounded-2xl border border-border bg-muted/30 p-5 sm:p-8">
+        <h2 className="text-2xl font-bold tracking-tight">What this checker measures—and what it cannot know</h2>
+        <div className="mt-5 grid gap-6 text-sm leading-relaxed text-muted-foreground md:grid-cols-2">
+          <div className="space-y-4"><p><strong className="text-foreground">Character and word counts.</strong> Modern browsers count visible character clusters, so a combined emoji or an accented character is not counted like multiple unrelated letters. Older browsers fall back to Unicode code points. The main-title word count groups letters and numbers; it is not a language-specific tokenizer or an ideal SEO word target.</p><p><strong className="text-foreground">Literal phrase and repetition checks.</strong> A phrase match ignores case but is not keyword research, semantic matching or intent analysis. A synonym can be valid even when no literal match appears. The repetition check flags words of at least three characters used three or more times, excluding a small list of common English words. Review the warning; do not automatically remove needed terminology.</p></div>
+          <div className="space-y-4"><p><strong className="text-foreground">A layout estimate, not a prediction.</strong> Font rendering, Google experiments, device width and rewriting can change the real result. There is no live SERP lookup, URL crawl, ranking score, search-volume data or automated A/B test here. Draft comparison is only a side-by-side writing aid.</p><p><strong className="text-foreground">Local inputs, no hidden analysis request.</strong> This checker processes title text in this tab and does not send the title or display URL to an AI or analysis server. Saved comparison drafts disappear on reload. Site-wide analytics and other services are described in our <Link href="/privacy" className="text-primary underline underline-offset-4">privacy policy</Link>; avoid pasting confidential material into public tools.</p></div>
         </div>
       </section>
 
-      {/* Mistakes */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-3xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6">5 Title Mistakes This Checker Catches</h2>
-        <div className="grid gap-4">
-          {titleMistakes.map((m) => (
-            <div key={m.mistake} className="p-5 rounded-2xl border border-border bg-card">
-              <h3 className="font-bold text-sm sm:text-base flex items-center gap-2">
-                <AlertTriangle size={15} className="text-amber-500 shrink-0" /> {m.mistake}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mt-1.5">{m.fix}</p>
-            </div>
-          ))}
-        </div>
+      <div className="mt-14 grid gap-8 lg:grid-cols-2">
+        <section className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Match the page, not a checklist of power words</h2>
+          <p>Start with the task. A tutorial should describe what someone will learn; a product title should identify the item; a comparison should identify the options and useful criteria. Adding “best,” “free” or the current year is not a universal improvement. Use those words only when the page supports the claim.</p>
+          <p>Keep the title&apos;s promise consistent with the visible H1 and body content. A concise title that promises a downloadable file is misleading if the tool only previews it. Our <Link href="/blog/how-to-write-seo-friendly-blog-posts-2026" className="text-primary underline underline-offset-4">SEO-friendly writing guide</Link> puts titles into the wider content workflow. For a dense sentence rather than a layout issue, use the <Link href="/tools/readability-checker" className="text-primary underline underline-offset-4">readability checker</Link> as another editing aid, not a quality verdict.</p>
+        </section>
+        <section className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Why Google may show a different title</h2>
+          <p>Google creates title links automatically. Its sources can include the title element, prominent headings, other page text and links pointing to the page. An outdated date, vague title, repeated brand or a mismatch with the main heading can give it reasons to choose different wording. Fitting our preview does not override that process.</p>
+          <p>The description is separate: <a href="https://developers.google.com/search/docs/appearance/snippet" className="text-primary underline underline-offset-4">Google&apos;s snippet documentation</a> explains that page content is the primary source, though a meta description may be used when it is more helpful. Use the <Link href="/tools/meta-tag-generator" className="text-primary underline underline-offset-4">meta tag generator</Link> to assemble your chosen metadata and <Link href="/tools/og-preview" className="text-primary underline underline-offset-4">Open Graph Preview</Link> for a separate social-card mockup.</p>
+        </section>
+      </div>
+
+      <section className="mt-14 rounded-2xl border border-primary/20 bg-primary/5 p-5 sm:p-8">
+        <h2 className="text-2xl font-bold tracking-tight">After editing: publish carefully, measure honestly</h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">Copy the full title into your CMS&apos;s SEO title field. If your CMS adds the brand automatically, paste only the main title there. Use “Copy title HTML” only when editing raw HTML; its escaped entities belong inside the title element, not in a plain-text CMS field. Inspect the final page source to confirm there is one intended title. The <Link href="/blog/seo-meta-tags-generator-guide-2026" className="text-primary underline underline-offset-4">meta tags guide</Link> explains how the surrounding fields fit together.</p>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">Before release, check the page itself, internal links and indexing settings with our <Link href="/blog/blog-seo-checklist-before-publishing-in-2026" className="text-primary underline underline-offset-4">pre-publish SEO checklist</Link>. Afterwards, compare Search Console queries, impressions, position and clicks over comparable date ranges. Account for changing query mix and devices; a small number of clicks is not a reliable A/B result. Google needs to recrawl and reprocess changed pages, and neither a new title nor this tool guarantees a traffic increase.</p>
       </section>
 
-      {/* FAQ */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-3xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6 text-center">Frequently Asked Questions</h2>
-        <div className="grid gap-4">
-          {toolConfig.faqs.map((faq) => (
-            <div key={faq.question} className="p-5 rounded-2xl border border-border bg-card">
-              <h3 className="font-bold text-sm sm:text-base mb-1.5">{faq.question}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
+      <section id="title-faq" className="mx-auto mt-14 max-w-4xl scroll-mt-24">
+        <h2 className="mb-6 text-2xl font-bold tracking-tight sm:text-3xl">SEO title checker FAQs</h2>
+        <div className="divide-y divide-border rounded-2xl border border-border bg-card">{toolConfig.faqs.map(faq => <div key={faq.question} className="p-5 sm:p-6"><h3 className="font-semibold">{faq.question}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p></div>)}</div>
       </section>
 
-      {/* Related */}
-      <section className="mx-auto mt-16 md:mt-20 max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6 text-center">Keep Optimizing</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="p-5 rounded-2xl border border-border bg-card">
-            <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><Wrench size={16} className="text-primary" /> Related Free Tools</h3>
-            <ul className="grid gap-2 text-sm">
-              <li><Link href="/tools/meta-tag-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Meta Tag Generator — title + description + social tags</Link></li>
-              <li><Link href="/tools/og-preview" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> OG Preview — see your title in social cards</Link></li>
-              <li><Link href="/tools/slug-generator" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Slug Generator — clean URLs from titles</Link></li>
-              <li><Link href="/tools/word-counter" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Word Counter — for the article behind the title</Link></li>
-            </ul>
-          </div>
-          <div className="p-5 rounded-2xl border border-border bg-card">
-            <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><BookOpen size={16} className="text-primary" /> Related Guides</h3>
-            <ul className="grid gap-2 text-sm">
-              <li><Link href="/blog/how-to-write-seo-titles-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> How to Write SEO Titles That Get Clicks</Link></li>
-              <li><Link href="/blog/blog-seo-checklist-before-publishing-in-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Blog SEO Checklist Before Publishing</Link></li>
-              <li><Link href="/blog/how-to-write-seo-friendly-blog-posts-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> How to Write SEO-Friendly Blog Posts</Link></li>
-              <li><Link href="/blog/seo-meta-tags-generator-guide-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Meta Tags: Complete Guide</Link></li>
-            </ul>
-          </div>
-        </div>
+      <section className="mt-12 flex flex-col gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-start sm:justify-between">
+        <div className="max-w-3xl"><p className="flex items-center gap-2 font-semibold text-foreground"><BookOpen size={14} aria-hidden="true" />Method reviewed 28 September 2026</p><p className="mt-2 leading-relaxed">Based on Google Search Central&apos;s <a href="https://developers.google.com/search/docs/appearance/title-link" className="text-primary underline">title-link</a> and <a href="https://developers.google.com/search/docs/appearance/snippet" className="text-primary underline">snippet guidance</a>. Measurements use the documented preview assumptions above. No invented reviews, traffic benchmarks or guaranteed scores.</p></div>
+        <a href="#title-workspace" className="inline-flex min-h-10 shrink-0 items-center gap-2 font-semibold text-primary">Back to the checker <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
-    </main>
+    </div>
   );
 }

@@ -7,15 +7,12 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import {
   Menu, X, ArrowRight, ChevronDown, ChevronRight,
-  Braces, KeyRound, Tags, Binary, Type, FileText,
-  Regex, ShieldCheck, Hash, Fingerprint, Clock, Link2, GitCompareArrows,
-  Eye, Bot, Code, TextCursorInput, Paintbrush, Pipette, Square,
-  Brain, FileSearch, CodeXml, RemoveFormatting, Wand2, QrCode, Clock3,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ReadingList } from "@/components/bookmark";
 import { LanguageSelector } from "@/components/language-selector";
 import { siteConfig } from "@/lib/config";
+import { toolCatalog, toolCategories as catalogCategories } from "@/lib/tool-catalog";
 
 const SearchDialog = dynamic(
   () => import("@/components/search-dialog").then((m) => m.SearchDialog),
@@ -27,84 +24,15 @@ const SearchDialog = dynamic(
   )}
 );
 
-const toolCategories = [
-  {
-    title: "Formatters & Dev",
-    icon: Braces,
-    color: "text-blue-500",
-    tools: [
-      { name: "JSON Formatter", href: "/tools/json-formatter", icon: Braces, desc: "Format, validate & minify" },
-      { name: "Regex Tester", href: "/tools/regex-tester", icon: Regex, desc: "Test patterns live" },
-      { name: "Diff Checker", href: "/tools/diff-checker", icon: GitCompareArrows, desc: "Compare texts side by side" },
-      { name: "Word Counter", href: "/tools/word-counter", icon: Type, desc: "Words, chars & reading time" },
-      { name: "Lorem Ipsum", href: "/tools/lorem-ipsum-generator", icon: Type, desc: "Placeholder text" },
-      { name: "HTML Editor", href: "/tools/html-editor", icon: CodeXml, desc: "Live HTML/CSS playground" },
-      { name: "Code Formatter", href: "/tools/code-formatter", icon: Code, desc: "Format & beautify code" },
-      { name: "Cron Expression Generator", href: "/tools/cron-expression-generator", icon: Clock3, desc: "Build cron schedules visually" },
-    ],
-  },
-  {
-    title: "Encoders & Converters",
-    icon: Binary,
-    color: "text-orange-500",
-    tools: [
-      { name: "Base64 Encoder", href: "/tools/base64-encoder-decoder", icon: Binary, desc: "Encode & decode Base64" },
-      { name: "URL Encoder", href: "/tools/url-encoder-decoder", icon: Link2, desc: "Encode & decode URLs" },
-      { name: "Timestamp Converter", href: "/tools/timestamp-converter", icon: Clock, desc: "Unix epoch ↔ date" },
-      { name: "JSON to CSV", href: "/tools/json-to-csv", icon: Binary, desc: "Convert JSON to CSV" },
-      { name: "Markdown to HTML", href: "/tools/markdown-to-html", icon: CodeXml, desc: "Convert Markdown" },
-      { name: "Slug Generator", href: "/tools/slug-generator", icon: TextCursorInput, desc: "URL-friendly text" },
-      { name: "QR Code Generator", href: "/tools/qr-code-generator", icon: QrCode, desc: "Custom QR codes" },
-    ],
-  },
-  {
-    title: "Security & Crypto",
-    icon: ShieldCheck,
-    color: "text-green-500",
-    tools: [
-      { name: "Password Generator", href: "/tools/password-generator", icon: KeyRound, desc: "Strong random passwords" },
-      { name: "Hash Generator", href: "/tools/hash-generator", icon: Hash, desc: "SHA-256, SHA-512 hashes" },
-      { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: ShieldCheck, desc: "Decode & inspect JWTs" },
-      { name: "UUID Generator", href: "/tools/uuid-generator", icon: Fingerprint, desc: "Generate & validate UUIDs" },
-    ],
-  },
-  {
-    title: "SEO & Web",
-    icon: Tags,
-    color: "text-purple-500",
-    tools: [
-      { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", icon: Tags, desc: "SEO meta tags + preview" },
-      { name: "OG Preview", href: "/tools/og-preview", icon: Eye, desc: "Social media link cards" },
-      { name: "robots.txt Generator", href: "/tools/robots-txt-generator", icon: Bot, desc: "Build robots.txt visually" },
-      { name: "Schema Markup", href: "/tools/schema-markup-generator", icon: Code, desc: "JSON-LD structured data" },
-      { name: "Privacy Policy", href: "/tools/privacy-policy-generator", icon: FileText, desc: "Generate privacy policies" },
-    ],
-  },
-  {
-    title: "Content Analysis",
-    icon: Brain,
-    color: "text-pink-500",
-    tools: [
-      { name: "AI Content Detector", href: "/tools/ai-content-detector", icon: Brain, desc: "Detect AI-generated text" },
-      { name: "AI Prompt Generator", href: "/tools/ai-prompt-generator", icon: Wand2, desc: "Build better prompts fast" },
-      { name: "AI CV Builder", href: "/tools/ai-cv-builder", icon: FileText, desc: "Create CVs and PDFs" },
-      { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", icon: FileSearch, desc: "Check text uniqueness" },
-      { name: "Plagiarism Remover", href: "/tools/plagiarism-remover", icon: Wand2, desc: "Rewrite & humanize text" },
-      { name: "llms.txt Validator", href: "/tools/llms-txt-generator-validator", icon: FileText, desc: "Generate & validate" },
-      { name: "Tag Generator", href: "/tools/html-tag-generator", icon: RemoveFormatting, desc: "Add or strip HTML tags" },
-    ],
-  },
-  {
-    title: "CSS & Design",
-    icon: Paintbrush,
-    color: "text-red-500",
-    tools: [
-      { name: "Gradient Generator", href: "/tools/css-gradient-generator", icon: Paintbrush, desc: "Linear & radial CSS" },
-      { name: "Color Converter", href: "/tools/color-converter", icon: Pipette, desc: "HEX, RGB & HSL" },
-      { name: "Box Shadow", href: "/tools/box-shadow-generator", icon: Square, desc: "Visual shadow builder" },
-    ],
-  },
-];
+const toolCategories = catalogCategories.map((category) => ({
+  ...category,
+  tools: toolCatalog.filter((tool) => tool.category === category.title).map((tool) => ({
+    name: tool.name,
+    href: `/tools/${tool.slug}`,
+    icon: tool.icon,
+    desc: tool.description,
+  })),
+}));
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -222,7 +150,7 @@ export function Header() {
                           <div className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-border/60 flex items-center justify-between">
                             <div>
                               <p className="text-sm font-bold">Developer Tools</p>
-                              <p className="text-xs text-muted-foreground mt-0.5">Free, private, runs in your browser</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">Free tools for coding, writing and SEO</p>
                             </div>
                             <Link
                               href="/tools"
@@ -274,7 +202,7 @@ export function Header() {
                             </p>
                             <span className="text-xs text-muted-foreground flex items-center gap-1">
                               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                              100% client-side
+                              Processing varies by feature
                             </span>
                           </div>
                         </div>

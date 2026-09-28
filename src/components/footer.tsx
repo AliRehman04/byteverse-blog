@@ -22,7 +22,7 @@ export function Footer() {
                 />
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                {siteConfig.description} Explore tested AI tool reviews, step-by-step coding tutorials, productivity workflows, and 38+ free browser-based developer utilities. All content is hands-on, verified, and written to help you build faster.
+                Explore tech guides, software reviews, coding tutorials and free tools for developers, writers and SEO workflows.
               </p>
               {/* Social links */}
               <div className="flex items-center gap-3">
@@ -100,8 +100,8 @@ export function Footer() {
               <ul className="space-y-2.5">
                 <li><Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
                 <li><Link href="/tools/code-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Code Formatter</Link></li>
-                <li><Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Checker</Link></li>
-                <li><Link href="/tools/plagiarism-remover" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plagiarism Remover</Link></li>
+                <li><Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Similarity Checker</Link></li>
+                <li><Link href="/tools/plagiarism-remover" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Rewriter</Link></li>
                 <li><Link href="/tools/regex-tester" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link></li>
                 <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
               </ul>
@@ -142,7 +142,7 @@ export function Footer() {
             <div className="flex items-center gap-4">
               <span className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                All tools run 100% client-side
+                Free tools — processing varies by feature
               </span>
               <a
                 href={`mailto:${siteConfig.email}`}

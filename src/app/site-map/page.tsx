@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { authors, categories, posts } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
+import { toolCatalog } from "@/lib/tool-catalog";
 
 export const metadata: Metadata = {
   publisher: "ByteVerse",
@@ -15,42 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const tools = [
-  ["JSON Formatter", "/tools/json-formatter"],
-  ["Password Generator", "/tools/password-generator"],
-  ["Meta Tag Generator", "/tools/meta-tag-generator"],
-  ["Base64 Encoder & Decoder", "/tools/base64-encoder-decoder"],
-  ["Word Counter", "/tools/word-counter"],
-  ["llms.txt Validator", "/tools/llms-txt-generator-validator"],
-  ["Regex Tester", "/tools/regex-tester"],
-  ["JWT Decoder", "/tools/jwt-decoder"],
-  ["Hash Generator", "/tools/hash-generator"],
-  ["UUID Generator", "/tools/uuid-generator"],
-  ["Timestamp Converter", "/tools/timestamp-converter"],
-  ["URL Encoder & Decoder", "/tools/url-encoder-decoder"],
-  ["Diff Checker", "/tools/diff-checker"],
-  ["OG Preview", "/tools/og-preview"],
-  ["robots.txt Generator", "/tools/robots-txt-generator"],
-  ["Schema Markup Generator", "/tools/schema-markup-generator"],
-  ["Slug Generator", "/tools/slug-generator"],
-  ["CSS Gradient Generator", "/tools/css-gradient-generator"],
-  ["Color Converter", "/tools/color-converter"],
-  ["Box Shadow Generator", "/tools/box-shadow-generator"],
-  ["AI Content Detector", "/tools/ai-content-detector"],
-  ["Plagiarism Checker", "/tools/plagiarism-checker"],
-  ["HTML Editor", "/tools/html-editor"],
-  ["HTML Tag Generator", "/tools/html-tag-generator"],
-  ["Plagiarism Remover", "/tools/plagiarism-remover"],
-  ["Code Formatter", "/tools/code-formatter"],
-  ["YouTube Tag Generator", "/tools/youtube-tag-generator"],
-  ["Text to Speech", "/tools/text-to-speech"],
-  ["QR Code Generator", "/tools/qr-code-generator"],
-  ["Image Compressor", "/tools/image-compressor"],
-  ["Cron Expression Generator", "/tools/cron-expression-generator"],
-  ["AI Prompt Generator", "/tools/ai-prompt-generator"],
-  ["AI CV Builder", "/tools/ai-cv-builder"],
-  ["SEO Title Analyzer", "/tools/seo-title-analyzer"],
-] as const;
+const tools = toolCatalog.map((tool) => [tool.name, `/tools/${tool.slug}`] as const);
 
 function LinkList({ items }: { items: readonly (readonly [string, string])[] }) {
   return (

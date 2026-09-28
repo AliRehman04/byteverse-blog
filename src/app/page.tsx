@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/config";
 import { getSiteLogoImageSchema } from "@/lib/image-seo";
 import { db } from "@/lib/db";
 import { categories, posts } from "@/lib/db/schema";
-import { eq, desc, sql, count, and } from "drizzle-orm";
+import { eq, desc, count, and } from "drizzle-orm";
 import { GridPostCard } from "@/components/post-card";
 import { LazyHeroCodeBlock } from "@/components/lazy-hero";
 
@@ -297,7 +297,7 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            { title: "SEO Title Checker", desc: "Score titles for length, intent & click potential", href: "/tools/seo-title-analyzer", icon: Target, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
+            { title: "SEO Title Checker", desc: "Check characters, approximate pixels & search previews", href: "/tools/seo-title-analyzer", icon: Target, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
             { title: "Meta Tag Generator", desc: "SEO, Open Graph & Twitter tags with live preview", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
             { title: "Similarity & Plagiarism Checker", desc: "Check text uniqueness — private, in your browser", href: "/tools/plagiarism-checker", icon: Shield, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },
             { title: "UUID Generator", desc: "Random UUID v4 — bulk generate, validate, copy", href: "/tools/uuid-generator", icon: Braces, color: "text-green-500", bg: "from-green-500/10 to-emerald-500/10" },

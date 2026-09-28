@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/config";
 
 interface ToolSeoConfig {
   name: string;
@@ -12,7 +13,7 @@ interface ToolSeoConfig {
   faqs?: { question: string; answer: string }[];
 }
 
-const BASE_URL = "https://www.byteverse.fyi";
+const BASE_URL = siteConfig.url.replace(/\/$/, "");
 
 export function generateToolMetadata(config: ToolSeoConfig): Metadata {
   const url = `${BASE_URL}/tools/${config.slug}`;
@@ -51,13 +52,6 @@ export function generateToolJsonLd(config: ToolSeoConfig): object[] {
       applicationCategory: config.applicationCategory || "DeveloperApplication",
       operatingSystem: "Any",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        ratingCount: "150",
-        bestRating: "5",
-        worstRating: "1",
-      },
       isAccessibleForFree: true,
       ...(config.featureList ? { featureList: config.featureList } : {}),
       ...(config.audience ? {
@@ -107,7 +101,7 @@ export function ToolJsonLd({ config }: { config: ToolSeoConfig }) {
         <script
           key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
         />
       ))}
     </>

@@ -1,5 +1,6 @@
 "use client";
 
+import { SafeHtmlPreview } from "@/components/safe-html-preview";
 import { useState, useCallback } from "react";
 import { Copy, Check } from "lucide-react";
 
@@ -311,9 +312,10 @@ export function PrivacyPolicyTool() {
               {policy}
             </pre>
           ) : (
-            <div
-              className="bg-muted/50 border border-border rounded-lg px-6 py-4 text-sm min-h-[32rem] max-h-[32rem] overflow-auto leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: policyHtml }}
+            <SafeHtmlPreview
+              title="Privacy policy preview"
+              className="w-full h-128 bg-muted/50 border border-border rounded-lg"
+              html={policyHtml}
             />
           )}
         </div>

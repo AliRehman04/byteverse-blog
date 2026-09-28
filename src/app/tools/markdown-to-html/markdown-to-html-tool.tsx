@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Copy, Check, ArrowRight } from "lucide-react";
+import { SafeHtmlPreview } from "@/components/safe-html-preview";
 
 // Simple Markdown to HTML converter (client-side, no dependencies)
 function markdownToHtml(md: string): string {
@@ -204,9 +205,10 @@ export function MarkdownToHtmlTool() {
               {html || <span className="text-muted-foreground">HTML output will appear here...</span>}
             </pre>
           ) : (
-            <div
-              className="bg-muted/50 border border-border rounded-lg px-4 py-3 text-sm min-h-[28rem] max-h-[28rem] overflow-auto prose prose-neutral dark:prose-invert prose-sm max-w-none"
-              dangerouslySetInnerHTML={{ __html: html || "<p class='text-muted-foreground'>Preview will appear here...</p>" }}
+            <SafeHtmlPreview
+              title="Markdown output preview"
+              className="w-full h-112 bg-muted/50 border border-border rounded-lg"
+              html={html || "<p>Preview will appear here...</p>"}
             />
           )}
         </div>

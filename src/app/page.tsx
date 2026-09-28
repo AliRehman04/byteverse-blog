@@ -298,7 +298,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
             { title: "SEO Title Checker", desc: "Check characters, approximate pixels & search previews", href: "/tools/seo-title-analyzer", icon: Target, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
-            { title: "Meta Tag Generator", desc: "SEO, Open Graph & Twitter tags with live preview", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
+            { title: "Meta Tag Generator", desc: "SEO & social mockups, HTML import and Next.js output", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
             { title: "Similarity & Plagiarism Checker", desc: "Check text uniqueness — private, in your browser", href: "/tools/plagiarism-checker", icon: Shield, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },
             { title: "UUID Generator", desc: "Random UUID v4 — bulk generate, validate, copy", href: "/tools/uuid-generator", icon: Braces, color: "text-green-500", bg: "from-green-500/10 to-emerald-500/10" },
             { title: "Cron Expression Generator", desc: "Build crontab schedules visually, in plain English", href: "/tools/cron-expression-generator", icon: Code2, color: "text-violet-500", bg: "from-violet-500/10 to-purple-500/10" },

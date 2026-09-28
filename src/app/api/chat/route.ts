@@ -19,7 +19,7 @@ const TOOLS: { slug: string; name: string; desc: string; keywords: string[] }[] 
   { slug: "word-counter", name: "Word Counter", desc: "Count words, characters, sentences, paragraphs.", keywords: ["word", "count", "character", "sentence", "paragraph", "reading", "length"] },
   { slug: "json-formatter", name: "JSON Formatter", desc: "Format, validate, and minify JSON data.", keywords: ["json", "format", "validate", "minify", "beautify", "data", "api"] },
   { slug: "password-generator", name: "Password Generator", desc: "Generate strong, secure random passwords.", keywords: ["password", "security", "random", "strong", "secure", "generate"] },
-  { slug: "meta-tag-generator", name: "Meta Tag Generator", desc: "Generate SEO meta tags with live preview.", keywords: ["meta", "tag", "seo", "title", "description", "search", "google", "ranking"] },
+  { slug: "meta-tag-generator", name: "Meta Tag Generator", desc: "Build metadata from fields or pasted HTML, preview mockups and export HTML or Next.js Metadata. No URL crawl or AI copywriting.", keywords: ["meta", "tag", "seo", "title", "description", "opengraph", "canonical", "nextjs"] },
   { slug: "base64-encoder-decoder", name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings.", keywords: ["base64", "encode", "decode", "convert", "binary", "string"] },
   { slug: "regex-tester", name: "Regex Tester", desc: "Test regular expressions with live highlighting.", keywords: ["regex", "regular", "expression", "pattern", "test", "match", "validate"] },
   { slug: "jwt-decoder", name: "JWT Decoder", desc: "Decode and inspect JSON Web Tokens.", keywords: ["jwt", "token", "decode", "json", "web", "auth", "authentication"] },

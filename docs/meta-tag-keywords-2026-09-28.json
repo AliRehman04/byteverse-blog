@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-28",
+  "tool": "/tools/meta-tag-generator",
+  "status": "Complete locally and ready for review; not committed, pushed or deployed",
+  "validation": {
+    "offlineTests": 19,
+    "sharedTests": "Tool catalogue/schema/sandbox regressions and SEO title helper tests pass",
+    "typesAndLint": "TypeScript and targeted ESLint passed; generated Next.js fixtures type-checked in memory",
+    "frameworkBehavior": "Installed Next metadata resolver tested for absolute titles, file-based images and automatic X fallback. UI warns that twitter:null may still yield X tags through Open Graph.",
+    "productionBuild": "Next16.2.6 build passed, 260 pages; existing multiple-lockfile/middleware/edge warnings remain",
+    "builtPage": "HTTP200, one H1/main, unchanged canonical, no noindex or invented ratings, five visible FAQs matching schema, four public blog links200",
+    "browser": "320/390/768/1024/1440px workspace no horizontal overflow; RTL/Unicode and light/dark; all input labels; four preview switches; reset/undo and no reload persistence; invalid URLs block export; production lazy HTML import works",
+    "inputPrivacyChecks": "Synthetic pasted scripts did not execute and embedded remote image/refresh addresses made zero requests. Local synthetic PNG rendered; exported tags were unchanged; changing image URL hid stale local preview without a network fetch.",
+    "exportChecks": "Clipboard success/failure and exact payload tested with a mock; fallback selected the textarea. Download filename/MIME/exact Blob payload tested with interception.",
+    "browserLimitations": "Shared tab reported hidden. Native pointer stability, file chooser and download-completion checks timed out; DOM-dispatched interactions and synthetic File input covered handlers. Screenshots were cropped by the integrated viewer; DOM bounds verified layouts, not a full manual visual acceptance pass.",
+    "dependencies": "Added htmlparser2 and six parser dependencies; npm also updated optional @emnapi/wasi-threads. Audit reports14 advisories (1critical) in existing packages, none listing the new parser packages. No broad audit fix/framework upgrade performed.",
+    "preview": "http://127.0.0.1:3018/tools/meta-tag-generator"
+  },
+  "method": {
+    "autocomplete": "12 Google autocomplete requests; client=firefox, hl=en, gl=us; all returned suggestions",
+    "serps": ["https://www.google.com/search?q=meta+tag+generator&hl=en&gl=us", "https://www.google.com/search?q=open+graph+meta+tag+generator+nextjs&hl=en&gl=us"],
+    "limitations": "Query wording and competing features, not monthly volume, keyword difficulty, market size, current ByteVerse rank or a proven cause of low traffic.",
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "freshSearchConsoleMetrics": null
+  },
+  "autocomplete": [
+    {"seed":"meta tag generator","suggestions":["meta tag generator","meta tag generator from url","meta tag generator free","meta tag generator tool","meta tag generator ai","meta tag generator online","meta tag generator for blogger","meta tag generator for website","meta tag generator html","meta tags generator font"]},
+    {"seed":"seo meta tag generator","suggestions":["seo meta tag generator","seo optimizer meta tag generator","google seo meta tag generator","html seo meta tags generator","ai seo meta tags generator","seo hero ai meta tag generator"]},
+    {"seed":"meta tag generator html","suggestions":["meta tag generator html","what is meta tag in html"]},
+    {"seed":"meta tag generator for website","suggestions":["meta tag generator for website","what is a meta tag on a website"]},
+    {"seed":"meta tag generator from url","suggestions":["meta tag generator from url","what is a meta tag on a website"]},
+    {"seed":"open graph meta tag generator","suggestions":["open graph meta tag generator","facebook open graph meta tags generator","open graph meta tags example","what is open graph meta tags","how to add open graph meta tags","open graph tags example"]},
+    {"seed":"twitter card generator","suggestions":["twitter card generator","twitter card generator for website","twitter code generator app","twitter code generator app ios","twitter code generator","twitter code generator app iphone not working","twitter code generator app samsung","twitter code generator app iphone","twitter code generator app login","twitter code generator app android"]},
+    {"seed":"meta tags nextjs","suggestions":["meta tags nextjs","meta description nextjs","og tags nextjs","dynamic meta tags nextjs","viewport meta tag nextjs","add meta tag nextjs","nextjs meta tags in body","types of meta tags"]},
+    {"seed":"canonical tag generator","suggestions":["canonical tag generator","canonical tag generator for blogger","canonical tag generator tool","canonical tag generator free","canonical url generator","canonical code generator","canonical link generator","bulk canonical tag generator","canonical tag example","canonical tag used for"]},
+    {"seed":"robots meta tag generator","suggestions":["robots meta tag generator"]},
+    {"seed":"meta description generator","suggestions":["meta description generator","meta description generator free","meta description generator from url","meta description generator ai","meta description generator tool","meta description generator ahrefs","meta description generator free online","meta description generator for website","meta description generator online","meta description generator shopify"]},
+    {"seed":"meta tag checker","suggestions":["meta tag checker","meta tag checker chrome extension","meta tag checker online","meta tag checker extension","meta tag checker tool","meta tag checker website","meta tag checker free","meta description checker","meta description checker free","meta description checker extension"]}
+  ],
+  "targeting": {
+    "primary": "meta tag generator",
+    "secondary": ["html meta tag generator", "open graph meta tag generator", "twitter card generator", "canonical tag generator", "robots meta tag generator"],
+    "featureLedHypothesis": "nextjs metadata generator: inspired by observed meta tags nextjs / og tags nextjs, not measured volume",
+    "notTargetedAsImplemented": ["URL crawling", "AI-written descriptions", "font generators", "X login/code generator apps", "bulk site audit", "ranking score"],
+    "intentContract": "Build and preview metadata from supplied fields or pasted HTML; validate syntax; export HTML or typed Next.js Metadata. No live URL checking or automatic copywriting."
+  },
+  "competitors": [
+    {"url":"https://metatags.io/","observed":"Editable title/description/image, URL parse, get-code and multiple platform mockups. Fixed character-limit/ranking claims are not adopted."},
+    {"url":"https://www.seoptimer.com/meta-tag-generator/","observed":"Title/description/keywords, robots and legacy fields with copy output. Opportunity: current defaults, optional legacy tags, safe local import and framework output."},
+    {"url":"https://www.opengraph.xyz/","observed":"Fetch returned cookie consent only; Google results referenced its preview/generator. No full interactive audit claimed."}
+  ],
+  "serpObservations": [
+    "Broad query included SEOptimer, MetaTags.io, SEOBook, AI-branded generators and Flyn. PAA: how to generate tags, an example, whether tags still work, what a metadata generator is. No stable rank or low-difficulty inference.",
+    "Next.js/OG query included official metadata/image docs, tutorials, Reddit troubleshooting and Open Graph tools. Framework output fits that intent; generating the image itself is separate."
+  ],
+  "sources": [
+    {"url":"https://developers.google.com/search/docs/appearance/title-link","fact":"No fixed title-element length limit; displayed title links can be rewritten and truncated to device width."},
+    {"url":"https://developers.google.com/search/docs/appearance/snippet","fact":"Snippets primarily use page content, sometimes the description; no fixed description length limit."},
+    {"url":"https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls","fact":"Absolute canonical recommended, no fragment; canonical is a preference/signal, not guaranteed selection or redirect."},
+    {"url":"https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag","fact":"Index/follow defaults; noindex and snippet controls; stricter supported rules combine; crawlers must access pages to read their rules."},
+    {"url":"https://developers.google.com/search/blog/2009/09/google-does-not-use-keywords-meta-tag","fact":"Google ignores meta keywords for web ranking; historical article links to current unsupported-tag guidance."},
+    {"url":"https://ogp.me/","fact":"Core properties title/type/image/url; alt describes image content; dimensions refer to actual pixels; locale language_TERRITORY; website/article supported."},
+    {"url":"https://nextjs.org/docs/app/api-reference/functions/generate-metadata","fact":"Server-only metadata export; title.absolute avoids parent templates; canonical/OG/twitter fields; default charset/viewport; shallow merging and file-metadata precedence."}
+  ],
+  "sourceLimitations": [
+    "Legacy X Card documentation redirected to docs.x.com root; attempted replacement was404. Installed Next Metadata types/docs verify output syntax; no claim of current X pixel/layout specs.",
+    "No fresh GSC metrics or search-volume access. No ranking/CTR guarantee.",
+    "Installed Next16.2.6 docs read first; public Next docs returned16.3.6. Output fixtures type-check against installed API."
+  ],
+  "implementation": [
+    "Grouped essentials/social/robots editor; three fictional presets; undo for replacement/reset.",
+    "On-demand htmlparser2 import; no browser DOM execution/resource loads; review imported fields and omitted rules before replacing.",
+    "URL syntax/fragment, handle, locale, dimension and ISO date checks; escaped HTML and typed Metadata code.",
+    "Search/Facebook/LinkedIn/X mockups; mobile width; local JPEG/PNG/WebP crop preview only. No remote fetch/upload/proxy or CSP change.",
+    "Copy fallback; downloadable head fragment or Metadata module; no persistent inputs or provider calls.",
+    "Five visible FAQs matching schema; generated example; four contextual SEO-guide links; URL unchanged."
+  ],
+  "measurementAfterApprovedDeploy": "Verify served page/canonical/indexability and user interactions, then compare page/query/device impressions and clicks over comparable multi-week periods. Correct tags or a successful build alone do not prove SEO growth."
+}

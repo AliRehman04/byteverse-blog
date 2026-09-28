@@ -2,9 +2,11 @@
 
 **Audit date:** 28 September 2026  
 **Scope:** existing tools ko one by one improve karna; naya tool ya daily blog add karna nahi.  
-**Publication status:** shared fixes LOCAL hain. Koi commit, push, deployment, published-article edit ya draft publication nahi ki gayi. Cover-letter draft #227 untouched hai.
+**Publication status:** shared foundation aur tool #1 live hain (commit d8b8b44). Tool #2 ka redesign locally complete hai, abhi deployed nahi. Neeche original baseline pre-deployment audit ko describe karta hai; current per-tool status CSV mein hai.
 
-**Tool #1 update (28 September 2026):** SEO Title Checker design, features and content are complete locally and ready for review, not deployed. The [CSV tracker](byteverse-tools-improvement-tracker-2026-09-28.csv) marks only row 1 done locally; the other 40 remain not started. Focused research is saved in [the title-checker evidence](seo-title-keywords-2026-09-28.json).
+**Tool #1 update (28 September 2026):** SEO Title Checker is live. Focused research is in [the title-checker evidence](seo-title-keywords-2026-09-28.json).
+
+**Tool #2 update (28 September 2026):** Meta Tag Generator redesigned locally: grouped fields, local HTML import/review, search/social mockups, local image crop preview, canonical/robots validation, HTML and typed Next.js output, undo and copy/download. [Focused keyword research](meta-tag-keywords-2026-09-28.json) records 12 seeds, two Google SERPs and primary-source guidance. Nineteen tests, shared regressions, types, targeted lint and production build (260 pages) pass. Browser checks cover 320–1440px, Unicode/RTL, light/dark, local import safety and mocked copy/export paths; native file chooser/download-save completion was not verified in the background browser. No production/DB changes, commit or push for this update. The [CSV tracker](byteverse-tools-improvement-tracker-2026-09-28.csv) marks row 2 ready for review; rows 3–41 remain pending.
 
 ## 1. Seedha jawab: sirf tools ki quantity se traffic nahi aata
 
@@ -55,7 +57,7 @@ Raw evidence: [live baseline](tools-seo-baseline-2026-09-28.json), [82 keyword c
 
 Competitor product claims were read, not benchmarked. Unknown sites have NOT been dismissed as “low authority” based on their names or snippets.
 
-## 3. Shared foundation: local fixes already made
+## 3. Shared foundation: implemented and subsequently deployed
 
 1. **One authoritative catalogue of all 41 tools.** Tools hub, XML sitemap, HTML sitemap, header navigation and related cards consume the same list. Regression tests require catalogue coverage to match actual routes.
 2. **Unsupported ratings removed.** No more hard-coded 4.8/150 review claims in the shared WebApplication schema. Losing a review-dependent rich-result eligibility is preferable to inventing reviews.
@@ -64,7 +66,7 @@ Competitor product claims were read, not benchmarked. Unknown sites have NOT bee
 5. **Hub/navigation copy corrected.** Removed “all tools run 100% client-side/offline” and guaranteed-detection/ranking claims from the shared catalogue. Optional AI/URL server requests are distinguished from browser operations. Individual tool landing pages still need the per-tool claim cleanup below.
 6. **Three previews isolated.** Markdown, HTML-tag and policy previews now use opaque-origin, script-disabled sandboxed iframes instead of injecting user HTML into the main page. This is preview isolation, **not a promise that copied/generated HTML is sanitized for another website**.
 
-No live GSC data, impressions or rankings have changed as a result of these LOCAL edits. Deployment requires separate approval.
+The shared fixes and tool #1 were subsequently deployed with approval on September 28. No measured ranking or traffic outcome is claimed. Tool #2's new implementation remains local and needs separate publish approval.
 
 ## 4. P0 gates before promotion
 
@@ -81,7 +83,7 @@ These are verified implementation/trust gaps, **not proof that Google penalized 
 
 ## 5. Master list — exact one-by-one improvement order
 
-**Row 1 is complete locally; rows 2–41 are pending tool-specific work.** Shared foundation fixes do not mean the other tools are fully improved. Keep these existing URLs; a new keyword does not justify a duplicate landing page or arbitrary slug change.
+**Row 1 is live; row 2 is complete locally; rows 3–41 are pending tool-specific work.** Shared foundation fixes do not mean the other tools are fully improved. Keep these existing URLs; a new keyword does not justify a duplicate landing page or arbitrary slug change.
 
 **Legend:** `O` = primary and secondary query wording observed in autocomplete; `H` = proposed narrower angle inspired by observed queries/product intent, not verified volume. Query targets below describe intent, not an instruction to repeat exact phrases throughout a page. Effort S/M/L is relative engineering effort, not keyword difficulty or a delivery guarantee.
 
@@ -89,8 +91,8 @@ These are verified implementation/trust gaps, **not proof that Google penalized 
 
 | Order | Existing tool | Primary query → secondary intent | Evidence | Current gap → next concrete task | Effort |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [SEO Title Checker](https://www.byteverse.fyi/tools/seo-title-analyzer) | seo title checker → seo title length checker / serp preview tool | O | DONE LOCALLY: measured approximate pixels; brand-inclusive Unicode counts; desktop/mobile mockups; literal phrase checks; three drafts; safe copy; new design and source-backed content. Deployment/measurement pending. | M |
-| 2 | [Meta Tag Generator](https://www.byteverse.fyi/tools/meta-tag-generator) | meta tag generator → open graph meta tag generator | O | Validate absolute URLs, escape attribute values, explain robots/canonical choices, and connect OG preview. “From URL” needs a separately secured fetch path; don't promise it today. | M |
+| 1 | [SEO Title Checker](https://www.byteverse.fyi/tools/seo-title-analyzer) | seo title checker → seo title length checker / serp preview tool | O | LIVE: approximate pixels; brand-inclusive Unicode counts; desktop/mobile mockups; literal phrase checks; three drafts; safe copy; source-backed content. Traffic measurement pending. | M |
+| 2 | [Meta Tag Generator](https://www.byteverse.fyi/tools/meta-tag-generator) | meta tag generator → open graph meta tag generator / HTML output | O | DONE LOCALLY: validated URLs and robots; local HTML import; four mockups; image alt/crop; separate social overrides; HTML/Next.js export; examples, undo and honest content. No URL crawl; deployment pending. | M |
 | 3 | [Similarity & Plagiarism Checker](https://www.byteverse.fyi/tools/plagiarism-checker) | compare two texts → compare two documents for similarities free | O | Lead with two-input comparison and highlighted matches; remove unsupported single-text originality percentages and fix AI privacy disclosure. Don't target web plagiarism scanning without source retrieval. | L |
 | 4 | [JSON to CSV](https://www.byteverse.fyi/tools/json-to-csv) | json to csv converter online → nested json to csv | O | Add wrapped-array path selection, explicit array handling and column preview; provide spreadsheet-formula-safe export option. | M |
 | 5 | [JSON to TypeScript](https://www.byteverse.fyi/tools/json-to-typescript) | json to typescript interface → json to typescript type | O | Infer optional/mixed-array properties correctly, resolve duplicate type names, escape keys; compile generated test fixtures. | L |
@@ -146,9 +148,9 @@ These are verified implementation/trust gaps, **not proof that Google penalized 
 | 40 | [Box Shadow Generator](https://www.byteverse.fyi/tools/box-shadow-generator) | box shadow generator css → css inset shadow generator | O | Inset/layered examples, keyboard controls and measured presets; no Tailwind export promises until a valid output path is tested. | S |
 | 41 | [Lorem Ipsum Generator](https://www.byteverse.fyi/tools/lorem-ipsum-generator) | lorem ipsum generator character count → placeholder text generator english | O | Add exact-character mode and plain-English placeholder option; explain count semantics and provide predictable outputs. | S |
 
-## 6. First tool implementation — SEO Title Checker, complete locally
+## 6. First tool implementation — SEO Title Checker, now live
 
-**Implemented title:** SEO Title Checker: Length, Pixels & SERP Preview. Font measurement and preview features are implemented and tested locally. Existing public URL is unchanged; production remains the old version until deployment is approved.
+**Implemented title:** SEO Title Checker: Length, Pixels & SERP Preview. Font measurement and preview features were tested and deployed with approval. The existing public URL is unchanged; tool #2 remains a separate local-only update.
 
 - Keep the existing URL. Primary task = check a supplied title; secondary task = compare a few alternatives, not automatically predict Google CTR.
 - Input: title, optional brand suffix, optional target query. Show current character count immediately.

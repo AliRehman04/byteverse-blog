@@ -34,7 +34,7 @@ export async function GET() {
   const tools = [
     { name: "JSON Formatter & Validator", href: "/tools/json-formatter", desc: "Format, validate, and minify JSON with syntax error detection" },
     { name: "Password Generator", href: "/tools/password-generator", desc: "Generate strong random passwords using Web Crypto API" },
-    { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", desc: "Generate SEO meta tags with live Google and social previews" },
+    { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", desc: "Build SEO and social tags with local HTML import, illustrative previews and HTML or Next.js Metadata export; no URL crawl" },
     { name: "Base64 Encoder & Decoder", href: "/tools/base64-encoder-decoder", desc: "Encode text to Base64 or decode Base64 with UTF-8 support" },
     { name: "Word & Character Counter", href: "/tools/word-counter", desc: "Count words, characters, sentences, paragraphs, and reading time" },
     { name: "llms.txt Generator & Validator", href: "/tools/llms-txt-generator-validator", desc: "Generate and validate llms.txt files for AI discoverability" },

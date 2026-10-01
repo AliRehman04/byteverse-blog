@@ -1,0 +1,193 @@
+{
+  "checkedOn": "2026-10-01",
+  "slug": "n8n-webhook-not-working-2026",
+  "publication": "User explicitly requested live push on2026-10-01. Article231 is now published=true, featured=false, scheduled_at=null. Two contextual inbound links added atomically from existing n8n guides221/222. Other160 editorial records, including hidden drafts229/230, unchanged. Git deployment and public HTTP verification pending below.",
+  "userReportedMetrics": {
+    "clicks": 0,
+    "approximateImpressions": "40-50",
+    "dateRange": null,
+    "verified": false,
+    "accessCheck": "Search Console browser navigation reached Google sign-in. The configured app environment does not have all three GSC credentials/settings. No fresh Search Console data retrieved; no credentials requested or displayed."
+  },
+  "inventory": {
+    "method": "Read-only current DB title/slug inventory, selected paragraphs from the two existing n8n articles, categories and editorial checksum excluding view counters.",
+    "totalPosts": 162,
+    "publishedPosts": 160,
+    "editorialChecksumExcludingViews": "4fb82dd5870bd7e6211e0938b2aa246e",
+    "protectedDrafts": [
+      {"id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "published": false, "featured": false, "scheduledAt": null, "contentMd5": "07567f98b5cd73d7fd978dede5a47836"},
+      {"id": 230, "slug": "audacity-noise-reduction-voice-2026", "published": false, "featured": false, "scheduledAt": null, "contentMd5": "633a2127b815f4dd2949977c777385df"}
+    ],
+    "dedicatedWebhookTitleOrSlugMatches": 0,
+    "relatedOverlap": [
+      {"slug": "how-to-use-n8n-2026-complete-guide", "coverage": "Introduces webhook as one possible trigger in a concepts table; no test/production registration or404 troubleshooting procedure."},
+      {"slug": "n8n-vs-zapier-2026-comparison", "coverage": "Mentions webhook plan requirements and a secured form/CRM workflow; no detailed404 troubleshooting."}
+    ],
+    "decision": "One focused troubleshooting article supporting the existing n8n cluster. Do not create separate near-duplicate posts for404, not registered, test URL and production URL queries."
+  },
+  "targeting": {
+    "primary": "n8n webhook not working",
+    "secondary": ["n8n webhook 404", "n8n webhook not registered", "n8n production webhook not working", "n8n webhook test vs production url", "n8n webhook post not working", "n8n webhook localhost", "n8n respond to webhook not working"],
+    "audience": "Beginners and developers debugging a standard n8n Webhook node, especially test-success/production-failure cases.",
+    "title": "n8n Webhook Not Working? Fix 404 and Production URL Errors",
+    "metaTitle": "n8n Webhook Not Working? Fix 404 & Production Errors",
+    "metaDescription": "Fix n8n webhook 404 and not registered errors. Check test vs production URLs, published versions, GET/POST methods and self-hosted proxy settings.",
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "rankings": null,
+    "gscMetrics": null,
+    "competitionAssessment": "Observed results include official documentation, established guides, forums and GitHub issues. This is a narrower, actionable intent than a generic tools roundup, not a measured low-competition keyword.",
+    "alternatives": [
+      {"topic": "NotebookLM YouTube link not working", "evidence": "Autocomplete wording plus a Google SERP inspected; existing beginner NotebookLM post and hidden PDF-to-podcast draft nearby.", "decision": "Possible later troubleshooting topic; n8n chosen for a separate existing content cluster and a version-specific gap in the sampled third-party guides, not proven higher volume."},
+      {"topic": "ChatGPT PDF upload not working", "evidence": "Autocomplete wording only in this comparison.", "decision": "Not enough comparative SERP evidence to rank its opportunity; not chosen today."},
+      {"topic": "Convert long video to Shorts free", "evidence": "Autocomplete wording and prior local video-editing content coverage.", "decision": "Existing video-editing guide already covers the workflow. Avoid another overlapping broad post today."}
+    ]
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=",
+    "locale": "English/US parameters; not a verified physical search location",
+    "successfulSeeds": 22,
+    "nonemptySeeds": 19,
+    "results": [
+      {"query": "n8n webhook not working", "suggestions": ["n8n webhook not working", "n8n production webhook not working", "n8n webhook trigger not working", "n8n webhook url not working", "n8n discord webhook not working", "n8n webhook test not working", "n8n webhook post not working", "n8n webhook production url not working", "n8n respond to webhook not working", "n8n self hosted webhook not working"]},
+      {"query": "n8n production webhook not working", "suggestions": ["n8n production webhook not working", "n8n webhook production url not working", "webhook not working"]},
+      {"query": "n8n test webhook not working", "suggestions": ["n8n webhook test not working", "n8n webhook test url not working", "webhook not working", "how to test webhook locally", "how to check if webhook is working"]},
+      {"query": "n8n webhook 404", "suggestions": ["n8n webhook 404", "n8n webhook 404 not found", "webhook response codes", "webhook examples"]},
+      {"query": "n8n webhook not registered", "suggestions": ["n8n webhook not registered", "n8n requested webhook is not registered", "n8n 404 the requested webhook is not registered", "n8n error the requested webhook is not registered", "webhook not working"]},
+      {"query": "n8n requested webhook not registered", "suggestions": ["n8n requested webhook is not registered", "n8n 404 the requested webhook is not registered", "n8n error the requested webhook is not registered", "webhook not working"]},
+      {"query": "n8n test vs production webhook url", "suggestions": ["n8n webhook test vs production url", "how to test webhook url", "webhook url example", "how to test webhook locally"]},
+      {"query": "n8n webhook works in test not production", "suggestions": []},
+      {"query": "n8n webhook post not working", "suggestions": ["n8n webhook post not working", "webhook post example", "webhook not working"]},
+      {"query": "n8n webhook localhost", "suggestions": ["n8n webhook localhost", "n8n localhost webhook url", "n8n webhook example", "n8n telegram webhook localhost", "n8n telegram trigger webhook localhost", "webhook examples", "webhook code example"]},
+      {"query": "n8n webhook behind reverse proxy", "suggestions": ["n8n webhook reverse proxy", "what is a reverse web proxy"]},
+      {"query": "n8n webhook 403", "suggestions": ["n8n webhook 403", "webhook response codes", "webhook examples"]},
+      {"query": "n8n webhook timeout", "suggestions": ["n8n webhook timeout", "n8n webhook gateway timeout", "n8n increase webhook timeout", "n8n respond to webhook timeout", "n8n webhook response timeout", "n8n default webhook timeout", "connection failed due to timeout"]},
+      {"query": "n8n workflow published but not running", "suggestions": []},
+      {"query": "notebooklm youtube link not working", "suggestions": ["notebooklm youtube link not working", "why my youtube link is not working", "why is my youtube link not working on facebook", "why youtube link not opening in app"]},
+      {"query": "notebooklm unable to import source", "suggestions": ["notebooklm unable to import this web page due to source restrictions"]},
+      {"query": "chatgpt pdf upload not working", "suggestions": ["chatgpt pdf upload not working", "why won't my pdf upload", "why is my pdf file not uploading"]},
+      {"query": "convert long video to shorts free", "suggestions": ["convert long video to shorts free", "convert long video to shorts online free", "convert long youtube videos to shorts free", "convert video to shorts free", "turn long video into shorts free", "convert full video into shorts free", "long video to shorts converter ai free", "long video to shorts converter ai free without watermark", "convert youtube video to shorts free", "turn long video into viral shorts free"]},
+      {"query": "notebooklm youtube no captions", "suggestions": []},
+      {"query": "n8n webhook production url", "suggestions": ["n8n webhook production url", "n8n webhook production url not working", "n8n webhook test vs production url", "webhook url example", "webhook url meaning", "webhook examples"]},
+      {"query": "n8n webhook 404 not registered", "suggestions": ["n8n 404 the requested webhook is not registered"]},
+      {"query": "n8n webhook get post", "suggestions": ["n8n webhook get and post", "webhook post example", "what is a webhook example"]}
+    ],
+    "limitations": "Suggestions are wording evidence, not volume, trend, keyword difficulty, commercial value or click forecasts. An empty suggestion set does not prove zero demand."
+  },
+  "searchResults": [
+    {"engine": "Google", "url": "https://www.google.com/search?q=n8n+webhook+not+working", "observedTitles": ["Webhook does not work - Questions", "Common issues | Nodes", "n8n Webhook Not Working - 9 Common Causes and Fixes"], "observation": "Official docs, community threads and commercial troubleshooting guides. No ranking positions recorded."},
+    {"engine": "Google", "url": "https://www.google.com/search?q=n8n+test+vs+production+webhook+url", "observedTitles": ["n8n Webhook Node: Test URL vs Production URL Difference", "Understand Test vs. Production Webhook URLs - Hesham.us"], "observation": "Basic distinction already covered; official documentation and videos also visible."},
+    {"engine": "Google", "url": "https://www.google.com/search?q=n8n+webhook+404", "observedTitles": ["Webhook error 404 - Questions", "Error 404: The requested webhook is not registered", "How to Fix n8n Webhook Returning 404 (Every Cause and Fix)"], "observation": "Error-specific troubleshooting intent; substantial overlap with not-registered wording."},
+    {"engine": "Google", "url": "https://www.google.com/search?q=n8n+webhook+not+registered", "observedTitles": ["Webhook: The requested webhook is not registred", "Error 404: The requested webhook is not registered"], "observation": "Community and version-specific reports; do not treat one report as a universal n8n defect."},
+    {"engine": "Google", "url": "https://www.google.com/search?q=n8n+webhook+404+not+registered&hl=en&gl=us", "observedTitles": ["Webhook: The requested webhook is not registred", "Webhook error 404 - Questions", "Webhooks 404/Not Registered in v2.2.4 despite Active", "How to Fix n8n Webhook Returning 404 (Every Cause and ...)"], "observation": "Parent-agent cross-check of error cluster. Returned Google redirect links were not represented as exact final forum URLs."},
+    {"engine": "Google", "url": "https://www.google.com/search?q=notebooklm+youtube+link+not+working&hl=en&gl=us", "observedTitles": ["NotebookLM no longer adding YouTube videos as a source?", "How to Fix NotebookLM Source Errors: Simple Workarounds ...", "Fix NotebookLM import errors with these 2 workarounds"], "observation": "Alternative topic screening only; no NotebookLM facts taken from snippets."}
+  ],
+  "competitorReview": [
+    {"url": "https://requex.me/guides/n8n-webhook-not-working", "title": "n8n Webhook Not Working? 9 Causes, 9 Fixes", "observed": "Covers nine causes, queue mode and a commercial capture layer. Uses Active-toggle wording and recommends Any HTTP method; current docs describe Publish and Allow Multiple HTTP Methods. Blanket cause-frequency and disable-auth advice not adopted."},
+    {"url": "https://www.hesham.us/n8n-encyclopedia/understand-test-vs-production-webhook-urls", "title": "Understand Test vs. Production Webhook URLs", "observed": "Explains URL modes and execution visibility; lacks current draft-versus-published-version diagnostic and full response/status procedure."},
+    {"url": "https://ciela.ai/blogs/how-to-fix-n8n-webhook-404", "title": "How to Fix n8n Webhook Returning 404 (Every Cause and Fix)", "observed": "Covers eight causes, route parameters and proxies. Describes conflicts by path alone; official docs specify path plus method. Visible cause/fix percentages have no methodology in inspected page. Does not distinguish client-visible path from what a proxy forwards as clearly as needed."}
+  ],
+  "primarySources": [
+    {"url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/", "supports": "URL selection is display selection, test/production registration, production Executions tab, exact HTTP methods, auth options, response modes, route parameters, IP allowlist403 and current Only Run If false200/no-execution behavior. OnlyRunIf runs afterauth/IPchecks; expression errors failopen with warning."},
+    {"url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/common-issues/", "supports": "120-second test-listening window; published production registration; one registration per path+method; Settings/Allow Multiple HTTP Methods; reverse-proxy hop count; documented n8n Cloud100-second/524 behavior."},
+    {"url": "https://docs.n8n.io/build/understand-workflows/save-and-publish-workflows.md", "supports": "Production uses a published version, not later draft node edits; workflow settings have different republish behavior; async publishing, pending/partial/failed states, reviews and unpublishing."},
+    {"url": "https://docs.n8n.io/changelog/v20-breaking-changes.md", "supports": "v2 Active/Inactive becomes Publish/Unpublish; legacy built-in tunnel flag removed. Do not claim v3 already released."},
+    {"url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/endpoints.md", "supports": "Default webhook/webhook-test path prefixes can be changed; N8N_WEBHOOK_URL base URL; WEBHOOK_URL deprecated from2.35.0 but still working alias. Deprecation is not proof of404."},
+    {"url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-webhook-urls-with-reverse-proxy.md", "supports": "Public URL differs from internal port; public webhook URL config, forwarded host/proto/for, single-proxy example. Multiple hops must reflect deployment, not blindly set1."},
+    {"url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md", "supports": "Trigger must use Respond to Webhook response mode; finished without reaching response node gives default200, error before first response500, second response ignored. No infinite-hang assertion."},
+    {"url": "https://docs.n8n.io/build/manage-workflows/configure-workflow-settings.md", "supports": "Successful/failed production execution saving can be configured separately; missing saved history is not proof of no request."},
+    {"url": "https://docs.n8n.io/build/understand-workflows/understand-executions/view-executions-for-a-single-workflow.md", "supports": "Executions tab; status/time filters; history distinct from workflow versions."},
+    {"url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS", "supports": "Browser cross-origin restrictions/preflight versus server-to-server requests; specific allowed origins and credentials caveats."},
+    {"url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "supports": "Original useful content, clear sources/methodology, not daily freshness or word-count targets as ranking guarantees."},
+    {"url": "https://developers.google.com/search/docs/appearance/title-link", "supports": "Concise descriptive titles without stuffing; Google may rewrite and truncate by device width, not a guaranteed character cutoff."},
+    {"url": "https://developers.google.com/search/docs/appearance/snippet", "supports": "Page-specific descriptive summary; Google may choose query-dependent body snippets instead of stored description."},
+    {"url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-5.1", "supports": "Windows PowerShell curl alias, redirect default and full-parsing warning. Initial Invoke-WebRequest example exposed a runtime redirect-error response gap; replaced with .NET HttpClient and retested against local synthetic endpoints."},
+    {"url": "https://www.pexels.com/license/", "supports": "Blog use permitted, attribution appreciated, no endorsement or resale of unaltered imagery; photos remain illustrations."}
+  ],
+  "originalValue": [
+    "Symptom/evidence/next-step table separates URL registration, proxy, authorization and completed-workflow behavior.",
+    "Version-aware saved draft vs published node configuration worked example, explicitly illustrative rather than a claimed incident.",
+    "POSIX curl and Windows PowerShell5.1 diagnostic examples, reserved .invalid placeholders, synthetic data and explicit side-effect/auth warnings.",
+    "No retry loops, public request-capture service, authentication removal or TLS bypass as blanket fixes.",
+    "Sanitized evidence handoff template and a one-change-at-a-time verification checklist."
+  ],
+  "internalLinkPlan": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-vs-zapier-2026-comparison",
+    "/tools/json-formatter",
+    "/tools/diff-checker"
+  ],
+  "inboundLinksForPublishReviewOnly": [
+    {"from": "/blog/how-to-use-n8n-2026-complete-guide", "placement": "After the concepts table or trigger troubleshooting discussion", "anchor": "fix n8n webhook404 and production URL errors"},
+    {"from": "/blog/n8n-vs-zapier-2026-comparison", "placement": "After the secured form/webhook/CRM workflow paragraph", "anchor": "webhook troubleshooting checklist"}
+  ],
+  "images": [
+    {"role": "cover", "id": 5483077, "photographer": "cottonbro studio", "source": "https://www.pexels.com/photo/hands-typing-on-a-laptop-keyboard-5483077/", "description": "Hands at a laptop displaying code; original6267x4178."},
+    {"role": "body", "id": 12899191, "photographer": "Mizuno K", "source": "https://www.pexels.com/photo/discussion-about-software-development-in-office-12899191/", "description": "Two colleagues viewing a laptop; original portrait, cropped for the article."},
+    {"role": "body", "id": 7325498, "photographer": "Al Nahian", "source": "https://www.pexels.com/photo/computer-program-on-computer-screen-7325498/", "description": "Colorful programming-code close-up; original5472x3648, cropped for the article."},
+    {"role": "body", "id": 37730212, "photographer": "panumas nikhomkhai", "source": "https://www.pexels.com/photo/data-center-server-racks-with-active-equipment-37730212/", "description": "Server racks; original4108x2734. Not claimed n8n Cloud infrastructure."},
+    {"role": "body", "id": 574073, "photographer": "Lukas Blazek", "source": "https://www.pexels.com/photo/turned-on-laptop-computer-574073/", "description": "Laptop with notebook and pen on desk; original6144x4069."}
+  ],
+  "imagePolicy": "Allfive IDs checked unused against162 existing posts including both hidden drafts. Crops visually inspected from downloaded1200x675 versions, then1400x788 images all loaded in the actual-renderer preview. Photos are credited stock illustrations, not n8n UI, author tests or endorsements.",
+  "measurementPlan": {
+    "beforeAnyPublish": ["Review and approve the article; keep all drafts hidden until requested.", "Verify current source facts, rendered code, headings, images and canonical published internal destinations."],
+    "whenPublishAuthorized": ["Publish only the requested article, then verify final200/self-canonical/indexable page and sitemap inclusion.", "Add the two contextual inbound links only after the destination is live; no links to unpublished drafts.", "Record actual publication date; inspect that exact URL in Search Console. An indexing request does not guarantee indexing."],
+    "trafficDiagnosisNeeded": "Get a last28days Pages and Queries export with comparison to the previous28days; include clicks, impressions, CTR and position. Keep country/device filters consistent and disclose missing/anonymized queries. Current40-50impression report lacks a date range and is too small to identify a cause by itself.",
+    "decisionRules": ["No page impressions: first inspect discovery, indexing and relevance rather than repeatedly rewriting titles.", "Queries mostly outside top10: review intent match/content usefulness/internal support, not just CTR.", "Relevant queries with meaningful impressions and competitive position but lowCTR: compare actual SERP title/snippet and improve that specific promise without clickbait.", "Review potential overlap before merging similar articles. Titles alone are not proof of keyword cannibalization."],
+    "reviewSchedule": "After publication, record exact page/query data at14and28days using comparable complete periods. These are review intervals, not ranking deadlines or promised results.",
+    "noGuarantee": "This work improves topic focus and article quality. It cannot promise clicks, rankings or recovery; more daily posts alone are not a proven solution."
+  },
+  "draftValidation": {
+    "status": "Passed; saved hidden draft and re-read independently using the expected local fields",
+    "checkedOn": "2026-10-01",
+    "draftId": 231,
+    "category": "Tech Guides",
+    "published": false,
+    "featured": false,
+    "scheduledAt": null,
+    "wordCountExcludingCodeImagesUrlsAndCredits": 3054,
+    "paragraphWords": 2738,
+    "readingTime": "14 min read",
+    "metaTitleCharacters": 52,
+    "metaDescriptionCharacters": 146,
+    "codeBlocks": 5,
+    "visibleFaqs": 8,
+    "routeExtractedFaqs": 8,
+    "routeEmitsFirstFaqs": 5,
+    "tableCount": 1,
+    "uniqueHeadingIds": 12,
+    "internalLinks": 4,
+    "linkValidation": "Two published blog targets and two public tool targets all returned200 with exact self-canonicals and no noindex. Rendered links stayed contextual and unduplicated; no links to hidden drafts.",
+    "imageValidation": "One cover and four body photos, all distinct and unused across162 other posts;1400x788 images loaded. Four rendered body figures include creator/credit/copyright/license/acquire-license metadata.",
+    "rendering": "Actual MarkdownRenderer and its imported image metadata helpers/CopyButton rendered server-side; no browser-playground language in this article. Five code blocks round-trip exactly. Actual route FAQ loop and generateMetadata executed with a synthetic post: correct title/description/canonical/OG/Twitter when published, noindex/PostNotFound when hidden.",
+    "browser": "Isolated preview at320/390/1280px:1H1,8FAQgroups,5codeblocks,4paragraph links,5loaded images and no page-level horizontal overflow. Normal browser click opened firstFAQ; Space closed it. Preview uses isolated CSS, not full production layout; copy buttons not hydrated or claimed tested.",
+    "powershellExample": "Exact final article block parsed and executed in Windows PowerShell5.1, changing only reserved example URL to loopback.200/404/302 and Location captured; valid syntheticJSONPOSTs; redirect target never followed. No n8n/workflow/provider calls or secrets. Initial Invoke-WebRequest version failed redirect-response capture and was replaced by HttpClient before save. POSIX curl sample not executed againstn8n.",
+    "independentReview": "No blocking source inaccuracies. Addressed PowerShell redirect handling, OnlyRunIf error fail-open caveat, automatic workflow-settings republishing exception, competitor-gap wording and excerpt spacing. No fabricated incident statistics or hands-on hosting claim.",
+    "checks": "Offline content assertions, actual renderer/metadata test, node syntax check, installedESLint, editor diagnostics, JSON evidence counts and git diff check passed.",
+    "contentSha256": "30c0a2562cd645d2cabb3a364781ab0e9cea2afb5fab38e4e7239655e21bb551",
+    "otherPostsUnchanged": 162,
+    "otherEditorialChecksumExcludingViews": "4fb82dd5870bd7e6211e0938b2aa246e",
+    "publicVisibility": "Drafts231/229/230 all return PostNotFound+noindex on blog routes (existingHTTP200soft404 behavior) and404+noindex on story routes. Allthree absent from/blog,/sitemap.xml,/feed.xml.",
+    "gitHeadUnchanged": "412f5b4",
+    "limitations": "No fresh fullNextbuild, full-site layout audit, real n8n deployment test, authenticated webhook test, GSC report, indexing request, publication, live inbound links, commit/push or deployment. Click/ranking improvement unmeasured.",
+    "cleanup": "Temporary inventory/autocomplete helper removed. Reproducible article renderer/preview and PowerShell synthetic checks retained; preview stopped after review."
+  },
+  "release": {
+    "authorizedOn": "2026-10-01",
+    "authorization": "live push kro",
+    "articleId": 231,
+    "url": "https://www.byteverse.fyi/blog/n8n-webhook-not-working-2026",
+    "databasePublished": true,
+    "featured": false,
+    "scheduledAt": null,
+    "publicationMethod": "One serializable Neon transaction: locks target/link-source/protected-draft rows; verifies exact editorial fingerprints; publishes231 with actual publication timestamps; adds one contextual link each to221and222. Any zero-row update aborts all writes; no automatic retry.",
+    "contentUnchangedFromApprovedDraft": true,
+    "contextualBacklinks": ["how-to-use-n8n-2026-complete-guide", "n8n-vs-zapier-2026-comparison"],
+    "protectedUnpublishedDrafts": [229, 230],
+    "unrelatedPostsUnchanged": 160,
+    "unrelatedEditorialChecksumExcludingViews": "7dc41668648829c7a05aefb1ad41b9bb",
+    "productionBuild": "PASS: Next16.2.6 Turbopack production build and TypeScript,260static pages. Existing workspace-root/middleware/edge-runtime warnings only. No application code or dependency changes.",
+    "deployment": "Pending git push and live verification",
+    "rankingOrClickChange": "Not measured; publication does not guarantee indexing, clicks or rankings."
+  }
+}

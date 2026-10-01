@@ -1,0 +1,150 @@
+{
+  "checkedOn": "2026-09-29",
+  "slug": "pdf-to-podcast-notebooklm-2026",
+  "publication": "Saved hidden draft #229 on 2026-09-29; published=false, featured=false, scheduled_at=null. Research preceded article writing. No publication, scheduling, live backlinks, commit, push or deployment performed.",
+  "siteGap": {
+    "totalPosts": 160,
+    "publishedPosts": 160,
+    "unpublishedPostsBeforeWork": 0,
+    "inventorySource": "Read-only Neon SELECT of published titles/slugs plus relevant article sections; current as of research date.",
+    "dedicatedPdfToPodcastTitleOrSlug": false,
+    "existingParent": "how-to-use-notebooklm-2026-complete-guide",
+    "parentCoverage": "Broad product introduction covering sources, chat, Studio, Audio Overviews and seven workflows; Audio Overviews mentioned, but no dedicated PDF-to-podcast preparation/customization/export/fact-check walkthrough.",
+    "distinctIntent": "Complete one PDF-to-audio task, with current free-usage changes, original prompts, a fictional source-fidelity exercise, mobile export distinction and troubleshooting; not another general NotebookLM guide or tool-ranking list.",
+    "otherCandidatesConsidered": [
+      {"topic": "AI music video for a song", "decision": "Valid future expansion; recent music and video-editing guides already cover parts of it. Not selected for today."},
+      {"topic": "Remove background noise from audio with Audacity", "decision": "Useful creator task; broad free/online intent also prominent in autocomplete. Not selected, and no low-competition claim made."},
+      {"topic": "NotebookLM YouTube transcript troubleshooting", "decision": "Observed source-empty/transcript phrases; narrow tutorial query returned no suggestions. Keep as a possible later distinct task, not a separate draft today."}
+    ]
+  },
+  "targeting": {
+    "primary": "pdf to podcast free",
+    "secondary": ["pdf to podcast notebooklm", "how to turn a pdf into a podcast", "notebooklm podcast from pdf", "notebooklm audio overview prompt", "notebooklm audio overview limit", "notebooklm audio overview length", "notebooklm podcast download", "notebooklm download audio iphone", "gemini notebook podcast"],
+    "audience": "Students and independent learners using their own or licensed notes/PDFs; a secondary use is reviewing an original document before sharing audio.",
+    "intentMap": [
+      {"cluster": "free / Google / PDF conversion", "answer": "Immediate upload-to-Studio steps, account requirement, not unlimited"},
+      {"cluster": "audio overview limit / per day", "answer": "September 2 compute-based change; Settings > Usage; five-hour refresh and weekly cap; conflict with old daily table disclosed"},
+      {"cluster": "prompts / length", "answer": "Four formats, audience/scope/caveat prompts, English-only length selector, no exact-duration guarantee"},
+      {"cluster": "download / iPhone / transcript", "answer": "Web file export versus mobile in-app offline access; no guaranteed MP3 or invented verbatim transcript feature"},
+      {"cluster": "not working / PDF upload", "answer": "Source size/word/copy-protection checks, selected source, quota and sharing/access diagnosis"},
+      {"cluster": "languages", "answer": "80+ documented Audio Overview languages including Hindi/Urdu; no inference that an empty autocomplete result means no audience"}
+    ],
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "gscPageOrQueryMetrics": null,
+    "interpretation": "Observed wording and task alignment justify an editorial test. Autocomplete and non-Google search results do not establish search volume, low difficulty, current Google rankings or traffic likelihood. No 100% SEO or ranking guarantee."
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=",
+    "localeCaveat": "English/US parameters, not a verified physical US search location; suggestions vary over time.",
+    "successfulSeeds": 24,
+    "nonemptySeeds": 19,
+    "initial": [
+      {"query": "pdf to podcast", "suggestions": ["pdf to podcast", "pdf to podcast ai", "pdf to podcast free", "pdf to podcast google", "pdf to podcast turbo ai", "pdf to podcast converter", "pdf to podcast ai google", "pdf to podcast reddit", "pdf to podcast generator", "pdf to podcast notebook lm"]},
+      {"query": "how to turn a pdf into a podcast", "suggestions": ["how to turn a pdf into a podcast", "how to turn a pdf into a podcast ai", "how to make a pdf into a podcast", "how to turn pdfs into podcasts", "turn a pdf into a podcast free", "how to start a podcast pdf", "how to turn a pdf into a link", "how to turn a video into a pdf on iphone"]},
+      {"query": "notebooklm podcast", "suggestions": ["notebooklm podcast", "notebooklm podcast generator", "notebooklm podcast transcript", "notebooklm podcast prompts", "notebooklm podcast feature", "notebooklm podcast reddit", "notebooklm podcast api", "notebooklm podcast example", "notebooklm podcast not working", "notebooklm podcast alternative"]},
+      {"query": "notebooklm audio overview", "suggestions": ["notebooklm audio overview", "notebooklm audio overview limit", "notebooklm audio overview transcript", "notebooklm audio overview prompt", "notebooklm audio overview interactive mode", "notebooklm audio overview not working", "notebooklm audio overview prompt reddit", "notebooklm audio overview length", "notebooklm audio overview alternative", "notebooklm audio overview download"]},
+      {"query": "how to make ai music video", "suggestions": ["how to make ai music video", "how to make ai music videos for free", "how to make ai music videos for youtube", "how to make ai music videos for suno", "how to make ai music video for my song", "how to make ai music video reddit", "how to make ai music video on phone", "how to make ai music video on capcut", "how to do ai music video", "how to make ai song video"]},
+      {"query": "ai music video generator free", "suggestions": ["ai music video generator free", "ai music video generator free no sign up", "ai music video generator free no subscription", "ai music video generator free trial", "ai music video generator free from audio", "ai music video generator free reddit", "ai music video generator free app", "ai music video generator free no credits", "ai music video generator free online no sign up", "ai music video generator free without watermark"]},
+      {"query": "how to remove background noise from audio free", "suggestions": ["how to remove background noise from audio free", "how to remove background noise from audio free online", "how to remove background noise from audio recording free", "how to remove background noise from audio recording online free", "how to remove background noise from audio in davinci resolve free", "how to remove background sound from audio free", "how to remove static noise from audio free", "how to clear background noise in audio free", "how to reduce background noise in audio free", "app to remove background noise from audio free"]},
+      {"query": "remove background noise audacity", "suggestions": ["remove background noise audacity", "remove background noise audacity reddit", "reduce background noise audacity", "get rid of background noise audacity", "remove background audio audacity", "remove background sound audacity", "remove background hiss audacity", "remove ambient noise audacity", "remove background noise using audacity", "remove background noise audio audacity"]},
+      {"query": "how to transcribe a youtube video with notebooklm", "suggestions": []},
+      {"query": "notebooklm youtube video", "suggestions": ["notebooklm youtube videos", "notebooklm youtube video summary", "notebooklm youtube video transcript not available", "notebooklm youtube video source is empty", "notebooklm youtube video transcript", "notebooklm youtube video summarizer", "notebooklm youtube video to notes", "notebooklm youtube videos reddit", "notebooklm youtube video prompt", "notebooklm youtube video limit"]},
+      {"query": "notebooklm pdf not uploading", "suggestions": ["notebooklm pdf not uploading", "notebooklm pdf not loading", "why is my pdf file not uploading", "why won't my pdf upload", "why won't my pdf files upload"]},
+      {"query": "notebooklm podcast download", "suggestions": ["notebooklm podcast download", "notebooklm podcast downloaden", "notebooklm download podcast transcript", "google notebook lm podcast download", "can i download podcasts for free"]}
+    ],
+    "focused": [
+      {"query": "pdf to podcast notebooklm", "suggestions": ["pdf to podcast notebooklm", "notebooklm convert pdf to podcast", "pdf to podcast ai notebook lm", "how to start a podcast pdf", "how do i convert pdf to fdf", "how do i convert a pdf to adobe acrobat"]},
+      {"query": "pdf to podcast free google", "suggestions": []},
+      {"query": "pdf to podcast without login", "suggestions": []},
+      {"query": "notebooklm audio overview prompt", "suggestions": ["notebooklm audio overview prompt", "notebooklm audio overview prompt reddit", "notebooklm audio overview prompt limit", "notebooklm audio overview prompt character limit", "notebooklm audio overview system prompt", "best prompt for notebooklm audio overview"]},
+      {"query": "notebooklm audio overview length", "suggestions": ["notebooklm audio overview length", "notebooklm audio overview length limit", "notebooklm audio overview duration", "notebooklm audio overview max length"]},
+      {"query": "notebooklm audio overview mp3", "suggestions": []},
+      {"query": "notebooklm podcast urdu", "suggestions": []},
+      {"query": "notebooklm podcast hindi", "suggestions": ["notebooklm hindi podcast"]},
+      {"query": "notebooklm audio overview limit", "suggestions": ["notebooklm audio overview limit", "notebooklm audio overview limit per day", "notebooklm daily audio overview limits", "google notebook lm audio overview limit", "notebooklm audio overview length limit", "notebooklm audio overview time limit", "notebooklm plus audio overview limit", "notebooklm audio overview prompt limit", "notebooklm audio overview prompt character limit", "is there a limit on audible"]},
+      {"query": "notebooklm download audio iphone", "suggestions": ["notebooklm download audio iphone", "notebooklm download audio ios", "can you download audio files on iphone", "how to download audio on iphone"]},
+      {"query": "notebooklm podcast from pdf", "suggestions": ["notebooklm podcast from pdf", "notebooklm create podcast from pdf", "how to start a podcast pdf"]},
+      {"query": "gemini notebook podcast", "suggestions": ["gemini notebook podcast", "gemini notebook lm podcast", "google gemini notebook podcast", "gemini notebook create podcast", "gemini app not working"]}
+    ]
+  },
+  "serpObservations": [
+    {"engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=pdf+to+podcast+notebooklm+free", "observed": "Organic mix of official Gemini Notebook, NoteGPT product page, Scholarly tutorial, runfreetools tutorial, GitHub open-notebooklm and Together AI implementation docs; commercial tool plus instructional intent. No position/volume claims."},
+    {"engine": "Bing", "url": "https://www.bing.com/search?q=notebooklm+audio+overview+download+limits", "observed": "Quota-focused guides including notebooklm-guide.com, Elephas and Beginners in AI; video tutorials and export guides. Supports answering limit/export questions, not a Google ranking forecast."},
+    {"engine": "Google", "status": "Unavailable", "detail": "Direct search fetches returned JavaScript challenge pages; shared browser connection timed out. No current Google organic positions or People Also Ask observations claimed."}
+  ],
+  "competitorReview": [
+    {"url": "https://scholarly.so/blog/how-to-turn-a-pdf-into-a-podcast-free-2026", "observed": "Maker-led three-method guide with source prep, study discussion and its own product first. Updated Sep26. Still uses per-day limits language; lacks a concrete source-fidelity checklist tied to a reproducible fictional document and detailed mobile-file boundary."},
+    {"url": "https://beginnersinai.org/notebooklm-audio-overviews/", "observed": "May2026 article covers use cases, prompts and FAQs. Claims fixed three/day, MP3, Brief5-7min, mobile-only interactive mode and paid voice selection. Several details conflict with or are not supported by current Google docs. Do not repeat those claims."},
+    {"url": "https://notegpt.io/ai-podcast-generator", "observed": "Tool landing page with multi-person/voice/language/upload claims, examples and testimonials. Not tested and no plan/quality claims about NoteGPT imported into the article."},
+    {"url": "https://runfreetools.com/blog/pdf-to-podcast-notebooklm-free", "status": "Extraction failed; search snippet observed only. Not treated as a fully inspected competitor."}
+  ],
+  "primarySources": [
+    {"url": "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/", "supports": "July16 2026 rename from NotebookLM to Gemini Notebook; same standalone product. Mention old name for reader recognition, current product name explicitly."},
+    {"url": "https://notebook.google/", "supports": "Official product entry and podcast-style Audio Overview positioning; links to notebook.google.com."},
+    {"url": "https://support.google.com/gemininotebook/answer/16164461?hl=en", "supports": "Requires signed-in Google account; work/school admin access and regional/age availability. Do not describe no-login or universally available workflow."},
+    {"url": "https://support.google.com/gemininotebook/answer/17670842?hl=en", "supports": "Sep2 2026 compute-based usage, complexity/features/history influence consumption, refresh every5hours until weekly cap; Settings > Usage, Studio cost bar, Generate later web-only."},
+    {"url": "https://support.google.com/gemininotebook/answer/16213268?hl=en", "supports": "Free Standard available, source count50, upgrade options. Table still says3audio/day but banner points to new usage rules.", "conflictTreatment": "Explicitly disclose old daily-table/new-compute-guidance discrepancy and direct readers to account Usage. Do not promise exact daily generations or interpret five-hour refresh as overriding weekly cap."},
+    {"url": "https://support.google.com/gemininotebook/answer/16215270?hl=en", "supports": "PDF supported, source500000word/upload200MB limits, free50sources, source selection. Drive auto-sync; local upload is a copy. Text-only public-captioned YouTube import distinguished if mentioned."},
+    {"url": "https://support.google.com/gemininotebook/answer/16269187?hl=en", "supports": "Full HTML collapsed FAQ confirms no PDF page limit; exceeding either word or file-size cap and copy-protection can cause import failure. Short sources can be referenced without individual inline citations."},
+    {"url": "https://support.google.com/gemininotebook/answer/16206563?hl=en", "supports": "Create new notebook > Upload a source; separate Sources/Chat/Studio. Viewer/editor permissions; Chat View is not a complete source-access revocation."},
+    {"url": "https://support.google.com/gemininotebook/answer/16179559?hl=en", "supports": "Source selection and click/hover citations to inspect quotes; save note preserves citations. No guarantee that every statement is correct."},
+    {"url": "https://support.google.com/gemininotebook/answer/16212820?hl=en", "supports": "Deep Dive2hosts, Brief1speaker under2min description, Critique2hosts, Debate2hosts; language selector80+inclHindi/Urdu (list verified in HTML); length Shorter/Default/Longer English-only; custom prompt; generated voices may err; web Download; PlayBooks restrictions; interactiveEnglish-only for newly-generated audio, not shared links. Native MP3 output not documented here."},
+    {"url": "https://support.google.com/gemininotebook/answer/16296687?hl=en", "supports": "Mobile app supports PDF/StudioAudio, source selection/customization, background playback and offline downloads, but currently not downloading Audio Overviews as device files. Desktop recommended for full feature set."},
+    {"url": "https://support.google.com/gemininotebook/answer/17004255?hl=en", "supports": "Personal-account content not directly training foundational models unless feedback; feedback can include full context and human review/retention up3years. Separate Workspace/Education protections; cross-service data follows service policies. Respect source rights; Google not claiming ownership is not a blanket third-party copyright license."},
+    {"url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "supports": "Editorial quality guidance: original value, accurate sourcing, people-first intent, no preferred Google word count or automatic freshness reward; research methodology must be honest."}
+  ],
+  "limitedSiteHealthCheck": {
+    "robots": "Public robots allows / and blocks only /api/ and /admin/; sitemaps declared.",
+    "samplePages": ["/", "/blog/how-to-use-notebooklm-2026-complete-guide", "/blog/how-to-make-ai-music-2026"],
+    "observed": "All three HTTP200, self-canonical and index/follow in meta and HTTP headers. Sitemap HTTP200 with218loc entries.",
+    "limitation": "Not proof of indexing, ranking, Googlebot fetch success or all-site health. User-reported impression drop remains unverified without fresh GSC Performance comparison and Page Indexing/URL Inspection evidence; do not claim new content fixes it."
+  },
+  "internalLinkPlan": ["best-free-text-to-speech-tools-2026", "best-ai-pdf-tools-2026", "best-ai-research-tools-in-2026-ranked-by-workflow", "prompt-engineering-guide-2026-write-better-ai-prompts", "best-ai-note-taking-apps-2026", "best-ai-transcription-tools-2026", "how-to-use-ai-to-study-2026", "time-blocking-for-students-2026-ai-study-planner", "best-ai-tools-for-teachers-2026", "best-ai-tools-for-podcasters-2026", "how-to-run-ai-locally-2026"],
+  "editorialReview": "Independent read-only review found no material product-fact conflict. Added age/region/admin-access qualification and explained verification chat also consumes usage. Removed outgoing parent-guide link pending its older mobile/quota/privacy claims being reviewed on separate authorization; live parent unchanged. Validate paragraph-only word count separately from total article words.",
+  "inboundLinksForPublishReviewOnly": [
+    {"slug": "how-to-use-notebooklm-2026-complete-guide", "anchorCandidate": "Existing Audio Overviews paragraph; needs current-fact review when authorized, not a second generic introduction."},
+    {"slug": "best-ai-pdf-tools-2026", "anchorCandidate": "Read the existing NotebookLM/PDF reading section before adding one specific workflow link."},
+    {"slug": "how-to-use-ai-to-study-2026", "anchorCandidate": "Existing source-grounded/audio study discussion, subject to contextual check."},
+    {"slug": "best-ai-tools-for-students-2026-free-study-apps", "anchorCandidate": "Existing NotebookLM mention if natural and not already crowded with related links."}
+  ],
+  "images": [
+    {"role": "cover", "id": 6958509, "photographer": "Karola G", "source": "https://www.pexels.com/photo/a-boy-using-a-laptop-6958509/", "visualReview": "Landscape overhead study desk; headphones, laptop, open book and notebook."},
+    {"role": "body", "id": 6325886, "photographer": "Vanessa Garcia", "source": "https://www.pexels.com/photo/photo-of-book-on-top-of-wooden-table-6325886/", "visualReview": "Portrait open folder, highlighted printed pages and handwritten notes; source preparation illustration."},
+    {"role": "body", "id": 5554277, "photographer": "Armin Rimoldi", "source": "https://www.pexels.com/photo/young-ethnic-man-in-headphones-taking-notes-neat-laptop-5554277/", "visualReview": "Landscape person taking notes at laptop with headphones resting on head."},
+    {"role": "body", "id": 8035300, "photographer": "Ron Lach", "source": "https://www.pexels.com/photo/man-in-glasses-sitting-at-table-with-paperwork-and-cards-8035300/", "visualReview": "Landscape person comparing papers and study cards at library desk."},
+    {"role": "body", "id": 8276338, "photographer": "PNW Production", "source": "https://www.pexels.com/photo/photo-of-a-man-with-black-headphones-reading-a-book-8276338/", "visualReview": "Portrait person wearing headphones and reading beside laptop; listening/review illustration, not product screenshot."}
+  ],
+  "imageValidation": "All five selected CDN images downloaded successfully and visually inspected; IDs unused across all160 current DB posts. Canonical source pages and Pexels blog-use license checked by research agent. No depiction claims of actual Gemini Notebook UI/testing or subject endorsement.",
+  "researchLimitations": ["No AI audio generated, paid subscription purchased, voice quality benchmark, or human learning-outcome experiment performed.", "Original worked example and prompts will be explicitly illustrative, not fabricated test results.", "No Google SERP/PAA success, fresh GSC metrics, search-volume, CPC or keyword-difficulty evidence available.", "Existing broad guides contain older product claims; no published article changed during this draft task."],
+  "validation": {
+    "status": "Passed; saved hidden draft #229 and independently reread it",
+    "checkedOn": "2026-09-29",
+    "wordCountWithoutImagesUrlsAndCredits": 3450,
+    "paragraphWordsExcludingHeadingsTablesListsAndPrompts": 2535,
+    "uniqueContextualInternalLinks": 11,
+    "renderedParagraphInternalLinks": 11,
+    "publishedInternalTargetsHttp200": 11,
+    "visibleFaqCount": 8,
+    "existingRouteSchemaFaqCount": 5,
+    "faqSchemaNote": "Existing blog route emits the first five of eight matching visible FAQs. Actual extraction was executed; route unchanged. No rich-result eligibility promise.",
+    "tableCount": 2,
+    "uniqueHeadingIds": 18,
+    "coverImages": 1,
+    "bodyImages": 4,
+    "imageLoading": "All five loaded and decoded in the browser; descriptive alt text and credits present. Photo IDs unused in160 existing posts.",
+    "readingTime": "16 min read",
+    "metaTitleCharacters": 44,
+    "metaDescriptionCharacters": 152,
+    "codeChecks": "node --check, offline content assertions, direct installed ESLint and editor diagnostics passed. Keyword ledger JSON parsed and counts checked.",
+    "rendering": "Actual MarkdownRenderer including FAQ conversion, sanitization, image metadata and heading IDs rendered successfully; unused client code-block controls stubbed and would throw if invoked. Isolated loopback preview, not full Next production layout.",
+    "browserChecks": "320/390/1280px no horizontal page overflow, one H1,11 paragraph links,2 tables,8 FAQs; first FAQ opened with an ordinary click;5images loaded. Preview stopped after checks.",
+    "storedFields": "All expected editorial and hidden-state fields exactly match the normalized local source; category AI Tools; independent read-only rerun passed.",
+    "existingPostsUnchanged": 160,
+    "existingPostsChecksumExcludingViews": "dfc662a593f7e5e4ff8a932529c01979",
+    "publicDraftRoute": "HTTP200 soft-404 with Post Not Found and noindex, draft text absent; not claimed to be a hard404.",
+    "absentFrom": ["/blog", "/sitemap.xml", "/feed.xml"],
+    "gitHeadUnchanged": "8806ea0",
+    "limits": "No new Next build, full production-page visual check, audio generation, learning benchmark, Google indexing request or GSC metrics verification. No published-post mutation, backlink insertion, commit, push or deployment."
+  }
+}

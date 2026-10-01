@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { blogSlugRedirects } from "./src/lib/blog-redirects";
 
 const nextConfig: NextConfig = {
   compress: true,
@@ -31,10 +32,6 @@ const nextConfig: NextConfig = {
     {
       source: "/(.*)",
       headers: [
-        {
-          key: "X-Robots-Tag",
-          value: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-        },
         {
           key: "X-Content-Type-Options",
           value: "nosniff",
@@ -79,6 +76,17 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      // Story handlers decide robots by status: do not overwrite their 404
+      // noindex response or attach an index directive to a temporary outage.
+      source: "/:path((?!stories(?:/|$)).*)",
+      headers: [
+        {
+          key: "X-Robots-Tag",
+          value: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        },
+      ],
+    },
+    {
       source: "/blog",
       headers: [
         {
@@ -107,6 +115,13 @@ const nextConfig: NextConfig = {
     },
   ],
   redirects: async () => [
+    // Keep indexed story URLs reachable while consolidating on the full articles.
+    // Individual stories use a published-post check in their route handler.
+    {
+      source: "/stories",
+      destination: "/blog",
+      permanent: true,
+    },
     {
       source: "/index.html",
       destination: "/",
@@ -122,51 +137,11 @@ const nextConfig: NextConfig = {
       destination: "/about",
       permanent: true,
     },
-    {
-      source: "/blog/how-to-learn-programming-2026-complete-guide",
-      destination: "/blog/how-to-learn-programming-2026-beginner-roadmap",
+    ...blogSlugRedirects.map(([source, destination]) => ({
+      source: `/blog/${source}`,
+      destination: `/blog/${destination}`,
       permanent: true,
-    },
-    {
-      source: "/blog/10-best-ai-marketing-tools-in-2026-tested-for-real-campaigns",
-      destination: "/blog/best-ai-marketing-tools-2026",
-      permanent: true,
-    },
-    {
-      source: "/blog/90-day-blog-content-plan-new-websites-2026",
-      destination: "/blog/90-day-blog-content-plan-for-new-websites-in-2026",
-      permanent: true,
-    },
-    {
-      source: "/blog/best-ai-photo-editors-2026",
-      destination: "/blog/9-best-ai-photo-editors-in-2026-free-and-paid",
-      permanent: true,
-    },
-    {
-      source: "/blog/best-ai-social-media-tools-2026",
-      destination: "/blog/9-best-ai-social-media-tools-in-2026-tested",
-      permanent: true,
-    },
-    {
-      source: "/blog/blog-post-ideas-new-bloggers-2026",
-      destination: "/blog/50-blog-post-ideas-for-new-bloggers-in-2026",
-      permanent: true,
-    },
-    {
-      source: "/blog/blog-seo-checklist-before-publishing-2026",
-      destination: "/blog/blog-seo-checklist-before-publishing-in-2026",
-      permanent: true,
-    },
-    {
-      source: "/blog/build-topical-authority-new-blog-2026",
-      destination: "/blog/how-to-build-topical-authority-for-a-new-blog-in-2026",
-      permanent: true,
-    },
-    {
-      source: "/blog/google-search-console-new-blogs-2026",
-      destination: "/blog/google-search-console-for-new-blogs-2026-beginner-guide",
-      permanent: true,
-    },
+    })),
   ],
   experimental: {
     optimizePackageImports: [

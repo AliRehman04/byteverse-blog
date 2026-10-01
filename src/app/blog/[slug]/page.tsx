@@ -180,9 +180,6 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `${siteConfig.url}/blog/${slug}`,
-      types: {
-        "application/amp+html": `${siteConfig.url}/stories/${slug}`,
-      },
     },
   };
 }

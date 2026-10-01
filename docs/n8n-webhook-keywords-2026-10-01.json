@@ -1,7 +1,7 @@
 {
   "checkedOn": "2026-10-01",
   "slug": "n8n-webhook-not-working-2026",
-  "publication": "User explicitly requested live push on2026-10-01. Article231 is now published=true, featured=false, scheduled_at=null. Two contextual inbound links added atomically from existing n8n guides221/222. Other160 editorial records, including hidden drafts229/230, unchanged. Git deployment and public HTTP verification pending below.",
+  "publication": "User explicitly requested live push on2026-10-01. Article231 published=true, featured=false, scheduled_at=null. Two contextual inbound links added atomically from existing n8n guides221/222. Other160 editorial records, including hidden drafts229/230, unchanged. Release4fe9c2a pushed to main; Vercel reported deployment completed and live HTTP/browser checks passed.",
   "userReportedMetrics": {
     "clicks": 0,
     "approximateImpressions": "40-50",
@@ -187,7 +187,12 @@
     "unrelatedPostsUnchanged": 160,
     "unrelatedEditorialChecksumExcludingViews": "7dc41668648829c7a05aefb1ad41b9bb",
     "productionBuild": "PASS: Next16.2.6 Turbopack production build and TypeScript,260static pages. Existing workspace-root/middleware/edge-runtime warnings only. No application code or dependency changes.",
-    "deployment": "Pending git push and live verification",
+    "deployment": "Vercel production deployment completed for4fe9c2ab97edefb3e8f3934a876257929785e1c2; public GitHub Vercel status success at2026-10-01T16:59:46Z.",
+    "releaseCommit": "4fe9c2ab97edefb3e8f3934a876257929785e1c2",
+    "vercelDeployment": "https://vercel.com/rehman-s-projects3/byteverse-blog-j4tn/FEp71pT1Paqoebwnj39wC9DpbiXb",
+    "liveVerification": "PASS: HTTP200, exacttitle/description/selfcanonical, indexable,1H1,5codeblocks,8visibleFAQs,5articleimages, BlogPosting and first5FAQ schema. Both contextual inbound links visible on the live source pages. StoryURL308toarticle. Article present in/blog,/sitemap.xml,/feed.xml. Protecteddrafts229/230 remainPostNotFound+noindex/story404 and excluded from collections.",
+    "liveBrowser": "Actual production page checked at390and1280px. Four bodyimages loaded;5codeblocks/8FAQgroups. A transient measurement taken immediately after resizing reported overflow; a settled390px recheck showed352pxarticle width and no overflowing article paragraphs/figures/table wrapper. No fullperformance or analytics audit claimed.",
+    "sharedRegressionChecks": "PASS:20storyredirectchecks,41toolroutes/catalog/schema checks,SEOtitlechecks,19meta-tagtests. No dependency or appsource changes in thisrelease.",
     "rankingOrClickChange": "Not measured; publication does not guarantee indexing, clicks or rankings."
   }
 }

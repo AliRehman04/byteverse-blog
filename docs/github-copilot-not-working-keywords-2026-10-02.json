@@ -1,0 +1,611 @@
+{
+  "checkedOn": "2026-10-02",
+  "slug": "github-copilot-not-working-vscode-2026",
+  "publication": "User explicitly requested live push on 2026-10-02 (\"live push kro\"). Article 232 published=true, featured=false, scheduled_at=null via one serializable transaction; contextual inbound links added to posts 47 and 139. Other 161 editorial records, including hidden drafts 229/230, unchanged (hash a3710cb2c4361074aa3179cccd3a0eba).",
+  "userReportedMetrics": {
+    "clicks": 0,
+    "approximateImpressions": "40-50",
+    "dateRange": null,
+    "verified": false,
+    "accessCheck": "Same as 2026-10-01: Search Console not reachable from the configured environment (browser reached Google sign-in). No fresh GSC data; no credentials requested."
+  },
+  "inventory": {
+    "method": "Read-only DB title/slug inventory, troubleshooting-related paragraphs from the five closest existing Copilot/VS Code posts, categories and editorial checksum excluding view counters.",
+    "totalPosts": 163,
+    "publishedPosts": 161,
+    "editorialChecksumExcludingViews": "8a260ec4baeaaea75ae97ead4b84ce6d",
+    "protectedDrafts": [
+      {
+        "id": 229,
+        "slug": "pdf-to-podcast-notebooklm-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "07567f98b5cd73d7fd978dede5a47836"
+      },
+      {
+        "id": 230,
+        "slug": "audacity-noise-reduction-voice-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "633a2127b815f4dd2949977c777385df"
+      }
+    ],
+    "dedicatedTroubleshootingTitleOrSlugMatches": 0,
+    "relatedOverlap": [
+      {
+        "id": 47,
+        "slug": "github-copilot-guide-2026",
+        "category": "AI Tools",
+        "coverage": "Install/sign-in/usage guide with a four-step setup list; no symptom-based troubleshooting, plan-limit, auth-loop, proxy or diagnostics content."
+      },
+      {
+        "id": 18,
+        "slug": "copilot-vs-chatgpt-for-coding-2026",
+        "category": "Software Reviews",
+        "coverage": "Feature comparison and limitations; nothing on fixing a non-working extension."
+      },
+      {
+        "id": 5,
+        "slug": "best-ai-coding-assistants-2026-copilot-cursor-windsurf",
+        "category": "Software Reviews",
+        "coverage": "Roundup with plan/privacy notes; no troubleshooting."
+      },
+      {
+        "id": 139,
+        "slug": "vscode-tips-and-tricks-2026",
+        "category": "Coding",
+        "coverage": "General VS Code productivity; debugger/logpoints tips but no Copilot troubleshooting."
+      },
+      {
+        "id": 24,
+        "slug": "best-vscode-extensions-2026-web-developers",
+        "category": "Coding",
+        "coverage": "Extension roundup; one tip on disabling unused extensions; no Copilot-specific troubleshooting."
+      }
+    ],
+    "decision": "One symptom-based troubleshooting article supporting the existing Copilot/VS Code cluster. Do not split sign-in, suggestions-not-showing, chat-not-working and proxy queries into separate near-duplicate posts."
+  },
+  "targeting": {
+    "primary": "github copilot not working vscode",
+    "secondary": [
+      "copilot suggestions not showing vscode",
+      "github copilot chat not working vscode",
+      "github copilot sign in not working vscode",
+      "github copilot could not connect to server extension activation failed",
+      "copilot inline suggestions not working vscode",
+      "github copilot not working language model unavailable",
+      "copilot free limit vscode"
+    ],
+    "audience": "Developers and students whose Copilot extension stopped suggesting, chatting or signing in, including people on Copilot Free and on corporate networks.",
+    "title": "GitHub Copilot Not Working in VS Code? 9 Checks That Fix It",
+    "metaTitle": "GitHub Copilot Not Working in VS Code? 9 Fixes (2026)",
+    "metaDescription": "Fix GitHub Copilot not working in VS Code: no inline suggestions, sign-in loops, Free plan and rate limits, proxy and firewall errors, official diagnostics.",
+    "category": "Coding",
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "rankings": null,
+    "gscMetrics": null,
+    "competitionAssessment": "SERP sample includes official GitHub and VS Code docs, GitHub Community discussions, VS Code GitHub issues, Stack Overflow and third-party guides. The sampled third-party guides are partly stale (Copilot X wording, old outage references) or chat-only. This is an actionable support intent, not a measured low-competition keyword.",
+    "alternatives": [
+      {
+        "topic": "Cursor AI / agent not working",
+        "evidence": "Rich autocomplete wording (today, after update, mac, agent mode, terminal).",
+        "decision": "Strong candidate for a later day; Copilot chosen first because the site already has three published Copilot posts plus two VS Code posts to support it internally."
+      },
+      {
+        "topic": "Claude Code not working (vscode/terminal/windows/powershell)",
+        "evidence": "Autocomplete wording only.",
+        "decision": "Possible later follow-up linked from the existing Claude Code guide."
+      },
+      {
+        "topic": "NotebookLM limits / source limit",
+        "evidence": "Autocomplete wording with free/pro/plus variants.",
+        "decision": "Overlaps the hidden NotebookLM draft 229 topic area; avoid until that draft's fate is decided."
+      },
+      {
+        "topic": "ChatGPT file upload failed (400 / too many requests)",
+        "evidence": "Autocomplete wording.",
+        "decision": "Not chosen today; weaker internal cluster support."
+      }
+    ]
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=",
+    "locale": "English/US parameters; not a verified physical search location",
+    "successfulSeeds": 24,
+    "nonemptySeeds": 23,
+    "results": [
+      {
+        "query": "notebooklm youtube link not working",
+        "suggestions": [
+          "notebooklm youtube link not working",
+          "why my youtube link is not working",
+          "why is my youtube link not working on facebook",
+          "why youtube link not opening in app"
+        ]
+      },
+      {
+        "query": "notebooklm youtube video not supported",
+        "suggestions": []
+      },
+      {
+        "query": "notebooklm cannot add youtube",
+        "suggestions": [
+          "notebooklm could not add source youtube"
+        ]
+      },
+      {
+        "query": "notebooklm source not loading",
+        "suggestions": [
+          "notebooklm source not loading",
+          "notebooklm source stuck on loading",
+          "notebooklm source not uploading",
+          "notebook lm source won't load"
+        ]
+      },
+      {
+        "query": "notebooklm unable to import this web page",
+        "suggestions": [
+          "notebooklm unable to import this web page due to source restrictions",
+          "notebooklm unable to import this web page due to domain restrictions"
+        ]
+      },
+      {
+        "query": "notebooklm pdf not uploading",
+        "suggestions": [
+          "notebooklm pdf not uploading",
+          "notebooklm pdf not loading",
+          "why is my pdf file not uploading",
+          "why won't my pdf upload",
+          "why won't my pdf files upload"
+        ]
+      },
+      {
+        "query": "notebooklm audio overview not generating",
+        "suggestions": [
+          "notebooklm audio overview not generating",
+          "notebooklm audio not generating",
+          "why do i keep getting audio renderer error"
+        ]
+      },
+      {
+        "query": "notebooklm limits",
+        "suggestions": [
+          "notebooklm limits",
+          "notebooklm limits free",
+          "notebooklm limits pro",
+          "notebooklm limits per day",
+          "notebooklm limits free vs paid",
+          "notebooklm limits for free plan",
+          "notebooklm limits audio",
+          "notebooklm limits plus",
+          "notebooklm limits reddit",
+          "notebooklm limits video"
+        ]
+      },
+      {
+        "query": "notebooklm source limit",
+        "suggestions": [
+          "notebooklm source limit",
+          "notebooklm source limit pro",
+          "notebooklm source limitations workarounds",
+          "notebooklm source limit size",
+          "notebooklm source limit plus",
+          "notebooklm source limit free",
+          "notebooklm source limit 300",
+          "notebooklm source limit reddit",
+          "notebooklm source restrictions",
+          "google notebooklm source limit"
+        ]
+      },
+      {
+        "query": "chatgpt pdf upload not working",
+        "suggestions": [
+          "chatgpt pdf upload not working",
+          "why won't my pdf upload",
+          "why is my pdf file not uploading"
+        ]
+      },
+      {
+        "query": "chatgpt file upload failed",
+        "suggestions": [
+          "chatgpt file upload failed",
+          "chatgpt file upload failed (400)",
+          "chatgpt file upload failed too many requests",
+          "chatgpt file upload failure",
+          "chatgpt file upload error",
+          "chatgpt file upload error 5",
+          "chatgpt file upload error today",
+          "chatgpt document upload error",
+          "chatgpt file upload unknown error occurred",
+          "chatgpt project file upload error"
+        ]
+      },
+      {
+        "query": "chatgpt cannot read pdf",
+        "suggestions": [
+          "chatgpt cannot read pdf",
+          "chatgpt can't read pdf",
+          "chatgpt doesn't read pdf",
+          "chatgpt cannot open pdf",
+          "chatgpt cannot read scanned pdf",
+          "chatgpt won't open pdf",
+          "chatgpt cannot read my pdf",
+          "pdf not working properly",
+          "pdf not working",
+          "pdf not loading"
+        ]
+      },
+      {
+        "query": "cursor ai not working",
+        "suggestions": [
+          "cursor ai not working",
+          "cursor ai not working today",
+          "cursor ai not working in nigeria",
+          "cursor ai not working on laptop",
+          "cursor ai not working properly",
+          "cursor ai not working reddit",
+          "cursor ai not working after update",
+          "cursor ai not working on mac",
+          "cursor ai stopped working",
+          "cursor ai not opening"
+        ]
+      },
+      {
+        "query": "cursor agent not working",
+        "suggestions": [
+          "cursor agent not working",
+          "cursor agent stopped working",
+          "cursor agent not loading",
+          "cursor agent not starting",
+          "cursor agent not showing",
+          "cursor agent not running",
+          "cursor agent terminal not working",
+          "cursor ai agent not working",
+          "cursor agent mode not working",
+          "cursor agent cli not working"
+        ]
+      },
+      {
+        "query": "claude code not working",
+        "suggestions": [
+          "claude code not working",
+          "claude code not working in vscode",
+          "claude code not working in terminal",
+          "claude code not working today",
+          "claude code not working on windows",
+          "claude code not working in visual studio code",
+          "claude code not working with ollama",
+          "claude code not working now",
+          "claude code not working in powershell",
+          "claude code not working reddit"
+        ]
+      },
+      {
+        "query": "github copilot not working vscode",
+        "suggestions": [
+          "github copilot not working vscode",
+          "github copilot not working vscode language model unavailable",
+          "github copilot stopped working vscode",
+          "github copilot autocomplete not working vscode",
+          "github copilot chat not working vscode",
+          "github copilot not showing in vscode",
+          "github copilot sign in not working vscode",
+          "github copilot not showing suggestions vscode",
+          "github copilot pro not working in vscode",
+          "github copilot vscode extension not working"
+        ]
+      },
+      {
+        "query": "copilot chat not working",
+        "suggestions": [
+          "copilot chat not working",
+          "copilot chat not working in outlook classic",
+          "copilot chat not working in vscode",
+          "copilot chat not working in outlook",
+          "copilot chat not working in visual studio",
+          "copilot chat not working in intellij",
+          "copilot chat not working in edge",
+          "copilot chat not working in firefox",
+          "copilot chat not working today",
+          "copilot chat not working in wsl"
+        ]
+      },
+      {
+        "query": "copilot suggestions not showing",
+        "suggestions": [
+          "copilot suggestions not showing vscode",
+          "copilot suggestions not showing",
+          "copilot autocomplete not showing",
+          "copilot suggestions not working",
+          "github copilot suggestions not showing",
+          "copilot inline suggestions not working",
+          "vscode copilot suggestions not working",
+          "copilot inline suggestions not working vscode",
+          "github copilot suggestions not working"
+        ]
+      },
+      {
+        "query": "perplexity not working",
+        "suggestions": [
+          "perplexity not working",
+          "perplexity not working on whatsapp",
+          "perplexity not working today",
+          "perplexity not working on ipad",
+          "perplexity not working reddit",
+          "perplexity not working on chrome",
+          "perplexity not working properly",
+          "perplexity not working on safari",
+          "perplexity not working on mac",
+          "perplexity not working now"
+        ]
+      },
+      {
+        "query": "gemini file upload not working",
+        "suggestions": [
+          "gemini file upload not working",
+          "google gemini file upload not working",
+          "upload not working"
+        ]
+      },
+      {
+        "query": "canva ai not working",
+        "suggestions": [
+          "canva ai not working",
+          "canva ai not working in affinity",
+          "canva ai stopped working",
+          "canva ai not showing",
+          "canva ai voice not working",
+          "canva ai generator not working",
+          "canva ai video not working",
+          "canva ai code not working",
+          "canva ai upscaler not working",
+          "mi canvas ai not working"
+        ]
+      },
+      {
+        "query": "midjourney not generating",
+        "suggestions": [
+          "midjourney not generating images",
+          "midjourney not generating",
+          "generator governor not working",
+          "how to fix generator not producing power"
+        ]
+      },
+      {
+        "query": "suno not generating",
+        "suggestions": [
+          "suno not generating songs",
+          "suno not generating lyrics",
+          "suno not generating",
+          "suno not generating video",
+          "suno not generating stems",
+          "suno not generating full song",
+          "suno not generating vocals",
+          "suno not creating song",
+          "suno not creating my song",
+          "suno not creating"
+        ]
+      },
+      {
+        "query": "convert long video to shorts free",
+        "suggestions": [
+          "convert long video to shorts free",
+          "convert long video to shorts online free",
+          "convert long youtube videos to shorts free",
+          "convert video to shorts free",
+          "turn long video into shorts free",
+          "convert full video into shorts free",
+          "long video to shorts converter ai free",
+          "long video to shorts converter ai free without watermark",
+          "convert youtube video to shorts free",
+          "turn long video into viral shorts free"
+        ]
+      }
+    ],
+    "limitations": "Suggestions are wording evidence, not volume, trend, keyword difficulty, commercial value or click forecasts. An empty suggestion set does not prove zero demand."
+  },
+  "searchResults": [
+    {
+      "engine": "Google (via research subagent)",
+      "query": "github copilot not working vscode",
+      "observedTitles": [
+        "Troubleshooting common issues with GitHub Copilot - GitHub Docs",
+        "GitHub Copilot not working in VS Code - GitHub Community discussions",
+        "Copilot stopped working / Language model unavailable - microsoft/vscode issues",
+        "windowsreport.com GitHub Copilot not working guide",
+        "needsomefun.net / techsifted.com troubleshooting posts"
+      ],
+      "observation": "Official docs, community threads, GitHub issues and third-party guides. No ranking positions recorded. Google browser search returned ERR_ABORTED in this session; DDG HTML and Bing were used for cross-checks."
+    }
+  ],
+  "competitorReview": [
+    {
+      "url": "https://windowsreport.com/github-copilot-not-working/",
+      "observed": "Still references Copilot X era wording and an outdated outage; recommends deleting VS Code data folders, which is destructive and not in current official guidance. No Free plan completion limit, no Chat Diagnostics, no allowlist method."
+    },
+    {
+      "url": "https://needsomefun.net/github-copilot-not-working/",
+      "observed": "Claims there is no in-editor usage indicator; the Status Bar Copilot menu and account billing pages show allowance state. No proxy/Kerberos or certificate trust-store guidance."
+    },
+    {
+      "url": "https://techsifted.com/github-copilot-chat-not-working/",
+      "observed": "Chat-only, framed around VS Code 1.88-era UI, includes an unverified setting. Does not separate completions from chat compatibility rules."
+    }
+  ],
+  "communityLeads": [
+    {
+      "source": "microsoft/vscode issue #287055 (Jan 2026)",
+      "text": "Language model unavailable",
+      "treatment": "Mentioned as an unverified community report and autocomplete term, not as a confirmed defect."
+    },
+    {
+      "source": "GitHub Community discussions",
+      "text": "Chat took too long to get ready; Bad Credentials sign-in loop",
+      "treatment": "Covered generically through the official sign-out/reload/sign-in and version-pairing steps; no exact-cause claims."
+    }
+  ],
+  "primarySources": [
+    {
+      "url": "https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-common-issues",
+      "supports": "Keep extension updated (older clients cannot talk to servers); content exclusion diagonal-line icon and up to 30 minute propagation; indirect semantic info caveat; 'could not connect to server. Extension activation failed' = no plan or token error, sign out/in; rate limit guidance; Chat tied to latest VS Code; VS Code auth fix Accounts > Sign out > Developer: Reload Window > sign in; GHE.com settings; Status page."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-network-errors",
+      "supports": "curl --verbose _ping endpoints (completions and chat), -x proxy test, --insecure as diagnosis only; ETIMEDOUT/ECONNRESET; https:// proxy URLs unsupported; basic/Kerberos auth; certificates via win-ca/mac-ca/OpenSSL files; Proxy Strict SSL warning."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-firewall-settings",
+      "supports": "Allowlist requirement and reference to the Copilot allowlist page."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/reference/copilot-allowlist-reference",
+      "supports": "gh api meta -q '.domains | .website, .copilot' to list current required domains."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/view-logs",
+      "supports": "Output panel GitHub Copilot channel; Developer: Open Extension Logs Folder; Developer: Set Log Level > GitHub Copilot Chat / GitHub > Trace then back to Info; Developer: Chat Diagnostics Reachability; Developer: Toggle Developer Tools console."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/get-started/plans",
+      "supports": "Copilot Free only for individuals without org access; 2000 completions/month on Free; AI credits allowance; auto model selection only on Free/Student; completions unlimited and not billed in credits on paid plans; Business/Enterprise editor preview opt-in for some models."
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/usage-limits",
+      "supports": "Rate limit reasons (capacity, fairness, abuse); what to do: wait and retry, check usage pattern, upgrade; additional usage budget."
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/copilot/ai-powered-suggestions",
+      "supports": "Status Bar Copilot menu enable/disable per language; Snooze/Cancel Snooze five-minute increments and commands; github.copilot.enable object; metered connection pauses automatic suggestions, Trigger Inline Suggestion command; Business/Enterprise editor preview for models."
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/copilot/setup",
+      "supports": "Use a different GitHub account with Copilot; Manage Extension Account Preferences per workspace/profile; GitHub Copilot: Sign in command; Continue with GHE.com and github.copilot.advanced authProvider; chat.disableAIFeatures disables and hides AI features and Copilot extensions at user/workspace level."
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/copilot/faq",
+      "supports": "Copilot status dashboard in the Status Bar shows inline suggestion and AI credit percentages; inline suggestion and AI credit allowances are independent and reset monthly; chat.agent.enabled can be managed by organization policy; rate limit can occur before credits are exhausted; inline-suggestions-not-working checklist."
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/setup/network",
+      "supports": "VS Code proxy settings http.proxy, http.proxyStrictSSL, Kerberos service principal setting; OS trust store use."
+    },
+    {
+      "url": "https://www.pexels.com/license/",
+      "supports": "Blog use permitted, attribution appreciated; photos remain illustrations."
+    }
+  ],
+  "originalValue": [
+    "Symptom-first table that separates completions, chat, auth, plan/rate limits, network and policy before any fix.",
+    "Explicit Free plan completion allowance vs AI credits vs service rate limits distinction, with where each is visible.",
+    "Windows PowerShell 5.1 equivalent of the documented curl ping (curl alias gotcha), verified against both endpoints from an unproxied connection.",
+    "Content exclusion explained as an administrator policy with the 30 minute propagation and indirect-context caveats, not a client bug.",
+    "Allowlist retrieval via gh api meta instead of hand-copied hostnames; explicit warning against disabling Proxy Strict SSL permanently and against deleting VS Code user data.",
+    "Support handoff checklist: versions, plan, exact error, ping result, Reachability, redaction."
+  ],
+  "internalLinkPlan": [
+    "/blog/github-copilot-guide-2026",
+    "/tools/json-formatter",
+    "/blog/vscode-tips-and-tricks-2026",
+    "/blog/best-ai-coding-assistants-2026-copilot-cursor-windsurf"
+  ],
+  "inboundLinksForPublishReviewOnly": [
+    {
+      "from": "/blog/github-copilot-guide-2026",
+      "placement": "After the four-step install/sign-in list",
+      "anchor": "fix GitHub Copilot not working in VS Code"
+    },
+    {
+      "from": "/blog/vscode-tips-and-tricks-2026",
+      "placement": "Near the extension/startup performance tip",
+      "anchor": "Copilot troubleshooting checklist"
+    }
+  ],
+  "images": [
+    {
+      "role": "cover",
+      "id": 4974912,
+      "photographer": "olia danilevich",
+      "source": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/",
+      "description": "Developer typing on a laptop showing code with a second laptop behind; original 6000x4000."
+    },
+    {
+      "role": "body",
+      "id": 34803966,
+      "photographer": "Daniil Komov",
+      "source": "https://www.pexels.com/photo/close-up-of-computer-screen-with-code-displayed-34803966/",
+      "description": "Laptop screen with code editor and debugger panel; original 6048x4032. Not a VS Code/Copilot screenshot."
+    },
+    {
+      "role": "body",
+      "id": 2102416,
+      "photographer": "Djordje Petrovic",
+      "source": "https://www.pexels.com/photo/man-in-black-shirt-sits-behind-desk-with-computers-2102416/",
+      "description": "Developer at an office desk with laptop and monitor; original portrait 3456x5184, cropped."
+    },
+    {
+      "role": "body",
+      "id": 12902862,
+      "photographer": "Mizuno K",
+      "source": "https://www.pexels.com/photo/office-worker-using-a-computer-in-an-office-12902862/",
+      "description": "Person pointing at code on a laptop; original portrait 4000x6000, cropped."
+    },
+    {
+      "role": "body",
+      "id": 34803969,
+      "photographer": "Daniil Komov",
+      "source": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+      "description": "Laptop with code editor and coffee mug; original 6048x4032."
+    }
+  ],
+  "imagePolicy": "All five IDs checked unused against 163 existing posts including both hidden drafts via the read-only image helper. 1200x675 crops downloaded and visually inspected. Photos are credited stock illustrations, not VS Code screenshots, author tests or endorsements.",
+  "measurementPlan": {
+    "beforeAnyPublish": [
+      "Review and approve the article; keep all drafts hidden until requested.",
+      "Verify current source facts, rendered code, headings, images and canonical published internal destinations."
+    ],
+    "whenPublishAuthorized": [
+      "Publish only the requested article, then verify 200/self-canonical/indexable page and sitemap inclusion.",
+      "Add the two contextual inbound links only after the destination is live.",
+      "Record publication date; inspect the exact URL in Search Console."
+    ],
+    "trafficDiagnosisNeeded": "Still need a last-28-days Pages and Queries export with comparison period, clicks, impressions, CTR and position. The 40-50 impression report lacks a date range and cannot identify a cause alone.",
+    "noGuarantee": "This work improves topic focus and article quality. It cannot promise clicks, rankings or recovery."
+  },
+  "draftValidation": {
+    "status": "Passed; saved hidden draft and re-read independently using the expected local fields",
+    "checkedOn": "2026-10-02",
+    "draftId": 232,
+    "category": "Coding",
+    "published": false,
+    "featured": false,
+    "scheduledAt": null,
+    "wordCountExcludingCodeImagesUrlsAndCredits": 3586,
+    "paragraphWords": 3236,
+    "readingTime": "17 min read",
+    "metaTitleCharacters": 53,
+    "metaDescriptionCharacters": 156,
+    "codeBlocks": 5,
+    "visibleFaqs": 8,
+    "routeExtractedFaqs": 8,
+    "routeEmitsFirstFaqs": 5,
+    "tableCount": 1,
+    "uniqueHeadingIds": 14,
+    "internalLinks": 4,
+    "linkValidation": "Three published blog targets and one public tool target all returned 200 with exact self-canonicals and no noindex. Rendered links contextual and unduplicated; no links to hidden drafts.",
+    "imageValidation": "One cover and four body photos, all distinct and unused across 163 other posts; 1400x788 images loaded in the preview. Four rendered figures include creator/credit/copyright/license/acquire-license metadata.",
+    "rendering": "Actual MarkdownRenderer plus image metadata helpers/CopyButton rendered server-side. Five code blocks round-trip exactly. Actual route FAQ loop and generateMetadata executed with a synthetic post: correct title/description/canonical/OG/Twitter when published, noindex/Post Not Found when hidden.",
+    "browser": "Isolated loopback preview at 320/390/1280px: 1 H1, 8 FAQ groups, 5 code blocks, 1 table, 4 paragraph links, 5 loaded images, no document or element overflow. Isolated CSS, not full production layout; copy buttons not hydrated.",
+    "liveCommandCheck": "Both documented _ping endpoints (completions proxy and chat API) returned HTTP 200 via Invoke-WebRequest from an unproxied Windows PowerShell 5.1 session; article discloses this as the only live check. No Copilot account, proxy or certificate scenario tested.",
+    "independentReview": "Three blocking items fixed: --insecure scoped to the documented revocation case; allowlist reference added to Sources; activation-failed table row restricted to the two documented causes with the ETIMEDOUT/ECONNRESET proxy variant separated. Unverified claims (status dashboard usage %, allowance independence, chat.disableAIFeatures, chat.agent.enabled policy, Manage Extension Account Preferences, GHE sign-in) then verified against VS Code setup/FAQ pages and sourced; 'chat may still answer' in excluded files removed; diagonal-line FAQ tightened to content exclusion.",
+    "checks": "Offline content assertions, actual renderer/metadata test, installed ESLint, node syntax check, ledger JSON parse, read-only DB/HTTP checks before and after insert.",
+    "contentSha256": "6b97f6a1168c86f1a2e1e1dd1c39375e5283983ea884254a01d6210552848cba",
+    "otherPostsUnchanged": 163,
+    "otherEditorialChecksumExcludingViews": "8a260ec4baeaaea75ae97ead4b84ce6d",
+    "publicVisibility": "Drafts 232/229/230 all return Post Not Found + noindex on blog routes (existing HTTP 200 soft-404 behavior) and 404 + noindex on story routes. All three absent from /blog, /sitemap.xml, /feed.xml.",
+    "limitations": "No full Next build, no real Copilot failure reproduced, no GSC report, no indexing request, no publication, no inbound links, no commit/push or deployment. Click/ranking improvement unmeasured.",
+    "cleanup": "Temporary inventory/autocomplete/image/overlap helpers removed. Reproducible add/test scripts and ledger retained; preview stopped after review."
+  }
+}

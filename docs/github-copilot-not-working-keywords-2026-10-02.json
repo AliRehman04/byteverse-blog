@@ -561,6 +561,22 @@
     }
   ],
   "imagePolicy": "All five IDs checked unused against 163 existing posts including both hidden drafts via the read-only image helper. 1200x675 crops downloaded and visually inspected. Photos are credited stock illustrations, not VS Code screenshots, author tests or endorsements.",
+  "release": {
+    "authorizedOn": "2026-10-02",
+    "authorization": "live push kro",
+    "articleId": 232,
+    "url": "https://www.byteverse.fyi/blog/github-copilot-not-working-vscode-2026",
+    "databasePublished": true,
+    "featured": false,
+    "scheduledAt": null,
+    "contextualBacklinks": ["github-copilot-guide-2026", "vscode-tips-and-tricks-2026"],
+    "protectedUnpublishedDrafts": [229, 230],
+    "unrelatedPostsUnchanged": 161,
+    "releaseCommit": "74d34cf",
+    "deployment": "Public GitHub commit status for 74d34cf reported Vercel success.",
+    "liveVerification": "PASS via scripts/check-copilot-not-working-live.mjs: HTTP 200, exact title/description/self-canonical, indexable, 1 H1, 5 code blocks, 8 visible FAQs, 5 article images, BlogPosting and first-5 FAQ schema; both inbound links visible; story URL 308 to article; present in /blog, /sitemap.xml and /feed.xml; drafts 229/230 remain Post Not Found + noindex and excluded.",
+    "rankingOrClickChange": "Not measured; publication does not guarantee indexing, clicks or rankings. Review exact URL in Search Console at 14 and 28 days with comparable complete periods."
+  },
   "measurementPlan": {
     "beforeAnyPublish": [
       "Review and approve the article; keep all drafts hidden until requested.",

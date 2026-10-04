@@ -63,6 +63,7 @@ export async function GET() {
     { name: "AI Prompt Generator", href: "/tools/ai-prompt-generator", desc: "Build better prompts for ChatGPT, Claude, Gemini, code assistants, and image models" },
     { name: "AI CV Builder", href: "/tools/ai-cv-builder", desc: "Create modern CVs with visual and code modes, AI writing help, customization, and PDF download" },
     { name: "SEO Title Checker", href: "/tools/seo-title-analyzer", desc: "Measure title characters and approximate pixel width; preview desktop/mobile snippets and compare three drafts" },
+    { name: "Invoice PDF to Excel", href: "/tools/invoice-pdf-to-excel", desc: "Free local batch extraction of up to 20 selectable-text invoice PDFs in an isolated workspace; review each included invoice before XLSX or CSV export. No OCR or AI" },
   ];
 
   lines.push("## Developer Tools (Free, Client-Side)");

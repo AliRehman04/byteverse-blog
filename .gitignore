@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# Generated local-only invoice sandbox; built before dev and production builds.
+/public/invoice-workspace/
+/.invoice-build/
+
 # next.js
 /.next/
 /out/

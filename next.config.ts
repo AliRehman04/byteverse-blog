@@ -113,6 +113,15 @@ const nextConfig: NextConfig = {
         },
       ],
     },
+    {
+      source: "/invoice-workspace/:path*",
+      headers: [
+        { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+        { key: "Cache-Control", value: "no-store" },
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "Content-Security-Policy", value: "sandbox allow-scripts allow-downloads; default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data: blob:; worker-src blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'" },
+      ],
+    },
   ],
   redirects: async () => [
     // Keep indexed story URLs reachable while consolidating on the full articles.

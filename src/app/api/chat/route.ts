@@ -45,6 +45,7 @@ const TOOLS: { slug: string; name: string; desc: string; keywords: string[] }[] 
   { slug: "cron-expression-generator", name: "Cron Expression Generator", desc: "Build cron schedules visually.", keywords: ["cron", "schedule", "timer", "job", "expression", "task", "automate"] },
   { slug: "llms-txt-generator-validator", name: "llms.txt Generator & Validator", desc: "Generate and validate llms.txt files.", keywords: ["llms", "txt", "llm", "ai", "validate", "generate"] },
   { slug: "json-to-csv", name: "JSON to CSV Converter", desc: "Convert JSON data to CSV.", keywords: ["json", "csv", "convert", "data", "export", "table", "excel"] },
+  { slug: "invoice-pdf-to-excel", name: "Invoice PDF to Excel", desc: "Review selectable-text invoice PDFs locally and export XLSX/CSV free. No OCR or AI; select files in the isolated converter, not this chat.", keywords: ["invoice", "invoices", "pdf", "excel", "xlsx", "csv"] },
   { slug: "markdown-to-html", name: "Markdown to HTML", desc: "Convert Markdown to HTML.", keywords: ["markdown", "html", "convert", "preview", "md", "documentation"] },
   { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", desc: "Generate placeholder text.", keywords: ["lorem", "ipsum", "placeholder", "dummy", "text", "mockup"] },
   { slug: "privacy-policy-generator", name: "Privacy Policy Generator", desc: "Generate privacy policies for websites.", keywords: ["privacy", "policy", "gdpr", "ccpa", "legal", "terms", "website"] },

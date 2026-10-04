@@ -52,6 +52,7 @@ const seeds = {
   'lorem-ipsum-generator': ['lorem ipsum generator', 'placeholder text generator'],
   'markdown-to-html': ['markdown to html', 'markdown table to html'],
   'json-to-csv': ['json to csv', 'nested json to csv'],
+  'invoice-pdf-to-excel': ['invoice pdf to excel', 'extract invoice data from pdf to excel'],
   'privacy-policy-generator': ['privacy policy generator', 'privacy policy for website'],
   'json-to-typescript': ['json to typescript', 'json to typescript interface'],
   'flexbox-generator': ['flexbox generator', 'css flexbox playground'],

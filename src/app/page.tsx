@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck, Flame } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Cpu, TrendingUp, Code2, Braces, Layers, Bot, Monitor, Star, Package, Lightbulb, Wrench, Zap, Shield, FlaskConical, Target, MousePointerClick, ShieldCheck, Flame, FileSpreadsheet } from "lucide-react";
 import { LazyNewsletter } from "@/components/lazy-newsletter";
 import { siteConfig } from "@/lib/config";
 import { getSiteLogoImageSchema } from "@/lib/image-seo";
@@ -297,6 +297,7 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
+            { title: "Invoice PDF to Excel", desc: "New · Review digital invoice PDFs, then export XLSX or CSV locally", href: "/tools/invoice-pdf-to-excel", icon: FileSpreadsheet, color: "text-teal-600", bg: "from-teal-500/10 to-emerald-500/10" },
             { title: "SEO Title Checker", desc: "Check characters, approximate pixels & search previews", href: "/tools/seo-title-analyzer", icon: Target, color: "text-blue-500", bg: "from-blue-500/10 to-cyan-500/10" },
             { title: "Meta Tag Generator", desc: "SEO & social mockups, HTML import and Next.js output", href: "/tools/meta-tag-generator", icon: Wrench, color: "text-purple-500", bg: "from-purple-500/10 to-fuchsia-500/10" },
             { title: "Similarity & Plagiarism Checker", desc: "Check text uniqueness — private, in your browser", href: "/tools/plagiarism-checker", icon: Shield, color: "text-amber-500", bg: "from-amber-500/10 to-orange-500/10" },

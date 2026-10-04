@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { JsonToCsvTool } from "./json-to-csv-tool";
 import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
@@ -29,6 +30,7 @@ export default function JsonToCsvPage() {
       <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
         <h2>How It Works</h2>
         <p>Paste a JSON array of objects and the tool will extract all unique keys as column headers, then output each object as a row. Nested objects are flattened with dot notation.</p>
+        <p>Starting with invoice PDFs rather than JSON? Use <Link href="/tools/invoice-pdf-to-excel">Invoice PDF to Excel</Link> to review summary fields from selectable-text invoices and export XLSX or CSV locally. Scanned invoices are not supported.</p>
         <h2>Features</h2>
         <ul>
           <li>Automatic key detection across all objects</li>

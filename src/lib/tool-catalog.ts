@@ -4,7 +4,7 @@ import {
   TextCursorInput, Paintbrush, Pipette, Square, Brain, FileSearch,
   CodeXml, RemoveFormatting, Wand2, FileCode, Video, Speech, QrCode,
   Clock3, Sparkles, FileImage, BarChart3, AlignLeft, FileDown,
-  Table2, ScrollText, FileType, Rows3,
+  Table2, ScrollText, FileType, Rows3, FileSpreadsheet,
 } from "lucide-react";
 
 export const toolCategories = [
@@ -67,6 +67,7 @@ export const toolCatalog: readonly ToolEntry[] = [
   { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate placeholder words, sentences or paragraphs with optional HTML wrapping.", category: "Formatters & Dev", icon: AlignLeft, color: "text-stone-500", bg: "bg-stone-500/10" },
   { slug: "markdown-to-html", name: "Markdown to HTML Converter", description: "Convert basic Markdown into HTML for review and copying; inspect complex documents before publishing.", category: "Encoders & Converters", icon: FileDown, color: "text-blue-500", bg: "bg-blue-500/10" },
   { slug: "json-to-csv", name: "JSON to CSV Converter", description: "Convert JSON objects and arrays to CSV or TSV, with nested-object flattening and delimiter options.", category: "Encoders & Converters", icon: Table2, color: "text-green-500", bg: "bg-green-500/10" },
+  { slug: "invoice-pdf-to-excel", name: "Invoice PDF to Excel", description: "Extract summary fields from selectable-text invoice PDFs, review each invoice and export XLSX or CSV locally. No OCR.", category: "Encoders & Converters", icon: FileSpreadsheet, color: "text-teal-600", bg: "bg-teal-500/10" },
   { slug: "privacy-policy-generator", name: "Privacy Policy Template Generator", description: "Draft an editable website policy template. Review it against your real data practices and legal requirements.", category: "SEO & Web", icon: ScrollText, color: "text-purple-500", bg: "bg-purple-500/10" },
   { slug: "json-to-typescript", name: "JSON to TypeScript Converter", description: "Draft interfaces or type aliases from a JSON sample. Review inferred optional fields and mixed arrays.", category: "Formatters & Dev", icon: FileType, color: "text-sky-500", bg: "bg-sky-500/10" },
   { slug: "flexbox-generator", name: "CSS Flexbox Generator", description: "Explore flex direction, alignment, wrapping and gaps with a live layout preview and copyable CSS.", category: "CSS & Design", icon: Rows3, color: "text-violet-500", bg: "bg-violet-500/10" },
@@ -110,7 +111,8 @@ export const relatedToolSlugs: Readonly<Record<string, readonly string[]>> = {
   "ai-cv-builder": ["word-counter", "readability-checker", "ai-prompt-generator", "text-to-speech"],
   "lorem-ipsum-generator": ["html-editor", "word-counter", "flexbox-generator", "html-tag-generator"],
   "markdown-to-html": ["html-editor", "html-tag-generator", "diff-checker", "word-counter"],
-  "json-to-csv": ["json-formatter", "json-to-typescript", "diff-checker", "code-formatter"],
+  "json-to-csv": ["json-formatter", "json-to-typescript", "diff-checker", "invoice-pdf-to-excel"],
+  "invoice-pdf-to-excel": ["json-to-csv", "json-formatter", "diff-checker"],
   "privacy-policy-generator": ["robots-txt-generator", "meta-tag-generator", "html-tag-generator", "word-counter"],
   "json-to-typescript": ["json-formatter", "json-to-csv", "code-formatter", "diff-checker"],
   "flexbox-generator": ["html-editor", "css-gradient-generator", "box-shadow-generator", "color-converter"],

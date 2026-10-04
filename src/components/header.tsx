@@ -101,12 +101,12 @@ export function Header() {
                 title="ByteVerse - AI Tools, Tech Guides & Productivity"
                 width={160}
                 height={40}
-                className="w-auto max-w-[120px] sm:max-w-none group-hover:scale-[1.02] transition-transform"
+                className="w-auto max-w-26 sm:max-w-none group-hover:scale-[1.02] transition-transform"
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden xl:flex items-center gap-1">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
@@ -242,8 +242,9 @@ export function Header() {
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+                className="xl:hidden p-2 rounded-lg hover:bg-muted transition-colors"
                 aria-label="Toggle menu"
+                aria-expanded={mobileOpen}
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -252,7 +253,7 @@ export function Header() {
 
           {/* Mobile Nav */}
           {mobileOpen && (
-            <nav className="md:hidden py-4 border-t border-border space-y-1 animate-fade-in">
+            <nav className="xl:hidden py-4 border-t border-border space-y-1 animate-fade-in">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 

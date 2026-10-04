@@ -1,7 +1,7 @@
 {
   "checkedOn": "2026-10-03",
   "slug": "excel-get-data-from-pdf-missing-2026",
-  "publication": "Saved as hidden draft 233 and verified on 2026-10-04 UTC after the research dated October 3: published=false, featured=false, scheduledAt=null. Database NOW() supplied both timestamps without backdating. No publication, inbound-link edits, commit, push or deployment.",
+  "publication": "Released on 2026-10-04 after explicit 'all changes live push' approval: commits 0ba717a (invoice tool) and 3dddc94 (article files) deployed first, then article 233 was published with featured=false and scheduledAt=null, plus exact contextual backlinks in posts 154 and 83 via scripts/_publish-excel-pdf-missing-post.mjs in one serializable guarded transaction. Old drafts 229/230 remain hidden. Public ISR caches required a follow-up deployment to show the backlinks and collection entries.",
   "evidenceProvenance": {
     "referenceFormat": "docs/github-copilot-not-working-keywords-2026-10-02.json",
     "rawAutocomplete": "The 20 successful query responses collected during this session are preserved below, including empty and irrelevant suggestions.",

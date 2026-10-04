@@ -1,7 +1,7 @@
 {
   "checkedOn": "2026-10-04",
   "slug": "copilot-in-excel-not-showing-2026",
-  "publication": "Hidden draft only: published=false, featured=false, scheduledAt=null. No publication, inbound-link edits, commit, push or deployment authorized by this task.",
+  "publication": "Released on 2026-10-04 after explicit 'live push kro' approval: article files committed (677832c) and pushed, then article 234 published with featured=false and scheduledAt=null plus exact contextual backlinks in posts 154 and 233 via scripts/_publish-copilot-excel-post.mjs in one serializable guarded transaction. Old drafts 229/230 remain hidden. A follow-up docs deployment refreshes ISR caches; scripts/check-copilot-excel-live.mjs verifies the live result.",
   "evidenceProvenance": {
     "referenceFormat": "docs/excel-pdf-missing-keywords-2026-10-03.json",
     "sessionEvidence": "Live read-only SELECT inventory; 30-seed Google autocomplete pass; Google result snapshot; direct fetches of Microsoft Support/Learn pages dated April–October 2026; Pexels uniqueness SQL, 1400x788 crop downloads and visual review.",

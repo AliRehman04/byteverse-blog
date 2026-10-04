@@ -1,0 +1,182 @@
+{
+  "checkedOn": "2026-10-04",
+  "slug": "copilot-in-excel-not-showing-2026",
+  "publication": "Hidden draft only: published=false, featured=false, scheduledAt=null. No publication, inbound-link edits, commit, push or deployment authorized by this task.",
+  "evidenceProvenance": {
+    "referenceFormat": "docs/excel-pdf-missing-keywords-2026-10-03.json",
+    "sessionEvidence": "Live read-only SELECT inventory; 30-seed Google autocomplete pass; Google result snapshot; direct fetches of Microsoft Support/Learn pages dated April–October 2026; Pexels uniqueness SQL, 1400x788 crop downloads and visual review.",
+    "evidenceBoundary": "Autocomplete establishes wording, not demand. Microsoft documentation supports product statements; no Excel build, tenant, network or Mac was tested. No authenticated Search Console report was available."
+  },
+  "userReportedMetrics": {
+    "clicks": 0,
+    "approximateImpressions": "40-50",
+    "dateRange": null,
+    "verified": false,
+    "interpretation": "Unverified totals without a reporting period cannot establish demand or diagnose the cause of low clicks. A new article is not a measured fix."
+  },
+  "inventory": {
+    "method": "Live read-only SELECT on 2026-10-04 before any write; editorial checksum excludes view counters and is computed over all rows ordered by id.",
+    "totalPosts": 165,
+    "publishedPosts": 163,
+    "editorialChecksumExcludingViews": "b374ee2773268507bec29fcdc384943d",
+    "protectedDrafts": [
+      {
+        "id": 229,
+        "slug": "pdf-to-podcast-notebooklm-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "07567f98b5cd73d7fd978dede5a47836",
+        "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d"
+      },
+      {
+        "id": 230,
+        "slug": "audacity-noise-reduction-voice-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "633a2127b815f4dd2949977c777385df",
+        "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc"
+      }
+    ],
+    "relatedOverlap": [
+      { "id": 154, "slug": "how-to-use-ai-in-excel-google-sheets-2026", "coverage": "Mentions Copilot in Excel briefly as a built-in assistant; no troubleshooting of a missing button or license labels." },
+      { "id": 233, "slug": "excel-get-data-from-pdf-missing-2026", "coverage": "Power Query PDF connector availability; different feature, linked for disambiguation." },
+      { "id": 232, "slug": "github-copilot-not-working-vscode-2026", "coverage": "GitHub Copilot in VS Code; different product, linked to prevent confusion." },
+      { "id": 78, "slug": "best-ai-spreadsheet-tools-2026", "coverage": "Tool roundup; no Copilot availability troubleshooting." }
+    ],
+    "decision": "No dedicated article covers the missing Copilot button, license labels, update channel, Enable Copilot checkbox or the retired COPILOT function. Adjacent Excel coverage exists, so this is not a zero-overlap claim."
+  },
+  "targeting": {
+    "primary": "copilot in excel not showing",
+    "secondary": [
+      "copilot in excel not working",
+      "copilot in excel not appearing",
+      "copilot button in excel not showing",
+      "copilot in excel 365 not showing",
+      "copilot in excel not showing mac",
+      "copilot function in excel not showing",
+      "excel copilot not showing in ribbon",
+      "excel copilot formula not available"
+    ],
+    "audience": "Microsoft 365 users on Windows, Mac or the web who cannot find Copilot in Excel, see a greyed or missing button, or get #NAME? from the retired COPILOT function.",
+    "title": "Copilot in Excel Not Showing? License, Button and Fixes",
+    "metaTitle": "Copilot in Excel Not Showing? Button & License Fixes",
+    "metaDescription": "Copilot not showing in Excel? Check the new lower-right button, your Copilot license label, update channel, privacy settings and why =COPILOT() returns #NAME?.",
+    "category": "Tech Guides",
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "rankings": null,
+    "competitionAssessment": "Chosen for a current documentation gap (2026 button relocation and September 2026 COPILOT function retirement), not for measured low competition. The Google snapshot showed an AI Overview, a Microsoft Community Hub answer and a one-year-old YouTube tutorial; none of those establish a click opportunity.",
+    "scopeExclusions": [
+      "Not a Copilot prompt tutorial or feature review.",
+      "No claim that updating, reinstalling or changing a plan guarantees the button appears.",
+      "No GitHub Copilot troubleshooting beyond disambiguation."
+    ]
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=",
+    "locale": "English/US parameters; not a verified physical US search location",
+    "seeds": 30,
+    "selectedClusters": {
+      "copilot in excel not showing": ["copilot in excel not showing", "copilot in excel not showing mac", "copilot in excel not working", "copilot in excel not appearing", "copilot function in excel not showing", "copilot formula in excel not showing", "copilot in excel 365 not showing", "copilot button in excel not showing", "copilot in excel desktop not showing", "copilot function in excel not showing up"],
+      "excel copilot not available": ["excel copilot not available", "excel copilot not showing", "excel copilot not working", "excel copilot not showing in ribbon", "excel copilot not there", "excel copilot function not available", "excel copilot formula not available", "excel copilot formula not showing", "excel 365 copilot not showing", "excel copilot function not showing"]
+    },
+    "alternativesConsidered": [
+      { "topic": "ollama not using gpu (windows/linux/amd/docker)", "decision": "Strong cluster, but no existing Ollama coverage on the site for contextual links; keep for a later day." },
+      { "topic": "claude desktop mcp not working / tools not showing", "decision": "Good cluster; deferred." },
+      { "topic": "docker desktop not starting windows 11", "decision": "Broad, heavily covered; deferred." },
+      { "topic": "cursor agent not working", "decision": "Deferred again; needs narrowing to one error class." }
+    ],
+    "limitations": "Suggestions are wording evidence, not volume, difficulty, rankings or click forecasts."
+  },
+  "searchResults": [
+    {
+      "engine": "Google",
+      "query": "copilot in excel not showing",
+      "url": "https://www.google.com/search?q=copilot+in+excel+not+showing&hl=en&gl=us",
+      "observedResultTypes": ["AI Overview citing Microsoft Community Hub", "YouTube tutorial (78K views, one year old)", "Forums filter"],
+      "observation": "The AI Overview advised refreshing the license and saving to OneDrive/SharePoint; it did not mention the 2026 button relocation or the COPILOT function retirement.",
+      "fixedRanks": null
+    }
+  ],
+  "primarySources": [
+    { "url": "https://support.microsoft.com/en-us/excel/copilot/get-started-with-copilot-in-excel", "supports": "Copilot icon in the lower-right corner; edit/chat/plan modes; platform table (Windows, Mac, web full modes; iPad chat+plan; iPhone/Android chat); note that Copilot may not be included with your subscription or organization settings." },
+    { "url": "https://support.microsoft.com/en-us/excel/copilot/frequently-asked-questions-about-copilot-in-excel", "supports": "Four eligible license situations; M365 Copilot (Basic)/(Premium) labels; Calculation Options must be Automatic; Unsupported file state causes (SharePoint check-out, Strict Open XML); Copilot in Excel is a Copilot Chat tool and cannot be turned off independently; model choice requires commercial Copilot or Premium." },
+    { "url": "https://support.microsoft.com/en-us/topic/c8482b93-4b96-4bb8-8ec9-5148f4d42441", "supports": "Last updated July 2026. Two reasons: button moved or license/account; steps: latest build, File > Account > Update License, Semi-Annual Enterprise Channel not supported (use Current or Monthly Enterprise; web works meanwhile), privacy settings Experiences that analyze your content and All connected experiences." },
+    { "url": "https://support.microsoft.com/en-us/topic/40db4cef-3d59-474d-9dec-f649b5bfab8e", "supports": "Last updated June 2026. Dynamic Action Button in the corner; rollout April–June 2026 worldwide, GCC/GCC High/DoD from October 2026; Dock; Move to ribbon with Windows Build 16.0.20129.15140+ and macOS Build 16.109.525.2+; shortcuts Alt+C, Cmd+Control+I, F6; only appears for users with Copilot access." },
+    { "url": "https://support.microsoft.com/en-us/topic/5058f273-5e28-4a9d-9de6-bf07478ae152", "supports": "Last updated April 2026. Work account labels Copilot Chat (Basic), M365 Copilot (Basic), M365 Copilot (Premium) with their meanings; personal accounts: only the subscription owner can use Copilot in desktop apps; Services & subscriptions and Windows 11 Start account tile." },
+    { "url": "https://support.microsoft.com/en-us/excel/copilot-function", "supports": "COPILOT function no longer available from September 14, 2026; was preview in Frontier and Microsoft 365 Insider programs; cached values remain, recalculation returns #NAME?; use the Copilot pane instead." },
+    { "url": "https://support.microsoft.com/en-us/topic/bc7e530b-152d-4123-8e78-edc06f8b85f1", "supports": "Personal accounts only. Enable Copilot checkbox: Windows File > Options > Copilot (Excel Version 2501+), Mac Preferences > Authoring and Proofing Tools > Copilot (16.93.2+); per app, per device, affects everyone on the device; cannot turn off on iOS/Android/web; privacy alternative under Connected experiences." },
+    { "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/ai-credits-and-limits-for-microsoft-365-subscriptions", "supports": "Last updated September 2026. AI benefits are only available to the subscription owner; credits visible under Services & subscriptions." },
+    { "url": "https://support.microsoft.com/en-us/excel/copilot/copilot-formula-suggestions-turn-on-off", "supports": "Formula completion and Formula by Example are separate checkboxes under File > Options > Copilot (Windows) or Copilot Settings (web); stay off until re-enabled." },
+    { "url": "https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-requirements", "supports": "Updated 2026-09-30. Rename to Microsoft Copilot; Entra ID required; not available with device-based licensing; Office Feature Updates task must run; *.cloud.microsoft allow-list, copilot.cloud.microsoft, WSS to *.office.com and *.cloud.microsoft, TLS inspection and proxy timeouts; third-party cookies for web; Copilot License Details diagnostic." },
+    { "url": "https://learn.microsoft.com/en-us/copilot/manage", "supports": "Updated 2026-10-01. Copilot Chat eligibility list; admins can limit or block Copilot Chat for users/groups; unpinning does not remove access; Microsoft does not support network-level selective blocking." },
+    { "url": "https://www.pexels.com/license/", "supports": "Blog use permitted; attribution appreciated." }
+  ],
+  "researchLimitations": [
+    "No Excel desktop, Mac, web or mobile build was tested; no tenant, policy or network configuration was reproduced.",
+    "Rollout dates, build numbers and label names are quoted from Microsoft pages dated April–October 2026 and may change.",
+    "No search volume, keyword difficulty, ranking or authenticated Search Console data; traffic effect is unmeasured.",
+    "The existing blog route emits only the first five FAQs in JSON-LD and strips hyphens from extracted answers; eight visible FAQs are not eight byte-identical schema answers."
+  ],
+  "internalLinkPlan": [
+    "/blog/github-copilot-not-working-vscode-2026",
+    "/blog/how-to-use-ai-in-excel-google-sheets-2026",
+    "/blog/best-ai-spreadsheet-tools-2026",
+    "/blog/excel-get-data-from-pdf-missing-2026"
+  ],
+  "inboundLinksForPublishReviewOnly": [
+    { "fromPostId": 154, "from": "/blog/how-to-use-ai-in-excel-google-sheets-2026", "placement": "Copilot in Excel paragraph ('The catch: it requires a Microsoft 365 subscription...')", "anchor": "Copilot in Excel not showing", "status": "Proposed only; do not edit now." },
+    { "fromPostId": 233, "from": "/blog/excel-get-data-from-pdf-missing-2026", "placement": "Safe support handoff or alternatives section", "anchor": "missing Copilot button in Excel", "status": "Proposed only; do not edit now." }
+  ],
+  "images": [
+    { "role": "cover", "id": 8297058, "photographer": "Mikhail Nilov", "source": "https://www.pexels.com/photo/woman-looking-at-the-screen-of-her-laptop-8297058/", "originalWidth": 6000, "originalHeight": 4000, "cropWidth": 1400, "cropHeight": 788, "description": "Woman at a desk with a spreadsheet-style screen on a laptop; stock illustration, not an Excel screenshot." },
+    { "role": "body", "id": 7947999, "photographer": "RDNE Stock project", "source": "https://www.pexels.com/photo/person-using-black-and-gray-laptop-7947999/", "originalWidth": 6655, "originalHeight": 4437, "cropWidth": 1400, "cropHeight": 788, "description": "Laptop showing a dashboard of charts; illustrative." },
+    { "role": "body", "id": 6930431, "photographer": "Mikhail Nilov", "source": "https://www.pexels.com/photo/a-person-using-a-laptop-6930431/", "originalWidth": 5760, "originalHeight": 3471, "cropWidth": 1400, "cropHeight": 788, "description": "Professional with a line chart on a laptop and a bar chart on a tablet; illustrative." },
+    { "role": "body", "id": 8062289, "photographer": "Nataliya Vaitkevich", "source": "https://www.pexels.com/photo/gray-laptop-beside-white-printer-paper-8062289/", "originalWidth": 6240, "originalHeight": 4160, "cropWidth": 1400, "cropHeight": 788, "description": "Overhead view of two laptops, printed charts and a clipboard; illustrative." },
+    { "role": "body", "id": 7693224, "photographer": "Yan Krukau", "source": "https://www.pexels.com/photo/gray-laptop-on-the-table-7693224/", "originalWidth": 6000, "originalHeight": 4000, "cropWidth": 1400, "cropHeight": 788, "description": "Person pointing at a laptop screen of market data beside a printed table; illustrative." }
+  ],
+  "imagePolicy": "All five IDs were SQL-checked as unused against the 165-post inventory (including protected drafts) before selection. Crops were downloaded at 1400x788 and visually reviewed. Photos are credited illustrations, not product screenshots or author tests.",
+  "measurementPlan": {
+    "beforeAnyPublish": [
+      "Review the hidden draft in the authenticated admin preview.",
+      "Re-check Microsoft's rollout dates, labels and build numbers on publication day; they are quoted, not guaranteed.",
+      "Keep the draft hidden, unfeatured and unscheduled unless publication is explicitly authorized."
+    ],
+    "trafficDiagnosisNeeded": "Obtain Pages and Queries for a complete 28-day period with a comparable prior period; extend to 90 days if sparse. The reported 0 clicks / 40-50 impressions has no known time window.",
+    "noGuarantee": "A focused, well-sourced guide may improve usefulness but cannot guarantee indexing, clicks, rankings or traffic recovery."
+  },
+  "draftValidation": {
+    "status": "saved-hidden-and-verified",
+    "checkedOn": "2026-10-04",
+    "saved": true,
+    "draftId": 234,
+    "adminPreview": "https://www.byteverse.fyi/admin/posts/234/preview",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "intendedState": { "published": false, "featured": false, "scheduledAt": null },
+    "wordCountExcludingCodeImagesUrlsAndCredits": 3163,
+    "paragraphWords": 2105,
+    "readingTime": "15 min read",
+    "titleCharacters": 55,
+    "metaTitleCharacters": 52,
+    "metaDescriptionCharacters": 159,
+    "excerptCharacters": 204,
+    "codeBlocks": 1,
+    "visibleFaqs": 8,
+    "routeExtractedFaqs": 8,
+    "routeEmitsFirstFaqs": 5,
+    "tableCount": 1,
+    "uniqueHeadingIds": 15,
+    "internalLinks": 4,
+    "imageCount": 5,
+    "independentReview": "No blocking inaccuracy against the nine Microsoft pages; applied all quote-fidelity fixes (cloud.microsoft wording, AI-credits attribution, exact 'each of the sentiment entries' prompt) and hedging corrections (rollout 'scheduled to complete', help desk wording, no 'silently', no add-on carve-out claim, chat-mode under Manual calculation left open, rename/URL 'is moving').",
+    "rendering": "Actual MarkdownRenderer, image/copy helpers, route FAQ extraction and first-five schema branch, generateMetadata with synthetic published/hidden/missing rows; one text block round-tripped exactly; script lint and syntax checks passed.",
+    "browser": { "engine": "Headless Microsoft Edge 154.0.4258.53", "widths": [320, 390, 1280], "pageOverflow": false, "tableScrollsOnSmallScreens": true, "imagesDecoded": 5, "nativeFaqPointerAndKeyboardActions": 48, "pageOrConsoleErrors": 0, "externalRequests": 0, "scope": "Isolated light CSS with the actual renderer and cached photo data URLs; not the full production layout or hydrated copy button." },
+    "databaseVerification": { "write": "One parameterized INSERT in a serializable transaction with inventory/category/absent-slug guards; no UPDATE or publish.", "otherPosts": 165, "publishedPosts": 163, "totalPostsIncludingNewDraft": 166, "otherEditorialChecksumExcludingViews": "b374ee2773268507bec29fcdc384943d", "protectedDraftsUnchanged": [229, 230] },
+    "publicVisibility": { "checkedDraftIds": [234, 229, 230], "blog": "HTTP 200 Post Not Found with noindex (existing soft-404 behavior).", "stories": "HTTP 404 with X-Robots-Tag noindex.", "collections": "Absent from /blog, /sitemap.xml and /feed.xml.", "publicationOrIndexingRequest": false },
+    "contentSha256": "8f8650c6693053547804764798314c7dc7f4b2720c0cc231a0f50f3bce18180c",
+    "limitations": "No Excel build, tenant, network or Mac test; no authenticated GSC/GA report; no publication, commit, push or deployment. Hidden content cannot receive organic traffic while unpublished."
+  }
+}

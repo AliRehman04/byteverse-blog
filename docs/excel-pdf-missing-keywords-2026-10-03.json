@@ -1,0 +1,806 @@
+{
+  "checkedOn": "2026-10-03",
+  "slug": "excel-get-data-from-pdf-missing-2026",
+  "publication": "Saved as hidden draft 233 and verified on 2026-10-04 UTC after the research dated October 3: published=false, featured=false, scheduledAt=null. Database NOW() supplied both timestamps without backdating. No publication, inbound-link edits, commit, push or deployment.",
+  "evidenceProvenance": {
+    "referenceFormat": "docs/github-copilot-not-working-keywords-2026-10-02.json",
+    "rawAutocomplete": "The 20 successful query responses collected during this session are preserved below, including empty and irrelevant suggestions.",
+    "researchSources": "Public source fetches, Google result snapshots and direct Microsoft table-DOM inspection during the October 3 research, followed by independent source review.",
+    "sessionEvidence": "Live SELECT inventory and protection hashes; source/browser checks; Search Console access observations; photo uniqueness, download and visual checks; actual renderer and browser validation; one guarded hidden INSERT and a separate post-save read-only verification.",
+    "currentTask": "Whole daily-blog task, not merely the ledger-writing subtask. Environment/database loading was confined to explicit research and live validation/save operations; offline article tests and the isolated browser preview did not load application credentials.",
+    "evidenceBoundary": "Autocomplete establishes wording, not traffic. Product documentation is distinct from community reports. Actual renderer/browser checks, synthetic guard tests, executed database operations and public HTTP checks are identified separately below. No Excel or Power Query runtime test, authenticated GSC report, publication or deployment is claimed."
+  },
+  "userReportedMetrics": {
+    "clicks": 0,
+    "approximateImpressions": "40-50",
+    "dateRange": null,
+    "verified": false,
+    "localGscConfigured": false,
+    "sharedBrowser": "The recorded shared browser remained on the public Search Console About page, without an authenticated report.",
+    "freshReportsAvailable": false,
+    "accessCheck": "Local GSC configuration-presence checks and the shared public About page did not provide an authenticated report. No private GSC metrics were retrieved and no credentials were requested.",
+    "interpretation": "The unverified totals without a reporting period cannot establish demand, indexing failure, a traffic decline or its cause."
+  },
+  "inventory": {
+    "method": "Research baseline from live read-only SELECTs. Explicit pre-save and post-save repeatable-read transactions verified this same 164-row inventory excluding the new target slug; the editorial checksum excludes view counters. Protected draft content and full editorial hashes were also rechecked.",
+    "totalPosts": 164,
+    "publishedPosts": 162,
+    "editorialChecksumExcludingViews": "99c33b5dd2d53059f21e3ae253d531ac",
+    "protectedDrafts": [
+      {
+        "id": 229,
+        "slug": "pdf-to-podcast-notebooklm-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "07567f98b5cd73d7fd978dede5a47836",
+        "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d"
+      },
+      {
+        "id": 230,
+        "slug": "audacity-noise-reduction-voice-2026",
+        "published": false,
+        "featured": false,
+        "scheduledAt": null,
+        "contentMd5": "633a2127b815f4dd2949977c777385df",
+        "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc"
+      }
+    ],
+    "dedicatedTitleMatches": 0,
+    "relatedOverlap": [
+      {
+        "id": 154,
+        "slug": "how-to-use-ai-in-excel-google-sheets-2026",
+        "coverage": "AI formulas and data cleaning; does not explain a missing PDF connector or the Windows/Mac compatibility decision."
+      },
+      {
+        "id": 83,
+        "slug": "best-ai-pdf-tools-2026",
+        "coverage": "Tool comparison with table-extraction and privacy discussion; not a missing-connector troubleshooting guide."
+      },
+      {
+        "id": 78,
+        "slug": "best-ai-spreadsheet-tools-2026",
+        "coverage": "Broad AI spreadsheet-tool roundup; the missing Excel PDF connector is not covered."
+      }
+    ],
+    "decision": "The recorded inventory did not find a dedicated article for this missing-connector intent. Adjacent PDF/spreadsheet coverage remains, so this is not a claim of zero cannibalization. Keep the Windows/Mac compatibility and symptom branches in one focused guide rather than separate near-duplicate posts."
+  },
+  "targeting": {
+    "primary": "excel get data from pdf missing",
+    "secondary": [
+      "excel get data from pdf option missing",
+      "excel get data from pdf not showing",
+      "excel 2019 get data from pdf missing",
+      "excel 2016 get data from pdf missing",
+      "excel import pdf mac",
+      "excel import data from pdf mac",
+      "excel power query pdf not showing",
+      "how to import pdf into excel get data from pdf is missing"
+    ],
+    "audience": "Windows and Mac Excel users who cannot find From PDF, receive a component error after opening it, or need a safe alternative when their platform or edition does not establish native connector support.",
+    "title": "Excel Get Data From PDF Missing? Windows and Mac Guide",
+    "metaTitle": "Excel Get Data From PDF Missing? Windows & Mac Guide",
+    "metaDescription": "Missing Excel's From PDF option? Check Windows and Mac support, Microsoft 365 editions, component errors and safe alternatives before reinstalling Office.",
+    "category": "Tech Guides",
+    "searchVolume": null,
+    "keywordDifficulty": null,
+    "rankings": null,
+    "gscMetrics": null,
+    "competitionAssessment": "Selected for a precise missing-connector compatibility gap, not measured lower competition. The sampled Google results included an AI Overview, official/community material, videos and a directly targeted WPS guide. Those result types do not establish low competition or a click opportunity by themselves.",
+    "scopeExclusions": [
+      "Not a general PDF-to-Excel or invoice-conversion roundup.",
+      "Print to PDF and Save as PDF suggestions are retained in the raw evidence but are different intents, not article targets.",
+      "No promise that updating, reinstalling, changing a licence, installing an add-in or installing .NET will reveal an unsupported connector.",
+      "No promotion or link to the local-only invoice tool."
+    ],
+    "alternatives": [
+      {
+        "topic": "Cursor Agent / Cursor AI not working",
+        "evidence": "Autocomplete includes agent, connection, provider and editing variants. Reviewed results already contain generic troubleshooting and cache-clearing guides. Existing site post 33 covers Cursor; the recorded inventory did not identify a dedicated Cursor troubleshooting article.",
+        "existingPostId": 33,
+        "decision": "Useful later if narrowed to an exact error and desktop/cloud mode. Excel's missing-connector compatibility question is more precisely defined today; this is an editorial choice, not a measured competition comparison.",
+        "reviewedPrimarySources": [
+          {
+            "url": "https://cursor.com/help/troubleshooting/network",
+            "supports": "Cursor Settings > Network > Run Diagnostics; HTTP Compatibility Mode > HTTP/1.1 for an HTTP/2-blocking proxy, then restart. Conditional network guidance, not a universal fix."
+          },
+          {
+            "url": "https://cursor.com/help/troubleshooting/agent-issues",
+            "supports": "Agent Execution Timed Out and Timeout waiting for EverythingProvider can involve extension-host startup. The report records a documented 60-second startup timeout and instructions to collect Main, Window and Extension Host logs before changing anything."
+          },
+          {
+            "url": "https://cursor.com/help/troubleshooting/reporting-bugs",
+            "supports": "Version/OS, reproduction details, console errors and Copy Request ID. Connectivity problems can often be investigated with Privacy Mode enabled; disabling privacy should not be routine advice."
+          }
+        ]
+      },
+      {
+        "topic": "ChatGPT file upload failed / upload limit reached",
+        "evidence": "Autocomplete wording only in this evidence set; no comparable product-document or competitor review was completed for this candidate.",
+        "decision": "Not selected. Do not convert suggestions into verified error causes, demand estimates or current upload limits."
+      },
+      {
+        "topic": "Invoice PDF to Excel / extract invoice data",
+        "evidence": "Autocomplete provides conversion wording. This is broader conversion intent with established converter/tool competitors, assessed qualitatively rather than through keyword-difficulty measurements.",
+        "decision": "Not selected for today's focused guide. The new invoice tool is local-only, not a verified live destination, and must not be linked or promoted."
+      },
+      {
+        "topic": "Claude Code not working Windows / command not found",
+        "evidence": "Autocomplete wording only; unrelated suggestions are retained verbatim in the raw results.",
+        "decision": "Not selected or independently diagnosed in this research."
+      }
+    ]
+  },
+  "autocomplete": {
+    "endpoint": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=",
+    "locale": "English/US parameters; not a verified physical US search location",
+    "successfulSeeds": 20,
+    "nonemptySeeds": 16,
+    "results": [
+      {
+        "query": "cursor agent not working",
+        "status": "ok",
+        "suggestions": [
+          "cursor agent not working",
+          "cursor agent stopped working",
+          "cursor agent not loading",
+          "cursor agent not starting",
+          "cursor agent not showing",
+          "cursor agent not running",
+          "cursor agent terminal not working",
+          "cursor ai agent not working",
+          "cursor agent mode not working",
+          "cursor agent cli not working"
+        ]
+      },
+      {
+        "query": "cursor ai not working",
+        "status": "ok",
+        "suggestions": [
+          "cursor ai not working",
+          "cursor ai not working today",
+          "cursor ai not working in nigeria",
+          "cursor ai not working on laptop",
+          "cursor ai not working properly",
+          "cursor ai not working reddit",
+          "cursor ai not working after update",
+          "cursor ai not working on mac",
+          "cursor ai stopped working",
+          "cursor ai not opening"
+        ]
+      },
+      {
+        "query": "cursor agent stuck thinking",
+        "status": "ok",
+        "suggestions": []
+      },
+      {
+        "query": "cursor connection failed",
+        "status": "ok",
+        "suggestions": [
+          "cursor connection failed",
+          "cursor connection failed if the problem persists",
+          "cursor connection failed vpn",
+          "cursor connection failed issue",
+          "cursor connection failed reddit",
+          "cursor connection failed please try again",
+          "cursor connection failed unknown",
+          "cursor connection failure",
+          "cursor connection error",
+          "cursor connection error reddit"
+        ]
+      },
+      {
+        "query": "cursor unable to reach model provider",
+        "status": "ok",
+        "suggestions": [
+          "cursor unable to reach model provider",
+          "cursor error unable to reach model provider",
+          "cursor unable to connect to model provider",
+          "cursor ai unable to reach the model provider",
+          "why can't my cursor move",
+          "cursor won't click on anything"
+        ]
+      },
+      {
+        "query": "cursor agent not editing files",
+        "status": "ok",
+        "suggestions": [
+          "cursor agent cannot edit file",
+          "how to edit a cursor file",
+          "how to use realworld cursor editor",
+          "how to edit cursor windows 10"
+        ]
+      },
+      {
+        "query": "excel get data from pdf missing",
+        "status": "ok",
+        "suggestions": [
+          "excel get data from pdf missing",
+          "excel get data from pdf option missing",
+          "excel 2019 get data from pdf missing",
+          "excel 2016 get data from pdf missing",
+          "excel data from pdf missing",
+          "excel import data from pdf missing",
+          "how to import pdf into excel get data from pdf is missing",
+          "excel get data from pdf not showing",
+          "get data from pdf not showing in excel 2016",
+          "get data from pdf not showing in excel 2019"
+        ]
+      },
+      {
+        "query": "excel from pdf not showing",
+        "status": "ok",
+        "suggestions": [
+          "excel pdf not showing all rows",
+          "excel pdf not showing all columns",
+          "excel get data from pdf not showing",
+          "excel import from pdf not working",
+          "excel data from pdf not working",
+          "excel pdf not working",
+          "excel print to pdf not showing",
+          "excel power query pdf not showing",
+          "excel save as pdf not showing",
+          "from pdf not showing in excel"
+        ]
+      },
+      {
+        "query": "excel import pdf mac",
+        "status": "ok",
+        "suggestions": [
+          "excel import pdf mac",
+          "excel import data from pdf mac",
+          "import pdf into excel mac",
+          "import pdf table into excel mac",
+          "import pdf data into excel mac",
+          "can excel import a pdf file",
+          "can excel import pdf",
+          "how to import pdf in excel sheet"
+        ]
+      },
+      {
+        "query": "pdf to excel columns not aligned",
+        "status": "ok",
+        "suggestions": []
+      },
+      {
+        "query": "pdf to excel without losing formatting",
+        "status": "ok",
+        "suggestions": [
+          "pdf to excel without losing formatting",
+          "pdf to excel without losing formatting free",
+          "convert pdf to excel without losing formatting",
+          "convert pdf to excel without losing formatting free online",
+          "convert pdf to excel without losing formatting adobe pro",
+          "pdf to excel without changing format",
+          "pdf to excel without changing format free",
+          "online convert pdf to excel without losing formatting",
+          "pdf to excel without formatting",
+          "best way to convert pdf to excel without losing formatting"
+        ]
+      },
+      {
+        "query": "extract invoice data from pdf to excel",
+        "status": "ok",
+        "suggestions": [
+          "extract invoice data from pdf to excel",
+          "how do i extract data from pdf to excel",
+          "can i extract data from pdf to excel",
+          "how to extract data from pdf to excel"
+        ]
+      },
+      {
+        "query": "convert multiple pdf invoices to excel",
+        "status": "ok",
+        "suggestions": []
+      },
+      {
+        "query": "invoice pdf to excel",
+        "status": "ok",
+        "suggestions": [
+          "invoice pdf to excel",
+          "invoice pdf to excel converter",
+          "invoice pdf to excel free",
+          "pdf invoice to excel power automate",
+          "pdf invoice to excel python",
+          "bill pdf to excel",
+          "pdf receipt to excel",
+          "extract pdf invoice to excel",
+          "import pdf invoice to excel",
+          "convert pdf invoice to excel online"
+        ]
+      },
+      {
+        "query": "power query combine pdf files different columns",
+        "status": "ok",
+        "suggestions": []
+      },
+      {
+        "query": "chatgpt file upload failed",
+        "status": "ok",
+        "suggestions": [
+          "chatgpt file upload failed",
+          "chatgpt file upload failed 404",
+          "chatgpt file upload failed (400)",
+          "chatgpt file upload failed too many requests",
+          "chatgpt file upload failure",
+          "chatgpt file upload error",
+          "chatgpt file upload error 5",
+          "chatgpt file upload error today",
+          "chatgpt document upload error",
+          "chatgpt file upload unknown error occurred"
+        ]
+      },
+      {
+        "query": "chatgpt file upload limit reached",
+        "status": "ok",
+        "suggestions": [
+          "chatgpt file upload limit reached",
+          "chatgpt plus reached file upload limit",
+          "chatgpt you ve reached your file upload limit"
+        ]
+      },
+      {
+        "query": "chatgpt unable to upload file",
+        "status": "ok",
+        "suggestions": [
+          "chatgpt unable to upload files",
+          "chatgpt unable to upload file error",
+          "chatgpt unable to upload file reddit",
+          "chatgpt failed to upload file",
+          "chatgpt unable to upload document",
+          "chatgpt unable to upload files to project",
+          "chatgpt plus unable to upload file",
+          "chatgpt unable to upload txt file",
+          "chatgpt unable to upload pdf file",
+          "chatgpt failed upload to files oaiusercontent com"
+        ]
+      },
+      {
+        "query": "claude code not working windows",
+        "status": "ok",
+        "suggestions": [
+          "claude code not working windows",
+          "claude code install not working windows",
+          "claude code shift enter not working windows",
+          "claude code work windows",
+          "claude code work windows download",
+          "does claude code not work on windows",
+          "code promo lws"
+        ]
+      },
+      {
+        "query": "claude code command not found",
+        "status": "ok",
+        "suggestions": [
+          "claude code command not found",
+          "claude code command not found mac",
+          "claude code command not found windows",
+          "claude code command not found macos",
+          "claude code command not found ubuntu",
+          "claude code command not working",
+          "claude code command not recognized",
+          "claude code zsh command not found",
+          "claude code plugin command not found",
+          "claude code vscode command not found"
+        ]
+      }
+    ],
+    "preservation": "Query strings, status values, suggestions, ordering and empty arrays are preserved from the session's 20-seed result, including irrelevant suggestions. They were not rewritten or refetched while reconciling this ledger.",
+    "limitations": "Suggestions are wording evidence, not search volume, trend, keyword difficulty, rankings or click forecasts. An empty suggestion set does not prove zero demand."
+  },
+  "searchResults": [
+    {
+      "engine": "Google",
+      "query": "excel get data from pdf missing",
+      "url": "https://www.google.com/search?q=excel+get+data+from+pdf+missing&hl=en&gl=us",
+      "reportSearchUrl": "https://www.google.com/search?q=Excel+Get+Data+From+PDF+missing&hl=en&gl=us",
+      "observedResultTypes": [
+        "AI Overview",
+        "Tutorial videos",
+        "Microsoft-hosted community Q&A",
+        "Reddit",
+        "Microsoft Tech Community",
+        "Directly targeted WPS guide"
+      ],
+      "observation": "Recorded support/availability intent, distinct from a broad invoice-conversion query. Microsoft Support/Learn documents were reviewed as primary sources; Microsoft-hosted community answers are not equivalent to those documents.",
+      "locale": "Literal English/US URL parameters. Google could not determine physical location; not proof of a physical US search.",
+      "fixedRanks": null
+    },
+    {
+      "engine": "Google",
+      "query": "Excel Get Data From PDF missing Mac",
+      "url": "https://www.google.com/search?q=Excel+Get+Data+From+PDF+missing+Mac&hl=en&gl=us",
+      "observation": "Recorded results mixed desktop-Mac limitations with Excel Online workarounds. The guide must separate local desktop connector support from browser/cloud workflows.",
+      "locale": "English/US parameters only; physical US location not verified.",
+      "fixedRanks": null
+    },
+    {
+      "engine": "Google",
+      "query": "Cursor Agent not working",
+      "url": "https://www.google.com/search?q=Cursor+Agent+not+working&hl=en&gl=us",
+      "observation": "Recorded Cursor forum threads, Cursor Status, a cache-clearing article and videos. These cover different failure classes rather than one demonstrated cause.",
+      "locale": "English/US parameters only; physical US location not verified.",
+      "fixedRanks": null
+    },
+    {
+      "engine": "Google",
+      "query": "Cursor Agent stuck \"Ready\"",
+      "url": "https://www.google.com/search?q=Cursor+Agent+stuck+%22Ready%22&hl=en&gl=us",
+      "observation": "Recorded results mixed Cloud/Background Agent environment preparation, Planning next moves, editing failures and loosely relevant results. Ready alone is not a sufficiently defined diagnostic intent.",
+      "locale": "English/US parameters only; physical US location not verified.",
+      "fixedRanks": null
+    }
+  ],
+  "competitorReview": [
+    {
+      "topic": "Excel missing PDF connector",
+      "url": "https://www.wps.com/office-quick-solution/excel-data-problems/restore-missing-get-data-pdf-option-in-excel/",
+      "title": "How to Restore the Missing Get Data from PDF Option in Excel",
+      "pageDateReported": "2026-09-08",
+      "observed": "Direct intent match covering versions, updating, signing in again, Mac and its own converter. Makes strong claims about 2021/2024 support and licence/authentication automatically hiding connectors that the reviewed primary documentation does not establish.",
+      "reviewedGap": "Better sourcing and explicit uncertainty about edition/build support and cause; do not replace unsupported competitor certainty with an opposite unsupported guarantee."
+    },
+    {
+      "topic": "Adjacent PDF-import workflow",
+      "url": "https://intheblack.cpaaustralia.com.au/technical-skills/excel-tips-import-data-from-pdf-file",
+      "title": "Excel Tips: Import data into Excel from a PDF file",
+      "pageDateReported": "2025-01-03",
+      "observed": "INTHEBLACK/CPA Australia illustrated an ATO PDF import, cleanup and conversion errors. Found during follow-up research; largely assumes From PDF already exists.",
+      "reviewedGap": "Answer the connector-availability prerequisite before the import workflow. Its illustrated example is the publisher's work, not evidence of ByteVerse hands-on testing."
+    },
+    {
+      "topic": "Alternative Cursor candidate",
+      "url": "https://v0-1.net/en/posts/cursor-agent-not-working-cache-fix",
+      "title": "How to Fix Cursor Agent Not Working: Resolved by Clearing Cache",
+      "pageDateReported": "2026-01-22",
+      "observed": "Describes a provider-connection error resolved by deleting particular cache directories; author explicitly says non-Windows paths were unconfirmed.",
+      "reviewedGap": "Anecdote, not a cross-platform diagnosis. A future guide should collect evidence and distinguish connection from startup errors before destructive cleanup."
+    },
+    {
+      "topic": "Alternative Cursor candidate",
+      "url": "https://dev.to/yigedaohang/fixing-the-connection-failed-error-in-cursor-lmg",
+      "title": "Fixing the \"Connection failed\" Error in Cursor",
+      "pageDateReported": "2025-05-17",
+      "observed": "Focused HTTP/2 explanation using the older VS Code Settings > Disable HTTP/2 route.",
+      "reviewedGap": "Current official Cursor documentation provides a clearer Network > HTTP Compatibility Mode path; still conditional proxy troubleshooting, not a universal fix."
+    }
+  ],
+  "communityLeads": [
+    {
+      "source": "Microsoft-hosted Q&A, Microsoft Tech Community and Reddit in the recorded Google snapshots",
+      "text": "Missing From PDF and confusion between Mac desktop and online workflows.",
+      "treatment": "Question/wording leads only. No individual thread URL, ranking, reproducible defect or confirmed cause was captured here; use primary product documentation for support claims."
+    },
+    {
+      "source": "Cursor forum search results",
+      "text": "Agent not working, provider connection problems and ambiguous Ready/startup reports.",
+      "treatment": "Do not collapse local Agent, Cloud Agent, extension-host startup and provider connectivity into one failure or promise a fixed build."
+    },
+    {
+      "source": "https://status.cursor.com/",
+      "text": "The report observed a degradation search snippet while the opened status page showed All Systems Operational; the 3 October Grok Bot/Review Agents incident was reported resolved at 07:26 UTC.",
+      "treatment": "Time-specific prior observation, not current service status. Neither a stale snippet nor an operational status page diagnoses an individual IDE session."
+    }
+  ],
+  "primarySources": [
+    {
+      "url": "https://support.microsoft.com/en-us/excel/power-query-data-sources-in-excel-versions",
+      "supports": "Connector availability differs from Power Query availability. Direct browser DOM inspection found two Office 2016 columns and two Office 2019 columns with empty PDF cells, then two Microsoft 365 columns with PDF marked Included. Mac's source table does not list PDF. Web PDF entries concern SharePoint/OneDrive for work or school.",
+      "limitation": "Historical/stale matrix: no separate 2021 or 2024 columns, and not a definitive current inventory of every retail/LTSC SKU/build. An Applies To label is not connector-support evidence. Web entries do not establish a native Mac connector or a universal browser workflow."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/excel/import-and-shape-data-in-excel-for-mac-power-query",
+      "supports": "Power Query Editor generally available to Microsoft 365 subscribers on Mac version 16.69 (23010700) or later; documented import sources exclude PDF.",
+      "limitation": "The version condition is for Editor availability, not native PDF support. Updating Mac Excel is not a documented way to reveal From PDF."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/import-data-from-data-sources-power-query-be4330b3-5356-486c-a168-b68e9e616f5a",
+      "supports": "Windows path Data > Get Data > From File > From PDF; the Excel PDF section associates an additional-components message with .NET Framework 4.5 or higher. Text/CSV import can apply automatic data-type detection.",
+      "limitation": "The component message is an import/runtime-error branch, not proof that .NET restores a missing connector menu. Cross-check the newer connector page's Prerequisites: None wording; do not prescribe an obsolete installer indiscriminately."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/power-query/connectors/pdf",
+      "supports": "Cross-product PDF connector documentation says Prerequisites: None and discusses bounded page extraction, multiline-row cleanup and MultiPageTables behavior.",
+      "limitation": "Does not itself establish connector availability in every Excel edition or Mac build. Its prerequisite wording is not fully aligned with the Excel-specific additional-components guidance."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powerquery-m/pdf-tables",
+      "supports": "Pdf.Tables and options including StartPage, EndPage and MultiPageTables. Result is a navigation-style table containing nested extracted tables, not automatically one cleaned worksheet.",
+      "limitation": "An M API reference is not a Mac compatibility workaround. The optional sample is documentation-based and not runtime-tested; displayed M Windows paths use single backslashes, with escaping only in this JSON representation."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/about-office-what-version-of-office-am-i-using-932788b8-a3ce-44bf-bb09-e334518b8b19",
+      "supports": "Identify the installed Office product and version/build before making an edition-support diagnosis or support handoff."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/collab-files/sharing-documents-with-other-versions-of-office-for-mac#bmxl",
+      "supports": "Mac version identification through Excel > About Excel; keep Mac instructions separate from Windows Account/About paths."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/install-office-updates-2ab296f3-7f03-43a2-8e50-46de917611c5",
+      "supports": "Official Office update paths after establishing the installed product/platform; managed update controls may require an administrator.",
+      "limitation": "Updating is maintenance, not proof that an unsupported or undocumented connector becomes available."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/show-or-hide-the-ribbon-in-office-d946b26e-0c8c-402d-a0f7-c6efa296b527",
+      "supports": "Check ribbon visibility when the whole Data/Get Data experience seems absent before diagnosing only the PDF connector."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/customize-the-ribbon-in-office-00f24ca7-6021-48d3-9514-a31a460ecb31",
+      "supports": "Inspect ribbon/tab customization as a UI branch; do not present ribbon customization as a way to add unsupported connectors or reset all customizations unnecessarily."
+    },
+    {
+      "url": "https://helpx.adobe.com/acrobat/desktop/create-documents/scan-documents-to-pdfs/recognize-text.html",
+      "supports": "OCR can recognize text in scanned documents; scan/OCR issues belong to the extraction branch, not the missing-menu branch.",
+      "limitation": "Recognizing text does not guarantee correct tables, numbers or formatting. No private PDF was uploaded or tested."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/power-query/data-types",
+      "supports": "Choose explicit column types and use Using Locale for date/number interpretation. Keep identifiers as text rather than allowing destructive numeric conversion."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/excel/keeping-leading-zeros-and-large-numbers",
+      "supports": "Protect leading zeros and long identifiers by treating them as text; formatting after a lossy import does not reliably restore the original identifier."
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/office/edit-a-pdf-b2d1d729-6b79-499a-bcdb-233379c2f63a",
+      "supports": "Word PDF conversion is mainly suitable for mostly-text documents and can change layout.",
+      "limitation": "Not a promise of accurate table extraction or a verified Mac-specific conversion workflow."
+    },
+    {
+      "url": "https://www.pexels.com/license/",
+      "supports": "Blog use permitted and attribution appreciated; credit stock illustrations without presenting them as author tests, product screenshots or endorsements."
+    }
+  ],
+  "sourceReconciliation": {
+    "windowsMatrix": "Direct browser inspection verified these six column groups: Office 2016 Home & Student/Home & Business/Standard/Professional; Office 2016 Professional Plus Standalone; Office 2019 Home & Student/Home & Business/Standard/Professional; Office 2019 Professional Plus Standalone; Microsoft 365 Home/Personal/Business/Business Premium; Microsoft 365 Apps for Enterprise. The PDF row is unmarked in the first four and Included in the last two. The matrix does not provide separate 2021/2024/LTSC columns. An earlier ledger-writing mistake calling all four older columns Office 2016 was corrected against this direct observation.",
+    "macEditorVersusConnector": "Mac version 16.69 establishes documented Power Query Editor availability, not a native PDF import/refresh connector. Neither an update, COM add-in nor Pdf.Tables code establishes missing Mac support.",
+    "webVersusDesktop": "PDF entries through SharePoint/OneDrive for work or school in the web matrix are a different environment. Do not promise universal browser availability, direct local-file import or Mac desktop refresh from those entries.",
+    "componentDocumentationDiscrepancy": "The Excel-specific import page names .NET Framework 4.5 or higher for an additional-components error; the newer cross-product PDF connector page says Prerequisites: None. Disclose both scopes. For that exact Windows error, check the current supported Excel/Windows configuration with official guidance or IT rather than automatically installing an obsolete framework. Neither statement proves the cause of a missing menu.",
+    "loadedValuesVersusRefresh": "Opening a workbook containing values extracted on supported Windows Excel is different from being able to refresh its PDF query on Mac.",
+    "unsupportedFixes": "No registry edits, random COM add-ins, blanket reinstall instructions, licence/sign-in cause claims or universal M-code workarounds without applicable evidence."
+  },
+  "decisionGuide": [
+    {
+      "symptom": "The entire Get Data experience or Data tab appears absent",
+      "nextAction": "Identify desktop versus web, OS, product and build. Check ribbon visibility/customization using the appropriate platform guidance before narrowing the problem to PDF.",
+      "boundary": "A hidden ribbon and an unavailable connector are different conditions; do not assume either from the missing label alone."
+    },
+    {
+      "symptom": "Get Data exists but From PDF is absent",
+      "nextAction": "Use the platform/edition branch and the documented matrix limits. Give Mac readers a clear stopping point and offer source CSV/XLSX or an approved extraction workflow rather than repeated reinstalls. For an unresolved Windows SKU/build, collect exact product details for support.",
+      "boundary": "The displayed Office 2019 columns were inspected, but do not extrapolate 2021/2024/LTSC support from them or a general Applies To label. A loaded workbook on Mac does not prove PDF-query refresh support."
+    },
+    {
+      "symptom": "From PDF opens and then asks for additional components",
+      "nextAction": "Record the exact error and Windows/Excel version. Explain the Excel-specific .NET Framework note alongside the newer connector page's conflicting prerequisite wording, and use current official/administrator guidance for the supported configuration.",
+      "boundary": "This is a runtime/import-error branch, not a missing-menu repair. No indiscriminate legacy installer recommendation."
+    },
+    {
+      "symptom": "Import opens but tables are empty, split, multiline or otherwise wrong",
+      "nextAction": "Distinguish PDF structure from a scanned-image/OCR problem. Inspect available tables, use bounded pages when appropriate, consider MultiPageTables behavior, and validate identifiers, dates, totals and row alignment against the source.",
+      "boundary": "OCR, Word conversion and table extraction do not guarantee exact layout or values. Prefer source CSV/XLSX; obtain approval before sending confidential material to any converter."
+    }
+  ],
+  "originalValue": [
+    "Compatibility-first guide that explicitly reconciles the historical version matrix, Mac Editor availability and cross-product API documentation instead of treating them as interchangeable support guarantees.",
+    "Symptom-to-next-action table separating missing UI, missing connector, component errors and extraction/OCR issues, with a real stopping point for unsupported or unresolved configurations.",
+    "Synthetic CSV example showing why invoice IDs need Text and an ambiguous date needs the source's locale; no private invoice or fabricated Excel test result.",
+    "Optional bounded-page Pdf.Tables example labelled documentation-based, with single-backslash M paths and nested-table output explained; never a Mac workaround or a claim of runtime success.",
+    "Safe support handoff: platform, product/licence, exact build, exact menu/error, scan versus selectable text, and a redacted or synthetic sample only. Prefer an original CSV/XLSX and validate extracted values before relying on them."
+  ],
+  "plannedExamples": {
+    "syntheticCsv": {
+      "status": "Synthetic editorial example only; not imported or tested in Excel",
+      "content": "InvoiceID,InvoiceDate,Amount\n000123,03/10/2026,125.50\n000124,04/10/2026,240.00\n",
+      "intendedLesson": "Preserve InvoiceID as Text before destructive automatic conversion. Dates explicitly use day/month/year: the first is 3 October 2026, not March 10. Remove an earlier incorrect date-conversion step before applying Using Locale to source text. Do not derive the data's locale from search parameters. Validate amount and row alignment against the original source.",
+      "recoveryLimit": "Changing a previously truncated identifier back to Text does not recover lost zeros or precision; re-import from a trustworthy source with the correct type."
+    },
+    "optionalM": {
+      "status": "Documentation-based optional example; no Excel, Mac or Power Query runtime execution",
+      "code": "let\n    Source = Pdf.Tables(\n        File.Contents(\"C:\\YourFolder\\sample.pdf\"),\n        [StartPage = 1, EndPage = 2, MultiPageTables = false]\n    )\nin\n    Source",
+      "scope": "Only for an environment already supporting the PDF connector and an appropriate local PDF; not an installation, compatibility or Mac workaround.",
+      "pathNote": "After JSON decoding the M path contains single backslashes. The doubled characters here escape JSON, not M.",
+      "resultNote": "Returns a navigation-style table with nested tables in Data. Inspect and choose the relevant nested table; the example does not automatically produce one clean worksheet or establish successful extraction.",
+      "boundsNote": "Pages 1 through 2 are illustrative limits, not measured performance settings. MultiPageTables=false changes cross-page table combination and may not fit every document."
+    }
+  },
+  "internalLinkPlan": [
+    "/blog/how-to-use-ai-in-excel-google-sheets-2026",
+    "/blog/best-ai-pdf-tools-2026",
+    "/tools/json-to-csv",
+    "/tools/diff-checker"
+  ],
+  "internalLinkValidation": {
+    "status": "passed live HTTP and renderer checks",
+    "result": "All four exact destinations returned HTTP 200 with a single matching self-canonical and no noindex directive. Both linked blog rows are published. The actual MarkdownRenderer preserved exactly four contextual links in the intended order; checked again after the hidden save.",
+    "toolScope": "JSON to CSV is relevant only when an approved workflow already supplies structured JSON; Diff Checker can help compare sanitized text. Neither is a PDF connector or a promised PDF extractor. Do not paste private invoice data without checking the destination's actual data handling."
+  },
+  "inboundLinksForPublishReviewOnly": [
+    {
+      "fromPostId": 154,
+      "from": "/blog/how-to-use-ai-in-excel-google-sheets-2026",
+      "placement": "Converting/Moving Data discussion",
+      "anchor": "Excel Get Data From PDF missing on Windows or Mac",
+      "status": "Proposed only; do not edit the source post now. Review after authorized publication and a verified live destination."
+    },
+    {
+      "fromPostId": 83,
+      "from": "/blog/best-ai-pdf-tools-2026",
+      "placement": "Table-extraction paragraph",
+      "anchor": "check Excel's missing From PDF option",
+      "status": "Proposed only; do not edit the source post now. Review after authorized publication and a verified live destination."
+    }
+  ],
+  "excludedLocalTool": {
+    "path": "/tools/invoice-pdf-to-excel",
+    "status": "local-only; not live",
+    "includeInArticle": false,
+    "instruction": "No link, promotion, advertising promise or invoice-tool modification in this work. Any future inclusion would require a separate live release and validation, not a claim in today's article."
+  },
+  "images": [
+    {
+      "role": "cover",
+      "id": 8296983,
+      "photographer": "Mikhail Nilov",
+      "source": "https://www.pexels.com/photo/a-person-holding-a-black-pen-8296983/",
+      "originalWidth": 4000,
+      "originalHeight": 6000,
+      "cropWidth": 1400,
+      "cropHeight": 788,
+      "description": "Inspected crop shows hands writing beside a laptop; illustrative stock photo, not an Excel screenshot."
+    },
+    {
+      "role": "body",
+      "id": 16139628,
+      "photographer": "Jakub Zerdzicki",
+      "source": "https://www.pexels.com/photo/computer-with-financial-calculator-16139628/",
+      "originalWidth": 2600,
+      "originalHeight": 1887,
+      "cropWidth": 1400,
+      "cropHeight": 788,
+      "description": "Laptop with a black/blank screen beside a calculator and notebook; do not describe the screen as Excel or an import result."
+    },
+    {
+      "role": "body",
+      "id": 7654132,
+      "photographer": "Pavel Danilyuk",
+      "source": "https://www.pexels.com/photo/people-working-at-the-office-7654132/",
+      "originalWidth": 3614,
+      "originalHeight": 5414,
+      "cropWidth": 1400,
+      "cropHeight": 788,
+      "description": "Cropped office scene with colleagues, papers and laptops; illustrative, not a documented Excel test."
+    },
+    {
+      "role": "body",
+      "id": 6779226,
+      "photographer": "Artem Podrez",
+      "source": "https://www.pexels.com/photo/businessman-person-space-laptop-6779226/",
+      "originalWidth": 2160,
+      "originalHeight": 3840,
+      "cropWidth": 1400,
+      "cropHeight": 788,
+      "description": "Black-and-white financial paper charts; the inspected crop shows no laptop despite the source-page slug."
+    },
+    {
+      "role": "body",
+      "id": 8062366,
+      "photographer": "Nataliya Vaitkevich",
+      "source": "https://www.pexels.com/photo/white-printer-paper-on-brown-table-8062366/",
+      "originalWidth": 4128,
+      "originalHeight": 6192,
+      "cropWidth": 1400,
+      "cropHeight": 788,
+      "description": "Printed graphs and a notebook in the inspected crop; illustrative stock photo, not an extraction result."
+    }
+  ],
+  "imagePolicy": "All five photo IDs were SQL-checked as unused against the other 164 posts, including protected drafts, before and after saving. Five HTTP HEAD checks returned 200 with image MIME types. The downloaded 1400x788 crops were visually inspected and all five decoded at those dimensions in the isolated browser preview; actual renderer checks passed for four credited ImageObject body figures. These are stock illustrations, not author Excel tests, product instructions or endorsements.",
+  "localWorkProtection": {
+    "fileCount": 35,
+    "sha256": "fb6dc4f92445adfe60ea3030024647e7a558ddad68cb61fb8d7d78c1ce54177a",
+    "head": "ac3ca4b",
+    "scope": "Baseline over the 35 pre-existing modified/untracked files. Recheck excludes this article's Markdown, JSON ledger, save/test scripts and temporary research helper; sorted relative-path/file-SHA256 map is hashed as JSON.",
+    "recheckedInThisTask": true,
+    "recheckedAt": "2026-10-04T01:15:57.883Z",
+    "result": "Exact 35-file count and SHA256 match; HEAD remains ac3ca4b.",
+    "writeBoundary": "Only new article-specific files were added and the temporary research helper removed. Existing invoice-tool work was not modified, built, restarted, committed, pushed or deployed. The separate invoice preview was left intact."
+  },
+  "researchLimitations": [
+    "No Windows Excel desktop or Mac Excel runtime was available/tested; no missing-connector failure was reproduced.",
+    "No private PDF, real invoice, OCR workflow or extraction result was tested. The CSV and M examples are explicitly synthetic/documentation-based.",
+    "No authenticated Search Console report, measured search volume, keyword difficulty, fixed ranking or verified traffic comparison is available.",
+    "Google snapshots and autocomplete are time-specific and parameter-based, not verified physical-US observations or comprehensive SERP coverage.",
+    "The historical Windows support matrix does not settle every 2021/2024/LTSC SKU/build; Editor, web and API documentation cannot substitute for native connector support evidence.",
+    "Excel-specific .NET guidance and cross-product prerequisite wording are not fully aligned; disclose the discrepancy rather than inventing a universal fix.",
+    "A hidden draft was saved and the actual renderer was browser-tested with isolated styling, not the complete production layout. Copy buttons were deliberately unhydrated in that preview. No publication or deployment occurred.",
+    "The existing route emits only the first five FAQs in JSON-LD and strips hyphens from extracted answers; eight visible FAQs are not eight byte-identical schema answers. This unrelated framework behavior was not changed."
+  ],
+  "measurementPlan": {
+    "beforeAnyPublish": [
+      "Review hidden draft 233 through the authenticated admin preview; keep it hidden, unfeatured and unscheduled unless publication is explicitly authorized.",
+      "Check claims against current source scopes, particularly perpetual-edition uncertainty, Mac support and the component-documentation discrepancy.",
+      "Validate rendered metadata, headings, examples, images and all four exact internal destinations; do not mark these checks complete from this research ledger.",
+      "Recheck protected drafts and unrelated editorial/local-work protections in the separately authorized save/release workflow."
+    ],
+    "whenPublishAuthorized": [
+      "Publish only the approved article, then verify its response, self-canonical, indexability, sitemap inclusion and first indexing state before changing titles blindly.",
+      "Review the two proposed inbound placements only after the destination is live; no source-post edits are authorized by this plan.",
+      "Record the actual publication date and inspect the exact page URL in authenticated Search Console when access is available."
+    ],
+    "trafficDiagnosisNeeded": "Obtain Pages and Queries data for a complete 28-day period with a comparable prior period, clicks, impressions, CTR and position. If the sample is too small, extend to 90 days and compare an equivalent period. The unverified 0 clicks / 40-50 impressions has no known time window.",
+    "reviewCadence": "After actual publication, review at approximately 14 and 28 days as checkpoints, not indexing/ranking deadlines. Check indexing and canonical selection first, then page/query intent and sample size; do not blindly rewrite titles from a tiny or partial sample.",
+    "noGuarantee": "A focused, well-sourced guide may improve usefulness but cannot guarantee indexing, clicks, rankings, lower competition or traffic recovery."
+  },
+  "draftValidation": {
+    "status": "saved-hidden-and-verified",
+    "checkedOn": "2026-10-04",
+    "saved": true,
+    "draftId": 233,
+    "adminPreview": "https://www.byteverse.fyi/admin/posts/233/preview",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "intendedState": {
+      "published": false,
+      "featured": false,
+      "scheduledAt": null
+    },
+    "wordCountExcludingCodeImagesUrlsAndCredits": 3027,
+    "paragraphWords": 2626,
+    "readingTime": "14 min read",
+    "titleCharacters": 54,
+    "metaTitleCharacters": 52,
+    "metaDescriptionCharacters": 154,
+    "metadataLengthBasis": "Exact saved field values and database bounds checked; title length is not a ranking or click guarantee.",
+    "excerptCharacters": 206,
+    "codeBlocks": 2,
+    "visibleFaqs": 8,
+    "routeExtractedFaqs": 8,
+    "routeEmitsFirstFaqs": 5,
+    "tableCount": 1,
+    "uniqueHeadingIds": 12,
+    "internalLinks": 4,
+    "imageCount": 5,
+    "linkValidation": "Four live HTTP 200/self-canonical/indexable destinations and exact contextual renderer links passed before and after save; no inbound source posts changed.",
+    "imageValidation": "Five unused Pexels IDs, five HTTP 200 image HEAD responses, five visually reviewed 1400x788 crops, four actual body ImageObject figures and five browser-decoded images passed.",
+    "rendering": "Actual MarkdownRenderer, image/copy helpers, FAQ extraction and first-five schema branch tested. Actual generateMetadata checked using synthetic published/hidden/missing rows. Both code blocks round-tripped exactly; CSV leading zeros and date text preserved. Script lint and syntax checks passed.",
+    "browser": {
+      "engine": "Headless Microsoft Edge 154.0.4258.53",
+      "widths": [320, 390, 1280],
+      "pageWidths": [320, 390, 1280],
+      "pageOverflow": false,
+      "tableScrollsOnSmallScreens": true,
+      "imagesDecoded": 5,
+      "nativeFaqPointerAndKeyboardActions": 48,
+      "pageOrConsoleErrors": 0,
+      "externalRequests": 0,
+      "screenshotsReviewed": [390, 1280],
+      "scope": "Actual renderer with isolated light CSS and cached photo data URLs; not full production layout, real mobile devices or hydrated copy-button testing.",
+      "integratedBrowserLimitation": "A reused integrated tab timed out waiting for scroll stability. Final assertions and screenshots came from a fresh headless Edge instance instead; the failed attempt was not counted as validation."
+    },
+    "liveCommandCheck": "not performed; no Excel desktop/Mac or Power Query runtime test",
+    "independentReview": "No blocking factual error found against the reviewed official sources. Applied the suggested correction: remove an earlier incorrect date conversion, apply locale to original text, and verify day 3/month 10. The review did not execute Excel or M.",
+    "contentSha256": "e246a2511c60df13739b7790b9c86b22e9469ca21f526dad1c67bf49219c76b9",
+    "databaseVerification": {
+      "write": "One parameterized INSERT in a serializable transaction with inventory/category/absent-slug guards; no UPDATE, publish action or automatic retry.",
+      "savedFields": "Exact article and category values verified after commit and in a separate read-only run; false published, false featured, null schedule, initially zero views and matching NOW() timestamps.",
+      "otherPosts": 164,
+      "publishedPosts": 162,
+      "totalPostsIncludingNewDraft": 165,
+      "otherEditorialChecksumExcludingViews": "99c33b5dd2d53059f21e3ae253d531ac",
+      "protectedDraftsUnchanged": [229, 230],
+      "protection": "Content MD5 plus full editorial-row hashes excluding views match the research baseline. Synthetic negative guard cases and actual executed database checks are distinct."
+    },
+    "publicVisibility": {
+      "checkedDraftIds": [233, 229, 230],
+      "blog": "All three return HTTP 200 Post Not Found with noindex; existing soft-404 behavior, not exposed article content.",
+      "stories": "All three return HTTP 404 with X-Robots-Tag noindex.",
+      "collections": "All three slugs absent from the HTTP 200 /blog, /sitemap.xml and /feed.xml responses.",
+      "publicationOrIndexingRequest": false
+    },
+    "cleanup": "Temporary research helper removed. Article-only preview on port 3037 stopped; invoice preview on port 3036 not restarted or stopped. Photo crops and screenshots remain only in this task's OS-temp directory, not the repository.",
+    "limitations": "No Excel, Mac or M runtime test, private document processing, authenticated GSC/GA report, traffic impact, full production-layout browser test, live publication, commit, push or deployment. Hidden content cannot receive organic traffic while it remains unpublished."
+  }
+}

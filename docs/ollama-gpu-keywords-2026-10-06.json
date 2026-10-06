@@ -92,7 +92,7 @@
     "from": [{ "postId": 199, "section": "The Hardware Truth or Ollama setup", "anchor": "diagnose Ollama GPU detection and CPU fallback" }]
   },
   "images": [
-    { "file": "cover.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original diagnostic illustration" },
+    { "file": "cover-v2.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original illustration, redesigned 2026-10-06 with a card-crop safe zone; terminal output is illustrative", "replaces": "cover.png" },
     { "file": "processor-states.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original memory-placement diagram; not utilization measurements" },
     { "file": "diagnostic-path.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original decision diagram; not a performance guarantee" }
   ],

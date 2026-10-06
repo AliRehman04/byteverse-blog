@@ -13,7 +13,7 @@ export const content = readFileSync(articlePath, 'utf8').replace(/\r\n?/g, '\n')
 export const siteUrl = 'https://www.byteverse.fyi';
 export const internalLinks = [...content.matchAll(/(?<!!)\[([^\]]+)\]\((\/[^\s)]+)\)/g)].map(match => match[2]);
 export const bodyImages = [...content.matchAll(/!\[([^\]]+)\]\((https:\/\/[^\s)]+)\s+"([^"]+)"\)/g)];
-export const imageUrls = [`${siteUrl}/blog/ollama-gpu/cover.png`, ...bodyImages.map(match => match[2])];
+export const imageUrls = [`${siteUrl}/blog/ollama-gpu/${ledger.images[0].file}`, ...bodyImages.map(match => match[2])];
 export const codeBlocks = [...content.matchAll(/^```([\w-]+)\n([\s\S]*?)^```[ \t]*$/gm)];
 const prose = content.split('\n## Sources and Image Credits')[0].replace(/```[\s\S]*?```/g, '').replace(/!\[[^\]]*\]\([^\n]+\)/g, '').replace(/\[([^\]]+)\]\([^\n)]+\)/g, '$1');
 export const wordCount = (prose.match(/[\p{L}\p{N}]+(?:['’.-][\p{L}\p{N}]+)*/gu) ?? []).length;

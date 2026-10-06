@@ -1,7 +1,7 @@
 {
   "date": "2026-10-06",
   "slug": "ollama-not-using-gpu-windows-2026",
-  "status": "Saved and verified as hidden draft235 on2026-10-06; published=false, featured=false, scheduled_at=null. No commit, push or publication.",
+  "status": "Published 2026-10-06 as post 235 (assets commit 7dc660c) via scripts/_publish-ollama-gpu-post.mjs --apply; one contextual backlink added in post 199; protected drafts 229/230 and 165 unrelated posts verified unchanged. Do not rerun --apply.",
   "savedDraft": {
     "id": 235,
     "adminPreview": "https://www.byteverse.fyi/admin/posts/235/preview",
@@ -88,7 +88,7 @@
   },
   "internalLinkPlan": ["/blog/how-to-run-ai-locally-2026", "/blog/linux-wsl-setup-guide-2026-windows-developers", "/blog/docker-for-beginners-2026-guide"],
   "inboundLinkPlan": {
-    "status": "Deferred until article is explicitly published; never link a hidden draft from a public article.",
+    "status": "Applied 2026-10-06 together with publication: post 199 `ollama ps` list item links to the article.",
     "from": [{ "postId": 199, "section": "The Hardware Truth or Ollama setup", "anchor": "diagnose Ollama GPU detection and CPU fallback" }]
   },
   "images": [

@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-06",
+  "slug": "ollama-not-using-gpu-windows-2026",
+  "status": "Saved and verified as hidden draft235 on2026-10-06; published=false, featured=false, scheduled_at=null. No commit, push or publication.",
+  "savedDraft": {
+    "id": 235,
+    "adminPreview": "https://www.byteverse.fyi/admin/posts/235/preview",
+    "published": false,
+    "featured": false,
+    "scheduledAt": null,
+    "otherEditorialRowsUnchanged": true,
+    "postSaveTotals": { "total": 167, "published": 164 },
+    "contentSha256": "9493b194087cebe407966c831649f8fa6a1324e965090f61225894f800444468",
+    "warning": "Do not rerun --save-draft. Use --read-only to inspect. New first-party images are still local and will not appear on the live admin preview until the assets are deployed."
+  },
+  "userMetrics": { "clicksReported": 0, "impressionsReported": "40-50", "reportingPeriod": null, "scope": "Unspecified", "independentlyVerified": false },
+  "targeting": {
+    "title": "Ollama Not Using GPU on Windows? 7 Checks Before Reinstalling",
+    "metaTitle": "Ollama Not Using GPU on Windows? 7 Checks Before Reinstalling",
+    "metaDescription": "Ollama using CPU instead of GPU? Check model placement, Windows drivers, VRAM, context settings and server logs before reinstalling.",
+    "primary": "ollama not using gpu windows",
+    "secondary": ["ollama using cpu instead of gpu", "ollama gpu not detected", "ollama ps 100 cpu", "ollama not using amd gpu windows", "ollama gpu offloading"],
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "intent": "Diagnose native Windows local-model CPU fallback; separate GPU detection, memory placement, context and wrong-server cases.",
+    "whyThisTopic": "Specific recurring support query with a related existing local-AI hub but no dedicated article in the complete title/slug inventory. Not a claim of low keyword difficulty.",
+    "alternatives": [
+      { "topic": "Claude Desktop MCP server disconnected", "decision": "Valid later support cluster; three autocomplete suggestions, adjacent MCP guide already exists." },
+      { "topic": "Docker Desktop not starting Windows 11", "decision": "Deferred; two existing Docker beginner articles already overlap and the generic startup problem is broader." }
+    ]
+  },
+  "inventory": {
+    "checkedAt": "2026-10-06T04:31:23.616Z",
+    "totalPosts": 166,
+    "publishedPosts": 164,
+    "editorialChecksumExcludingViews": "1a73992b45b5bab739c8dde3f9d5e6f4",
+    "latestPublished": { "id": 234, "slug": "copilot-in-excel-not-showing-2026" },
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "overlap": [
+      { "id": 199, "slug": "how-to-run-ai-locally-2026", "relationship": "Broad setup hub; link to it rather than repeat general model/tool selection." },
+      { "id": 36, "slug": "docker-for-beginners-2026-guide", "relationship": "Container basics only, not native Windows GPU troubleshooting." },
+      { "id": 49, "slug": "docker-for-beginners-complete-guide", "relationship": "Existing Docker overlap; do not add another generic Docker primer." }
+    ]
+  },
+  "keywordResearch": {
+    "method": "Ten successful Google autocomplete requests, client=firefox hl=en gl=us, 2026-10-06T04:31:24Z to04:31:25Z. Eight nonempty; two empty. Suggestions are query wording, not search-volume or difficulty estimates.",
+    "endpoint": "https://suggestqueries.google.com/complete/search",
+    "parameters": { "client": "firefox", "hl": "en", "gl": "us", "q": "Each seed below" },
+    "observations": [
+      { "seed": "ollama not using gpu", "suggestions": ["ollama not using gpu", "ollama not using gpu windows", "ollama not using gpu linux", "ollama not using gpu ubuntu", "ollama not using gpu after update", "ollama not using gpu windows 11", "ollama not using gpu amd", "ollama not using gpu memory", "ollama not using gpu windows amd", "ollama not using gpu docker"] },
+      { "seed": "ollama not using gpu windows", "suggestions": ["ollama not using gpu windows", "ollama not using gpu windows 11", "ollama not using gpu windows amd", "ollama not using nvidia gpu windows", "ollama does not use gpu windows", "ollama using gpu windows", "ollama is not using my gpu windows", "ollama use gpu windows 11", "ollama use gpu windows amd", "ollama windows app not using gpu"] },
+      { "seed": "ollama using cpu instead of gpu", "suggestions": ["ollama using cpu instead of gpu", "ollama using cpu instead of gpu windows", "ollama using cpu instead of gpu amd", "ollama using cpu instead of gpu linux", "ollama using cpu instead of gpu ubuntu", "ollama docker using cpu instead of gpu", "ollama model using cpu instead of gpu", "ollama keeps using cpu instead of gpu", "how to make ollama use cpu instead of gpu", "ollama gpu instead of cpu"] },
+      { "seed": "ollama gpu not detected", "suggestions": ["ollama gpu not detected", "ollama gpu not working", "ollama gpu not found", "ollama docker gpu not working", "why isn't my nvidia graphics card not being detected", "nvidia card not detected", "why is my gpu not being detected", "why is my nvidia graphics card not being detected"] },
+      { "seed": "ollama 100% cpu", "suggestions": ["ollama 100 cpu", "ollama 100 cpu usage", "ollama 100 cpu not gpu", "ollama high cpu usage", "ollama high cpu", "ollama processor 100 cpu", "ollama ps 100 cpu", "ollama using 100 cpu", "ollama says 100 cpu", "ollama model 100 cpu"] },
+      { "seed": "ollama partial cpu gpu", "suggestions": [] },
+      { "seed": "claude desktop mcp server disconnected", "suggestions": ["claude desktop mcp server disconnected", "claude desktop mcp filesystem server disconnected", "claude desktop windows-mcp server disconnected"] },
+      { "seed": "docker desktop not starting windows 11", "suggestions": ["docker desktop not starting windows 11", "docker desktop not running windows 11", "docker desktop not working windows 11", "docker desktop engine not starting windows 11", "docker desktop service is not running windows 11", "docker desktop not starting windows 10"] },
+      { "seed": "ollama not using amd gpu", "suggestions": ["ollama not using amd gpu", "ollama not using amd gpu windows", "ollama not using amd gpu linux", "ollama not using amd gpu ubuntu", "ollama not using radeon gpu", "ollama not using my amd gpu", "ollama wsl not using amd gpu", "ollama does not use amd gpu", "ollama using amd gpu", "ollama use amd gpu windows"] },
+      { "seed": "ollama gpu after sleep", "suggestions": [] }
+    ],
+    "serp": {
+      "url": "https://www.google.com/search?q=ollama+not+using+gpu+windows",
+      "checkedAt": "2026-10-06T04:33:10Z",
+      "method": "Real integrated-browser search page. Static fetch hit an enable-JavaScript page and was not counted as results. Browser location was Pakistan; not a controlled US rank sample.",
+      "observed": ["GitHub Ollama issues including #11676", "Reddit LocalLLaMA discussions", "NVIDIA Developer Forums", "Aulafy Windows GPU guide", "Serverman CUDA/ROCm guide", "Video about checking GPU versus CPU"],
+      "peopleAlsoAsk": ["How to make ollama use CPU instead of GPU?", "Why is my PC not utilizing my GPU?", "How do I check if ollama is using my GPU?", "Why is ollama not using AMD GPU?"],
+      "opportunity": "Offer an ordered, native-Windows evidence-first path and avoid conflating memory placement with utilization. Official sources, not the AI Overview, support technical claims.",
+      "limits": "Established competition exists. No guaranteed rank, low-KD claim, volume, CTR estimate or quick-click promise."
+    }
+  },
+  "primarySources": [
+    { "url": "https://docs.ollama.com/faq", "supports": "PROCESSOR memory placement, keep-alive, server variables, Windows tray restart and model unloading." },
+    { "url": "https://docs.ollama.com/windows", "supports": "Windows requirements, driver/backend notes, executable and log locations." },
+    { "url": "https://docs.ollama.com/gpu", "supports": "NVIDIA compute capability/driver exception, platform-specific AMD ROCm support, Vulkan and GPU visibility controls." },
+    { "url": "https://docs.ollama.com/context-length", "supports": "Allocated context, memory pressure, application slider and documented VRAM-dependent defaults." },
+    { "url": "https://docs.ollama.com/troubleshooting", "supports": "Bounded log diagnosis, optional debug launch, release-dependent library overrides and Linux-only suspend caveat." },
+    { "url": "https://docs.ollama.com/cli", "supports": "run, list, ps, stop and serve command purposes." },
+    { "url": "https://docs.ollama.com/api/ps", "supports": "Read-only running models: size_vram bytes and context_length, not utilization." },
+    { "url": "https://docs.ollama.com/docker", "supports": "Containers have a separate GPU/runtime setup; no container commands generated or run." }
+  ],
+  "factReview": {
+    "status": "Independent documentation review found one wording issue; corrected split-placement wording so it does not prove insufficient VRAM.",
+    "documentationConflicts": ["FAQ says context default4096; dedicated context page is VRAM-dependent. Article explicitly checks allocated context rather than inventing a universal default.", "Historical ROCm concurrency text in FAQ was not repeated as current guidance."],
+    "runtimeEvidence": "Installed ollama --help confirmed command names. No models run/downloaded, no personal logs read, no GPU/driver/restart/config changes, no hardware benchmark."
+  },
+  "internalLinkPlan": ["/blog/how-to-run-ai-locally-2026", "/blog/linux-wsl-setup-guide-2026-windows-developers", "/blog/docker-for-beginners-2026-guide"],
+  "inboundLinkPlan": {
+    "status": "Deferred until article is explicitly published; never link a hidden draft from a public article.",
+    "from": [{ "postId": 199, "section": "The Hardware Truth or Ollama setup", "anchor": "diagnose Ollama GPU detection and CPU fallback" }]
+  },
+  "images": [
+    { "file": "cover.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original diagnostic illustration" },
+    { "file": "processor-states.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original memory-placement diagram; not utilization measurements" },
+    { "file": "diagnostic-path.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original decision diagram; not a performance guarantee" }
+  ],
+  "releaseBoundary": "Article is saved hidden, unfeatured and unscheduled. New first-party images require an explicitly approved code/asset deployment before publication. Existing uncommitted tool upgrades must not be deployed automatically.",
+  "validation": {
+    "wordsExcludingCodeImagesAndCredits": 2747,
+    "readingTime": "13 min read",
+    "metaTitleCharacters": 61,
+    "metaDescriptionCharacters": 132,
+    "offlineGroups": 10,
+    "offlineResult": "Passed: actual MarkdownRenderer,8exactcodeblocks,1table,5visibleFAQs and matching real route extraction/schema, metadata, image credits/dimensions, no raw active content, synthetic parameterized-insert guards.",
+    "powershell": "All7PowerShell blocks parsed successfully with the PowerShell5.1 language parser; none executed. Installed Ollama help checked separately without models or personal logs.",
+    "browser": "Passed static actual-renderer preview at320/390/1280px;3originalPNG images loaded;all5FAQs opened at each width;no page-level overflow, page errors or external requests. Not a full Next production-page or hydrated-copy test.",
+    "browserArtifacts": "OS-temp byteverse-ollama-article-pilhmT: preview.html and3screenshots, outside repository.",
+    "images": "Original1200x675PNG diagrams visually reviewed; bytes87627/78472/89541, no stock-photo or screenshot claims.",
+    "lint": "All4new article scripts passed focused ESLint with zero warnings. Git diff --check passed; existing CRLF conversion warnings are not new lint errors.",
+    "database": "Read-only preflight, one serializable inventory/category/absent-slug-guarded INSERT and separate read-only post-save verification. All166existing editorial rows unchanged excluding views, including drafts229/230.",
+    "publicVisibility": "Draft blog route remains Post Not Found/noindex, story404/noindex, absent from publicblog/sitemap/feed. Three internal destinations verified HTTP200,self-canonical,indexable.",
+    "searchConsole": "Required local GSC API configuration is absent (boolean presence check only). No authenticated GSC query or sitewide traffic diagnosis claimed.",
+    "head": "3bcb5f8 unchanged; prior uncommitted tool upgrades untouched."
+  },
+  "measurementPlan": "After approved publication, inspect exact URL/indexing and compare complete page+query periods,28days or90days when sparse. User-reported40-50impressions has no reporting period, so no numeric traffic diagnosis was invented. Improve snippet/intent only after observing relevant queries; do not equate more posts with guaranteed clicks."
+}

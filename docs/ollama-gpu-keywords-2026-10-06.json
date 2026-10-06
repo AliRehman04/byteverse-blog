@@ -1,7 +1,7 @@
 {
   "date": "2026-10-06",
   "slug": "ollama-not-using-gpu-windows-2026",
-  "status": "Published 2026-10-06 as post 235 (assets commit 7dc660c) via scripts/_publish-ollama-gpu-post.mjs --apply; one contextual backlink added in post 199; protected drafts 229/230 and 165 unrelated posts verified unchanged. Do not rerun --apply.",
+  "status": "Published 2026-10-06 as post 235 (assets commit 7dc660c) via scripts/_publish-ollama-gpu-post.mjs --apply; one contextual backlink added in post 199; protected drafts 229/230 and 165 unrelated posts verified unchanged. Do not rerun --apply. Cover redesigned and swapped to cover-v2.png on 2026-10-06 (commit a0304dc, scripts/_update-ollama-gpu-cover.mjs --apply; cover_image only).",
   "savedDraft": {
     "id": 235,
     "adminPreview": "https://www.byteverse.fyi/admin/posts/235/preview",

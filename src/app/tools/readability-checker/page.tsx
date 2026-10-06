@@ -215,7 +215,7 @@ export default function ReadabilityCheckerPage() {
             <ul className="grid gap-2 text-sm">
               <li><Link href="/tools/seo-title-analyzer" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> SEO Title Checker — compare title drafts and previews</Link></li>
               <li><Link href="/tools/word-counter" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Word Counter — length, reading and speaking time</Link></li>
-              <li><Link href="/tools/plagiarism-checker" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Similarity Checker — verify originality</Link></li>
+              <li><Link href="/tools/plagiarism-checker" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Similarity Checker — compare supplied sources</Link></li>
               <li><Link href="/tools/ai-content-detector" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> AI Content Detector — human or AI text?</Link></li>
             </ul>
           </div>

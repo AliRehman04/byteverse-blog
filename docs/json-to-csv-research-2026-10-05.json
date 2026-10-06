@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-05",
+  "url": "https://www.byteverse.fyi/tools/json-to-csv",
+  "scope": "Local redesign and functionality/SEO improvement; no publication, push, deployment, database change or indexing request.",
+  "baseline": {
+    "head": "3bcb5f8455e5316258e252b7602766390ce9b36b",
+    "workingTree": "Contains the separate uncommitted Text Similarity Checker work; both tools remain local.",
+    "userReportedClicks": 0,
+    "verifiedPrivateMetrics": false,
+    "liveAudit": "Previous page accepted JSON arrays/objects via JSON.parse, flattened with dot notation and offered delimiter choice. No wrapped-API row selection, JSON Lines, column controls, preview, number-token preservation or formula-risk handling; generic FAQs.",
+    "observedProblems": [
+      "Large integers and decimal spellings were altered by JavaScript number parsing.",
+      "Nested keys containing dots could collide with flattened paths.",
+      "Multiline CSV values broke row counting in the preview.",
+      "Wrapped API responses (e.g. {data:{items:[...]}}) could not be converted without manual editing.",
+      "No column selection/order, no table preview, no spreadsheet formula protection."
+    ]
+  },
+  "keywordResearch": {
+    "method": "Keywords chosen from the existing tools keyword export (docs/tools-keywords-2026-09-28.json) and common query wording; no new volume data.",
+    "primary": "json to csv converter",
+    "secondary": ["nested json to csv", "json lines to csv", "jsonl to csv", "ndjson to csv", "json array to csv", "json to csv excel", "json to tsv", "flatten json to csv"],
+    "limitations": "No measured search volume, keyword difficulty, rankings, click forecast or fresh authenticated GSC report."
+  },
+  "implementation": {
+    "positioning": "Local nested JSON / JSON Lines to CSV converter with explicit row-source selection and spreadsheet-safety review. Existing URL and canonical retained.",
+    "files": [
+      "src/lib/json-csv/{types,engine,input,worker,samples}.ts",
+      "src/app/tools/json-to-csv/{page.tsx,json-to-csv-tool.tsx,json-csv.css,opengraph-image.tsx}",
+      "scripts/{test-json-csv-core,test-json-csv-ui,test-json-csv-browser,preview-json-csv}.mjs"
+    ],
+    "dependencies": { "added": ["jsonc-parser 3.3.1 (strict tokenizing, duplicate-key detection, original number tokens)", "papaparse 5.7.0 (CSV serialization)", "@types/papaparse 5.5.2 (dev)"] },
+    "parsing": "Strict JSON and JSON Lines; comments, trailing commas, BOM in JSONL, duplicate keys (including escaped equivalents) rejected with line numbers. Number tokens are preserved as source text, never through Number().",
+    "rows": "Inspection lists candidate row sources as RFC 6901 JSON Pointers (up to 60) with counts; wrapper metadata outside the selected array is excluded and disclosed.",
+    "columns": "Flatten nested objects or keep JSON cells; one optional array expansion into repeated rows (no Cartesian product); array cells as JSON or scalar join; column select/rename/reorder/filter with unique-header validation (also after protection prefixing). __proto__/constructor/dotted keys remain distinct inert data.",
+    "export": "Delimiter (, ; tab |), CRLF/LF, header on/off, BOM, quote-all, separate null/missing replacements, formula-risk apostrophe prefixing with counts (negative JSON numbers unchanged). Copy full CSV or download; 50k-character text preview with paginated table preview of actual exported values.",
+    "limits": "1,000,000 characters / 2 MiB input; depth 40; 200k nodes; 10,000 rows; 200 columns; 250k cells; 8 MiB output; 15-second cancellable worker deadline.",
+    "privacy": "Module Worker conversion; no fetch/API/AI/storage in the conversion source graph (AST-verified). Work is not saved automatically. Sitewide analytics/ads are separate; no absolute all-site privacy claim."
+  },
+  "seo": {
+    "title": "Free JSON to CSV Converter - Nested JSON & JSON Lines",
+    "description": "Convert JSON or JSON Lines to CSV in your browser. Flatten nested data, choose columns, preview rows, and export with formula-risk protection.",
+    "structuredData": "WebApplication, BreadcrumbList and five FAQs matching visible content. No invented reviews or aggregate ratings.",
+    "discovery": "Central tool catalog, homepage, llms.txt and chatbot tool catalog describe the nested/JSON Lines scope; related links retained including the invoice route.",
+    "image": "Custom 1200x630 PNG Open Graph/Twitter image with fictional JSON/CSV illustration that agrees with the engine."
+  },
+  "validation": {
+    "status": "Complete locally; production unchanged",
+    "core": "89 tests (engine parsing, pointers, flattening, expansion, number tokens, Unicode, limits, formula protection, CSV serialization)",
+    "uiAndSsr": "71 tests (page SSR/metadata/FAQ parity, OG exports, client AST contracts, worker URL/cleanup, import handling, no-network source graph, catalog/chat/llms descriptors, similarity entries unchanged)",
+    "build": "Credential-free copied Next 16.2.6 production build (.byteverse-json-csv-check-tidZcr, built 2026-10-04 17:34 after the last source change) served at 127.0.0.1:3042.",
+    "browser": {
+      "cases": 58,
+      "passed": 58,
+      "engine": "Headless Microsoft Edge via Playwright 1.63.0",
+      "widths": [320, 390, 768, 1440],
+      "themes": ["light", "dark"],
+      "realDownloads": 3,
+      "screenshots": 12,
+      "results": "Served SSR/metadata/schema/PNG, sitemap/llms discovery, samples, wrapped-root selection, array modes, expansion, JSON Lines, strict-input rejection, prototype keys, Unicode, column controls and caps, four delimiter/newline/quote combinations with independently read downloads, header-off, formula risk, native imports (.json/.jsonl/.ndjson/.txt) and rejections, replacement review, file/worker/clipboard fault injection, deadline, large paginated result, privacy (no fetch of URL-shaped data, reload clears work) and responsive layouts passed.",
+      "artifacts": "OS-temp byteverse-json-csv-browser-lM4qP6; outside the repository."
+    },
+    "regressions": "42-tool catalog/schema test, 14 invoice SEO groups and similarity UI suite passed. TypeScript strict and focused lint clean; git diff --check clean.",
+    "localPreview": "http://127.0.0.1:3042/tools/json-to-csv",
+    "limitations": "No CSV-to-JSON, XLSX export or upload API. Excel text-typing behavior is disclosed, not controlled. No GSC traffic impact, live deployment or security remediation claimed. Existing Next 16.2.6 security advisory remains separate and unresolved."
+  },
+  "measurementPlan": "After an explicitly approved release, inspect the exact canonical URL in Search Console and compare page/query clicks, impressions and CTR over complete comparable 28-day periods, or 90 days if sparse. Check indexing before inferring a cause. No analytics instrumentation added."
+}

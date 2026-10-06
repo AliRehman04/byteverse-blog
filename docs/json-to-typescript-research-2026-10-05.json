@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-05",
+  "url": "https://www.byteverse.fyi/tools/json-to-typescript",
+  "scope": "Local tool upgrade only. No commit, push, deployment, database mutation or indexing request. Existing similarity and JSON-to-CSV upgrades preserved.",
+  "baseline": {
+    "head": "3bcb5f8455e5316258e252b7602766390ce9b36b",
+    "verifiedPrivateMetrics": false,
+    "observedPage": "The previous live page described any JSON, production-ready types and unconditional privacy. It did not explain sample-based uncertainty, missing versus null, JSON Lines, nested selection or inference bounds."
+  },
+  "research": {
+    "primary": "json to typescript interface",
+    "secondary": ["json to typescript type", "json to typescript converter", "json array to typescript interface", "nested json to typescript", "json lines to typescript"],
+    "existingEvidence": "docs/tools-keywords-2026-09-28.json contains two successful autocomplete seeds for this tool, with source URLs and timestamps.",
+    "freshAutocomplete": {
+      "method": "Eight Google autocomplete requests on 2026-10-05 using client=firefox, hl=en and gl=us. Three completed; five timed out. Empty suggestions are not evidence of no demand.",
+      "results": [
+        { "seed": "json to typescript interface", "status": "timeout" },
+        { "seed": "json to typescript optional properties", "status": "timeout" },
+        { "seed": "json array to typescript interface", "status": "timeout" },
+        { "seed": "nested json to typescript", "suggestions": [] },
+        { "seed": "json lines to typescript", "status": "timeout" },
+        { "seed": "json to typescript type generator", "suggestions": ["json to typescript type generator", "json to typescript class generator", "json → typescript type generator", "json to typescript types", "typescript import json as type"] },
+        { "seed": "json to typescript readonly", "status": "timeout" },
+        { "seed": "json to typescript multiple samples", "suggestions": [] }
+      ]
+    },
+    "competitors": [
+      { "url": "https://quicktype.io/typescript", "observation": "Advertises JSON/JSON Schema/GraphQL input, runtime validation and CLI workflows. Product scope observed, not benchmarked. ByteVerse does not claim those capabilities." },
+      { "url": "https://jsonutils.org/json-to-typescript.html", "observation": "Advertises interface/type output, nested types and readonly options. These options alone are not unique differentiation." }
+    ],
+    "limitations": "No new authenticated Search Console report, measured search volume, keyword difficulty, ranking diagnosis or traffic forecast."
+  },
+  "sources": [
+    { "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html", "supports": "Unions, interface/type distinctions, optional properties and compile-time versus runtime behavior." },
+    { "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html", "supports": "Object properties, index signatures, readonly properties and ReadonlyArray; readonly is not runtime freezing." },
+    { "url": "https://jsonlines.org/", "supports": "UTF-8, one valid JSON value per line, no blank samples or BOM, optional final newline." },
+    { "url": "https://www.rfc-editor.org/rfc/rfc6901", "supports": "Explicit pointers, ~1 and ~0 escapes, empty-key distinction and canonical array indices." }
+  ],
+  "implementation": {
+    "core": "Strict token/AST parsing using the already installed jsonc-parser 3.3.1; no new dependency for this tool. All selected observations contribute to merged object shapes, missing-field optionality and mixed/null unions. Numeric tokens yield number types without using the parser's rounded numeric values.",
+    "selection": "Keep the selected value or infer direct array items; optional RFC 6901 pointer must resolve in every JSONL sample. JSONL lines are repeated root observations, not an implicit output array.",
+    "generation": "Interface/type styles, stable location-based collision-safe declaration names, escaped unusual keys, recursive readonly, all-optional override, bounded string literals, sorting, indentation and export controls. Non-object roots use a type alias; disabled exports retain an export {} module guard.",
+    "workspace": "Responsive light/dark editor, four fictional examples, field-presence table with 25/50-field pagination, complete and individual-declaration previews, UTF-8 file import with inspected replacement confirmation, clear confirmation, cancellable worker, stale-result invalidation and full-copy/download.",
+    "exports": "Complete UTF-8 .ts or .d.ts output, including all nested declarations and module guard, even when previewing one declaration. Windows device filenames receive a safe suffix. Clipboard fallback selects full code; delayed writes warn when the result changed.",
+    "bounds": "1,000,000 input UTF-16 characters, 2 MiB UTF-8, depth40, 200k tokens/nodes, 10k samples/selected values, 200 declarations, 2k generated properties, 1024-character keys, 4096-character pointers, 400k output characters, 15-second worker deadline. Limits reject rather than truncate.",
+    "privacy": "Conversion uses a local worker, no conversion upload/AI/storage path. Global ads and analytics are separate; the whole page is not claimed to be an isolated environment. Keys always appear in output; optional string literals include source values.",
+    "limitations": "Sample-based drafts, not runtime validation or a complete API contract. No tagged-union correlation, tuple, class, Date, bigint, JSON Schema or validator generation. No browser TypeScript compiler or URL import."
+  },
+  "seo": {
+    "title": "Free JSON to TypeScript Converter - Interfaces & Types",
+    "description": "Generate TypeScript interfaces or types from JSON and JSON Lines. Infer optional fields, review mixed arrays, select nested data, and download your types locally.",
+    "urlPreserved": true,
+    "schema": "Free WebApplication, BreadcrumbList and five exactly matching native-disclosure FAQs. No invented reviews or ratings.",
+    "content": "Worked three-record Account example is checked against the actual engine. Guidance explains missing versus null, wrappers versus array items, type-only exports, bounds and source references.",
+    "discovery": "Central catalog descriptor updated; previously absent chatbot and llms entries added without calling their backends. Two contextual guide URLs returned HTTP200: typescript-for-beginners-2026-complete-guide and best-free-apis-for-developers-2026.",
+    "image": "Custom 1200x630 PNG, fictional account illustration, matching Open Graph/Twitter alt and metadata."
+  },
+  "validation": {
+    "status": "Complete locally; all 40 browser cases covered by the final full run and targeted rerun. Production unchanged.",
+    "core": { "tests": 67, "passed": 67, "generatedTsFixtures": 104, "generatedDeclarationFixtures": 104, "consumerFixtures": 104, "compiler": "Real strict semantic checking with exactOptionalPropertyTypes and separate DOM/worker-library checks; zero diagnostics." },
+    "ui": { "tests": 24, "passed": 24, "scope": "Real page and initial client SSR, example parity, exact metadata/FAQ/schema, source AST, CSS scoping, discovery and previous-tool entry preservation. No browser-interaction claim from these tests alone." },
+    "typesAndLint": "Strict project typecheck and focused ESLint passed before the isolated build. No app-source edits were needed for the subsequent browser harness corrections.",
+    "build": "Next16.2.6 production build passed with103 static pages in the credential-free sibling .byteverse-json-typescript-check-QezNPs. No real blog-data/database build claimed.",
+    "browser": {
+      "planned": 40,
+      "verifiedCases": 40,
+      "status": "All cases passed across runs, not a single 40/40 run after the final harness-only timeout edit.",
+      "fullRun": "byteverse-json-typescript-browser-dFofwd: 39/40 passed; only case17 timed out transporting a synthetic 2MiB paste within the normal12s action limit. Two native downloads and all24 responsive screenshots completed.",
+      "targetedRerun": "byteverse-json-typescript-browser-8zwqcA: cases17 and24 both passed after giving only the large-paste test action45s. Exact whole-input rejection, previous-result retention and full .ts/.d.ts download byte checks remain unchanged.",
+      "engine": "Microsoft Edge154.0.4258.53; captured outputs checked with TypeScript5.9.3",
+      "widths": [320, 390, 768, 1440],
+      "themes": ["light", "dark"],
+      "screenshots": 24,
+      "downloadFormats": ["ts", "d.ts"],
+      "scope": "Native bundled Worker, normal workflows, injected clipboard/worker/file lifecycle cases, native downloads with byte read-back and real compiler checks, metadata/PNG and responsive DOM bounds.",
+      "limitations": "Synthetic data and emulated viewports. Clipboard and watchdog faults are injected, not real hardware faults or wall-clock benchmarks. No OS clipboard contents read. Not a complete accessibility or cross-browser certification."
+    },
+    "harnessCorrections": [
+      "V8 can replace a throwing VM global getter error with ReferenceError; tests assert the deny trap was invoked as well as rejection.",
+      "Next16.2.6 Turbopack transforms the source module Worker into its same-origin classic bootstrap. The browser test now verifies that exact bootstrap and chunk paths, not an incorrect required module constructor option.",
+      "Explicitly held worker tests capture only the test watchdog to prevent wall-clock expiry while exercising delayed delivery.",
+      "Edge may repeat test initialization during native downloads; the instrumentation is idempotent and keeps the original observations.",
+      "The synthetic multi-megabyte paste gets a45s test action timeout; product size limits and15s generation deadline are unchanged."
+    ],
+    "localPreview": "http://127.0.0.1:3044/tools/json-to-typescript",
+    "releaseNote": "No live push. Existing Next16.2.6 security advisory is separate and remains unresolved; no fresh clean-audit claim."
+  },
+  "measurementPlan": "After an explicitly approved release, check the exact canonical URL in Search Console and compare complete equivalent 28-day page/query periods, or90days when sparse. No click or ranking guarantees and no new analytics instrumentation."
+}

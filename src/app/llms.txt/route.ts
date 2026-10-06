@@ -33,6 +33,8 @@ export async function GET() {
   // Tools
   const tools = [
     { name: "JSON Formatter & Validator", href: "/tools/json-formatter", desc: "Format, validate, and minify JSON with syntax error detection" },
+    { name: "JSON to TypeScript Converter", href: "/tools/json-to-typescript", desc: "Infer interfaces or types from JSON and JSON Lines locally; review optional fields, null unions and nested selections, then download complete .ts or .d.ts declarations. No runtime validation or AI" },
+    { name: "JSON to CSV Converter", href: "/tools/json-to-csv", desc: "Convert strict JSON or JSON Lines to CSV locally; choose rows, flatten nested fields, expand one array, edit columns and preview formula-risk protection. No AI or URL import" },
     { name: "Password Generator", href: "/tools/password-generator", desc: "Generate strong random passwords using Web Crypto API" },
     { name: "Meta Tag Generator", href: "/tools/meta-tag-generator", desc: "Build SEO and social tags with local HTML import, illustrative previews and HTML or Next.js Metadata export; no URL crawl" },
     { name: "Base64 Encoder & Decoder", href: "/tools/base64-encoder-decoder", desc: "Encode text to Base64 or decode Base64 with UTF-8 support" },
@@ -53,7 +55,7 @@ export async function GET() {
     { name: "Color Converter", href: "/tools/color-converter", desc: "Convert colors between HEX, RGB, and HSL formats" },
     { name: "Box Shadow Generator", href: "/tools/box-shadow-generator", desc: "Build CSS box-shadow effects with multiple layers" },
     { name: "AI Content Detector", href: "/tools/ai-content-detector", desc: "Detect AI-generated text using 8 linguistic signals" },
-    { name: "Plagiarism Checker", href: "/tools/plagiarism-checker", desc: "Check text uniqueness and compare documents for similarity" },
+    { name: "Text Similarity Checker", href: "/tools/plagiarism-checker", desc: "Compare one draft with 1–5 supplied sources locally, or find repeated sentences in a draft; review phrase evidence and save TXT reports. No web scan, AI or originality verdict" },
     { name: "Live HTML Editor", href: "/tools/html-editor", desc: "Write HTML, CSS, and JavaScript with instant live preview and 7 templates" },
     { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
     { name: "Plagiarism Remover & AI Humanizer", href: "/tools/plagiarism-remover", desc: "Rewrite text to remove plagiarism and humanize AI-generated content" },

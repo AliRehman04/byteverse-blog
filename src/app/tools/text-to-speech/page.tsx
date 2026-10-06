@@ -118,7 +118,7 @@ export default function TextToSpeechPage() {
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">Why This TTS Reader Stays Free
 </h2>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-            It runs on your browser's built-in speech engine — no server costs means no paywalls, genuinely.
+            It runs on your browser&apos;s built-in speech engine — no server costs means no paywalls, genuinely.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -192,7 +192,7 @@ export default function TextToSpeechPage() {
             <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><Wrench size={16} className="text-primary" /> Related Free Tools</h3>
             <ul className="grid gap-2 text-sm">
               <li><Link href="/tools/word-counter" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Word Counter — reading time before listening time</Link></li>
-              <li><Link href="/tools/plagiarism-checker" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Similarity Checker — verify text originality</Link></li>
+              <li><Link href="/tools/plagiarism-checker" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Similarity Checker — compare matching passages</Link></li>
               <li><Link href="/tools/ai-content-detector" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> AI Content Detector — human or AI text?</Link></li>
               <li><Link href="/tools/markdown-to-html" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Markdown to HTML — publish-ready conversion</Link></li>
             </ul>

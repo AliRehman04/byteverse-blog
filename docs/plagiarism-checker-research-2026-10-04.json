@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-04",
+  "url": "https://www.byteverse.fyi/tools/plagiarism-checker",
+  "scope": "Local redesign and functionality/SEO improvement; no publication, push, deployment, database change or indexing request.",
+  "baseline": {
+    "head": "3bcb5f8455e5316258e252b7602766390ce9b36b",
+    "workingTree": "Clean before this tool task",
+    "userReportedClicks": 0,
+    "reportingPeriod": null,
+    "verifiedPrivateMetrics": false,
+    "liveAudit": "Page opened read-only. Default single-text uniqueness heuristics and optional Groq estimates were presented alongside unconditional in-browser/privacy claims. Two-text lexical comparison existed, but no actual web corpus search was implemented.",
+    "observedProblems": [
+      "Writing style and generic phrasing were used to estimate uniqueness without matched sources.",
+      "Optional AI requests sent up to 5,000 characters to Groq despite page-wide no-upload claims.",
+      "Unlimited and sub-second claims lacked bounds or measurements.",
+      "Results could remain visible after their inputs changed.",
+      "No file import, review notes or useful report export."
+    ]
+  },
+  "keywordResearch": {
+    "method": "Ten Google autocomplete requests using English/US URL parameters and public Google/Bing result inspection. The selections below preserve observed wording, not an exhaustive keyword export.",
+    "successfulSeeds": 10,
+    "selections": [
+      { "seed": "compare two texts for plagiarism", "suggestionCount": 10, "phrases": ["compare two texts for plagiarism free", "compare two texts for similarity"] },
+      { "seed": "text similarity checker", "suggestionCount": 10, "phrases": ["text similarity checker online", "text similarity checker percentage"] },
+      { "seed": "text similarity checker online", "suggestionCount": 9, "phrases": ["text similarity checker online free", "check similarity between two texts"] },
+      { "seed": "compare two texts", "suggestionCount": 10, "phrases": ["compare two texts side by side", "compare two texts for similarity"] },
+      { "seed": "compare two documents", "suggestionCount": 10, "phrases": ["compare two documents in word", "compare two documents for similarities"] },
+      { "seed": "document comparison tool", "suggestionCount": 10, "phrases": ["document comparison tool free", "document comparison tool pdf"] },
+      { "seed": "compare text for similarities", "suggestionCount": 3, "phrases": ["compare text for similarities", "compare two texts for similarities"] },
+      { "seed": "find matching text", "suggestionCount": 10, "phrases": ["find matching text online", "find duplicate text online"] },
+      { "seed": "compare multiple texts", "suggestionCount": 10, "phrases": ["compare multiple texts online", "compare multiple text files"] },
+      { "seed": "duplicate sentence checker", "suggestionCount": 7, "phrases": ["duplicate sentence checker online", "duplicate phrase checker"] }
+    ],
+    "primary": "text similarity checker",
+    "secondary": ["compare two texts for plagiarism", "compare multiple texts", "duplicate sentence checker"],
+    "limitations": "No measured search volume, keyword difficulty, rankings, click forecast or fresh authenticated GSC report. Document-comparison searches can include PDF/Word editing intent outside this tool's scope."
+  },
+  "competitors": [
+    { "url": "https://app.copyleaks.com/text-compare", "observation": "Advertises multiple documents, text/file/URL inputs, semantic matching and PDF reports. Not benchmarked or submitted private documents. Multiple sources alone are not a unique feature." },
+    { "url": "https://www.diffchecker.com/", "observation": "Advertises side-by-side text comparison, word/character highlights, ignore rules and review/export options; some features are Pro-limited. Observed marketing, not an accuracy test." }
+  ],
+  "sources": [
+    { "url": "https://guides.turnitin.com/hc/en-us/articles/23435833938701-Understanding-the-similarity-score", "supports": "Similarity matches need interpretation; properly quoted and referenced text can match. ByteVerse neither uses Turnitin's database nor claims equivalence or endorsement." },
+    { "url": "https://owl.purdue.edu/owl/research_and_citation/using_research/quoting_paraphrasing_and_summarizing/index.html", "supports": "Quoting, paraphrasing and summarizing require attribution. Rewording is not a way to remove citation obligations." },
+    { "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide", "supports": "Ordinary duplicate content is not a blanket spam violation; abusive copying is different." },
+    { "url": "https://developers.google.com/search/docs/appearance/title-link", "supports": "Descriptive, concise and accurate titles; no fixed length or ranking guarantee." },
+    { "url": "https://developers.google.com/search/docs/appearance/snippet", "supports": "Snippets can use page content and vary with the query; a supplied description is not guaranteed display text." }
+  ],
+  "implementation": {
+    "positioning": "Source-backed review, not originality certification. Existing URL and canonical retained.",
+    "comparison": "Main draft against 1–5 labeled supplied sources. Normalized exact word sequences, 4/6/8/12-word threshold, union-based directional coverage and original-text evidence/highlights. No AI or semantic/internet corpus search.",
+    "singleText": "Exact normalized repeated-sentence groups, occurrence navigation and optional position-sampled manual search excerpts. No suspicion or originality score.",
+    "limits": "10,000 words and 60,000 UTF-16 characters per text; UTF-8 TXT/MD files up to 256 KB; no PDF/DOCX/URL/OCR import; 15-second cancellable worker deadline.",
+    "exclusions": "Balanced supported quotations and final explicit References/Bibliography/Works Cited heading. Applied to both texts; excluded gaps cannot be bridged. Recognition does not validate citations.",
+    "report": "TXT copy/download with settings, counts, positions and user review labels/notes. Optional text omission and an explicit stats-only fallback above the 120,000-character repeated-evidence budget.",
+    "retiredApi": "Old AI originality endpoint now returns HTTP 410 without parsing the body, calling a provider or returning a score; cached clients receive a reload explanation.",
+    "privacy": "Comparison runs locally and does not automatically persist text. Manual Google search shares only the shown query after an explicit link click. Global site ads/analytics are separate; no absolute all-site privacy claim."
+  },
+  "seo": {
+    "title": "Free Text Similarity Checker - Compare Sources",
+    "titleCharacters": 46,
+    "description": "Compare a draft with up to five supplied sources, review matching phrases and save a report. Free text similarity checker with on-device matching; no web scan.",
+    "descriptionCharacters": 159,
+    "structuredData": "WebApplication, BreadcrumbList, and five FAQs matching visible content. No invented reviews or aggregate ratings.",
+    "discovery": "Central tool catalog, homepage, llms.txt, chatbot tool catalog and relevant inbound tool descriptions reflect supplied-source matching, not web scans or originality guarantees.",
+    "image": "Custom 1200x630 PNG Open Graph/Twitter image with clearly fictional matching-text illustration."
+  },
+  "validation": {
+    "status": "Complete locally; production unchanged",
+    "core": "47 tests including 512 seeded brute-force comparisons, adversarial bounds, Unicode spans, exclusions and directional coverage",
+    "uiAndReport": "54 tests including 88-million-character potential evidence expansion guarded by stats-only fallback, privacy omission, import boundaries, escaped highlighting, schema parity and retired endpoint behavior",
+    "build": "Final credential-free copied Next16.2.6 Turbopack production build passed (101 static pages). Database/provider configuration absent; this is not a production-blog-data build. Original invoice preview was not rebuilt or restarted.",
+    "browser": {
+      "cases": 62,
+      "passed": 62,
+      "engine": "Headless Microsoft Edge 154.0.4258.53",
+      "widths": [320, 390, 768, 1440],
+      "themes": ["light", "dark"],
+      "realDownloads": 2,
+      "screenshots": 24,
+      "results": "Real Next-built workers, supplied-source comparisons, source-specific highlights, quote/reference exclusions, notes and report privacy, imports/replacement/cancellation, late results, actual UTF-8 downloads, served metadata/PNG/FAQ/schema and route-specific 410 noindex headers passed.",
+      "faultInjection": "Explicit controlled clipboard success/rejection/delay, delayed native worker deliveries, worker errors and File.arrayBuffer failures were tested separately from normal paths. System clipboard content was not read.",
+      "networkBoundary": "No tested input-bearing requests. External page integrations were blocked and counted separately. Manual Google queries were previewed and inspected, never sent. This is not a zero-network or no-storage claim for the entire site.",
+      "artifacts": "OS-temp byteverse-similarity-browser-xn0fcD; screenshots, two independently read TXT downloads and artifacts.json are outside the repository."
+    },
+    "regressions": "42-tool catalog/schema test, SEO Title Checker tests, 19 Meta Tag Generator tests and 14 Invoice SEO/discovery/privacy-build groups passed. TypeScript and focused lint passed; two pre-existing unused-relatedTools warnings remain in neighboring pages.",
+    "reviewFixes": [
+      "Failed or cancelled imports preserve completed reviews until replacement is accepted.",
+      "Source-filtered highlighting uses that source's ranges, not the overall union.",
+      "Reports are generated only when opened and fall back explicitly to stats-only above the text budget. Long evidence cards are abbreviated without truncating the full highlighted documents.",
+      "Pending clipboard copies are single-flight and warn if the preview changes before completion.",
+      "A specific Next header rule preserves noindex/no-store on the retired API despite the broad site indexing header.",
+      "Browser harness identifies only Edge's actual internal downloads-hub page; it does not ignore external popups. Individual hub closure hung, so isolated browser-context cleanup handles it."
+    ],
+    "localPreview": "http://127.0.0.1:3040/tools/plagiarism-checker",
+    "limitations": "No plagiarism-detection accuracy benchmark, real confidential documents, GSC traffic impact, live deployment or fresh security remediation claimed. Existing Next16.2.6 security advisory remains separate and unresolved."
+  },
+  "measurementPlan": "After an explicitly approved release, inspect the exact canonical URL in Search Console and compare page/query clicks, impressions and CTR over complete comparable 28-day periods, or 90 days if sparse. Check indexing and query intent before inferring a cause. Tool usefulness can be evaluated by completed reviews and feedback without logging supplied text; no analytics instrumentation added in this task."
+}

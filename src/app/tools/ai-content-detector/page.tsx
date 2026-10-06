@@ -101,8 +101,8 @@ const relatedTools = [
   },
   {
     icon: FileSearch,
-    title: "Plagiarism Checker",
-    desc: "Scan text for duplicate content and similarity",
+    title: "Text Similarity Checker",
+    desc: "Compare your draft with supplied sources; not a web scan",
     href: "/tools/plagiarism-checker",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
@@ -272,7 +272,7 @@ export default function AiContentDetectorPage() {
                 ByteVerse&apos;s AI content detector analyzes 8 distinct linguistic signals including sentence uniformity, vocabulary diversity, burstiness, AI phrase patterns, personal voice markers, and punctuation variety. Each signal is scored independently, giving you a transparent breakdown rather than a black-box verdict.
               </p>
               <p>
-                If text is flagged as AI-generated, use our <Link href="/tools/plagiarism-remover" className="text-primary hover:underline">Plagiarism Remover &amp; AI Humanizer</Link> to rewrite it naturally. Verify originality with the <Link href="/tools/plagiarism-checker" className="text-primary hover:underline">Plagiarism Checker</Link>, and use the <Link href="/tools/word-counter" className="text-primary hover:underline">Word Counter</Link> to ensure your content meets length requirements.
+                A style flag does not establish AI authorship. Use the <Link href="/tools/plagiarism-checker" className="text-primary hover:underline">Text Similarity Checker</Link> to compare matching wording against sources you supply, not to certify originality. The <Link href="/tools/word-counter" className="text-primary hover:underline">Word Counter</Link> can help review length requirements. Attribution still matters when you revise text.
               </p>
             </div>
           </div>

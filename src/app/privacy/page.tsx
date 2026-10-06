@@ -55,12 +55,19 @@ export default function PrivacyPage() {
           explicitly stated on the tool&apos;s page.
         </p>
         <p>
-          Certain tools&mdash;such as the AI Content Detector, Plagiarism
-          Checker, and Plagiarism Remover&mdash;may send the text you provide
+          Certain tools&mdash;such as the AI Content Detector and Plagiarism
+          Remover&mdash;may send the text you provide
           to third-party AI or analysis APIs to generate results. This data is
           transmitted securely and is not stored by us after processing. We do
           not use your tool inputs for training, advertising, or any purpose
           other than delivering the requested result.
+        </p>
+        <p>
+          The Text Similarity Checker compares supplied texts locally without
+          an AI provider request. It does not save drafts or notes automatically.
+          If you explicitly open a manual search, the previewed query is sent
+          to Google. Copied text and downloaded reports are under your control;
+          sitewide analytics and advertising are separate from the comparison.
         </p>
 
         <h2>Third-Party Services</h2>

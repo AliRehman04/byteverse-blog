@@ -87,6 +87,13 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      source: "/api/ai-plagiarism-check",
+      headers: [
+        { key: "X-Robots-Tag", value: "noindex" },
+        { key: "Cache-Control", value: "no-store" },
+      ],
+    },
+    {
       source: "/blog",
       headers: [
         {

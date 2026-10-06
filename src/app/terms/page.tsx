@@ -60,8 +60,14 @@ export default function TermsPage() {
           </li>
           <li>
             Most tools run entirely in your browser. Certain tools (e.g., AI
-            Content Detector, Plagiarism Checker) may transmit your input to
+            Content Detector, Plagiarism Remover) may transmit your input to
             third-party APIs for processing.
+          </li>
+          <li>
+            The Text Similarity Checker measures overlap within supplied text,
+            not proof of plagiarism, originality or AI authorship. It does not
+            search an external corpus. Review context and citations yourself;
+            a manual external search shares the query with the chosen provider.
           </li>
           <li>
             Do not input sensitive, confidential, or personally identifiable

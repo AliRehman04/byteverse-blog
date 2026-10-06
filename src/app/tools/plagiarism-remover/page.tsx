@@ -50,7 +50,7 @@ const toolConfig = {
     {
       question: "Can I edit the rewritten text?",
       answer:
-        "Yes. The output is fully editable. You can fine-tune the rewritten text, then use our Plagiarism Checker or AI Content Detector to verify the results.",
+        "Yes. The output is editable. Check meaning and citations yourself; the Text Similarity Checker can compare wording with sources you supply, but cannot certify originality or remove attribution requirements.",
     },
     {
       question: "What is the difference between Light, Medium, and Heavy?",
@@ -134,8 +134,8 @@ const steps = [
 const relatedTools = [
   {
     icon: FileSearch,
-    title: "Plagiarism Checker",
-    desc: "Scan text for duplicate content across the web",
+    title: "Text Similarity Checker",
+    desc: "Review matching passages against supplied sources, not the web",
     href: "/tools/plagiarism-checker",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
@@ -317,7 +317,7 @@ export default function PlagiarismRemoverPage() {
                 ByteVerse&apos;s plagiarism remover goes beyond simple word swapping. It uses three distinct transformation layers â€” AI phrase removal, contextual synonym replacement, and contraction injection â€” to rewrite text in a way that passes both plagiarism scanners and <Link href="/tools/ai-content-detector" className="text-primary hover:underline">AI content detectors</Link>. The adjustable strength slider gives you complete control over how aggressively your text is rewritten.
               </p>
               <p>
-                After rewriting, we recommend verifying your output with our <Link href="/tools/plagiarism-checker" className="text-primary hover:underline">Plagiarism Checker</Link> to ensure uniqueness and running it through the <Link href="/tools/word-counter" className="text-primary hover:underline">Word Counter</Link> to confirm your content meets length requirements. For content creation workflows, pair this tool with the <Link href="/tools/ai-prompt-generator" className="text-primary hover:underline">AI Prompt Generator</Link> to draft initial content and the <Link href="/tools/code-formatter" className="text-primary hover:underline">Code Formatter</Link> for any technical snippets.
+                After rewriting, compare wording against supplied sources with our <Link href="/tools/plagiarism-checker" className="text-primary hover:underline">Text Similarity Checker</Link> and review citations yourself. No comparison certifies originality. Use the <Link href="/tools/word-counter" className="text-primary hover:underline">Word Counter</Link> for length requirements and the <Link href="/tools/diff-checker" className="text-primary hover:underline">Diff Checker</Link> to inspect edits.
               </p>
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function PlagiarismRemoverPage() {
                 { title: "Start at Medium", desc: "50% strength gives a balanced rewrite that preserves meaning while making text unique." },
                 { title: "Use Heavy for AI text", desc: "AI-generated content needs more aggressive rewriting â€” try 70%+ strength for best results." },
                 { title: "Always review output", desc: "Add your personal voice and style after rewriting for the most natural-sounding result." },
-                { title: "Verify with detectors", desc: "Run rewritten text through our AI Content Detector and Plagiarism Checker to confirm." },
+                { title: "Check sources and citations", desc: "Compare supplied sources in the Text Similarity Checker, then review attribution. A low overlap result is not proof of originality." },
                 { title: "Combine with manual edits", desc: "The best results come from pairing automated rewriting with your own revisions." },
               ].map((tip) => (
                 <div key={tip.title} className="flex gap-3 p-3.5 rounded-xl border border-border bg-card hover:border-violet-500/20 transition-colors duration-200">

@@ -153,6 +153,12 @@ const nextConfig: NextConfig = {
       destination: "/about",
       permanent: true,
     },
+    // Some AI crawlers probe the alternate llms.txt location.
+    {
+      source: "/.well-known/llms.txt",
+      destination: "/llms.txt",
+      permanent: true,
+    },
     ...blogSlugRedirects.map(([source, destination]) => ({
       source: `/blog/${source}`,
       destination: `/blog/${destination}`,

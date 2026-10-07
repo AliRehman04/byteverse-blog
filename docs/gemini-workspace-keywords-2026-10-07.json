@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-07",
+  "slug": "gemini-not-showing-google-docs-gmail-2026",
+  "status": "Saved and verified as hidden draft 236 on 2026-10-07; published=false, featured=false, scheduled_at=null. Images are local only until committed and deployed. No commit, push or publication yet.",
+  "savedDraft": { "id": 236, "adminPreview": "https://www.byteverse.fyi/admin/posts/236/preview", "contentSha256": "f4323fc2abd2e5c10e56f9683d9fae56367fc69ca0f70c8b11f24a56b519287d", "postSaveTotals": { "total": 168, "published": 165 }, "warning": "Do not rerun --save-draft. Use --read-only to inspect." },
+  "userMetrics": {
+    "reported": "User reports zero clicks and roughly 40-50 impressions (period unspecified).",
+    "verification": "No authenticated Search Console page/query export was available; GSC_CONFIGURED is a boolean check only. Do not attribute cause."
+  },
+  "targeting": {
+    "title": "Gemini Not Showing in Google Docs or Gmail? 7 Checks Before You Pay",
+    "metaTitle": "Gemini Not Showing in Google Docs, Sheets or Gmail? 7 Fixes",
+    "metaDescription": "No Ask Gemini button in Docs, Sheets or Gmail? Check plan tier, account age, Workspace smart features, account language and admin settings before you upgrade.",
+    "primary": "gemini not showing in google docs",
+    "secondary": ["gemini not showing in gmail", "gemini in google sheets not working", "how to enable gemini in google docs", "ask gemini button missing"],
+    "intent": "Troubleshooting: the Ask Gemini button is absent or disabled in Google Docs, Sheets or Gmail.",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "differentiation": "Existing posts cover using Gemini (128) and AI in Sheets (154); none covers eligibility troubleshooting. Sibling troubleshooting pattern: 234 (Copilot in Excel not showing)."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-07",
+    "totalPosts": 167,
+    "publishedPosts": 165,
+    "editorialChecksumExcludingViews": "8e95ef284a0140be0397956a086f9229",
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "overlapReviewed": [128, 154, 203, 216, 232, 234]
+  },
+  "keywordResearch": {
+    "method": "Google Autocomplete wording (client=firefox, hl=en, gl=us) via scripts/research-gemini-workspace-post.mjs --keywords, plus one live Google SERP observed in the integrated browser on 2026-10-07. No volume, difficulty or ranking data.",
+    "autocomplete": {
+      "gemini not showing in google docs": ["gemini not showing in google docs", "gemini not working in google docs", "gemini not showing in google sheets", "ask gemini not showing in google docs", "gemini not working in google sheets", "ask gemini not showing in google sheets", "gemini not in google docs", "ask gemini not working in google sheets", "gemini not available in google docs"],
+      "gemini not showing in gmail": ["gemini not showing in gmail", "gemini not showing in gmail app", "gemini not working in gmail", "gemini not visible in gmail", "gemini icon not showing in gmail", "gemini button not showing in gmail", "ask gemini not showing in gmail", "gemini not in gmail"],
+      "gemini in google sheets not working": ["gemini in google sheets not working", "gemini in google docs not working", "ask gemini in google sheets not working"],
+      "how to enable gemini in google docs": "10 suggestions returned",
+      "emptySeeds": ["gemini not available in workspace", "ask gemini missing google docs"]
+    },
+    "serpObservation": {
+      "query": "gemini not showing in google docs",
+      "observed": "AI Overview; Google Docs Editors Community and Workspace Admin community threads; YouTube videos (Sheets fix, Kevin Stratvert); Reddit r/GeminiAI thread about Docs disappearing on AI Plus; one vendor blog (eesel.ai); Google One community thread about AI Pro; Workspace Updates blog. People also ask: How can I enable Gemini in Google Docs? Why is Gemini not showing up on Google? Why can't Gemini make Google Docs? Why can't I see Gemini in Google Sheets? People also search for: reddit, android, iphone, ios, how to enable Gemini in Google Docs, Gemini export to Docs not working.",
+      "limits": "A single Pakistan-located SERP; not a ranking forecast or competition score."
+    },
+    "alternativesCompared": ["copilot not showing in word (10 suggestions; sibling to live post 234, deferred)", "claude code not working (10)", "cursor ai not working (10)", "docker desktop not starting windows 11 (6; mature SERP)", "notebooklm audio overview not working (4)", "zapier zap not triggering (4)"]
+  },
+  "primarySources": [
+    { "url": "https://support.google.com/drive/answer/13952129", "facts": "18+; eligible Workspace edition or Google AI Plus/Pro/Ultra; edition and AI plan feature tables; Ask Gemini at top right as the access check; US AI Pro/Ultra Gmail side-panel footnote; US no-charge Gmail features for personal accounts; language note." },
+    { "url": "https://support.google.com/docs/answer/14206696", "facts": "Docs: top right click Ask Gemini (web); Android app top right, panel at bottom; requires eligible plan; Workspace Experiments availability." },
+    { "url": "https://support.google.com/mail/answer/14199860", "facts": "Gmail: top right click Ask Gemini." },
+    { "url": "https://support.google.com/docs/answer/14356410", "facts": "Sheets side panel help page." },
+    { "url": "https://support.google.com/docs/answer/14925782", "facts": "29 side-panel languages; Help me write 8 languages (personal US only); Proofread English/Spanish; other features English-only." },
+    { "url": "https://support.google.com/mail/answer/15604322", "facts": "Smart features in Google Workspace controls Google Workspace with Gemini; off by default in EEA/Japan/Switzerland/UK; Gmail and Drive settings paths; web-only to turn on; applies across devices." },
+    { "url": "https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/manage-access-to-gemini-features-in-workspace-services?hl=en", "facts": "Feature access per service; default on; Enterprise Standard/Plus, Teaching and Learning, Education Plus, AI Pro for Education; Gemini app toggle separate; users need smart features on." },
+    { "url": "https://knowledge.workspace.google.com/admin/security/manage-google-workspace-smart-features-for-your-users?hl=en", "facts": "Admin default options; users can override; regional default off; up to 24 hours; refresh tabs." },
+    { "url": "https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/turn-access-to-google-workspace-with-gemini-beta-on-or-off?hl=en", "facts": "Gemini Beta (formerly Alpha) off by default; admin-only; OU/group scope; Docs features listed." },
+    { "url": "https://knowledge.workspace.google.com/admin/generative-ai/workspace-with-gemini/about-ai-usage-limits?hl=en", "facts": "Daily reset 12 AM PT; monthly reset first of month; no rollover or pooling; AI Expanded Access add-on." },
+    { "url": "https://support.google.com/docs/answer/13447104", "facts": "Workspace Experiments: personal accounts, 18+, not for Workspace accounts; gradual rollout; English-only features; exiting is permanent." },
+    { "url": "https://support.google.com/docs/answer/13607340", "facts": "Experiments available in 170+ countries and territories (list includes Pakistan, India, UK, US)." },
+    { "url": "https://support.google.com/googleone/answer/14534406", "facts": "Google AI Pro lists Gemini in Gmail, Docs, Vids and more; links to the comparison table." }
+  ],
+  "factReview": [
+    "Table rows mirror the Business/Enterprise and Google AI plan tables; 'listed' means at least one feature named for that app and plan.",
+    "Gmail Help me write eight-language list and Proofread two-language list come from the supported-languages page; Hindi/Urdu absence is a reading of that list on 2026-10-07.",
+    "Community threads about Business admins contacting support were read but are not cited as fact in the article.",
+    "No subscription was purchased and no Google product behaviour was tested live; wording stays 'Google lists/says'."
+  ],
+  "internalLinkPlan": ["/blog/how-to-use-google-gemini-2026-complete-guide", "/blog/how-to-use-ai-in-excel-google-sheets-2026", "/blog/copilot-in-excel-not-showing-2026", "/blog/best-ai-email-assistants-2026"],
+  "inboundLinkPlan": {
+    "status": "Deferred until the article is explicitly published; never link a hidden draft from a public article.",
+    "from": [
+      { "postId": 128, "slug": "how-to-use-google-gemini-2026-complete-guide", "section": "Workspace or side panel section", "anchor": "Gemini not showing in Docs or Gmail" },
+      { "postId": 234, "slug": "copilot-in-excel-not-showing-2026", "section": "closing or FAQ", "anchor": "the same eligibility pattern on the Google side" }
+    ]
+  },
+  "images": [
+    { "file": "cover.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original illustration; card-crop safe zone x 220-980; mock toolbar is illustrative, not a screenshot" },
+    { "file": "eligibility-map.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original diagram of Google's published plan lists; not a guarantee of access" },
+    { "file": "settings-path.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original decision diagram" }
+  ],
+  "releaseBoundary": "Save as hidden draft only (published=false, featured=false, scheduled_at=null). Image assets must be committed and deployed before publication. Inbound links only on explicit publish approval.",
+  "measurementPlan": "After publication: request indexing in Search Console; compare page impressions/clicks for the primary and secondary queries after 2-4 weeks. No ranking or traffic guarantee."
+}

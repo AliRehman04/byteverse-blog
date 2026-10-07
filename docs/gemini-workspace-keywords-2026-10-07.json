@@ -1,7 +1,7 @@
 {
   "date": "2026-10-07",
   "slug": "gemini-not-showing-google-docs-gmail-2026",
-  "status": "Saved and verified as hidden draft 236 on 2026-10-07; published=false, featured=false, scheduled_at=null. Images are local only until committed and deployed. No commit, push or publication yet.",
+  "status": "Published 2026-10-07 as post 236 (assets commit 801a495) via scripts/_publish-gemini-workspace-post.mjs --apply; contextual backlinks added in posts 128 and 234; protected drafts 229/230 and 165 unrelated posts verified unchanged. Do not rerun --apply.",
   "savedDraft": { "id": 236, "adminPreview": "https://www.byteverse.fyi/admin/posts/236/preview", "contentSha256": "f4323fc2abd2e5c10e56f9683d9fae56367fc69ca0f70c8b11f24a56b519287d", "postSaveTotals": { "total": 168, "published": 165 }, "warning": "Do not rerun --save-draft. Use --read-only to inspect." },
   "userMetrics": {
     "reported": "User reports zero clicks and roughly 40-50 impressions (period unspecified).",
@@ -68,7 +68,7 @@
   ],
   "internalLinkPlan": ["/blog/how-to-use-google-gemini-2026-complete-guide", "/blog/how-to-use-ai-in-excel-google-sheets-2026", "/blog/copilot-in-excel-not-showing-2026", "/blog/best-ai-email-assistants-2026"],
   "inboundLinkPlan": {
-    "status": "Deferred until the article is explicitly published; never link a hidden draft from a public article.",
+    "status": "Applied 2026-10-07 together with publication: post 128 'Gemini Inside Google Workspace' paragraph and post 234 'While you wait for a license or an admin' paragraph link to the article.",
     "from": [
       { "postId": 128, "slug": "how-to-use-google-gemini-2026-complete-guide", "section": "Workspace or side panel section", "anchor": "Gemini not showing in Docs or Gmail" },
       { "postId": 234, "slug": "copilot-in-excel-not-showing-2026", "section": "closing or FAQ", "anchor": "the same eligibility pattern on the Google side" }

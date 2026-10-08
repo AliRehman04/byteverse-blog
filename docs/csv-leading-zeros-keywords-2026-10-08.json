@@ -1,7 +1,7 @@
 {
   "date": "2026-10-08",
   "slug": "excel-csv-leading-zeros-2026",
-  "status": "Saved and independently verified as hidden draft 237 on 2026-10-08. No commit, push, publication, schedule or live backlinks. All 168 pre-existing editorial rows unchanged.",
+  "status": "Published 2026-10-08 after assets deployed in commit 075f009 (draft 237 saved earlier; 168 pre-existing rows unchanged). One contextual backlink added to post 233. Protected drafts 229/230 remain hidden.",
   "savedDraft": {
     "id": 237,
     "adminPreview": "https://www.byteverse.fyi/admin/posts/237/preview",
@@ -113,7 +113,7 @@
   },
   "internalLinkPlan": ["/blog/excel-get-data-from-pdf-missing-2026", "/tools/json-to-csv", "/tools/invoice-pdf-to-excel", "/blog/how-to-become-data-analyst-2026"],
   "inboundLinkPlan": {
-    "status": "Deferred until explicit publication; no public links to the hidden draft.",
+    "status": "Published: post 233 links to the article from its leading-zero paragraph. Post 181 not edited because no genuine anchor exists.",
     "candidates": [
       { "id": 233, "slug": "excel-get-data-from-pdf-missing-2026", "section": "Data-cleanup/leading-zero paragraph", "note": "Strong direct follow-on; reread the exact current paragraph before editing." },
       { "id": 181, "slug": "how-to-become-data-analyst-2026", "section": "Data cleaning or Excel practice", "note": "Only if a genuine anchor exists; do not force a backlink quota." }

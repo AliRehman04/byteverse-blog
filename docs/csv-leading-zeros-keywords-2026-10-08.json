@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-08",
+  "slug": "excel-csv-leading-zeros-2026",
+  "status": "Saved and independently verified as hidden draft 237 on 2026-10-08. No commit, push, publication, schedule or live backlinks. All 168 pre-existing editorial rows unchanged.",
+  "savedDraft": {
+    "id": 237,
+    "adminPreview": "https://www.byteverse.fyi/admin/posts/237/preview",
+    "published": false,
+    "featured": false,
+    "scheduledAt": null,
+    "contentSha256": "28b77d6443933e8cdea34f92df8bb7a3b2e1f7e3e11912c04f542cf49f10b2eb",
+    "postSaveTotals": { "total": 169, "published": 166 },
+    "otherEditorialRowsUnchanged": 168,
+    "warning": "Never rerun --save-draft. Use --read-only to inspect. New first-party images remain local until asset deployment."
+  },
+  "targeting": {
+    "title": "Excel Removing Leading Zeros in CSV? Keep IDs Intact",
+    "metaTitle": "Excel Removing Leading Zeros in CSV? Keep IDs Intact",
+    "metaDescription": "Excel dropping zeros from CSV? Preserve IDs as Text, avoid the 15-digit limit, and check import settings before trying to recover lost data.",
+    "primary": "excel removing leading zeros csv",
+    "secondary": ["keep leading zeros when opening csv in excel", "excel save as csv removes leading zeros", "excel csv long numbers scientific notation", "power query preserve leading zeros"],
+    "intent": "Preserve exact identifier strings when importing, exporting or reopening CSV in Excel; distinguish damaged source data from automatic interpretation.",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "selectionReason": "Specific observed problem with an original two-record fixture and actual converter checks; complements existing PDF/Excel content and the JSON-to-CSV tool. Not a generic best-tools article or a claim of low competition."
+  },
+  "userMetrics": {
+    "reported": "Zero clicks and approximately 40-50 impressions; reporting period unspecified.",
+    "gscConfigured": false,
+    "limits": "Only local integration availability was checked. The user's Search Console property exists; no fresh authenticated page/query metrics or URL Inspection result was retrieved. These observations do not establish the cause of low traffic."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-08T06:47:44.642Z",
+    "totalPosts": 168,
+    "publishedPosts": 166,
+    "editorialChecksumExcludingViews": "1f5f140ff426ec85260d41ace19d92d0",
+    "overlap": [
+      { "id": 233, "slug": "excel-get-data-from-pdf-missing-2026", "difference": "PDF connector guide briefly warns about identifiers; it is not a CSV import/export or precision-recovery guide." },
+      { "id": 154, "slug": "how-to-use-ai-in-excel-google-sheets-2026", "difference": "AI workflow overview; not a CSV identifier guide." },
+      { "id": 181, "slug": "how-to-become-data-analyst-2026", "difference": "Learning roadmap, not import troubleshooting." }
+    ],
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ]
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-08T06:45:26Z",
+    "reproduce": "node scripts/research-csv-excel-post.mjs --keywords",
+    "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us",
+    "successfulSeeds": 12,
+    "nonemptySeeds": 9,
+    "observations": [
+      { "seed": "excel removes leading zeros csv", "suggestions": ["excel removing leading zeros csv", "excel preserve leading zeros csv", "excel keep leading zeros csv", "excel retain leading zeros csv", "excel removes leading 0 from csv", "excel don t remove leading zeros csv", "stop excel removing leading 0 csv", "excel keep leading zeros when opening csv", "excel save as csv removes leading zeros"] },
+      { "seed": "keep leading zeros csv excel", "suggestions": ["keep leading zeros in excel csv", "retain leading zeros in excel csv", "keep leading zeros when opening csv in excel", "how to keep leading zeros in excel csv programmatically", "how to keep leading zeros in excel csv import", "convert excel to csv keep leading zeros", "save excel file csv keep leading zeros", "keep leading zeros in csv"] },
+      { "seed": "excel csv long numbers scientific notation", "suggestions": ["excel csv files converting long numbers to scientific notation"] },
+      { "seed": "excel automatic data conversion csv", "suggestions": [] },
+      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
+      { "seed": "excel csv semicolon delimiter", "suggestions": ["excel csv semicolon delimiter", "excel export csv delimiter semicolon", "excel save csv delimiter semicolon", "excel to csv semicolon delimited online", "excel open csv with semicolon delimiter", "excel csv use semicolon as delimiter", "convert excel to csv with semicolon delimiter", "how to save excel file as csv semicolon delimited"] },
+      { "seed": "convert nested json to csv", "suggestions": ["convert nested json to csv", "convert nested json to csv powershell", "convert nested json to csv python pandas", "convert nested json to csv python", "convert nested json to csv online", "convert nested json to csv in excel", "convert complex json to csv", "python script to convert nested json to csv", "convert json with nested arrays to csv", "convert json to csv locally"] },
+      { "seed": "json to csv keep leading zeros", "suggestions": [] },
+      { "seed": "claude code not recognized windows", "suggestions": ["claude code not recognized windows", "claude code not working windows", "claude code install not working windows", "claude code shift enter not working windows", "claude code shift tab not working windows", "claude code shift enter not working windows terminal"] },
+      { "seed": "claude code command not found windows", "suggestions": ["claude code command not found windows"] },
+      { "seed": "chatgpt download file not found", "suggestions": ["chatgpt download file not found", "chatgpt download file not found android", "chatgpt download file not found error", "chatgpt download file not found reddit", "chatgpt download file not available", "chatgpt download link file not found", "chatgpt download says file not found", "chatgpt pdf download file not found", "chatgpt can't download file not found", "chatgpt cannot download file file not found"] },
+      { "seed": "chatgpt file link expired", "suggestions": [] }
+    ],
+    "serps": [
+      {
+        "url": "https://www.google.com/search?q=excel+removes+leading+zeros+csv&hl=en",
+        "observed": "AI Overview plus Reddit r/excel, YouTube (SyntaxByte, MrExcel, Chester Tugwell), University of Pennsylvania help, Salesforce help, Super User, Microsoft Q&A, Splashtop help and MOSL guidance. Existing authoritative guidance and dedicated tutorials are competition, not an empty SERP.",
+        "peopleAlsoAsk": ["How do I prevent Excel from removing leading zeros when opening CSV?", "How to convert Excel to csv without losing leading zeros?", "How do I stop Excel from removing leading zeros?", "Why does Excel cut off leading zeros?"],
+        "opportunity": "Explain original-file versus import versus re-export boundaries, type-step ordering and the separate 15-digit issue using one reproducible fixture."
+      },
+      {
+        "url": "https://www.google.com/search?q=convert+nested+json+to+csv&hl=en",
+        "observed": "Dedicated online converter pages, Python tutorials and a GitHub converter. Mixed tool/programming intent.",
+        "peopleAlsoAsk": ["How to flatten JSON to CSV?", "How to access nested JSON?", "How can I convert a JSON file to a CSV file online?", "Can I convert a JSON to Excel?"],
+        "decision": "Keep nested conversion as a later topic; today's guide links to the existing converter only at the relevant identifier boundary."
+      }
+    ],
+    "limits": "Autocomplete shows wording, not volume or conversion intent. Browser SERPs are one localized observation, not a keyword-difficulty score or prediction of ranking. No claim that forum results make ranking easy."
+  },
+  "primarySources": [
+    { "url": "https://support.microsoft.com/en-us/excel/keeping-leading-zeros-and-large-numbers", "facts": "Text-first import, 15 significant digits for worksheet numbers, supported Microsoft 365/2024 automatic conversion options, custom-format and recovery limits." },
+    { "url": "https://support.microsoft.com/en-us/excel/set-automatic-data-conversions", "facts": "Windows File/Options/Data; Mac Excel/Preferences/Edit; disable zero/long-number conversions; settings do not directly control Power Query." },
+    { "url": "https://support.microsoft.com/en-us/excel/get-started/import-or-export-text-txt-or-csv-files", "facts": "CSV uses default import interpretation, explicit delimiter selection, legacy text import option, one worksheet per text export and global separator side effects." },
+    { "url": "https://learn.microsoft.com/en-us/power-query/connectors/text-csv", "facts": "Transform Data; disable detection to default columns to Text; file origin/BOM for encoding; host-specific capabilities." },
+    { "url": "https://learn.microsoft.com/en-us/power-query/data-types", "facts": "Automatic first-200-row detection and Changed Type; explicit column types; Int64 is not the same as worksheet number precision; locale and fixed decimal." },
+    { "url": "https://support.microsoft.com/en-us/excel/text-import-wizard", "facts": "Windows legacy wizard enablement; Step 3 Text column format before import." },
+    { "url": "https://support.microsoft.com/en-us/excel/functions/text-function", "facts": "Known-width zero padding returns text; formatting does not infer missing identifier width." },
+    { "url": "https://www.rfc-editor.org/rfc/rfc4180", "facts": "CSV quoting escapes field delimiters/quotes/newlines, not workbook types." },
+    { "url": "https://www.rfc-editor.org/rfc/rfc8259", "facts": "JSON leading-zero number grammar forbidden; string identifiers; numeric parser precision interoperability." },
+    { "url": "https://community.owasp.org/attacks/CSV_Injection", "facts": "Formula-like CSV data risks; quote/prefix mitigations are consumer-specific and may fail after save/reopen; no universal sanitization guarantee." }
+  ],
+  "editorialReview": [
+    "Independent read-only technical review found no factual blocker in the Excel workflow; its FAQ-heading collision finding was fixed by renaming the recovery section to a non-question.",
+    "Clarified worksheet number precision versus Power Query Whole Number (Int64).",
+    "No Excel execution, real customer data, test subscription, sales or click improvements claimed. Actual converter checks passed before the draft save."
+  ],
+  "validation": {
+    "substantiveWords": 2571,
+    "readingTime": "12 min read",
+    "metadataCharacters": { "title": 52, "description": 140 },
+    "offlineGroupsPassed": 12,
+    "sample": "Real convertJson + csvDownloadDetails verified exact CSV, both 18-digit IDs, leading zeros, 7.50 lexical token, UTF-8 BOM download bytes, quote-all round trip and invalid leading-zero JSON-number rejection. CSV parsed without dynamic typing.",
+    "rendering": "Actual MarkdownRenderer, FAQ extraction and FAQPage branch, route metadata and image-credit helpers executed in an offline harness with DB/env imports and fetch blocked.",
+    "browser": "Static Edge preview at 320, 390, 1280px: no page overflow; all 3 local images load; 5 native FAQ clicks at each width; no external requests or page errors. Not a full Next production build/page or hydrated copy-button test.",
+    "visual": "Cover, both body diagrams and square-crop preview viewed; desktop and 390px article screenshots reviewed.",
+    "links": "10 official/source destinations HTTP200 after permitted redirects; 4 internal destinations HTTP200, self-canonical and indexable.",
+    "lintAndDiagnostics": "Focused ESLint and editor diagnostics clear for all new JS/JSON files.",
+    "savedState": "Exact fields reread; original 168-row editorial hash (excluding views) unchanged. New blog route Post Not Found/noindex, story 404/noindex; slug absent from blog index, sitemap and feed.",
+    "notRun": "Excel itself, full Next build, Search Console indexing request, commit, push or deploy."
+  },
+  "internalLinkPlan": ["/blog/excel-get-data-from-pdf-missing-2026", "/tools/json-to-csv", "/tools/invoice-pdf-to-excel", "/blog/how-to-become-data-analyst-2026"],
+  "inboundLinkPlan": {
+    "status": "Deferred until explicit publication; no public links to the hidden draft.",
+    "candidates": [
+      { "id": 233, "slug": "excel-get-data-from-pdf-missing-2026", "section": "Data-cleanup/leading-zero paragraph", "note": "Strong direct follow-on; reread the exact current paragraph before editing." },
+      { "id": 181, "slug": "how-to-become-data-analyst-2026", "section": "Data cleaning or Excel practice", "note": "Only if a genuine anchor exists; do not force a backlink quota." }
+    ]
+  },
+  "images": [
+    { "file": "cover.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original illustration with crop-safe central heading and data example." },
+    { "file": "source-vs-import.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original source/import/export distinction diagram; not an Excel screenshot." },
+    { "file": "import-order.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original illustration of Text-first identifier handling." }
+  ],
+  "releaseBoundary": "Hidden draft only: published=false, featured=false, scheduled_at=null. Deploy first-party artwork before any future publication. Do not publish protected drafts 229/230.",
+  "measurementPlan": "After a separately approved publish, inspect the article URL and compare Search Console page+query data for 28 days versus the preceding period (longer if sparse). Track relevant converter visits if available. HTTP/indexable metadata is not proof of Google indexing or traffic. No ranking/click guarantee."
+}

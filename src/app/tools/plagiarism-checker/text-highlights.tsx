@@ -1,5 +1,11 @@
 import { Fragment } from "react";
 import type { TextRange } from "@/lib/similarity/types";
+import { passageContext } from "@/lib/similarity/review";
+
+export function PassageContext({ text, range, markerId }: { text: string; range: TextRange; markerId?: string }) {
+  const context = passageContext(text, range);
+  return <div className="sim-context-passage" tabIndex={0}><p dir="auto">{context.leading && "…"}<span>{context.before}</span><mark id={markerId} className="sim-highlight sim-highlight-selected">{context.match}{context.shortened && "…"}</mark><span>{context.after}</span>{context.trailing && "…"}</p>{context.shortened && <small>Long match shortened in this focus view. Full text is available in the document panes.</small>}</div>;
+}
 
 export function TextHighlights({ text, matched, excluded, selected, markerId }: {
   text: string;

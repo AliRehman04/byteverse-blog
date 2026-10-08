@@ -55,7 +55,7 @@ export async function GET() {
     { name: "Color Converter", href: "/tools/color-converter", desc: "Convert colors between HEX, RGB, and HSL formats" },
     { name: "Box Shadow Generator", href: "/tools/box-shadow-generator", desc: "Build CSS box-shadow effects with multiple layers" },
     { name: "AI Content Detector", href: "/tools/ai-content-detector", desc: "Detect AI-generated text using 8 linguistic signals" },
-    { name: "Text Similarity Checker", href: "/tools/plagiarism-checker", desc: "Compare one draft with 1–5 supplied sources locally, or find repeated sentences in a draft; review phrase evidence and save TXT reports. No web scan, AI or originality verdict" },
+    { name: "Text Similarity Checker", href: "/tools/plagiarism-checker", desc: "Compare one draft with 1–5 supplied sources locally, or find repeated sentences. Review single-source and shared overlap, focused context, occurrences and status filters; save TXT or printable HTML reports. No web scan, AI or originality verdict" },
     { name: "Live HTML Editor", href: "/tools/html-editor", desc: "Write HTML, CSS, and JavaScript with instant live preview and 7 templates" },
     { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
     { name: "Plagiarism Remover & AI Humanizer", href: "/tools/plagiarism-remover", desc: "Rewrite text to remove plagiarism and humanize AI-generated content" },

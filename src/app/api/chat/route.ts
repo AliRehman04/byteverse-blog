@@ -11,7 +11,7 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 /* ── Tools Knowledge Base ──────────────────────────────── */
 const TOOLS: { slug: string; name: string; desc: string; keywords: string[] }[] = [
-  { slug: "plagiarism-checker", name: "Text Similarity Checker", desc: "Compare a draft with 1–5 supplied sources or find repeated sentences locally; review phrase evidence and save TXT reports. No web scan, AI or plagiarism verdict. Paste text in the tool, not this chat.", keywords: ["plagiarism", "copy", "duplicate", "similarity", "check", "naqal", "cheating", "original"] },
+  { slug: "plagiarism-checker", name: "Text Similarity Checker", desc: "Compare a draft with 1–5 supplied sources locally or find repeated sentences. Review source overlap, focused context and matching occurrences; filter evidence and save TXT or printable HTML reports. No web scan, AI or plagiarism verdict. Paste text in the tool, not this chat.", keywords: ["plagiarism", "copy", "duplicate", "similarity", "check", "naqal", "cheating", "original"] },
   { slug: "plagiarism-remover", name: "Plagiarism Remover & AI Humanizer", desc: "Remove plagiarism and humanize AI-generated text.", keywords: ["plagiarism", "remover", "rewrite", "humanize", "paraphrase", "unique", "rewriter", "humanizer"] },
   { slug: "ai-content-detector", name: "AI Content Detector", desc: "Detect AI-generated text using linguistic signals.", keywords: ["ai", "detect", "chatgpt", "artificial", "intelligence", "detector", "ai-check", "written"] },
   { slug: "ai-prompt-generator", name: "AI Prompt Generator", desc: "Build better prompts for ChatGPT, Claude, Gemini.", keywords: ["prompt", "chatgpt", "claude", "gemini", "ai", "generate", "write"] },

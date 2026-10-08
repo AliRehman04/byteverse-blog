@@ -378,6 +378,56 @@ function tokenRange(document: PreparedText, start: number, end: number): TextRan
   return { start: document.tokens[start].start, end: document.tokens[end - 1].end };
 }
 
+/**
+ * On-demand lookup for one already-eligible draft passage, not a worker mode.
+ * KMP scans complete prepared source runs in linear token time, including
+ * overlapping occurrences. Only the first sourceOccurrences original half-open
+ * UTF-16 ranges are retained (in source order, unmerged); total stays complete.
+ *
+ * Options and both texts obey the comparison input limits. Empty/punctuation-only
+ * inputs throw SimilarityInputError; a short or quote-interrupted passage returns
+ * no occurrences rather than matching subphrases or stitching eligible runs.
+ * Reference headings are interpreted in the full source, not reclassified in an
+ * already-eligible draft excerpt: its later Markdown section may be outside it.
+ */
+export function findSourceOccurrences(sourceText: string, passageText: string, options: MatchOptions): { ranges: TextRange[]; total: number; truncated: boolean } {
+  const checkedOptions = validateOptions(options);
+  const source = prepareText(sourceText, checkedOptions, "Source");
+  const passage = prepareText(passageText, { ...checkedOptions, excludeReferences: false }, "Passage");
+  const ranges: TextRange[] = [];
+  if (passage.tokens.length < checkedOptions.minWords || passage.runs.length !== 1
+    || passage.stats.eligibleWords !== passage.tokens.length) {
+    return { ranges, total: 0, truncated: false };
+  }
+
+  const pattern = passage.tokens.map((token) => token.value);
+  const prefix = new Int32Array(pattern.length);
+  for (let index = 1, matched = 0; index < pattern.length; index++) {
+    while (matched > 0 && pattern[index] !== pattern[matched]) matched = prefix[matched - 1];
+    if (pattern[index] === pattern[matched]) matched++;
+    prefix[index] = matched;
+  }
+
+  let total = 0;
+  for (const run of source.runs) {
+    // Reset at every exclusion, even when an empty quote excluded no tokens.
+    let matched = 0;
+    for (let index = run.start; index < run.end; index++) {
+      const value = source.tokens[index].value;
+      while (matched > 0 && value !== pattern[matched]) matched = prefix[matched - 1];
+      if (value === pattern[matched]) matched++;
+      if (matched === pattern.length) {
+        total++;
+        if (ranges.length < SIMILARITY_LIMITS.sourceOccurrences) {
+          ranges.push(tokenRange(source, index - pattern.length + 1, index + 1));
+        }
+        matched = prefix[matched - 1];
+      }
+    }
+  }
+  return { ranges, total, truncated: total > ranges.length };
+}
+
 function highlightRanges(document: PreparedText, mask: Uint8Array): TextRange[] {
   const ranges: TextRange[] = [];
   for (const run of document.runs) {
@@ -434,13 +484,30 @@ export function compareSources(draft: string, sources: SourceInput[], options: M
   }
   const draftIndex = buildAutomaton(document);
   const union = new Uint8Array(document.tokens.length);
-  const results = sources.map((source, sourceIndex) => {
+  const multiplicity = new Uint8Array(document.tokens.length);
+  // Preserve complete forward masks until every source record has contributed.
+  // Capped passages and merged display ranges cannot determine attribution.
+  const forwardScans = preparedSources.map((prepared) => {
+    const forward = scanMatches(buildAutomaton(prepared), document, checkedOptions.minWords, SIMILARITY_LIMITS.passagesPerSource);
+    for (let index = 0; index < union.length; index++) {
+      union[index] |= forward.mask[index];
+      multiplicity[index] += forward.mask[index];
+    }
+    return forward;
+  });
+  const results: CompareResult["sources"] = sources.map((source, sourceIndex) => {
     const prepared = preparedSources[sourceIndex];
     const name = `Source ${sourceIndex + 1}`;
     addEligibilityWarning(warnings, prepared, name, checkedOptions.minWords);
-    const forward = scanMatches(buildAutomaton(prepared), document, checkedOptions.minWords, SIMILARITY_LIMITS.passagesPerSource);
+    const forward = forwardScans[sourceIndex];
     const reverse = scanMatches(draftIndex, prepared, checkedOptions.minWords, 0);
-    for (let index = 0; index < union.length; index++) union[index] |= forward.mask[index];
+    let exclusiveDraftWords = 0;
+    let sharedDraftWords = 0;
+    for (let index = 0; index < forward.mask.length; index++) {
+      if (!forward.mask[index]) continue;
+      if (multiplicity[index] === 1) exclusiveDraftWords++;
+      else if (multiplicity[index] >= 2) sharedDraftWords++;
+    }
     const passages: MatchingPassage[] = forward.matches.map((match) => {
       const words = match.end - match.start;
       const range = tokenRange(document, match.start, match.end);
@@ -462,6 +529,8 @@ export function compareSources(draft: string, sources: SourceInput[], options: M
       matchedWords: reverse.matchedWords,
       coverage: coverage(reverse.matchedWords, prepared.stats.eligibleWords),
       draftMatchedWords: forward.matchedWords,
+      exclusiveDraftWords,
+      sharedDraftWords,
       draftCoverage: coverage(forward.matchedWords, document.stats.eligibleWords),
       draftRanges: highlightRanges(document, forward.mask),
       sourceRanges: highlightRanges(prepared, reverse.mask),
@@ -471,7 +540,13 @@ export function compareSources(draft: string, sources: SourceInput[], options: M
     };
   });
   let matchedWords = 0;
-  for (const matched of union) matchedWords += matched;
+  let singleSourceWords = 0;
+  let multiSourceWords = 0;
+  for (let index = 0; index < union.length; index++) {
+    matchedWords += union[index];
+    if (multiplicity[index] === 1) singleSourceWords++;
+    else if (multiplicity[index] >= 2) multiSourceWords++;
+  }
   if (matchedWords > 0) {
     warnings.push("Evidence shows one deterministic source occurrence per maximal, non-contained draft passage, not every occurrence pair. Source coverage/highlights use a separate reverse pass and include all qualifying source occurrences.");
   } else {
@@ -484,6 +559,12 @@ export function compareSources(draft: string, sources: SourceInput[], options: M
       stats: document.stats,
       matchedWords,
       coverage: coverage(matchedWords, document.stats.eligibleWords),
+      sourceOverlap: {
+        singleSourceWords,
+        multiSourceWords,
+        // Zero multiplicity also includes excluded tokens; never count those.
+        unmatchedWords: document.stats.eligibleWords - matchedWords,
+      },
       matchRanges: highlightRanges(document, union),
       excludedRanges: document.excludedRanges,
     },

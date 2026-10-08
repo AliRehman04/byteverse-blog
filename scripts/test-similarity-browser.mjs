@@ -28,9 +28,9 @@ const PRODUCTION = "https://www.byteverse.fyi";
 const CANONICAL = `${PRODUCTION}${TOOL_PATH}`;
 const IMAGE_PATH = `${TOOL_PATH}/opengraph-image`;
 const RETIRED_API = "/api/ai-plagiarism-check";
-const TITLE = "Free Text Similarity Checker - Compare Sources";
-const DESCRIPTION = "Compare a draft with up to five supplied sources, review matching phrases and save a report. Free text similarity checker with on-device matching; no web scan.";
-const IMAGE_ALT = "ByteVerse Text Similarity Checker: a fictional draft and supplied source with a shared phrase highlighted, not a plagiarism verdict.";
+const TITLE = "Text Similarity Checker - Compare Two Texts Free";
+const DESCRIPTION = "Compare two texts or a draft with up to five supplied sources. Review matches and context, then save a report. Free on-device matching. No web scan.";
+const IMAGE_ALT = "ByteVerse Text Similarity Checker: a fictional draft and supplied source with matching wording highlighted in context. Local comparison, not a plagiarism verdict.";
 const UI_TIMEOUT = 12_000;
 const CHECK_TIMEOUT = 20_000;
 const expect = playwrightExpect.configure({ timeout: UI_TIMEOUT });
@@ -721,9 +721,9 @@ scenario("seo / actual HTTP SSR, production metadata, visible FAQs and generated
   const canonical = oneNode(root, (node) => node.name === "link" && node.attribs.rel === "canonical", "canonical").attribs.href;
   expect(canonical).toBe(CANONICAL);
   expect(nodeText(oneNode(root, (node) => node.name === "title", "title"))).toBe(TITLE);
-  expect(TITLE.length).toBe(46);
+  expect(TITLE.length).toBe(48);
   expect(meta(root, "description")).toBe(DESCRIPTION);
-  expect(DESCRIPTION.length).toBe(159);
+  expect(DESCRIPTION.length).toBe(148);
   await expect(h.page).toHaveTitle(TITLE);
   await expect(h.page.locator("main")).toHaveCount(1);
   await expect(h.page.getByRole("heading", { level: 1 })).toHaveCount(1);
@@ -777,8 +777,8 @@ scenario("seo / actual HTTP SSR, production metadata, visible FAQs and generated
 
 scenario("seo / local discovery pages, llms and sitemap describe supplied-source matching", async (h) => {
   for (const [pathname, description] of [
-    ["/tools", "Compare a draft with up to five supplied sources, review matching phrases or repeated sentences locally. No web scan or originality verdict."],
-    ["/", "Compare your draft with supplied sources locally—not a web scan"],
+    ["/tools", "Compare a draft with supplied sources locally. Review shared wording, source overlap and context; save TXT or printable HTML reports. No web scan or originality verdict."],
+    ["/", "Review draft overlap and context with supplied sources locally—not a web scan"],
     ["/site-map", null],
   ]) {
     await h.goto(pathname);
@@ -918,7 +918,10 @@ scenario("compare / duplicate sources retain separate evidence without inflating
   await summaryValue(h, "Supplied sources checked", 2);
   await expect(h.cards).toHaveCount(2);
   await expect(h.result.locator(".sim-source-results b")).toHaveText(["40%", "40%"]);
-  await visibleText(h.result.locator(".sim-explain-line"), "Source percentages can overlap; they are not added together.");
+  await expect(h.result.locator(".sim-explain-line").first()).toContainText("Source percentages can overlap; they are not added together.");
+  await visibleText(h.page.getByTestId("overlap-single"), "0 words");
+  await visibleText(h.page.getByTestId("overlap-shared"), "4 words");
+  await visibleText(h.page.getByTestId("overlap-unmatched"), "6 words");
 });
 
 scenario("compare / Unicode, punctuation, apostrophes and case controls keep original text", async (h) => {
@@ -1006,6 +1009,108 @@ scenario("repeat / quoted exclusions lower group counts and a unique sentence re
   await visibleText(h.result.locator(".sim-summary-primary small"), "No originality or authorship score is assigned.");
 });
 
+scenario("review / complete source-overlap totals partition eligible draft words", async (h) => {
+  const draft = `${TEN} unmatchedtail984`;
+  await fixture(h, { draft, source: "alpha beta gamma delta epsilon zeta" });
+  await h.click(h.workspace.getByRole("button", { name: /^Add \(1\/5\)$/ }));
+  await h.text("source", "epsilon zeta eta theta iota kappa");
+  await check(h, "90.9%", { matched: 10, eligible: 11 });
+  await visibleText(h.page.getByTestId("overlap-single"), "8 words");
+  await visibleText(h.page.getByTestId("overlap-shared"), "2 words");
+  await visibleText(h.page.getByTestId("overlap-unmatched"), "1 words");
+  await expect(h.result.locator(".sim-source-results small")).toHaveText(["4 only here · 2 also elsewhere", "4 only here · 2 also elsewhere"]);
+  await h.select("Filter matching source", "source-1");
+  await visibleText(h.page.getByTestId("overlap-shared"), "2 words");
+  await visibleText(h.coverage, "90.9%");
+});
+
+scenario("review / longest sorting and all statuses organize evidence without changing coverage or report", async (h) => {
+  await example(h);
+  await check(h, "31.4%", { matched: 22, eligible: 70 });
+  await h.select("Order matching passages", "longest");
+  await literalText(h.cards.first().locator(":scope > .sim-passage-text"), SAMPLE_PASSAGES[1]);
+  await h.click(h.cards.first().getByRole("button").first());
+  await visibleText(h.page.locator("#sim-draft-current"), SAMPLE_PASSAGES[1]);
+  const review = h.cards.first().getByRole("combobox", { name: "Your review", exact: true });
+  await review.selectOption("revise");
+  await expect(review).toHaveValue("revise");
+  await h.select("Filter review status", "revise");
+  await expect(h.cards).toHaveCount(1);
+  await h.click(h.button("Review report"));
+  const report = await h.reportText.inputValue();
+  expect(report).toContain(SAMPLE_PASSAGES[0]); expect(report).toContain(SAMPLE_PASSAGES[1]);
+  await h.select("Filter review status", "common");
+  await expect(h.cards).toHaveCount(0);
+  await expect(h.result.locator(".sim-no-matches")).toContainText("Common wording");
+  await sameValue(h.reportText, report);
+  await h.select("Filter review status", "all");
+  await h.select("Order matching passages", "document");
+  await literalText(h.cards.first().locator(":scope > .sim-passage-text"), SAMPLE_PASSAGES[0]);
+  await visibleText(h.coverage, "31.4%");
+});
+
+scenario("review / focused context navigates repeated source occurrences with a complete capped total", async (h) => {
+  const source = Array.from({ length: 26 }, (_, index) => `marker${index} ${FOUR}`).join(". ");
+  await fixture(h, { draft: FOUR, source });
+  await check(h, "100%", { matched: 4, eligible: 4 });
+  await expect(h.page.getByTestId("source-occurrence-count")).toHaveText("Occurrence 1 of 26 · first 20 available to navigate");
+  await h.click(h.button("Focused context"));
+  await expect(h.result.locator(".sim-context-passage")).toHaveCount(2);
+  await expect(h.result.locator(".sim-highlighted-text")).toHaveCount(0);
+  await literalText(h.result.locator(".sim-context-passage mark").first(), FOUR);
+  await h.click(h.button("Previous source occurrence"));
+  await expect(h.page.getByTestId("source-occurrence-count")).toContainText("Occurrence 20 of 26");
+  await expect(h.result.locator(".sim-context-passage").nth(1)).toContainText("marker19");
+  await h.click(h.button("Full documents"));
+  await literalText(h.workspace.getByLabel("Source matching highlights", { exact: true }), source);
+  await literalText(h.page.locator("#sim-source-current"), FOUR);
+  await h.click(h.button("Next source occurrence"));
+  await expect(h.page.getByTestId("source-occurrence-count")).toContainText("Occurrence 1 of 26");
+  await visibleText(h.coverage, "100%");
+});
+
+scenario("review / nonempty source removal can be cancelled without losing notes or a report", async (h) => {
+  const report = await reviewedFixture(h, { extra: true });
+  await h.click(h.workspace.locator(".sim-source-tabs").getByRole("button", { name: /^Source 2(?:\s|$)/ }));
+  await h.click(h.button("Remove Source 2"));
+  await expect(h.confirmation).toContainText("Remove Source 2?");
+  await h.click(h.confirmation.getByRole("button", { name: "Keep current text", exact: true }));
+  await keptReview(h, report);
+  await summaryValue(h, "Supplied sources checked", 2);
+});
+
+scenario("report / real HTML download is printable, escapes evidence and omits private text in stats-only", async (h) => {
+  const text = 'alpha beta gamma delta <img src="https://example.invalid/HtmlFixture984">';
+  await fixture(h, { draft: text, source: text, label: PRIVATE_LABEL });
+  await check(h, "100%");
+  await annotate(h);
+  await h.click(h.button("Review report"));
+  for (const includeText of [true, false]) {
+    await h.checkbox("Include matched passages, source labels and notes", includeText);
+    const expected = await h.reportText.inputValue();
+    h.expectedDownload = true;
+    try {
+      const download = h.page.waitForEvent("download");
+      await h.click(h.report.getByRole("button", { name: "Download HTML", exact: true }));
+      const file = await download;
+      expect(file.suggestedFilename()).toBe("byteverse-text-comparison-report.html");
+      expect(await file.failure()).toBeNull();
+      const path = join(artifactDirectory, `${h.index + 1}-report-${includeText ? "full" : "stats"}.html`);
+      await file.saveAs(path);
+      const bytes = await readFile(path);
+      const html = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+      const parsed = parseDocument(html);
+      expect(nodeText(oneNode(parsed, (node) => node.name === "pre", "report text"))).toBe(expected);
+      expect(nodes(parsed, (node) => ["script", "img", "iframe", "link", "object", "form"].includes(node.name))).toHaveLength(0);
+      expect(html).toContain("default-src 'none'"); expect(html).toContain("@media print");
+      if (includeText) { expect(html).toContain("&lt;img"); expect(html).toContain(PRIVATE_LABEL); }
+      else { expect(html).not.toContain("HtmlFixture984"); expect(html).not.toContain(PRIVATE_LABEL); expect(html).not.toContain("ReviewerOnly_Fictional984"); }
+      downloads.push({ case: h.name, kind: includeText ? "html-full" : "html-stats", path, bytes: bytes.length, sha256: sha256(bytes) });
+    } finally { h.expectedDownload = false; }
+  }
+  await expect(h.report).toContainText("use your browser’s Print menu");
+});
+
 const invalidations = [
   ["document edit", async (h) => h.text("document", `${TEN}!`)],
   ["source edit", async (h) => h.text("source", `${TEN}!`)],
@@ -1017,6 +1122,8 @@ const invalidations = [
   ["source removal", async (h) => {
     await h.click(h.workspace.locator(".sim-source-tabs").getByRole("button", { name: /^Source 2(?:\s|$)/ }));
     await h.click(h.button("Remove Source 2"));
+    await expect(h.confirmation).toContainText("Remove Source 2?");
+    await h.click(h.confirmation.getByRole("button", { name: "Remove source", exact: true }));
   }],
   ["swap", async (h) => h.click(h.button("Swap texts"))],
   ["mode changes in both directions", async (h) => {
@@ -1162,7 +1269,9 @@ scenario("limits / a typed 60,001-character replacement keeps the prior text and
   const report = await reviewedFixture(h);
   const oversized = "x".repeat(60_001);
   h.track(oversized, "over-character-limit");
-  await h.document.fill(oversized);
+  await h.document.scrollIntoViewIfNeeded();
+  await stableBox(h.document);
+  await h.document.fill(oversized, { timeout: 45_000 });
   await expect(h.workspace.getByRole("alert")).toBeVisible();
   await expect(h.workspace.getByRole("alert")).toContainText("The previous text was kept; paste a smaller section.");
   await keptReview(h, report);
@@ -1216,6 +1325,8 @@ scenario("sources / limit is five, native tabs retain exact texts, removing acti
   await summaryValue(h, "Supplied sources checked", 5);
   await h.click(h.workspace.locator(".sim-source-tabs button").nth(2));
   await h.click(h.button("Remove Source 3"));
+  await expect(h.confirmation).toContainText("Remove Source 3?");
+  await h.click(h.confirmation.getByRole("button", { name: "Remove source", exact: true }));
   await absentResults(h);
   await expect(h.workspace.locator(".sim-source-tabs button")).toHaveCount(4);
   await expect(h.workspace.locator(".sim-source-tabs button").first()).toHaveAttribute("aria-pressed", "true");
@@ -1458,6 +1569,35 @@ scenario("privacy / reload clears draft, sources and notes without requiring all
   await expect(h.workspace.getByRole("textbox", { name: /^Note/ })).toHaveCount(0);
 });
 
+async function assertSiteTheme(h, results = false) {
+  const colors = await h.page.evaluate((withResults) => {
+    const shared = getComputedStyle(document.documentElement);
+    const token = (name) => {
+      let value = shared.getPropertyValue(name).trim();
+      if (/^#[0-9a-f]{3}$/i.test(value)) value = `#${value.slice(1).split("").map((digit) => digit + digit).join("")}`;
+      return /^#[0-9a-f]{6}$/i.test(value) ? `rgb(${[1, 3, 5].map((offset) => parseInt(value.slice(offset, offset + 2), 16)).join(", ")})` : value;
+    };
+    const pairs = [
+      [".sim-workspace", "backgroundColor", "--card"],
+      [".sim-workspace", "borderTopColor", "--border"],
+      [".sim-hero-title", "color", "--foreground"],
+      [".sim-hero-primary", "backgroundColor", "--primary"],
+      [".sim-hero-primary", "color", "--primary-foreground"],
+      [".sim-mode-switch button[aria-pressed=true]", "backgroundColor", "--primary"],
+      [".sim-mode-switch button[aria-pressed=true]", "color", "--primary-foreground"],
+      [".sim-hero-secondary", "color", "--primary"],
+      [".sim-editor-label", "color", "--muted-foreground"],
+    ];
+    if (withResults) pairs.push(
+      [".sim-overlap-track>span:first-child", "backgroundColor", "--primary"],
+      [".sim-highlight-selected", "color", "--foreground"],
+      [".sim-highlight-selected", "outlineColor", "--primary"],
+    );
+    return pairs.map(([selector, property, name]) => ({ selector, property, actual: getComputedStyle(document.querySelector(selector))[property], expected: token(name) }));
+  }, results);
+  for (const color of colors) expect(color.actual, `${color.selector} ${color.property} must inherit the site theme`).toBe(color.expected);
+}
+
 for (const width of [1440, 390, 768, 320]) for (const theme of ["light", "dark"]) {
   scenario(`responsive / ${width}px ${theme}, initial inputs, five tabs, compare/report and repeat/report`, async (h) => {
     const currentlyDark = await h.page.locator("html").evaluate((element) => element.classList.contains("dark"));
@@ -1469,6 +1609,7 @@ for (const width of [1440, 390, 768, 320]) for (const theme of ["light", "dark"]
     await expect(h.sourceLabel).toBeVisible();
     await expect(h.workspace.getByLabel("Minimum match", { exact: true })).toBeVisible();
     await assertLayout(h, "initial");
+    await assertSiteTheme(h);
     const capture = width === 1440 || width === 390;
     if (capture) {
       await screenshot(h, `${width}-${theme}-top-hero`, h.page.locator(".sim-hero"));
@@ -1482,6 +1623,7 @@ for (const width of [1440, 390, 768, 320]) for (const theme of ["light", "dark"]
     await check(h, "31.4%", { matched: 22, eligible: 70 });
     await annotate(h);
     await assertLayout(h, "comparison results");
+    await assertSiteTheme(h, true);
     if (capture) {
       await screenshot(h, `${width}-${theme}-results-summary`, h.result.locator(".sim-summary-grid"));
       await screenshot(h, `${width}-${theme}-results-evidence`, h.result.locator(".sim-evidence-grid"));

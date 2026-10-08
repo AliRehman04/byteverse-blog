@@ -4,6 +4,7 @@ export const SIMILARITY_LIMITS = {
   maxChars: 60_000,
   fileBytes: 256 * 1024,
   passagesPerSource: 150,
+  sourceOccurrences: 20,
   repeatGroups: 150,
   occurrencesPerGroup: 100,
   timeoutMs: 15_000,
@@ -59,6 +60,10 @@ export interface SourceResult {
   matchedWords: number;
   coverage: number | null;
   draftMatchedWords: number;
+  /** Complete draft tokens matched by this source and no other source record. */
+  exclusiveDraftWords: number;
+  /** Complete draft tokens matched by this source and at least one other record. */
+  sharedDraftWords: number;
   draftCoverage: number | null;
   draftRanges: TextRange[];
   sourceRanges: TextRange[];
@@ -74,6 +79,12 @@ export interface CompareResult {
     stats: TextStats;
     matchedWords: number;
     coverage: number | null;
+    /** Complete eligible-token partition; duplicate source records count separately. */
+    sourceOverlap: {
+      singleSourceWords: number;
+      multiSourceWords: number;
+      unmatchedWords: number;
+    };
     matchRanges: TextRange[];
     excludedRanges: TextRange[];
   };

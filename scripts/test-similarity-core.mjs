@@ -68,6 +68,7 @@ const source = (text, index = 0, label = `Fixture ${index + 1}`) => ({ id: `fixt
 const sourcesOf = (texts) => texts.map((text, index) => typeof text === "string" ? source(text, index) : text);
 const compare = (draft, texts, options = {}) => engine.compareSources(draft, sourcesOf(texts), { ...defaults, ...options });
 const repeat = (text, options = {}) => engine.findRepeatedSentences(text, { ...defaults, ...options });
+const occurrences = (text, passage, options = {}) => engine.findSourceOccurrences(text, passage, { ...defaults, ...options });
 const wordsOf = (text, ignoreCase = true) => Array.from(engine.tokenizeText(text, ignoreCase), (token) => token.value);
 const slices = (text, ranges) => Array.from(ranges, (range) => text.slice(range.start, range.end));
 const warningHas = (result, pattern) => result.warnings.some((warning) => pattern.test(warning));
@@ -76,6 +77,31 @@ const request = (draft, mode = "repeat") => ({ id: 42, mode, draft, sources: [],
 function assertPercentage(actual, matched, eligible) {
   if (eligible === 0) assert.equal(actual, null);
   else assert.ok(Math.abs(actual - (100 * matched) / eligible) < 1e-10, "Expected matched / eligible percentage");
+}
+
+function assertOverlapCounts(result, expected, expectedSources) {
+  const overlap = result.draft.sourceOverlap;
+  assert.deepEqual(Object.keys(overlap).sort(), ["multiSourceWords", "singleSourceWords", "unmatchedWords"]);
+  for (const value of Object.values(overlap)) assert.ok(Number.isSafeInteger(value) && value >= 0);
+  assert.equal(overlap.singleSourceWords + overlap.multiSourceWords, result.draft.matchedWords);
+  assert.equal(overlap.singleSourceWords + overlap.multiSourceWords + overlap.unmatchedWords, result.draft.stats.eligibleWords);
+  let exclusiveTotal = 0;
+  let sharedTotal = 0;
+  for (const entry of result.sources) {
+    for (const value of [entry.exclusiveDraftWords, entry.sharedDraftWords]) assert.ok(Number.isSafeInteger(value) && value >= 0);
+    assert.equal(entry.exclusiveDraftWords + entry.sharedDraftWords, entry.draftMatchedWords);
+    assert.ok(entry.exclusiveDraftWords <= overlap.singleSourceWords);
+    assert.ok(entry.sharedDraftWords <= overlap.multiSourceWords);
+    exclusiveTotal += entry.exclusiveDraftWords;
+    sharedTotal += entry.sharedDraftWords;
+  }
+  assert.equal(exclusiveTotal, overlap.singleSourceWords);
+  assert.ok(sharedTotal >= 2 * overlap.multiSourceWords);
+  assert.ok(sharedTotal <= result.sources.length * overlap.multiSourceWords);
+  if (expected) assert.deepEqual(plain(overlap), expected);
+  if (expectedSources) {
+    assert.deepEqual(Array.from(result.sources, (entry) => [entry.exclusiveDraftWords, entry.sharedDraftWords]), expectedSources);
+  }
 }
 
 function assertSafeRanges(text, ranges) {
@@ -93,7 +119,23 @@ function assertSafeRanges(text, ranges) {
   }
 }
 
+function assertOccurrenceEvidence(text, passage, result, options = defaults) {
+  assert.deepEqual(Object.keys(result).sort(), ["ranges", "total", "truncated"]);
+  assert.ok(Number.isSafeInteger(result.total) && result.total >= 0);
+  assert.equal(result.ranges.length, Math.min(result.total, SIMILARITY_LIMITS.sourceOccurrences));
+  assert.equal(result.truncated, result.total > SIMILARITY_LIMITS.sourceOccurrences);
+  let previousStart = -1;
+  for (const range of result.ranges) {
+    // Occurrence ranges may overlap; only their starting positions are ordered.
+    assertSafeRanges(text, [range]);
+    assert.ok(range.start > previousStart);
+    previousStart = range.start;
+    assert.deepEqual(wordsOf(text.slice(range.start, range.end), options.ignoreCase), wordsOf(passage, options.ignoreCase));
+  }
+}
+
 function assertEvidence(draft, inputSources, result) {
+  assertOverlapCounts(result);
   const ids = new Set();
   for (let index = 0; index < result.sources.length; index++) {
     const entry = result.sources[index];
@@ -127,6 +169,15 @@ function withRunawayGuard(draft, texts, options = {}, mode = "compare") {
   }
 }
 
+function occurrencesWithRunawayGuard(text, passage, options = {}) {
+  core.context.fixture = { text, passage, options: { ...defaults, ...options } };
+  try {
+    return vm.runInContext("engine.findSourceOccurrences(fixture.text, fixture.passage, fixture.options)", core.context, { timeout: 20_000 });
+  } finally {
+    delete core.context.fixture;
+  }
+}
+
 test("scoped TypeScript checks use the project target with DOM and with worker-only libraries", () => {
   const config = JSON.parse(readFileSync(path.join(root, "tsconfig.json"), "utf8"));
   const converted = ts.convertCompilerOptionsFromJson(config.compilerOptions, root);
@@ -152,9 +203,10 @@ test("scoped TypeScript checks use the project target with DOM and with worker-o
 });
 
 test("required exports and UI counters accept empty and over-limit editing states", () => {
-  for (const name of ["tokenizeText", "getInputStats", "compareSources", "findRepeatedSentences", "analyzeRequest"]) {
+  for (const name of ["tokenizeText", "getInputStats", "compareSources", "findSourceOccurrences", "findRepeatedSentences", "analyzeRequest"]) {
     assert.equal(typeof engine[name], "function");
   }
+  assert.equal(SIMILARITY_LIMITS.sourceOccurrences, 20);
   assert.deepEqual(plain(engine.getInputStats("")), { words: 0, characters: 0 });
   assert.deepEqual(plain(engine.getInputStats("🙂 Café 2026!")), { words: 2, characters: 13 });
   assert.deepEqual(plain(engine.getInputStats(" !?… ")), { words: 0, characters: 5 });
@@ -231,6 +283,21 @@ test("all four minimum lengths count qualifying sequences, never isolated shared
   assert.equal(compare("alpha beta gamma delta epsilon", ["alpha beta gamma delta epsilon"], { minWords: 6 }).draft.matchedWords, 0);
 });
 
+test("source attribution follows the selected minimum, not isolated shared words", () => {
+  const draft = "a b c d e f g h i j k l";
+  const texts = [4, 6, 8].map((length) => draft.split(" ").slice(0, length).join(" "));
+  for (const [minWords, expected, expectedSources] of [
+    [4, { singleSourceWords: 2, multiSourceWords: 6, unmatchedWords: 4 }, [[0, 4], [0, 6], [2, 6]]],
+    [6, { singleSourceWords: 2, multiSourceWords: 6, unmatchedWords: 4 }, [[0, 0], [0, 6], [2, 6]]],
+    [8, { singleSourceWords: 8, multiSourceWords: 0, unmatchedWords: 4 }, [[0, 0], [0, 0], [8, 0]]],
+    [12, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 12 }, [[0, 0], [0, 0], [0, 0]]],
+  ]) {
+    const result = compare(draft, texts, { minWords });
+    assertOverlapCounts(result, expected, expectedSources);
+    assertEvidence(draft, sourcesOf(texts), result);
+  }
+});
+
 test("punctuation and spacing normalize without shifting highlight offsets", () => {
   const draft = "🙂 İ, TWO—three...four?! extra";
   const supplied = "i\u0307 two three four";
@@ -260,7 +327,24 @@ test("coverage unions overlaps across sources and counts each draft position onc
   assert.equal(result.draft.coverage, 100);
   assert.deepEqual(Array.from(result.sources, (entry) => entry.draftMatchedWords), [6, 6, 6]);
   assert.deepEqual(slices(draft, result.draft.matchRanges), [draft]);
+  assertOverlapCounts(result, { singleSourceWords: 4, multiSourceWords: 6, unmatchedWords: 0 }, [[2, 4], [2, 4], [0, 6]]);
   assertEvidence(draft, sourcesOf(texts), result);
+});
+
+test("five partially overlapping source records partition eligible positions regardless of source order", () => {
+  const draft = "a b c d e f g h i j k l m n";
+  const inputs = sourcesOf(["a b c d e f", "e f g h i j", "e f g h", "i j k l", "a b c d e f"]);
+  const result = compare(draft, inputs);
+  assertOverlapCounts(result, { singleSourceWords: 2, multiSourceWords: 10, unmatchedWords: 2 }, [[0, 6], [0, 6], [0, 4], [2, 2], [0, 6]]);
+  assert.equal(result.draft.matchedWords, 12);
+  assertEvidence(draft, inputs, result);
+  const reordered = compare(draft, inputs.slice().reverse());
+  assert.deepEqual(plain(reordered.draft), plain(result.draft));
+  for (const entry of reordered.sources) {
+    const original = result.sources.find((candidate) => candidate.id === entry.id);
+    assert.equal(entry.exclusiveDraftWords, original.exclusiveDraftWords);
+    assert.equal(entry.sharedDraftWords, original.sharedDraftWords);
+  }
 });
 
 test("short-source copying has directional, not averaged or cosine, coverage", () => {
@@ -282,6 +366,7 @@ test("overlapping matches within one source and all reverse occurrences form exa
   assert.equal(result.draft.matchedWords, 6);
   assert.equal(result.sources[0].matchedWords, 12);
   assertPercentage(result.sources[0].coverage, 12, 14);
+  assertOverlapCounts(result, { singleSourceWords: 6, multiSourceWords: 0, unmatchedWords: 0 }, [[6, 0]]);
   assert.deepEqual(slices(text, result.sources[0].sourceRanges), ["a b c d", "c d e f", "a b c d"]);
   assert.equal(result.sources[0].passageCount, 2);
   assertEvidence(draft, [source(text)], result);
@@ -295,16 +380,32 @@ test("duplicate documents and duplicate labels cannot inflate overall coverage",
   const duplicate = compare(draft, inputs);
   assert.equal(duplicate.draft.matchedWords, single.draft.matchedWords);
   assert.equal(duplicate.draft.coverage, 50);
+  assertOverlapCounts(single, { singleSourceWords: 4, multiSourceWords: 0, unmatchedWords: 4 }, [[4, 0]]);
+  assertOverlapCounts(duplicate, { singleSourceWords: 0, multiSourceWords: 4, unmatchedWords: 4 }, [[0, 4], [0, 4]]);
   assert.ok(warningHas(duplicate, /share a label/));
   assertEvidence(draft, inputs, duplicate);
   const doubled = compare(`${draft} ${draft}`, ["a b c d"]);
   assert.equal(doubled.draft.coverage, single.draft.coverage);
+  assertOverlapCounts(doubled, { singleSourceWords: 8, multiSourceWords: 0, unmatchedWords: 8 }, [[8, 0]]);
 });
 
 test("case-sensitive mode still performs NFKC but does not silently lowercase", () => {
   assert.equal(compare("Ａlpha beta gamma delta", ["Alpha beta gamma delta"], { ignoreCase: false }).draft.coverage, 100);
   assert.equal(compare("Alpha beta gamma delta", ["alpha beta gamma delta"], { ignoreCase: false }).draft.matchedWords, 0);
   assert.equal(compare("Alpha beta gamma delta", ["alpha beta gamma delta"], { ignoreCase: true }).draft.matchedWords, 4);
+  const draft = "Ａlpha beta gamma delta tail";
+  const texts = ["Alpha beta gamma delta", "alpha beta gamma delta"];
+  assertOverlapCounts(compare(draft, texts, { ignoreCase: false }), { singleSourceWords: 4, multiSourceWords: 0, unmatchedWords: 1 }, [[4, 0], [0, 0]]);
+  assertOverlapCounts(compare(draft, texts), { singleSourceWords: 0, multiSourceWords: 4, unmatchedWords: 1 }, [[0, 4], [0, 4]]);
+});
+
+test("Unicode attribution counts original tokens across NFKC, case expansion, and retained accents", () => {
+  const draft = "🙂 Cafe\u0301 ＳＴＲＡＳＳＥ İ 𐐀 extra";
+  const texts = ["café Straße i\u0307 𐐨", "CAFÉ STRASSE İ 𐐀", "cafe strasse i\u0307 𐐨"];
+  const result = compare(draft, texts);
+  assert.equal(result.draft.stats.eligibleWords, 5);
+  assertOverlapCounts(result, { singleSourceWords: 0, multiSourceWords: 4, unmatchedWords: 1 }, [[0, 4], [0, 4], [0, 0]]);
+  assertEvidence(draft, sourcesOf(texts), result);
 });
 
 test("all recognized balanced quote pairs exclude words in both documents", () => {
@@ -350,6 +451,7 @@ test("excluded words and empty excluded quotes are hard match barriers on either
     const forward = compare(split, ["one two three four"], { excludeQuotes: true });
     assert.equal(forward.draft.matchedWords, 0);
     assert.equal(forward.draft.stats.eligibleWords, 4);
+    assertOverlapCounts(forward, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 4 }, [[0, 0]]);
     assert.equal(compare("one two three four", [split], { excludeQuotes: true }).draft.matchedWords, 0);
     assert.equal(compare(split, [split], { excludeQuotes: true }).draft.matchedWords, 0);
   }
@@ -358,6 +460,22 @@ test("excluded words and empty excluded quotes are hard match barriers on either
   assert.equal(result.draft.matchedWords, 8);
   assert.equal(result.draft.matchRanges.length, 2);
   assert.deepEqual(slices(split, result.draft.matchRanges), ["one two three four", "five six seven eight"]);
+  assertOverlapCounts(result, { singleSourceWords: 8, multiSourceWords: 0, unmatchedWords: 0 }, [[8, 0]]);
+});
+
+test("source attribution excludes quoted/reference words and never bridges empty quote gaps", () => {
+  const draft = 'one two "" three four five six "hidden quoted words here"\nReferences\none two three four';
+  const texts = [
+    "one two three four five six",
+    "three four five six",
+    'three four "" five six',
+    'one two "three four five six"\nReferences\nthree four five six',
+  ];
+  const result = compare(draft, texts, { excludeQuotes: true, excludeReferences: true });
+  assert.equal(result.draft.stats.eligibleWords, 6);
+  assert.equal(result.draft.stats.excludedWords, 9);
+  assertOverlapCounts(result, { singleSourceWords: 0, multiSourceWords: 4, unmatchedWords: 2 }, [[0, 4], [0, 4], [0, 0], [0, 0]]);
+  assertEvidence(draft, sourcesOf(texts), result);
 });
 
 test("references detector accepts explicit terminal headings, including Markdown and case variants", () => {
@@ -401,15 +519,20 @@ test("zero eligible denominators are null; short valid text returns help, not 10
   assert.equal(both.sources[0].coverage, null);
   assert.equal(both.sources[0].draftCoverage, null);
   assert.equal(both.draft.matchedWords, 0);
+  assertOverlapCounts(both, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 0 }, [[0, 0]]);
   assert.ok(warningHas(both, /no eligible words/));
   const zeroSource = compare("one two three four", [text], { excludeQuotes: true });
   assert.equal(zeroSource.draft.coverage, 0);
   assert.equal(zeroSource.sources[0].coverage, null);
+  assertOverlapCounts(zeroSource, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 4 }, [[0, 0]]);
   const zeroDraft = compare(text, ["one two three four"], { excludeQuotes: true });
   assert.equal(zeroDraft.draft.coverage, null);
   assert.equal(zeroDraft.sources[0].coverage, 0);
+  assertOverlapCounts(zeroDraft, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 0 }, [[0, 0]]);
   const short = compare("one two", ["one two"]);
   assert.equal(short.draft.coverage, 0);
+  assertOverlapCounts(short, { singleSourceWords: 0, multiSourceWords: 0, unmatchedWords: 2 }, [[0, 0]]);
+  assertOverlapCounts(compare("one two three four", ["one two three four", "one two"]), { singleSourceWords: 4, multiSourceWords: 0, unmatchedWords: 0 }, [[4, 0], [0, 0]]);
   assert.ok(warningHas(short, /fewer than 4 eligible words/));
   assert.equal(repeat("one two").groupCount, 0);
   assert.equal(repeat(text, { excludeQuotes: true }).searchPassages.length, 0);
@@ -482,6 +605,7 @@ test("10,000 identical-token documents and five sources are bounded and exact", 
   assert.equal(result.draft.stats.totalWords, 10_000);
   assert.equal(result.draft.matchedWords, 10_000);
   assert.equal(result.draft.coverage, 100);
+  assertOverlapCounts(result, { singleSourceWords: 0, multiSourceWords: 10_000, unmatchedWords: 0 }, Array(5).fill([0, 10_000]));
   for (const entry of result.sources) {
     assert.equal(entry.matchedWords, 10_000);
     assert.equal(entry.passageCount, 1);
@@ -498,6 +622,7 @@ test("pathological overlapping windows cap evidence but not coverage or passage 
   assert.equal(entry.passageCount, 9_997);
   assert.equal(result.draft.matchedWords, 10_000);
   assert.equal(entry.matchedWords, 4);
+  assertOverlapCounts(result, { singleSourceWords: 10_000, multiSourceWords: 0, unmatchedWords: 0 }, [[10_000, 0]]);
   assert.equal(result.draft.matchRanges.length, 1);
   assert.ok(warningHas(result, /9847 of 9997/));
   assertEvidence(text, [source("a a a a")], result);
@@ -505,6 +630,7 @@ test("pathological overlapping windows cap evidence but not coverage or passage 
   assert.equal(reverse.sources[0].matchedWords, 10_000);
   assert.equal(reverse.sources[0].sourceRanges[0].end, text.length);
   assert.equal(reverse.sources[0].passageCount, 1);
+  assertOverlapCounts(reverse, { singleSourceWords: 4, multiSourceWords: 0, unmatchedWords: 0 }, [[4, 0]]);
 });
 
 test("disjoint passage caps retain late matches, their counts, and exact highlight gaps", () => {
@@ -515,8 +641,25 @@ test("disjoint passage caps retain late matches, their counts, and exact highlig
   assert.equal(result.draft.matchedWords, 700);
   assert.equal(result.draft.matchRanges.length, 175);
   assert.equal(result.draft.coverage, 80);
+  assertOverlapCounts(result, { singleSourceWords: 700, multiSourceWords: 0, unmatchedWords: 175 }, [[700, 0]]);
   assert.ok(warningHas(result, /25 of 175/));
   assert.ok(slices(draft, result.draft.matchRanges).every((slice) => slice === "one two three four"));
+});
+
+test("late shared matches remain in attribution even when absent from a source's capped evidence", () => {
+  const blocks = Array.from({ length: 175 }, (_, index) => `topic${index} has clear notes`);
+  const draft = blocks.map((block) => `${block} gap`).join(" ");
+  const texts = [blocks.join(" BREAK "), blocks.slice(150).join(" PAUSE ")];
+  const result = compare(draft, texts);
+  assert.equal(result.sources[0].passageCount, 175);
+  assert.equal(result.sources[0].passages.length, SIMILARITY_LIMITS.passagesPerSource);
+  assert.equal(result.sources[0].draftRanges.length, 175);
+  assert.ok(result.sources[0].passages.every((passage) => passage.draft.end < draft.indexOf(blocks[150])));
+  assertOverlapCounts(result, { singleSourceWords: 600, multiSourceWords: 100, unmatchedWords: 175 }, [[600, 100], [0, 100]]);
+  assertEvidence(draft, sourcesOf(texts), result);
+  const duplicate = compare(draft, [...texts, texts[0]]);
+  assert.equal(duplicate.draft.matchedWords, result.draft.matchedWords);
+  assertOverlapCounts(duplicate, { singleSourceWords: 0, multiSourceWords: 700, unmatchedWords: 175 }, [[0, 700], [0, 100], [0, 700]]);
 });
 
 test("long varied inputs exercise suffix clones and exclusions without pair enumeration", () => {
@@ -534,6 +677,201 @@ test("long varied inputs exercise suffix clones and exclusions without pair enum
   const excluded = withRunawayGuard(separated, ["a b c d"], { excludeQuotes: true });
   assert.equal(excluded.draft.matchedWords, 8_000);
   assert.equal(excluded.draft.matchRanges.length, 2_000);
+});
+
+test("source occurrence lookup retains overlapping full matches in original source order", () => {
+  const text = "a b a b a b a b";
+  const passage = "a b a b";
+  const result = occurrences(text, passage);
+  assert.deepEqual(plain(result), {
+    ranges: [{ start: 0, end: 7 }, { start: 4, end: 11 }, { start: 8, end: 15 }],
+    total: 3,
+    truncated: false,
+  });
+  assertOccurrenceEvidence(text, passage, result);
+  const fallbackText = "a b a b a b c d a b a b c d";
+  const fallbackPassage = "a b a b c d";
+  const fallback = occurrences(fallbackText, fallbackPassage);
+  assert.deepEqual(Array.from(fallback.ranges, (range) => range.start), [4, 16]);
+  assert.equal(fallback.total, 2);
+  assertOccurrenceEvidence(fallbackText, fallbackPassage, fallback);
+});
+
+test("source occurrence lookup requires the whole selected passage, not minimum-length subphrases", () => {
+  const passage = "alpha beta gamma delta epsilon zeta";
+  const partial = "alpha beta gamma delta STOP gamma delta epsilon zeta";
+  assert.deepEqual(plain(occurrences(partial, passage)), { ranges: [], total: 0, truncated: false });
+  const text = `${partial} STOP ${passage}`;
+  const result = occurrences(text, passage);
+  assert.deepEqual(plain(result.ranges), [{ start: text.length - passage.length, end: text.length }]);
+  assert.equal(result.total, 1);
+  assertOccurrenceEvidence(text, passage, result);
+  const twelve = "a b c d e f g h i j k l";
+  for (const minWords of [4, 6, 8, 12]) {
+    assert.equal(occurrences(`${twelve} STOP ${twelve}`, twelve, { minWords }).total, 2);
+    assert.equal(occurrences("a b c d", "a b c d", { minWords }).total, minWords === 4 ? 1 : 0);
+  }
+  assert.equal(occurrences("someone two three fourish", "one two three four").total, 0);
+});
+
+test("source occurrences normalize NFKC, expansions, apostrophes, and punctuation without losing UTF-16 offsets", () => {
+  for (const [first, second, nonmatch, passage] of [
+    ["Cafe\u0301 ＳＴＲＡＳＳＥ i\u0307 𐐀", "CAFÉ Straße İ 𐐨", "cafe STRASSE i\u0307 𐐨", "café strasse İ 𐐀"],
+    ["ＦＯＯ, ﬃ—１２３ don’t", "FOO ffi 123 don't", "foo ffi 123 dont", "foo ffi 123 don‘t"],
+  ]) {
+    const text = `🙂 ${first} / ${second} / ${nonmatch}`;
+    const result = occurrences(text, passage);
+    assert.deepEqual(slices(text, result.ranges), [first, second]);
+    assert.deepEqual(plain(result.ranges), [first, second].map((value) => ({ start: text.indexOf(value), end: text.indexOf(value) + value.length })));
+    assert.equal(result.total, 2);
+    assertOccurrenceEvidence(text, passage, result);
+  }
+});
+
+test("case-sensitive occurrence lookup still normalizes compatibility characters", () => {
+  const passage = "Alpha beta gamma delta";
+  const text = `Ａlpha beta gamma delta / alpha beta gamma delta / ${passage}`;
+  const sensitive = occurrences(text, passage, { ignoreCase: false });
+  assert.deepEqual(slices(text, sensitive.ranges), ["Ａlpha beta gamma delta", passage]);
+  assert.equal(sensitive.total, 2);
+  assert.equal(occurrences(text, passage).total, 3);
+  assertOccurrenceEvidence(text, passage, sensitive, { ...defaults, ignoreCase: false });
+  const sharpS = "Straße beta gamma delta / STRASSE beta gamma delta";
+  assert.equal(occurrences(sharpS, "Straße beta gamma delta", { ignoreCase: false }).total, 1);
+  assert.equal(occurrences(sharpS, "Straße beta gamma delta").total, 2);
+});
+
+test("source occurrences respect balanced quotes and empty quote barriers without stitching either side", () => {
+  const passage = "one two three four";
+  for (const [open, close] of [['"', '"'], ["“", "”"], ["«", "»"], ["‘", "’"]]) {
+    const text = `${open}${passage}${close} / one two ${open}${close} three four / ${passage}`;
+    const result = occurrences(text, passage, { excludeQuotes: true });
+    assert.deepEqual(plain(result), { ranges: [{ start: text.length - passage.length, end: text.length }], total: 1, truncated: false });
+    assert.equal(occurrences(text, passage).total, 3);
+    assertOccurrenceEvidence(text, passage, result);
+    for (const gap of [`${open}${close}`, `${open}hidden${close}`]) {
+      const split = `one two ${gap} three four`;
+      assert.deepEqual(plain(occurrences(split, passage, { excludeQuotes: true })), { ranges: [], total: 0, truncated: false });
+      assert.deepEqual(plain(occurrences(passage, split, { excludeQuotes: true })), { ranges: [], total: 0, truncated: false });
+    }
+  }
+  for (const text of ['"one two three four', '\\"one two three four\\"', "Don’t change our team’s careful notes"]) {
+    const phrase = text.includes("Don’t") ? "don't change our team's careful notes" : passage;
+    assert.equal(occurrences(text, phrase, { excludeQuotes: true }).total, 1);
+  }
+  assert.equal(occurrences('“one «two three» four” one two three four', passage, { excludeQuotes: true }).total, 1);
+});
+
+test("source occurrence lookup applies full-source reference exclusions and later-section rules", () => {
+  const passage = "one two three four";
+  for (const heading of ["References", "## Bibliography", "  ### Works Cited: ###"]) {
+    const text = `${passage}\n${heading}\n${passage}\n${passage}`;
+    const result = occurrences(text, passage, { excludeReferences: true });
+    assert.deepEqual(plain(result), { ranges: [{ start: 0, end: passage.length }], total: 1, truncated: false });
+    assert.equal(occurrences(text, passage).total, 3);
+    assertOccurrenceEvidence(text, passage, result);
+  }
+  assert.equal(occurrences("one two\nReferences\nthree four", "one two references three four", { excludeReferences: true }).total, 0);
+  const laterSection = `## References\n${passage}\n## Appendix\n${passage}`;
+  assert.equal(occurrences(laterSection, passage, { excludeReferences: true }).total, 2);
+  const quotedHeading = `“\nReferences\n${passage}\n”\n${passage}`;
+  assert.equal(occurrences(quotedHeading, passage, { excludeReferences: true }).total, 2);
+  assert.equal(occurrences(quotedHeading, passage, { excludeReferences: true, excludeQuotes: true }).total, 1);
+  const both = `${passage}\n"${passage}"\nReferences\n${passage}`;
+  assert.equal(occurrences(both, passage, { excludeReferences: true, excludeQuotes: true }).total, 1);
+});
+
+test("on-demand lookup preserves engine evidence and does not reclassify reference headings inside an eligible excerpt", () => {
+  const prefix = "alpha beta gamma delta\nReferences\nthese are source notes";
+  const draft = `${prefix}\n## Appendix\ndraft ending`;
+  const text = `${prefix}\n## Notes\nsource ending`;
+  const options = Object.freeze({ ...defaults, excludeReferences: true });
+  const result = engine.compareSources(draft, [source(text)], options);
+  const before = JSON.stringify(result);
+  const passage = result.sources[0].passages.find((entry) => draft.slice(entry.draft.start, entry.draft.end) === prefix);
+  assert.ok(passage, "The later Markdown sections keep the common prefix eligible in both full documents");
+  const found = engine.findSourceOccurrences(text, draft.slice(passage.draft.start, passage.draft.end), options);
+  assert.deepEqual(plain(found), { ranges: [{ start: 0, end: prefix.length }], total: 1, truncated: false });
+  assert.deepEqual(plain(found.ranges[0]), plain(passage.source));
+  assert.deepEqual(plain(engine.findSourceOccurrences(text, prefix, options)), plain(found));
+  assert.equal(JSON.stringify(result), before, "Lookup must not alter the comparison or its deterministic source occurrence");
+  assert.deepEqual(options, { ...defaults, excludeReferences: true });
+  assertOccurrenceEvidence(text, prefix, found, options);
+  assertEvidence(draft, [source(text)], result);
+});
+
+test("occurrence range caps preserve exact totals below, at, and above twenty overlapping matches", () => {
+  const passage = "a a a a";
+  for (const count of [19, 20, 21, 137, 9_997]) {
+    const text = Array(count + 3).fill("a").join(" ");
+    const result = occurrencesWithRunawayGuard(text, passage);
+    assert.deepEqual(plain(result), {
+      ranges: Array.from({ length: Math.min(count, 20) }, (_, index) => ({ start: index * 2, end: index * 2 + 7 })),
+      total: count,
+      truncated: count > 20,
+    });
+    assertOccurrenceEvidence(text, passage, result);
+  }
+  const separated = Array(23).fill(passage).join(' "" ');
+  const acrossRuns = occurrences(separated, passage, { excludeQuotes: true });
+  assert.equal(acrossRuns.total, 23);
+  assert.equal(acrossRuns.truncated, true);
+  assert.ok(slices(separated, acrossRuns.ranges).every((slice) => slice === passage));
+  assertOccurrenceEvidence(separated, passage, acrossRuns);
+  assert.equal(occurrences(separated, passage).total, 89);
+});
+
+test("long occurrence patterns handle repeated prefix fallback and maximum-length full passages", () => {
+  const text = [...Array(9_999).fill("a"), "b"].join(" ");
+  const passage = [...Array(4_999).fill("a"), "b"].join(" ");
+  const result = occurrencesWithRunawayGuard(text, passage, { minWords: 12 });
+  assert.deepEqual(plain(result), { ranges: [{ start: text.length - passage.length, end: text.length }], total: 1, truncated: false });
+  assertOccurrenceEvidence(text, passage, result);
+  assert.deepEqual(plain(occurrencesWithRunawayGuard(text, text)), { ranges: [{ start: 0, end: text.length }], total: 1, truncated: false });
+});
+
+test("empty occurrence inputs are documented domain errors; short and fully excluded text produce no matches", () => {
+  const passage = "one two three four";
+  const emptyResult = { ranges: [], total: 0, truncated: false };
+  for (const value of ["", " \r\n\t ", "!?…🙂", "\u0301\u0308"]) {
+    assert.throws(() => occurrences(value, passage), /Source must contain at least one word/);
+    assert.throws(() => occurrences(passage, value), /Passage must contain at least one word/);
+  }
+  for (const value of [null, undefined, 123, {}, []]) {
+    assert.throws(() => occurrences(value, passage), /Source must be text/);
+    assert.throws(() => occurrences(passage, value), /Passage must be text/);
+  }
+  for (const value of ["one", "one two", "one two three"]) {
+    assert.deepEqual(plain(occurrences(passage, value)), emptyResult);
+    assert.deepEqual(plain(occurrences(value, passage)), emptyResult);
+  }
+  assert.deepEqual(plain(occurrences(`"${passage}"`, passage, { excludeQuotes: true })), emptyResult);
+  assert.deepEqual(plain(occurrences(passage, `"${passage}"`, { excludeQuotes: true })), emptyResult);
+  assert.deepEqual(plain(occurrences(`References\n${passage}`, passage, { excludeReferences: true })), emptyResult);
+});
+
+test("occurrence lookup validates options and both text limits before returning partial or empty results", () => {
+  const passage = "one two three four";
+  for (const options of [null, {}, [], { ...defaults, minWords: 3 }, { ...defaults, minWords: "4" }, { ...defaults, minWords: NaN }]) {
+    assert.throws(() => engine.findSourceOccurrences(passage, passage, options), /minimum match length/);
+  }
+  for (const key of ["ignoreCase", "excludeQuotes", "excludeReferences"]) {
+    for (const invalid of [undefined, null, 0, "false"]) {
+      assert.throws(() => occurrences(passage, passage, { [key]: invalid }), /true or false/);
+    }
+  }
+  assert.throws(() => occurrences(passage, passage, { unexpected: true }), /Unsupported comparison option/);
+  const charBoundary = `${passage}${" ".repeat(SIMILARITY_LIMITS.maxChars - passage.length)}`;
+  assert.equal(occurrences(charBoundary, passage).total, 1);
+  assert.equal(occurrences(passage, charBoundary).total, 1);
+  const tooLong = `${charBoundary} `;
+  const tooMany = Array(SIMILARITY_LIMITS.maxWords + 1).fill("a").join(" ");
+  for (const [text, message] of [[tooLong, "60,000-character limit"], [tooMany, "10,000-word limit"]]) {
+    assert.throws(() => occurrences(text, passage), new RegExp(`Source exceeds the ${message}`));
+    assert.throws(() => occurrences(passage, text), new RegExp(`Passage exceeds the ${message}`));
+    assert.throws(() => occurrences(text, "one"), new RegExp(`Source exceeds the ${message}`));
+    assert.throws(() => occurrences(`"${passage}"`, text, { excludeQuotes: true }), new RegExp(`Passage exceeds the ${message}`));
+  }
 });
 
 test("repeat grouping compares entire normalized sentences and counts copies beyond the first", () => {
@@ -712,6 +1050,7 @@ test("worker echoes request IDs and returns only contract results or safe valida
   worker.context.onmessage({ data: { ...request("one two three four", "compare"), id: 44, sources: [source("one two three four")] } });
   assert.equal(messages[3].id, 44);
   assert.equal(messages[3].result.draft.matchedWords, 4);
+  assertOverlapCounts(messages[3].result, { singleSourceWords: 4, multiSourceWords: 0, unmatchedWords: 0 }, [[4, 0]]);
 });
 
 test("worker never exposes unknown exception details, source labels, input, or stack traces", () => {
@@ -792,6 +1131,20 @@ function oracleRanges(document, mask) {
   return ranges;
 }
 
+function oracleOccurrences(document, values) {
+  const ranges = [];
+  for (let start = 0; start + values.length <= document.tokens.length; start++) {
+    let length = 0;
+    while (length < values.length && document.eligible[start + length]
+      && (length === 0 || document.joinsPrevious[start + length])
+      && document.tokens[start + length].value === values[length]) length++;
+    if (length === values.length) {
+      ranges.push({ start: document.tokens[start].start, end: document.tokens[start + length - 1].end });
+    }
+  }
+  return ranges;
+}
+
 function randomGenerator(seed) {
   let state = seed >>> 0;
   return (maximum) => {
@@ -842,6 +1195,8 @@ function verifyWithOracle(draftFixture, sourceFixtures, options) {
   const inputs = sourceFixtures.map((fixture, index) => source(fixture.text, index));
   const result = engine.compareSources(draft.text, inputs, options);
   const union = Array(draft.tokens.length).fill(false);
+  const multiplicity = Array(draft.tokens.length).fill(0);
+  const draftMasks = [];
   const eligibleDraft = draft.eligible.filter(Boolean).length;
   assert.equal(result.draft.stats.totalWords, draft.tokens.length);
   assert.equal(result.draft.stats.eligibleWords, eligibleDraft);
@@ -866,18 +1221,44 @@ function verifyWithOracle(draftFixture, sourceFixtures, options) {
     assert.deepEqual(Array.from(actual.passages, (passage) => ({ ...plain(passage.draft), words: passage.words })), expected.passages.map((span) => ({
       start: draft.tokens[span.start].start, end: draft.tokens[span.end - 1].end, words: span.end - span.start,
     })));
-    for (let position = 0; position < union.length; position++) union[position] ||= expected.draftMask[position];
+    for (const span of expected.passages) {
+      const passage = draft.text.slice(draft.tokens[span.start].start, draft.tokens[span.end - 1].end);
+      const values = draft.tokens.slice(span.start, span.end).map((token) => token.value);
+      const ranges = oracleOccurrences(supplied, values);
+      const found = engine.findSourceOccurrences(supplied.text, passage, options);
+      assert.deepEqual(plain(found), {
+        ranges: ranges.slice(0, SIMILARITY_LIMITS.sourceOccurrences),
+        total: ranges.length,
+        truncated: ranges.length > SIMILARITY_LIMITS.sourceOccurrences,
+      });
+      assertOccurrenceEvidence(supplied.text, passage, found, options);
+    }
+    draftMasks.push(expected.draftMask);
+    for (let position = 0; position < union.length; position++) {
+      union[position] ||= expected.draftMask[position];
+      if (expected.draftMask[position]) multiplicity[position]++;
+    }
   }
   const count = union.filter(Boolean).length;
   assert.equal(result.draft.matchedWords, count);
   assertPercentage(result.draft.coverage, count, eligibleDraft);
   assert.deepEqual(plain(result.draft.matchRanges), oracleRanges(draft, union));
+  assertOverlapCounts(result, {
+    singleSourceWords: multiplicity.filter((value) => value === 1).length,
+    multiSourceWords: multiplicity.filter((value) => value >= 2).length,
+    unmatchedWords: multiplicity.filter((value, position) => value === 0 && draft.eligible[position]).length,
+  }, draftMasks.map((mask) => [
+    mask.filter((matched, position) => matched && multiplicity[position] === 1).length,
+    mask.filter((matched, position) => matched && multiplicity[position] >= 2).length,
+  ]));
   assertEvidence(draft.text, inputs, result);
 }
 
-test("512 seeded randomized comparisons agree with an independent brute-force coverage/range oracle across every option", () => {
+test("512 seeded comparisons agree with independent coverage, attribution, range, and occurrence oracles across every option", () => {
   const random = randomGenerator(0x51a11a);
   const vocabulary = ["alpha", "beta", "gamma", "delta"];
+  const sourceCounts = new Set();
+  let duplicateChecks = 0;
   let checks = 0;
   for (let round = 0; round < 16; round++) {
     for (const minWords of [4, 6, 8, 12]) {
@@ -887,11 +1268,18 @@ test("512 seeded randomized comparisons agree with an independent brute-force co
             const words = Array.from({ length: 6 + random(19) }, () => vocabulary[random(vocabulary.length)]);
             const draft = randomFixture(words, random);
             const variants = [words.slice()];
-            const modified = words.slice();
-            modified[random(modified.length)] = "changed";
-            variants.push(modified);
-            if (random(2)) variants.push(Array.from({ length: 4 + random(16) }, () => vocabulary[random(vocabulary.length)]));
+            const sourceCount = 1 + (checks % SIMILARITY_LIMITS.maxSources);
+            while (variants.length < sourceCount) {
+              const modified = words.slice();
+              modified[random(modified.length)] = "changed";
+              variants.push(random(2) ? modified : Array.from({ length: 4 + random(16) }, () => vocabulary[random(vocabulary.length)]));
+            }
             const fixtures = variants.map((variant) => randomFixture(variant, random));
+            if (fixtures.length > 1 && round % 2 === 0) {
+              fixtures[fixtures.length - 1] = fixtures[0];
+              duplicateChecks++;
+            }
+            sourceCounts.add(fixtures.length);
             verifyWithOracle(draft, fixtures, { minWords, ignoreCase, excludeQuotes, excludeReferences });
             checks++;
           }
@@ -900,6 +1288,8 @@ test("512 seeded randomized comparisons agree with an independent brute-force co
     }
   }
   assert.equal(checks, 512);
+  assert.deepEqual([...sourceCounts].sort(), [1, 2, 3, 4, 5]);
+  assert.ok(duplicateChecks > 0);
 });
 
 test("pure implementation imports stay within the similarity contract and use no unbounded spread maximum", () => {

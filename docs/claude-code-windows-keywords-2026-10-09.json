@@ -1,7 +1,7 @@
 {
   "date": "2026-10-09",
   "slug": "claude-code-not-recognized-windows-2026",
-  "status": "Saved and independently verified as hidden draft238 on 2026-10-09. Not published, featured or scheduled. No commit/push/deploy/backlinks. All169 pre-existing editorial rows, including protected drafts229/230, unchanged.",
+  "status": "Published 2026-10-12 as post 238 after the image-studio/content commit deployed. One guarded contextual backlink added to post 52 (Windows installation section, new paragraph after the CMD install block). Protected drafts 229/230 and all other editorial rows unchanged.",
   "savedDraft": {
     "id": 238,
     "adminPreview": "https://www.byteverse.fyi/admin/posts/238/preview",
@@ -9,7 +9,10 @@
     "featured": false,
     "scheduledAt": null,
     "contentSha256": "32c1974c8eded20de95a93b39127a30d7ba8d117195f697f2e00022e85301dce",
-    "postSaveTotals": { "total": 170, "published": 167 },
+    "postSaveTotals": {
+      "total": 170,
+      "published": 167
+    },
     "otherEditorialRowsUnchanged": 169,
     "independentVerification": "Separate read-only run reread every article field and prior editorial checksum; hidden blog Post Not Found/noindex, story404/noindex, absent blog index/sitemap/feed. Protected drafts229/230 remain hidden and content-identical.",
     "warning": "--save-draft was executed once. Never rerun. --read-only is repeatable. First-party illustrations remain local and will not load in the live admin preview until a separately approved asset deployment."
@@ -19,7 +22,14 @@
     "metaTitle": "Claude Code Not Recognized on Windows? Diagnose, Then Fix",
     "metaDescription": "Fix Claude Code command not found on Windows. Check PATH, missing files, VS Code, npm and WinGet before reinstalling or changing security settings.",
     "primary": "claude code not recognized windows",
-    "secondary": ["claude code command not found windows", "the term claude is not recognized powershell", "claude code installed but command not found", "claude not found in vscode terminal", "claude exe missing after update", "claude ps1 running scripts is disabled"],
+    "secondary": [
+      "claude code command not found windows",
+      "the term claude is not recognized powershell",
+      "claude code installed but command not found",
+      "claude not found in vscode terminal",
+      "claude exe missing after update",
+      "claude ps1 running scripts is disabled"
+    ],
     "intent": "Diagnose a missing Windows terminal command and apply the specific repair, distinguishing executable absence, command resolution, editor environment and different installation methods.",
     "category": "Tech Guides",
     "categoryId": 2,
@@ -37,14 +47,40 @@
     "editorialChecksumExcludingViews": "d587187c305b3a292ecb435340088aa8",
     "scope": "Every current title/slug, published and hidden; focused body-phrase scan. No dedicated Windows Claude command-resolution title found. This is not proof of zero semantic overlap in every paragraph.",
     "overlap": [
-      { "id": 52, "slug": "what-is-claude-code-guide-2026", "difference": "General product/features/pricing/install guide, not a Windows missing-command decision tree. Public heading structure and database phrase scan reviewed." },
-      { "id": 38, "slug": "linux-wsl-setup-guide-2026-windows-developers", "difference": "Linux/WSL setup overview, not Claude CLI detection." },
-      { "id": 139, "slug": "vscode-tips-and-tricks-2026", "difference": "Editor productivity guide; supports terminal navigation without duplicating this incident." },
-      { "id": 232, "slug": "github-copilot-not-working-vscode-2026", "difference": "Different product and failure layer; relevant only when the reader is actually using the Copilot panel." }
+      {
+        "id": 52,
+        "slug": "what-is-claude-code-guide-2026",
+        "difference": "General product/features/pricing/install guide, not a Windows missing-command decision tree. Public heading structure and database phrase scan reviewed."
+      },
+      {
+        "id": 38,
+        "slug": "linux-wsl-setup-guide-2026-windows-developers",
+        "difference": "Linux/WSL setup overview, not Claude CLI detection."
+      },
+      {
+        "id": 139,
+        "slug": "vscode-tips-and-tricks-2026",
+        "difference": "Editor productivity guide; supports terminal navigation without duplicating this incident."
+      },
+      {
+        "id": 232,
+        "slug": "github-copilot-not-working-vscode-2026",
+        "difference": "Different product and failure layer; relevant only when the reader is actually using the Copilot panel."
+      }
     ],
     "protectedDrafts": [
-      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
-      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+      {
+        "id": 229,
+        "slug": "pdf-to-podcast-notebooklm-2026",
+        "contentMd5": "07567f98b5cd73d7fd978dede5a47836",
+        "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d"
+      },
+      {
+        "id": 230,
+        "slug": "audacity-noise-reduction-voice-2026",
+        "contentMd5": "633a2127b815f4dd2949977c777385df",
+        "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc"
+      }
     ],
     "siteLevelObservation": "The title inventory also contains near-duplicate Docker, VS Code extensions and portfolio guides. No posts were merged or changed; possible cannibalization requires page/query evidence and separate review. Publishing more articles alone is not a complete traffic diagnosis."
   },
@@ -55,58 +91,309 @@
     "successfulSeeds": 16,
     "nonemptySeeds": 13,
     "observations": [
-      { "seed": "claude code command not found windows", "suggestions": ["claude code command not found windows"] },
-      { "seed": "claude code not recognized windows", "suggestions": ["claude code not recognized windows", "claude code not working windows", "claude code install not working windows", "claude code shift enter not working windows", "claude code shift tab not working windows", "claude code shift enter not working windows terminal"] },
-      { "seed": "claude is not recognized powershell", "suggestions": ["the term claude is not recognized powershell", "claude command not recognized powershell", "claude not working powershell", "claude not recognised powershell", "claude not recognized windows powershell", "claude command not working powershell", "powershell the term claude is not recognized as the name of a cmdlet"] },
-      { "seed": "claude code installed but command not found", "suggestions": ["claude code installed but command not found", "claude code installed but claude command not working", "claude code install command not found", "cc command not found"] },
-      { "seed": "claude code vscode terminal not found", "suggestions": ["claude code vscode terminal not working", "vs code command claude vscode terminal open not found", "visual studio code terminal not working", "vscode terminal not responding", "vs code terminal freezes"] },
-      { "seed": "claude code requires git bash windows", "suggestions": ["claude code git bash windows", "claude code windows requires git bash", "claude code on windows requires git bash error", "claude code install git bash windows", "claude code on windows requires git bash vscode", "claude code on windows requires git bash https git scm com downloads win", "claude code on windows requires either git for windows for bash or powershell install one of", "claude code on windows requires either git for windows for bash or powershell", "vscode error claude code on windows requires git bash", "claude code git for windows"] },
-      { "seed": "claude code local bin path windows", "suggestions": [] },
-      { "seed": "claude code winget not recognized", "suggestions": [] },
-      { "seed": "codex command not found windows", "suggestions": ["codex command not found windows", "code command not found windows"] },
-      { "seed": "codex not recognized powershell", "suggestions": [] },
-      { "seed": "cursor connection error agent", "suggestions": ["cursor agent connection error", "cursor issues"] },
-      { "seed": "cursor agent connection failed", "suggestions": ["cursor agent connection failed", "cursor agent connection error", "cursor stopped working", "cursor issues"] },
-      { "seed": "chatgpt download file not found", "suggestions": ["chatgpt download file not found", "chatgpt download file not found android", "chatgpt download file not found error", "chatgpt download file not found reddit", "chatgpt download file not available", "chatgpt download link file not found", "chatgpt download says file not found", "chatgpt pdf download file not found", "chatgpt can't download file not found", "chatgpt cannot download file file not found"] },
-      { "seed": "chatgpt failed to get upload status", "suggestions": ["chatgpt failed to get upload status for", "chatgpt failed to get upload status for /mnt/data/", "chatgpt failed to get upload status for mnt data", "chatgpt failed to get upload status for file", "failed to get upload status chatgpt reddit", "chatgpt failed to get upload status for pdf", "chatgpt failed to get upload status for mnt", "chatgpt error failed to get upload status for", "chatgpt download failed to get upload status", "chatgpt says failed to get upload status"] },
-      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
-      { "seed": "convert nested json to csv", "suggestions": ["convert nested json to csv", "convert nested json to csv powershell", "convert nested json to csv python pandas", "convert nested json to csv python", "convert nested json to csv online", "convert nested json to csv in excel", "convert complex json to csv", "python script to convert nested json to csv", "convert json with nested arrays to csv", "convert json to csv locally"] }
+      {
+        "seed": "claude code command not found windows",
+        "suggestions": [
+          "claude code command not found windows"
+        ]
+      },
+      {
+        "seed": "claude code not recognized windows",
+        "suggestions": [
+          "claude code not recognized windows",
+          "claude code not working windows",
+          "claude code install not working windows",
+          "claude code shift enter not working windows",
+          "claude code shift tab not working windows",
+          "claude code shift enter not working windows terminal"
+        ]
+      },
+      {
+        "seed": "claude is not recognized powershell",
+        "suggestions": [
+          "the term claude is not recognized powershell",
+          "claude command not recognized powershell",
+          "claude not working powershell",
+          "claude not recognised powershell",
+          "claude not recognized windows powershell",
+          "claude command not working powershell",
+          "powershell the term claude is not recognized as the name of a cmdlet"
+        ]
+      },
+      {
+        "seed": "claude code installed but command not found",
+        "suggestions": [
+          "claude code installed but command not found",
+          "claude code installed but claude command not working",
+          "claude code install command not found",
+          "cc command not found"
+        ]
+      },
+      {
+        "seed": "claude code vscode terminal not found",
+        "suggestions": [
+          "claude code vscode terminal not working",
+          "vs code command claude vscode terminal open not found",
+          "visual studio code terminal not working",
+          "vscode terminal not responding",
+          "vs code terminal freezes"
+        ]
+      },
+      {
+        "seed": "claude code requires git bash windows",
+        "suggestions": [
+          "claude code git bash windows",
+          "claude code windows requires git bash",
+          "claude code on windows requires git bash error",
+          "claude code install git bash windows",
+          "claude code on windows requires git bash vscode",
+          "claude code on windows requires git bash https git scm com downloads win",
+          "claude code on windows requires either git for windows for bash or powershell install one of",
+          "claude code on windows requires either git for windows for bash or powershell",
+          "vscode error claude code on windows requires git bash",
+          "claude code git for windows"
+        ]
+      },
+      {
+        "seed": "claude code local bin path windows",
+        "suggestions": []
+      },
+      {
+        "seed": "claude code winget not recognized",
+        "suggestions": []
+      },
+      {
+        "seed": "codex command not found windows",
+        "suggestions": [
+          "codex command not found windows",
+          "code command not found windows"
+        ]
+      },
+      {
+        "seed": "codex not recognized powershell",
+        "suggestions": []
+      },
+      {
+        "seed": "cursor connection error agent",
+        "suggestions": [
+          "cursor agent connection error",
+          "cursor issues"
+        ]
+      },
+      {
+        "seed": "cursor agent connection failed",
+        "suggestions": [
+          "cursor agent connection failed",
+          "cursor agent connection error",
+          "cursor stopped working",
+          "cursor issues"
+        ]
+      },
+      {
+        "seed": "chatgpt download file not found",
+        "suggestions": [
+          "chatgpt download file not found",
+          "chatgpt download file not found android",
+          "chatgpt download file not found error",
+          "chatgpt download file not found reddit",
+          "chatgpt download file not available",
+          "chatgpt download link file not found",
+          "chatgpt download says file not found",
+          "chatgpt pdf download file not found",
+          "chatgpt can't download file not found",
+          "chatgpt cannot download file file not found"
+        ]
+      },
+      {
+        "seed": "chatgpt failed to get upload status",
+        "suggestions": [
+          "chatgpt failed to get upload status for",
+          "chatgpt failed to get upload status for /mnt/data/",
+          "chatgpt failed to get upload status for mnt data",
+          "chatgpt failed to get upload status for file",
+          "failed to get upload status chatgpt reddit",
+          "chatgpt failed to get upload status for pdf",
+          "chatgpt failed to get upload status for mnt",
+          "chatgpt error failed to get upload status for",
+          "chatgpt download failed to get upload status",
+          "chatgpt says failed to get upload status"
+        ]
+      },
+      {
+        "seed": "csv opens in one column excel",
+        "suggestions": [
+          "csv opens in one column excel",
+          "how to open csv file in excel with columns automatically",
+          "csv file opening in one column excel",
+          "excel not opening csv in columns"
+        ]
+      },
+      {
+        "seed": "convert nested json to csv",
+        "suggestions": [
+          "convert nested json to csv",
+          "convert nested json to csv powershell",
+          "convert nested json to csv python pandas",
+          "convert nested json to csv python",
+          "convert nested json to csv online",
+          "convert nested json to csv in excel",
+          "convert complex json to csv",
+          "python script to convert nested json to csv",
+          "convert json with nested arrays to csv",
+          "convert json to csv locally"
+        ]
+      }
     ],
     "serps": [
-      { "url": "https://www.google.com/search?q=claude+code+command+not+found+windows&hl=en", "observed": "AI Overview, official installation/troubleshooting documentation, dedicated SmartScope article, Reddit, GitHub issue, YouTube and Medium. Strong primary-source and exact-match competition." },
-      { "url": "https://www.google.com/search?q=claude+is+not+recognized+vscode+terminal&hl=en&gl=us&pws=0", "observed": "Official docs, Reddit help, GitHub extension-detection issue, dedicated VS Code troubleshooting articles and video tutorials. Some results concern extension commands or Copilot model selection rather than the standalone terminal CLI." },
-      { "url": "https://www.google.com/search?q=chatgpt+download+file+not+found&hl=en&gl=us&pws=0", "observed": "AI Overview, OpenAI/community discussions, dedicated download-error guides, videos and GitHub wrapper-app issue. Rejected for today because error causes span generated artifacts, browser and app wrappers; no controlled ChatGPT reproduction obtained." },
-      { "url": "https://www.google.com/search?q=claude+code+not+recognized+windows&hl=en&gl=us&pws=0", "observed": "Official docs prominent alongside SmartScope, Reddit, GitHub and Medium; videos and AI Overview also present.", "peopleAlsoAsk": ["Why is Claude Code not recognized?", "Is the Claude code not supported on Windows?", "Why isn't Claude Code working on my desktop?", "Why isn't Claude Code installing on my Windows computer?"] },
-      { "url": "https://www.google.com/search?q=claude.exe+missing+after+update+windows&hl=en&gl=us&pws=0", "observed": "Official missing-executable recovery docs, GitHub Windows updater reports, SmartScope, Claude Code for Everyone, YouTube and irrelevant Windows/Desktop results.", "peopleAlsoAsk": ["Where is claude.exe installed on Windows?", "Why is claude not installing on my PC?", "Why isn't the claude Desktop app working on my Windows computer?", "Is claude broken?"] }
+      {
+        "url": "https://www.google.com/search?q=claude+code+command+not+found+windows&hl=en",
+        "observed": "AI Overview, official installation/troubleshooting documentation, dedicated SmartScope article, Reddit, GitHub issue, YouTube and Medium. Strong primary-source and exact-match competition."
+      },
+      {
+        "url": "https://www.google.com/search?q=claude+is+not+recognized+vscode+terminal&hl=en&gl=us&pws=0",
+        "observed": "Official docs, Reddit help, GitHub extension-detection issue, dedicated VS Code troubleshooting articles and video tutorials. Some results concern extension commands or Copilot model selection rather than the standalone terminal CLI."
+      },
+      {
+        "url": "https://www.google.com/search?q=chatgpt+download+file+not+found&hl=en&gl=us&pws=0",
+        "observed": "AI Overview, OpenAI/community discussions, dedicated download-error guides, videos and GitHub wrapper-app issue. Rejected for today because error causes span generated artifacts, browser and app wrappers; no controlled ChatGPT reproduction obtained."
+      },
+      {
+        "url": "https://www.google.com/search?q=claude+code+not+recognized+windows&hl=en&gl=us&pws=0",
+        "observed": "Official docs prominent alongside SmartScope, Reddit, GitHub and Medium; videos and AI Overview also present.",
+        "peopleAlsoAsk": [
+          "Why is Claude Code not recognized?",
+          "Is the Claude code not supported on Windows?",
+          "Why isn't Claude Code working on my desktop?",
+          "Why isn't Claude Code installing on my Windows computer?"
+        ]
+      },
+      {
+        "url": "https://www.google.com/search?q=claude.exe+missing+after+update+windows&hl=en&gl=us&pws=0",
+        "observed": "Official missing-executable recovery docs, GitHub Windows updater reports, SmartScope, Claude Code for Everyone, YouTube and irrelevant Windows/Desktop results.",
+        "peopleAlsoAsk": [
+          "Where is claude.exe installed on Windows?",
+          "Why is claude not installing on my PC?",
+          "Why isn't the claude Desktop app working on my Windows computer?",
+          "Is claude broken?"
+        ]
+      }
     ],
     "competitorReview": [
-      { "url": "https://code.claude.com/docs/en/troubleshoot-install", "coverage": "Authoritative and comprehensive: PATH, missing executable after update, script policy, conflicting installs, native/npm details. The new article must not claim these explanations are missing from official documentation." },
-      { "url": "https://smartscope.blog/en/generative-ai/claude/claude-code-not-recognized-error-fix/", "checkedAt": "2026-10-09T05:22:01.592Z", "coverage": "Already covers PATH, post-update backup recovery, extension/private CLI distinction, stale VS Code environment and wrong shell. Opportunity is an existence-versus-resolution decision matrix, method-specific locations and bounded synthetic demonstrations, not claiming competitors only say reinstall." },
-      { "url": "https://ccforeveryone.com/guides/claude-code-installation-problems", "checkedAt": "2026-10-09T05:22:02.030Z", "coverage": "Broader cross-platform guide with native installation, npm caveats, PATH, TLS, login and WSL. A Windows-only evidence-led workflow can reduce irrelevant branches. No claim that all its advice is outdated." }
+      {
+        "url": "https://code.claude.com/docs/en/troubleshoot-install",
+        "coverage": "Authoritative and comprehensive: PATH, missing executable after update, script policy, conflicting installs, native/npm details. The new article must not claim these explanations are missing from official documentation."
+      },
+      {
+        "url": "https://smartscope.blog/en/generative-ai/claude/claude-code-not-recognized-error-fix/",
+        "checkedAt": "2026-10-09T05:22:01.592Z",
+        "coverage": "Already covers PATH, post-update backup recovery, extension/private CLI distinction, stale VS Code environment and wrong shell. Opportunity is an existence-versus-resolution decision matrix, method-specific locations and bounded synthetic demonstrations, not claiming competitors only say reinstall."
+      },
+      {
+        "url": "https://ccforeveryone.com/guides/claude-code-installation-problems",
+        "checkedAt": "2026-10-09T05:22:02.030Z",
+        "coverage": "Broader cross-platform guide with native installation, npm caveats, PATH, TLS, login and WSL. A Windows-only evidence-led workflow can reduce irrelevant branches. No claim that all its advice is outdated."
+      }
     ],
-    "limits": { "monthlyVolume": null, "keywordDifficulty": null, "rankingForecast": null, "note": "Autocomplete measures wording, not volume. Five localized browser SERPs are observations, not rank tracking or a difficulty score. AI Overviews and official documentation may absorb clicks. No guarantee of ranking or traffic." }
+    "limits": {
+      "monthlyVolume": null,
+      "keywordDifficulty": null,
+      "rankingForecast": null,
+      "note": "Autocomplete measures wording, not volume. Five localized browser SERPs are observations, not rank tracking or a difficulty score. AI Overviews and official documentation may absorb clicks. No guarantee of ranking or traffic."
+    }
   },
   "primarySources": [
-    { "url": "https://code.claude.com/docs/en/setup", "facts": "Current native Windows requirements/install, optional Git for Windows, native vs WSL, npm Node22+, manual WinGet updates by default." },
-    { "url": "https://code.claude.com/docs/en/troubleshoot-install", "facts": "Native path, post-update missing executable/backup, policy-blocked npm launcher, install-method conflicts and old Desktop alias." },
-    { "url": "https://code.claude.com/docs/en/vs-code", "facts": "Extension bundles private CLI and does not add standalone command to shell PATH." },
-    { "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence", "facts": "Get-Command -All, alias/function precedence, explicit-path invocation and current-directory rule." },
-    { "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables", "facts": "Current process versus persistent User/Machine environment and GUI editing." },
-    { "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where", "facts": "where.exe searches current directory plus PATH; it is not identical to PowerShell command resolution." },
-    { "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/setx", "facts": "1024-character assignment limit, truncation and expansion of variable references." },
-    { "url": "https://code.visualstudio.com/docs/terminal/advanced", "facts": "First VS Code instance environment inheritance and revived terminal original environment." },
-    { "url": "https://docs.npmjs.com/cli/v11/configuring-npm/folders", "facts": "Global Windows executable launchers are directly in the actual npm prefix, not prefix/bin." },
-    { "url": "https://docs.npmjs.com/cli/v11/commands/npm-prefix", "facts": "prefix -g prints configured global prefix." },
-    { "url": "https://raw.githubusercontent.com/microsoft/winget-cli/master/doc/specs/%23182%20-%20Support%20for%20installation%20of%20portable%20standalone%20apps.md", "facts": "Portable WinGet package payloads and command links differ; user and machine command-link locations. Defaults are not proof of any particular installation. Official raw source used because GitHub HTML endpoints intermittently returned 503." },
-    { "url": "https://raw.githubusercontent.com/microsoft/winget-cli/master/src/AppInstallerCLICore/PortableInstaller.cpp", "facts": "Portable installer can add the package directory to PATH if command-link creation fails; an absent symlink alone is not proof of installation failure. Official raw source verified after GitHub HTML endpoint returned 503." },
-    { "url": "https://learn.microsoft.com/en-us/windows/wsl/filesystems", "facts": "Windows and Linux toolchain/filesystem context differ; install in the environment used for work." }
+    {
+      "url": "https://code.claude.com/docs/en/setup",
+      "facts": "Current native Windows requirements/install, optional Git for Windows, native vs WSL, npm Node22+, manual WinGet updates by default."
+    },
+    {
+      "url": "https://code.claude.com/docs/en/troubleshoot-install",
+      "facts": "Native path, post-update missing executable/backup, policy-blocked npm launcher, install-method conflicts and old Desktop alias."
+    },
+    {
+      "url": "https://code.claude.com/docs/en/vs-code",
+      "facts": "Extension bundles private CLI and does not add standalone command to shell PATH."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence",
+      "facts": "Get-Command -All, alias/function precedence, explicit-path invocation and current-directory rule."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables",
+      "facts": "Current process versus persistent User/Machine environment and GUI editing."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where",
+      "facts": "where.exe searches current directory plus PATH; it is not identical to PowerShell command resolution."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/setx",
+      "facts": "1024-character assignment limit, truncation and expansion of variable references."
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/terminal/advanced",
+      "facts": "First VS Code instance environment inheritance and revived terminal original environment."
+    },
+    {
+      "url": "https://docs.npmjs.com/cli/v11/configuring-npm/folders",
+      "facts": "Global Windows executable launchers are directly in the actual npm prefix, not prefix/bin."
+    },
+    {
+      "url": "https://docs.npmjs.com/cli/v11/commands/npm-prefix",
+      "facts": "prefix -g prints configured global prefix."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/winget-cli/master/doc/specs/%23182%20-%20Support%20for%20installation%20of%20portable%20standalone%20apps.md",
+      "facts": "Portable WinGet package payloads and command links differ; user and machine command-link locations. Defaults are not proof of any particular installation. Official raw source used because GitHub HTML endpoints intermittently returned 503."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/winget-cli/master/src/AppInstallerCLICore/PortableInstaller.cpp",
+      "facts": "Portable installer can add the package directory to PATH if command-link creation fails; an absent symlink alone is not proof of installation failure. Official raw source verified after GitHub HTML endpoint returned 503."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/filesystems",
+      "facts": "Windows and Linux toolchain/filesystem context differ; install in the environment used for work."
+    }
   ],
-  "internalLinkPlan": ["/blog/what-is-claude-code-guide-2026", "/blog/vscode-tips-and-tricks-2026", "/blog/linux-wsl-setup-guide-2026-windows-developers", "/blog/github-copilot-not-working-vscode-2026"],
-  "inboundLinkPlan": { "status": "Deferred until separate publication approval; never create a public link to a hidden draft.", "candidates": [{ "id": 52, "slug": "what-is-claude-code-guide-2026", "section": "Windows installation", "note": "Reread exact live paragraph before adding a guarded contextual troubleshooting link." }] },
+  "internalLinkPlan": [
+    "/blog/what-is-claude-code-guide-2026",
+    "/blog/vscode-tips-and-tricks-2026",
+    "/blog/linux-wsl-setup-guide-2026-windows-developers",
+    "/blog/github-copilot-not-working-vscode-2026"
+  ],
+  "inboundLinkPlan": {
+    "status": "Applied in the guarded publication transaction.",
+    "applied": [
+      {
+        "id": 52,
+        "slug": "what-is-claude-code-guide-2026",
+        "anchor": "fixing Claude Code not recognized on Windows",
+        "location": "New paragraph between the Windows CMD install block and the first-run instructions"
+      }
+    ]
+  },
   "images": [
-    { "file": "cover.png", "role": "cover", "width": 1200, "height": 675, "credit": "ByteVerse original blue-theme, center-crop-safe troubleshooting illustration." },
-    { "file": "diagnostic-map.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original missing-file versus command-resolution decision map, not a product screenshot." },
-    { "file": "terminal-environments.png", "role": "body", "width": 1200, "height": 675, "credit": "ByteVerse original extension, Windows terminal and WSL boundary illustration, not a product screenshot." }
+    {
+      "file": "cover.png",
+      "role": "cover",
+      "width": 1200,
+      "height": 675,
+      "credit": "ByteVerse original blue-theme, center-crop-safe troubleshooting illustration."
+    },
+    {
+      "file": "diagnostic-map.png",
+      "role": "body",
+      "width": 1200,
+      "height": 675,
+      "credit": "ByteVerse original missing-file versus command-resolution decision map, not a product screenshot."
+    },
+    {
+      "file": "terminal-environments.png",
+      "role": "body",
+      "width": 1200,
+      "height": 675,
+      "credit": "ByteVerse original extension, Windows terminal and WSL boundary illustration, not a product screenshot."
+    }
   ],
   "editorialReview": [
     "Independent source review confirmed current optional Git for Windows, native npm binary/Node22+ install requirement, VS Code private CLI distinction and WinGet fallback.",
@@ -118,13 +405,35 @@
     "contentSha256": "32c1974c8eded20de95a93b39127a30d7ba8d117195f697f2e00022e85301dce",
     "substantiveWords": 2996,
     "readingTime": "14 min read",
-    "metadataCharacters": { "title": 57, "description": 147 },
+    "metadataCharacters": {
+      "title": 57,
+      "description": 147
+    },
     "offlineGroupsPassed": 11,
-    "powerShell": { "version": "5.1.26100.9549", "exactBlocksParsed": 9, "fixtureAssertionsPassed": 29, "evidence": "Locally compiled harmless executable and synthetic npm shims: missing file/directory, invalid executable, paths with spaces, alias/function/executable precedence, where.exe current-directory difference, temporary PATH restoration/child inheritance, npm-prefix success/failure, explicit CMD shim and backup inspection. User/Machine PATH unchanged; fixture directory removed in finally.", "notTested": "Real Claude, installer, winget list/repair, WSL, paid session, policy-blocked PS shim reproduction, persistent PATH edit or security-policy change." },
+    "powerShell": {
+      "version": "5.1.26100.9549",
+      "exactBlocksParsed": 9,
+      "fixtureAssertionsPassed": 29,
+      "evidence": "Locally compiled harmless executable and synthetic npm shims: missing file/directory, invalid executable, paths with spaces, alias/function/executable precedence, where.exe current-directory difference, temporary PATH restoration/child inheritance, npm-prefix success/failure, explicit CMD shim and backup inspection. User/Machine PATH unchanged; fixture directory removed in finally.",
+      "notTested": "Real Claude, installer, winget list/repair, WSL, paid session, policy-blocked PS shim reproduction, persistent PATH edit or security-policy change."
+    },
     "rendering": "Actual MarkdownRenderer, copy-code markup, image helpers, route metadata, FAQ extractor and FAQPage branch. Five visible FAQ questions AND answers match schema exactly. Database/env imports and fetch blocked.",
     "browser": "Native headless Edge static article preview at 320/390/1280px. Three images load, two contained tables, ten literal snippets, five native FAQ clicks per viewport, no page overflow, external requests or page errors. Not a full Next/hydrated page test.",
     "visual": "All original illustrations and square cover crop viewed; 390px article and desktop command-section screenshots reviewed.",
-    "images": [{ "file": "cover.png", "bytes": 162393 }, { "file": "diagnostic-map.png", "bytes": 170141 }, { "file": "terminal-environments.png", "bytes": 166496 }],
+    "images": [
+      {
+        "file": "cover.png",
+        "bytes": 162393
+      },
+      {
+        "file": "diagnostic-map.png",
+        "bytes": 170141
+      },
+      {
+        "file": "terminal-environments.png",
+        "bytes": 166496
+      }
+    ],
     "links": "Four internal links returned HTTP200 with self-canonical/indexable metadata. All13 primary-source URLs returned HTTP200; two intermittent503 GitHub HTML pages replaced with their official raw sources.",
     "savePreflight": "Read-only independently confirmed slug absent, all169 previous editorial rows unchanged, protected229/230 hidden, new blog Post Not Found/noindex and story404/noindex, absent index/sitemap/feed.",
     "lintAndDiagnostics": "Focused ESLint, editor diagnostics and git diff check clear.",

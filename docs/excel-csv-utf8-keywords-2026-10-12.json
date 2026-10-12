@@ -1,7 +1,7 @@
 {
   "date": "2026-10-12",
   "slug": "excel-csv-special-characters-utf8",
-  "status": "Saved and independently verified as hidden draft239 on2026-10-12. No publication, schedule, backlinks, commit, push or deployment. All170 prior editorial rows and protected229/230/238 unchanged.",
+  "status": "Published 2026-10-12 as post 239 in the same guarded transaction as 238. One contextual backlink added to post 237 (encoding sentence). Protected drafts 229/230 unchanged. JSON-to-CSV landing link remains a separate optional code change.",
   "savedDraft": {
     "id": 239,
     "adminPreview": "https://www.byteverse.fyi/admin/posts/239/preview",
@@ -9,7 +9,10 @@
     "featured": false,
     "scheduledAt": null,
     "contentSha256": "aded11081a39c146cd03e25b6a7893385a78d6db42d5afd61a970236410fd929",
-    "postSaveTotals": { "total": 171, "published": 167 },
+    "postSaveTotals": {
+      "total": 171,
+      "published": 167
+    },
     "priorEditorialRowsUnchanged": 170,
     "independentVerification": "Separate read-only run checked all article fields, unchanged prior editorial hash and three protected draft hashes; hidden blog PostNotFound/noindex, story404/noindex, absent index/sitemap/feed.",
     "warning": "Never rerun --save-draft; it already inserted once. First-party images remain local and require asset deployment before publication."
@@ -19,8 +22,28 @@
     "metaTitle": "Excel CSV Special Characters Broken? Fix UTF-8 Safely",
     "metaDescription": "Fix garbled CSV text in Excel without overwriting the source. Choose UTF-8 correctly, understand BOM, and tell a bad import from already-damaged text.",
     "primary": "excel csv special characters",
-    "secondary": ["excel import csv special characters", "excel open csv special characters", "excel csv utf8 without bom", "excel csv utf8 bom", "excel csv accented characters corrupted", "CSV shows wrong characters in Excel"],
-    "semanticTerms": ["UTF-8", "Unicode", "BOM", "Windows-1252", "mojibake", "File Origin", "65001", "Power Query", "replacement character", "Reopen with Encoding", "delimiter", "Csv.Document"],
+    "secondary": [
+      "excel import csv special characters",
+      "excel open csv special characters",
+      "excel csv utf8 without bom",
+      "excel csv utf8 bom",
+      "excel csv accented characters corrupted",
+      "CSV shows wrong characters in Excel"
+    ],
+    "semanticTerms": [
+      "UTF-8",
+      "Unicode",
+      "BOM",
+      "Windows-1252",
+      "mojibake",
+      "File Origin",
+      "65001",
+      "Power Query",
+      "replacement character",
+      "Reopen with Encoding",
+      "delimiter",
+      "Csv.Document"
+    ],
     "intent": "Diagnose and correct misread CSV characters in desktop Excel without damaging original bytes; distinguish reparsing from already-persisted corruption.",
     "category": "Tech Guides",
     "categoryId": 2,
@@ -35,9 +58,32 @@
     "objective": "Useful search visits to a troubleshooting article and qualified navigation into the existing spreadsheet/converter cluster.",
     "userReportedMetrics": "Latest brief says about40-50 impressions and1-2 clicks on some pages; earlier conversation said zero clicks. Dates, pages and measurement windows were not supplied, so no trend is inferred.",
     "gscConfiguredLocally": false,
-    "missingData": ["Authenticated GSC page/query/country/device reports", "URL Inspection outcomes", "analytics sessions/conversions", "keyword-tool volumes or difficulty scores", "current Google first-page rankings"],
+    "missingData": [
+      "Authenticated GSC page/query/country/device reports",
+      "URL Inspection outcomes",
+      "analytics sessions/conversions",
+      "keyword-tool volumes or difficulty scores",
+      "current Google first-page rankings"
+    ],
     "technicalObservation": "Public robots allows ordinary content and lists main/image sitemaps while disallowing admin/API. Reachable or indexable URLs are not evidence of Google indexing.",
-    "existingOverlapCandidates": [[24,43],[36,49],[42,46],[90,126]],
+    "existingOverlapCandidates": [
+      [
+        24,
+        43
+      ],
+      [
+        36,
+        49
+      ],
+      [
+        42,
+        46
+      ],
+      [
+        90,
+        126
+      ]
+    ],
     "existingOverlapCaveat": "Similar titles indicate review candidates, not proven cannibalization. No unrelated article was merged, redirected or changed."
   },
   "inventory": {
@@ -53,19 +99,62 @@
       "exactNormalizedBodyMatches": 0,
       "identicalNormalizedParagraphsAtLeast30Words": 0,
       "candidateFiveWordPhrases": 2498,
-      "nearest": [{ "id": 237, "sharedFiveWordPhrases": 10, "candidateOverlapPercent": 0.4, "jaccardPercent": 0.2 }, { "id": 233, "sharedFiveWordPhrases": 6, "candidateOverlapPercent": 0.24, "jaccardPercent": 0.11 }],
+      "nearest": [
+        {
+          "id": 237,
+          "sharedFiveWordPhrases": 10,
+          "candidateOverlapPercent": 0.4,
+          "jaccardPercent": 0.2
+        },
+        {
+          "id": 233,
+          "sharedFiveWordPhrases": 6,
+          "candidateOverlapPercent": 0.24,
+          "jaccardPercent": 0.11
+        }
+      ],
       "limits": "Case/word normalized comparison; code blocks and credits excluded. Low local phrase overlap is not a web-wide plagiarism or ranking guarantee. Intent was separately reviewed."
     },
     "overlap": [
-      { "id": 237, "slug": "excel-csv-leading-zeros-2026", "difference": "Identifier type conversion,15-digit precision and leading zeros. Only passing mention of file encoding/BOM. New article focuses character decoding, byte-level diagnosis and recovery; link rather than repeat ID workflow." },
-      { "id": 233, "slug": "excel-get-data-from-pdf-missing-2026", "difference": "PDF connector availability, not Unicode CSV import." },
-      { "id": 154, "slug": "how-to-use-ai-in-excel-google-sheets-2026", "difference": "AI spreadsheet workflows, not encoding repair." },
-      { "path": "/tools/json-to-csv", "difference": "Conversion intent; supports UTF-8 download/BOM but no byte-based Excel corruption recovery guide. New article remains informational, not another converter landing page." }
+      {
+        "id": 237,
+        "slug": "excel-csv-leading-zeros-2026",
+        "difference": "Identifier type conversion,15-digit precision and leading zeros. Only passing mention of file encoding/BOM. New article focuses character decoding, byte-level diagnosis and recovery; link rather than repeat ID workflow."
+      },
+      {
+        "id": 233,
+        "slug": "excel-get-data-from-pdf-missing-2026",
+        "difference": "PDF connector availability, not Unicode CSV import."
+      },
+      {
+        "id": 154,
+        "slug": "how-to-use-ai-in-excel-google-sheets-2026",
+        "difference": "AI spreadsheet workflows, not encoding repair."
+      },
+      {
+        "path": "/tools/json-to-csv",
+        "difference": "Conversion intent; supports UTF-8 download/BOM but no byte-based Excel corruption recovery guide. New article remains informational, not another converter landing page."
+      }
     ],
     "protectedDrafts": [
-      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
-      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" },
-      { "id": 238, "slug": "claude-code-not-recognized-windows-2026", "contentMd5": "4c7b1758a87a67d24ee206b481eed3d5", "editorialHash": "0e880944f3840dbe598822f19c1bc01a" }
+      {
+        "id": 229,
+        "slug": "pdf-to-podcast-notebooklm-2026",
+        "contentMd5": "07567f98b5cd73d7fd978dede5a47836",
+        "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d"
+      },
+      {
+        "id": 230,
+        "slug": "audacity-noise-reduction-voice-2026",
+        "contentMd5": "633a2127b815f4dd2949977c777385df",
+        "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc"
+      },
+      {
+        "id": 238,
+        "slug": "claude-code-not-recognized-windows-2026",
+        "contentMd5": "4c7b1758a87a67d24ee206b481eed3d5",
+        "editorialHash": "0e880944f3840dbe598822f19c1bc01a"
+      }
     ]
   },
   "keywordResearch": {
@@ -75,50 +164,320 @@
     "successfulSeeds": 16,
     "nonemptySeeds": 9,
     "observations": [
-      { "seed": "image under 50kb not uploading", "suggestions": [] },
-      { "seed": "jpg file not supported upload", "suggestions": ["jpg file not uploading", "jpg file not supported", "jpg file format not supported", "can't upload jpg file", "jpeg not supported"] },
-      { "seed": "heic to jpg windows without losing quality", "suggestions": ["how to convert heic to jpg on windows without losing quality", "convert heic to jpg without losing quality"] },
-      { "seed": "avif image not supported upload", "suggestions": [] },
-      { "seed": "excel csv special characters", "suggestions": ["excel csv special characters", "excel import csv special characters", "excel export csv special characters", "excel open csv special characters", "excel csv escape character", "convert excel to csv with special characters"] },
-      { "seed": "excel csv utf 8 garbled", "suggestions": [] },
-      { "seed": "excel csv accents wrong", "suggestions": [] },
-      { "seed": "excel csv utf8 bom", "suggestions": ["excel csv utf8 bom", "excel csv utf8 without bom", "excel save csv utf8 without bom", "excel save csv utf 8 bom", "excel csv utf 8 ohne bom", "excel csv utf 8 bom 保存", "excel csv utf-8 文字化け bom", "excel csv utf-8(bomなし 保存)", "excel csv utf 8 bom なし", "excel csv utf 8 bom 付き 保存"] },
-      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
-      { "seed": "csv excel semicolon delimiter", "suggestions": ["excel csv semicolon delimiter", "excel csv use semicolon as delimiter", "excel open csv with semicolon delimiter", "excel save csv with semicolon delimiter", "excel export csv with semicolon delimiter", "how to save excel file as csv semicolon delimited", "how to save csv file with semicolon delimited"] },
-      { "seed": "chatgpt download file not found", "suggestions": ["chatgpt download file not found", "chatgpt download file not found android", "chatgpt download file not found error", "chatgpt download file not found reddit", "chatgpt download file not available", "chatgpt download link file not found", "chatgpt download says file not found", "chatgpt pdf download file not found", "chatgpt can't download file not found", "chatgpt cannot download file file not found"] },
-      { "seed": "chatgpt failed to get upload status", "suggestions": ["chatgpt failed to get upload status for", "chatgpt failed to get upload status for /mnt/data/", "chatgpt failed to get upload status for mnt data", "chatgpt failed to get upload status for file", "failed to get upload status chatgpt reddit", "chatgpt failed to get upload status for pdf", "chatgpt failed to get upload status for mnt", "chatgpt error failed to get upload status for", "chatgpt download failed to get upload status", "chatgpt says failed to get upload status"] },
-      { "seed": "convert nested json arrays to csv", "suggestions": ["convert json with nested arrays to csv"] },
-      { "seed": "json to csv repeat parent fields", "suggestions": [] },
-      { "seed": "change image dpi without resizing", "suggestions": [] },
-      { "seed": "300 dpi photo upload", "suggestions": [] }
+      {
+        "seed": "image under 50kb not uploading",
+        "suggestions": []
+      },
+      {
+        "seed": "jpg file not supported upload",
+        "suggestions": [
+          "jpg file not uploading",
+          "jpg file not supported",
+          "jpg file format not supported",
+          "can't upload jpg file",
+          "jpeg not supported"
+        ]
+      },
+      {
+        "seed": "heic to jpg windows without losing quality",
+        "suggestions": [
+          "how to convert heic to jpg on windows without losing quality",
+          "convert heic to jpg without losing quality"
+        ]
+      },
+      {
+        "seed": "avif image not supported upload",
+        "suggestions": []
+      },
+      {
+        "seed": "excel csv special characters",
+        "suggestions": [
+          "excel csv special characters",
+          "excel import csv special characters",
+          "excel export csv special characters",
+          "excel open csv special characters",
+          "excel csv escape character",
+          "convert excel to csv with special characters"
+        ]
+      },
+      {
+        "seed": "excel csv utf 8 garbled",
+        "suggestions": []
+      },
+      {
+        "seed": "excel csv accents wrong",
+        "suggestions": []
+      },
+      {
+        "seed": "excel csv utf8 bom",
+        "suggestions": [
+          "excel csv utf8 bom",
+          "excel csv utf8 without bom",
+          "excel save csv utf8 without bom",
+          "excel save csv utf 8 bom",
+          "excel csv utf 8 ohne bom",
+          "excel csv utf 8 bom 保存",
+          "excel csv utf-8 文字化け bom",
+          "excel csv utf-8(bomなし 保存)",
+          "excel csv utf 8 bom なし",
+          "excel csv utf 8 bom 付き 保存"
+        ]
+      },
+      {
+        "seed": "csv opens in one column excel",
+        "suggestions": [
+          "csv opens in one column excel",
+          "how to open csv file in excel with columns automatically",
+          "csv file opening in one column excel",
+          "excel not opening csv in columns"
+        ]
+      },
+      {
+        "seed": "csv excel semicolon delimiter",
+        "suggestions": [
+          "excel csv semicolon delimiter",
+          "excel csv use semicolon as delimiter",
+          "excel open csv with semicolon delimiter",
+          "excel save csv with semicolon delimiter",
+          "excel export csv with semicolon delimiter",
+          "how to save excel file as csv semicolon delimited",
+          "how to save csv file with semicolon delimited"
+        ]
+      },
+      {
+        "seed": "chatgpt download file not found",
+        "suggestions": [
+          "chatgpt download file not found",
+          "chatgpt download file not found android",
+          "chatgpt download file not found error",
+          "chatgpt download file not found reddit",
+          "chatgpt download file not available",
+          "chatgpt download link file not found",
+          "chatgpt download says file not found",
+          "chatgpt pdf download file not found",
+          "chatgpt can't download file not found",
+          "chatgpt cannot download file file not found"
+        ]
+      },
+      {
+        "seed": "chatgpt failed to get upload status",
+        "suggestions": [
+          "chatgpt failed to get upload status for",
+          "chatgpt failed to get upload status for /mnt/data/",
+          "chatgpt failed to get upload status for mnt data",
+          "chatgpt failed to get upload status for file",
+          "failed to get upload status chatgpt reddit",
+          "chatgpt failed to get upload status for pdf",
+          "chatgpt failed to get upload status for mnt",
+          "chatgpt error failed to get upload status for",
+          "chatgpt download failed to get upload status",
+          "chatgpt says failed to get upload status"
+        ]
+      },
+      {
+        "seed": "convert nested json arrays to csv",
+        "suggestions": [
+          "convert json with nested arrays to csv"
+        ]
+      },
+      {
+        "seed": "json to csv repeat parent fields",
+        "suggestions": []
+      },
+      {
+        "seed": "change image dpi without resizing",
+        "suggestions": []
+      },
+      {
+        "seed": "300 dpi photo upload",
+        "suggestions": []
+      }
     ],
-    "metrics": { "monthlySearchVolume": null, "keywordDifficulty": null, "rankingProbability": null, "ctrForecast": null },
+    "metrics": {
+      "monthlySearchVolume": null,
+      "keywordDifficulty": null,
+      "rankingProbability": null,
+      "ctrForecast": null
+    },
     "searchLimit": "Google search hit a human-verification challenge on Oct12; it was not bypassed. Bing returned generic Excel results unsuitable for this comparison. Current organic examples below come from DuckDuckGo, not Google, and no Google PAA questions are claimed.",
     "serps": [
-      { "engine": "DuckDuckGo", "url": "https://duckduckgo.com/?q=Excel+CSV+special+characters+UTF-8&ia=web", "observed": ["ExcelInsider UTF-8 availability/export guides", "LaptopJudge import/format guides", "Instant-CSV", "CSV Dock", "Microsoft UTF-8 CSV support", "Automate Excel", "XLSXtoCSV", "Ablebits"], "intent": "Mixed import troubleshooting and export instructions; existing comprehensive competitors. No claim of low competition." },
-      { "engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=image+under+50kb+not+uploading", "observedUrls": ["https://imresizer.com/resize-image-to-50kb", "https://compressimageto50kb.com/blog/image-upload-rejected-after-compression/", "https://imgshifter.com/blogs/image-too-large-to-upload-fix"], "intent": "Tools plus troubleshooting; a closely matching rejection guide already exists." },
-      { "engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=heic+to+jpg+windows+without+losing+quality", "observedUrls": ["https://techjournal.org/convert-heic-to-jpg-windows", "https://www.wikihow.com/Convert-Heic-to-JPG-on-Windows", "https://www.sysgeeker.com/blog/the-best-7-heic-to-jpg-converters-easily-transform-your-high-efficiency-images-to-jpeg.html"], "intent": "Methods and converter selection; crowded exact-task guides." },
-      { "engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=csv+opens+in+one+column+excel", "observedUrls": ["https://www.exceldemy.com/excel-opening-csv-in-one-column/", "https://www.systoolsgroup.com/updates/csv-file-opens-in-one-column-in-excel/", "https://learn.microsoft.com/en-us/answers/questions/5867755/csv-files-open-in-single-column-excel-365-version"], "intent": "Immediate troubleshooting, many exact-match guides. A community report is not proof of an Excel regression." },
-      { "engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=chatgpt+download+file+not+found", "observedUrls": ["https://techsive.com/how-to-fix-chatgpt-file-download-not-working/", "https://community.openai.com/t/chatgpt-not-generating-downloadable-word-pdf-files-error-file-not-found/1107682", "https://community.openai.com/t/unable-to-download-files-file-not-found-message/1155011"], "intent": "Recover generated downloads; several possible causes and product surfaces." },
-      { "engine": "DuckDuckGo", "url": "https://html.duckduckgo.com/html/?q=convert+nested+json+arrays+to+csv", "observedUrls": ["https://jsonparser.com/nested-json-to-csv", "https://miniwebtool.com/json-to-csv-converter/", "https://www.geeksforgeeks.org/python/convert-nested-json-to-csv-in-python/"], "intent": "Mixed conversion tool/programming tutorial, strong overlap with existing converter guidance." }
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://duckduckgo.com/?q=Excel+CSV+special+characters+UTF-8&ia=web",
+        "observed": [
+          "ExcelInsider UTF-8 availability/export guides",
+          "LaptopJudge import/format guides",
+          "Instant-CSV",
+          "CSV Dock",
+          "Microsoft UTF-8 CSV support",
+          "Automate Excel",
+          "XLSXtoCSV",
+          "Ablebits"
+        ],
+        "intent": "Mixed import troubleshooting and export instructions; existing comprehensive competitors. No claim of low competition."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://html.duckduckgo.com/html/?q=image+under+50kb+not+uploading",
+        "observedUrls": [
+          "https://imresizer.com/resize-image-to-50kb",
+          "https://compressimageto50kb.com/blog/image-upload-rejected-after-compression/",
+          "https://imgshifter.com/blogs/image-too-large-to-upload-fix"
+        ],
+        "intent": "Tools plus troubleshooting; a closely matching rejection guide already exists."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://html.duckduckgo.com/html/?q=heic+to+jpg+windows+without+losing+quality",
+        "observedUrls": [
+          "https://techjournal.org/convert-heic-to-jpg-windows",
+          "https://www.wikihow.com/Convert-Heic-to-JPG-on-Windows",
+          "https://www.sysgeeker.com/blog/the-best-7-heic-to-jpg-converters-easily-transform-your-high-efficiency-images-to-jpeg.html"
+        ],
+        "intent": "Methods and converter selection; crowded exact-task guides."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://html.duckduckgo.com/html/?q=csv+opens+in+one+column+excel",
+        "observedUrls": [
+          "https://www.exceldemy.com/excel-opening-csv-in-one-column/",
+          "https://www.systoolsgroup.com/updates/csv-file-opens-in-one-column-in-excel/",
+          "https://learn.microsoft.com/en-us/answers/questions/5867755/csv-files-open-in-single-column-excel-365-version"
+        ],
+        "intent": "Immediate troubleshooting, many exact-match guides. A community report is not proof of an Excel regression."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://html.duckduckgo.com/html/?q=chatgpt+download+file+not+found",
+        "observedUrls": [
+          "https://techsive.com/how-to-fix-chatgpt-file-download-not-working/",
+          "https://community.openai.com/t/chatgpt-not-generating-downloadable-word-pdf-files-error-file-not-found/1107682",
+          "https://community.openai.com/t/unable-to-download-files-file-not-found-message/1155011"
+        ],
+        "intent": "Recover generated downloads; several possible causes and product surfaces."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "url": "https://html.duckduckgo.com/html/?q=convert+nested+json+arrays+to+csv",
+        "observedUrls": [
+          "https://jsonparser.com/nested-json-to-csv",
+          "https://miniwebtool.com/json-to-csv-converter/",
+          "https://www.geeksforgeeks.org/python/convert-nested-json-to-csv-in-python/"
+        ],
+        "intent": "Mixed conversion tool/programming tutorial, strong overlap with existing converter guidance."
+      }
     ]
   },
   "candidateScoring": {
     "method": "Editorial triage only,1-5 per axis (5 stronger): relevance, distinctness from existing coverage, primary-source support, reproducible original value, click-oriented task clarity. Equal weights, maximum25. These are disclosed qualitative judgments, not KD, search-volume estimates or rank probabilities. No paid keyword metrics are available.",
     "candidates": [
-      { "topic": "Excel CSV special characters / UTF-8 diagnosis", "scores": [5,4,5,5,4], "total": 23, "demandEvidence": "Relevant autocomplete and current alternative-engine results; volume unknown", "competition": "Strong official and specialist guides", "decision": "Selected for byte-level recoverability examples and a distinct encoding intent, not assumed easy rankings" },
-      { "topic": "CSV opens in one column", "scores": [5,3,5,4,4], "total": 21, "demandEvidence": "Autocomplete and exact-match SERPs; volume unknown", "competition": "Numerous established exact-match guides", "decision": "Defer: more workflow overlap with237 and a one-step answer may satisfy snippets" },
-      { "topic": "ChatGPT generated file not found", "scores": [4,5,4,2,4], "total": 19, "demandEvidence": "Several autocomplete variants and problem reports; volume unknown", "competition": "Guides and community reports", "decision": "Defer: no controlled current ChatGPT-session reproduction, no fixed expiration duration verified" },
-      { "topic": "Nested JSON arrays to CSV", "scores": [5,2,5,5,2], "total": 19, "demandEvidence": "Autocomplete and tool/tutorial results; volume unknown", "competition": "Many dedicated converters and tutorials", "decision": "Reject generic article: directly overlaps existing JSON-to-CSV landing content" },
-      { "topic": "Under50KB image rejected by upload form", "scores": [5,4,2,4,3], "total": 18, "demandEvidence": "No exact autocomplete for first seed; related JPG wording and tool-heavy SERP", "competition": "Tools and a directly matching troubleshooting guide", "decision": "Defer until one specific portal's requirements and rejection are verified; local image upgrade is not live" },
-      { "topic": "HEIC to JPG on Windows without quality loss", "scores": [5,4,4,2,2], "total": 17, "demandEvidence": "Autocomplete and established methods guides; volume unknown", "competition": "Crowded methods/converter market", "decision": "Defer: real HEIC workflow needs hands-on evidence; never promise lossless JPEG conversion" }
+      {
+        "topic": "Excel CSV special characters / UTF-8 diagnosis",
+        "scores": [
+          5,
+          4,
+          5,
+          5,
+          4
+        ],
+        "total": 23,
+        "demandEvidence": "Relevant autocomplete and current alternative-engine results; volume unknown",
+        "competition": "Strong official and specialist guides",
+        "decision": "Selected for byte-level recoverability examples and a distinct encoding intent, not assumed easy rankings"
+      },
+      {
+        "topic": "CSV opens in one column",
+        "scores": [
+          5,
+          3,
+          5,
+          4,
+          4
+        ],
+        "total": 21,
+        "demandEvidence": "Autocomplete and exact-match SERPs; volume unknown",
+        "competition": "Numerous established exact-match guides",
+        "decision": "Defer: more workflow overlap with237 and a one-step answer may satisfy snippets"
+      },
+      {
+        "topic": "ChatGPT generated file not found",
+        "scores": [
+          4,
+          5,
+          4,
+          2,
+          4
+        ],
+        "total": 19,
+        "demandEvidence": "Several autocomplete variants and problem reports; volume unknown",
+        "competition": "Guides and community reports",
+        "decision": "Defer: no controlled current ChatGPT-session reproduction, no fixed expiration duration verified"
+      },
+      {
+        "topic": "Nested JSON arrays to CSV",
+        "scores": [
+          5,
+          2,
+          5,
+          5,
+          2
+        ],
+        "total": 19,
+        "demandEvidence": "Autocomplete and tool/tutorial results; volume unknown",
+        "competition": "Many dedicated converters and tutorials",
+        "decision": "Reject generic article: directly overlaps existing JSON-to-CSV landing content"
+      },
+      {
+        "topic": "Under50KB image rejected by upload form",
+        "scores": [
+          5,
+          4,
+          2,
+          4,
+          3
+        ],
+        "total": 18,
+        "demandEvidence": "No exact autocomplete for first seed; related JPG wording and tool-heavy SERP",
+        "competition": "Tools and a directly matching troubleshooting guide",
+        "decision": "Defer until one specific portal's requirements and rejection are verified; local image upgrade is not live"
+      },
+      {
+        "topic": "HEIC to JPG on Windows without quality loss",
+        "scores": [
+          5,
+          4,
+          4,
+          2,
+          2
+        ],
+        "total": 17,
+        "demandEvidence": "Autocomplete and established methods guides; volume unknown",
+        "competition": "Crowded methods/converter market",
+        "decision": "Defer: real HEIC workflow needs hands-on evidence; never promise lossless JPEG conversion"
+      }
     ]
   },
   "competitorReview": [
-    { "url": "https://support.microsoft.com/en-us/excel/opening-csv-utf-8-files-correctly-in-excel", "strength": "Authoritative concise BOM and import guidance", "gap": "No extended three-state byte-level diagnosis; do not pretend official solution is absent" },
-    { "url": "https://csvdock.com/guides/csv-encoding-utf-8-excel", "strength": "Original bytes, confidence/manual overrides, BOM, synthetic fixtures and checksums already covered", "gap": "Prose lacks native Excel step-by-step plus intact-bytes/saved-mojibake/replacement-loss decision table" },
-    { "url": "https://instant-csv.com/blog/utf8-encoding", "strength": "Broad symptoms, Excel, editors, code, reopening versus saving and imperfect detection", "gap": "Add precise independently checked byte cases and avoid assuming question marks are always a font problem; not a claim these concepts are entirely missing" },
-    { "url": "https://www.ablebits.com/office-addins-blog/convert-excel-csv/", "strength": "Export variants, version-aware steps, screenshots and BOM explanations", "gap": "Export-led, not import recoverability; legacy encodings do not destroy every non-ASCII character indiscriminately" }
+    {
+      "url": "https://support.microsoft.com/en-us/excel/opening-csv-utf-8-files-correctly-in-excel",
+      "strength": "Authoritative concise BOM and import guidance",
+      "gap": "No extended three-state byte-level diagnosis; do not pretend official solution is absent"
+    },
+    {
+      "url": "https://csvdock.com/guides/csv-encoding-utf-8-excel",
+      "strength": "Original bytes, confidence/manual overrides, BOM, synthetic fixtures and checksums already covered",
+      "gap": "Prose lacks native Excel step-by-step plus intact-bytes/saved-mojibake/replacement-loss decision table"
+    },
+    {
+      "url": "https://instant-csv.com/blog/utf8-encoding",
+      "strength": "Broad symptoms, Excel, editors, code, reopening versus saving and imperfect detection",
+      "gap": "Add precise independently checked byte cases and avoid assuming question marks are always a font problem; not a claim these concepts are entirely missing"
+    },
+    {
+      "url": "https://www.ablebits.com/office-addins-blog/convert-excel-csv/",
+      "strength": "Export variants, version-aware steps, screenshots and BOM explanations",
+      "gap": "Export-led, not import recoverability; legacy encodings do not destroy every non-ASCII character indiscriminately"
+    }
   ],
   "outline": [
     "Direct answer: known UTF-8 import, preserve original first",
@@ -133,34 +492,104 @@
     "Five practical FAQs, verification notes and sources"
   ],
   "primarySources": [
-    { "url": "https://support.microsoft.com/en-us/excel/opening-csv-utf-8-files-correctly-in-excel", "facts": "BOM normal-opening guidance and explicit Power Query/Text Import alternatives" },
-    { "url": "https://learn.microsoft.com/en-us/power-query/connectors/text-csv", "facts": "File Origin, delimiter and type detection are separate; host differences and BOM-based inference" },
-    { "url": "https://learn.microsoft.com/en-us/powerquery-m/csv-document", "facts": "Encoding65001 is the M function default; not a universal UI detection guarantee" },
-    { "url": "https://www.unicode.org/faq/utf_bom.html", "facts": "UTF-8 representation, BOM EFBBBF optional/signature, error handling/replacement semantics" },
-    { "url": "https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP1252.TXT", "facts": "Exact code-page byte mappings for controlled mojibake demonstration" },
-    { "url": "https://code.visualstudio.com/docs/editing/codebasics#_file-encoding-support", "facts": "Encoding indicator and distinct reopen/save actions" },
-    { "url": "https://support.microsoft.com/en-us/excel/get-started/import-or-export-text-txt-or-csv-files", "facts": "CSV import and export, current worksheet and workbook feature boundaries" },
-    { "url": "https://support.microsoft.com/en-us/excel/text-import-wizard", "facts": "Legacy desktop file-origin, delimiter and text-column controls" }
+    {
+      "url": "https://support.microsoft.com/en-us/excel/opening-csv-utf-8-files-correctly-in-excel",
+      "facts": "BOM normal-opening guidance and explicit Power Query/Text Import alternatives"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/power-query/connectors/text-csv",
+      "facts": "File Origin, delimiter and type detection are separate; host differences and BOM-based inference"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powerquery-m/csv-document",
+      "facts": "Encoding65001 is the M function default; not a universal UI detection guarantee"
+    },
+    {
+      "url": "https://www.unicode.org/faq/utf_bom.html",
+      "facts": "UTF-8 representation, BOM EFBBBF optional/signature, error handling/replacement semantics"
+    },
+    {
+      "url": "https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP1252.TXT",
+      "facts": "Exact code-page byte mappings for controlled mojibake demonstration"
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/editing/codebasics#_file-encoding-support",
+      "facts": "Encoding indicator and distinct reopen/save actions"
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/excel/get-started/import-or-export-text-txt-or-csv-files",
+      "facts": "CSV import and export, current worksheet and workbook feature boundaries"
+    },
+    {
+      "url": "https://support.microsoft.com/en-us/excel/text-import-wizard",
+      "facts": "Legacy desktop file-origin, delimiter and text-column controls"
+    }
   ],
-  "internalLinkPlan": ["/blog/excel-csv-leading-zeros-2026", "/tools/json-to-csv", "/blog/vscode-tips-and-tricks-2026"],
-  "inboundLinkPlan": { "status": "Recommendations only until separate publication approval", "candidates": [{ "id": 237, "slug": "excel-csv-leading-zeros-2026", "anchor": "CSV character encoding and UTF-8 import", "location": "Existing encoding/BOM sentence; reread and add only after publication" }, { "path": "/tools/json-to-csv", "anchor": "fix garbled CSV characters in Excel", "location": "Encoding/BOM explanatory section; separate code change only after article is public" }] },
+  "internalLinkPlan": [
+    "/blog/excel-csv-leading-zeros-2026",
+    "/tools/json-to-csv",
+    "/blog/vscode-tips-and-tricks-2026"
+  ],
+  "inboundLinkPlan": {
+    "status": "Applied for post 237; JSON-to-CSV landing link still optional and separate.",
+    "applied": [
+      {
+        "id": 237,
+        "slug": "excel-csv-leading-zeros-2026",
+        "anchor": "CSV character encoding and UTF-8 import",
+        "location": "Sentence after the file-encoding check in the import step"
+      }
+    ],
+    "optional": [
+      {
+        "path": "/tools/json-to-csv",
+        "anchor": "fix garbled CSV characters in Excel",
+        "location": "Encoding/BOM explanatory section; code change only"
+      }
+    ]
+  },
   "images": [
-    { "file": "cover.png", "width": 1200, "height": 675, "alt": "Excel CSV special characters: decode original bytes correctly before saving", "credit": "ByteVerse original illustration" },
-    { "file": "decode-vs-save.png", "width": 1200, "height": 675, "alt": "Same UTF-8 bytes read correctly or with the wrong encoding, followed by a different saved file", "credit": "ByteVerse original explanatory diagram, not an Excel screenshot" },
-    { "file": "recovery-map.png", "width": 1200, "height": 675, "alt": "Recovery choices for intact CSV bytes, saved mojibake and lost characters", "credit": "ByteVerse original explanatory diagram, not an Excel screenshot" }
+    {
+      "file": "cover.png",
+      "width": 1200,
+      "height": 675,
+      "alt": "Excel CSV special characters: decode original bytes correctly before saving",
+      "credit": "ByteVerse original illustration"
+    },
+    {
+      "file": "decode-vs-save.png",
+      "width": 1200,
+      "height": 675,
+      "alt": "Same UTF-8 bytes read correctly or with the wrong encoding, followed by a different saved file",
+      "credit": "ByteVerse original explanatory diagram, not an Excel screenshot"
+    },
+    {
+      "file": "recovery-map.png",
+      "width": 1200,
+      "height": 675,
+      "alt": "Recovery choices for intact CSV bytes, saved mojibake and lost characters",
+      "credit": "ByteVerse original explanatory diagram, not an Excel screenshot"
+    }
   ],
   "validation": {
     "status": "passed",
     "contentSha256": "aded11081a39c146cd03e25b6a7893385a78d6db42d5afd61a970236410fd929",
     "substantiveWords": 2406,
     "readingTime": "11 min read",
-    "metadataCharacters": { "title": 53, "description": 150 },
+    "metadataCharacters": {
+      "title": 53,
+      "description": 150
+    },
     "offlineGroupsPassed": 12,
     "sampleTests": "Actual Node TextDecoder UTF-8/Windows1252 cases; exact3row/3column multilingual output through real converter; BOM/nonBOM downloads parsed back identically; malformed byte and saved replacement/mojibake boundaries tested.",
     "rendering": "Actual MarkdownRenderer, metadata, imageSEOhelpers, FAQ extraction and schema checked. Five visible FAQ answers match schema exactly. Final note reworded to avoid renderer auto-linking a duplicate converter link.",
     "browser": "Native Edge static preview320/390/1280,3images/2tables/1CSVexample/5FAQs, native FAQ open-close checks, no page overflow, requests or page errors. Not full Next hydration or clipboard validation.",
     "visual": "All three original illustrations, square cover crop,390px article and1280px byte-section screenshots reviewed.",
-    "imagesBytes": [154141,177160,174965],
+    "imagesBytes": [
+      154141,
+      177160,
+      174965
+    ],
     "links": "Three internal destinations HTTP200,selfcanonical,indexable; eight primary-sourceURLs HTTP200 after allowed redirects.",
     "duplicateReview": "Independent editorial review confirms encoding/recovery intent is distinct from237numericconversion and converter landingpage; full170body audit passed.",
     "notRun": "Hands-on Excel or PowerQuery session, real user data recovery, Google search rankings/PAA after challenge, authenticatedGSC, fullNextbuild, livepublication/deployment."

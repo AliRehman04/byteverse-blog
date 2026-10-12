@@ -201,7 +201,7 @@ export default function JsonToCsvPage() {
             <p>Use Data → From Text/CSV → Transform Data. Set identifier columns to Text, replacing or removing the automatic Changed Type step before Close &amp; Load. Quoting and a BOM do not force Text. See <a href="https://support.microsoft.com/en-us/excel/keeping-leading-zeros-and-large-numbers" className={guideLinkClassName}>Microsoft&apos;s import guidance</a>.</p>
           </div>
           <h3 className={`mt-6 text-lg ${headingClassName}`}>Delimiters, quotes and encoding</h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Comma, headers and CRLF are defaults; semicolon, tab (TSV), pipe, LF and quote-all are optional. <a href="https://www.rfc-editor.org/rfc/rfc4180.html" className={guideLinkClassName}>RFC 4180</a> describes quoting fields with delimiters, newlines or quotes, and doubling embedded quotes. The optional UTF-8 BOM defaults on for downloads only; copy omits it.</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Comma, headers and CRLF are defaults; semicolon, tab (TSV), pipe, LF and quote-all are optional. <a href="https://www.rfc-editor.org/rfc/rfc4180.html" className={guideLinkClassName}>RFC 4180</a> describes quoting fields with delimiters, newlines or quotes, and doubling embedded quotes. The optional UTF-8 BOM defaults on for downloads only; copy omits it. If accented or non-Latin characters already look wrong after import, learn how to <Link href="/blog/excel-csv-special-characters-utf8" className={guideLinkClassName}>fix garbled CSV characters in Excel</Link>.</p>
         </section>
 
         <section aria-labelledby="json-csv-protection-heading">

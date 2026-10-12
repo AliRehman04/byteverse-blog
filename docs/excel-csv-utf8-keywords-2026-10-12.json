@@ -531,20 +531,18 @@
     "/blog/vscode-tips-and-tricks-2026"
   ],
   "inboundLinkPlan": {
-    "status": "Applied for post 237; JSON-to-CSV landing link still optional and separate.",
+    "status": "Applied: post 237 contextual link and the JSON-to-CSV tool landing link are both live (2026-10-12).",
     "applied": [
       {
         "id": 237,
         "slug": "excel-csv-leading-zeros-2026",
         "anchor": "CSV character encoding and UTF-8 import",
         "location": "Sentence after the file-encoding check in the import step"
-      }
-    ],
-    "optional": [
+      },
       {
         "path": "/tools/json-to-csv",
         "anchor": "fix garbled CSV characters in Excel",
-        "location": "Encoding/BOM explanatory section; code change only"
+        "location": "Delimiters, quotes and encoding section"
       }
     ]
   },

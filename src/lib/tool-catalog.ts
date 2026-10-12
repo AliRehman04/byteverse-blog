@@ -6,6 +6,7 @@ import {
   Clock3, Sparkles, FileImage, BarChart3, AlignLeft, FileDown,
   Table2, ScrollText, FileType, Rows3, FileSpreadsheet,
 } from "lucide-react";
+import { imageStudioBrand } from "@/lib/image-studio/brand";
 
 export const toolCategories = [
   { title: "Formatters & Dev", icon: Braces, color: "text-blue-500" },
@@ -60,7 +61,7 @@ export const toolCatalog: readonly ToolEntry[] = [
   { slug: "youtube-tag-generator", name: "YouTube Tag Generator", description: "Brainstorm tag ideas from a video title. Suggestions are not search-volume data or ranking forecasts.", category: "Content Analysis", icon: Video, color: "text-red-500", bg: "bg-red-500/10" },
   { slug: "text-to-speech", name: "Text to Speech Reader", description: "Listen to text using voices available in your browser or OS. Voice availability varies; there is no MP3 export.", category: "Content Analysis", icon: Speech, color: "text-teal-500", bg: "bg-teal-500/10" },
   { slug: "qr-code-generator", name: "QR Code Generator", description: "Create QR codes for URLs, text, Wi-Fi and email, then download PNG or SVG output.", category: "Encoders & Converters", icon: QrCode, color: "text-indigo-500", bg: "bg-indigo-500/10" },
-  { slug: "image-compressor", name: "Image Compressor", description: "Resize and re-encode JPG, PNG and WebP images in your browser, comparing input and output sizes.", category: "CSS & Design", icon: FileImage, color: "text-sky-500", bg: "bg-sky-500/10" },
+  { slug: "image-compressor", name: `${imageStudioBrand.name} Image Compressor`, description: "Compress to a measured byte ceiling, crop, resize and convert JPG, PNG, WebP or AVIF locally. HEIC input, batch ZIP export and metadata removal; no uploads.", category: "CSS & Design", icon: FileImage, color: "text-sky-500", bg: "bg-sky-500/10" },
   { slug: "cron-expression-generator", name: "Cron Expression Generator", description: "Build five-field cron expressions from schedule presets and review the generated syntax.", category: "Formatters & Dev", icon: Clock3, color: "text-amber-500", bg: "bg-amber-500/10" },
   { slug: "ai-prompt-generator", name: "AI Prompt Generator", description: "Assemble structured prompt templates with a goal, context, tone and constraints; no AI request is needed.", category: "Content Analysis", icon: Sparkles, color: "text-violet-500", bg: "bg-violet-500/10" },
   { slug: "ai-cv-builder", name: "AI CV Builder", description: "Edit a CV with templates and PDF export. Optional AI writing features send the supplied text to a server.", category: "Content Analysis", icon: FileText, color: "text-emerald-500", bg: "bg-emerald-500/10" },

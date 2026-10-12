@@ -121,6 +121,42 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      source: "/tools/image-compressor",
+      headers: [
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+        { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'; upgrade-insecure-requests" },
+      ],
+    },
+    {
+      source: "/image-studio/:path*",
+      headers: [
+        { key: "X-Robots-Tag", value: "noindex" },
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        { key: "Content-Security-Policy", value: "default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self'; img-src blob: data:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'" },
+      ],
+    },
+    {
+      source: "/image-studio-sw.js",
+      headers: [
+        // Permit the two explicit registrations: the page and its codec worker
+        // directory. The studio never registers a root-scoped worker.
+        { key: "Service-Worker-Allowed", value: "/" },
+        { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+        { key: "X-Robots-Tag", value: "noindex" },
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "Content-Security-Policy", value: "default-src 'none'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'" },
+      ],
+    },
+    {
+      source: "/sw.js",
+      headers: [
+        { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+        { key: "X-Robots-Tag", value: "noindex" },
+      ],
+    },
+    {
       source: "/invoice-workspace/:path*",
       headers: [
         { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },

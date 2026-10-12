@@ -1,0 +1,14 @@
+# Implementation decisions
+
+1. **Integration, not rebuild.** Keep the indexed ByteVerse URL and existing App Router. A whole-site static export would break blog/admin/API behavior, so it is not enabled.
+2. **Brand.** Display “ImageFixer by ByteVerse” with the existing blue-to-violet visual language; configurable in one image-studio configuration. No fake Premium CTA, user count, testimonials or AI quality claims from the reference image.
+3. **Units.** Default decimal KB/MB (1,000/1,000,000 bytes); optional KiB/MiB. Target result status derives only from actual Blob bytes.
+4. **Cross-format quality.** Search quality within each encoder, then compare candidates with a disclosed metric/policy. Do not rank codecs by incomparable numeric quality values or claim objectively optimal visual quality.
+5. **Privacy.** No image upload endpoint. Remove third-party scripts specifically on this route, use full-page navigation between normal site and studio, restrict its CSP, and audit requests. No analytics adapter is enabled.
+6. **Workers.** Use plain typed messages, dedicated worker jobs and a hardware/memory-aware concurrency budget. Single-thread codec builds avoid sitewide cross-origin isolation changes. Termination is the hard cancel boundary.
+7. **Resource bounds.** Default maximum 50 MB/file and 50 MP, reduced for low-memory devices; bounded queue total and concurrency. Tell users these are browser safety constraints, not paywalls.
+8. **Metadata.** Strip EXIF/GPS by re-encoding decoded pixels. Show privacy findings without retaining coordinate values. No misleading “keep metadata” control; original files remain untouched.
+9. **Offline.** Cache only first-party app resources and codec assets. No user image, filename, output or EXIF enters Cache Storage, IndexedDB or localStorage. Complete offline availability requires a successful explicit asset-pack download; partial cache is not advertised as fully offline.
+10. **Optional platform APIs.** Folder save, directory input, install and share controls are shown only when their prerequisites exist; ZIP/individual downloads remain fallback paths.
+11. **Dependencies.** Registry verified Oct9: jSquash JPEG1.6.0, PNG3.1.1, OxiPNG2.3.0, WebP1.5.0, AVIF2.1.1, Resize2.1.1; libheif-js1.23.5 (LGPL-3.0), exifr7.1.3, fflate0.8.3; axe4.13.0, Lighthouse13.5.0. Self-host applicable WASM/glue and preserve license/source notices. Prefer current security-patched compatible framework releases after isolated build validation.
+12. **Verification honesty.** No physical-device, screen-reader, field Web Vitals or search-ranking claim without direct evidence. Measure lab scores with conditions; use programmatically generated fixtures and real decoded download assertions.

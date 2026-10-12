@@ -17,6 +17,9 @@
 /public/invoice-workspace/
 /.invoice-build/
 
+# First-party image codecs/workers, rebuilt from pinned packages before builds.
+/public/image-studio/
+
 # next.js
 /.next/
 /out/

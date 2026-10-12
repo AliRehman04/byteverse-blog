@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { AdSense } from "@/components/adsense";
-import { GoogleAnalytics } from "@/components/analytics";
-import { Chatbot } from "@/components/chatbot";
-import { ServiceWorkerRegister } from "@/components/sw-register";
+import { SiteShell } from "@/components/site-shell";
 import { siteConfig } from "@/lib/config";
 import "./globals.css";
 
@@ -99,25 +94,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <link rel="preconnect" href="https://translate.googleapis.com" />
-        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="alternate" type="application/rss+xml" title="ByteVerse RSS Feed" href="/feed.xml" />
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <SiteShell>{children}</SiteShell>
         </ThemeProvider>
-        <Chatbot />
-        <ServiceWorkerRegister />
-        <AdSense />
-        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -1,0 +1,16 @@
+{
+  "id": "/tools/image-compressor",
+  "name": "ImageFixer by ByteVerse",
+  "short_name": "ImageFixer",
+  "description": "Private, browser-local image compression, resizing and format conversion.",
+  "lang": "en",
+  "start_url": "/tools/image-compressor",
+  "scope": "/tools/image-compressor",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

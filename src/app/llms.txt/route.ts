@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { siteConfig } from "@/lib/config";
+import { imageStudioBrand } from "@/lib/image-studio/brand";
 
 export const revalidate = 86400; // refresh daily
 
@@ -60,7 +61,7 @@ export async function GET() {
     { name: "HTML Tag Generator & Remover", href: "/tools/html-tag-generator", desc: "Add HTML tags to plain text or strip all tags from HTML code" },
     { name: "Plagiarism Remover & AI Humanizer", href: "/tools/plagiarism-remover", desc: "Rewrite text to remove plagiarism and humanize AI-generated content" },
     { name: "Code Formatter & Beautifier", href: "/tools/code-formatter", desc: "Format, beautify, and minify JSON, HTML, CSS, JavaScript, SQL, and XML code" },
-    { name: "Image Compressor", href: "/tools/image-compressor", desc: "Compress, resize, convert, preview, and download optimized JPG, PNG, and WebP images" },
+    { name: `${imageStudioBrand.name} Image Compressor by ${imageStudioBrand.publisher}`, href: imageStudioBrand.path, desc: "Free local image studio: measured at-or-below byte targets (not exact equality), crop, resize, comparison and batch ZIP export. JPEG/PNG/WebP/AVIF outputs use on-demand WASM codecs; HEIC/HEIF uses a local decoder, and GIF/BMP or animated inputs use supported still-frame decoding. 50 MB/file, normally 50 MP/image (12 MP on very low-memory devices), 50 files/200 MB input batch; resource-scaled workers. KB=1,000 bytes; KiB=1,024. Quality is a codec setting, not a perceptual score. PNG has no quality slider; palette reduction is lossy. Target misses are disclosed, source metadata is always stripped and working pixels are 8-bit sRGB. No processing uploads, image storage, ads, analytics or translation on this route. Optional folder save/share depend on browser support; offline use requires downloaded assets and retained browser storage" },
     { name: "Cron Expression Generator", href: "/tools/cron-expression-generator", desc: "Build standard 5-field cron expressions visually for crontab schedules" },
     { name: "AI Prompt Generator", href: "/tools/ai-prompt-generator", desc: "Build better prompts for ChatGPT, Claude, Gemini, code assistants, and image models" },
     { name: "AI CV Builder", href: "/tools/ai-cv-builder", desc: "Create modern CVs with visual and code modes, AI writing help, customization, and PDF download" },

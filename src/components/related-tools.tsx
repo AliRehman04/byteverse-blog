@@ -8,6 +8,7 @@ import { getRelatedTools } from "@/lib/tool-catalog";
 export function RelatedTools() {
   const pathname = usePathname();
   if (!pathname || !pathname.startsWith("/tools/")) return null;
+  if (pathname.replace(/\/$/, "") === "/tools/image-compressor") return null;
 
   const slug = pathname.replace("/tools/", "").replace(/\/$/, "");
   const tools = getRelatedTools(slug);

@@ -283,6 +283,7 @@ export default function ImageCompressorPage() {
           <div className="isp-section-heading"><p className="isp-eyebrow">Image format converter</p><h2 id="image-convert-title" className="isp-heading">Convert images to JPG, PNG, WebP or AVIF.</h2><p className="isp-section-lead">Choose Convert to in the tool, then download the new format. Add HEIC, GIF or BMP files too when your browser can decode them. Your original files are never changed.</p></div>
           <div className="isp-feature-grid">{formatGuide.map(format => <article className="isp-feature" key={format.name}><h3>{format.name}</h3><p className="isp-format-best">Best for: {format.best}</p><p>{format.text}</p></article>)}</div>
           <p className="isp-preset-note"><Info size={16} aria-hidden="true" />Popular conversions: {convertTasks.join(", ")}. Output is JPG, PNG, WebP or AVIF; PDF, SVG and animated GIF are not created.</p>
+          <p className="isp-preset-note"><Info size={16} aria-hidden="true" />Converting a transparent PNG to JPG and getting black? Read <Link href="/blog/png-to-jpg-black-background" prefetch={false} className="isp-text-link">why a PNG turns black after JPG conversion</Link> and how to choose the right background.</p>
           <div className="isp-steps-return"><ImageStudioStartLink className="isp-text-link">Convert an image now <ArrowRight size={16} aria-hidden="true" /></ImageStudioStartLink></div>
         </div>
       </section>

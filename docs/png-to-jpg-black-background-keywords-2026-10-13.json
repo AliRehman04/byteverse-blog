@@ -1,7 +1,7 @@
 {
   "date": "2026-10-13",
   "website": "https://www.byteverse.fyi",
-  "status": "Complete local editorial-ready article and 14-part SEO package. Original diagrams, real synthetic/live-tool examples, responsive renderer, citations and full-corpus duplicate checks verified. Not saved to the database, published, scheduled, committed or pushed.",
+  "status": "Complete local editorial-ready article and 14-part SEO package. Original diagrams, real synthetic/live-tool examples, responsive renderer, citations and full-corpus duplicate checks verified. Published 2026-10-13 as post id 240 via scripts/_publish-png-background-post.mjs (--apply run once; do not rerun) with a contextual backlink in post 150 and a link from /tools/image-compressor. Indexing, ranking and traffic are not guaranteed.",
   "slug": "png-to-jpg-black-background",
   "targeting": {
     "title": "PNG to JPG Black Background? Choose the Right Fix",

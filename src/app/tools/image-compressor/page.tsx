@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Check, CheckCheck, ChevronRight, Crop, Download, Eye, FileImage, FolderDown, Globe, HardDrive, Image as ImageIcon, Info, Layers, Link2, LockKeyhole, Mail, Monitor, Plus, ScanLine, ShieldCheck, SlidersHorizontal, Smartphone, Target, Upload, WifiOff } from "lucide-react";
 import { imageStudioBrand } from "@/lib/image-studio/brand";
 import { ImageCompressorTool } from "./image-compressor-tool";
 import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
-import { ImageStudioHeader, ImageStudioStartLink } from "./image-studio-header";
+import { ImageStudioStartLink } from "./image-studio-start-link";
 import { ImageOfflineControls } from "./image-offline-controls";
 import "./image-studio-page.css";
 
@@ -147,10 +149,10 @@ export const metadata: Metadata = {
 };
 
 const features = [
-  { icon: Target, title: "A target you can check", text: "Choose a KB or KiB ceiling. Only measured outputs at or below it earn Target met; misses stay clearly labeled." },
-  { icon: FileImage, title: "Four output formats", text: "JPG, PNG, WebP and AVIF, with on-demand local WASM codecs. HEIC input has its own lazy-loaded decoder." },
-  { icon: Layers, title: "A queue, not a quota", text: "Add up to 50 images within resource budgets. Track progress, cancel work or retry failures without a paid tier." },
-  { icon: Crop, title: "Resize. Crop. Keep control.", text: "Set a longest side, percentage or dimension box. Crop each image separately and keep aspect ratio locked to avoid stretching." },
+  { icon: Target, title: "Set a maximum file size", text: "Need a 50 KB or 100 KB photo? Choose your limit. The result tells you whether the actual file fits, with no padded or invented sizes." },
+  { icon: FileImage, title: "Convert image formats", text: "Save as JPG, PNG, WebP or AVIF. You can also add HEIC photos from your phone and convert supported files locally." },
+  { icon: Layers, title: "Compress a batch", text: "Add up to 50 images within the displayed file limits. Track each result, cancel processing or retry a failed image." },
+  { icon: Crop, title: "Crop and resize", text: "Set a width, height or percentage. Crop individual images and keep their proportions without stretching." },
   { icon: Eye, title: "Inspect the actual output", text: "Compare the encoded result with its matching pre-encode reference. Use the slider, side-by-side view and zoom to judge detail." },
   { icon: ShieldCheck, title: "Source metadata removed", text: "EXIF, GPS and camera metadata are always discarded on export. A local scan flags markers it can detect before processing." },
   { icon: FolderDown, title: "Download your way", text: "Save one image or a ZIP. Folder export and mobile file sharing appear only when the browser supports them." },
@@ -158,9 +160,9 @@ const features = [
 ];
 
 const steps = [
-  { icon: Upload, title: "Add your images", text: "Browse, drag and drop, or paste. The workspace checks actual file signatures, dimensions and available resources before processing." },
-  { icon: SlidersHorizontal, title: "Set a ceiling or a preset", text: "Choose Target, Quality, Resize or Auto. For an upload portal, use its accepted format, exact dimension rules and KB convention." },
-  { icon: Download, title: "Compare, then download", text: "Check the measured bytes, dimensions and target status. Inspect the actual image, then download the outputs you want to keep." },
+  { icon: Upload, title: "Add your images", text: "Choose files, drag them into the box, or paste from your clipboard. Your original files stay unchanged." },
+  { icon: SlidersHorizontal, title: "Choose a size and format", text: "Use Target for a limit such as 50 KB, Quality for a smaller file, or Resize for new dimensions. Then select Compress images." },
+  { icon: Download, title: "Review and download", text: "Compare the before-and-after preview and check the final file size. Download one image or save the whole batch as a ZIP." },
 ];
 
 const useCases = [
@@ -184,56 +186,41 @@ export default function ImageCompressorPage() {
         mainEntity: faqs.map(faq => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
       }).replace(/</g, "\\u003c") }} />
 
-      <ImageStudioHeader />
-
+      <ImageStudioStartLink className="isp-skip-link">Skip to image tool</ImageStudioStartLink>
       <section id="image-studio-top" tabIndex={-1} className="isp-hero isp-anchor-target" aria-labelledby="image-studio-title">
+        <nav className="isp-container isp-breadcrumb" aria-label="Breadcrumb">
+          <Link href="/" prefetch={false}>ByteVerse</Link><ChevronRight size={14} aria-hidden="true" /><Link href="/tools" prefetch={false}>Free tools</Link><ChevronRight size={14} aria-hidden="true" /><span aria-current="page">Image compressor</span>
+        </nav>
         <div className="isp-container isp-hero-grid">
           <div className="isp-hero-copy">
-            <p className="isp-hero-kicker"><ImageIcon size={15} aria-hidden="true" /> FREE IMAGE COMPRESSOR · BUILT FOR YOUR BROWSER</p>
-            <h1 id="image-studio-title">Compress images to <span>your target file size.</span></h1>
-            <p className="isp-hero-description">A 50 KB photo. A lighter website. A smaller attachment. <strong>Resize, compress and convert</strong> to JPG, PNG, WebP or AVIF—without uploading your images.</p>
+            <p className="isp-hero-kicker"><ImageIcon size={16} aria-hidden="true" /> FREE ONLINE IMAGE COMPRESSOR</p>
+            <h1 id="image-studio-title">Smaller images.<span>Ready for what’s next.</span></h1>
+            <p className="isp-hero-description">Need a <strong>50 KB photo</strong>, a lighter website image or a smaller attachment? Compress, resize and convert your images—right here in your browser.</p>
             <ul className="isp-benefits" aria-label="Studio benefits">
-              {["Measured byte ceilings", "Batch processing", "No signup or watermark"].map(benefit => <li key={benefit}><Check size={14} aria-hidden="true" />{benefit}</li>)}
+              {["No image uploads", "No signup", "No watermarks"].map(benefit => <li key={benefit}><Check size={15} aria-hidden="true" />{benefit}</li>)}
             </ul>
             <div className="isp-hero-actions">
-              <ImageStudioStartLink className="isp-button isp-button-primary">Compress images free <ArrowRight size={17} aria-hidden="true" /></ImageStudioStartLink>
-              <a href="#features" className="isp-button isp-button-quiet">Explore features <ChevronRight size={16} aria-hidden="true" /></a>
+              <ImageStudioStartLink className="isp-button isp-button-primary"><Upload size={18} aria-hidden="true" /> Start compressing <ArrowRight size={17} aria-hidden="true" /></ImageStudioStartLink>
+              <a href="#how-it-works" className="isp-button isp-button-quiet">How to use it <ChevronRight size={16} aria-hidden="true" /></a>
             </div>
-            <p className="isp-hero-trust"><LockKeyhole size={14} aria-hidden="true" /> Local processing. Original files stay untouched. No promised savings.</p>
+            <p className="isp-hero-trust"><LockKeyhole size={15} aria-hidden="true" /> Your photos stay on your device. Your originals stay untouched.</p>
           </div>
 
           <figure className="isp-hero-figure">
-            <div className="isp-example-frame">
-              <div className="isp-example-topline"><span><FileImage size={14} aria-hidden="true" /> A little more room for your images</span><span className="isp-example-label">Illustrated example</span></div>
-              <svg className="isp-landscape" width="520" height="240" viewBox="0 0 520 240" fill="none" role="img" aria-labelledby="isp-landscape-title isp-landscape-description">
-                <title id="isp-landscape-title">An original illustration of a mountain lake</title>
-                <desc id="isp-landscape-description">A static vector scene for the image workflow. It is not a processed photo or a before-and-after quality comparison.</desc>
-                <defs>
-                  <linearGradient id="isp-lake-sky" x1="260" y1="0" x2="260" y2="185" gradientUnits="userSpaceOnUse"><stop stopColor="#285889" /><stop offset="1" stopColor="#91bddb" /></linearGradient>
-                  <linearGradient id="isp-lake-water" x1="260" y1="163" x2="260" y2="240" gradientUnits="userSpaceOnUse"><stop stopColor="#68bfd0" /><stop offset="1" stopColor="#1d657f" /></linearGradient>
-                </defs>
-                <path fill="url(#isp-lake-sky)" d="M0 0h520v240H0z" />
-                <circle cx="401" cy="48" r="24" fill="#e0effb" />
-                <path d="m0 153 86-79 67 69 93-118 129 128 51-69 94 67v89H0Z" fill="#6c8fab" />
-                <path d="m181 107 65-82 83 82-49-19-24 14-18-39-20 31-15-2Z" fill="#edf5fa" />
-                <path d="m246 25 129 128-76-27-39-58Z" fill="#91b1c8" />
-                <path d="m0 177 96-77 45 67 97-36 63 41 99-78 120 89v57H0Z" fill="#284f6b" />
-                <path d="M0 193c67-17 118-21 189-11 84 12 119-22 188-14 60 7 101 22 143 24v48H0Z" fill="url(#isp-lake-water)" />
-                <path d="m150 190 84 39 68-38-58-9Z" fill="#afd9e3" opacity=".3" />
-                <path d="M0 162 59 175l37 39-96 26Zm520 6-71 22-28 29 99 13Z" fill="#173c53" />
-                <path d="M94 201h63m190-17h50m-201 32h78m54 15h76" stroke="#b3e1eb" strokeWidth="2" strokeLinecap="round" opacity=".75" />
-                <path d="m29 142 13-24 13 24h-8v35H36v-35Zm438 26 12-25 12 25h-7v26h-10v-26Z" fill="#133b50" />
-              </svg>
-              <div className="isp-example-flow" aria-label="Add an image, choose a limit, inspect the output"><span><Upload size={15} aria-hidden="true" />Your image</span><ArrowRight size={15} aria-hidden="true" /><span><SlidersHorizontal size={15} aria-hidden="true" />Your limit</span><ArrowRight size={15} aria-hidden="true" /><span><Eye size={15} aria-hidden="true" />Your review</span></div>
+            <div className="isp-photo-card">
+              <Image className="isp-hero-photo" src="/images/tools/image-compressor/hero-moraine-lake.webp" alt="Sunlit mountain peaks and evergreen forest reflected in the turquoise water of Moraine Lake" width={1200} height={800} unoptimized loading="eager" fetchPriority="high" />
+              <span className="isp-photo-label"><ImageIcon size={14} aria-hidden="true" /> A little room for the big picture</span>
+              <div className="isp-photo-bottom"><div><strong>Your photo. Your settings.</strong><span>Preview the result before you download.</span></div><span className="isp-photo-icon"><ScanLine size={22} aria-hidden="true" /></span></div>
             </div>
-            <figcaption>Illustration only, not a compression result. Actual sizes are measured in the tool.</figcaption>
+            <figcaption>Sample photo, not a compression result. <a href="https://www.pexels.com/photo/lake-and-mountain-417074/" target="_blank" rel="noopener noreferrer">James Wheeler / Pexels</a></figcaption>
           </figure>
         </div>
       </section>
 
+      <nav className="isp-section-nav" aria-label="Image compressor sections"><div className="isp-container"><ImageStudioStartLink>Compressor</ImageStudioStartLink><a href="#how-it-works">How to use</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#faq">FAQs</a></div></nav>
       <div className="isp-tool-surface">
         <div className="isp-container">
-          <div className="isp-tool-intro"><div><h2>Your image workspace</h2><p>A target is a byte ceiling—not a promise of exact equality.</p></div><div className="isp-format-chips" aria-label="Output formats">{["JPG", "PNG", "WebP", "AVIF"].map(format => <span key={format}>{format}</span>)}</div></div>
+          <div className="isp-tool-intro"><div><h2>Let’s make it smaller.</h2><p>Add images, choose your settings, then compress and download.</p></div><div className="isp-format-chips" aria-label="Output formats">{["JPG", "PNG", "WebP", "AVIF"].map(format => <span key={format}>{format}</span>)}</div></div>
           <noscript><p className="isp-noscript">Enable JavaScript to process images locally. The browser needs Web Workers, WebAssembly and image-decoding APIs; the guide and FAQs below are available without JavaScript.</p></noscript>
           <ImageCompressorTool />
           <section id="offline" className="isp-offline-card isp-anchor-target" tabIndex={-1} aria-labelledby="image-offline-title">
@@ -245,7 +232,7 @@ export default function ImageCompressorPage() {
 
       <section id="features" className="isp-section isp-anchor-target" tabIndex={-1} aria-labelledby="image-features-title">
         <div className="isp-container">
-          <div className="isp-section-heading"><p className="isp-eyebrow">Made for the whole workflow</p><h2 id="image-features-title" className="isp-heading">Less file size. More say in the result.</h2><p className="isp-section-lead">Practical controls from import to export, with clear limits and real byte counts. No simulated quality scores or premium locks.</p></div>
+          <div className="isp-section-heading"><p className="isp-eyebrow">More than a smaller file</p><h2 id="image-features-title" className="isp-heading">Everything you need to prepare an image.</h2><p className="isp-section-lead">Set a size limit, change formats, crop and resize, then check the actual result. All in one free ByteVerse tool.</p></div>
           <div className="isp-feature-grid">{features.map(({ icon: Icon, title, text }) => <article className="isp-feature" key={title}><div className="isp-feature-icon"><Icon size={21} aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div>
           <div className="isp-engine-note"><CheckCheck size={23} aria-hidden="true" /><div><h3>Measured outputs, not marketing numbers.</h3><p>Target mode searches actual encodes within a bounded attempt budget. Auto compares eligible formats using dimensions, a sampled pixel-error metric and bytes—not an objective perceptual score. PNG has no quality slider, and even a successful encode can be larger than its source.</p></div></div>
         </div>
@@ -253,7 +240,7 @@ export default function ImageCompressorPage() {
 
       <section id="how-it-works" className="isp-section isp-steps-section isp-anchor-target" tabIndex={-1} aria-labelledby="image-steps-title">
         <div className="isp-container">
-          <p className="isp-eyebrow">Three steps. All local.</p><h2 id="image-steps-title" className="isp-heading">From “too large” to ready to review.</h2>
+          <p className="isp-eyebrow">Three simple steps</p><h2 id="image-steps-title" className="isp-heading">How to compress your images.</h2>
           <ol className="isp-steps">{steps.map(({ icon: Icon, title, text }, index) => <li className="isp-step" key={title}><div className="isp-step-topline"><span className="isp-step-number">0{index + 1}</span><Icon size={24} aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></li>)}</ol>
           <div className="isp-steps-return"><ImageStudioStartLink className="isp-text-link">Try it with your own image <ArrowRight size={16} aria-hidden="true" /></ImageStudioStartLink></div>
         </div>
@@ -289,12 +276,6 @@ export default function ImageCompressorPage() {
         </div>
       </section>
 
-      <footer className="isp-footer">
-        <div className="isp-container">
-          <div className="isp-footer-main"><div><p className="isp-footer-brand">{imageStudioBrand.name} <span>by {imageStudioBrand.publisher}</span></p><p className="isp-footer-description">{imageStudioBrand.description}</p></div><nav className="isp-footer-nav" aria-label="Image studio footer sections"><ImageStudioStartLink>Image tool</ImageStudioStartLink><a href="#features">Features</a><a href="#how-it-works">How it works</a><a href="#privacy">Image privacy</a><a href="#faq">FAQ</a></nav></div>
-          <div className="isp-footer-bottom"><p>© {new Date().getFullYear()} {imageStudioBrand.publisher}. Free to use. No watermark.</p><nav className="isp-footer-nav" aria-label={`${imageStudioBrand.publisher} links`}><a href={imageStudioBrand.links.home}>{imageStudioBrand.publisher}</a><a href={imageStudioBrand.links.tools}>All tools</a><a href={imageStudioBrand.links.about}>About</a><a href={imageStudioBrand.links.contact}>Contact</a><a href={imageStudioBrand.links.privacy}>Privacy policy</a><a href={imageStudioBrand.links.terms}>Terms</a></nav></div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -9,6 +9,7 @@ const APP_MANIFEST = "/image-studio.webmanifest";
 const APP_SHELL_FILES = new Set([
   APP_MANIFEST, "/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png",
   "/apple-touch-icon.png", "/android-chrome-192x192.png", "/android-chrome-512x512.png",
+  "/logo.png", "/images/tools/image-compressor/hero-moraine-lake.webp",
 ]);
 const CHANNEL = "image-studio-offline-v1";
 const PREFIX = "byteverse-image-studio-v1-";
@@ -240,7 +241,7 @@ function checkType(path, response) {
   const mime = (response.headers.get("content-type") || "").split(";", 1)[0].trim().toLowerCase();
   const valid = path === STUDIO ? mime === "text/html"
     : path === APP_MANIFEST ? ["application/manifest+json", "application/json"].includes(mime)
-      : APP_SHELL_FILES.has(path) ? path.endsWith(".png") ? mime === "image/png" : ["image/x-icon", "image/vnd.microsoft.icon"].includes(mime)
+      : APP_SHELL_FILES.has(path) ? path.endsWith(".png") ? mime === "image/png" : path.endsWith(".webp") ? mime === "image/webp" : ["image/x-icon", "image/vnd.microsoft.icon"].includes(mime)
         : path.endsWith(".css") ? mime === "text/css"
           : path.endsWith(".js") ? /^(?:text|application)\/(?:javascript|ecmascript|x-javascript)$/.test(mime)
             : /^(?:font\/|application\/(?:font|x-font|vnd.ms-fontobject|octet-stream))/.test(mime);

@@ -495,12 +495,11 @@ export function ImageCompressorTool() {
 
   return (
     <div id="image-tool" className="image-studio-workspace" ref={workspace} style={{ "--studio-dock-height": `${dockHeight}px` } as CSSProperties} onFocusCapture={keepFocusVisible}>
-      <div className="studio-workspace-topline"><span><ShieldCheck size={17} aria-hidden="true" /> On-device image workspace</span><span>No uploads. No account. Your originals stay untouched.</span></div>
+      <nav className="studio-workflow" aria-label="Compression steps"><a href="#studio-import-title"><span>1</span> Add images</a><a href="#studio-settings-title"><span>2</span> Choose settings</a><a href="#studio-results-title"><span>3</span> Review &amp; download</a></nav>
       <div className="studio-live-message" role="status" aria-live="polite" aria-atomic="true"><span className="studio-status-dot" aria-hidden="true" />{message}</div>
       <div className="studio-layout">
-        <div className="studio-content">
           <section className="studio-card studio-import-card" aria-labelledby="studio-import-title">
-            <div className="studio-section-heading"><div><p className="studio-eyebrow">01 / Your images</p><h2 id="studio-import-title">Make room for better images.</h2></div><span className="studio-badge"><LockKeyhole size={13} aria-hidden="true" /> Local processing</span></div>
+            <div className="studio-section-heading"><div><p className="studio-eyebrow">Step 1</p><h2 id="studio-import-title" tabIndex={-1}>Add your images</h2></div><span className="studio-badge"><LockKeyhole size={13} aria-hidden="true" /> Private &amp; local</span></div>
             <button type="button" id="image-dropzone" className={`studio-dropzone${dragActive ? " is-dragging" : ""}`} onClick={() => browseInput.current?.click()}
               onDragEnter={event => { if (event.dataTransfer.types.includes("Files")) { event.preventDefault(); dragDepth.current++; setDragActive(true); } }}
               onDragOver={event => { if (event.dataTransfer.types.includes("Files")) { event.preventDefault(); event.dataTransfer.dropEffect = "copy"; } }}
@@ -516,11 +515,42 @@ export function ImageCompressorTool() {
             <div className="studio-import-footer"><p id="studio-drop-help">Or paste images with <kbd>Ctrl</kbd> / <kbd>⌘</kbd> + <kbd>V</kbd>. Adding files never replaces the queue.</p>
               {capabilities.folderInput && <button type="button" className="studio-button studio-button-small" onClick={() => folderInput.current?.click()}><FolderOpen size={16} aria-hidden="true" /> Add folder</button>}
             </div>
-            <p className="studio-caption" id="studio-safety-limits">Up to 50 files · 50 MB/file · 200 MB of inputs · {capabilities.maxPixels / 1_000_000} MP/image on this device. These are browser safety limits, not paid quotas. Animated inputs use a still frame; decode limitations appear with each image.</p>
+            <p className="studio-caption" id="studio-safety-limits">Up to 50 images · 50 MB per image · 200 MB per batch.</p>
+            <details className="studio-file-notices"><summary>Supported files &amp; device limits</summary><p>Up to {capabilities.maxPixels / 1_000_000} megapixels per image on this device. These limits protect browser memory. Animated files use a still frame; unsupported files show an individual error.</p></details>
             {inputErrors.length > 0 && <div className="studio-error" role="alert"><strong>Some files were not added</strong><ul>{inputErrors.map((error, index) => <li key={index}>{error}</li>)}</ul><button type="button" className="studio-button studio-button-small" onClick={() => setInputErrors([])}>Dismiss</button></div>}
           </section>
 
-          <section className="studio-card" aria-labelledby="studio-queue-title">
+        <aside className="studio-controls studio-card" aria-labelledby="studio-settings-title">
+          <div className="studio-section-heading"><div><p className="studio-eyebrow">Step 2</p><h2 id="studio-settings-title" tabIndex={-1}><SlidersHorizontal size={19} aria-hidden="true" /> Choose your settings</h2></div></div>
+          <div className="studio-desktop-submit">
+            <button type="button" className="studio-button studio-button-primary studio-compress-button" disabled={disableStart} onClick={() => void startBatch("all")}>{busy ? <Loader2 size={18} className="studio-spin" aria-hidden="true" /> : <ArrowDownToLine size={18} aria-hidden="true" />}{busy ? "Compressing…" : "Compress images"}</button>
+            <p className="studio-caption">{!validation.settings ? "Fix the highlighted settings below." : missingConsent ? "Allow JPG transparency flattening below, or choose another format." : inspecting ? "Checking the queued files before compression." : !queue.length ? "Add an image to enable compression." : "Ready? Compress with these settings. Ctrl / ⌘ + Enter also works."}</p>
+            {activeWork && <button type="button" className="studio-button studio-button-small" disabled={exportBusy} onClick={cancelAll}><Square size={15} aria-hidden="true" /> Cancel all</button>}
+          </div>
+          <fieldset className="studio-controls-fieldset" disabled={exportBusy}>
+            <legend className="studio-sr-only">Image settings</legend>
+            <label className="studio-field"><span>Quick preset (optional)</span><select value={recipeId} onChange={event => applyRecipe(event.target.value)}><option value="" disabled>Choose a starting point</option>{USE_CASE_PRESETS.map(preset => <option key={preset.id} value={preset.id}>{preset.label} — {preset.description}</option>)}</select></label>
+            <p className="studio-caption">Not sure where to start? Pick a preset, then adjust it to your requirements.</p>
+            {recipeId === "application" && <button type="button" className="studio-button studio-button-small" disabled={!selected?.inspection || busy} onClick={() => openCrop("3:4")}><Crop size={15} aria-hidden="true" /> Optional 3:4 crop for selected image</button>}
+            <SettingsControls settings={settings} errors={validation.errors} missingConsent={missingConsent} onChange={changeSettings} />
+            <div className="studio-estimate-box"><label className="studio-check"><input type="checkbox" checked={previewEnabled} onChange={event => { setPreviewEnabled(event.target.checked); cancelEstimate(); }} /><span><Gauge size={15} aria-hidden="true" /> Live size estimate</span></label>
+              <p className="studio-caption">A measured preview at the current quality—not the final target-size result.</p>
+              <p className="studio-estimate-value" role="status">{busy || exportBusy ? "Paused during compression or export." : !previewEnabled ? "Live estimation is off." : settings.format === "png" ? "PNG has no quality slider. Compress to measure its optimized output." : !validation.settings ? "Fix settings to enable an estimate." : !selected?.inspection ? "Add an image to see a size estimate." : settings.format === "jpeg" && selected.inspection.hasAlpha && !settings.allowJpegTransparency ? "Allow JPEG transparency flattening or choose another format." : estimate?.id === activeId && estimate.status === "done" ? `${formatBytes(estimate.size!)} (${exactBytes(estimate.size!)}) · ${displayFormat(estimate.format!)} · ${estimate.width} × ${estimate.height} — measured preview, not final` : estimate?.id === activeId && estimate.status === "error" ? `Preview unavailable: ${estimate.error}` : estimate?.id === activeId && estimate.status === "measuring" ? "Measuring a local preview…" : "Estimate starts after a short pause in editing."}</p>
+            </div>
+            <div className="studio-privacy-policy"><ShieldCheck size={21} aria-hidden="true" /><div><strong>Photo metadata is removed</strong><p>Exports discard EXIF, GPS and camera metadata. Images use 8-bit sRGB; original HDR and wide-gamut profiles are not retained.</p></div></div>
+            <details className="studio-saved-settings"><summary><Save size={16} aria-hidden="true" /> Save or share settings</summary>
+              <p className="studio-caption">Only presets you explicitly save stay on this browser. No image bytes, source filenames or per-image crops enter browser storage or links.</p>
+              <label className="studio-field"><span>Custom preset name</span><input type="text" maxLength={80} value={presetName} onChange={event => setPresetName(event.target.value)} autoComplete="off" placeholder="e.g. Product photos" /></label>
+              <button type="button" className="studio-button" onClick={savePreset} disabled={!validation.settings || !presetName.trim() || presets.length >= CUSTOM_PRESET_LIMIT}><Save size={15} aria-hidden="true" /> Save preset ({presets.length}/5)</button>
+              {presets.length > 0 && <ul className="studio-preset-list">{presets.map(preset => <li key={preset.name}><button type="button" onClick={() => { replaceSettings(settingsOnly(preset.settings)); setMessage(`Saved preset “${preset.name}” loaded. Review settings, then compress.`); }}>{preset.name}</button><button type="button" className="studio-icon-button" onClick={() => removePreset(preset.name)} aria-label={`Remove saved preset ${preset.name}`}><Trash2 size={15} aria-hidden="true" /></button></li>)}</ul>}
+              <button type="button" className="studio-button" onClick={() => void copySettingsLink()} disabled={!validation.settings}><Link2 size={16} aria-hidden="true" /> Copy settings link</button>
+              {shareLink && <label className="studio-field"><span>Settings-only link · select to copy</span><input readOnly ref={linkInput} value={shareLink} onFocus={event => event.currentTarget.select()} /></label>}
+            </details>
+            <button type="button" className="studio-button studio-reset-settings" onClick={() => replaceSettings({ ...DEFAULT_SETTINGS })}><RotateCcw size={15} aria-hidden="true" /> Reset settings (keep images &amp; crops)</button>
+          </fieldset>
+        </aside>
+
+          <section className="studio-card studio-queue-panel" aria-labelledby="studio-queue-title">
             <div className="studio-section-heading"><div><p className="studio-eyebrow">Queue</p><h2 id="studio-queue-title">{queue.length ? `${queue.length} image${queue.length === 1 ? "" : "s"} · ${formatBytes(inputTotal)}` : "Your image queue"}</h2></div>
               <div className="studio-inline-actions"><button type="button" className="studio-icon-button" onClick={() => browseInput.current?.click()} aria-label="Add more images"><Plus size={19} aria-hidden="true" /></button>
                 <button type="button" className="studio-button studio-button-small" disabled={!queue.length || exportBusy} onClick={event => { clearReturnFocus.current = event.currentTarget; clearDialog.current?.showModal(); clearCancel.current?.focus(); }}><Trash2 size={15} aria-hidden="true" /> Clear all</button></div>
@@ -537,7 +567,7 @@ export function ImageCompressorTool() {
           </section>
 
           <section className="studio-card studio-results-card" aria-labelledby="studio-results-title">
-            <div className="studio-section-heading"><div><p className="studio-eyebrow">02 / Real results</p><h2 id="studio-results-title">Review before you download.</h2></div><span className="studio-badge">{completed.length} ready</span></div>
+            <div className="studio-section-heading"><div><p className="studio-eyebrow">Step 3</p><h2 id="studio-results-title" tabIndex={-1}>Review &amp; download</h2></div><span className="studio-badge">{completed.length} ready</span></div>
             {completed.length > 0 && <>
               <div className="studio-stats"><Stat label="Completed originals" value={formatBytes(completedInputTotal)} detail={exactBytes(completedInputTotal)} /><Stat label="Actual outputs" value={formatBytes(outputTotal)} detail={exactBytes(outputTotal)} /><Stat label={outputTotal > completedInputTotal ? "Batch grew" : "Batch saved"} value={`${Math.abs(savings(completedInputTotal, outputTotal).percent).toFixed(1)}%`} detail={`${formatBytes(Math.abs(completedInputTotal - outputTotal))} ${outputTotal > completedInputTotal ? "larger" : "smaller"}`} warning={outputTotal > completedInputTotal} /></div>
               <div className="studio-export-bar"><span>{selectedOutputs.length} completed image{selectedOutputs.length === 1 ? "" : "s"} selected for export</span><div className="studio-inline-actions">
@@ -554,39 +584,8 @@ export function ImageCompressorTool() {
                 onShare={shareAvailable ? () => void exportImages("share", selected.id) : undefined} onChange={changeSettings} />
                 <ImageCompare key={selected.result.receipt} result={selected.result.value} outputUrl={selected.result.url} referenceUrl={selected.result.referenceUrl} filename={selected.file.name} /></>
                 : <div className="studio-selected-preview">{selected.previewUrl ? <img src={selected.previewUrl} alt={`Metadata-free inspection preview of ${selected.file.name}`} /> : <ImageIcon size={40} aria-hidden="true" />}<p>{selected.status === "processing" ? "The worker is measuring actual encoded results…" : selected.status === "error" ? selected.error : selected.crop ? "A crop is set for this image. Compress again to see its correctly cropped comparison." : "This is an inspection preview. Compress to see measured results and a before/after comparison."}</p></div>}
-            </> : <div className="studio-empty-results"><div className="studio-empty-comparison" aria-hidden="true"><ImageIcon size={32} /><span /><ImageIcon size={32} /></div><p>Smaller files. The details are yours to judge.</p><span>After compression, compare the actual output with a matching pre-encode reference. No simulated savings.</span></div>}
+            </> : <div className="studio-empty-results"><div className="studio-empty-comparison" aria-hidden="true"><ImageIcon size={32} /><span /><ImageIcon size={32} /></div><p>Your compressed images will appear here.</p><span>Add an image and select Compress images. Then compare the preview, check its size and download.</span></div>}
           </section>
-        </div>
-
-        <aside className="studio-controls studio-card" aria-labelledby="studio-settings-title">
-          <div className="studio-section-heading"><div><p className="studio-eyebrow">Your controls</p><h2 id="studio-settings-title" tabIndex={-1}><SlidersHorizontal size={19} aria-hidden="true" /> Compression settings</h2></div></div>
-          <div className="studio-desktop-submit">
-            <button type="button" className="studio-button studio-button-primary studio-compress-button" disabled={disableStart} onClick={() => void startBatch("all")}>{busy ? <Loader2 size={18} className="studio-spin" aria-hidden="true" /> : <ArrowDownToLine size={18} aria-hidden="true" />}{busy ? "Compressing…" : "Compress images"}</button>
-            <p className="studio-caption">{!validation.settings ? "Fix the highlighted settings below." : missingConsent ? "Allow JPG transparency flattening below, or choose another format." : inspecting ? "Checking the queued files before compression." : "Ctrl / ⌘ + Enter to compress the current queue."}</p>
-            {activeWork && <button type="button" className="studio-button studio-button-small" disabled={exportBusy} onClick={cancelAll}><Square size={15} aria-hidden="true" /> Cancel all</button>}
-          </div>
-          <fieldset className="studio-controls-fieldset" disabled={exportBusy}>
-            <legend className="studio-sr-only">Image settings</legend>
-            <label className="studio-field"><span>Start with a use case</span><select value={recipeId} onChange={event => applyRecipe(event.target.value)}><option value="" disabled>Choose an editable starting point</option>{USE_CASE_PRESETS.map(preset => <option key={preset.id} value={preset.id}>{preset.label} — {preset.description}</option>)}</select></label>
-            <p className="studio-caption">Seven editable starting points, not official compliance guarantees. Confirm your destination’s requirements.</p>
-            {recipeId === "application" && <button type="button" className="studio-button studio-button-small" disabled={!selected?.inspection || busy} onClick={() => openCrop("3:4")}><Crop size={15} aria-hidden="true" /> Optional 3:4 crop for selected image</button>}
-            <SettingsControls settings={settings} errors={validation.errors} missingConsent={missingConsent} onChange={changeSettings} />
-            <div className="studio-estimate-box"><label className="studio-check"><input type="checkbox" checked={previewEnabled} onChange={event => { setPreviewEnabled(event.target.checked); cancelEstimate(); }} /><span><Gauge size={15} aria-hidden="true" /> Live size estimate</span></label>
-              <p className="studio-caption">A debounced, measured quality-mode encode of the selected image, not the final target-search result. Preview bytes are discarded; nothing is stored.</p>
-              <p className="studio-estimate-value" role="status">{busy || exportBusy ? "Paused during compression or export." : !previewEnabled ? "Live estimation is off." : settings.format === "png" ? "PNG has no quality slider. Compress to measure its optimized output." : !validation.settings ? "Fix settings to enable an estimate." : !selected?.inspection ? "Select an inspected image for a measured preview." : settings.format === "jpeg" && selected.inspection.hasAlpha && !settings.allowJpegTransparency ? "Allow JPEG transparency flattening or choose another format." : estimate?.id === activeId && estimate.status === "done" ? `${formatBytes(estimate.size!)} (${exactBytes(estimate.size!)}) · ${displayFormat(estimate.format!)} · ${estimate.width} × ${estimate.height} — measured preview, not final` : estimate?.id === activeId && estimate.status === "error" ? `Preview unavailable: ${estimate.error}` : estimate?.id === activeId && estimate.status === "measuring" ? "Measuring a local preview…" : "Estimate starts after a short pause in editing."}</p>
-            </div>
-            <div className="studio-privacy-policy"><ShieldCheck size={21} aria-hidden="true" /><div><strong>Source metadata removal · always on</strong><p>EXIF, GPS and camera metadata are discarded on re-encode. Working pixels are 8-bit sRGB; original wide-gamut / HDR profiles are not retained. Browser color conversion can vary.</p></div></div>
-            <details className="studio-saved-settings"><summary><Save size={16} aria-hidden="true" /> Save or share settings</summary>
-              <p className="studio-caption">Only presets you explicitly save stay on this browser. No image bytes, source filenames or per-image crops enter browser storage or links.</p>
-              <label className="studio-field"><span>Custom preset name</span><input type="text" maxLength={80} value={presetName} onChange={event => setPresetName(event.target.value)} autoComplete="off" placeholder="e.g. Product photos" /></label>
-              <button type="button" className="studio-button" onClick={savePreset} disabled={!validation.settings || !presetName.trim() || presets.length >= CUSTOM_PRESET_LIMIT}><Save size={15} aria-hidden="true" /> Save preset ({presets.length}/5)</button>
-              {presets.length > 0 && <ul className="studio-preset-list">{presets.map(preset => <li key={preset.name}><button type="button" onClick={() => { replaceSettings(settingsOnly(preset.settings)); setMessage(`Saved preset “${preset.name}” loaded. Review settings, then compress.`); }}>{preset.name}</button><button type="button" className="studio-icon-button" onClick={() => removePreset(preset.name)} aria-label={`Remove saved preset ${preset.name}`}><Trash2 size={15} aria-hidden="true" /></button></li>)}</ul>}
-              <button type="button" className="studio-button" onClick={() => void copySettingsLink()} disabled={!validation.settings}><Link2 size={16} aria-hidden="true" /> Copy settings link</button>
-              {shareLink && <label className="studio-field"><span>Settings-only link · select to copy</span><input readOnly ref={linkInput} value={shareLink} onFocus={event => event.currentTarget.select()} /></label>}
-            </details>
-            <button type="button" className="studio-button studio-reset-settings" onClick={() => replaceSettings({ ...DEFAULT_SETTINGS })}><RotateCcw size={15} aria-hidden="true" /> Reset settings (keep images & crops)</button>
-          </fieldset>
-        </aside>
       </div>
 
       <div ref={dock} className={`studio-actionbar${workspaceVisible ? " is-visible" : ""}`}>
@@ -634,10 +633,10 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
   return <>
     <div className="studio-mode-switch" role="group" aria-label="Compression mode">{modes.map(mode => <button key={mode.value} type="button" aria-pressed={settings.mode === mode.value} title={mode.description}
       onClick={() => onChange({ mode: mode.value, format: mode.value === "auto" ? "auto" : settings.format === "auto" ? "webp" : settings.format, ...(mode.value === "resize" && settings.resizeMode === "none" ? { resizeMode: "longest" } : {}) })}>{mode.label}</button>)}</div>
-    <p className="studio-mode-description">{settings.mode === "target" ? "Meet a size ceiling by searching quality and, if allowed, reducing dimensions. A byte target is a ceiling, never a promise of exact equality."
-      : settings.mode === "quality" ? "Encode at the selected quality, with your optional crop and resize. No byte-ceiling search is performed."
-      : settings.mode === "resize" ? "Resize to your chosen geometry, then encode at the selected quality. This mode does not chase a byte ceiling."
-      : "Measure JPG, WebP and AVIF candidates and select using the policy below. Quality numbers from different codecs are not visually equivalent."}</p>
+    <p className="studio-mode-description">{settings.mode === "target" ? "Choose a maximum size, such as 50 KB. The tool tries to fit your image under that limit. Check the result—it may not always fit."
+      : settings.mode === "quality" ? "Choose the quality level yourself. Lower settings usually mean smaller files, but can lose detail. No file-size limit is applied."
+      : settings.mode === "resize" ? "Set new image dimensions, then compress. Keep the aspect ratio locked to avoid stretching. No file-size limit is applied."
+      : "Compare JPG, WebP and AVIF automatically. Choose whether to balance detail and dimensions or prefer the smallest measured file."}</p>
     {Object.keys(errors).length > 0 && <div className="studio-error studio-settings-errors" role="alert"><strong>Check these settings</strong><ul>{Object.entries(errors).map(([key, error]) => <li key={key}><a href={`#studio-setting-${key}`} onClick={event => { event.preventDefault(); focusSetting(key); }}>{error}</a></li>)}</ul></div>}
 
     <label className="studio-field"><span>Output format</span><select id="studio-setting-format" value={settings.format} onChange={event => {
@@ -656,11 +655,14 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
         <label className="studio-field"><span>Unit</span><select id="studio-setting-unit" value={settings.unit} onChange={event => onChange({ unit: event.target.value as ByteUnit })}>{(["KB", "KiB", "MB", "MiB"] as const).map(unit => <option key={unit} value={unit}>{unit}</option>)}</select></label></div>
       <div className="studio-quick-targets" role="group" aria-label="Quick target ceilings">{([{ value: 20, unit: "KB" }, { value: 50, unit: "KB" }, { value: 100, unit: "KB" }, { value: 200, unit: "KB" }, { value: 500, unit: "KB" }, { value: 1, unit: "MB" }] as const).map(item => <button key={`${item.value}${item.unit}`} type="button" aria-pressed={settings.targetValue === item.value && settings.unit === item.unit}
         onClick={() => onChange({ targetValue: item.value, unit: item.unit, mode: settings.mode === "auto" ? "auto" : "target" })}>{item.value} {item.unit}</button>)}</div>
-      <p className="studio-caption">{targetBytes === null ? "Enter a valid byte ceiling to continue." : `Ceiling: ${exactBytes(targetBytes)}.`} KB = 1,000 bytes; KiB = 1,024. MB = 1,000,000; MiB = 1,048,576. The downloaded Blob’s exact bytes determine success.</p>
+      <p className="studio-caption">{targetBytes === null ? "Enter a valid maximum size." : `Maximum: ${exactBytes(targetBytes)}.`} KB = 1,000 bytes; KiB = 1,024. Results can be below the target, not padded to an exact size.</p>
       <label className="studio-check"><input type="checkbox" checked={settings.preserveDimensions} onChange={event => onChange({ preserveDimensions: event.target.checked })} /><span>Preserve dimensions during target search</span></label>
-      <p className="studio-caption">Your explicit crop / resize still applies. When unchecked, the target search may shrink further; when checked, an unreachable target is reported honestly.</p>
+      <p className="studio-caption">Leave off to allow smaller dimensions when needed. Turn on if your upload needs a fixed width and height. Any resize or crop you choose still applies.</p>
     </div>}
 
+    <details className="studio-advanced-settings" open={settings.mode !== "target" || settings.format === "png" || settings.format === "jpeg" || Object.keys(errors).length > 0}>
+      <summary>Quality, resize &amp; advanced options</summary>
+      <div className="studio-advanced-body">
     {((settings.format !== "png" && !smallest) || errors.quality || errors.minQuality) && <div className="studio-control-group">
       <div className="studio-section-heading"><h3>{targetMode ? "Maximum quality" : "Output quality"}</h3><span className="studio-quality-value">{Number.isFinite(settings.quality) ? settings.quality : "—"}</span></div>
       {settings.format !== "png" && <input type="range" min={1} max={100} step={1} value={Number.isFinite(settings.quality) ? settings.quality : 80} onChange={event => qualityChanged(Number(event.target.value))} aria-label="Encoder quality slider" aria-describedby="studio-quality-help" />}
@@ -690,6 +692,8 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
       <label className="studio-field studio-color-field"><span>JPG background color</span><input type="color" value={settings.background} onChange={event => onChange({ background: event.target.value })} /><span>{settings.background}</span></label>
       <p id="studio-transparency-help" className={missingConsent ? "studio-field-error" : "studio-caption"}>{missingConsent ? "A queued image has transparency. JPG cannot preserve it; explicit consent is required before the batch starts." : "This permission applies only to JPG output. Auto excludes JPG for transparent images unless checked. PNG, WebP and AVIF can retain transparency."}</p>
     </div>}
+      </div>
+    </details>
   </>;
 }
 

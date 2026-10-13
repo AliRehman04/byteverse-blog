@@ -34,14 +34,16 @@ const toolCategories = catalogCategories.map((category) => ({
   })),
 }));
 
-export function Header() {
+export function Header({ localTool = false }: { localTool?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
+  const mobileTrigger = useRef<HTMLButtonElement>(null);
   const toolsRef = useRef<HTMLDivElement>(null);
   const toolsTimeout = useRef<ReturnType<typeof setTimeout>>(null);
   const pathname = usePathname();
+  const prefetch = localTool ? false : undefined;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -85,6 +87,15 @@ export function Header() {
       <div className="gradient-line" aria-hidden="true" />
 
       <header
+        onKeyDown={event => {
+          if (localTool) event.stopPropagation();
+          if (event.key === "Escape" && mobileOpen) {
+            setMobileOpen(false);
+            setMobileToolsOpen(false);
+            mobileTrigger.current?.focus();
+          }
+        }}
+        onPaste={event => { if (localTool) event.stopPropagation(); }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
@@ -94,19 +105,20 @@ export function Header() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group shrink-0">
+            <Link href="/" prefetch={prefetch} className={`flex items-center gap-2 group shrink-0${localTool ? " h-12 w-[144px] overflow-hidden sm:w-[190px]" : ""}`}>
               <Image
                 src="/logo.png"
                 alt="ByteVerse"
                 title="ByteVerse - AI Tools, Tech Guides & Productivity"
                 width={160}
                 height={40}
-                className="w-auto max-w-26 sm:max-w-none group-hover:scale-[1.02] transition-transform"
+                unoptimized={localTool}
+                className={`${localTool ? "h-auto w-full shrink-0" : "w-auto max-w-26 sm:max-w-none"} group-hover:scale-[1.02] transition-transform`}
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden xl:flex items-center gap-1">
+            <nav aria-label="Main navigation" className="hidden xl:flex items-center gap-1">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
@@ -122,9 +134,10 @@ export function Header() {
                     >
                       <button
                         onClick={() => setToolsOpen((v) => !v)}
+                        aria-expanded={toolsOpen}
                         className={`flex items-center gap-1 px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
                           isActive || toolsOpen
-                            ? "text-primary font-semibold bg-primary/10"
+                            ? "text-blue-700 dark:text-blue-300 font-semibold bg-primary/10"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                         }`}
                       >
@@ -154,6 +167,7 @@ export function Header() {
                             </div>
                             <Link
                               href="/tools"
+                              prefetch={prefetch}
                               className="text-xs font-medium text-primary hover:underline flex items-center gap-1"
                             >
                               View all <ArrowRight size={12} />
@@ -175,6 +189,7 @@ export function Header() {
                                     <Link
                                       key={tool.href}
                                       href={tool.href}
+                                      prefetch={prefetch}
                                       className="flex items-center gap-2.5 px-2 py-1.5 sm:py-2 rounded-lg hover:bg-muted/70 transition-colors group"
                                     >
                                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-muted/80 group-hover:bg-primary/10 flex items-center justify-center transition-colors shrink-0">
@@ -216,9 +231,10 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    prefetch={prefetch}
                     className={`px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
                       isActive
-                        ? "text-primary font-semibold bg-primary/10"
+                        ? "text-blue-700 dark:text-blue-300 font-semibold bg-primary/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
@@ -230,20 +246,21 @@ export function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
-              <SearchDialog />
-              <ReadingList />
-              <LanguageSelector />
+              {!localTool && <><SearchDialog /><ReadingList /><LanguageSelector /></>}
               <ThemeToggle />
               <Link
                 href="/blog"
+                prefetch={prefetch}
                 className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-all duration-200 btn-shimmer"
               >
                 Read Blog <ArrowRight size={14} />
               </Link>
               <button
+                ref={mobileTrigger}
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="xl:hidden p-2 rounded-lg hover:bg-muted transition-colors"
                 aria-label="Toggle menu"
+                aria-controls="site-mobile-navigation"
                 aria-expanded={mobileOpen}
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -253,7 +270,7 @@ export function Header() {
 
           {/* Mobile Nav */}
           {mobileOpen && (
-            <nav className="xl:hidden py-4 border-t border-border space-y-1 animate-fade-in">
+            <nav id="site-mobile-navigation" aria-label="Mobile navigation" className="xl:hidden py-4 border-t border-border space-y-1 animate-fade-in">
               {siteConfig.nav.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
@@ -262,9 +279,10 @@ export function Header() {
                     <div key={item.href}>
                       <button
                         onClick={() => setMobileToolsOpen((v) => !v)}
+                        aria-expanded={mobileToolsOpen}
                         className={`flex items-center justify-between w-full px-4 py-3 text-sm rounded-lg transition-colors ${
                           isActive
-                            ? "text-primary font-semibold bg-primary/10"
+                            ? "text-blue-700 dark:text-blue-300 font-semibold bg-primary/10"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted"
                         }`}
                       >
@@ -286,6 +304,7 @@ export function Header() {
                                 <Link
                                   key={tool.href}
                                   href={tool.href}
+                                  prefetch={prefetch}
                                   onClick={() => setMobileOpen(false)}
                                   className="flex items-center gap-2.5 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
                                 >
@@ -297,6 +316,7 @@ export function Header() {
                           ))}
                           <Link
                             href="/tools"
+                            prefetch={prefetch}
                             onClick={() => setMobileOpen(false)}
                             className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-primary"
                           >
@@ -312,10 +332,11 @@ export function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    prefetch={prefetch}
                     onClick={() => setMobileOpen(false)}
                     className={`block px-4 py-3 text-sm rounded-lg transition-colors ${
                       isActive
-                        ? "text-primary font-semibold bg-primary/10"
+                        ? "text-blue-700 dark:text-blue-300 font-semibold bg-primary/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
@@ -325,6 +346,7 @@ export function Header() {
               })}
               <Link
                 href="/blog"
+                prefetch={prefetch}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 mx-3 mt-3 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg"
               >

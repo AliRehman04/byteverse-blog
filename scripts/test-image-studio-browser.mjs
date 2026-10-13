@@ -14,7 +14,7 @@ import exifr from "exifr";
 import axe from "axe-core";
 
 const args = process.argv.slice(2);
-let mode = "smoke", baseURL = "http://127.0.0.1:3051", headed = false, selectedMode = false;
+let mode = "smoke", baseURL = "http://127.0.0.1:3051", headed = false, screenshots = false, selectedMode = false;
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
   if (["--smoke", "--full", "--offline", "--matrix", "--accessibility"].includes(arg)) {
@@ -22,10 +22,12 @@ for (let i = 0; i < args.length; i++) {
   } else if (arg === "--baseURL" || arg === "--base-url") baseURL = args[++i];
   else if (arg.startsWith("--baseURL=")) baseURL = arg.slice(10);
   else if (arg === "--headed") headed = true;
+  else if (arg === "--screenshots") screenshots = true;
   else if (/^https?:\/\//.test(arg)) baseURL = arg;
   else throw new Error(`Unknown argument: ${arg}`);
 }
 const TOOL = "/tools/image-compressor", CANONICAL = `https://www.byteverse.fyi${TOOL}`;
+const HERO = "/images/tools/image-compressor/hero-moraine-lake.webp";
 const base = new URL(baseURL);
 assert(base.protocol === "http:" && ["127.0.0.1", "localhost", "[::1]"].includes(base.hostname), "Loopback HTTP preview required");
 assert(!base.username && !base.password && !base.search && !base.hash && ["/", TOOL, `${TOOL}/`].includes(base.pathname), "Origin or exact tool URL only");
@@ -107,6 +109,7 @@ async function run(name, body, options = {}) {
       if (["blob:", "data:", "edge:", "chrome:"].includes(u.protocol)) return true; // Browser UI schemes are not website network requests.
       return u.origin === base.origin && ["GET", "HEAD"].includes(request.method()) &&
         (u.pathname === TOOL || u.pathname === `${TOOL}/` || u.pathname.startsWith("/_next/static/") || u.pathname.startsWith("/image-studio/") ||
+          u.pathname === "/logo.png" || u.pathname === HERO ||
           /^\/(?:image-studio-sw\.js|favicon(?:-\d+x\d+)?\.(?:ico|png)|apple-touch-icon\.png|android-chrome-(?:192x192|512x512)\.png|(?:site|image-studio)\.webmanifest)$/.test(u.pathname));
     };
     context.on("request", request => {
@@ -247,6 +250,17 @@ try {
   browser = await chromium.launch({ channel: "msedge", headless: !headed, downloadsPath: join(temp, "downloads") });
   await run("pristine privacy and SEO", async s => {
     const p = s.page; await expect(p.locator("h1")).toHaveCount(1); await expect(p).toHaveTitle(/ImageFixer/);
+    await expect(p.getByRole("banner")).toHaveCount(1);
+    await expect(p.getByRole("contentinfo")).toHaveCount(1);
+    await expect(p.getByRole("banner").getByRole("img", { name: "ByteVerse", exact: true })).toHaveAttribute("src", "/logo.png");
+    await expect(p.getByRole("contentinfo").getByRole("img", { name: "ByteVerse", exact: true })).toHaveAttribute("src", "/logo.png");
+    await expect(p.getByRole("contentinfo")).toContainText("Quick Links");
+    await expect(p.locator(".isp-header, .isp-footer, .isp-landscape")).toHaveCount(0);
+    await expect(p.locator(".isp-hero-photo")).toHaveAttribute("src", HERO);
+    await expect.poll(() => p.locator(".isp-hero-photo").evaluate(image => image.complete && image.naturalWidth === 1200)).toBe(true);
+    await expect(p.locator(".studio-advanced-settings")).not.toHaveAttribute("open");
+    assert.deepEqual(await p.locator(".studio-layout > .studio-card").evaluateAll(cards => cards.map(card => card.getAttribute("aria-labelledby"))),
+      ["studio-import-title", "studio-settings-title", "studio-queue-title", "studio-results-title"]);
     await expect(p.locator('link[rel="canonical"]')).toHaveAttribute("href", CANONICAL);
     await expect(p.locator('meta[property="og:url"]')).toHaveAttribute("content", CANONICAL);
     const schemas = (await p.locator('script[type="application/ld+json"]').allTextContents()).map(JSON.parse).flatMap(v => v["@graph"] ?? v);
@@ -348,6 +362,10 @@ try {
     assert(response.ok() && response.fromServiceWorker(), "Reload was not served by the installed offline worker");
     assert.equal(await s.page.evaluate(() => navigator.onLine), false);
     await expect(s.page.locator(".image-offline")).toHaveAttribute("data-ready", "true", { timeout: 90_000 });
+    for (const selector of [".isp-hero-photo", 'header img[alt="ByteVerse"]', 'footer img[alt="ByteVerse"]']) {
+      await s.page.locator(selector).scrollIntoViewIfNeeded();
+      await expect.poll(() => s.page.locator(selector).evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    }
     await s.page.getByRole("checkbox", { name: "Live size estimate" }).uncheck(); await importFiles(s, fixtures.twins);
     for (const format of formats) {
       await quality(s, format); await compress(s, 2);
@@ -357,24 +375,35 @@ try {
   });
   if (mode === "full" || mode === "accessibility") for (const width of [320, 390, 1440]) for (const theme of ["light", "dark"]) await run(`axe ${width} ${theme}`, async s => {
     const p = s.page, opposite = theme === "light" ? "dark" : "light";
-    await button(p, `Switch to ${opposite} theme`).click(); await expect(button(p, `Switch to ${theme} theme`)).toBeVisible();
-    await button(p, `Switch to ${theme} theme`).click();
+    await expect(p.locator("html")).toHaveClass(new RegExp(`\\b${theme}\\b`));
+    await button(p, "Toggle theme").click();
+    await expect(p.locator("html")).toHaveClass(new RegExp(`\\b${opposite}\\b`));
+    await button(p, "Toggle theme").click();
     await expect(p.locator("html")).toHaveClass(new RegExp(`\\b${theme}\\b`));
     if (width < 960) {
-      const open = button(p, "Open navigation menu"); await open.click();
-      const dialog = p.getByRole("dialog", { name: "Explore ImageFixer" }), close = button(dialog, "Close navigation menu");
-      await expect(close).toBeFocused(); await close.press("Shift+Tab"); await expect(dialog.getByRole("link", { name: "Blog", exact: true })).toBeFocused();
-      await dialog.getByRole("link", { name: "Blog", exact: true }).press("Escape"); await expect(dialog).toBeHidden(); await expect(open).toBeFocused();
-      await open.click(); await dialog.getByRole("link", { name: "Tool", exact: true }).click();
+      const open = button(p, "Toggle menu"); await open.click();
+      const menu = p.getByRole("navigation", { name: "Mobile navigation" });
+      await expect(menu).toBeVisible(); await expect(open).toHaveAttribute("aria-expanded", "true");
+      await menu.getByRole("link", { name: "Home", exact: true }).focus(); await p.keyboard.press("Escape");
+      await expect(menu).toBeHidden(); await expect(open).toBeFocused();
+      await p.getByRole("link", { name: "Start compressing", exact: true }).click();
       await expect(button(p, /Drop images here, or browse files/)).toBeFocused();
+      const importBox = await p.locator(".studio-import-card").boundingBox(), settingsBox = await p.locator(".studio-controls").boundingBox(), resultsBox = await p.locator(".studio-results-card").boundingBox();
+      assert(importBox.y < settingsBox.y && settingsBox.y < resultsBox.y, "Mobile steps are not in upload/settings/results order");
     }
     await expect.poll(() => p.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
     await axeCheck(s);
+    if (screenshots) {
+      await p.evaluate(() => window.scrollTo(0, 0));
+      await p.screenshot({ path: join(temp, `hero-${width}-${theme}.png`) });
+      await p.locator(".studio-layout").screenshot({ path: join(temp, `workspace-${width}-${theme}.png`) });
+      await p.getByRole("contentinfo").screenshot({ path: join(temp, `footer-${width}-${theme}.png`) });
+    }
   }, { viewport: { width, height: 900 }, colorScheme: theme, isMobile: width < 960, hasTouch: width < 960 });
 } catch (error) { results.push({ name: "harness setup/cleanup", status: "FAIL", error: shortError(error) }); console.error(shortError(error)); }
 finally {
   await browser?.close().catch(error => results.push({ name: "browser cleanup", status: "FAIL", error: shortError(error) }));
   const failed = results.some(result => result.status === "FAIL"); process.exitCode = failed ? 1 : 0;
-  console.log(JSON.stringify({ mode, baseURL: URL_TOOL, results, ...(failed ? { artifacts: temp } : {}) }, null, 2));
-  if (temp) { if (failed) await writeFile(join(temp, "report.json"), JSON.stringify(results, null, 2)); else await rm(temp, { recursive: true, force: true }); }
+  console.log(JSON.stringify({ mode, baseURL: URL_TOOL, results, ...(failed || screenshots ? { artifacts: temp } : {}) }, null, 2));
+  if (temp) { if (failed || screenshots) await writeFile(join(temp, "report.json"), JSON.stringify(results, null, 2)); else await rm(temp, { recursive: true, force: true }); }
 }

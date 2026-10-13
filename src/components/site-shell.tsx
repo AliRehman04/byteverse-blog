@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Header } from "./header";
@@ -15,14 +15,12 @@ const studioPath = "/tools/image-compressor";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const studio = pathname?.replace(/\/$/, "") === studioPath;
-  const wasStudio = useRef(studio);
+  const [initialStudio] = useState(studio);
 
   useEffect(() => {
-    // Covers programmatic router.push/replace and history transitions: a client
-    // navigation that crosses the studio boundary reloads for a clean document
-    // so site scripts never share a document with the private workspace.
-    if (wasStudio.current !== studio) location.reload();
-  }, [studio]);
+    // Programmatic and history transitions need a new document too.
+    if (initialStudio !== studio) location.reload();
+  }, [initialStudio, studio]);
 
   useEffect(() => {
     // Third-party scripts cannot be undone by unmounting. Always enter/leave the
@@ -41,6 +39,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     return () => document.removeEventListener("click", navigate, true);
   }, [studio]);
 
-  if (studio) return <main className="flex-1">{children}</main>;
+  // Do not mount the destination shell while its full-document reload is pending.
+  if (initialStudio !== studio) return null;
+  if (studio) return <><Header localTool /><main className="flex-1">{children}</main><Footer localTool /></>;
   return <><Header /><main className="flex-1">{children}</main><Footer /><Chatbot /><ServiceWorkerRegister /><AdSense /><GoogleAnalytics /></>;
 }

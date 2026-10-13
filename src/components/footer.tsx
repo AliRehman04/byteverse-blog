@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 
-export function Footer() {
+export function Footer({ localTool = false }: { localTool?: boolean }) {
+  const prefetch = localTool ? false : undefined;
   return (
     <footer className="mt-auto">
       <div className="gradient-line" aria-hidden="true" />
@@ -11,13 +12,14 @@ export function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-1 flex flex-col">
-              <Link href="/" className="flex items-center gap-2 mb-4">
+              <Link href="/" prefetch={prefetch} className="flex items-center gap-2 mb-4">
                 <Image
                   src="/logo.png"
                   alt="ByteVerse"
                   title="ByteVerse - AI Tools, Tech Guides & Productivity"
                   width={140}
                   height={36}
+                  unoptimized={localTool}
                   className="h-9 w-auto"
                 />
               </Link>
@@ -60,6 +62,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      prefetch={prefetch}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {item.title}
@@ -69,6 +72,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/site-map"
+                    prefetch={prefetch}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     HTML Sitemap
@@ -85,6 +89,7 @@ export function Footer() {
                   <li key={cat.slug}>
                     <Link
                       href={`/category/${cat.slug}`}
+                      prefetch={prefetch}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {cat.name}
@@ -98,12 +103,12 @@ export function Footer() {
             <div>
               <h2 className="font-semibold text-sm mb-4">Free Tools</h2>
               <ul className="space-y-2.5">
-                <li><Link href="/tools/json-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
-                <li><Link href="/tools/code-formatter" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Code Formatter</Link></li>
-                <li><Link href="/tools/plagiarism-checker" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Similarity Checker</Link></li>
-                <li><Link href="/tools/plagiarism-remover" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Rewriter</Link></li>
-                <li><Link href="/tools/regex-tester" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link></li>
-                <li><Link href="/tools/password-generator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
+                <li><Link href="/tools/json-formatter" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">JSON Formatter</Link></li>
+                <li><Link href="/tools/code-formatter" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Code Formatter</Link></li>
+                <li><Link href="/tools/plagiarism-checker" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Similarity Checker</Link></li>
+                <li><Link href="/tools/plagiarism-remover" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Text Rewriter</Link></li>
+                <li><Link href="/tools/regex-tester" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Regex Tester</Link></li>
+                <li><Link href="/tools/password-generator" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Password Generator</Link></li>
               </ul>
             </div>
 
@@ -112,22 +117,22 @@ export function Footer() {
               <h2 className="font-semibold text-sm mb-4">Legal</h2>
               <ul className="space-y-2.5">
                 <li>
-                  <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/privacy" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/terms" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Terms of Service
                   </Link>
                 </li>
                 <li>
-                  <Link href="/disclaimer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/disclaimer" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Disclaimer
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/contact" prefetch={prefetch} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                     Contact
                   </Link>
                 </li>

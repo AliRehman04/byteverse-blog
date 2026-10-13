@@ -622,6 +622,13 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
     { value: "resize", label: "Resize", description: "Set dimensions and encode" },
     { value: "auto", label: "Auto", description: "Compare eligible output formats" },
   ];
+  const formats: { value: ImageSettings["format"]; label: string; note: string }[] = [
+    { value: "jpeg", label: "JPG", note: "Photos, widest support" },
+    { value: "png", label: "PNG", note: "Lossless, transparency" },
+    { value: "webp", label: "WebP", note: "Web photos & graphics" },
+    { value: "avif", label: "AVIF", note: "Very small, slower" },
+    { value: "auto", label: "Auto", note: "Compare JPG / WebP / AVIF" },
+  ];
   let targetBytes: number | null = null;
   try { targetBytes = parseTarget(settings); } catch { /* The linked target error is shown below. */ }
   function qualityChanged(quality: number) {
@@ -634,15 +641,17 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
     <div className="studio-mode-switch" role="group" aria-label="Compression mode">{modes.map(mode => <button key={mode.value} type="button" aria-pressed={settings.mode === mode.value} title={mode.description}
       onClick={() => onChange({ mode: mode.value, format: mode.value === "auto" ? "auto" : settings.format === "auto" ? "webp" : settings.format, ...(mode.value === "resize" && settings.resizeMode === "none" ? { resizeMode: "longest" } : {}) })}>{mode.label}</button>)}</div>
     <p className="studio-mode-description">{settings.mode === "target" ? "Choose a maximum size, such as 50 KB. The tool tries to fit your image under that limit. Check the result—it may not always fit."
-      : settings.mode === "quality" ? "Choose the quality level yourself. Lower settings usually mean smaller files, but can lose detail. No file-size limit is applied."
+      : settings.mode === "quality" ? "Choose the quality level yourself. Lower settings usually mean smaller files, but can lose detail. No file-size limit is applied—so this is also the way to convert formats."
       : settings.mode === "resize" ? "Set new image dimensions, then compress. Keep the aspect ratio locked to avoid stretching. No file-size limit is applied."
       : "Compare JPG, WebP and AVIF automatically. Choose whether to balance detail and dimensions or prefer the smallest measured file."}</p>
     {Object.keys(errors).length > 0 && <div className="studio-error studio-settings-errors" role="alert"><strong>Check these settings</strong><ul>{Object.entries(errors).map(([key, error]) => <li key={key}><a href={`#studio-setting-${key}`} onClick={event => { event.preventDefault(); focusSetting(key); }}>{error}</a></li>)}</ul></div>}
 
-    <label className="studio-field"><span>Output format</span><select id="studio-setting-format" value={settings.format} onChange={event => {
-      const format = event.target.value as ImageSettings["format"];
-      onChange({ format, mode: format === "auto" ? "auto" : settings.mode === "auto" ? "target" : settings.mode });
-    }}><option value="webp">WebP — photos & web graphics</option><option value="jpeg">JPG — broad compatibility</option><option value="png">PNG — lossless working pixels</option><option value="avif">AVIF — efficient, more CPU work</option><option value="auto">Auto — compare JPG / WebP / AVIF</option></select></label>
+    <div className="studio-control-group studio-format-group">
+      <div className="studio-section-heading"><h3 id="studio-format-title">Convert to</h3><span className="studio-caption">Output format</span></div>
+      <div className="studio-format-chips" role="group" aria-labelledby="studio-format-title">{formats.map(item => <button key={item.value} type="button" aria-pressed={settings.format === item.value}
+        onClick={() => onChange({ format: item.value, mode: item.value === "auto" ? "auto" : settings.mode === "auto" ? "target" : settings.mode })}><strong>{item.label}</strong><span>{item.note}</span></button>)}</div>
+      <p className="studio-caption">Your input can be JPG, PNG, WebP, AVIF, HEIC, GIF or BMP. Pick the format your destination accepts; the original file is never changed.</p>
+    </div>
     {settings.format === "avif" && <p className="studio-caption">AVIF encoding can take longer. Downloads work even if your browser cannot display an AVIF preview.</p>}
     {settings.mode === "auto" && <div className="studio-control-group"><label className="studio-field"><span>Auto selection policy</span><select value={settings.autoPreference} onChange={event => onChange({ autoPreference: event.target.value as ImageSettings["autoPreference"] })}><option value="balanced">Balanced — dimensions, sampled error, then bytes</option><option value="smallest">Smallest — minimum-quality encodes, then bytes</option></select></label>
       <p className="studio-caption">{smallest ? "Smallest tests each eligible format at the minimum quality below. It chooses the smallest measured passing file, or the smallest observed miss. It may sacrifice visible detail."
@@ -660,8 +669,17 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
       <p className="studio-caption">Leave off to allow smaller dimensions when needed. Turn on if your upload needs a fixed width and height. Any resize or crop you choose still applies.</p>
     </div>}
 
-    <details className="studio-advanced-settings" open={settings.mode !== "target" || settings.format === "png" || settings.format === "jpeg" || Object.keys(errors).length > 0}>
-      <summary>Quality, resize &amp; advanced options</summary>
+    <div className="studio-control-group"><div className="studio-section-heading"><h3>Resize</h3><span className="studio-caption">Optional · every mode</span></div>
+      <div className="studio-quick-targets" role="group" aria-label="Quick resize sizes">
+        {([800, 1080, 1280, 1920, 2560] as const).map(size => <button key={size} type="button" aria-pressed={settings.resizeMode === "longest" && settings.longestSide === size} onClick={() => onChange({ resizeMode: "longest", longestSide: size })}>{size} px</button>)}
+        {([75, 50, 25] as const).map(percent => <button key={percent} type="button" aria-pressed={settings.resizeMode === "percent" && settings.percent === percent} onClick={() => onChange({ resizeMode: "percent", percent })}>{percent}%</button>)}
+        <button type="button" aria-pressed={settings.resizeMode === "none"} disabled={settings.mode === "resize"} onClick={() => onChange({ resizeMode: "none" })}>No resize</button>
+      </div>
+      <p className="studio-caption">Pixel buttons set the longest side and keep each image’s shape. Percent buttons scale by that amount. Use the method below for an exact width and height.</p>
+    </div>
+
+    <details className="studio-advanced-settings" open={settings.mode !== "target" || settings.format === "png" || settings.format === "jpeg" || settings.resizeMode === "dimensions" || Object.keys(errors).length > 0}>
+      <summary>Quality &amp; advanced options</summary>
       <div className="studio-advanced-body">
     {((settings.format !== "png" && !smallest) || errors.quality || errors.minQuality) && <div className="studio-control-group">
       <div className="studio-section-heading"><h3>{targetMode ? "Maximum quality" : "Output quality"}</h3><span className="studio-quality-value">{Number.isFinite(settings.quality) ? settings.quality : "—"}</span></div>
@@ -678,7 +696,7 @@ function SettingsControls({ settings, errors, missingConsent, onChange }: {
       {settings.paletteColors > 0 && <p className="studio-notice">Palette reduction changes colors and can create visible banding. Review the actual output before downloading.</p>}
     </div>}
 
-    <div className="studio-control-group"><h3>Resize</h3><label className="studio-field"><span>Resize method</span><select id="studio-setting-resizeMode" value={settings.resizeMode} onChange={event => onChange({ resizeMode: event.target.value as ImageSettings["resizeMode"] })} aria-invalid={!!errors.resizeMode} aria-describedby={errors.resizeMode ? "studio-setting-resizeMode-error" : undefined}>
+    <div className="studio-control-group"><h3>Exact size &amp; resize method</h3><label className="studio-field"><span>Resize method</span><select id="studio-setting-resizeMode" value={settings.resizeMode} onChange={event => onChange({ resizeMode: event.target.value as ImageSettings["resizeMode"] })} aria-invalid={!!errors.resizeMode} aria-describedby={errors.resizeMode ? "studio-setting-resizeMode-error" : undefined}>
       <option value="none" disabled={settings.mode === "resize"}>No explicit resize</option><option value="dimensions">Width & height</option><option value="percent">Percentage</option><option value="longest">Longest side</option></select>{errors.resizeMode && <span id="studio-setting-resizeMode-error" className="studio-field-error">{errors.resizeMode}</span>}</label>
       {(settings.resizeMode === "dimensions" || errors.width || errors.height) && <><div className="studio-two-fields"><NumberField name="width" label="Width (px)" value={settings.width} min={1} max={IMAGE_LIMITS.maxDimension} error={errors.width} onChange={width => onChange({ width })} /><NumberField name="height" label="Height (px)" value={settings.height} min={1} max={IMAGE_LIMITS.maxDimension} error={errors.height} onChange={height => onChange({ height })} /></div>
         <label className="studio-check"><input type="checkbox" checked={settings.lockAspect} onChange={event => onChange({ lockAspect: event.target.checked })} /><span>Lock aspect ratio — fit inside these dimensions</span></label><p className="studio-caption">{settings.lockAspect ? "Width and height are a bounding box, not a crop. Each image keeps its own aspect ratio." : "Unlocked dimensions can stretch the image. No-upscale still caps each dimension at its source size."}</p></>}

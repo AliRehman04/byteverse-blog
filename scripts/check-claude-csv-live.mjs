@@ -43,7 +43,7 @@ for (const draft of ['pdf-to-podcast-notebooklm-2026', 'audacity-noise-reduction
   results[`hidden:${draft}`] = page.status === 404 || page.text.includes('Post Not Found');
 }
 const tool = await get('/tools/image-compressor');
-results.toolTitle = tool.status === 200 && tool.text.includes('Free Image Compressor – Target KB Size | ImageFixer');
+results.toolTitle = tool.status === 200 && tool.text.includes('Free Image Compressor, Resizer');
 console.log(JSON.stringify(results, null, 2));
 process.exitCode = Object.values(results).every(Boolean) ? 0 : 1;
 console.log(process.exitCode ? 'FAIL: some live checks did not pass' : 'PASS: live release verified');

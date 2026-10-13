@@ -44,6 +44,8 @@ const results = [];
 let temp, browser, fixtures;
 const button = (page, name) => page.getByRole("button", { name, exact: true });
 const badges = page => page.locator(".studio-queue-badges > .studio-badge:first-child");
+const formatLabels = { jpeg: "JPG", png: "PNG", webp: "WebP", avif: "AVIF", auto: "Auto" };
+const chooseFormat = (page, format) => page.getByRole("group", { name: "Convert to" }).getByRole("button", { name: new RegExp(`^${formatLabels[format]}`) }).click();
 const shortError = error => String(error?.stack ?? error).slice(0, 4000);
 
 function pixels(width, height, alpha = false, noisy = false) {
@@ -176,7 +178,7 @@ async function importFiles(s, files) {
   assert(s.audit.workers.some(url => url === `${base.origin}/image-studio/worker.js`), "UI did not start the real worker");
 }
 async function quality(s, format) {
-  await button(s.page, "Quality").click(); await s.page.locator("#studio-setting-format").selectOption(format);
+  await button(s.page, "Quality").click(); await chooseFormat(s.page, format);
   if (format !== "png") await s.page.getByLabel("Quality (1–100)", { exact: true }).fill("75");
   else await s.page.getByLabel("Optimization effort (0–6)").selectOption("0");
 }
@@ -259,12 +261,15 @@ try {
     await expect(p.locator(".isp-hero-photo")).toHaveAttribute("src", HERO);
     await expect.poll(() => p.locator(".isp-hero-photo").evaluate(image => image.complete && image.naturalWidth === 1200)).toBe(true);
     await expect(p.locator(".studio-advanced-settings")).not.toHaveAttribute("open");
+    await expect(p.getByRole("group", { name: "Convert to" }).getByRole("button")).toHaveText([/^JPG/, /^PNG/, /^WebP/, /^AVIF/, /^Auto/]);
+    await expect(p.getByRole("group", { name: "Quick resize sizes" }).getByRole("button")).toHaveCount(9);
+    await expect(p.locator("#convert h2")).toContainText("Convert images"); await expect(p.locator("#resize h2")).toContainText("Resize images");
     assert.deepEqual(await p.locator(".studio-layout > .studio-card").evaluateAll(cards => cards.map(card => card.getAttribute("aria-labelledby"))),
       ["studio-import-title", "studio-settings-title", "studio-queue-title", "studio-results-title"]);
     await expect(p.locator('link[rel="canonical"]')).toHaveAttribute("href", CANONICAL);
     await expect(p.locator('meta[property="og:url"]')).toHaveAttribute("content", CANONICAL);
     const schemas = (await p.locator('script[type="application/ld+json"]').allTextContents()).map(JSON.parse).flatMap(v => v["@graph"] ?? v);
-    const faq = schemas.find(v => v["@type"] === "FAQPage"); assert.equal(faq?.mainEntity.length, 21);
+    const faq = schemas.find(v => v["@type"] === "FAQPage"); assert.equal(faq?.mainEntity.length, 27);
     assert.deepEqual(await p.locator("#faq summary").allTextContents(), faq.mainEntity.map(v => v.name));
     assert.deepEqual(await p.locator("#faq details > p").allTextContents(), faq.mainEntity.map(v => v.acceptedAnswer.text));
     await expect(p.locator('iframe, ins.adsbygoogle, script[src*="googletag"], script[src*="analytics"], script[src*="tawk"], script[src*="translate.google"]')).toHaveCount(0);
@@ -285,7 +290,7 @@ try {
   }
   if (mode === "full") {
     await run("unreachable 5 KB preserves noisy PNG dimensions", async s => {
-      await s.page.locator("#studio-setting-format").selectOption("png");
+      await chooseFormat(s.page, "png");
       await s.page.getByLabel("Maximum file size").fill("5"); await s.page.getByLabel("Preserve dimensions during target search").check();
       await s.page.getByLabel("Optimization effort (0–6)").selectOption("0"); await importFiles(s, [fixtures.noise]); await compress(s);
       const bytes = await download(s, "Download image", "png"); assert(bytes.length > 5_000);
@@ -308,6 +313,11 @@ try {
       await button(dialog, "Apply to this image").click(); await expect(dialog).toBeHidden();
       await p.getByLabel("Resize method").selectOption("percent"); await p.getByLabel("Scale (%)").fill("50"); await compress(s);
       await verifyImage(await download(s, "Download image", "webp"), "webp", [160, 120]);
+    });
+    await run("visible convert and resize controls", async s => {
+      const p = s.page; await importFiles(s, [fixtures.jpeg]); await button(p, "Quality").click(); await chooseFormat(p, "png");
+      await button(p, "50%").click(); await expect(button(p, "50%")).toHaveAttribute("aria-pressed", "true"); await compress(s);
+      await verifyImage(await download(s, "Download image", "png"), "png", [320, 240]);
     });
     await run("same filename ZIP entries", async s => { await quality(s, "webp"); await importFiles(s, fixtures.twins); await compress(s, 2); await verifyZip(s); });
     await run("native cancel then retry", async s => {

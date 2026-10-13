@@ -90,6 +90,7 @@
 .image-studio-page .isp-feature-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin-bottom: 16px; border-radius: 12px; background: var(--isp-soft); color: var(--isp-blue); }
 .image-studio-page .isp-feature h3 { font-size: .9rem; font-weight: 720; line-height: 1.4; letter-spacing: -.02em; }
 .image-studio-page .isp-feature p { margin-top: 9px; color: var(--muted-foreground); font-size: .87rem; line-height: 1.7; }
+.image-studio-page .isp-feature .isp-format-best { margin-top: 5px; color: var(--isp-blue); font-size: .78rem; font-weight: 650; }
 .image-studio-page .isp-engine-note { display: flex; align-items: flex-start; gap: 14px; padding: 22px 26px; margin-top: 20px; border: 1px solid var(--border); border-radius: var(--isp-radius); background: var(--isp-soft); }
 .image-studio-page .isp-engine-note > svg { margin-top: 3px; color: var(--isp-blue); }
 .image-studio-page .isp-engine-note h3 { font-size: .91rem; font-weight: 700; }

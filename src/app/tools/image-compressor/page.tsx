@@ -96,13 +96,37 @@ const faqs = [
     question: "Are my images or last-used settings saved in the browser?",
     answer: "Images and results are held in memory for the current queue, not saved to localStorage or IndexedDB by the tool. Custom presets you explicitly save, the theme preference and cached offline application assets can persist; the workspace does not automatically restore a previous image session. Settings links contain validated settings, not image data, source filenames or per-image crops. Downloads and files you explicitly save are separate and remain wherever your browser or chosen folder stores them.",
   },
+  {
+    question: "How do I convert an image from PNG to JPG?",
+    answer: "Add the PNG, choose JPG under Convert to, and select Compress images. JPG cannot keep transparent pixels, so if the picture has transparency the tool asks for your permission to flatten it onto a background colour you choose. Use Quality mode if you only want to change the format without a file-size limit, then check the result before downloading.",
+  },
+  {
+    question: "How do I convert JPG or PNG to WebP?",
+    answer: "Add your image, choose WebP under Convert to, then compress. WebP keeps transparency and is often smaller than a comparable JPG or PNG, but results depend on the image and settings, so compare the exact byte counts. Check that the website or upload form you are using accepts WebP before replacing an existing file.",
+  },
+  {
+    question: "Which image formats can I convert to?",
+    answer: "Output formats are JPG, PNG, WebP and AVIF, or Auto, which measures JPG, WebP and AVIF and keeps the best result under your settings. HEIC, HEIF, GIF and BMP can be added as inputs when your browser can decode them, but they are not offered as output formats. The tool does not create PDF, SVG or animated GIF files.",
+  },
+  {
+    question: "How do I resize an image to an exact width and height?",
+    answer: "Choose Width & height under Exact size & resize method, enter the pixels, and compress. With Lock aspect ratio on, the size works as a bounding box so the image is never stretched; turn it off only if you deliberately want to force both values, which can distort the picture. Use Crop first when you need a different shape, such as a square 1080 × 1080 image.",
+  },
+  {
+    question: "What is the difference between compressing and resizing an image?",
+    answer: "Resizing changes the number of pixels, for example from 4,000 to 1,200 pixels wide. Compressing changes how those pixels are encoded to make the file smaller. Using both usually gives the smallest file: resize to the dimensions you actually display, then compress. Resizing smaller removes detail permanently from the downloaded copy, but never from your original.",
+  },
+  {
+    question: "Does converting an image change its file size?",
+    answer: "Often, but not always. A PNG photo converted to JPG or WebP is commonly much smaller, while a small graphic converted to a different format can end up larger. The result panel shows the original and output bytes side by side and warns when an output is larger, so you can try another format or lower quality before downloading.",
+  },
 ];
 
 const toolConfig = {
-  name: `${imageStudioBrand.name} Image Compressor`,
-  title: `Free Image Compressor – Target KB Size | ${imageStudioBrand.name}`,
+  name: `${imageStudioBrand.name} Image Compressor, Resizer & Converter`,
+  title: `Free Image Compressor, Resizer & Converter | ${imageStudioBrand.name}`,
   description:
-    "Compress images to a measured KB ceiling, resize and convert JPG, PNG, WebP and AVIF in your browser. Free, private, no signup or watermark.",
+    "Compress images to 50 KB or 100 KB, resize and convert JPG, PNG, WebP and AVIF online. Free, private, in your browser. No signup or watermark.",
   slug: imageStudioBrand.slug,
   keywords: [
     "image compressor",
@@ -111,8 +135,15 @@ const toolConfig = {
     "compress image to 20 KB",
     "reduce image file size",
     "resize image online",
+    "image resizer",
+    "image converter",
+    "convert image format",
     "JPG compressor",
+    "PNG to JPG",
+    "JPG to PNG",
     "PNG to WebP",
+    "JPG to WebP",
+    "WebP to JPG",
     "HEIC to JPG",
     "image to AVIF",
     "batch image compressor",
@@ -120,7 +151,8 @@ const toolConfig = {
   applicationCategory: "MultimediaApplication",
   featureList: [
     "Target-size search verified against measured output bytes, with honest target-miss reporting",
-    "Local JPEG, PNG, WebP and AVIF output using lazy-loaded WebAssembly codecs",
+    "Convert images between JPG, PNG, WebP and AVIF using lazy-loaded WebAssembly codecs",
+    "Resize by longest side, percentage or exact width and height with aspect ratio kept",
     "HEIC/HEIF input with a local decoder; GIF/BMP and animated inputs limited to supported still-frame decoding",
     "Resource-bounded batch queue with progress, cancellation, retries and ZIP export",
     "Per-image crop, aspect-ratio resizing and actual output comparison with zoom",
@@ -174,6 +206,22 @@ const useCases = [
   { icon: Smartphone, title: "Social images", text: "Start with JPG at quality 85 and a 2,048 px longest side, then adjust for the platform’s current requirements." },
 ];
 
+const formatGuide = [
+  { name: "JPG", best: "Photos and forms", text: "Accepted almost everywhere and good for photographs. It cannot keep transparency, so transparent areas are flattened onto a colour you choose." },
+  { name: "PNG", best: "Logos, screenshots, signatures", text: "Keeps sharp edges and transparency without lossy encoding. Photos are often larger as PNG, and it has no quality slider." },
+  { name: "WebP", best: "Websites and blogs", text: "Supports transparency and is often smaller than JPG or PNG for web images. Confirm your upload form accepts it." },
+  { name: "AVIF", best: "Smallest web images", text: "Can be very efficient, but takes longer to encode and is not accepted everywhere yet. Check the result before replacing a file." },
+];
+
+const convertTasks = ["PNG to JPG", "JPG to PNG", "JPG to WebP", "PNG to WebP", "WebP to JPG", "HEIC to JPG", "JPG to AVIF"];
+
+const resizeGuide = [
+  { title: "Longest side", text: "Set 800, 1080, 1280, 1920 or 2560 px. Landscape and portrait images keep their own shape." },
+  { title: "Percentage", text: "Scale to 75%, 50% or 25% of the original width and height." },
+  { title: "Exact width and height", text: "Enter both values. Keep Lock aspect ratio on to fit inside the box without stretching, or crop first for a different shape." },
+  { title: "Crop first", text: "Crop one image to a free or fixed shape before resizing, such as a square or 3:4 photo. Other images in the batch are not changed." },
+];
+
 export default function ImageCompressorPage() {
   return (
     <div className="image-studio-page">
@@ -195,7 +243,7 @@ export default function ImageCompressorPage() {
           <div className="isp-hero-copy">
             <p className="isp-hero-kicker"><ImageIcon size={16} aria-hidden="true" /> FREE ONLINE IMAGE COMPRESSOR</p>
             <h1 id="image-studio-title">Smaller images.<span>Ready for what’s next.</span></h1>
-            <p className="isp-hero-description">Need a <strong>50 KB photo</strong>, a lighter website image or a smaller attachment? Compress, resize and convert your images—right here in your browser.</p>
+            <p className="isp-hero-description">Need a <strong>50 KB photo</strong>, a lighter website image or a smaller attachment? <strong>Compress, resize and convert</strong> JPG, PNG, WebP and AVIF images—right here in your browser.</p>
             <ul className="isp-benefits" aria-label="Studio benefits">
               {["No image uploads", "No signup", "No watermarks"].map(benefit => <li key={benefit}><Check size={15} aria-hidden="true" />{benefit}</li>)}
             </ul>
@@ -217,7 +265,7 @@ export default function ImageCompressorPage() {
         </div>
       </section>
 
-      <nav className="isp-section-nav" aria-label="Image compressor sections"><div className="isp-container"><ImageStudioStartLink>Compressor</ImageStudioStartLink><a href="#how-it-works">How to use</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#faq">FAQs</a></div></nav>
+      <nav className="isp-section-nav" aria-label="Image compressor sections"><div className="isp-container"><ImageStudioStartLink>Compressor</ImageStudioStartLink><a href="#convert">Convert</a><a href="#resize">Resize</a><a href="#how-it-works">How to use</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#faq">FAQs</a></div></nav>
       <div className="isp-tool-surface">
         <div className="isp-container">
           <div className="isp-tool-intro"><div><h2>Let’s make it smaller.</h2><p>Add images, choose your settings, then compress and download.</p></div><div className="isp-format-chips" aria-label="Output formats">{["JPG", "PNG", "WebP", "AVIF"].map(format => <span key={format}>{format}</span>)}</div></div>
@@ -229,6 +277,23 @@ export default function ImageCompressorPage() {
           </section>
         </div>
       </div>
+
+      <section id="convert" className="isp-section isp-anchor-target" tabIndex={-1} aria-labelledby="image-convert-title">
+        <div className="isp-container">
+          <div className="isp-section-heading"><p className="isp-eyebrow">Image format converter</p><h2 id="image-convert-title" className="isp-heading">Convert images to JPG, PNG, WebP or AVIF.</h2><p className="isp-section-lead">Choose Convert to in the tool, then download the new format. Add HEIC, GIF or BMP files too when your browser can decode them. Your original files are never changed.</p></div>
+          <div className="isp-feature-grid">{formatGuide.map(format => <article className="isp-feature" key={format.name}><h3>{format.name}</h3><p className="isp-format-best">Best for: {format.best}</p><p>{format.text}</p></article>)}</div>
+          <p className="isp-preset-note"><Info size={16} aria-hidden="true" />Popular conversions: {convertTasks.join(", ")}. Output is JPG, PNG, WebP or AVIF; PDF, SVG and animated GIF are not created.</p>
+          <div className="isp-steps-return"><ImageStudioStartLink className="isp-text-link">Convert an image now <ArrowRight size={16} aria-hidden="true" /></ImageStudioStartLink></div>
+        </div>
+      </section>
+
+      <section id="resize" className="isp-section isp-steps-section isp-anchor-target" tabIndex={-1} aria-labelledby="image-resize-title">
+        <div className="isp-container">
+          <div className="isp-section-heading"><p className="isp-eyebrow">Online image resizer</p><h2 id="image-resize-title" className="isp-heading">Resize images without stretching them.</h2><p className="isp-section-lead">Change the pixel size and the file size together. Resizing works in every mode, so you can resize and convert in one step, then compare the result before you download.</p></div>
+          <div className="isp-usecase-grid">{resizeGuide.map(item => <article className="isp-usecase" key={item.title}><SlidersHorizontal size={21} aria-hidden="true" /><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div>
+          <p className="isp-preset-note"><Info size={16} aria-hidden="true" />Upscaling is off by default because enlarging a small image does not add detail. Compare the output, since a smaller resize removes detail from the downloaded copy.</p>
+        </div>
+      </section>
 
       <section id="features" className="isp-section isp-anchor-target" tabIndex={-1} aria-labelledby="image-features-title">
         <div className="isp-container">

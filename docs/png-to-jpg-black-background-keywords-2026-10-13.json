@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-13",
+  "website": "https://www.byteverse.fyi",
+  "status": "Complete local editorial-ready article and 14-part SEO package. Original diagrams, real synthetic/live-tool examples, responsive renderer, citations and full-corpus duplicate checks verified. Not saved to the database, published, scheduled, committed or pushed.",
+  "slug": "png-to-jpg-black-background",
+  "targeting": {
+    "title": "PNG to JPG Black Background? Choose the Right Fix",
+    "metaTitle": "PNG to JPG Black Background? Choose the Right Fix",
+    "metaDescription": "Fix a black background after PNG to JPG conversion. Check transparency, choose a white or custom background, and avoid damaging logos and soft edges.",
+    "primary": "png to jpg black background",
+    "secondary": ["png black background fix", "png to jpg white background", "convert png to jpg black background", "why is my png not transparent", "png turns black when converted to jpg"],
+    "semantic": ["alpha channel", "transparency", "opaque pixels", "flattening", "background compositing", "JPEG", "PNG", "WebP", "matte colour", "partially transparent edges", "GIMP", "image export"],
+    "intent": "Informational troubleshooting with a useful conversion action; not a generic PNG-to-JPG landing page",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "language": "English",
+    "geography": "Global English-language readers; requested US search parameters do not establish country-specific demand"
+  },
+  "userMetrics": {
+    "source": "User's brief, no dates or page-level export",
+    "somePageImpressions": "approximately 40–50",
+    "somePageClicks": "1–2",
+    "gscAuthenticated": false,
+    "gscConfiguredLocally": false,
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No authenticated query/page/country/device/CTR/position data; no inferred site trend or demand from a few impressions. Local configuration absence is not evidence that no GSC property exists."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-13T07:39:51.821Z",
+    "totalPosts": 171,
+    "publishedPosts": 169,
+    "editorialChecksumExcludingViews": "6997c664833d5e3dc21acd9d96700803",
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "overlap": [
+      { "id": 150, "slug": "how-to-optimize-images-for-web-2026", "difference": "Broad web delivery, formats, dimensions, alt text, CDN and performance; no dedicated black-background diagnosis or saved-opacity recovery workflow." },
+      { "path": "/tools/image-compressor", "difference": "Conversion/compression/resize action with a short PNG-to-JPG transparency FAQ; new article explains incorrect exports and repair boundaries rather than competing for generic converter intent." },
+      { "id": 207, "slug": "how-to-edit-photos-with-ai-2026", "difference": "Generative editing and cleanup; no alpha-versus-baked-pixel troubleshooting. Avoid implying generative reconstruction recovers original edges." }
+    ],
+    "otherTitleOverlapCandidates": [[24, 43], [36, 49], [42, 46], [90, 126]],
+    "overlapCaution": "Title similarity is not proof of keyword cannibalization. Existing articles are not edited or merged.",
+    "duplicateAudit": {
+      "checkedAt": "2026-10-13T09:21:13.128Z",
+      "contentSha256": "23dd623fee2cda5cde49a42b37e7ce24d8b574bfaa11839b7cea277925c7e5c9",
+      "comparedPosts": 171,
+      "candidateFiveWordPhrases": 2515,
+      "exactNormalizedBodyMatches": 0,
+      "identicalNormalizedParagraphsAtLeast30Words": 0,
+      "highestCandidateOverlapPercent": 0.16,
+      "nearestIds": [238, 239],
+      "sharedFiveWordPhrasesAtHighestOverlap": 4,
+      "editorialSnapshotUnchanged": true,
+      "limits": "Local lexical comparison only; not a web-wide plagiarism check, semantic originality certificate or traffic prediction."
+    }
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-13T07:45:41.915Z",
+    "source": "Google public autocomplete, client=firefox, hl=en, gl=us",
+    "seedsChecked": 18,
+    "nonemptySeeds": 9,
+    "observations": [
+      { "seed": "png to jpg black background", "suggestions": ["png to jpg black background", "convert png to jpg black background", "jpg to png remove black background", "jpg to png background"] },
+      { "seed": "png turns black when converted to jpg", "suggestions": [] },
+      { "seed": "png black background", "suggestions": ["png black background", "png black background fix", "png black background remove", "png black background hd 4k", "png black background download", "png black background to white", "png black background to transparent", "png black background hd for editing", "png black background fix android", "png black background for editing"] },
+      { "seed": "png to jpg white background", "suggestions": ["png to jpg white background", "png to jpg white background mac", "png to jpg white background converter", "png to jpg without white background", "png to jpg add white background", "imagemagick png to jpg white background", "ffmpeg png to jpg white background", "irfanview convert png to jpg white background", "mac convert png to jpg white background", "change png to jpg with white background"] },
+      { "seed": "why is my png not transparent", "suggestions": ["why is my png not transparent", "why is my png not transparent on iphone", "why is my png not transparent in illustrator", "why is my png not transparent in canva", "why is my png not transparent photoshop", "why is my png not transparent in powerpoint", "why is my png not transparent procreate", "why is my png not transparent in indesign", "why is my png not transparent in figma", "why is my png not transparent in blender"] },
+      { "seed": "png black background when copied", "suggestions": [] },
+      { "seed": "webp larger than jpg", "suggestions": ["webp larger than jpg", "webp vs jpg size", "webp vs jpg", "webp vs jpeg"] },
+      { "seed": "webp bigger than original", "suggestions": [] },
+      { "seed": "image too large after compression", "suggestions": [] },
+      { "seed": "image under 50kb not uploading", "suggestions": [] },
+      { "seed": "chatgpt download file not found", "suggestions": ["chatgpt download file not found", "chatgpt download file not found android", "chatgpt download file not found error", "chatgpt download file not found reddit", "chatgpt download file not available", "chatgpt download link file not found", "chatgpt download says file not found", "chatgpt pdf download file not found", "chatgpt can't download file not found", "chatgpt cannot download file file not found"] },
+      { "seed": "chatgpt failed to get upload status", "suggestions": ["chatgpt failed to get upload status for", "chatgpt failed to get upload status for /mnt/data/", "chatgpt failed to get upload status for mnt data", "chatgpt failed to get upload status for file", "failed to get upload status chatgpt reddit", "chatgpt failed to get upload status for pdf", "chatgpt failed to get upload status for mnt", "chatgpt error failed to get upload status for", "chatgpt download failed to get upload status", "chatgpt says failed to get upload status"] },
+      { "seed": "n8n binary data not found", "suggestions": [] },
+      { "seed": "n8n expects binary file data", "suggestions": [] },
+      { "seed": "unexpected token less than json", "suggestions": [] },
+      { "seed": "unexpected token in json at position 0", "suggestions": ["unexpected token in json at position 0", "unexpected token u in json at position 0", "syntaxerror unexpected token in json at position 0", "unexpected token t in json at position 0", "unexpected token e in json at position 0", "unexpected token c in json at position 0", "error unexpected token in json at position 0", "unexpected token p in json at position 0", "unexpected token h in json at position 0", "unexpected token u in json at position 0 postman"] },
+      { "seed": "png black background photoshop", "suggestions": ["png black background photoshop", "png paste black background photoshop", "png has black background photoshop", "png image black background photoshop", "photoshop copy png black background", "remove black background png photoshop"] },
+      { "seed": "remove black background after converting png to jpg", "suggestions": [] }
+    ],
+    "limits": "Autocomplete indicates phrasing only. Empty suggestions do not establish zero demand. No volume, numeric KD, paid keyword-gap export or rising-trend data is available."
+  },
+  "googleSerps": {
+    "checkedAt": "2026-10-13",
+    "method": "Rendered Google search pages in shared browser, hl=en, gl=us, pws=0 where specified; observed first result page, not a neutral rank-tracker report",
+    "geographyLimit": "Initial query had no country parameters; Google UI showed an en-PK help locale. Later gl=us requested context but does not override all location/session signals.",
+    "observations": [
+      { "query": "png to jpg black background", "results": ["Ezgif PNG to JPG", "Online PNG Tools PNG to JPG", "Adobe Express PNG to JPG", "Canva PNG to JPG", "PNG2JPG", "MiaoCut white-background converter", "Apple Community", "FreeConvert"], "intent": "Mixed task/conversion and troubleshooting; head term is tool-heavy", "features": ["AI Overview", "People also ask"] },
+      { "query": "png turns black when converted to jpg", "results": ["Apple Community conversion transparency discussion", "Inkscape forum PNG Showing as Dark Images", "Adobe Illustrator community exporting to JPG changes background to black", "Super User ImageMagick black JPG question", "SMART Board support", "RoundCut black-box guide", "Reddit clipboard transparency discussion", "Drupal issue1399740"], "intent": "Specific problem diagnosis; forum-heavy but not uncontested", "features": ["AI Overview", "People also ask"] },
+      { "query": "webp larger than jpg", "results": ["ProcessWire support", "Stack Overflow JPEG/WebP size discussion", "TinyPNG WebP article", "Reddit webdev", "GitHub sharp issue", "Google WebP compression study", "XnView forum"], "intent": "Troubleshooting mixed with format comparisons" },
+      { "query": "image still too large after compression dimensions upload", "results": ["imageconvertertools.com causes and fixes", "ImgTweak why image file so large", "Quora upload-size discussion"], "intent": "Broad troubleshooting, AI overview strongly visible; exact portal acceptance rules absent", "features": ["AI Overview"] },
+      { "query": "chatgpt download file not found", "results": ["OpenAI community Word/PDF generation thread", "Reddit download-error thread", "PandaOffice missing-download article", "OpenAI community file-not-found thread", "Medium", "YouTube tutorials"], "intent": "Retrieve generated files; changing product behavior and weak third-party claims", "features": ["People also ask", "Videos"] },
+      { "query": "n8n binary data not found", "results": ["n8n community binary not passing through", "n8n community missing binary data item0", "n8n documentation Work with files and images", "Reddit", "GitHub issue", "YouTube"], "intent": "Workflow-specific debugging; unrelated SQL truncation PAA excluded from topic" },
+      { "query": "unexpected token < in JSON at position 0", "results": ["Stack Overflow", "Reddit JavaScript", "Stripe support", "Refine tutorial", "Netlify forum", "SuiteCommerce documentation"], "intent": "Developer debugging; established reference/tutorial competition", "features": ["People also ask", "Video"] }
+    ],
+    "selectedPaa": ["Why does my PNG file have a black background?", "How can I convert a PNG image to a JPG image with a white background?", "Why does my PNG turn black?", "How to make JPG to PNG transparent?"],
+    "excludedPaa": ["How to remove blackout from pictures?"],
+    "featureCaution": "AI Overview/PAA presence increases zero-click risk. No snippet, FAQ rich result or rank outcome is promised."
+  },
+  "competitors": [
+    { "url": "https://roundcut.app/blog/png-to-jpg-transparent-background-fix-black-box/", "title": "PNG to JPG Transparent Background: Fix the Black Box", "review": "Already explains alpha, background choice, native editors, PNG/WebP alternatives, edge checks and reports its own measured logo test. Do not claim those subjects are missing. New value: classify display-only darkness versus stored opaque pixels, preserve real black details, show repeatable alpha inspection and an explicit recovery limit." },
+    { "url": "https://onlinepngtools.com/convert-png-to-jpg", "title": "PNG to JPG Converter", "review": "Already exposes background colour, explains drawing the fill first and PNG second, and gives three conversion examples. New article focuses on choosing the right repair, not recreating a converter page." },
+    { "url": "https://miaocut.app/png-to-jpg-white-background", "title": "PNG to JPG Converter with White Background", "review": "Practical white/custom background controls, simple steps and FAQs. Its generic quality recommendations are not adopted as measured guarantees. Diagnose opaque or preview-only black before conversion; explain that JPEG quality does not restore transparency." }
+  ],
+  "candidateScoring": {
+    "type": "Subjective editorial triage, not keyword metrics or ranking probabilities",
+    "scale": "1–5 each, equal weights; relevance / distinct intent / verifiable original value / observed SERP opening / useful click reason",
+    "candidates": [
+      { "topic": "PNG to JPG black-background diagnosis", "scores": [5, 4, 5, 3, 4], "total": 21, "decision": "Select narrow troubleshooting variant; related tool already live; demonstrate display vs alpha vs saved opaque pixels." },
+      { "topic": "WebP larger than JPG", "scores": [5, 3, 5, 3, 3], "total": 19, "decision": "Defer; overlaps broad image-optimization discussion; needs careful image-set methodology, no universal savings claim." },
+      { "topic": "Image still rejected after compression", "scores": [5, 4, 3, 2, 3], "total": 17, "decision": "Defer until a named destination's current size/dimension/content rules are verified." },
+      { "topic": "ChatGPT generated file not found", "scores": [4, 5, 2, 3, 4], "total": 18, "decision": "Defer; suggestions and support evidence strong, but no current authenticated reproduction; avoid imaginary expiry times." },
+      { "topic": "n8n missing binary data", "scores": [5, 5, 2, 3, 4], "total": 19, "decision": "Future candidate with a real synthetic workflow reproduction; no n8n instance tested for this task." },
+      { "topic": "Unexpected token < in JSON", "scores": [5, 4, 5, 1, 3], "total": 18, "decision": "Defer broad version because established Stack Overflow/Stripe/Refine pages already answer it well; needs a narrower host/framework case." }
+    ]
+  },
+  "outline": [
+    "Direct answer: JPG is opaque; preserve original, choose the intended background before export",
+    "Three-state diagnostic table: display-only background, converter flattened alpha, source already opaque; separate clipboard and whole-image colour problems",
+    "Why alpha blending differs from deleting black pixels; original synthetic evidence",
+    "Browser fix using existing ByteVerse controls with explicit JPG transparency consent",
+    "Native editor alternative grounded in GIMP3 documentation; do not claim hands-on GIMP test",
+    "Why halos remain and why repainting black damages real dark detail",
+    "Already-converted JPG recovery limits and transparent-output alternatives",
+    "Delivery checklist and five focused FAQs",
+    "Verification notes and authoritative sources/image credits"
+  ],
+  "internalLinkPlan": ["/tools/image-compressor", "/blog/how-to-edit-photos-with-ai-2026", "/blog/how-to-optimize-images-for-web-2026"],
+  "inboundLinkPlan": [
+    { "id": 150, "slug": "how-to-optimize-images-for-web-2026", "anchor": "fix a black background after PNG-to-JPG conversion", "section": "Choose the Right Format", "status": "Recommendation only; re-read exact source paragraph after publication approval" },
+    { "path": "/tools/image-compressor", "anchor": "why a PNG turns black after JPG conversion", "section": "PNG to JPG FAQ or format guide", "status": "Recommendation only, no public link to an unpublished article" }
+  ],
+  "primarySources": [
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types", "claim": "JPEG lacks alpha; PNG/WebP can support transparency; format versus workflow distinction" },
+    { "url": "https://docs.gimp.org/3.0/en/gimp-using-web-transparency.html", "claim": "Alpha channel inspection and PNG transparency export" },
+    { "url": "https://docs.gimp.org/3.0/en/gimp-layer-alpha-remove.html", "claim": "GIMP Remove Alpha Channel composites onto the editor background colour" },
+    { "url": "https://docs.gimp.org/3.0/en/gimp-export-dialog.html", "claim": "Export As and preserving the editable/source file" },
+    { "url": "https://sharp.pixelplumbing.com/api-operation/#flatten", "claim": "Flatten merges alpha with chosen background then removes alpha; reference for independent pixel tests" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob", "claim": "Actual canvas bitmap is serialized, not CSS backdrop; output type/quality and Blob behavior" },
+    { "url": "https://docs.gimp.org/3.0/en/gimp-channel-dialog.html", "claim": "Channels dialog menu and Alpha thumbnail: white opaque, black transparent, gray partial; channel is image-level" },
+    { "url": "https://docs.gimp.org/3.0/en/gimp-tools.html#gimp-toolbox-areas", "claim": "Foreground/background colour area and swatch selector, distinct from canvas padding" }
+  ],
+  "images": [
+    { "file": "cover.png", "alt": "PNG to JPG black background: inspect transparency before choosing a solid export background", "width": 1200, "height": 675 },
+    { "file": "alpha-vs-background.png", "alt": "The same original transparent graphic viewed on a checkerboard and flattened to black or white JPEG backgrounds", "width": 1200, "height": 675 },
+    { "file": "recovery-map.png", "alt": "Decision map separating a viewer backdrop, a transparent original and an already opaque black-background image", "width": 1200, "height": 675 }
+  ],
+  "validation": {
+    "status": "passed",
+    "contentSha256": "23dd623fee2cda5cde49a42b37e7ce24d8b574bfaa11839b7cea277925c7e5c9",
+    "proseWords": 2479,
+    "readingMinutesAt220WordsPerMinute": 12,
+    "metaTitleCharacters": 49,
+    "metaDescriptionCharacters": 149,
+    "rendererValidationGroups": 5,
+    "responsiveWidths": [320, 390, 1280],
+    "renderedFaqs": 5,
+    "faqSchemaMatchesVisibleAnswers": true,
+    "images": 3,
+    "imageBytes": [84016, 116611, 99410],
+    "tables": 2,
+    "internalSelfCanonicalUrlsVerified": 3,
+    "primarySourceUrlsHttp200": 8,
+    "focusedEslint": "passed",
+    "editorialReview": "Passed after removing edge-preservation guarantee from title and adding documented alpha inspection and background-swatch instructions.",
+    "liveSyntheticExample": {
+      "checkedAt": "2026-10-13T08:47:41.625Z",
+      "browser": "Edge155.0.4283.45",
+      "sourceDimensions": [480, 320],
+      "sourceSha256": "78a1f1b132b6048b2e70c5db1c95d185f313eb7e0308f56bbd5dae93f22a2a40",
+      "whiteJpg": { "bytes": 6396, "emptyRgba": [255, 255, 255, 255], "partialRgba": [146, 177, 244, 255] },
+      "blackJpg": { "bytes": 5662, "emptyRgba": [0, 0, 0, 255], "partialRgba": [19, 50, 117, 255] },
+      "png": { "bytes": 962, "emptyAlpha": 0, "partialAlpha": 128 },
+      "blackDetailPreserved": true,
+      "explicitJpgConsentGateVerified": true,
+      "originalUnchanged": true,
+      "noImageUploadRequests": true,
+      "canvasCssBackdropVersusBitmapFillVerified": true
+    },
+    "notVerified": ["hands-on GIMP or Photoshop", "clipboard transfers between real apps", "physical mobile devices", "all image variants or colour profiles", "full new blog page hydration", "Google indexing", "authenticated GSC performance", "future rankings or traffic"],
+    "databaseWrites": 0
+  },
+  "releaseBoundary": "Create local article, original images, research package and validation evidence. Do not publish, schedule, edit existing posts, add public inbound links, commit or push without separate approval."
+}

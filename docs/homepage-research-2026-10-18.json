@@ -1,0 +1,104 @@
+{
+  "task": "ByteVerse homepage redesign, copy rewrite and technical SEO",
+  "researchDate": "2026-10-18",
+  "validationDate": "2026-10-19",
+  "status": "Implemented and validated locally; not committed, pushed or deployed",
+  "baselineCommit": "76bf397cb0e7b3204391ec211a22c3c87fcaf416",
+  "scope": {
+    "primaryRoute": "/",
+    "preserved": ["Existing blog drafts", "Published database records", "Tool URLs", "Ads and analytics configuration", "Full-document image-tool privacy boundary"],
+    "validationData": "Fictional article fixtures in a disposable credential-free production build; no production database or provider mutations"
+  },
+  "research": {
+    "method": "Public Google autocomplete, three actual Google SERPs, competitor homepage review, official SEO/performance docs and local source audit",
+    "autocompleteSeeds": ["free developer tools", "online developer tools", "developer tools online free", "free online tools for developers", "free SEO tools", "SEO title checker", "meta tag generator", "JSON to CSV converter", "JSON formatter online", "image compressor online", "invoice PDF to Excel", "text similarity checker", "practical tech guides", "AI tools guides", "coding tutorials for beginners", "ByteVerse"],
+    "nonemptySeedResponses": 15,
+    "emptySeed": "practical tech guides",
+    "serps": [
+      {
+        "query": "free online developer tools",
+        "url": "https://www.google.com/search?q=free+online+developer+tools&hl=en&gl=us&pws=0",
+        "observation": "Mixed utility directories, development platforms and informational lists; Coddy, Free-for.dev, Figma, Browserling and DevToolLab appeared. Task-first utility discovery fits better than a generic AI blog pitch."
+      },
+      {
+        "query": "free SEO tools",
+        "url": "https://www.google.com/search?q=free+SEO+tools&hl=en&gl=us&pws=0",
+        "observation": "Established suites including Ahrefs, Moz and SEOptimer. ByteVerse should not imply equivalent backlink, rank-tracking or comprehensive site-audit capabilities."
+      },
+      {
+        "query": "ByteVerse free tools",
+        "url": "https://www.google.com/search?q=ByteVerse+free+tools&hl=en&gl=us&pws=0",
+        "observation": "ByteVerse.fyi appeared first in this branded session; unrelated ByteVerse entities also appeared. This is not general keyword rank tracking."
+      }
+    ],
+    "competitorsReviewed": [
+      { "url": "https://it-tools.tech/", "learning": "Direct searchable task discovery rather than long promotional sections." },
+      { "url": "https://devutils.com/", "learning": "Clear utility proposition; its native-app offline promise and testimonials cannot be transferred to ByteVerse." },
+      { "url": "https://10015.io/", "learning": "Categorized utility links help users choose a task quickly; no copied copy or trust logos." }
+    ],
+    "authoritativeSources": [
+      "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+      "https://developers.google.com/search/docs/appearance/title-link",
+      "https://developers.google.com/search/updates#faq-deprecation",
+      "https://web.dev/articles/vitals"
+    ],
+    "frameworkDocs": "Installed Next.js 16.2.6 documentation for metadata, JSON-LD, ISR and responsive/lazy images",
+    "intentDecision": {
+      "homepage": "Free developer tools plus practical tech guides: a balanced task-first gateway",
+      "toolPages": "Specific image compressor, JSON converter, title checker and other utility queries stay on their canonical tool pages",
+      "discardedSuggestions": "Browser DevTools/extensions, physical free tools, Illustrator meanings of AI, unrelated ByteVerse login/hackathon/company queries",
+      "title": "Free Developer Tools & Practical Tech Guides | ByteVerse",
+      "description": "Free online developer tools for JSON, images, SEO and everyday tasks. Explore practical coding tutorials, AI explainers and tech guides on ByteVerse."
+    },
+    "unavailable": ["Authenticated Search Console", "Private analytics", "Search volume", "Keyword difficulty", "Rank forecasts", "CrUX field metrics", "Real-user INP"]
+  },
+  "implementation": [
+    "Server-rendered hero, catalog-derived curated utility cards, globally latest articles, topic discovery, native FAQ disclosures and a small newsletter client island",
+    "Responsive CSS Module with light/dark themes, logical properties, RTL wrapping, contrast-safe colors and reduced-motion support",
+    "Tool count derived from the real 42-entry catalog; no invented guide count, popularity ranking, unlimited-use or universal client-side/testing promises",
+    "Ten homepage DB queries reduced to one compact left join for six globally newest published, due posts; no article bodies selected; deterministic createdAt/id ordering",
+    "Absent DB returns an honest empty feed; query errors propagate with sanitized messages so ISR retains the last successful page instead of caching an empty result",
+    "Absolute homepage title, canonical, OG/Twitter metadata and coherent 1200x630 social image",
+    "Escaped Organization/WebSite/WebPage JSON-LD with stable entity IDs; removed nonfunctional SearchAction and homepage FAQPage markup",
+    "Removed delayed hero animation and lazy code demo; all below-fold article covers lazy with responsive sizes and reserved aspect ratios; no cover preloads",
+    "Translation loads only after a language selection or saved non-English choice; English restoration and RTL behavior retained",
+    "Keyboard skip link/main target; dense homepage and header navigation avoids speculative route prefetch; image-tool full-document boundary preserved",
+    "Newsletter label/live status, bounded JSON request, honeypot, honest API success contract and no-JavaScript disabled form with POST fallback to avoid email-in-URL leaks",
+    "Removed stale fixed homepage sitemap lastModified only; no fabricated fresh dates across other routes",
+    "System monospace for the illustrative code sample avoids loading a second webfont on the homepage"
+  ],
+  "validation": {
+    "unitGroups": { "passed": 10, "failed": 0, "command": "node scripts/test-homepage.mjs" },
+    "browserGroups": { "passed": 17, "failed": 0, "command": "node scripts/test-homepage-browser.mjs" },
+    "browserCoverage": ["320/390/768/1280/1440px light and dark", "Axe WCAG A/AA checks with no violations in audited states", "Metadata and schema", "Lazy covers and no preload", "Keyboard skip link, mobile menu and native FAQ", "Mocked newsletter validation/success/error/429/honeypot", "Mocked opt-in translation, saved preference, RTL and English restore", "Public/private full-document navigation", "JavaScript-disabled content and form safety", "Real social-image PNG dimensions"],
+    "build": "PASS: isolated Next.js production build and TypeScript, 104 generated pages, homepage 6h ISR",
+    "actualSourceTypecheck": "PASS: tsc --noEmit --incremental false (including actual compact DB query module)",
+    "lint": "PASS: changed TS/TSX and homepage helper scripts",
+    "diffWhitespace": "PASS",
+    "visualReview": "Actual Edge screenshots reviewed at desktop and mobile in light/dark; fixtures are explicitly fictional, not newly published articles",
+    "unchangedDraftContentSha256": {
+      "normalization": "UTF-8, CRLF/CR converted to LF, trim; same convention as existing draft ledgers",
+      "json-parse-large-numbers-precision": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3",
+      "n8n-binary-data-not-found": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66",
+      "webp-larger-than-jpg": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e"
+    },
+    "artifacts": {
+      "finalBrowserTempDirectory": "byteverse-homepage-browser-9GZZXI",
+      "finalLighthouseTempDirectory": "byteverse-home-final-local-vEHqh1",
+      "preview": "http://127.0.0.1:3060/"
+    }
+  },
+  "mobileLab": {
+    "version": "Lighthouse 13.5.0, local Edge, mobile simulation",
+    "productionBaseline": { "at": "2026-10-18T08:42:02.076Z", "performance": 52, "accessibility": 93, "bestPractices": 96, "seo": 100, "lcpMs": 3421.3275, "tbtMs": 8036, "cls": 0 },
+    "localBaseline": { "at": "2026-10-18T09:05:48.594Z", "performance": 37, "accessibility": 93, "bestPractices": 100, "seo": 100, "fcpMs": 2193.75786, "lcpMs": 5675.63679, "tbtMs": 42782.62107, "cls": 0, "speedIndexMs": 16056.18133, "htmlDecodedBytes": 193144, "scriptRequests": 19, "translationRequests": 2, "fontRequests": 1 },
+    "intermediateLocalRuns": [
+      { "at": "2026-10-19T06:03:58.550Z", "performance": 69, "lcpMs": 2504.6179, "tbtMs": 1135.19105, "cls": 0 },
+      { "at": "2026-10-19T06:08:10.231Z", "performance": 55, "lcpMs": 3927.723, "tbtMs": 1376, "cls": 0.0002031807607242308 }
+    ],
+    "finalLocal": { "at": "2026-10-19T06:34:38.432Z", "performance": 57, "accessibility": 100, "bestPractices": 100, "seo": 100, "fcpMs": 2816.638, "lcpMs": 3793.9140000000007, "tbtMs": 1606.0000000000005, "cls": 0.0002031807607242308, "speedIndexMs": 3643.5647172174113, "htmlDecodedBytes": 118278, "scriptRequests": 14, "translationRequests": 0, "fontRequests": 1 },
+    "interpretation": "Same fixture host before/after, but substantial machine/timing variation. Local HTML decreased about 39%; initial translation requests fell to zero. Do not attribute the full TBT difference to code or compare production score 52 directly with a credential-free local score. Final performance is not 100 and field CWV is unverified.",
+    "remainingMeasuredCosts": ["Shared framework/hydration JavaScript", "Approximately 232 KB decoded shared global stylesheet", "Local-machine/server latency variability"],
+    "caveats": ["Lab TBT is not real-user INP", "Automated SEO/accessibility 100 is not proof of complete compliance or a ranking guarantee", "Production ads/analytics are not configured in the isolated preview", "External translation quality and live email subscription/delivery were not tested", "No full shared search/chat/reading-list dialog remediation in this homepage task", "Existing Next middleware/multiple-lockfile/edge-build warnings remain", "No dependency security audit or framework upgrade was performed"]
+  }
+}

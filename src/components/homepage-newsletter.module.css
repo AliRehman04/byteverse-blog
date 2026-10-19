@@ -1,0 +1,17 @@
+.form { min-width: 0; }
+.label { display: block; font-size: .78rem; font-weight: 650; margin-block-end: 9px; }
+.inputRow { display: flex; gap: 8px; }
+.input { min-width: 0; flex: 1; width: 100%; min-height: 48px; border: 1px solid #8392b0; border-radius: 8px; background: var(--card); color: var(--home-ink); padding: 12px; font-size: .875rem; }
+.input::placeholder { color: var(--home-muted); }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 16px; border-radius: 8px; font-size: .8rem; font-weight: 650; background: #234cdb; color: #fff; cursor: pointer; }
+.button:hover { background: #183bb8; }
+.button:disabled { opacity: .7; cursor: default; }
+.status { min-height: 26px; margin-block-start: 9px; font-size: .76rem; line-height: 1.7; color: var(--home-ink); }
+.error { color: #a52525; }
+:global(.dark) .error { color: #ffb4b4; }
+.note { color: var(--home-muted); font-size: .69rem; line-height: 1.8; margin-block-start: 4px; }
+.note a { text-decoration: underline; text-underline-offset: 3px; }
+.spinner { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 480px) { .inputRow { flex-direction: column; } .button { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }

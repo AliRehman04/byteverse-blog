@@ -893,6 +893,32 @@ html {
   scroll-behavior: smooth;
 }
 
+/* A real keyboard bypass target; hidden without offscreen screenshot overflow. */
+.site-skip-link {
+  position: fixed;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 1000;
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+  padding: .8rem 1rem;
+  border-radius: .5rem;
+  background: #fff;
+  color: #12203b;
+  font-weight: 650;
+}
+.site-skip-link:focus {
+  clip-path: none;
+  opacity: 1;
+  pointer-events: auto;
+  outline: 3px solid #234cdb;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* ====== RENDER PERFORMANCE ====== */
 /* content-visibility: auto lets browser skip rendering off-screen sections */
 .section-alt,

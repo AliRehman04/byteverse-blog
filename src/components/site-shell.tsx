@@ -41,6 +41,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
   // Do not mount the destination shell while its full-document reload is pending.
   if (initialStudio !== studio) return null;
-  if (studio) return <><Header localTool /><main className="flex-1">{children}</main><Footer localTool /></>;
-  return <><Header /><main className="flex-1">{children}</main><Footer /><Chatbot /><ServiceWorkerRegister /><AdSense /><GoogleAnalytics /></>;
+  const skipLink = <a href="#main-content" className="site-skip-link">Skip to content</a>;
+  if (studio) return <>{skipLink}<Header localTool /><main id="main-content" tabIndex={-1} className="flex-1">{children}</main><Footer localTool /></>;
+  return <>{skipLink}<Header /><main id="main-content" tabIndex={-1} className="flex-1">{children}</main><Footer /><Chatbot /><ServiceWorkerRegister /><AdSense /><GoogleAnalytics /></>;
 }

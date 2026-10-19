@@ -43,7 +43,7 @@ export function Header({ localTool = false }: { localTool?: boolean }) {
   const toolsRef = useRef<HTMLDivElement>(null);
   const toolsTimeout = useRef<ReturnType<typeof setTimeout>>(null);
   const pathname = usePathname();
-  const prefetch = localTool ? false : undefined;
+  const prefetch = localTool || pathname === "/" ? false : undefined;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);

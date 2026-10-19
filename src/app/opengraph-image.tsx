@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ByteVerse | AI Tools, Tech Guides & Productivity";
+export const alt = "ByteVerse — Free developer tools and practical tech guides";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,7 +16,7 @@ export default function OgImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+          background: "#121d32",
           fontFamily: "sans-serif",
         }}
       >
@@ -25,7 +25,7 @@ export default function OgImage() {
           style={{
             position: "absolute",
             inset: 0,
-            opacity: 0.05,
+            opacity: 0.04,
             backgroundImage:
               "linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
@@ -41,7 +41,7 @@ export default function OgImage() {
             width: 400,
             height: 400,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%)",
+            background: "radial-gradient(circle, rgba(59,130,246,0.18), transparent 70%)",
           }}
         />
         <div
@@ -52,7 +52,7 @@ export default function OgImage() {
             width: 300,
             height: 300,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%)",
+            background: "radial-gradient(circle, rgba(185,220,131,0.12), transparent 70%)",
           }}
         />
 
@@ -61,20 +61,21 @@ export default function OgImage() {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
-            textAlign: "center",
-            padding: "40px 60px",
+            textAlign: "left",
+            width: "100%",
+            padding: "48px 80px",
           }}
         >
           {/* Logo text */}
           <div
             style={{
-              fontSize: 72,
-              fontWeight: 800,
+              fontSize: 32,
+              fontWeight: 700,
               color: "#ffffff",
-              letterSpacing: "-2px",
-              marginBottom: 16,
+              letterSpacing: "-1px",
+              marginBottom: 44,
             }}
           >
             ByteVerse
@@ -83,25 +84,30 @@ export default function OgImage() {
           {/* Tagline */}
           <div
             style={{
-              fontSize: 28,
-              fontWeight: 500,
-              color: "#94a3b8",
-              marginBottom: 40,
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 68,
+              fontWeight: 700,
+              lineHeight: 1.15,
+              letterSpacing: "-3px",
+              color: "#f1f5ff",
+              marginBottom: 44,
             }}
           >
-            AI Tools | Tech Guides | Productivity | Coding Tutorials
+            <span>Free developer tools.</span>
+            <span style={{ color: "#b6caff" }}>Practical tech guides.</span>
           </div>
 
           {/* URL */}
           <div
             style={{
               fontSize: 18,
-              color: "#60a5fa",
+              color: "#c6dfb5",
               fontWeight: 600,
               padding: "8px 24px",
               borderRadius: 12,
-              border: "1px solid rgba(96,165,250,0.3)",
-              background: "rgba(96,165,250,0.1)",
+              border: "1px solid #485c49",
+              background: "#1d2c29",
             }}
           >
             www.byteverse.fyi

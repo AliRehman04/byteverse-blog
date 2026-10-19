@@ -42,11 +42,26 @@ function hideBanner() {
   document.body.style.marginTop = "0px";
 }
 
+function saveLanguageCookie(code: string) {
+  const domain = window.location.hostname;
+  if (code !== "en") {
+    document.cookie = `googtrans=/en/${code}; path=/; SameSite=Lax`;
+    document.cookie = `googtrans=/en/${code}; path=/; domain=.${domain}; SameSite=Lax`;
+    return;
+  }
+  const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  document.cookie = `googtrans=; ${expiry}; path=/;`;
+  for (const host of new Set([domain, domain.replace(/^www\./, "")])) {
+    document.cookie = `googtrans=; ${expiry}; path=/; domain=${host}`;
+    document.cookie = `googtrans=; ${expiry}; path=/; domain=.${host}`;
+  }
+}
+
 export function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("en");
-  const [scriptLoaded, setScriptLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
 
   // Close on outside click
   useEffect(() => {
@@ -57,49 +72,13 @@ export function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [open]);
 
-  // Detect existing translation from cookie on mount + preload script
-  useEffect(() => {
-    const match = document.cookie.match(/googtrans=\/en\/([a-z-]+)/i);
-    if (match) {
-      const lang = LANGUAGES.find(
-        (l) => l.code === match[1] || l.code.toLowerCase() === match[1].toLowerCase()
-      );
-      if (lang) {
-        setCurrent(lang.code);
-        applyDirection(lang.code);
-      }
-      // Hide banner on page load when already translated
-      setTimeout(hideBanner, 500);
-      setTimeout(hideBanner, 2000);
-      setTimeout(hideBanner, 4000);
-    }
-
-    // Watch for Google Translate modifying body.style.top and reset it
-    const observer = new MutationObserver(() => {
-      if (document.body.style.top && document.body.style.top !== "0px") {
-        document.body.style.top = "0px";
-      }
-    });
-    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
-
-    // Preload Google Translate on mount so it's ready when user clicks
-    const timer = setTimeout(() => ensureLoaded(), 1000);
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Load Google Translate script
+  // Only a chosen language (or a saved choice) loads the external translator.
   const ensureLoaded = useCallback(() => {
     if (typeof window === "undefined") return;
 
     // Already have the widget initialized
     const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
-    if (combo) {
-      setScriptLoaded(true);
-      return;
-    }
+    if (combo) return;
 
     // Script tag already exists — widget may still be initializing
     if (document.getElementById("google-translate-script")) {
@@ -117,7 +96,6 @@ export function LanguageSelector() {
         },
         "google_translate_element"
       );
-      setScriptLoaded(true);
     };
 
     const script = document.createElement("script");
@@ -125,47 +103,52 @@ export function LanguageSelector() {
     script.src =
       "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
+    script.onerror = () => script.remove();
     document.body.appendChild(script);
   }, []);
 
-  const selectLanguage = (code: string) => {
-    setCurrent(code);
-    setOpen(false);
-    applyDirection(code);
+  useEffect(() => {
+    const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([a-z-]+)/i);
+    const language = LANGUAGES.find((item) => item.code.toLowerCase() === match?.[1]?.toLowerCase());
+    if (!language || language.code === "en") return;
+    queueMicrotask(() => setCurrent(language.code));
+    applyDirection(language.code);
+    ensureLoaded();
+  }, [ensureLoaded]);
 
-    // Set cookies for Google Translate
-    const domain = window.location.hostname;
+  useEffect(() => {
+    if (current === "en") return;
+    const timers = [500, 2000, 4000].map((delay) => setTimeout(hideBanner, delay));
+    const observer = new MutationObserver(() => {
+      if (document.body.style.top && document.body.style.top !== "0px") document.body.style.top = "0px";
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
+    return () => {
+      timers.forEach(clearTimeout);
+      observer.disconnect();
+    };
+  }, [current]);
+
+  const selectLanguage = (code: string) => {
+    setOpen(false);
+    trigger.current?.focus();
+    if (code === current) return;
+    setCurrent(code);
+    applyDirection(code);
+    saveLanguageCookie(code);
+
     if (code === "en") {
-      // First try to restore original via Google Translate widget
-      const iframe = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
-      if (iframe?.contentDocument) {
-        const restoreBtn = iframe.contentDocument.querySelector<HTMLButtonElement>("#\\:1\\.restore, button.goog-close-link, [id$='.restore']");
-        if (restoreBtn) restoreBtn.click();
-      }
-      // Also try the combo box approach
+      // Restore via the same-document widget, then reload the original page.
+      // Do not inspect a potentially cross-origin translation banner iframe.
       const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
       if (select) {
         select.value = "en";
         select.dispatchEvent(new Event("change"));
       }
-      // Clear all possible googtrans cookie variations
-      const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-      document.cookie = `googtrans=; ${expiry}; path=/;`;
-      document.cookie = `googtrans=; ${expiry}; path=/; domain=${domain}`;
-      document.cookie = `googtrans=; ${expiry}; path=/; domain=.${domain}`;
-      // Also clear the root domain (e.g. byteverse.fyi without www)
-      const rootDomain = domain.replace(/^www\./, "");
-      if (rootDomain !== domain) {
-        document.cookie = `googtrans=; ${expiry}; path=/; domain=.${rootDomain}`;
-        document.cookie = `googtrans=; ${expiry}; path=/; domain=${rootDomain}`;
-      }
       // Small delay to let widget process, then reload
       setTimeout(() => window.location.reload(), 100);
       return;
     }
-
-    document.cookie = `googtrans=/en/${code}; path=/;`;
-    document.cookie = `googtrans=/en/${code}; path=/; domain=.${domain}`;
 
     // Try to use existing widget first
     const trySelect = () => {
@@ -202,13 +185,17 @@ export function LanguageSelector() {
   const currentLang = LANGUAGES.find((l) => l.code === current) || LANGUAGES[0];
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative" onKeyDown={(event) => {
+      if (event.key === "Escape" && open) { setOpen(false); trigger.current?.focus(); }
+    }}>
       <button
-        onClick={() => {
-          ensureLoaded();
-          setOpen(!open);
-        }}
-        className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        ref={trigger}
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-label={`Change language, current language ${currentLang.label}`}
+        aria-expanded={open}
+        aria-controls="site-language-options"
+        className="flex min-h-9 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         title="Change language"
       >
         <Globe size={16} />
@@ -217,10 +204,12 @@ export function LanguageSelector() {
       </button>
 
       {open && (
-        <div className="absolute top-full right-0 mt-2 w-40 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50 animate-fade-in">
+        <div id="site-language-options" role="group" aria-label="Choose a language" className="absolute top-full right-0 mt-2 w-40 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50 animate-fade-in">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
+              type="button"
+              aria-pressed={current === lang.code}
               onClick={() => selectLanguage(lang.code)}
               className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 text-sm hover:bg-muted transition-colors ${
                 current === lang.code

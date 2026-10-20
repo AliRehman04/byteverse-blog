@@ -16,7 +16,7 @@ export default function OgImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#121d32",
+          background: "#09090b",
           fontFamily: "sans-serif",
         }}
       >
@@ -52,7 +52,7 @@ export default function OgImage() {
             width: 300,
             height: 300,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(185,220,131,0.12), transparent 70%)",
+            background: "radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%)",
           }}
         />
 
@@ -90,24 +90,24 @@ export default function OgImage() {
               fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: "-3px",
-              color: "#f1f5ff",
+              color: "#f8fafc",
               marginBottom: 44,
             }}
           >
             <span>Free developer tools.</span>
-            <span style={{ color: "#b6caff" }}>Practical tech guides.</span>
+            <span style={{ color: "#60a5fa" }}>Practical tech guides.</span>
           </div>
 
           {/* URL */}
           <div
             style={{
               fontSize: 18,
-              color: "#c6dfb5",
+              color: "#60a5fa",
               fontWeight: 600,
               padding: "8px 24px",
               borderRadius: 12,
-              border: "1px solid #485c49",
-              background: "#1d2c29",
+              border: "1px solid #27272a",
+              background: "#111113",
             }}
           >
             www.byteverse.fyi

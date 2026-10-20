@@ -166,6 +166,21 @@ test("private image-tool isolation and analytics configuration remain present", 
   assert.match(shell, /<Chatbot \/><ServiceWorkerRegister \/><AdSense \/><GoogleAnalytics \/>/);
 });
 
+test("homepage colors derive from the shared site theme instead of a separate palette", () => {
+  const styles = read("src/app/home.module.css");
+  const global = read("src/app/globals.css");
+  const newsletter = read("src/components/homepage-newsletter.module.css");
+  for (const [local, shared] of [["accent", "accent"], ["ink", "foreground"], ["muted", "muted-foreground"], ["panel", "muted"]]) {
+    assert(styles.includes(`--home-${local}: var(--${shared});`));
+  }
+  assert.match(global, /--brand-violet: #8b5cf6/);
+  assert.match(global, /--brand-pink: #ec4899/);
+  assert.match(styles, /max-width: 72rem/);
+  assert.match(styles, /forced-colors: active/);
+  assert.match(newsletter, /background: var\(--home-action\)/);
+  assert(!/#(?:234cdb|121d32|1d2c29|c6dfb5|a3bcff|adb9cf)/i.test(styles + newsletter));
+});
+
 test("existing article drafts retain their recorded LF-normalized content hashes", () => {
   for (const [slug, hash] of [
     ["json-parse-large-numbers-precision", "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3"],

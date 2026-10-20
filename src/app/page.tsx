@@ -43,7 +43,7 @@ export default async function HomePage() {
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={`${styles.container} ${styles.heroGrid}`}>
           <div>
-            <p className={styles.eyebrow}>The everyday developer toolkit</p>
+            <p className={styles.eyebrow}><Layers size={13} aria-hidden="true" />The everyday developer toolkit</p>
             <h1 id="home-title" className={styles.headline}>Free developer tools.{" "}<span>Practical tech guides.</span></h1>
             <p className={styles.intro}>
               Format messy data, prepare images and check your web content.
@@ -106,7 +106,7 @@ export default async function HomePage() {
                   <article key={post.id} className={styles.articleCard}>
                     <Link href={`/blog/${encodeURIComponent(post.slug)}`} prefetch={false} className={styles.articleLink}>
                       <div className={styles.articleImage}>
-                        {cover ? <Image src={cover} alt="" fill sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 760px) 280px, (max-width: 1248px) 31vw, 384px" loading="lazy" /> : <span className={styles.coverFallback} aria-hidden="true"><BookOpen size={48} strokeWidth={1} /></span>}
+                        {cover ? <Image src={cover} alt="" fill sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 760px) 50vw, (max-width: 1152px) 33vw, 348px" loading="lazy" /> : <span className={styles.coverFallback} aria-hidden="true"><BookOpen size={48} strokeWidth={1} /></span>}
                       </div>
                       <div className={styles.articleBody}>
                         <span className={styles.articleCategory}>{post.categoryName || "Tech guide"}</span>
@@ -131,7 +131,7 @@ export default async function HomePage() {
           <div className={styles.topicGrid}>
             {homepageTopics.map((topic) => {
               const Icon = topicIcons[topic.slug];
-              return <Link key={topic.slug} href={`/category/${topic.slug}`} prefetch={false} className={styles.topicLink}><Icon size={20} aria-hidden="true" /><div><h3>{topic.name}</h3><p>{topic.description}</p></div><ArrowRight size={14} aria-hidden="true" /></Link>;
+              return <Link key={topic.slug} href={`/category/${topic.slug}`} prefetch={false} className={styles.topicLink}><span className={styles.topicIcon}><Icon size={18} aria-hidden="true" /></span><div><h3>{topic.name}</h3><p>{topic.description}</p></div><ArrowRight size={14} aria-hidden="true" /></Link>;
             })}
           </div>
         </div>

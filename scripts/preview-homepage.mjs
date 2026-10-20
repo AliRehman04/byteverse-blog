@@ -7,9 +7,13 @@ import { previewCategories, previewPosts, previewHomePosts } from './homepage-fi
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const parent = dirname(root.replace(/[\\/]$/, ''));
-const [mode, previous] = process.argv.slice(2);
+const options = process.argv.slice(2);
+const cachedFonts = options.includes('--cached-fonts');
+const webpack = options.includes('--webpack');
+const args = options.filter(value => !['--cached-fonts', '--webpack'].includes(value));
+const [mode, previous] = args;
 assert(['--build', '--refresh', '--serve'].includes(mode));
-assert(process.argv.length <= 4 && (mode === '--build' || previous));
+assert(args.length <= 2 && (mode === '--build' || previous));
 const workspace = previous ? resolve(previous) : await mkdtemp(join(parent, '.byteverse-homepage-check-'));
 assert(dirname(workspace) === parent && workspace.startsWith(join(parent, '.byteverse-homepage-check-')));
 assert((await lstat(workspace)).isDirectory());
@@ -43,11 +47,35 @@ if (mode !== '--serve') {
     assert(source.includes('getHomepagePosts'), 'Unknown homepage data boundary');
     await writeFile(join(workspace, 'src/lib/homepage-data.ts'), `import type { HomepagePost } from './homepage';\nexport async function getHomepagePosts(): Promise<HomepagePost[]> { return ${JSON.stringify(previewHomePosts)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) })); }\n`);
   }
+  if (cachedFonts) {
+    // Cached Latin Geist bytes are used only in this disposable preview.
+    const media = join(root, '.next/static/media');
+    const files = await readdir(media);
+    await mkdir(join(workspace, 'src/app/_preview-fonts'), { recursive: true });
+    let layout = await readFile(join(workspace, 'src/app/layout.tsx'), 'utf8');
+    assert(layout.includes('import { Geist, Geist_Mono } from "next/font/google";'));
+    layout = layout.replace('import { Geist, Geist_Mono } from "next/font/google";', 'import localFont from "next/font/local";');
+    for (const font of [
+      { prefix: 'caa3a2e1cccd8315', name: 'Geist', variable: 'geistSans', cssVariable: '--font-geist-sans', preload: true },
+      { prefix: '797e433ab948586e', name: 'Geist_Mono', variable: 'geistMono', cssVariable: '--font-geist-mono', preload: false },
+    ]) {
+      const candidates = files.filter(name => name.startsWith(font.prefix) && name.endsWith('.woff2'));
+      assert.equal(candidates.length, 1, `Cached ${font.name} font is required`);
+      const bytes = await readFile(join(media, candidates[0]));
+      assert.equal(bytes.subarray(0, 4).toString(), 'wOF2');
+      await writeFile(join(workspace, 'src/app/_preview-fonts', `${font.name}.woff2`), bytes);
+      const pattern = new RegExp(`const ${font.variable} = ${font.name}\\(\\{[\\s\\S]*?\\}\\);`);
+      assert(pattern.test(layout));
+      layout = layout.replace(pattern, `const ${font.variable} = localFont({ src: './_preview-fonts/${font.name}.woff2', variable: '${font.cssVariable}', weight: '100 900', display: 'swap', preload: ${font.preload} });`);
+    }
+    await writeFile(join(workspace, 'src/app/layout.tsx'), layout);
+    console.log('PREVIEW FONT MODE: cached Geist Latin files; production font configuration unchanged.');
+  }
   assert(!(await readdir(workspace)).some(name => name.startsWith('.env')));
   console.log(`HOMEPAGE PREVIEW COPY: ${workspace} (fictional article fixtures, no credentials/database)`);
   await run(['scripts/build-invoice-workspace.mjs']);
   await run(['scripts/build-image-studio.mjs']);
-  await run(['node_modules/next/dist/bin/next', 'build']);
+  await run(['node_modules/next/dist/bin/next', 'build', ...(webpack ? ['--webpack'] : [])]);
   console.log(`BUILD PASSED: ${workspace}`);
 } else {
   console.log(`HOMEPAGE PREVIEW: http://127.0.0.1:3060/ - ${workspace}`);

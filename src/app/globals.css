@@ -144,6 +144,8 @@ footer a.flex.items-center.gap-2.mb-4 {
   --accent-foreground: #ffffff;
   --ring: #2563eb;
   --surface: #f1f5f9;
+  --brand-violet: #8b5cf6;
+  --brand-pink: #ec4899;
 }
 
 .dark {
@@ -221,12 +223,12 @@ body {
 /* ====== GRADIENT ACCENT ====== */
 .gradient-line {
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), #8b5cf6, #ec4899, var(--accent));
+  background: linear-gradient(90deg, var(--primary), var(--brand-violet), var(--brand-pink), var(--accent));
   background-size: 200% 100%;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  background: linear-gradient(135deg, var(--primary), var(--brand-violet));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

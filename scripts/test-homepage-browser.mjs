@@ -76,6 +76,33 @@ async function noOverflow(page) {
   assert.deepEqual(overflow, [], "Homepage content overflows viewport");
 }
 
+async function themeMatchesSite(page) {
+  const state = await page.evaluate(() => {
+    const root = document.querySelector("[data-homepage]");
+    const theme = getComputedStyle(document.documentElement);
+    const style = selector => getComputedStyle(document.querySelector(selector));
+    const canvas = document.createElement("canvas"); canvas.width = canvas.height = 1;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    const rgb = color => { context.clearRect(0, 0, 1, 1); context.fillStyle = color; context.fillRect(0, 0, 1, 1); return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3); };
+    const token = name => rgb(theme.getPropertyValue(name));
+    const cta = style('[data-homepage] a[href="/tools"]');
+    const formButton = style('form[aria-label="ByteVerse newsletter"] button[type="submit"]');
+    return {
+      actual: [rgb(getComputedStyle(root).backgroundColor), rgb(getComputedStyle(root).color), rgb(style("[data-homepage] figure").backgroundColor), rgb(style("#questions").backgroundColor)],
+      expected: [token("--background"), token("--foreground"), token("--card"), token("--muted")],
+      cta: { background: rgb(cta.backgroundColor), text: rgb(cta.color) },
+      newsletter: { background: rgb(formButton.backgroundColor), text: rgb(formButton.color) },
+      alignment: ["header a[href='/']", "#home-title", "#tools-title", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
+    };
+  });
+  assert.deepEqual(state.actual, state.expected, "Homepage must use the active shared theme colors");
+  assert.deepEqual(state.cta, state.newsletter, "Primary actions must use matching colors");
+  assert(state.alignment.every(left => Math.abs(left - state.alignment[0]) < 1), "Header, main content and footer must share alignment");
+  const luminance = color => color.map(value => value / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4).reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
+  const values = [luminance(state.cta.text), luminance(state.cta.background)].sort((a, b) => b - a);
+  assert((values[0] + .05) / (values[1] + .05) >= 4.5, "Primary action contrast must meet WCAG AA");
+}
+
 try {
   await run("SSR, metadata, lazy images and no initial translation", async (page, audit) => {
     await open(page);
@@ -112,6 +139,7 @@ try {
         await open(page);
         await expect(page.locator("html")).toHaveClass(new RegExp(theme));
         await noOverflow(page);
+        await themeMatchesSite(page);
         await axe(page, `${width}-${theme}`);
         await page.screenshot({ path: join(temp, `home-${width}-${theme}.png`), fullPage: false });
         if (width === 1440 || width === 390) {
@@ -119,11 +147,39 @@ try {
             await page.locator(`#${section}`).scrollIntoViewIfNeeded();
             await page.screenshot({ path: join(temp, `${section}-${width}-${theme}.png`), fullPage: false });
           }
+          await page.locator('section[aria-labelledby="newsletter-title"]').scrollIntoViewIfNeeded();
+          await page.screenshot({ path: join(temp, `newsletter-${width}-${theme}.png`), fullPage: false });
         }
         assert.equal(audit.translations, 0);
       }, { viewport: { width, height: width < 768 ? 844 : 960 }, colorScheme: theme });
     }
   }
+
+  await run("theme toggle updates shared surfaces and persists after reload", async page => {
+    await open(page);
+    const toggle = page.getByRole("button", { name: "Toggle theme", exact: true });
+    await toggle.click();
+    await expect(page.locator("html")).toHaveClass(/dark/);
+    await themeMatchesSite(page);
+    await page.reload({ waitUntil: "load" });
+    await expect(page.locator("html")).toHaveClass(/dark/);
+    await themeMatchesSite(page);
+    await toggle.click();
+    await expect(page.locator("html")).toHaveClass(/light/);
+    await themeMatchesSite(page);
+    await page.locator("#questions summary").first().click();
+    await axe(page, "theme-toggle-open-faq");
+  });
+
+  await run("gradient heading remains readable in forced colors", async page => {
+    await open(page);
+    const heading = page.locator("#home-title span");
+    await expect(heading).toBeVisible();
+    const colors = await heading.evaluate(element => ({ color: getComputedStyle(element).color, background: getComputedStyle(element).backgroundImage }));
+    assert.equal(colors.background, "none");
+    assert.notEqual(colors.color, "rgba(0, 0, 0, 0)");
+    await noOverflow(page);
+  }, { forcedColors: "active" });
 
   await run("keyboard bypass, native FAQ, reduced motion and mobile menu", async page => {
     await open(page);

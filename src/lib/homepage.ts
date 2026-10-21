@@ -1,8 +1,8 @@
 import { toolCatalog } from "./tool-catalog";
 
 export const homepageMeta = {
-  title: "Free Developer Tools & Practical Tech Guides | ByteVerse",
-  description: "Free online developer tools for JSON, images, SEO and everyday tasks. Explore practical coding tutorials, AI explainers and tech guides on ByteVerse.",
+  title: "Free Developer Tools, AI & Tech Guides | ByteVerse",
+  description: "Find free tools for images, JSON, SEO and everyday work. Explore practical AI guides, coding tutorials and software troubleshooting on ByteVerse.",
 } as const;
 
 export interface HomepagePost {
@@ -12,6 +12,7 @@ export interface HomepagePost {
   excerpt: string;
   coverImage: string | null;
   readingTime: string | null;
+  author: string;
   createdAt: Date;
   categoryName: string | null;
   categorySlug: string | null;
@@ -36,12 +37,12 @@ export const homepageTools = selectedTools.map((selection) => {
 });
 
 export const homepageTopics = [
-  { slug: "ai-tools", name: "AI tools", description: "Understand assistants, compare options and explore useful AI workflows." },
-  { slug: "coding", name: "Coding", description: "Work through JavaScript, Python, React and practical development problems." },
-  { slug: "tech-guides", name: "Tech guides", description: "Find setup walkthroughs and troubleshoot the tools you work with." },
-  { slug: "productivity", name: "Productivity", description: "Explore automation, better app setups and everyday workflows." },
-  { slug: "software-reviews", name: "Software reviews", description: "Compare features and trade-offs before choosing your next app." },
-  { slug: "cybersecurity", name: "Cybersecurity", description: "Learn about passwords, online privacy and safer digital habits." },
+  { slug: "ai-tools", name: "AI tools", color: "#8b5cf6", description: "Understand assistants, compare options and explore useful AI workflows." },
+  { slug: "coding", name: "Coding", color: "#f59e0b", description: "Work through JavaScript, Python, React and practical development problems." },
+  { slug: "tech-guides", name: "Tech guides", color: "#3b82f6", description: "Find setup walkthroughs and troubleshoot the tools you work with." },
+  { slug: "productivity", name: "Productivity", color: "#10b981", description: "Explore automation, better app setups and everyday workflows." },
+  { slug: "software-reviews", name: "Software reviews", color: "#ef4444", description: "Compare features and trade-offs before choosing your next app." },
+  { slug: "cybersecurity", name: "Cybersecurity", color: "#06b6d4", description: "Learn about passwords, online privacy and safer digital habits." },
 ] as const;
 
 export const homepageQuestions = [

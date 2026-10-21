@@ -48,7 +48,8 @@ function load(path) {
     if (name === "next/link") return function MockLink({ prefetch, ...props }) { return React.createElement("a", { ...props, "data-prefetch": String(prefetch) }); };
     if (name === "next/image") return function MockImage({ fill, ...props }) { return React.createElement("img", { ...props, "data-fill": String(fill) }); };
     if (name === "@/components/homepage-newsletter") return { HomepageNewsletter: () => React.createElement("div", { "data-newsletter-test-stub": true }) };
-    if (name === "./home.module.css") return css;
+    if (name === "@/components/homepage-tool-finder") return { HomepageToolFinder: ({ tools }) => React.createElement("div", { "data-tool-search-count": tools.length }) };
+    if (name === "./home-premium.module.css") return css;
     throw new Error(`Blocked dependency: ${name}`);
   };
   new vm.Script(`(function(exports, require, module) {${compiled.outputText}\n})`, { filename: path }).runInContext(context)(record.exports, resolve, record);
@@ -110,7 +111,8 @@ test("one bounded SQL query selects compact fields, published/due posts and glob
   assert.match(query.sql, /"posts"\."scheduled_at" is null or "posts"\."scheduled_at" <= \$3/);
   assert.match(query.sql, /order by "posts"\."created_at" desc, "posts"\."id" desc limit \$4$/);
   assert.equal(query.params[0], true);
-  assert.equal(query.params.at(-1), 6);
+  assert.equal(query.params.at(-1), 9);
+  assert.match(query.sql, /"posts"\."author"/);
 });
 
 test("DB missing/empty returns no fictional records; query failures are sanitized and propagate for ISR", async () => {
@@ -128,12 +130,13 @@ test("server-rendered homepage has a single H1, real anchors, lazy covers, non-n
   const html = renderToStaticMarkup(await page.default());
   const doc = parseDocument(html);
   assert.equal(elements(doc, node => node.name === "h1").length, 1);
-  assert.equal(textContent(elements(doc, node => node.name === "h1")[0]), "Free developer tools. Practical tech guides.");
-  assert.equal(elements(doc, node => node.name === "article").length, 6);
+  assert.equal(textContent(elements(doc, node => node.name === "h1")[0]), "Tools for your work. Ideas for what’s next.");
+  assert.equal(elements(doc, node => node.name === "article").length, 9);
   assert.equal(elements(doc, node => node.name === "details").length, 3);
   assert.equal(elements(doc, node => node.name === "a" && elements(node, child => ["button", "a", "input"].includes(child.name)).length > 0).length, 0);
-  for (const img of elements(doc, node => node.name === "img")) {
-    assert.equal(img.attribs.loading, "lazy"); assert(img.attribs.sizes); assert.equal(img.attribs.alt, "");
+  for (const [index, img] of elements(doc, node => node.name === "img").entries()) {
+    assert.equal(img.attribs.loading, index === 0 ? "eager" : "lazy"); assert(img.attribs.sizes); assert.equal(img.attribs.alt, "");
+    assert.equal(img.attribs.fetchpriority, index === 0 ? "high" : undefined);
   }
   for (const link of elements(doc, node => node.name === "a")) {
     assert.equal(link.attribs["data-prefetch"], "false");
@@ -141,7 +144,17 @@ test("server-rendered homepage has a single H1, real anchors, lazy covers, non-n
   }
   assert(!/100%|55\+|tested every|100% Client-Side|no usage limits|Popular Articles|SearchAction/i.test(html));
   assert(!/json-parse-large-numbers-precision|n8n-binary-data-not-found|webp-larger-than-jpg/.test(html));
-  assert.equal(elements(doc, node => node.name === "figure")[0].children[0].name, "figcaption");
+  const hero = elements(doc, node => node.attribs.id === "featured-stories")[0];
+  assert(hero);
+  assert.equal(elements(hero, node => node.name === "article").length, 1);
+  assert.equal(elements(doc, node => node.name === "aside").length, 1);
+  const articlePaths = elements(doc, node => node.name === "a" && node.attribs.href.startsWith("/blog/"));
+  assert.equal(new Set(articlePaths.map(node => node.attribs.href)).size, 9);
+  assert(!/canvas|<video|home-orbit|creative-orbit/.test(html));
+  assert(textContent(doc).includes("What do you need to do?"));
+  assert.equal(elements(doc, node => node.attribs["data-home-tool"]).length, 8);
+  assert.equal(elements(doc, node => node.attribs["data-tool-search-count"] === "42").length, 1);
+  assert(html.indexOf('id="featured-tools"') < html.indexOf('id="featured-stories"'), "Tools must not be buried below articles");
 });
 
 test("empty and missing-cover rendering keep useful navigation without invented posts", async () => {
@@ -153,7 +166,7 @@ test("empty and missing-cover rendering keep useful navigation without invented 
   records = [{ ...saved[0], coverImage: null, categoryName: null, readingTime: null }];
   doc = parseDocument(renderToStaticMarkup(await page.default()));
   assert.equal(elements(doc, node => node.name === "img").length, 0);
-  assert(textContent(doc).includes("Tech guide"));
+  assert(textContent(doc).includes("Tech guides"));
   records = saved;
 });
 
@@ -167,7 +180,7 @@ test("private image-tool isolation and analytics configuration remain present", 
 });
 
 test("homepage colors derive from the shared site theme instead of a separate palette", () => {
-  const styles = read("src/app/home.module.css");
+  const styles = read("src/app/home-premium.module.css");
   const global = read("src/app/globals.css");
   const newsletter = read("src/components/homepage-newsletter.module.css");
   for (const [local, shared] of [["accent", "accent"], ["ink", "foreground"], ["muted", "muted-foreground"], ["panel", "muted"]]) {

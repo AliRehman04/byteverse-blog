@@ -9,7 +9,9 @@ import AxeBuilder from "@axe-core/playwright";
 import sharp from "sharp";
 
 const base = "http://127.0.0.1:3060";
-assert(process.argv.length === 2, "This script only tests the isolated homepage preview on port 3060.");
+const flags = process.argv.slice(2);
+const designOnly = flags.includes("--design"), publishedPreview = flags.includes("--published");
+assert(flags.every(flag => ["--design", "--published"].includes(flag)) && new Set(flags).size === flags.length);
 const temp = await mkdtemp(join(tmpdir(), "byteverse-homepage-browser-"));
 const browser = await chromium.launch({ channel: "msedge", headless: true });
 const expect = playwrightExpect.configure({ timeout: 15000 });
@@ -20,7 +22,7 @@ async function run(name, body, options = {}) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 960 }, colorScheme: "light", reducedMotion: "reduce", serviceWorkers: "block", ...options });
   const audit = { unexpected: [], errors: [], translations: 0, posts: [], postStatus: 200, postBody: { message: "Successfully subscribed!" } };
   const page = await context.newPage();
-  page.setDefaultTimeout(15000); page.setDefaultNavigationTimeout(60000);
+  page.setDefaultTimeout(15000); page.setDefaultNavigationTimeout(designOnly ? 120000 : 60000);
   page.on("pageerror", error => audit.errors.push(error.message));
   await context.route("**/*", async route => {
     const request = route.request(), url = new URL(request.url());
@@ -35,7 +37,11 @@ async function run(name, body, options = {}) {
     if (["data:", "blob:"].includes(url.protocol)) return route.continue();
     audit.unexpected.push(`${request.method()} ${url.href}`); return route.abort();
   });
-  await context.routeWebSocket("**/*", socket => { audit.unexpected.push(socket.url()); socket.close(); });
+  await context.routeWebSocket("**/*", socket => {
+    const url = new URL(socket.url());
+    if (designOnly && url.host === new URL(base).host && url.pathname === "/_next/webpack-hmr") socket.connectToServer();
+    else { audit.unexpected.push(socket.url()); socket.close(); }
+  });
   try {
     await body(page, audit, context);
     assert.deepEqual(audit.unexpected, [], "Unexpected external/API/write requests");
@@ -55,6 +61,7 @@ async function open(page) {
   assert.equal(response.status(), 200);
   await expect(page.locator("[data-homepage]")).toBeVisible();
   await expect(page.getByRole("button", { name: /Change language/ })).toBeVisible();
+  await expect(page.locator('form[aria-label="ByteVerse newsletter"] fieldset')).not.toBeDisabled();
   await page.evaluate(() => document.fonts.ready);
 }
 
@@ -77,6 +84,7 @@ async function noOverflow(page) {
 }
 
 async function themeMatchesSite(page) {
+  await expect(async () => {
   const state = await page.evaluate(() => {
     const root = document.querySelector("[data-homepage]");
     const theme = getComputedStyle(document.documentElement);
@@ -85,44 +93,51 @@ async function themeMatchesSite(page) {
     const context = canvas.getContext("2d", { willReadFrequently: true });
     const rgb = color => { context.clearRect(0, 0, 1, 1); context.fillStyle = color; context.fillRect(0, 0, 1, 1); return [...context.getImageData(0, 0, 1, 1).data].slice(0, 3); };
     const token = name => rgb(theme.getPropertyValue(name));
-    const cta = style('[data-homepage] a[href="/tools"]');
     const formButton = style('form[aria-label="ByteVerse newsletter"] button[type="submit"]');
     return {
-      actual: [rgb(getComputedStyle(root).backgroundColor), rgb(getComputedStyle(root).color), rgb(style("[data-homepage] figure").backgroundColor), rgb(style("#questions").backgroundColor)],
-      expected: [token("--background"), token("--foreground"), token("--card"), token("--muted")],
-      cta: { background: rgb(cta.backgroundColor), text: rgb(cta.color) },
+      actual: [rgb(getComputedStyle(root).backgroundColor), rgb(getComputedStyle(root).color), rgb(style("#featured-stories article > a").backgroundColor)],
+      expected: [token("--background"), token("--foreground"), token("--card")],
       newsletter: { background: rgb(formButton.backgroundColor), text: rgb(formButton.color) },
-      alignment: ["header a[href='/']", "#home-title", "#tools-title", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
+      alignment: ["header a[href='/']", "#home-title", "#featured-stories article > a", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
     };
   });
   assert.deepEqual(state.actual, state.expected, "Homepage must use the active shared theme colors");
-  assert.deepEqual(state.cta, state.newsletter, "Primary actions must use matching colors");
   assert(state.alignment.every(left => Math.abs(left - state.alignment[0]) < 1), "Header, main content and footer must share alignment");
   const luminance = color => color.map(value => value / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4).reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
-  const values = [luminance(state.cta.text), luminance(state.cta.background)].sort((a, b) => b - a);
+  const values = [luminance(state.newsletter.text), luminance(state.newsletter.background)].sort((a, b) => b - a);
   assert((values[0] + .05) / (values[1] + .05) >= 4.5, "Primary action contrast must meet WCAG AA");
+  }).toPass({ timeout: 5000 });
 }
 
 try {
-  await run("SSR, metadata, lazy images and no initial translation", async (page, audit) => {
+  await run("SSR, metadata, one eager lead image and no initial translation", async (page, audit) => {
     await open(page);
-    await expect(page).toHaveTitle("Free Developer Tools & Practical Tech Guides | ByteVerse");
+    await expect(page).toHaveTitle("Free Developer Tools, AI & Tech Guides | ByteVerse");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("main")).toHaveCount(1);
     // Next serializes origin-only canonicals without a trailing slash.
     assert.equal(new URL(await page.locator('link[rel="canonical"]').getAttribute("href")).href, "https://www.byteverse.fyi/");
-    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Free online developer tools/);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /free tools for images, JSON, SEO/);
     const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
     assert.equal(ld.length, 1);
     const graph = JSON.parse(ld[0])["@graph"];
     assert.deepEqual(graph.map(item => item["@type"]), ["Organization", "WebSite", "WebPage"]);
     assert(!/SearchAction|FAQPage|search_term_string/.test(ld[0]));
-    await expect(page.locator('link[rel="preload"][as="image"]')).toHaveCount(0);
-    await expect(page.locator("[data-homepage] article")).toHaveCount(6);
+    const preloads = page.locator('link[rel="preload"][as="image"]');
+    await expect(preloads).toHaveCount(1);
+    assert.equal(await preloads.first().getAttribute("imagesrcset"), await page.locator('[data-article-media="lead"] img').getAttribute("srcset"));
+    await expect(page.locator("[data-homepage] article")).toHaveCount(9);
     const images = page.locator("[data-homepage] article img");
-    for (const image of await images.all()) {
-      await expect(image).toHaveAttribute("loading", "lazy");
+    for (const [index, image] of (await images.all()).entries()) {
+      await expect(image).toHaveAttribute("loading", index === 0 ? "eager" : "lazy");
       await expect(image).toHaveAttribute("sizes", /max-width/);
+    }
+    await expect(images.first()).toHaveAttribute("fetchpriority", "high");
+    const articleLinks = await page.locator('[data-homepage] article a[href*="/blog/"]').evaluateAll(nodes => nodes.map(anchor => anchor.getAttribute("href")));
+    assert.equal(new Set(articleLinks).size, 9);
+    if (publishedPreview) {
+      assert(articleLinks.every(href => href.startsWith("https://www.byteverse.fyi/blog/") && !href.includes("homepage-preview")));
+      assert(!/fictional|synthetic|Preview fixture|homepage-preview/.test(await page.locator("[data-homepage]").innerText()));
     }
     await expect(page.locator("[data-homepage] a button, [data-homepage] a a")).toHaveCount(0);
     await page.locator("[data-homepage] article").last().scrollIntoViewIfNeeded();
@@ -131,6 +146,40 @@ try {
     assert.equal(audit.translations, 0);
     await expect(page.locator("#google-translate-script")).toHaveCount(0);
     await writeFile(join(temp, "homepage.html"), await page.content());
+  });
+
+  await run("working tool search and prominent toolkit", async page => {
+    await open(page);
+    const tools = page.locator("#featured-tools");
+    await expect(tools.locator("[data-home-tool]")).toHaveCount(6);
+    await expect(page.locator("[data-home-tool]")).toHaveCount(8);
+    const top = await tools.boundingBox();
+    assert(top.y < 520, "Toolkit must be visible before the article feed");
+    const search = page.getByRole("search", { name: "Find a free tool" });
+    const input = search.getByRole("searchbox", { name: "Find a tool" });
+    await expect(input).toBeEnabled();
+    await input.fill("json csv");
+    const result = search.getByRole("link", { name: /JSON to CSV Converter/ });
+    await expect(result).toBeVisible();
+    await expect(result).toHaveAttribute("href", "/tools/json-to-csv");
+    await expect(search.getByRole("link")).toHaveCount(1);
+    await input.press("Tab");
+    await expect(search.getByRole("button", { name: "Clear tool search" })).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(result).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(input).toHaveValue("");
+    await expect(input).toBeFocused();
+    await input.fill("zzzz-not-a-tool");
+    await expect(search.getByText(/No matching tool/)).toBeVisible();
+    await search.getByRole("button", { name: "Clear tool search" }).click();
+    await input.fill("plagiarism");
+    await expect(search.getByRole("link", { name: /Text Similarity Checker/ })).toHaveAttribute("href", "/tools/plagiarism-checker");
+    await expect(search.getByRole("link", { name: /Text Rewriter/ })).toHaveAttribute("href", "/tools/plagiarism-remover");
+    await input.fill("image");
+    await expect(search.getByRole("link", { name: /ImageFixer Image Compressor/ })).toHaveAttribute("href", "/tools/image-compressor");
+    await axe(page, "tool-search");
+    await input.press("Escape");
   });
 
   for (const width of [320, 390, 768, 1280, 1440]) {
@@ -163,6 +212,8 @@ try {
     await themeMatchesSite(page);
     await page.reload({ waitUntil: "load" });
     await expect(page.locator("html")).toHaveClass(/dark/);
+    await expect(page.locator('form[aria-label="ByteVerse newsletter"] fieldset')).not.toBeDisabled();
+    await expect(toggle.locator("svg")).toHaveClass(/lucide-sun/);
     await themeMatchesSite(page);
     await toggle.click();
     await expect(page.locator("html")).toHaveClass(/light/);
@@ -171,7 +222,7 @@ try {
     await axe(page, "theme-toggle-open-faq");
   });
 
-  await run("gradient heading remains readable in forced colors", async page => {
+  await run("editorial heading remains readable in forced colors", async page => {
     await open(page);
     const heading = page.locator("#home-title span");
     await expect(heading).toBeVisible();
@@ -235,15 +286,17 @@ try {
     await noOverflow(page);
     await page.reload({ waitUntil: "load" });
     await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+    await expect(page.locator('form[aria-label="ByteVerse newsletter"] fieldset')).not.toBeDisabled();
+    await expect(trigger).toHaveAttribute("aria-label", /Urdu/);
     await expect.poll(() => audit.translations).toBe(2);
     await trigger.click();
-    await Promise.all([page.waitForEvent("load"), page.getByRole("group", { name: "Choose a language" }).getByRole("button", { name: /English/ }).click()]);
+    await Promise.all([page.waitForEvent("load", { timeout: designOnly ? 120000 : 45000 }), page.getByRole("group", { name: "Choose a language" }).getByRole("button", { name: /English/ }).click()]);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
     await expect(page.locator("#google-translate-script")).toHaveCount(0);
     assert.equal(audit.translations, 2);
   }, { viewport: { width: 390, height: 844 } });
 
-  await run("public/private image-tool boundary uses fresh documents", async (page, audit) => {
+  if (!designOnly) await run("public/private image-tool boundary uses fresh documents", async (page, audit) => {
     await open(page);
     await page.evaluate(() => { window.__homeDocumentMarker = "before-private"; });
     await Promise.all([page.waitForURL(`${base}/tools/image-compressor`), page.locator('#featured-tools a[href="/tools/image-compressor"]').click()]);
@@ -259,8 +312,9 @@ try {
 
   await run("native homepage content works without JavaScript", async page => {
     await page.goto(`${base}/`, { waitUntil: "load" });
-    await expect(page.locator("h1")).toHaveText("Free developer tools. Practical tech guides.");
-    await expect(page.locator('#featured-tools a[href^="/tools/"]')).toHaveCount(8);
+    await expect(page.locator("h1")).toHaveText("Tools for your work. Ideas for what’s next.");
+    await expect(page.locator('#featured-tools a[data-home-tool]')).toHaveCount(6);
+    await expect(page.getByRole("searchbox", { name: "Find a tool" })).toBeDisabled();
     const newsletter = page.getByRole("form", { name: "ByteVerse newsletter" });
     await expect(newsletter).toHaveAttribute("method", "post");
     await expect(newsletter.getByRole("textbox", { name: "Your email address" })).toBeDisabled();
@@ -273,7 +327,7 @@ try {
     await summary.click(); await expect(page.locator("#questions details").first()).toHaveAttribute("open", "");
   }, { javaScriptEnabled: false });
 
-  await run("social image renders a real 1200 x 630 PNG", async page => {
+  if (!designOnly) await run("social image renders a real 1200 x 630 PNG", async page => {
     const response = await page.goto(`${base}/opengraph-image`, { waitUntil: "load" });
     assert.equal(response.status(), 200);
     assert.match(response.headers()["content-type"], /image\/png/);
@@ -284,7 +338,7 @@ try {
   });
 } finally {
   await browser.close();
-  await writeFile(join(temp, "results.json"), JSON.stringify({ measuredAt: new Date().toISOString(), base, limitations: "Fictional posts; newsletter and translation mocked; no live provider/DB/field-CWV validation.", results }, null, 2));
+  await writeFile(join(temp, "results.json"), JSON.stringify({ measuredAt: new Date().toISOString(), base, designOnly, limitations: "Fictional posts; newsletter and translation mocked; no live provider/DB/field-CWV validation. Design mode does not test production bundling or private-route navigation.", results }, null, 2));
   console.log(`ARTIFACTS ${temp}`);
   console.log(`${results.filter(result => result.status === "PASS").length}/${results.length} checks passed`);
   if (results.some(result => result.status !== "PASS")) process.exitCode = 1;

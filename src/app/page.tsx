@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, BookOpen, Bot, Code2, Layers, Monitor, Plus, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Bot, Code2, Layers, Mail, Monitor, Plus, ShieldCheck, SlidersHorizontal, Sparkles, Wrench, Zap } from "lucide-react";
 import { HomepageNewsletter } from "@/components/homepage-newsletter";
+import { HomepageToolFinder } from "@/components/homepage-tool-finder";
 import { siteConfig } from "@/lib/config";
 import { getHomepagePosts } from "@/lib/homepage-data";
-import { formatHomepageDate, getHomepageCover, getHomepageStructuredData, homepageMeta, homepageQuestions, homepageTools, homepageTopics, serializeHomepageJsonLd } from "@/lib/homepage";
+import { formatHomepageDate, getHomepageCover, getHomepageStructuredData, homepageMeta, homepageQuestions, homepageTools, homepageTopics, serializeHomepageJsonLd, type HomepagePost } from "@/lib/homepage";
 import { toolCatalog } from "@/lib/tool-catalog";
-import styles from "./home.module.css";
+import styles from "./home-premium.module.css";
 
 const canonical = `${siteConfig.url.replace(/\/+$/, "")}/`;
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website", locale: "en_US", url: canonical, siteName: siteConfig.name,
     title: homepageMeta.title, description: homepageMeta.description,
-    images: [{ url: `${canonical}opengraph-image`, width: 1200, height: 630, alt: "ByteVerse — Free developer tools and practical tech guides" }],
+    images: [{ url: `${canonical}opengraph-image`, width: 1200, height: 630, alt: "ByteVerse — Free developer tools, AI and tech guides" }],
   },
   twitter: {
     card: "summary_large_image", title: homepageMeta.title, description: homepageMeta.description,
@@ -30,125 +31,186 @@ export const metadata: Metadata = {
 export const revalidate = 21600;
 
 const topicIcons = { "ai-tools": Bot, coding: Code2, "tech-guides": Monitor, productivity: SlidersHorizontal, "software-reviews": Layers, cybersecurity: ShieldCheck };
-const csvTool = homepageTools.find((tool) => tool.slug === "json-to-csv")!;
-const quickTools = homepageTools.filter((tool) => tool.slug === "image-compressor" || tool.slug === "seo-title-analyzer");
+const quickToolSlugs = ["image-compressor", "json-to-csv", "json-formatter", "seo-title-analyzer", "invoice-pdf-to-excel", "plagiarism-checker"];
+const quickTools = homepageTools.filter((tool) => quickToolSlugs.includes(tool.slug));
+const moreTools = homepageTools.filter((tool) => !quickToolSlugs.includes(tool.slug));
+const searchableTools = toolCatalog.map(({ slug, name, category, description }) => ({ slug, name, category, terms: description }));
+
+function ArticleMedia({ post, lead = false }: { post: HomepagePost; lead?: boolean }) {
+  const cover = getHomepageCover(post.coverImage);
+  const sizes = lead
+    ? "(max-width: 900px) calc(100vw - 32px), (max-width: 1152px) 58vw, 660px"
+    : "(max-width: 540px) calc(100vw - 32px), (max-width: 1000px) 48vw, 354px";
+  return (
+    <div className={styles.articleMedia} data-article-media={lead ? "lead" : "secondary"}>
+      {cover ? (
+        <Image src={cover} alt="" fill sizes={sizes} loading={lead ? "eager" : "lazy"} fetchPriority={lead ? "high" : undefined} />
+      ) : (
+        <span className={styles.coverFallback} aria-hidden="true"><BookOpen size={46} strokeWidth={1} /></span>
+      )}
+      <span className={styles.imageArrow} aria-hidden="true"><ArrowUpRight size={18} /></span>
+    </div>
+  );
+}
+
+function Byline({ post }: { post: HomepagePost }) {
+  return (
+    <div className={styles.byline}>
+      <span className={styles.authorAvatar} aria-hidden="true">{(post.author || siteConfig.author).trim().charAt(0).toUpperCase()}</span>
+      <span className={styles.author}>{post.author || siteConfig.author}</span>
+      <span aria-hidden="true">·</span>
+      <time dateTime={post.createdAt.toISOString()}>{formatHomepageDate(post.createdAt)}</time>
+      {post.readingTime && <><span aria-hidden="true">·</span><span>{post.readingTime}</span></>}
+    </div>
+  );
+}
 
 export default async function HomePage() {
-  const latestPosts = await getHomepagePosts();
+  const posts = await getHomepagePosts();
+  const [lead] = posts;
+  const latest = posts.slice(1);
 
   return (
-    <div className={styles.page} data-homepage>
+    <div className={styles.page} data-homepage data-homepage-design="premium">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeHomepageJsonLd(getHomepageStructuredData(siteConfig.url)) }} />
 
       <section className={styles.hero} aria-labelledby="home-title">
-        <div className={`${styles.container} ${styles.heroGrid}`}>
-          <div>
-            <p className={styles.eyebrow}><Layers size={13} aria-hidden="true" />The everyday developer toolkit</p>
-            <h1 id="home-title" className={styles.headline}>Free developer tools.{" "}<span>Practical tech guides.</span></h1>
-            <p className={styles.intro}>
-              Format messy data, prepare images and check your web content.
-              Then dig into guides on code, AI and the tools behind your next project.
-            </p>
-            <div className={styles.actions}>
-              <Link href="/tools" prefetch={false} className={styles.primaryButton}>Explore tools <ArrowRight size={17} aria-hidden="true" /></Link>
-              <Link href="#latest-guides" prefetch={false} className={styles.secondaryButton}>Read the guides <BookOpen size={17} aria-hidden="true" /></Link>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={`${styles.container} ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.heroBadge}><Sparkles size={13} aria-hidden="true" /><span>{toolCatalog.length} free tools · Practical guides</span></p>
+            <h1 id="home-title" className={styles.headline}>Tools for your work.{" "}<br /><span>Ideas for what’s next.</span></h1>
+            <p className={styles.heroIntro}>Compress images, convert data and fine-tune your website. Then dive into AI explainers, coding tutorials and the tech guides that help you ship.</p>
+            <div className={styles.heroActions}>
+              <Link href="/tools" prefetch={false} className={styles.primaryCta}>Explore all tools <span><ArrowUpRight size={18} aria-hidden="true" /></span></Link>
+              <Link href="#latest-guides" prefetch={false} className={styles.ghostCta}>Read the guides <ArrowRight size={16} aria-hidden="true" /></Link>
             </div>
-            <p className={styles.heroNote}><strong>{toolCatalog.length} free tools</strong><span className={styles.noteDivider} aria-hidden="true" />No ByteVerse account required</p>
+            <ul className={styles.heroStats} aria-label="ByteVerse at a glance">
+              <li><strong>{toolCatalog.length}</strong><span>Free tools</span></li>
+              <li><strong>{homepageTopics.length}</strong><span>Topic hubs</span></li>
+              <li><strong>0</strong><span>Sign-ups required</span></li>
+            </ul>
           </div>
 
-          <div className={styles.workbench}>
-            <figure className={styles.example}>
-              <figcaption><span className={styles.exampleHeader}><span className={styles.exampleDots} aria-hidden="true"><i /><i /><i /></span>Example · JSON → CSV</span><span className={styles.exampleTitle}>From raw data to useful rows.</span></figcaption>
-              <p className={styles.codeLabel}>Input / JSON</p>
-              <pre><code>{'[{ "name": "Ada",\n   "role": "Developer" }]'}</code></pre>
-              <div className={styles.exampleFlow}><ArrowDown size={18} aria-hidden="true" /></div>
-              <div className={styles.exampleOutput}>
-                <p className={styles.codeLabel}>Output / CSV preview</p>
-                <table aria-label="Example CSV output"><thead><tr><th scope="col">name</th><th scope="col">role</th></tr></thead><tbody><tr><td>Ada</td><td>Developer</td></tr></tbody></table>
-              </div>
-              <Link href={csvTool.href} prefetch={false} className={styles.exampleLink}>Open the {csvTool.name} <ArrowRight size={16} aria-hidden="true" /></Link>
-            </figure>
-            <div className={styles.quickLinks}>
-              {quickTools.map((tool) => <Link key={tool.slug} href={tool.href} prefetch={false} className={styles.quickLink}><tool.icon size={18} aria-hidden="true" />{tool.task}<ArrowRight size={14} aria-hidden="true" /></Link>)}
+          <section id="featured-tools" aria-labelledby="tools-title" className={styles.launcher}>
+            <div className={styles.launcherHead}>
+              <span className={styles.launcherLabel}><Wrench size={14} aria-hidden="true" />THE TOOLKIT</span>
+              <Link href="/tools" prefetch={false} className={styles.launcherAll}>All {toolCatalog.length} <ArrowUpRight size={14} aria-hidden="true" /></Link>
             </div>
-          </div>
+            <h2 id="tools-title" className={styles.launcherTitle}>What do you need to do?</h2>
+            <HomepageToolFinder tools={searchableTools} />
+            <div className={styles.quickToolGrid}>{quickTools.map((tool, index) => (
+              <Link key={tool.slug} href={tool.href} prefetch={false} className={styles.quickTool} data-home-tool={tool.slug} data-tone={index % 3}>
+                <span className={styles.quickToolIcon}><tool.icon size={20} aria-hidden="true" /></span>
+                <span className={styles.quickToolText}><strong>{tool.name}</strong><small>{tool.task}</small></span>
+                <ArrowUpRight size={15} aria-hidden="true" className={styles.quickToolArrow} />
+              </Link>
+            ))}</div>
+            <p className={styles.launcherNote}><ShieldCheck size={14} aria-hidden="true" />No account needed · Processing varies by tool</p>
+          </section>
         </div>
       </section>
 
-      <section id="featured-tools" aria-labelledby="tools-title" className={`${styles.container} ${styles.section}`}>
-        <div className={styles.sectionHeader}>
-          <div><p className={styles.sectionLabel}>01 / The toolkit</p><h2 id="tools-title" className={styles.sectionTitle}>Pick a task. Get into it.</h2><p className={styles.sectionIntro}>A few useful places to start, from data cleanup to the details that help a page look right.</p></div>
-          <Link href="/tools" prefetch={false} className={styles.textLink}>Browse all {toolCatalog.length} tools <ArrowRight size={16} aria-hidden="true" /></Link>
-        </div>
-        <div className={styles.toolGrid}>
-          {homepageTools.map((tool) => (
-            <Link key={tool.slug} href={tool.href} prefetch={false} className={styles.toolCard}>
-              <span className={styles.toolIcon}><tool.icon size={21} aria-hidden="true" /></span>
-              <div><p className={styles.toolTask}>{tool.task}</p><h3 className={styles.toolName}>{tool.name}</h3><p className={styles.toolDescription}>{tool.detail}</p></div>
-              <span className={styles.toolArrow}>Open tool <ArrowRight size={15} aria-hidden="true" /></span>
+      <nav className={`${styles.container} ${styles.topicTiles}`} aria-label="Browse article topics">
+        {homepageTopics.map((topic) => {
+          const Icon = topicIcons[topic.slug];
+          return (
+            <Link key={topic.slug} href={`/category/${topic.slug}`} prefetch={false} className={styles.topicTile} style={{ "--tile-color": topic.color } as React.CSSProperties}>
+              <span className={styles.topicTileIcon}><Icon size={20} aria-hidden="true" /></span>
+              <span className={styles.topicTileName}>{topic.name}</span>
+              <ArrowUpRight size={14} aria-hidden="true" className={styles.topicTileArrow} />
             </Link>
-          ))}
+          );
+        })}
+      </nav>
+
+      <section className={`${styles.container} ${styles.featuredSection}`} aria-label="Latest featured guide" id="featured-stories">
+        <div className={styles.sectionHeader}>
+          <div><p className={styles.eyebrow}><Zap size={13} aria-hidden="true" />LATEST STORY</p><h2 className={styles.sectionTitle}>Fresh from the blog</h2></div>
+          <Link href="/blog" prefetch={false} className={styles.textLink}>All articles <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </div>
-        <div className={styles.processingNote}><ShieldCheck size={17} aria-hidden="true" /><p>Processing and limits vary by tool. Check its notes before using sensitive data. <Link href="#questions" prefetch={false}>How it works</Link></p></div>
+        {lead ? (
+          <article className={styles.leadStory}>
+            <Link href={`/blog/${encodeURIComponent(lead.slug)}`} prefetch={false} className={styles.leadLink} aria-labelledby={`story-${lead.id}`}>
+              <ArticleMedia post={lead} lead />
+              <div className={styles.leadBody}>
+                <p className={styles.storyLabel}>{lead.categoryName || "Tech guides"}</p>
+                <h3 id={`story-${lead.id}`} className={styles.leadTitle}>{lead.title}</h3>
+                <p className={styles.leadExcerpt}>{lead.excerpt}</p>
+                <Byline post={lead} />
+                <span className={styles.leadCta}>Read the full guide <ArrowRight size={16} aria-hidden="true" /></span>
+              </div>
+            </Link>
+          </article>
+        ) : (
+          <div className={styles.emptyArticles}><BookOpen size={32} aria-hidden="true" /><h3>Find your next guide.</h3><p>Explore coding tutorials, AI explainers and practical tech guides in the blog.</p><Link href="/blog" prefetch={false} className={styles.primaryCta}>Explore the blog <span><ArrowRight size={16} aria-hidden="true" /></span></Link></div>
+        )}
       </section>
 
-      <section id="latest-guides" aria-labelledby="guides-title" className={`${styles.journal} ${styles.section}`}>
-        <div className={styles.container}>
+      <div className={`${styles.container} ${styles.readingLayout}`}>
+        <section id="latest-guides" aria-labelledby="guides-title" className={styles.feed}>
           <div className={styles.sectionHeader}>
-            <div><p className={styles.sectionLabel}>02 / The reading room</p><h2 id="guides-title" className={styles.sectionTitle}>A clearer next step.</h2><p className={styles.sectionIntro}>The latest published guides, explainers and comparisons from the ByteVerse blog.</p></div>
-            <Link href="/blog" prefetch={false} className={styles.textLink}>All articles <ArrowRight size={16} aria-hidden="true" /></Link>
+            <div><p className={styles.eyebrow}><BookOpen size={13} aria-hidden="true" />KEEP READING</p><h2 id="guides-title" className={styles.sectionTitle}>Practical guides, not guesswork.</h2></div>
+            <Link href="/blog" prefetch={false} className={styles.textLink}>View all <ArrowUpRight size={15} aria-hidden="true" /></Link>
           </div>
-          {latestPosts.length ? (
-            <div className={styles.articleGrid}>
-              {latestPosts.map((post) => {
-                const cover = getHomepageCover(post.coverImage);
-                return (
-                  <article key={post.id} className={styles.articleCard}>
-                    <Link href={`/blog/${encodeURIComponent(post.slug)}`} prefetch={false} className={styles.articleLink}>
-                      <div className={styles.articleImage}>
-                        {cover ? <Image src={cover} alt="" fill sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 760px) 50vw, (max-width: 1152px) 33vw, 348px" loading="lazy" /> : <span className={styles.coverFallback} aria-hidden="true"><BookOpen size={48} strokeWidth={1} /></span>}
-                      </div>
-                      <div className={styles.articleBody}>
-                        <span className={styles.articleCategory}>{post.categoryName || "Tech guide"}</span>
-                        <h3 className={styles.articleTitle}>{post.title}</h3>
-                        <p className={styles.articleExcerpt}>{post.excerpt}</p>
-                        <div className={styles.articleMeta}><time dateTime={post.createdAt.toISOString()}>{formatHomepageDate(post.createdAt)}</time>{post.readingTime && <><span aria-hidden="true">·</span><span>{post.readingTime}</span></>}<ArrowRight size={16} aria-hidden="true" /></div>
-                      </div>
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
+          {latest.length > 0 ? (
+            <div className={styles.feedGrid}>{latest.map((post) => (
+              <article key={post.id} className={styles.feedStory}>
+                <Link href={`/blog/${encodeURIComponent(post.slug)}`} prefetch={false} className={styles.feedLink} aria-labelledby={`story-${post.id}`}>
+                  <ArticleMedia post={post} />
+                  <div className={styles.feedBody}>
+                    <p className={styles.storyLabel}>{post.categoryName || "Tech guides"}</p>
+                    <h3 id={`story-${post.id}`} className={styles.feedTitle}>{post.title}</h3>
+                    <p className={styles.feedExcerpt}>{post.excerpt}</p>
+                    <Byline post={post} />
+                  </div>
+                </Link>
+              </article>
+            ))}</div>
           ) : (
-            <div className={styles.emptyArticles}><p>Looking for a walkthrough? Explore the blog or choose a topic below.</p><Link href="/blog" prefetch={false} className={styles.textLink}>Explore the blog <ArrowRight size={16} aria-hidden="true" /></Link></div>
+            <div className={styles.feedEmpty}><p>There’s more to explore in the archive.</p><Link href="/blog" prefetch={false} className={styles.textLink}>Browse all guides <ArrowRight size={16} aria-hidden="true" /></Link></div>
           )}
-        </div>
-      </section>
+          <Link href="/blog" prefetch={false} className={styles.archiveLink}>Browse the full archive <ArrowRight size={17} aria-hidden="true" /></Link>
+        </section>
 
-      <section aria-labelledby="topics-title" className={`${styles.container} ${styles.section}`}>
-        <div className={styles.topicLayout}>
-          <div><p className={styles.sectionLabel}>03 / Follow your curiosity</p><h2 id="topics-title" className={styles.sectionTitle}>Go a little deeper.</h2><p className={styles.sectionIntro}>Learning something new or solving a stubborn problem? Start with the topic that fits.</p><Link href="/categories" prefetch={false} className={styles.textLink}>Explore every topic <ArrowRight size={16} aria-hidden="true" /></Link></div>
-          <div className={styles.topicGrid}>
-            {homepageTopics.map((topic) => {
+        <aside className={styles.sidebar} aria-label="Explore ByteVerse">
+          <section className={styles.moreTools} aria-labelledby="more-tools-title">
+            <p className={styles.eyebrow}><Wrench size={13} aria-hidden="true" />MORE TOOLS</p>
+            <h2 id="more-tools-title" className={styles.sidebarTitle}>A couple more shortcuts.</h2>
+            {moreTools.map((tool) => (
+              <Link key={tool.slug} href={tool.href} prefetch={false} data-home-tool={tool.slug} className={styles.moreToolLink}>
+                <span className={styles.moreToolIcon}><tool.icon size={19} aria-hidden="true" /></span>
+                <span><strong>{tool.name}</strong><small>{tool.detail}</small></span>
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            ))}
+            <Link href="/tools" prefetch={false} className={styles.moreToolsAll}>Browse all {toolCatalog.length} tools <ArrowRight size={16} aria-hidden="true" /></Link>
+          </section>
+
+          <section className={styles.newsletterCard} aria-labelledby="newsletter-title" id="newsletter">
+            <span className={styles.mailIcon}><Mail size={22} aria-hidden="true" /></span>
+            <p className={styles.eyebrowLight}>STAY IN THE LOOP</p>
+            <h2 id="newsletter-title" className={styles.newsletterTitle}>New tools. Useful reads.</h2>
+            <p className={styles.newsletterIntro}>Get ByteVerse guides and tool updates by email.</p>
+            <HomepageNewsletter />
+          </section>
+
+          <section className={styles.topicDirectory} aria-labelledby="topics-title">
+            <p className={styles.eyebrow}><Layers size={13} aria-hidden="true" />TOPICS</p>
+            <h2 id="topics-title" className={styles.sidebarTitle}>Explore by topic</h2>
+            <nav aria-label="Topic directory">{homepageTopics.map((topic) => {
               const Icon = topicIcons[topic.slug];
-              return <Link key={topic.slug} href={`/category/${topic.slug}`} prefetch={false} className={styles.topicLink}><span className={styles.topicIcon}><Icon size={18} aria-hidden="true" /></span><div><h3>{topic.name}</h3><p>{topic.description}</p></div><ArrowRight size={14} aria-hidden="true" /></Link>;
-            })}
-          </div>
-        </div>
-        <div className={styles.aboutNote}><p><strong>One place for the doing and the learning.</strong> ByteVerse brings online utilities and practical tech reading together, so you can move from a question to a useful next step.</p><Link href="/about" prefetch={false} className={styles.textLink}>About ByteVerse <ArrowRight size={16} aria-hidden="true" /></Link></div>
-      </section>
+              return <Link key={topic.slug} href={`/category/${topic.slug}`} prefetch={false} style={{ "--tile-color": topic.color } as React.CSSProperties}><span><Icon size={16} aria-hidden="true" />{topic.name}</span><ArrowUpRight size={14} aria-hidden="true" /></Link>;
+            })}</nav>
+          </section>
+        </aside>
+      </div>
 
-      <section id="questions" aria-labelledby="questions-title" className={`${styles.questions} ${styles.section}`}>
-        <div className={`${styles.container} ${styles.faqLayout}`}>
-          <div><p className={styles.sectionLabel}>A few things to know</p><h2 id="questions-title" className={styles.sectionTitle}>Before you dive in.</h2><p className={styles.sectionIntro}>A little context on the tools and the guides.</p></div>
-          <div>{homepageQuestions.map((faq) => <details key={faq.question} className={styles.question}><summary>{faq.question}<Plus size={19} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
-        </div>
-      </section>
-
-      <section aria-labelledby="newsletter-title" className={`${styles.container} ${styles.newsletter}`}>
-        <div className={styles.newsletterPanel}>
-          <div><p className={styles.sectionLabel}>Keep a little curiosity</p><h2 id="newsletter-title" className={styles.sectionTitle}>Make room for a useful read.</h2><p className={styles.sectionIntro}>Get ByteVerse guides and tool updates by email.</p></div>
-          <HomepageNewsletter />
+      <section id="questions" aria-labelledby="questions-title" className={styles.questionsSection}>
+        <div className={`${styles.container} ${styles.questions}`}>
+          <div><p className={styles.eyebrow}><Sparkles size={13} aria-hidden="true" />GOOD TO KNOW</p><h2 id="questions-title" className={styles.sectionTitle}>Before you dive in.</h2><p className={styles.questionsIntro}>Some context on the reading and the tools.</p></div>
+          <div>{homepageQuestions.map((faq) => <details key={faq.question} className={styles.question}><summary>{faq.question}<Plus size={18} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
         </div>
       </section>
     </div>

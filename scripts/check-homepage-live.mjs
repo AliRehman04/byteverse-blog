@@ -22,7 +22,7 @@ try {
     const response = await page.goto(`${origin}/`, { waitUntil: "load", timeout: 60000 });
     assert.equal(response.status(), 200);
     await expect(page.locator("html")).toHaveClass(new RegExp(theme));
-    await expect(page.locator("h1")).toHaveText("Free developer tools. Practical tech guides.");
+    await expect(page.locator("h1")).toHaveText("Tools for your work. Ideas for what’s next.");
     assert.equal(new URL(await page.locator('link[rel="canonical"]').getAttribute("href")).href, `${origin}/`);
     const state = await page.evaluate(() => {
       const root = document.querySelector("[data-homepage]"), style = getComputedStyle(root);
@@ -34,9 +34,9 @@ try {
       };
       return {
         foreground: rgb(style.color), expectedForeground: rgb(shared.getPropertyValue("--foreground")),
-        card: rgb(getComputedStyle(root.querySelector("figure")).backgroundColor), expectedCard: rgb(shared.getPropertyValue("--card")),
+        card: rgb(getComputedStyle(root.querySelector("#featured-stories article > a")).backgroundColor), expectedCard: rgb(shared.getPropertyValue("--card")),
         violet: shared.getPropertyValue("--brand-violet").trim(),
-        alignment: ["header a[href='/']", "#home-title", "#tools-title", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
+        alignment: ["header a[href='/']", "#home-title", "#featured-stories article > a", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
         articleLinks: [...root.querySelectorAll("article a")].map(anchor => new URL(anchor.href).pathname),
         overflowing: [...root.querySelectorAll("h1,h2,h3,a,button,p,summary")].filter(element => {
           if (!element.getClientRects().length) return false;
@@ -49,7 +49,7 @@ try {
     assert.deepEqual(state.card, state.expectedCard);
     assert.equal(state.violet, "#8b5cf6");
     assert(state.alignment.every(left => Math.abs(left - state.alignment[0]) < 1));
-    assert.equal(state.articleLinks.length, 6);
+    assert.equal(state.articleLinks.length, 9);
     assert(state.articleLinks.every(path => !/homepage-preview|json-parse-large-numbers-precision|n8n-binary-data-not-found|webp-larger-than-jpg/.test(path)));
     assert.deepEqual(state.overflowing, []);
     assert.equal(state.translationLoaded, false);

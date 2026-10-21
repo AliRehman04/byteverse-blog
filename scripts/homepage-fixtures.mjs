@@ -8,15 +8,22 @@ export const previewCategories = [
 ];
 
 export const previewPosts = [
-  ['A clearer starting point for your next technology project', 'A fictional preview article with practical steps, careful examples and a useful next action. No live article is created.', 2],
-  ['Working with JSON without losing the important details', 'A fictional developer guide used only to review the homepage layout and article ordering.', 4],
-  ['Compare AI tools by the work you actually need to do', 'A synthetic comparison preview. Features, limits and use cases—not invented product rankings.', 1],
+  ['Why a transparent PNG can turn black when you save it as a JPG', 'Understand backgrounds, transparency and how to choose an image format. Fictional preview text; no article is created.', 2],
+  ['Keep your spreadsheet’s special characters intact', 'A fictional guide to readable CSV exports and the details that matter.', 4],
+  ['Get your coding assistant ready on Windows', 'A fictional setup guide used only to preview the homepage layout.', 1],
   ['Make everyday work a little less repetitive', 'A synthetic productivity preview for local responsive testing.', 3],
   ['Choose software with its limitations in view', 'A synthetic software preview for local testing, not a published review.', 5],
   ['Keep privacy decisions part of your workflow', 'A synthetic security preview that does not represent a published recommendation.', 6],
+  ['Give your next website a better starting point', 'A fictional preview about turning an idea into a useful website.', 4],
+  ['A practical way to compare AI assistants', 'Synthetic preview copy about capabilities, limitations and everyday uses.', 1],
+  ['Make sense of the tools in your development workflow', 'A fictional guide for local homepage layout checks.', 2],
 ].map(([title, excerpt, categoryId], index) => ({
   id: 990000 + index, title, excerpt, categoryId, slug: `homepage-preview-${index + 1}`,
-  content: 'Local preview fixture only.', coverImage: '/blog/png-jpg-background/cover.png',
+  content: 'Local preview fixture only.', coverImage: [
+    '/blog/png-jpg-background/cover.png', '/blog/csv-utf8/cover.png', '/blog/claude-code-windows/cover.png',
+    '/blog/csv-excel/cover.png', '/blog/gemini-workspace/cover.png', '/blog/ollama-gpu/cover-v2.png',
+    '/blog/how-to-build-website-with-ai-2026.webp', '/blog/gemini-workspace/cover.png', '/blog/claude-code-windows/cover.png',
+  ][index],
   author: 'Preview fixture', published: true, featured: index === 0, scheduledAt: null,
   metaTitle: null, metaDescription: null, keywords: null, summary: null,
   readingTime: `${6 + index} min read`, views: 100 - index,
@@ -26,7 +33,7 @@ export const previewPosts = [
 
 export const previewHomePosts = previewPosts.map(post => ({
   id: post.id, title: post.title, slug: post.slug, excerpt: post.excerpt,
-  coverImage: post.coverImage, readingTime: post.readingTime, createdAt: post.createdAt,
+  coverImage: post.coverImage, readingTime: post.readingTime, author: post.author, createdAt: post.createdAt,
   categoryName: previewCategories.find(category => category.id === post.categoryId).name,
   categorySlug: previewCategories.find(category => category.id === post.categoryId).slug,
 }));

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ByteVerse — Free developer tools and practical tech guides";
+export const alt = "ByteVerse — Free developer tools, AI and tech guides";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -94,8 +94,8 @@ export default function OgImage() {
               marginBottom: 44,
             }}
           >
-            <span>Free developer tools.</span>
-            <span style={{ color: "#60a5fa" }}>Practical tech guides.</span>
+            <span>Tools for your work.</span>
+            <span style={{ color: "#60a5fa" }}>Ideas for what’s next.</span>
           </div>
 
           {/* URL */}

@@ -12,6 +12,7 @@ export function createHomepagePostQuery(database: NonNullable<typeof db>, now = 
       excerpt: posts.excerpt,
       coverImage: posts.coverImage,
       readingTime: posts.readingTime,
+      author: posts.author,
       createdAt: posts.createdAt,
       categoryName: categories.name,
       categorySlug: categories.slug,
@@ -24,7 +25,7 @@ export function createHomepagePostQuery(database: NonNullable<typeof db>, now = 
       or(isNull(posts.scheduledAt), lte(posts.scheduledAt, now)),
     ))
     .orderBy(desc(posts.createdAt), desc(posts.id))
-    .limit(6);
+    .limit(9);
 }
 
 export async function getHomepagePosts(): Promise<HomepagePost[]> {

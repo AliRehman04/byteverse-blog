@@ -2,7 +2,7 @@
   "date": "2026-10-24",
   "website": "https://www.byteverse.fyi",
   "slug": "cursor-agent-stuck-planning-next-moves-2026",
-  "status": "validated locally; publication recorded in publication section once applied",
+  "status": "published",
   "targeting": {
     "title": "Cursor Agent Stuck on \"Planning Next Moves\"? 8 Checks in Order",
     "metaTitle": "Cursor Agent Stuck on Planning Next Moves? 8 Checks",
@@ -114,5 +114,12 @@
     "script": "scripts/test-cursor-planning-post.mjs (--offline renderer/FAQ parity, --links HTTP)",
     "limits": "Fixes are sourced from staff replies, docs and user reports; none were reproduced on a machine with the hang. Menu names can change between Cursor releases."
   },
-  "publication": null
+  "publication": {
+    "postId": 241,
+    "publishedAt": "2026-10-23T23:25:39.801Z",
+    "method": "scripts/_publish-cursor-planning-post.mjs --apply (run once; serializable guarded insert, no backlink edits)",
+    "coverDeployCommit": "9aaa89ce3df6f3ca20d3ef00a38da681599cbd22",
+    "liveCheck": "2026-10-24: HTTP 200, self-canonical, index/follow, 5 FAQ accordions, FAQPage JSON-LD, cover and tool link present",
+    "inboundLinks": "not applied (needs separate approval)"
+  }
 }

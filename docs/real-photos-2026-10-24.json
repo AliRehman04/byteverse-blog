@@ -152,5 +152,17 @@
     "position": "attention"
    }
   }
- ]
+ ],
+ "applied": {
+  "at": "2026-10-24",
+  "postIds": [
+   235,
+   236,
+   237,
+   238,
+   240,
+   241
+  ],
+  "method": "scripts/_apply-real-photos-2026-10-24.mjs --apply (run once)"
+ }
 }

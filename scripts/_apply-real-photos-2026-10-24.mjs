@@ -76,6 +76,16 @@ const edits = [
         `- Related on ByteVerse: [How to use Cursor AI](/blog/how-to-use-cursor-ai-2026-guide), [GitHub Copilot not working in VS Code](/blog/github-copilot-not-working-vscode-2026), [Claude Code not recognized on Windows](/blog/claude-code-not-recognized-windows-2026)\n- Photos: cover ${credit(4974912)}; inline ${credit(5473309)}. Illustrative photographs, not Cursor screenshots.`],
     ],
   },
+  {
+    slug: 'excel-csv-special-characters-utf8', dir: 'csv-utf8', cover: 6779570, inline: 7735769,
+    replace: [
+      ['![The bytes C3 A9 decode to an accented e under UTF-8 but to two different characters under Windows-1252; saving that wrong text changes the bytes](https://www.byteverse.fyi/blog/csv-utf8/decode-vs-save.png "Reading with the wrong decoder and saving the wrong text are separate events.")',
+        photo('csv-utf8', 'photo-inline.jpg', 'Person reviewing a printed spreadsheet with tables and charts at an office desk', `Reading a file with the wrong decoder and saving the wrong text are separate events; check which one happened before fixing anything. Photo: ${plainCredit(7735769)}.`)],
+      ['\n![Three recovery paths distinguish an intact source that needs the right decoder, saved mojibake that needs the original or a verified reversal, and lost characters that require source evidence](https://www.byteverse.fyi/blog/csv-utf8/recovery-map.png "A different encoding choice can re-read surviving bytes; it cannot invent missing characters.")\n', '\n'],
+      ['Cover and both diagrams: ByteVerse original illustrations. Microsoft, Excel and VS Code are product names used to identify the relevant workflow; this independent guide is not an endorsement by Microsoft.',
+        `Cover photo: ${credit(6779570)}. Inline photo: ${credit(7735769)}. The photographs are illustrative office scenes, not screenshots of the examples in this guide. Microsoft, Excel and VS Code are product names used to identify the relevant workflow; this independent guide is not an endorsement by Microsoft.`],
+    ],
+  },
 ];
 
 for (const edit of edits) for (const file of ['photo-cover.jpg', 'photo-inline.jpg']) assert(existsSync(resolve(root, 'public/blog', edit.dir, file)), `Missing asset ${edit.dir}/${file}`);
@@ -85,13 +95,13 @@ assert(process.env.DATABASE_URL, 'Database configuration is required');
 const sql = neon(process.env.DATABASE_URL);
 const slugs = edits.map(edit => edit.slug);
 const rows = await sql`SELECT id, slug, published, cover_image, content FROM posts WHERE slug = ANY(${slugs}::text[]) ORDER BY id`;
-assert.equal(rows.length, edits.length, 'All six posts must exist');
+assert.equal(rows.length, edits.length, 'All planned posts must exist');
 const planned = [];
 for (const edit of edits) {
   const row = rows.find(r => r.slug === edit.slug);
   assert(row.published, `${edit.slug} not published`);
   const newCover = `${site}/blog/${edit.dir}/photo-cover.jpg`;
-  if (row.cover_image === newCover && edit.replace.every(([from]) => !row.content.includes(from))) { planned.push({ id: row.id, slug: edit.slug, status: 'already applied' }); continue; }
+  if (row.cover_image === newCover && row.content.includes(`/blog/${edit.dir}/photo-inline.jpg`)) { planned.push({ id: row.id, slug: edit.slug, status: 'already applied' }); continue; }
   let content = row.content;
   for (const [from, to] of edit.replace) {
     const occurrences = content.split(from).length - 1;

@@ -17,6 +17,7 @@ export const plan = [
   { slug: "excel-csv-leading-zeros-2026", dir: "csv-excel", cover: { id: 8297058, position: "attention" }, body: { id: 34639577, region: { left: 0, top: 0.42, width: 1 } } },
   { slug: "gemini-not-showing-google-docs-gmail-2026", dir: "gemini-workspace", cover: { id: 7439136, position: "attention" }, body: { id: 20716656, position: "centre" } },
   { slug: "ollama-not-using-gpu-windows-2026", dir: "ollama-gpu", cover: { id: 17576302, position: "attention" }, body: { id: 33693626, position: "attention" } },
+  { slug: "excel-csv-special-characters-utf8", dir: "csv-utf8", cover: { id: 6779570, position: "attention" }, body: { id: 7735769, position: "attention" } },
 ];
 const cdn = id => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=2400`;
 const headers = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", accept: "image/*" };

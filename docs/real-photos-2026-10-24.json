@@ -20,11 +20,23 @@
    "photographerUrl": "https://www.pexels.com/@cottonbro/",
    "pageUrl": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/"
   },
+  "6779570": {
+   "title": "A Person Writing on a Paper with Graph",
+   "photographer": "Artem Podrez",
+   "photographerUrl": "https://www.pexels.com/@artempodrez/",
+   "pageUrl": "https://www.pexels.com/photo/a-person-writing-on-a-paper-with-graph-6779570/"
+  },
   "7439136": {
    "title": "Person Using a Laptop on a Table",
    "photographer": "cottonbro studio",
    "photographerUrl": "https://www.pexels.com/@cottonbro/",
    "pageUrl": "https://www.pexels.com/photo/person-using-a-laptop-on-a-table-7439136/"
+  },
+  "7735769": {
+   "title": "A Person Holding a Document",
+   "photographer": "Mikhail Nilov",
+   "photographerUrl": "https://www.pexels.com/@mikhail-nilov/",
+   "pageUrl": "https://www.pexels.com/photo/a-person-holding-a-document-7735769/"
   },
   "7971542": {
    "title": "Woman Editing Photo in Work",
@@ -93,7 +105,7 @@
    "dir": "claude-code-windows",
    "cover": {
     "id": 34803969,
-    "position": "attention"
+    "position": "top"
    },
    "body": {
     "id": 5473892,
@@ -149,6 +161,18 @@
    },
    "body": {
     "id": 33693626,
+    "position": "attention"
+   }
+  },
+  {
+   "slug": "excel-csv-special-characters-utf8",
+   "dir": "csv-utf8",
+   "cover": {
+    "id": 6779570,
+    "position": "attention"
+   },
+   "body": {
+    "id": 7735769,
     "position": "attention"
    }
   }

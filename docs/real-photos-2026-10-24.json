@@ -184,9 +184,10 @@
    236,
    237,
    238,
+   239,
    240,
    241
   ],
-  "method": "scripts/_apply-real-photos-2026-10-24.mjs --apply (run once)"
+  "method": "scripts/_apply-real-photos-2026-10-24.mjs --apply (run twice: first six posts, then post 239)"
  }
 }

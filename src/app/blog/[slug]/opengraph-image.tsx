@@ -143,6 +143,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
         </div>
       </div>
     ),
-    { ...size }
+    // ImageResponse defaults to max-age=0, which makes the CDN treat every hit as stale and regenerate in the background.
+    { ...size, headers: { "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" } }
   );
 }

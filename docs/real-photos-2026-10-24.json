@@ -1,0 +1,156 @@
+{
+ "date": "2026-10-24",
+ "licence": "Pexels licence (https://www.pexels.com/license/): free to use and modify; attribution appreciated and given in each article's credits section.",
+ "photos": {
+  "4974912": {
+   "title": "Person Coding on a Macbook Pro",
+   "photographer": "olia danilevich",
+   "photographerUrl": "https://www.pexels.com/@olia-danilevich/",
+   "pageUrl": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/"
+  },
+  "5473309": {
+   "title": "Woman in Black Hoodie Using a Laptop",
+   "photographer": "cottonbro studio",
+   "photographerUrl": "https://www.pexels.com/@cottonbro/",
+   "pageUrl": "https://www.pexels.com/photo/woman-in-black-hoodie-using-a-laptop-5473309/"
+  },
+  "5473892": {
+   "title": "Person Typing on Laptop",
+   "photographer": "cottonbro studio",
+   "photographerUrl": "https://www.pexels.com/@cottonbro/",
+   "pageUrl": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/"
+  },
+  "7439136": {
+   "title": "Person Using a Laptop on a Table",
+   "photographer": "cottonbro studio",
+   "photographerUrl": "https://www.pexels.com/@cottonbro/",
+   "pageUrl": "https://www.pexels.com/photo/person-using-a-laptop-on-a-table-7439136/"
+  },
+  "7971542": {
+   "title": "Woman Editing Photo in Work",
+   "photographer": "Darlene Alderson",
+   "photographerUrl": "https://www.pexels.com/@darlene-alderson/",
+   "pageUrl": "https://www.pexels.com/photo/woman-editing-photo-in-work-7971542/"
+  },
+  "8297058": {
+   "title": "Woman Looking at the Screen of Her Laptop",
+   "photographer": "Mikhail Nilov",
+   "photographerUrl": "https://www.pexels.com/@mikhail-nilov/",
+   "pageUrl": "https://www.pexels.com/photo/woman-looking-at-the-screen-of-her-laptop-8297058/"
+  },
+  "16313513": {
+   "title": "Woman by Desk with Camera, Laptop and Tablet",
+   "photographer": "Kawê Rodrigues",
+   "photographerUrl": "https://www.pexels.com/@kawerodriguess/",
+   "pageUrl": "https://www.pexels.com/photo/woman-by-desk-with-camera-laptop-and-tablet-16313513/"
+  },
+  "17576302": {
+   "title": "Interior of Computer Tower",
+   "photographer": "Andrey Matveev",
+   "photographerUrl": "https://www.pexels.com/@zeleboba/",
+   "pageUrl": "https://www.pexels.com/photo/interior-of-computer-tower-17576302/"
+  },
+  "20716656": {
+   "title": "Gmail Logo on Smartphone",
+   "photographer": "BM Amaro",
+   "photographerUrl": "https://www.pexels.com/@bm-amaro-1100375333/",
+   "pageUrl": "https://www.pexels.com/photo/gmail-logo-on-smartphone-20716656/"
+  },
+  "33693626": {
+   "title": "High-performance Gaming PC with GeForce RTX",
+   "photographer": "Andrey Matveev",
+   "photographerUrl": "https://www.pexels.com/@zeleboba/",
+   "pageUrl": "https://www.pexels.com/photo/high-performance-gaming-pc-with-geforce-rtx-33693626/"
+  },
+  "34639577": {
+   "title": "Person Analyzing Data on Laptop Screen",
+   "photographer": "Wolf Art",
+   "photographerUrl": "https://www.pexels.com/@wolfart/",
+   "pageUrl": "https://www.pexels.com/photo/person-analyzing-data-on-laptop-screen-34639577/"
+  },
+  "34803969": {
+   "title": "Focused Coding Session with Laptop and Coffee",
+   "photographer": "Daniil Komov",
+   "photographerUrl": "https://www.pexels.com/@dkomov/",
+   "pageUrl": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/"
+  }
+ },
+ "plan": [
+  {
+   "slug": "cursor-agent-stuck-planning-next-moves-2026",
+   "dir": "cursor-planning-next-moves",
+   "cover": {
+    "id": 4974912,
+    "position": "attention"
+   },
+   "body": {
+    "id": 5473309,
+    "position": "attention"
+   }
+  },
+  {
+   "slug": "claude-code-not-recognized-windows-2026",
+   "dir": "claude-code-windows",
+   "cover": {
+    "id": 34803969,
+    "position": "attention"
+   },
+   "body": {
+    "id": 5473892,
+    "position": "attention"
+   }
+  },
+  {
+   "slug": "png-to-jpg-black-background",
+   "dir": "png-jpg-background",
+   "cover": {
+    "id": 16313513,
+    "position": "attention"
+   },
+   "body": {
+    "id": 7971542,
+    "position": "attention"
+   }
+  },
+  {
+   "slug": "excel-csv-leading-zeros-2026",
+   "dir": "csv-excel",
+   "cover": {
+    "id": 8297058,
+    "position": "attention"
+   },
+   "body": {
+    "id": 34639577,
+    "region": {
+     "left": 0,
+     "top": 0.42,
+     "width": 1
+    }
+   }
+  },
+  {
+   "slug": "gemini-not-showing-google-docs-gmail-2026",
+   "dir": "gemini-workspace",
+   "cover": {
+    "id": 7439136,
+    "position": "attention"
+   },
+   "body": {
+    "id": 20716656,
+    "position": "centre"
+   }
+  },
+  {
+   "slug": "ollama-not-using-gpu-windows-2026",
+   "dir": "ollama-gpu",
+   "cover": {
+    "id": 17576302,
+    "position": "attention"
+   },
+   "body": {
+    "id": 33693626,
+    "position": "attention"
+   }
+  }
+ ]
+}

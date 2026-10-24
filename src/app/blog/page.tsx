@@ -1,324 +1,264 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { db } from "@/lib/db";
-import { posts, categories } from "@/lib/db/schema";
-import { eq, desc, sql, count } from "drizzle-orm";
-import { PostCard, FeaturedPostCard } from "@/components/post-card";
-import { LazyNewsletter } from "@/components/lazy-newsletter";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Bot, Code2, Hash, Layers, Mail, Monitor, ShieldCheck, SlidersHorizontal, Sparkles, TrendingUp, Wrench } from "lucide-react";
+import { HomepageNewsletter } from "@/components/homepage-newsletter";
 import { siteConfig } from "@/lib/config";
-import { TrendingUp, FolderOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { blogPageWindow, blogPath, getBlogMeta, getBlogStructuredData, parseBlogPage, safeCategoryColor, serializeJsonLd, type BlogCategory } from "@/lib/blog";
+import { getBlogIndex } from "@/lib/blog-data";
+import { formatHomepageDate, getHomepageCover, homepageTools, type HomepagePost } from "@/lib/homepage";
+import { toolCatalog } from "@/lib/tool-catalog";
+import styles from "./blog-premium.module.css";
 
-const POSTS_PER_PAGE = 30;
+type SearchParams = Promise<{ page?: string | string[] }>;
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}): Promise<Metadata> {
-  const { page: pageParam } = await searchParams;
-  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
-  const isFirstPage = currentPage === 1;
-  const pageLabel = isFirstPage ? "" : ` - Page ${currentPage}`;
-  const title = `Blog${pageLabel} | Latest Articles on AI, Tech & Productivity`;
-  const description = isFirstPage
-    ? "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews at ByteVerse."
-    : `Page ${currentPage} of the ByteVerse blog. Browse articles on AI tools, tech guides, coding tutorials, and productivity tips.`;
+const base = siteConfig.url.replace(/\/+$/, "");
 
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const page = parseBlogPage((await searchParams).page);
+  const { title, description } = getBlogMeta(page);
+  const url = `${base}${blogPath(page)}`;
   return {
-    title,
+    title: { absolute: title },
     description,
-    publisher: "ByteVerse",
-    keywords: ["AI tools", "tech guides", "coding tutorials", "software reviews", "productivity", "technology blog"],
+    publisher: siteConfig.name,
+    alternates: { canonical: url },
     openGraph: {
-      title: `Blog${pageLabel} | Latest Articles on AI, Tech & Productivity | ByteVerse`,
-      description:
-        "Read the latest articles, tutorials, and guides on AI tools, tech trends, productivity hacks, coding tips, and honest software reviews.",
-      url: isFirstPage ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog?page=${currentPage}`,
-      type: "website",
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "ByteVerse Blog" }],
+      type: "website", locale: "en_US", url, siteName: siteConfig.name, title, description,
+      images: [{ url: `${base}/opengraph-image`, width: 1200, height: 630, alt: "ByteVerse blog" }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [siteConfig.ogImage],
-    },
-    alternates: {
-      canonical: isFirstPage ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog?page=${currentPage}`,
-    },
+    twitter: { card: "summary_large_image", title, description, images: [`${base}/opengraph-image`] },
   };
 }
 
 export const revalidate = 21600;
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const { page: pageParam } = await searchParams;
-  const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
+const categoryIcons: Record<string, typeof Bot> = { "ai-tools": Bot, coding: Code2, "tech-guides": Monitor, productivity: SlidersHorizontal, "software-reviews": Layers, cybersecurity: ShieldCheck };
+const sidebarTools = ["image-compressor", "json-formatter", "seo-title-analyzer"].map((slug) => {
+  const tool = homepageTools.find((entry) => entry.slug === slug);
+  if (!tool) throw new Error(`Missing blog sidebar tool: ${slug}`);
+  return tool;
+});
+const fallbackColor = "#2563eb";
 
-  let allPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
-  let allCategories: (typeof import("@/lib/db/schema").categories.$inferSelect)[] = [];
-  let totalPosts = 0;
-  let popularPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
-  let allPublishedPosts: (typeof import("@/lib/db/schema").posts.$inferSelect)[] = [];
+function categoryStyle(category: Pick<BlogCategory, "color">) {
+  return { "--tile-color": safeCategoryColor(category.color, fallbackColor) } as React.CSSProperties;
+}
 
-  if (db) {
-    const [countResult] = await db
-      .select({ total: count() })
-      .from(posts)
-      .where(eq(posts.published, true));
-    totalPosts = countResult?.total ?? 0;
+function ArticleMedia({ post, lead = false }: { post: HomepagePost; lead?: boolean }) {
+  const cover = getHomepageCover(post.coverImage);
+  const sizes = lead
+    ? "(max-width: 900px) calc(100vw - 32px), (max-width: 1152px) 58vw, 660px"
+    : "(max-width: 540px) calc(100vw - 32px), (max-width: 1000px) 48vw, 354px";
+  return (
+    <div className={styles.articleMedia} data-article-media={lead ? "lead" : "secondary"}>
+      {cover ? (
+        <Image src={cover} alt="" fill sizes={sizes} loading={lead ? "eager" : "lazy"} fetchPriority={lead ? "high" : undefined} />
+      ) : (
+        <span className={styles.coverFallback} aria-hidden="true"><BookOpen size={46} strokeWidth={1} /></span>
+      )}
+      <span className={styles.imageArrow} aria-hidden="true"><ArrowUpRight size={18} /></span>
+    </div>
+  );
+}
 
-    allPosts = await db
-      .select()
-      .from(posts)
-      .where(eq(posts.published, true))
-      .orderBy(desc(posts.createdAt))
-      .limit(POSTS_PER_PAGE)
-      .offset((currentPage - 1) * POSTS_PER_PAGE);
+function Byline({ post }: { post: HomepagePost }) {
+  const author = post.author || siteConfig.author;
+  return (
+    <div className={styles.byline}>
+      <span className={styles.authorAvatar} aria-hidden="true">{author.trim().charAt(0).toUpperCase()}</span>
+      <span className={styles.author}>{author}</span>
+      <span aria-hidden="true">·</span>
+      <time dateTime={post.createdAt.toISOString()}>{formatHomepageDate(post.createdAt)}</time>
+      {post.readingTime && <><span aria-hidden="true">·</span><span>{post.readingTime}</span></>}
+    </div>
+  );
+}
 
-    popularPosts = await db
-      .select()
-      .from(posts)
-      .where(eq(posts.published, true))
-      .orderBy(desc(posts.views))
-      .limit(5);
+function StoryLabel({ post, categories }: { post: HomepagePost; categories: BlogCategory[] }) {
+  const category = categories.find((entry) => entry.slug === post.categorySlug);
+  return <p className={styles.storyLabel} style={category ? categoryStyle(category) : undefined}>{post.categoryName || "Tech guides"}</p>;
+}
 
-    allPublishedPosts = await db
-      .select({ id: posts.id, categoryId: posts.categoryId })
-      .from(posts)
-      .where(eq(posts.published, true)) as typeof allPublishedPosts;
-
-    allCategories = await db.select().from(categories);
-  }
-
-  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-  const categoryMap = new Map(allCategories.map((c) => [c.id, c]));
-  const isFirstPage = currentPage === 1;
-
-  const collectionLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "ByteVerse Blog",
-    description: "Guides, tutorials, and reviews on AI tools, coding, tech, and productivity.",
-    url: `${siteConfig.url}/blog`,
-    mainEntity: {
-      "@type": "ItemList",
-      numberOfItems: totalPosts,
-      itemListElement: allPosts.slice(0, 10).map((post, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        url: `${siteConfig.url}/blog/${post.slug}`,
-        name: post.title,
-      })),
-    },
-  };
+export default async function BlogPage({ searchParams }: { searchParams: SearchParams }) {
+  const page = parseBlogPage((await searchParams).page);
+  const index = await getBlogIndex(page);
+  const { posts, popular, categories, total, totalPages } = index;
+  const first = page === 1;
+  const lead = first ? posts[0] : undefined;
+  const feed = first ? posts.slice(1) : posts;
+  const activeCategories = categories.filter((category) => category.count > 0);
+  const tiles = activeCategories.slice(0, 6);
+  const pages = blogPageWindow(page, totalPages);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
-      />
-      {/* Page Header */}
-      <section className="hero-bg relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] dark:from-[#0c1631] dark:via-[#162d52] dark:to-[#0c1631] text-white">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <div className="animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-blue-300 text-xs font-semibold mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-              Our Blog
+    <div className={styles.page} data-blog-index data-blog-design="premium">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getBlogStructuredData(siteConfig.url, index)) }} />
+
+      <section className={styles.hero} aria-labelledby="blog-title">
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={`${styles.container} ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.heroBadge}><Sparkles size={13} aria-hidden="true" /><span>The ByteVerse blog{total > 0 ? ` · ${total} articles` : ""}</span></p>
+            <h1 id="blog-title" className={styles.headline}>Guides that fix{" "}<br /><span>real problems.</span></h1>
+            <p className={styles.heroIntro}>Troubleshooting walkthroughs, AI tool explainers and software comparisons, written to get you unstuck and back to work.</p>
+            <div className={styles.heroActions}>
+              <Link href="#articles" prefetch={false} className={styles.primaryCta}>Start reading <span><ArrowRight size={18} aria-hidden="true" /></span></Link>
+              <Link href="/tools" prefetch={false} className={styles.ghostCta}>Try the free tools <ArrowUpRight size={16} aria-hidden="true" /></Link>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
-              Latest Articles
-            </h1>
-            <p className="text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-              Guides, tutorials, and reviews on AI tools, coding, productivity, and cybersecurity.
-              Every article is tested, verified, and written to help developers and tech enthusiasts
-              make better decisions. Browse {totalPosts}+ articles across six expert-curated categories.
-            </p>
+            <ul className={styles.heroStats} aria-label="Blog at a glance">
+              <li><strong>{total}</strong><span>Articles</span></li>
+              <li><strong>{activeCategories.length}</strong><span>Topics</span></li>
+              <li><strong>Free</strong><span>No paywall</span></li>
+            </ul>
           </div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-full h-10 md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,40 C150,100 350,0 600,50 C850,100 1050,10 1200,40 L1200,120 L0,120 Z" className="fill-background" />
-          </svg>
+
+          <section id="trending" aria-labelledby="trending-title" className={styles.trending}>
+            <div className={styles.trendingHead}>
+              <span className={styles.trendingLabel}><TrendingUp size={14} aria-hidden="true" />MOST READ</span>
+            </div>
+            <h2 id="trending-title" className={styles.trendingTitle}>What readers open most.</h2>
+            {popular.length > 0 ? (
+              <ol className={styles.trendingList}>{popular.map((post) => (
+                <li key={post.id}>
+                  <Link href={`/blog/${encodeURIComponent(post.slug)}`} prefetch={false} className={styles.trendingLink}>
+                    <span><strong>{post.title}</strong><small>{formatHomepageDate(post.createdAt)}{post.readingTime ? ` · ${post.readingTime}` : ""}</small></span>
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}</ol>
+            ) : (
+              <p className={styles.trendingEmpty}>Popular guides appear here as readers find them.</p>
+            )}
+            <p className={styles.trendingNote}><ShieldCheck size={14} aria-hidden="true" />Ranked by all-time reads on ByteVerse</p>
+          </section>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        {allPosts.length > 0 ? (
-          <>
-            {/* Featured Hero Post (page 1 only) */}
-            {isFirstPage && (
-              <FeaturedPostCard
-                post={allPosts[0]}
-                category={categoryMap.get(allPosts[0].categoryId ?? 0)}
-                featured
-              />
-            )}
+      {tiles.length > 0 && (
+        <nav className={`${styles.container} ${styles.categoryTiles}`} aria-label="Browse by category">
+          {tiles.map((category) => {
+            const Icon = categoryIcons[category.slug] ?? Hash;
+            return (
+              <Link key={category.id} href={`/category/${encodeURIComponent(category.slug)}`} prefetch={false} className={styles.categoryTile} style={categoryStyle(category)}>
+                <span className={styles.categoryTileIcon}><Icon size={20} aria-hidden="true" /></span>
+                <span className={styles.categoryTileText}><span className={styles.categoryTileName}>{category.name}</span><span className={styles.categoryTileCount}>{category.count} {category.count === 1 ? "article" : "articles"}</span></span>
+                <ArrowUpRight size={14} aria-hidden="true" className={styles.categoryTileArrow} />
+              </Link>
+            );
+          })}
+        </nav>
+      )}
 
-            {/* Main content + Sidebar */}
-            <div className={`${isFirstPage ? 'mt-10 md:mt-12' : ''} grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 lg:gap-10`}>
-              {/* Articles List */}
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h2 className="text-xl font-bold text-foreground">
-                      {isFirstPage ? 'Latest Articles' : `Articles - Page ${currentPage}`}
-                    </h2>
-                    <p className="text-sm text-muted-foreground mt-0.5">{totalPosts} articles published</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4 sm:space-y-5">
-                  {(isFirstPage ? allPosts.slice(1) : allPosts).map((post, i) => (
-                    <PostCard
-                      key={post.id}
-                      post={post}
-                      category={categoryMap.get(post.categoryId ?? 0)}
-                      priority={i < 2}
-                    />
-                  ))}
-                </div>
-
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
-                    {currentPage > 1 ? (
-                      <Link
-                        href={currentPage === 2 ? '/blog' : `/blog?page=${currentPage - 1}`}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
-                      >
-                        <ChevronLeft size={16} /> Previous
-                      </Link>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-muted/50 text-muted-foreground cursor-not-allowed">
-                        <ChevronLeft size={16} /> Previous
-                      </span>
-                    )}
-
-                    <div className="flex items-center gap-1">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <Link
-                          key={page}
-                          href={page === 1 ? '/blog' : `/blog?page=${page}`}
-                          className={`w-10 h-10 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
-                            page === currentPage
-                              ? 'bg-primary text-primary-foreground'
-                              : 'border border-border bg-card hover:bg-muted'
-                          }`}
-                        >
-                          {page}
-                        </Link>
-                      ))}
-                    </div>
-
-                    {currentPage < totalPages ? (
-                      <Link
-                        href={`/blog?page=${currentPage + 1}`}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-card hover:bg-muted transition-colors"
-                      >
-                        Next <ChevronRight size={16} />
-                      </Link>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg border border-border bg-muted/50 text-muted-foreground cursor-not-allowed">
-                        Next <ChevronRight size={16} />
-                      </span>
-                    )}
-                  </nav>
-                )}
-              </div>
-
-              {/* Sidebar */}
-              <aside className="space-y-6">
-                {/* Trending Posts */}
-                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <h3 className="flex items-center gap-2 text-sm font-bold text-foreground mb-4">
-                    <TrendingUp size={16} className="text-primary" />
-                    Popular Now
-                  </h3>
-                  <div className="space-y-3">
-                    {popularPosts.map((post, i) => (
-                        <Link
-                          key={post.id}
-                          href={`/blog/${post.slug}`}
-                          className="group flex items-start gap-3 py-2 border-b border-border last:border-0"
-                        >
-                          <span className="text-lg font-extrabold text-muted-foreground/40 group-hover:text-primary transition-colors w-6 shrink-0 leading-tight">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-                              {post.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              {new Date(post.createdAt).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                              })}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                  </div>
-                </div>
-
-                {/* Categories */}
-                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <h3 className="flex items-center gap-2 text-sm font-bold text-foreground mb-4">
-                    <FolderOpen size={16} className="text-primary" />
-                    Categories
-                  </h3>
-                  <div className="space-y-1.5">
-                    {allCategories.map((cat) => {
-                      const catCount = allPublishedPosts.filter((p) => p.categoryId === cat.id).length;
-                      return (
-                        <Link
-                          key={cat.id}
-                          href={`/category/${cat.slug}`}
-                          className="flex items-center justify-between py-2 px-3 rounded-lg text-sm hover:bg-muted transition-colors group"
-                        >
-                          <span className="flex items-center gap-2">
-                            <span
-                              className="w-2 h-2 rounded-full shrink-0"
-                              style={{ backgroundColor: cat.color }}
-                            />
-                            <span className="text-foreground group-hover:text-primary transition-colors">
-                              {cat.name}
-                            </span>
-                          </span>
-                          <span className="text-xs text-muted-foreground bg-muted rounded-full px-2 py-0.5 font-medium">
-                            {catCount}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Newsletter */}
-                <div className="rounded-xl border border-border bg-card p-4 sm:p-5">
-                  <LazyNewsletter compact />
-                </div>
-              </aside>
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-24 mb-20">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mx-auto mb-5">
-              <span className="text-3xl">📝</span>
-            </div>
-            <h2 className="text-xl font-bold mb-2">No articles yet</h2>
-            <p className="text-sm text-muted-foreground">
-              We&apos;re working on amazing content. Check back soon!
-            </p>
+      {lead && (
+        <section className={`${styles.container} ${styles.featuredSection}`} aria-label="Latest article" id="featured-story">
+          <div className={styles.sectionHeader}>
+            <div><p className={styles.eyebrow}><Sparkles size={13} aria-hidden="true" />JUST PUBLISHED</p><h2 className={styles.sectionTitle}>The latest guide.</h2></div>
           </div>
-        )}
+          <article className={styles.leadStory}>
+            <Link href={`/blog/${encodeURIComponent(lead.slug)}`} prefetch={false} className={styles.leadLink} aria-labelledby={`story-${lead.id}`}>
+              <ArticleMedia post={lead} lead />
+              <div className={styles.leadBody}>
+                <StoryLabel post={lead} categories={categories} />
+                <h3 id={`story-${lead.id}`} className={styles.leadTitle}>{lead.title}</h3>
+                <p className={styles.leadExcerpt}>{lead.excerpt}</p>
+                <Byline post={lead} />
+                <span className={styles.leadCta}>Read the full guide <ArrowRight size={16} aria-hidden="true" /></span>
+              </div>
+            </Link>
+          </article>
+        </section>
+      )}
+
+      <div className={`${styles.container} ${styles.readingLayout}`}>
+        <section id="articles" aria-labelledby="articles-title" className={styles.feed}>
+          <div className={styles.sectionHeader}>
+            <div><p className={styles.eyebrow}><BookOpen size={13} aria-hidden="true" />ALL ARTICLES</p><h2 id="articles-title" className={styles.sectionTitle}>{first ? "Newest first." : `Archive, page ${page}.`}</h2></div>
+            {total > 0 && <p className={styles.sectionMeta}>{totalPages > 1 ? `Page ${page} of ${totalPages}` : `${total} ${total === 1 ? "article" : "articles"}`}</p>}
+          </div>
+          {feed.length > 0 ? (
+            <div className={styles.feedGrid}>{feed.map((post) => (
+              <article key={post.id} className={styles.feedStory}>
+                <Link href={`/blog/${encodeURIComponent(post.slug)}`} prefetch={false} className={styles.feedLink} aria-labelledby={`story-${post.id}`}>
+                  <ArticleMedia post={post} />
+                  <div className={styles.feedBody}>
+                    <StoryLabel post={post} categories={categories} />
+                    <h3 id={`story-${post.id}`} className={styles.feedTitle}>{post.title}</h3>
+                    <p className={styles.feedExcerpt}>{post.excerpt}</p>
+                    <Byline post={post} />
+                  </div>
+                </Link>
+              </article>
+            ))}</div>
+          ) : posts.length === 0 ? (
+            <div className={styles.emptyArticles}>
+              <BookOpen size={32} aria-hidden="true" />
+              <h3>{first ? "New guides are on the way." : "Nothing on this page."}</h3>
+              <p>{first ? "The archive is being prepared. Try the free tools in the meantime." : "This page is past the end of the archive."}</p>
+              <Link href={first ? "/tools" : "/blog"} prefetch={false} className={styles.primaryCta}>{first ? "Explore the tools" : "Back to the latest articles"} <span><ArrowRight size={16} aria-hidden="true" /></span></Link>
+            </div>
+          ) : null}
+          {totalPages > 1 && (
+            <nav className={styles.pagination} aria-label="Pagination">
+              {page > 1 ? (
+                <Link href={blogPath(page - 1)} prefetch={false} className={styles.pageLink} rel="prev"><ArrowLeft size={16} aria-hidden="true" /><span>Previous</span></Link>
+              ) : (
+                <span className={styles.pageDisabled} aria-disabled="true"><ArrowLeft size={16} aria-hidden="true" /><span>Previous</span></span>
+              )}
+              {pages.map((entry, position) => entry === "gap"
+                ? <span key={`gap-${position}`} className={styles.pageEllipsis} aria-hidden="true">…</span>
+                : entry === page
+                  ? <span key={entry} className={styles.pageCurrent} aria-current="page">{entry}</span>
+                  : <Link key={entry} href={blogPath(entry)} prefetch={false} className={styles.pageLink} aria-label={`Page ${entry}`}>{entry}</Link>)}
+              {page < totalPages ? (
+                <Link href={blogPath(page + 1)} prefetch={false} className={styles.pageLink} rel="next"><span>Next</span><ArrowRight size={16} aria-hidden="true" /></Link>
+              ) : (
+                <span className={styles.pageDisabled} aria-disabled="true"><span>Next</span><ArrowRight size={16} aria-hidden="true" /></span>
+              )}
+            </nav>
+          )}
+        </section>
+
+        <aside className={styles.sidebar} aria-label="Explore ByteVerse">
+          <section className={styles.toolsCard} aria-labelledby="blog-tools-title">
+            <p className={styles.eyebrow}><Wrench size={13} aria-hidden="true" />FREE TOOLS</p>
+            <h2 id="blog-tools-title" className={styles.sidebarTitle}>Fix it faster with a tool.</h2>
+            {sidebarTools.map((tool) => (
+              <Link key={tool.slug} href={tool.href} prefetch={false} data-blog-tool={tool.slug} className={styles.toolLink}>
+                <span className={styles.toolIcon}><tool.icon size={19} aria-hidden="true" /></span>
+                <span><strong>{tool.name}</strong><small>{tool.task}</small></span>
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            ))}
+            <Link href="/tools" prefetch={false} className={styles.toolsAll}>Browse all {toolCatalog.length} tools <ArrowRight size={16} aria-hidden="true" /></Link>
+          </section>
+
+          <section className={styles.newsletterCard} aria-labelledby="blog-newsletter-title" id="newsletter">
+            <span className={styles.mailIcon}><Mail size={22} aria-hidden="true" /></span>
+            <p className={styles.eyebrowLight}>STAY IN THE LOOP</p>
+            <h2 id="blog-newsletter-title" className={styles.newsletterTitle}>New guides, by email.</h2>
+            <p className={styles.newsletterIntro}>Get ByteVerse articles and tool updates when they publish.</p>
+            <HomepageNewsletter />
+          </section>
+
+          {categories.length > 0 && (
+            <section className={styles.categoryDirectory} aria-labelledby="blog-categories-title">
+              <p className={styles.eyebrow}><Layers size={13} aria-hidden="true" />CATEGORIES</p>
+              <h2 id="blog-categories-title" className={styles.sidebarTitle}>Explore by topic</h2>
+              <nav aria-label="Category directory">{categories.map((category) => {
+                const Icon = categoryIcons[category.slug] ?? Hash;
+                return (
+                  <Link key={category.id} href={`/category/${encodeURIComponent(category.slug)}`} prefetch={false} style={categoryStyle(category)}>
+                    <span><Icon size={16} aria-hidden="true" />{category.name}</span>
+                    <span className={styles.categoryCount}>{category.count}</span>
+                  </Link>
+                );
+              })}</nav>
+            </section>
+          )}
+        </aside>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,376 @@
+{
+  "checkedAt": "2026-10-24T03:46:52.399Z",
+  "query": "ollama models folder windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://ai-ollama.github.io/ollama-models-location.html",
+      "title": "Where does Ollama store models on Windows?",
+      "snippet": ""
+    },
+    {
+      "url": "https://knightli.com/en/2026/04/06/ollama-model-storage-path-and-migration/",
+      "title": "Where Does Ollama Store Models? Paths for Windows, Mac, and Linux",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.glukhov.org/llm-hosting/ollama/move-ollama-models/",
+      "title": "Move Ollama Models to different location - Glukhov",
+      "snippet": ""
+    },
+    {
+      "url": "https://github.com/ollama/ollama/issues/2551",
+      "title": "Can we change where the models are stored in windows",
+      "snippet": ""
+    },
+    {
+      "url": "https://docs.ollama.com/windows?pubDate=20260703",
+      "title": "Windows - Ollama",
+      "snippet": ""
+    },
+    {
+      "url": "https://llmconfigurator.com/en/guides/move-ollama-new-computer",
+      "title": "Move Ollama Models to a New Computer (No Re-Download)",
+      "snippet": ""
+    },
+    {
+      "url": "https://runaihome.com/blog/ollama-change-model-storage-location-free-c-drive-2026/",
+      "title": "Ollama Filling Your C: Drive? Move Model Storage With OLLAMA_MODELS ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://tensorarchive.ai/wiki/ollama-model-location/",
+      "title": "Where are Ollama models stored? | Tensor Archive AI",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.igoroseledko.com/relocating-ollama-models-folder-in-windows/",
+      "title": "Relocating Ollama Models Folder in Windows - Igor Oseledko",
+      "snippet": ""
+    },
+    {
+      "url": "https://llmconfigurator.com/en/guides/troubleshooting/move-ollama-models-another-drive-windows",
+      "title": "Move your models off C: — Ollama and LM Studio on Windows",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:55.641Z",
+  "query": "ollama_models environment variable not working",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://github.com/ollama/ollama/issues/4454",
+      "title": "OLLAMA_MODELS environment variable is not respected #4454",
+      "snippet": ""
+    },
+    {
+      "url": "https://mljourney.com/how-to-configure-ollama-environment-variables-complete-guide/",
+      "title": "How to Configure Ollama Environment Variables (Complete Guide)",
+      "snippet": ""
+    },
+    {
+      "url": "https://markaicode.com/ollama-environment-variables-configuration-guide/",
+      "title": "Ollama Environment Variables: Complete Configuration Reference Guide",
+      "snippet": ""
+    },
+    {
+      "url": "https://modelpiper.com/blog/ollama-environment-variables",
+      "title": "Ollama Environment Variables: The Complete Reference (2026)",
+      "snippet": ""
+    },
+    {
+      "url": "https://github.com/ollama/ollama/issues/9889",
+      "title": "OLLAMA_MODELS directive not respected (Windows) #9889",
+      "snippet": ""
+    },
+    {
+      "url": "https://localaimaster.com/blog/ollama-models-path-not-working",
+      "title": "OLLAMA_MODELS Not Working? Fix It by Platform",
+      "snippet": ""
+    },
+    {
+      "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-environment-variables-systemd-linux",
+      "title": "Your Ollama environment variables are ignored on Linux",
+      "snippet": ""
+    },
+    {
+      "url": "https://docs.ollama.com/windows?pubDate=20260703",
+      "title": "Windows - Ollama",
+      "snippet": ""
+    },
+    {
+      "url": "https://localaimaster.com/blog/ollama-systemd-service-fix",
+      "title": "Ollama systemd Service: Env Vars That Don't Work",
+      "snippet": ""
+    },
+    {
+      "url": "https://insiderllm.com/guides/ollama-troubleshooting-guide/",
+      "title": "Ollama Troubleshooting Guide: Every Common Problem and Fix",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:58.320Z",
+  "query": "move ollama models to another drive windows",
+  "status": 202,
+  "results": [],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:47:01.006Z",
+  "query": "cursor agent stuck on planning next moves",
+  "status": 202,
+  "results": [],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:47:03.685Z",
+  "query": "gemini cli install windows",
+  "status": 202,
+  "results": [],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:47:06.373Z",
+  "query": "codex cli windows install",
+  "status": 202,
+  "results": [],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:48:19.445Z",
+  "query": "cursor agent stuck on planning next moves",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://forum.cursor.com/t/cursor-agent-stuck-in-planning-next-moves/150064",
+      "title": "Cursor Agent stuck in 'Planning Next Moves'",
+      "snippet": ""
+    },
+    {
+      "url": "https://forum.cursor.com/t/cursor-agent-stuck-on-planning-next-move/167632",
+      "title": "Cursor Agent stuck on \"Planning next move\"",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.reddit.com/r/cursor/comments/1pisssv/stuck_at_planning_next_moves/",
+      "title": "Stuck at planning next moves : r/cursor - Reddit",
+      "snippet": ""
+    },
+    {
+      "url": "https://dredyson.com/fix-cursor-ai-stuck-in-planning-next-moves-a-complete-beginners-step-by-step-troubleshooting-guide/",
+      "title": "Fix Cursor AI Stuck in 'Planning Next Moves': A Complete Beginner's ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://dredyson.com/fix-planning-next-moves-stuck-error-in-cursor-ide-a-beginners-step-by-step-guide-to-resolving-infinite-agent-hangs/",
+      "title": "Fix 'Planning Next Moves' Stuck Error in Cursor IDE: A Beginner's Step ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://code-pass.dev/blog/cursor-planning-next-moves-stuck",
+      "title": "Cursor 一直在 planning next moves 怎么办 · CodePass",
+      "snippet": ""
+    },
+    {
+      "url": "https://techsifted.com/troubleshooting/cursor-ai-not-working/",
+      "title": "Cursor AI Not Working? 11 Fixes to Try Right Now | TechSifted",
+      "snippet": ""
+    },
+    {
+      "url": "https://blog.voiceclouds.cn:8444/tech/cursor-stuck-planning-next-move/",
+      "title": "Cursor一直卡在 planning next move - 生生不息",
+      "snippet": ""
+    },
+    {
+      "url": "https://vibecodes.net/guides/beginner/when-your-agent-gets-stuck",
+      "title": "When Your Agent Gets Stuck: A Troubleshooting Order of Operations",
+      "snippet": ""
+    },
+    {
+      "url": "https://x.com/vikingmute/status/1999025373183615425",
+      "title": "Viking on X: \"昨天到今天用 Cursor 发现一个问题，一直卡在 planning next move，会花非常长的时间，非常 ...",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:48:22.700Z",
+  "query": "codex cli windows install",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://itecsonline.com/post/how-to-install-codex-cli-on-windows-2026-guide",
+      "title": "How To Install Codex CLI on Windows (2026 Guide) | ITECS",
+      "snippet": ""
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "title": "Codex CLI | ChatGPT Learn",
+      "snippet": ""
+    },
+    {
+      "url": "https://codexinsider.com/guides/install-codex-windows/",
+      "title": "Install Codex on Windows - Codex Insider",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.codeagentswarm.com/en/guides/codex-cli-on-windows",
+      "title": "How to Run Codex CLI on Windows: Native Install or WSL",
+      "snippet": ""
+    },
+    {
+      "url": "https://github.com/openai/codex",
+      "title": "GitHub - openai/codex: Lightweight coding agent that runs in your ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://openaicli.com/docs",
+      "title": "Documentation | Codex CLI",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.analyticsvidhya.com/blog/2026/08/how-to-install-codex-cli/",
+      "title": "How to Install Codex CLI: A Step-by-Step Setup Guide",
+      "snippet": ""
+    },
+    {
+      "url": "https://blakecrosley.com/blog/install-update-codex-cli",
+      "title": "Install and Update Codex CLI: Mac, Linux, Windows",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.lineserve.net/guides/windows-installation-guide-for-codex-cli",
+      "title": "Windows installation guide for Codex CLI — Lineserve Guides",
+      "snippet": ""
+    },
+    {
+      "url": "https://github.com/microsoft/Codex-CLI/blob/main/Installation.md",
+      "title": "Codex-CLI/Installation.md at main · microsoft/Codex-CLI",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:49:07.022Z",
+  "query": "gemini cli install windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://geminicli.com/docs/get-started/installation/",
+      "title": "Gemini CLI installation, execution, and releases",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.thewindowsclub.com/how-to-install-and-use-gemini-cli-on-windows",
+      "title": "How to install and use Gemini CLI on Windows 11 - The Windows Club",
+      "snippet": ""
+    },
+    {
+      "url": "https://geminicli.com/docs/get-started/",
+      "title": "Get started with Gemini CLI",
+      "snippet": ""
+    },
+    {
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "title": "GitHub - google-gemini/gemini-cli: An open-source AI agent that brings ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://docs.cloud.google.com/gemini/docs/codeassist/gemini-cli",
+      "title": "Gemini CLI | Gemini for Google Cloud | Google Cloud Documentation",
+      "snippet": ""
+    },
+    {
+      "url": "https://windowsforum.com/news/install-gemini-cli-on-windows-11-june-2026-node-setup-auth-options-exit-plan.424004/",
+      "title": "Install Gemini CLI on Windows 11 (June 2026): Node, Auth, Exit",
+      "snippet": ""
+    },
+    {
+      "url": "https://computingforgeeks.com/install-configure-gemini-cli/",
+      "title": "Install Gemini CLI: AI Agent in Your Terminal | ComputingForGeeks",
+      "snippet": ""
+    },
+    {
+      "url": "https://mahbubchula.github.io/Gemini-CLI-Tutorial/",
+      "title": "Gemini CLI Tutorial (Windows) — Install to Power User Workflow",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.c-sharpcorner.com/article/how-to-install-google-gemini-cli-on-windows",
+      "title": "How to Install Google Gemini CLI on Windows - C# Corner",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.how2shout.com/how-to/install-gemini-cli-windows-11.html",
+      "title": "How to Install Google Gemini CLI on Windows 11 - H2S Media",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:49:10.323Z",
+  "query": "move ollama models to another drive windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.glukhov.org/llm-hosting/ollama/move-ollama-models/",
+      "title": "Move Ollama Models to different location - Glukhov",
+      "snippet": ""
+    },
+    {
+      "url": "https://runaihome.com/blog/ollama-change-model-storage-location-free-c-drive-2026/",
+      "title": "Ollama Filling Your C: Drive? Move Model Storage With OLLAMA_MODELS ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://llmconfigurator.com/en/guides/troubleshooting/move-ollama-models-another-drive-windows",
+      "title": "Move your models off C: — Ollama and LM Studio on Windows",
+      "snippet": ""
+    },
+    {
+      "url": "https://ai-ollama.github.io/ollama-models-location.html",
+      "title": "Where Does Ollama Store Models on Windows? Location & Move Guide",
+      "snippet": ""
+    },
+    {
+      "url": "https://llmconfigurator.com/en/guides/move-ollama-new-computer",
+      "title": "Move Ollama Models to a New Computer (No Re-Download)",
+      "snippet": ""
+    },
+    {
+      "url": "https://www.igoroseledko.com/relocating-ollama-models-folder-in-windows/",
+      "title": "Relocating Ollama Models Folder in Windows - Igor Oseledko",
+      "snippet": ""
+    },
+    {
+      "url": "https://ithy.com/article/ollama-model-transfer-pk3qtzc6",
+      "title": "Move Ollama models to another drive or computer without losing ...",
+      "snippet": ""
+    },
+    {
+      "url": "https://zenn.dev/toki_mwc/articles/9397fbcc5fc3e8?locale=en",
+      "title": "How to Move Ollama from C Drive to D Drive on Windows - Zenn",
+      "snippet": ""
+    },
+    {
+      "url": "https://blog.esc.sh/wiki/change-ollama-storage-location-in-windows-11/",
+      "title": "Change Ollama storage location in Windows 11 - blog.esc.sh",
+      "snippet": ""
+    },
+    {
+      "url": "https://knightli.com/en/2026/04/06/ollama-model-storage-path-and-migration/",
+      "title": "Where Does Ollama Store Models? Paths for Windows, Mac, and Linux",
+      "snippet": ""
+    }
+  ],
+  "limits": "DuckDuckGo HTML first page, us-en request parameter; not Google rank data."
+}

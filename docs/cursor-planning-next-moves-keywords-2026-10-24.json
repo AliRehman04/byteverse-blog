@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-24",
+  "website": "https://www.byteverse.fyi",
+  "slug": "cursor-agent-stuck-planning-next-moves-2026",
+  "status": "validated locally; publication recorded in publication section once applied",
+  "targeting": {
+    "title": "Cursor Agent Stuck on \"Planning Next Moves\"? 8 Checks in Order",
+    "metaTitle": "Cursor Agent Stuck on Planning Next Moves? 8 Checks",
+    "metaDescription": "Cursor Agent frozen on \"Planning next moves\" or \"Generating\"? Eight ordered checks from Cursor staff replies and docs: network path, indexing, MCP, extensions.",
+    "excerpt": "Cursor's Agent sitting on \"Planning next moves\" with no error is usually a dropped streaming connection, unfinished indexing, a broken MCP server, an extension or a build regression. Work through eight checks in the order that resolved the public bug threads, then report with the right data.",
+    "primary": "cursor agent stuck planning next moves",
+    "secondary": ["cursor agent stuck", "cursor stuck on planning next moves", "cursor agent stuck on generating", "cursor agent stuck reconnecting", "cursor agent hangs", "cursor ai not working"],
+    "semantic": ["HTTP Compatibility Mode", "Run Diagnostics", "Request ID", "indexing", "MCP server error", "cursor --disable-extensions", "Connection stalled", "rollback 2.3.41"],
+    "category": "Coding",
+    "categoryId": 4,
+    "author": "Ali Rehman",
+    "readingTime": "12 min read",
+    "keywords": "cursor agent stuck, planning next moves, cursor agent stuck planning next moves, cursor agent stuck generating, cursor agent stuck reconnecting, cursor ai not working, cursor network diagnostics, HTTP compatibility mode, cursor MCP error, cursor request id",
+    "summary": "Built-in network diagnostics can pass while a VPN or proxy still cuts the long agent stream; the hotspot test proves it|Indexing, MCP servers in an error state, extensions and specific 2.4.x builds were each confirmed causes in Cursor's own forum|Report with Request ID, exported logs and the exact version; privacy mode is per request",
+    "intent": "troubleshooting / informational",
+    "language": "en",
+    "geography": "request parameters en/US only; not a measured market"
+  },
+  "metrics": {
+    "userReport": "Site owner reports no meaningful search traffic yet (2026-10-24).",
+    "gscAuthenticated": false,
+    "analyticsReviewed": "Stored post view counters only: recent troubleshooting posts lead early views (gemini-not-showing 24, ollama-gpu 12, copilot-not-working 12) versus Excel/CSV posts (3-6).",
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No Search Console, volume, difficulty or ranking data was available. Topic choice rests on autocomplete wording, first-page observations and the site's own view counters."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-24",
+    "totalPosts": 172,
+    "publishedPosts": 170,
+    "editorialChecksumExcludingViews": "2a04cdf12b2b34c9e1015763a862f1be",
+    "overlapTerms": ["planning next moves", "HTTP Compatibility", "Run Diagnostics", "cursor agent"],
+    "overlapResult": "0 posts matched (read-only regex over title and content).",
+    "relatedExisting": ["how-to-use-cursor-ai-2026-guide", "best-ai-coding-assistants-2026-copilot-cursor-windsurf", "github-copilot-not-working-vscode-2026", "claude-code-not-recognized-windows-2026"],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" },
+      { "slug": "webp-larger-than-jpg", "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e" }
+    ],
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-24",
+    "source": "Google public autocomplete (client=firefox, hl=en, gl=us) via scripts/research-blog-2026-10-24.mjs --keywords; raw output docs/content-research/2026-10-24-autocomplete.json",
+    "seedsChecked": 30,
+    "nonemptySeeds": 24,
+    "observations": "see docs/content-research/2026-10-24-autocomplete.json (observations array, 30 entries)",
+    "selectedEvidence": {
+      "cursor agent stuck": ["cursor agent stuck on planning next moves", "cursor agent stuck reconnecting", "cursor agent stuck on generating", "cursor agent stuck on terminal", "cursor agent stuck in loop", "cursor agent stuck in warming up", "cursor agent hangs", "cursor agent frozen"],
+      "cursor ai not working": ["cursor ai not working today", "cursor ai not working after update", "cursor ai stopped working", "cursor ai not opening"]
+    },
+    "limits": "Wording evidence only; not volume, difficulty, trend or traffic data."
+  },
+  "serps": {
+    "google": "Blocked by CAPTCHA on 2026-10-24 (scripts/research-blog-2026-10-24.mjs --serps); not bypassed.",
+    "bing": "Returned generic entity results for all six queries; not usable (docs/content-research/2026-10-24-bing.txt).",
+    "duckduckgo": "First page observed for all six queries after rate-limit retries (docs/content-research/2026-10-24-ddg.txt).",
+    "selectedQuery": "cursor agent stuck on planning next moves",
+    "selectedFirstPage": ["forum.cursor.com (2 bug threads)", "reddit.com r/cursor", "dredyson.com (2 generic guides)", "code-pass.dev (Chinese)", "techsifted.com (generic 'not working' list)", "blog.voiceclouds.cn", "vibecodes.net", "x.com"],
+    "gap": "First page is forum threads plus generic listicles. None orders checks by what resolved the staff-handled threads, explains why diagnostics pass while the stream is cut, or covers indexing, MCP error state, the 2.4.x regression and the status-page move together with reporting guidance.",
+    "limits": "DuckDuckGo first page with us-en parameter; not Google rank data."
+  },
+  "candidateComparison": {
+    "selected": { "topic": "Cursor Agent stuck on Planning next moves", "why": "Strongest autocomplete family (10 stuck variants), forum/listicle-only first page, matches the troubleshooting series that earns the site's best early views, and fully sourceable from Cursor staff replies and docs." },
+    "alternatives": [
+      { "topic": "Move Ollama models folder on Windows (OLLAMA_MODELS)", "evidence": "10 autocomplete variants", "firstPage": "10 small blogs + GitHub issues + docs.ollama.com", "verdict": "Good second post; crowded with near-identical guides." },
+      { "topic": "Gemini CLI install on Windows", "evidence": "10 variants", "firstPage": "official geminicli.com docs + TheWindowsClub + windowsforum", "verdict": "How-to dominated by official docs; weaker fit." },
+      { "topic": "Codex CLI on Windows", "evidence": "10 variants", "firstPage": "several dedicated guides + official docs", "verdict": "Covered; support status changes often." },
+      { "topic": "Claude Code rate limit reached/reset", "evidence": "10 variants", "firstPage": "not observed (rate limited)", "verdict": "High interest but policy changes frequently; defer." }
+    ]
+  },
+  "internalLinkPlan": ["/tools/json-formatter", "/blog/how-to-use-cursor-ai-2026-guide", "/blog/github-copilot-not-working-vscode-2026", "/blog/claude-code-not-recognized-windows-2026"],
+  "inboundLinkPlan": [
+    { "post": "how-to-use-cursor-ai-2026-guide", "suggestion": "Add a troubleshooting sentence linking to the new article (requires separate approval; not applied)." },
+    { "post": "github-copilot-not-working-vscode-2026", "suggestion": "Mention the Cursor sibling guide in the closing section (not applied)." }
+  ],
+  "primarySources": [
+    { "url": "https://forum.cursor.com/t/cursor-agent-stuck-on-planning-next-move/167632", "note": "Aug 2026; staff reply on one-shot diagnostics, HTTP compatibility mode, api2.cursor.sh exemption; stale CyberGhost IKEv2 profile resolution" },
+    { "url": "https://forum.cursor.com/t/cursor-agent-stuck-in-planning-next-moves/150064", "note": "Jan 2026; staff workaround list: rollback 2.3.41, diagnostics/HTTP1.1, indexing, --disable-extensions" },
+    { "url": "https://forum.cursor.com/t/agent-hanging-at-planning-next-moves-due-to-indexing/148696", "note": "Jan 2026; staff confirmation that indexing blocked the agent" },
+    { "url": "https://forum.cursor.com/t/constantly-stuck-in-planning-next-moves-or-generating/149407", "note": "Jan-Feb 2026; rollback confirmations, 2.4.22 reports, Connection stalled, token usage report, MCP error-state report" },
+    { "url": "https://cursor.com/help/troubleshooting/network", "note": "Run Diagnostics, HTTP Compatibility Mode HTTP/1.1, domains, VPN DNS inheritance, full restart" },
+    { "url": "https://cursor.com/help/troubleshooting/agent-issues", "note": "Agent Execution Timed Out, Export Logs, Copy Request ID, new chat guidance" },
+    { "url": "https://cursor.com/help/troubleshooting/reporting-bugs", "note": "Request ID, privacy mode per request, Share Data procedure" },
+    { "url": "https://cursor.com/help/troubleshooting/performance", "note": "cursor --disable-extensions, .cursorignore" },
+    { "url": "https://cursor.com/help/customization/mcp", "note": "MCP Logs, toggle servers, env variables" },
+    { "url": "https://cursor.com/docs/enterprise/network-configuration", "note": "IT allowlist reference" },
+    { "url": "https://cursor.com/download", "note": "specific build download" },
+    { "url": "https://status.cursor.com/", "note": "Oct 13/19/21 2026 incidents; move to status.x.ai from Oct 26 2026" },
+    { "url": "https://status.x.ai/", "note": "new status location announced by Cursor" }
+  ],
+  "faq": [
+    "Why does the agent hang when Run Diagnostics says everything passed?",
+    "Does Cursor use my credits while it is stuck on \"Planning next moves\"?",
+    "Should I roll back to an older Cursor version?",
+    "Is \"Planning next moves\" slower with some models?",
+    "Why does it only hang when I work over SSH or on a Raspberry Pi?"
+  ],
+  "images": {
+    "cover": "public/blog/cursor-planning-next-moves/cover.png -> https://www.byteverse.fyi/blog/cursor-planning-next-moves/cover.png",
+    "type": "Generated typographic diagram (1200x675 PNG) listing the eight checks; not a screenshot of Cursor.",
+    "bodyImages": "none"
+  },
+  "validation": {
+    "proseWords": 2444,
+    "contentSha256": "fdcab512f57ffb02be262af1b241538c87fc8a729b46552d65f25e4d3aa7b978",
+    "script": "scripts/test-cursor-planning-post.mjs (--offline renderer/FAQ parity, --links HTTP)",
+    "limits": "Fixes are sourced from staff replies, docs and user reports; none were reproduced on a machine with the hang. Menu names can change between Cursor releases."
+  },
+  "publication": null
+}

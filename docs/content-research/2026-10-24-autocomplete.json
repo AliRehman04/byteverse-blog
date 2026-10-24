@@ -1,0 +1,409 @@
+{
+  "checkedAt": "2026-10-24T03:44:27.165Z",
+  "source": "Google public autocomplete",
+  "requestedContext": "English / gl=us; not measured US demand",
+  "observations": [
+    {
+      "seed": "ollama change model location windows",
+      "suggestions": [
+        "ollama windows change model location",
+        "ollama change model folder windows",
+        "ollama change model path windows",
+        "location changer windows",
+        "change location to apple watch"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "ollama models folder windows",
+      "suggestions": [
+        "ollama models folder windows",
+        "ollama models location windows",
+        "ollama models directory windows",
+        "ollama change model folder windows",
+        "ollama change models directory windows",
+        "ollama model download location windows",
+        "ollama default model location windows",
+        "ollama set model directory windows",
+        "ollama model file location windows",
+        "ollama windows change model location"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "ollama move models to another drive",
+      "suggestions": [
+        "ollama move models to another drive",
+        "move ollama models to another drive ubuntu",
+        "move ollama models to another drive windows",
+        "move ollama models to another drive linux",
+        "move ollama models to another drive mac",
+        "move ollama models to external drive",
+        "how to move visual studio to another drive",
+        "move vs moves",
+        "move vs migrate"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "ollama_models environment variable",
+      "suggestions": [
+        "ollama_models environment variable",
+        "ollama_models environment variable not working",
+        "ollama_models environment variable windows",
+        "ollama_models environment variable linux",
+        "ollama_models env variable",
+        "ollama model path environment variable"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "cursor ai not working",
+      "suggestions": [
+        "cursor ai not working",
+        "cursor ai not working today",
+        "cursor ai not working in nigeria",
+        "cursor ai not working on laptop",
+        "cursor ai not working properly",
+        "cursor ai not working reddit",
+        "cursor ai not working after update",
+        "cursor ai not working on mac",
+        "cursor ai stopped working",
+        "cursor ai not opening"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "cursor agent stuck",
+      "suggestions": [
+        "cursor agent stuck on planning next moves",
+        "cursor agent stuck reconnecting",
+        "cursor agent stuck",
+        "cursor agent stuck on generating",
+        "cursor agent stuck on terminal",
+        "cursor agent stuck in loop",
+        "cursor agent stuck in warming up",
+        "cursor agent hangs",
+        "cursor agent frozen",
+        "cursor agent getting stuck"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "claude code rate limit",
+      "suggestions": [
+        "claude code rate limits",
+        "claude code rate limit reached",
+        "claude code rate limit pro",
+        "claude code rate limit options",
+        "claude code rate limit reddit",
+        "claude code rate limit reset",
+        "claude code rate limit error",
+        "claude code rate limit exceeded",
+        "claude code rate limit changes",
+        "claude code rate limit check"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "codex cli windows",
+      "suggestions": [
+        "codex cli windows",
+        "codex cli windows install",
+        "codex cli windows download",
+        "codex cli windows update",
+        "codex cli windows powershell",
+        "codex cli windows command",
+        "codex cli windows 11",
+        "codex cli windows install command",
+        "codex cli windows uninstall",
+        "codex cli windows 10"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "gemini cli not working",
+      "suggestions": [
+        "gemini cli not working",
+        "gemini cli not working anymore",
+        "gemini cli not working reddit",
+        "gemini cli not working today",
+        "gemini cli not working properly",
+        "gemini cli not working in vs code",
+        "gemini cli not responding",
+        "gemini cli not opening",
+        "gemini cli not running",
+        "gemini cli not opening browser"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "gemini cli install windows",
+      "suggestions": [
+        "gemini cli install windows",
+        "gemini cli install windows 11",
+        "gemini cli install windows 10",
+        "gemini cli install windows powershell",
+        "gemini cli install windows command",
+        "gemini cli install windows wsl",
+        "gemini cli install windows cmd",
+        "gemini cli install windows download",
+        "gemini cli setup windows",
+        "google gemini cli install windows"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "heic not opening windows 11",
+      "suggestions": [
+        "heic not opening windows 11",
+        "heic not working windows 11",
+        "heic can't open windows 10"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "windows 11 photos app not opening heic",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "excel pdf to excel formatting wrong",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "pdf table to excel columns messed up",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "convert bank statement pdf to excel",
+      "suggestions": [
+        "convert bank statement pdf to excel",
+        "convert bank statement pdf to excel free",
+        "convert bank statement pdf to excel free online",
+        "convert bank statement pdf to excel for tally prime import",
+        "convert bank statement pdf to excel accurately",
+        "convert bank statement pdf to excel ilovepdf",
+        "convert bank statement pdf to excel razor",
+        "convert bank statement pdf to excel online",
+        "convert bank statement pdf to excel format",
+        "convert bank statement pdf to excel csv"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "excel power query pdf not detecting table",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "compress image to 100kb",
+      "suggestions": [
+        "compress image to 100kb",
+        "compress image to 100kb online",
+        "compress image to 100kb jpg",
+        "compress image to 100kb to 200kb",
+        "compress image to 100kb pdf",
+        "compress image to 100kb free",
+        "compress image to 100kb free online",
+        "compress image to 100kb i love pdf",
+        "compress image to 100kb jpg format",
+        "compress image to 100kb without losing quality"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "reduce image size without losing quality",
+      "suggestions": [
+        "reduce image size without losing quality",
+        "reduce image size without losing quality free",
+        "reduce image size without losing quality online",
+        "reduce image size without losing quality photoshop",
+        "reduce image size without losing quality online free",
+        "reduce image size without losing quality in kb",
+        "reduce image size without losing quality pi7",
+        "reduce image size without losing quality multiple photos",
+        "how do i reduce the size of a jpeg without losing quality",
+        "reduce image size without quality"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "image too large to upload",
+      "suggestions": [
+        "image too large to upload",
+        "image too big to upload",
+        "photo too large to upload iphone",
+        "photo too large to upload android",
+        "image too large to load",
+        "picture too big to upload",
+        "photo file too large to upload",
+        "my image is too large to upload",
+        "photo size too big to upload",
+        "what to do if image is too large to upload"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "jpg to webp quality loss",
+      "suggestions": [
+        "jpg to webp no quality loss",
+        "webp to jpg without losing quality",
+        "webp to jpg lossless"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "unexpected token in json at position 0",
+      "suggestions": [
+        "unexpected token in json at position 0",
+        "unexpected token in json at position 0 star citizen",
+        "unexpected token u in json at position 0",
+        "syntaxerror unexpected token in json at position 0",
+        "unexpected token t in json at position 0",
+        "unexpected token e in json at position 0",
+        "unexpected token c in json at position 0",
+        "error unexpected token in json at position 0",
+        "unexpected token p in json at position 0",
+        "unexpected token h in json at position 0"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "json parse error unexpected end of input",
+      "suggestions": [
+        "json parse error unexpected end of input",
+        "json parse error unexpected end of input in field name",
+        "json parse error unexpected end of input within between object entries",
+        "json parse error unexpected end of input in character escape sequence",
+        "syntaxerror json parse error unexpected end of input",
+        "json parse error unexpected end-of-input expected close marker for object",
+        "json parsing error unexpected end of json input powerapps",
+        "syntax error unexpected end of json input",
+        "invalid sarif json syntax error unexpected end of json input",
+        "json parse error unexpected character"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "json to excel nested",
+      "suggestions": [
+        "json to excel nested",
+        "nested json to excel converter",
+        "nested json to excel python",
+        "nested json to excel online",
+        "import nested json to excel",
+        "excel nested json to table",
+        "can we convert json to excel"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "excel json import nested array",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "n8n webhook not receiving data",
+      "suggestions": [],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "n8n schedule trigger not working",
+      "suggestions": [
+        "n8n schedule trigger not working",
+        "n8n schedule trigger not running",
+        "n8n trigger not working",
+        "warning for not coming to work"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "make.com vs n8n",
+      "suggestions": [
+        "make.com vs n8n",
+        "make.com vs n8n vs zapier",
+        "make com vs n8n reddit",
+        "make com vs n8n pricing",
+        "make com vs n8n which is better",
+        "make com vs n8n io",
+        "make vs n8n which is easier",
+        "make vs n8n 2026",
+        "make vs n8n cost",
+        "make vs n8n ai agent"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "chrome memory saver disable",
+      "suggestions": [
+        "chrome memory saver disable",
+        "chrome memory saver turn off",
+        "disable chrome memory saver android",
+        "disable.memory saver chrome mobile",
+        "reduce chrome memory usage",
+        "chrome use less memory"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "edge copilot sidebar remove",
+      "suggestions": [
+        "edge copilot sidebar disable",
+        "how to remove spline",
+        "edge remove site permissions",
+        "edge auto hide address bar"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    },
+    {
+      "seed": "chatgpt image generation not working",
+      "suggestions": [
+        "chatgpt image generation not working",
+        "chatgpt image generation not working today",
+        "chatgpt image generation not working reddit",
+        "chatgpt image creation not working",
+        "chatgpt picture generator not working",
+        "chatgpt image generator isn t working",
+        "chatgpt image generator not loading",
+        "chatgpt image generator does not work",
+        "why is my chatgpt image generator not working",
+        "what is image generation"
+      ],
+      "monthlyVolume": null,
+      "keywordDifficulty": null
+    }
+  ],
+  "limits": "Wording evidence only, not volumes, difficulty, trends, rank or traffic predictions."
+}

@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-24T03:45:15.632Z",
+  "query": "ollama models folder windows",
+  "navigationError": "TimeoutError",
+  "blocked": true,
+  "url": "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dollama%2Bmodels%2Bfolder%2Bwindows%26hl%3Den%26gl%3Dus%26pws%3D0%26sei%3DvCncauaoBrP21e8P1uXYuAs&hl=en&q=EgRnv3fZGL3T8NYGIjD6pkmOsDutMJgqF5IarDwDEqKdfVGy44rVS-0OvlRaS-lIjBYrXlxnyJ1rvMsqCTgyAVJaAUNgjvepzvu1wZhm",
+  "paa": [],
+  "results": [],
+  "limits": "Rendered first-page observation in a fresh desktop browser, not a neutral geo-located rank tracker. No CAPTCHA bypass."
+}

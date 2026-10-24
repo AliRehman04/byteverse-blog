@@ -1,0 +1,294 @@
+{
+  "checkedAt": "2026-10-24T03:46:14.364Z",
+  "query": "ollama models folder windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=6e46fa4b7b1a16f8c118109f9ad69e8e59eec8512729b3fb6780cf88d26850fcJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tLw&amp;ntb=1",
+      "title": "Ollama &#183; Run AI models locally and in the cloud"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=59d9c511ae2cdd268279aa90fe30f180778519938787d3bd8e37a9462672a100JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tL2Rvd25sb2FkL3dpbmRvd3M&amp;ntb=1",
+      "title": "Download Ollama on Windows"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=c5e07247398d652547e431772c3b19af7e611e8b133fe396f86e0146750f8dbdJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9naXRodWIuY29tL29sbGFtYS9vbGxhbWE&amp;ntb=1",
+      "title": "GitHub - ollama/ollama: Get up and running with Kimi, GLM, MiniMax ..."
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=bd55f524f6c313a0cf0f5612b2a63361305a3296f1e122457bd25deadb78df18JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly93d3cuZ2Vla3Nmb3JnZWVrcy5vcmcvYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2Uvd2hhdC1pcy1vbGxhbWEv&amp;ntb=1",
+      "title": "What is Ollama - GeeksforGeeks"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9e68fd7331fdb664f0a5c779fba6cb3f9b8dc987bb4ef137d3b91c442847ab7cJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly93d3cudGVjaHNwb3QuY29tL2Rvd25sb2Fkcy83NzcyLW9sbGFtYS5odG1s&amp;ntb=1",
+      "title": "Ollama Download | TechSpot"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9e5c4377fe07489d48ac141bd292163b55082c81b135c35a8dee14f3dfe09a40JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvT2xsYW1h&amp;ntb=1",
+      "title": "Ollama - Wikipedia"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=7ee24469556712755813ab7954d7ef2124570cdb214f557bad0a793678ce3148JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9kb2NzLm9sbGFtYS5jb20vaW5kZXg&amp;ntb=1",
+      "title": "Ollama documentation - Ollama"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=3edaeb19daeed20ec0626c4b538e0ce76ef660f1779f2d0b3c908009bbe09764JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9kb2NzLm9sbGFtYS5jb20vY2xvdWQ&amp;ntb=1",
+      "title": "Cloud - Ollama"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=0d69e31d6fc202bc8ed2d438792f3f32035f74a10ad9b0b9e8c6bc266d62825aJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9naXRodWIuY29tL29sbGFtYS9vbGxhbWEvcmVsZWFzZXM&amp;ntb=1",
+      "title": "Releases &#183; ollama/ollama - GitHub"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9b0a8457d84c4d80a387f470611f7d94e25c9bc65be5a36e5e17f004d9bfcd20JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3b3d2003-af09-65a7-3a6b-37ffae9964fc&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tL21vZGVscw&amp;ntb=1",
+      "title": "Ollama"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:14.691Z",
+  "query": "ollama_models environment variable not working",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9ff99aa580acbf51e4951bf1f9b6a1c4f5d5b13ca23767c34f667c48094a65b8JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tLw&amp;ntb=1",
+      "title": "Ollama &#183; Run AI models locally and in the cloud"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=0a60952d947b5199ad3f8d094986edf9cdbdf63b47e38856cf96ce957d0cf83eJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tL2Rvd25sb2FkL3dpbmRvd3M&amp;ntb=1",
+      "title": "Download Ollama on Windows"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=4d4df84b2f0e1794f4e60eaea16d369da4396ca94d042f6151d3d4060da9b4e0JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9naXRodWIuY29tL29sbGFtYS9vbGxhbWE&amp;ntb=1",
+      "title": "GitHub - ollama/ollama: Get up and running with Kimi, GLM, MiniMax ..."
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=bc30f611e833c9c62de2816e096387e9e617a4bca415df3606aa400040f65ebfJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly93d3cuZ2Vla3Nmb3JnZWVrcy5vcmcvYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2Uvd2hhdC1pcy1vbGxhbWEv&amp;ntb=1",
+      "title": "What is Ollama - GeeksforGeeks"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=946f0664a765e90e9cb075c6a50ab2c79b0523677a326e82b14da9fa14739f18JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly93d3cudGVjaHNwb3QuY29tL2Rvd25sb2Fkcy83NzcyLW9sbGFtYS5odG1s&amp;ntb=1",
+      "title": "Ollama Download | TechSpot"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=471a969a95143726d5295608f9f9b530e500490947ba0c34f770b4ee325bf75bJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvT2xsYW1h&amp;ntb=1",
+      "title": "Ollama - Wikipedia"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=4528c0e46ddb86f05f61786982750011ca350d19fab0a732961f8e5f89c74da0JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9kb2NzLm9sbGFtYS5jb20vaW5kZXg&amp;ntb=1",
+      "title": "Ollama documentation - Ollama"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9e46c101b44372a8901084c77ebf6aedb76cff5764221b3b52741e8a1f9e87bfJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9kb2NzLm9sbGFtYS5jb20vY2xvdWQ&amp;ntb=1",
+      "title": "Cloud - Ollama"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=1c59fc121ee5f4e919a5ff5c6b8eceb97bed1da1be22dc84b79293aea06439b1JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9naXRodWIuY29tL29sbGFtYS9vbGxhbWEvcmVsZWFzZXM&amp;ntb=1",
+      "title": "Releases &#183; ollama/ollama - GitHub"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=e9f6266cb048e24415a35c41b7bebd0bb2e096ceef6f9b6054750c268a7e71eaJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=3d058002-da23-620a-2d00-97fedb5863d8&amp;u=a1aHR0cHM6Ly9vbGxhbWEuY29tL21vZGVscw&amp;ntb=1",
+      "title": "Ollama"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:15.005Z",
+  "query": "move ollama models to another drive windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=625fcb2c0b148c8190b855a7a53e496ee8ac1e111512df0cdc4ce279dea962d4JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS8&amp;ntb=1",
+      "title": "Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=926eef48d9934b87782edfc94d260172268f27495e55c9bdeda684b1f73214b6JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS8_aGw9cnU&amp;ntb=1",
+      "title": "Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=3a0491838671f9b916d369088d54c3d98fa327a1af559f127f04f96338eb26f6JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9hYm91dC5pbnN0YWdyYW0uY29tL2Fib3V0LXVzLw&amp;ntb=1",
+      "title": "Connecting People Through Everyday Moments | About Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=5a3a5aa2cc6224e45919b937e03ab8f4d95d9a730fef9a0a2df6c1f74e0f816eJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9hYm91dC5pbnN0YWdyYW0uY29tL2ZlYXR1cmVz&amp;ntb=1",
+      "title": "Instagram Features: Stories, Reels &amp; More | About Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=712e69055f15e0efdce634f097e68662706781bfe032a3b3ee682e6fc2c2e866JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9oZWxwLmluc3RhZ3JhbS5jb20v&amp;ntb=1",
+      "title": "Help Center"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=8dcb7f7fa5a69389c9a5f3d21106e5bb280e19f3b250358fcf99d6f449fdea02JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9hcHBsaW5rLmluc3RhZ3JhbS5jb20vYWNjb3VudHMvcGFzc3dvcmQvcmVzZXQv&amp;ntb=1",
+      "title": "Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=5c87bf2a8fd4728bdcd5ea25bbbaa1212d6a85f7ced92af57230d3462a54e864JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9idXNpbmVzcy5pbnN0YWdyYW0uY29tLw&amp;ntb=1",
+      "title": "Instagram for Business: Marketing on Instagram | Instagram for Business"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=2ab1f500423849c6cde7e0d94be5e87d43302ec3812481241793f1bbdf352f1eJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9oZWxwLmluc3RhZ3JhbS5jb20vaGVscC9pbnN0YWdyYW0vMTU1NDI0NTAxNDg3MDcwMA&amp;ntb=1",
+      "title": "Help Center"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=50a51b8f75054171c3a3cb246856859497427e66f9959fd393692f464b2656abJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9jcmVhdG9ycy5pbnN0YWdyYW0uY29tL2Jsb2cv&amp;ntb=1",
+      "title": "Find the Best Tips and Tricks from Instagram"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=dd162d990ddf73dd04389492c3a42b72cc9b2ee890d63b675a8aa13447f15f56JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=18bf7434-c5fc-6380-0b42-63c8c4c06204&amp;u=a1aHR0cHM6Ly9jcmVhdG9ycy5pbnN0YWdyYW0uY29tL2hvdy10by1ncm93&amp;ntb=1",
+      "title": "How to Grow | Instagram for Creators"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:15.320Z",
+  "query": "cursor agent stuck on planning next moves",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=a4e26b405e392374561e6d0504b000aef1d4dd3b29340011cd786010653bb688JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9jdXJzb3IuY29tLw&amp;ntb=1",
+      "title": "AI Coding Agent for Building Ambitious Software | Cursor"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=aaf25f807b9ce67b807cd365dd0ff318d734e99f4a0326adb05c2ce10af3f9a1JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9jdXN0b20tY3Vyc29yLmNvbS8&amp;ntb=1",
+      "title": "Custom Cursor - 12,000+ Custom Cursors &amp; Mouse Pointers"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=3e95ed8de316f2f70aea7cb446e56b58259920af096c6af9c005e74401af4fa9JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9jdXJzb3IuY29tL2Rvd25sb2Fk&amp;ntb=1",
+      "title": "Cursor &#183; Download"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=79dcc422162865b65ea5223e4e046b56f94f2d4e71ac46d3e9611fbae395abebJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9jdXN0b20tY3Vyc29yLmNvbS9lbi9jb2xsZWN0aW9uL2N1cnNvcnM&amp;ntb=1",
+      "title": "Starter Cursor Collection - Custom Cursor"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=25cd4a5b337c327d6e911dce1146d0b1079e13bbdcbd5ff8c39743dd4baead30JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly93d3cucnctZGVzaWduZXIuY29tL2N1cnNvci1saWJyYXJ5&amp;ntb=1",
+      "title": "Open Cursor Library - 228262 cursors - RealWorld Graphics"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=8cedf0dd1a07c971c7778dfb12b8fdea8767f8916b2a63d1a2a8085ccc8cd692JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9jdXN0b20tY3Vyc29yLndvcmxkLw&amp;ntb=1",
+      "title": "Custom Cursor World - Free Mouse Cursors for Chrome, Edge"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=c0301738d8bc7e996315f1ad5b93092964314008a7d8b203d9f3ac4bd918e36dJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9zd2VlenktY3Vyc29ycy5jb20v&amp;ntb=1",
+      "title": "Sweezy Cursors - Download Custom Cursor for Chrome &amp; Windows"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=ae21967e356759571dc3ffcd372839aae9b54c1cebe67d6785c5cc86e551dac3JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly93d3cuY3Vyc29ycy00dS5jb20v&amp;ntb=1",
+      "title": "Download Free Custom Cursors &amp; Mouse Pointers"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=062d7219f18b202dccf4c4333eef71ff65cb5f5ca195085cf4ca00e2d313880fJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly9zd2VlenktY3Vyc29ycy5jb20vbmV3LWN1cnNvcnMv&amp;ntb=1",
+      "title": "New Custom Cursors for Chrome &amp; Windows | Sweezy Cursors"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=c823c66359fe320af2d551bf2317992a4aa9a340a86af6f20da6e7b86cd7acd5JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=17cffef4-5023-626e-1ce8-e908517163da&amp;u=a1aHR0cHM6Ly93d3cuY3Vyc29yLmNjLw&amp;ntb=1",
+      "title": "Cursor Editor"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:15.665Z",
+  "query": "gemini cli install windows",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=a7a0252d2c75438c82cac36aa6de38a32d3a070ad8c707ad98771cd37200f35dJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9nZW1pbmkuZ29vZ2xlLmNvbS8&amp;ntb=1",
+      "title": "‎Google Gemini"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=62e6c5b4a267807d4eca9b85f159dda40feabf42da88635d515907b341c72f0bJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9nZW1pbmkuZ29vZ2xlL3VzL2Fib3V0Lz9obD1lbg&amp;ntb=1",
+      "title": "Gemini – Your AI assistant from Google"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=68c00f909bfb7e7b6b478eeddef8b6bef93a55d114a475314f6dd02e8e6d0a82JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9kZWVwbWluZC5nb29nbGUvbW9kZWxzL2dlbWluaS8&amp;ntb=1",
+      "title": "Gemini — Google DeepMind"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=5b1a262a31eb89fda750eb630ac07047efa25aaf8aed1afbb342728505834297JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9nZW1pbmkuZ29vZ2xlL2Rlc2t0b3Av&amp;ntb=1",
+      "title": "Gemini for desktop: download the AI app for Windows &amp; macOS"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=212e2f8e8fa618d406b265a21e34d3b3172cb4130c5236b4fbfa82fac17d3646JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9nZW1pbmkuZ29vZ2xlLmNvbS9hcHAvZG93bmxvYWQ&amp;ntb=1",
+      "title": "‎Gemini app on iOS &amp; Android - your AI assistant from Google"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=5da63bf108d401b9348af4036aa528bf7c2a2c259baf4bf3f2fc205a6c27d6d1JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9kZWVwbWluZC5nb29nbGUvbW9kZWxzL2dlbWluaS9wcm8v&amp;ntb=1",
+      "title": "Gemini 3.1 Pro - Google DeepMind"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=b19fb5d0fa63159bd6b78f924171361211ce04737cb9bad4e14643d207190bebJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9nZW1pbmkuZ29vZ2xlL2Fzc2lzdGFudC8&amp;ntb=1",
+      "title": "Introducing Gemini, your new personal AI assistant"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=9d993a3f8797b5bd01e3e931ac11c37a70f00cfbac5fa2adbc8b619baedd7c88JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9ub3RlYm9vay5nb29nbGUv&amp;ntb=1",
+      "title": "Gemini Notebook | AI Research Tool &amp; Thinking Partner"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=689e012c0753a0403179219371795955d97b75881a7dd232641b0cab9b4813fcJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPWNvbS5nb29nbGUuYW5kcm9pZC5hcHBzLmJhcmQmaGw9ZW4tVVM&amp;ntb=1",
+      "title": "Google Gemini - Apps on Google Play"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=ca14a2eabf59da96b90b1ec7452d11832ec2d098ebc48dd99e47ed8ca3d8033fJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2f5560a1-9fb8-6299-39d2-775d9e31638b&amp;u=a1aHR0cHM6Ly9zdGFydHVwLmdvb2dsZS5jb20vZ2VtaW5pLw&amp;ntb=1",
+      "title": "Gemini - Google for Startups"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}
+{
+  "checkedAt": "2026-10-24T03:46:15.975Z",
+  "query": "codex cli windows install",
+  "status": 200,
+  "results": [
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=4f29c4a490714782585b65177a6ce14eaed18838761eb387bde6bd088674ea06JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9vcGVuYWkuY29tL2NvZGV4Lw&amp;ntb=1",
+      "title": "Codex | AI Coding Partner from OpenAI"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=e45c8de769483468dd5afdf0fc2d892b422978fde383f027624e53298364c9d8JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9vcGVuYWkuY29tL2luZGV4L29wZW5haS1jb2RleC8&amp;ntb=1",
+      "title": "OpenAI Codex"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=66c1585e09a02fd4e184eb111d025d721484a912ac4108f5b05c2b69ff121243JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9jaGF0Z3B0LmNvbS9jb2RleC8&amp;ntb=1",
+      "title": "Codex in ChatGPT | AI Coding Agents for Software Engineering"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=39d5dcc0e1e56b5ea841f2bf29603f129bf3ffafb75548481ea9ff382d7753d6JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9naXRodWIuY29tL29wZW5haS9jb2RleA&amp;ntb=1",
+      "title": "GitHub - openai/codex: Lightweight coding agent that runs in your ..."
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=7722fed43e58d36dcb34354ea350d55f85e45581824fb8e3f2d3d3877163f653JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly93d3cuY29kZXguY29tL2NvZGV4Lw&amp;ntb=1",
+      "title": "CODEX – Codex"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=03d22bfc9656b857f75f2f96486b7f73160a41d63c202aadfe775beb33f7deadJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly93d3cudGVjaHNwb3QuY29tL2Rvd25sb2Fkcy83ODcwLW9wZW5haS1jb2RleC5odG1s&amp;ntb=1",
+      "title": "OpenAI Codex Download | TechSpot"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=4a5d03a00e2e5435f3f30ea417f350cf4f355a86e80ff09b0b07f266582bd3cdJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9sZWFybi5jaGF0Z3B0LmNvbS9kb2NzL2NvZGV4L2NsaQ&amp;ntb=1",
+      "title": "Codex CLI | ChatGPT Learn"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=352c988f728697bf0c61cc0b85463d9efafb64014ba387d51b84f0fa16fdd365JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9jaGF0Z3B0LmNvbS9mZWF0dXJlcy9jb2RleC1nZXQtc3RhcnRlZC8&amp;ntb=1",
+      "title": "Get started with Codex | OpenAI"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=1a0d21e655f100fd5f0e40987ad464d88db24998b257ee63bd5f67aee4a0a47aJmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly93d3cuY29kZWRleC5pby8&amp;ntb=1",
+      "title": "Cod&#233;dex | Start Your Coding Adventure ⋆˙"
+    },
+    {
+      "url": "https://www.bing.com/ck/a?!&amp;&amp;p=2f8d31aa15bf3bb1b47ee5f138162f1665117263b9d441174d9e694c55e60410JmltdHM9MTc5MjcxMzYwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=22ccb77a-0e85-62d1-17e6-a0860f786387&amp;u=a1aHR0cHM6Ly9hcHBzLm1pY3Jvc29mdC5jb20vZGV0YWlsLzlwbG05eGdnNnZrcw&amp;ntb=1",
+      "title": "ChatGPT - Free download and install on Windows | Microsoft Store"
+    }
+  ],
+  "related": [],
+  "limits": "Bing HTML first page, en-US request parameters; not Google rank data."
+}

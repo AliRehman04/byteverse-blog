@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { newsletter } from "@/lib/db/schema";
-import { eq, desc, sql } from "drizzle-orm";
+import { isAuthenticated } from "@/lib/auth";
+import { eq, desc } from "drizzle-orm";
+
+const unauthorized = () => NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
 export async function GET() {
+  if (!(await isAuthenticated())) return unauthorized();
   try {
     if (!db) {
       return NextResponse.json({ error: "Database not configured" }, { status: 503 });
@@ -24,6 +28,7 @@ export async function GET() {
 
 // DELETE subscriber
 export async function DELETE(request: Request) {
+  if (!(await isAuthenticated())) return unauthorized();
   try {
     if (!db) {
       return NextResponse.json({ error: "Database not configured" }, { status: 503 });
@@ -43,6 +48,7 @@ export async function DELETE(request: Request) {
 
 // PATCH - toggle active status
 export async function PATCH(request: Request) {
+  if (!(await isAuthenticated())) return unauthorized();
   try {
     if (!db) {
       return NextResponse.json({ error: "Database not configured" }, { status: 503 });

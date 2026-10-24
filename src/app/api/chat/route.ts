@@ -2,8 +2,25 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { posts, contentGaps } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { siteConfig } from "@/lib/config";
 
 export const runtime = "edge";
+
+// Scoring needs every published article body; keep one copy per isolate instead of reloading on each message.
+type CorpusPost = { title: string; slug: string; excerpt: string | null; content: string; keywords: string | null; summary: string | null };
+const CORPUS_TTL_MS = 10 * 60 * 1000;
+let corpusCache: { loadedAt: number; posts: CorpusPost[] } | null = null;
+async function loadCorpus(): Promise<CorpusPost[]> {
+  if (!db) return [];
+  if (corpusCache && Date.now() - corpusCache.loadedAt < CORPUS_TTL_MS) return corpusCache.posts;
+  const rows = await db
+    .select({ title: posts.title, slug: posts.slug, excerpt: posts.excerpt, content: posts.content, keywords: posts.keywords, summary: posts.summary })
+    .from(posts)
+    .where(eq(posts.published, true));
+  corpusCache = { loadedAt: Date.now(), posts: rows };
+  return rows;
+}
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = "llama-3.3-70b-versatile";
@@ -236,8 +253,18 @@ async function callGroq(systemPrompt: string, userMessage: string): Promise<stri
 /* ── Main API Handler ───────────────────────────────────── */
 export async function POST(req: NextRequest) {
   try {
+    // The widget only ever posts from the site itself; reject cross-site and scripted callers before any work.
+    const origin = req.headers.get("origin");
+    const allowedOrigin = new URL(siteConfig.url).origin;
+    if (origin && origin !== allowedOrigin && process.env.NODE_ENV === "production") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+    const limit = rateLimit(`chat:${getClientIp(req)}`, { limit: 12, windowSeconds: 60 });
+    if (!limit.success) {
+      return NextResponse.json({ answer: "Too many messages at once. Please wait a minute and try again.", results: [], tools: [] }, { status: 429 });
+    }
     const { query } = await req.json();
-    if (!query || typeof query !== "string" || query.trim().length < 1) {
+    if (!query || typeof query !== "string" || query.trim().length < 1 || query.length > 1000) {
       return NextResponse.json({ answer: "Please type something!", results: [], tools: [] });
     }
 
@@ -278,17 +305,7 @@ export async function POST(req: NextRequest) {
     let scored: { title: string; slug: string; excerpt: string | null; score: number; bestParagraphs: string[] }[] = [];
 
     if (db) {
-      const allPosts = await db
-        .select({
-          title: posts.title,
-          slug: posts.slug,
-          excerpt: posts.excerpt,
-          content: posts.content,
-          keywords: posts.keywords,
-          summary: posts.summary,
-        })
-        .from(posts)
-        .where(eq(posts.published, true));
+      const allPosts = await loadCorpus();
 
       scored = allPosts
         .map((post) => {

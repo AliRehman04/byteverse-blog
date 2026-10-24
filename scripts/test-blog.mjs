@@ -24,8 +24,9 @@ const sandbox = { URL, Date, Intl, console: { log: blocked, warn: blocked, error
 for (const name of ["process", "fetch", "window", "document", "localStorage", "setTimeout"]) Object.defineProperty(sandbox, name, { get: blocked });
 const context = vm.createContext(sandbox, { codeGeneration: { strings: false, wasm: false } });
 const modules = new Map();
-const libs = new Set(["lucide-react", "react/jsx-runtime", "drizzle-orm", "drizzle-orm/pg-core"]);
-const owned = new Set(["src/lib/blog.ts", "src/lib/blog-data.ts", "src/lib/homepage.ts", "src/lib/tool-catalog.ts", "src/lib/db/schema.ts", "src/lib/image-studio/brand.ts", "src/app/blog/page.tsx"]);
+const libs = new Set(["react", "lucide-react", "react/jsx-runtime", "drizzle-orm", "drizzle-orm/pg-core"]);
+const owned = new Set(["src/lib/blog.ts", "src/lib/blog-data.ts", "src/lib/homepage.ts", "src/lib/tool-catalog.ts", "src/lib/db/schema.ts", "src/lib/image-studio/brand.ts", "src/app/blog/blog-index.tsx", "src/app/blog/page.tsx", "src/app/blog/page/[page]/page.tsx"]);
+class NotFound extends Error { constructor() { super("NEXT_NOT_FOUND"); } }
 
 const categories = [
   { id: 1, name: "AI Tools", slug: "ai-tools", color: "#8b5cf6", count: 12 },
@@ -62,8 +63,10 @@ function load(path) {
     if (name === "./homepage" || name === "@/lib/homepage") return load("src/lib/homepage.ts");
     if (name === "./tool-catalog" || name === "@/lib/tool-catalog") return load("src/lib/tool-catalog.ts");
     if (name === "@/lib/image-studio/brand") return load("src/lib/image-studio/brand.ts");
-    if (name === "@/lib/blog-data") return { getBlogIndex: async page => { assert.equal(page, index.page); return index; } };
+    if (name === "@/lib/blog-data") return { getBlogIndex: async page => { assert.equal(page, index.page); return index; }, getPublishedPostCount: async () => index.total };
     if (name === "@/lib/config") return { siteConfig: { url: "https://www.byteverse.fyi", name: "ByteVerse", author: "ByteVerse Team" } };
+    if (name === "next/navigation") return { notFound: () => { throw new NotFound(); } };
+    if (name === "./blog-index" || name === "../../blog-index") return load("src/app/blog/blog-index.tsx");
     if (name === "next/link") return function MockLink({ prefetch, ...props }) { return React.createElement("a", { ...props, "data-prefetch": String(prefetch) }); };
     if (name === "next/image") return function MockImage({ fill, ...props }) { return React.createElement("img", { ...props, "data-fill": String(fill) }); };
     if (name === "@/components/homepage-newsletter") return { HomepageNewsletter: () => React.createElement("div", { "data-newsletter-test-stub": true }) };
@@ -73,16 +76,23 @@ function load(path) {
   new vm.Script(`(function(exports, require, module) {${compiled.outputText}\n})`, { filename: path }).runInContext(context)(record.exports, resolve, record);
   return record.exports;
 }
-const blog = load("src/lib/blog.ts"), data = load("src/lib/blog-data.ts"), page = load("src/app/blog/page.tsx");
+const blog = load("src/lib/blog.ts"), data = load("src/lib/blog-data.ts"), page = load("src/app/blog/page.tsx"), archive = load("src/app/blog/page/[page]/page.tsx");
 const plain = value => JSON.parse(JSON.stringify(value));
 const elements = (doc, match) => findAll(node => node.type === "tag" && match(node), doc.children);
-const render = async currentPage => parseDocument(renderToStaticMarkup(await page.default({ searchParams: Promise.resolve({ page: currentPage }) })));
+const renderElement = async element => parseDocument(renderToStaticMarkup(await resolveAsync(element)));
+// Async server components return promises from their render functions; resolve them like React's server renderer does.
+async function resolveAsync(element) {
+  if (element && typeof element.type === "function" && element.type.constructor.name === "AsyncFunction") return resolveAsync(await element.type(element.props));
+  return element;
+}
+const render = async currentPage => currentPage === undefined ? renderElement(page.default()) : renderElement(await archive.default({ params: Promise.resolve({ page: String(currentPage) }) }));
 
 test("page parsing, paths and pagination windows are bounded and canonical", () => {
   for (const [input, expected] of [[undefined, 1], ["", 1], ["0", 1], ["-3", 1], ["abc", 1], ["2", 2], [["4", "9"], 4], ["1e3", 1], ["00012", 12], ["999999", 1], ["5000", 5000]]) assert.equal(blog.parseBlogPage(input), expected, String(input));
   assert.equal(blog.blogPath(1), "/blog");
   assert.equal(blog.blogPath(0), "/blog");
-  assert.equal(blog.blogPath(3), "/blog?page=3");
+  assert.equal(blog.blogPath(3), "/blog/page/3");
+  for (const [input, expected] of [["2", 2], ["6", 6], ["5000", 5000], ["1", null], ["0", null], ["02", null], ["abc", null], ["2a", null], ["50000", null], ["", null]]) assert.equal(blog.parseArchiveSegment(input), expected, input);
   assert.deepEqual(plain(blog.blogPageWindow(1, 1)), [1]);
   assert.deepEqual(plain(blog.blogPageWindow(2, 7)), [1, 2, 3, 4, 5, 6, 7]);
   assert.deepEqual(plain(blog.blogPageWindow(1, 12)), [1, 2, "gap", 12]);
@@ -100,7 +110,7 @@ test("metadata and structured data describe the archive page accurately", () => 
   setIndex(makePosts(30), 2, 70);
   const schema = blog.getBlogStructuredData("https://www.byteverse.fyi///", index);
   assert.equal(schema["@type"], "CollectionPage");
-  assert.equal(schema.url, "https://www.byteverse.fyi/blog?page=2");
+  assert.equal(schema.url, "https://www.byteverse.fyi/blog/page/2");
   assert.equal(schema.isPartOf["@id"], "https://www.byteverse.fyi/#website");
   assert.equal(schema.mainEntity.numberOfItems, 70);
   assert.equal(schema.mainEntity.itemListElement.length, 10);
@@ -154,7 +164,7 @@ test("DB missing/empty returns no fictional records; query failures are sanitize
 test("first archive page renders one H1, a lead story, 29 feed cards, safe category colours and pagination", async () => {
   setIndex(makePosts(30), 1, 170);
   const doc = await render(undefined);
-  const html = renderToStaticMarkup(await page.default({ searchParams: Promise.resolve({}) }));
+  const html = renderToStaticMarkup(await resolveAsync(page.default()));
   assert.equal(elements(doc, node => node.name === "h1").length, 1);
   assert.equal(textContent(elements(doc, node => node.name === "h1")[0]), "Guides that fix real problems.");
   assert.equal(elements(doc, node => node.name === "article").length, 30);
@@ -169,7 +179,7 @@ test("first archive page renders one H1, a lead story, 29 feed cards, safe categ
     assert.equal(link.attribs["data-prefetch"], "false");
     if (link.attribs.href.startsWith("#")) assert.equal(elements(doc, node => node.attribs.id === link.attribs.href.slice(1)).length, 1);
   }
-  assert.equal(new Set(elements(doc, node => node.name === "a" && node.attribs.href.startsWith("/blog/")).map(node => node.attribs.href)).size, 30);
+  assert.equal(new Set(elements(doc, node => node.name === "a" && node.attribs.href.startsWith("/blog/") && !node.attribs.href.startsWith("/blog/page/")).map(node => node.attribs.href)).size, 30);
   assert.equal(elements(doc, node => node.attribs["data-blog-tool"]).length, 3);
   assert.equal(elements(doc, node => node.attribs["aria-label"] === "Browse by category").length, 1);
   assert.equal(elements(doc, node => node.attribs.href === "/category/archive").length, 1, "Empty categories stay in the directory but not the tiles");
@@ -179,9 +189,9 @@ test("first archive page renders one H1, a lead story, 29 feed cards, safe categ
   const pagination = elements(doc, node => node.attribs["aria-label"] === "Pagination")[0];
   assert(pagination);
   assert.equal(elements(pagination, node => node.attribs["aria-current"] === "page").length, 1);
-  assert.equal(elements(pagination, node => node.attribs.rel === "next")[0].attribs.href, "/blog?page=2");
+  assert.equal(elements(pagination, node => node.attribs.rel === "next")[0].attribs.href, "/blog/page/2");
   assert.equal(elements(pagination, node => node.attribs.rel === "prev").length, 0);
-  assert.deepEqual(elements(pagination, node => node.name === "a" && /^\d+$/.test(textContent(node))).map(node => node.attribs.href), [2, 3, 4, 5, 6].map(entry => `/blog?page=${entry}`));
+  assert.deepEqual(elements(pagination, node => node.name === "a" && /^\d+$/.test(textContent(node))).map(node => node.attribs.href), [2, 3, 4, 5, 6].map(entry => `/blog/page/${entry}`));
   assert.equal(elements(doc, node => node.name === "ol").length, 1);
   assert(!/Popular Articles|FolderOpen|100%|tested, verified/i.test(html));
   assert(html.indexOf('id="trending"') < html.indexOf('id="articles"'));
@@ -189,19 +199,18 @@ test("first archive page renders one H1, a lead story, 29 feed cards, safe categ
 
 test("later archive pages, out-of-range pages and missing data stay honest and navigable", async () => {
   setIndex(makePosts(30), 3, 170);
-  let doc = await render("3");
+  let doc = await render(3);
   assert.equal(elements(doc, node => node.name === "article").length, 30);
   assert.equal(elements(doc, node => node.attribs.id === "featured-story").length, 0);
   assert(textContent(doc).includes("Archive, page 3."));
   const pagination = elements(doc, node => node.attribs["aria-label"] === "Pagination")[0];
-  assert.equal(elements(pagination, node => node.attribs.rel === "prev")[0].attribs.href, "/blog?page=2");
-  assert.equal(elements(pagination, node => node.attribs.rel === "next")[0].attribs.href, "/blog?page=4");
+  assert.equal(elements(pagination, node => node.attribs.rel === "prev")[0].attribs.href, "/blog/page/2");
+  assert.equal(elements(pagination, node => node.attribs.rel === "next")[0].attribs.href, "/blog/page/4");
   assert.equal(textContent(elements(pagination, node => node.attribs["aria-current"] === "page")[0]), "3");
   setIndex([], 9, 170);
-  doc = await render("9");
-  assert.equal(elements(doc, node => node.name === "article").length, 0);
-  assert(textContent(doc).includes("Nothing on this page."));
-  assert.equal(elements(doc, node => node.attribs.href === "/blog").length >= 1, true);
+  await assert.rejects(render(9), NotFound, "Pages past the archive end must 404");
+  for (const segment of ["1", "0", "02", "abc"]) await assert.rejects(archive.default({ params: Promise.resolve({ page: segment }) }), NotFound, segment);
+  assert.deepEqual(plain(await archive.generateStaticParams()), [2, 3, 4, 5, 6].map(entry => ({ page: String(entry) })));
   setIndex([], 1, 0, { popular: [], categories: [] });
   doc = await render(undefined);
   assert.equal(elements(doc, node => node.name === "article").length, 0);
@@ -218,14 +227,20 @@ test("later archive pages, out-of-range pages and missing data stay honest and n
 });
 
 test("blog metadata matches the shared site identity and pagination canonicals", async () => {
-  const first = await page.generateMetadata({ searchParams: Promise.resolve({}) });
+  const first = page.metadata;
   assert.equal(first.title.absolute, blog.getBlogMeta(1).title);
   assert.equal(first.alternates.canonical, "https://www.byteverse.fyi/blog");
   assert.equal(first.openGraph.images[0].url, "https://www.byteverse.fyi/opengraph-image");
-  const later = await page.generateMetadata({ searchParams: Promise.resolve({ page: "7" }) });
-  assert.equal(later.alternates.canonical, "https://www.byteverse.fyi/blog?page=7");
+  setIndex(makePosts(30), 7, 170);
+  const later = await archive.generateMetadata({ params: Promise.resolve({ page: "7" }) });
+  assert.equal(later.alternates.canonical, "https://www.byteverse.fyi/blog/page/7");
   assert.match(later.description, /Page 7/);
+  await assert.rejects(archive.generateMetadata({ params: Promise.resolve({ page: "x" }) }), NotFound, "invalid segment must 404 at metadata time");
+  setIndex([], 8, 170);
+  await assert.rejects(archive.generateMetadata({ params: Promise.resolve({ page: "8" }) }), NotFound, "past-the-end page must 404 at metadata time");
   assert.equal(page.revalidate, 21600);
+  assert.equal(archive.revalidate, 21600);
+  assert(!read("src/app/blog/page.tsx").includes("searchParams"), "/blog must stay static: no request-time searchParams");
 });
 
 test("blog colours derive from the shared site theme and reuse the homepage design tokens", () => {

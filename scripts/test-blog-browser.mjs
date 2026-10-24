@@ -143,13 +143,17 @@ try {
     }
   }
 
-  await run("out-of-range archive page stays honest and navigable", async page => {
-    await open(page, "/blog?page=3");
-    await expect(page).toHaveTitle("Blog articles, page 3 | ByteVerse");
-    await expect(page.locator("[data-blog-index] article")).toHaveCount(0);
-    await expect(page.getByText("Nothing on this page.")).toBeVisible();
-    await expect(page.locator('[data-blog-index] a[href$="/blog"]').first()).toBeVisible();
-    await noOverflow(page);
+  await run("out-of-range archive pages 404 and legacy query pagination redirects", async page => {
+    const missing = await page.goto(`${base}/blog/page/3`, { waitUntil: "load" });
+    assert.equal(missing.status(), 404);
+    await expect(page.locator("[data-blog-index]")).toHaveCount(0);
+    const legacy = await page.request.get(`${base}/blog?page=2`, { maxRedirects: 0 });
+    assert.equal(legacy.status(), 308);
+    assert.equal(new URL(legacy.headers().location, base).pathname, "/blog/page/2");
+    const first = await page.request.get(`${base}/blog/page/1`, { maxRedirects: 0 });
+    assert.equal(first.status(), 308);
+    assert.equal(new URL(first.headers().location, base).pathname, "/blog");
+    for (const path of ["/blog/page/0", "/blog/page/abc", "/blog/page/02"]) assert.equal((await page.request.get(`${base}${path}`)).status(), 404, path);
   });
 
   await run("keyboard reaches the skip link, trending and category tiles in order", async page => {

@@ -33,7 +33,7 @@ async function run(args) {
 }
 if (mode !== '--serve') {
   const entries = mode === '--sync'
-    ? ['src/app/page.tsx', 'src/app/home-premium.module.css', 'src/app/opengraph-image.tsx', 'src/lib/homepage.ts', 'src/components/homepage-tool-finder.tsx', 'src/components/homepage-tool-finder.module.css', 'src/components/homepage-newsletter.tsx', 'src/components/homepage-newsletter.module.css', 'src/app/blog/page.tsx', 'src/app/blog/loading.tsx', 'src/app/blog/blog-premium.module.css', 'src/lib/blog.ts', 'public/blog']
+    ? ['src/app/page.tsx', 'src/app/home-premium.module.css', 'src/app/opengraph-image.tsx', 'src/lib/homepage.ts', 'src/components/homepage-tool-finder.tsx', 'src/components/homepage-tool-finder.module.css', 'src/components/homepage-newsletter.tsx', 'src/components/homepage-newsletter.module.css', 'src/app/blog/page.tsx', 'src/app/blog/blog-index.tsx', 'src/app/blog/page/[page]/page.tsx', 'src/app/blog/blog-premium.module.css', 'src/lib/blog.ts', 'src/middleware.ts', 'next.config.ts', 'public/blog']
     : ['src', 'public', 'package.json', 'package-lock.json', 'tsconfig.json', 'next-env.d.ts', 'next.config.ts', 'postcss.config.mjs', 'eslint.config.mjs'];
   for (const entry of entries) {
     await cp(join(root, entry), join(workspace, entry), { recursive: true, filter: path => !/(?:^|[\\/])(?:\.env[^\\/]*|\.vercel|\.git)(?:[\\/]|$)/.test(path) });
@@ -42,7 +42,7 @@ if (mode !== '--serve') {
   for (const entry of ['build-invoice-workspace.mjs', 'build-image-studio.mjs']) await cp(join(root, 'scripts', entry), join(workspace, 'scripts', entry));
   if (!previous) await symlink(join(root, 'node_modules'), join(workspace, 'node_modules'), 'junction');
   const homepage = join(workspace, 'src/app/page.tsx');
-  const blogPage = join(workspace, 'src/app/blog/page.tsx');
+  const blogPage = join(workspace, 'src/app/blog/blog-index.tsx');
   const source = await readFile(homepage, 'utf8');
   const blogSource = await readFile(blogPage, 'utf8');
   const toProduction = text => text.replaceAll('href={`/blog/', 'href={`https://www.byteverse.fyi/blog/')
@@ -86,7 +86,7 @@ if (mode !== '--serve') {
     }
     const blogCategories = [...groups.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
     const popular = previewBlogPosts.slice(0, 5).map(({ id, title, slug, readingTime, createdAt }) => ({ id, title, slug, readingTime, createdAt }));
-    await writeFile(join(workspace, 'src/lib/blog-data.ts'), `import { BLOG_PAGE_SIZE, type BlogIndex } from './blog';\nconst posts = ${JSON.stringify(previewBlogPosts)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) }));\nconst popular = ${JSON.stringify(popular)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) }));\nconst categories = ${JSON.stringify(blogCategories)};\nexport async function getBlogIndex(page: number): Promise<BlogIndex> { const total = posts.length; return { posts: page === 1 ? posts : [], popular, categories, total, page, totalPages: Math.ceil(total / BLOG_PAGE_SIZE) }; }\n`);
+    await writeFile(join(workspace, 'src/lib/blog-data.ts'), `import { BLOG_PAGE_SIZE, type BlogIndex } from './blog';\nconst posts = ${JSON.stringify(previewBlogPosts)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) }));\nconst popular = ${JSON.stringify(popular)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) }));\nconst categories = ${JSON.stringify(blogCategories)};\nexport async function getBlogIndex(page: number): Promise<BlogIndex> { const total = posts.length; return { posts: page === 1 ? posts : [], popular, categories, total, page, totalPages: Math.ceil(total / BLOG_PAGE_SIZE) }; }\nexport async function getPublishedPostCount(): Promise<number> { return posts.length; }\n`);
   }
   if (cachedFonts) {
     // Cached Latin Geist bytes are used only in this disposable preview.

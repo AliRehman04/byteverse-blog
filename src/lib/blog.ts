@@ -36,8 +36,15 @@ export function parseBlogPage(value: string | string[] | undefined) {
   return Math.min(Math.max(Number.parseInt(raw, 10), 1), MAX_PAGE);
 }
 
+// Static archive segments accept only canonical page numbers (2, 3, ...); anything else is a 404, not a duplicate URL.
+export function parseArchiveSegment(value: string): number | null {
+  if (!/^[1-9]\d{0,3}$/.test(value)) return null;
+  const page = Number.parseInt(value, 10);
+  return page >= 2 && page <= MAX_PAGE ? page : null;
+}
+
 export function blogPath(page: number) {
-  return page <= 1 ? "/blog" : `/blog?page=${page}`;
+  return page <= 1 ? "/blog" : `/blog/page/${page}`;
 }
 
 export function serializeJsonLd(value: unknown) {

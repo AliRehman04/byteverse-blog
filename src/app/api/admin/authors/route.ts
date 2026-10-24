@@ -5,6 +5,9 @@ import { isAuthenticated } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 
 export async function GET() {
+  if (!(await isAuthenticated())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   if (!db) {
     return NextResponse.json({ error: "Database not available" }, { status: 500 });
   }

@@ -39,7 +39,7 @@ export async function GET(
   if (!post) {
     return new Response("Not Found", {
       status: 404,
-      headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" },
+      headers: { "Cache-Control": "public, s-maxage=3600", "X-Robots-Tag": "noindex" },
     });
   }
 
@@ -47,8 +47,9 @@ export async function GET(
   const destination = new URL(`/blog/${encodeURIComponent(post.slug)}`, siteConfig.url);
   destination.search = request.nextUrl.search;
 
+  // Query-less redirects (the crawler case) may be cached at the CDN; a visitor's query string is never cached.
   return NextResponse.redirect(destination, {
     status: 308,
-    headers: { "Cache-Control": "no-store" },
+    headers: { "Cache-Control": request.nextUrl.search ? "no-store" : "public, s-maxage=86400, stale-while-revalidate=604800" },
   });
 }

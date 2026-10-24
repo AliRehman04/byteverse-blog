@@ -94,6 +94,13 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      source: "/api/(admin|auth)/:path*",
+      headers: [
+        { key: "Cache-Control", value: "no-store, no-cache, must-revalidate" },
+        { key: "Pragma", value: "no-cache" },
+      ],
+    },
+    {
       source: "/blog",
       headers: [
         {
@@ -193,6 +200,18 @@ const nextConfig: NextConfig = {
     {
       source: "/.well-known/llms.txt",
       destination: "/llms.txt",
+      permanent: true,
+    },
+    // Archive pagination moved from a dynamic query string to static ISR paths.
+    {
+      source: "/blog",
+      has: [{ type: "query", key: "page", value: "(?<page>[2-9]|[1-9]\\d{1,3})" }],
+      destination: "/blog/page/:page",
+      permanent: true,
+    },
+    {
+      source: "/blog/page/1",
+      destination: "/blog",
       permanent: true,
     },
     ...blogSlugRedirects.map(([source, destination]) => ({

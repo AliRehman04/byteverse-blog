@@ -1,9 +1,10 @@
 import { ImageResponse } from "next/og";
 import { db } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
-export const runtime = "edge";
+// Node runtime + ISR: each article image is generated on first request, then cached for a day.
+export const revalidate = 86400;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "ByteVerse Blog Post";
@@ -18,7 +19,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
   let readingTime = "";
 
   if (db) {
-    const result = await db.select().from(posts).where(eq(posts.slug, slug)).limit(1);
+    const result = await db.select().from(posts).where(and(eq(posts.slug, slug), eq(posts.published, true))).limit(1);
     const post = result[0];
     if (post) {
       title = post.title;

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { and, count, desc, eq, isNull, lte, or } from "drizzle-orm";
 import { db } from "./db";
 import { categories, posts } from "./db/schema";
@@ -45,7 +46,8 @@ export function createBlogIndexQueries(database: NonNullable<typeof db>, page: n
   return { list, total, popular, categoryCounts };
 }
 
-export async function getBlogIndex(page: number): Promise<BlogIndex> {
+// Memoized per request so generateMetadata and the page share one set of queries.
+export const getBlogIndex = cache(async (page: number): Promise<BlogIndex> => {
   if (!db) return emptyBlogIndex(page);
   const queries = createBlogIndexQueries(db, page);
   try {
@@ -55,5 +57,16 @@ export async function getBlogIndex(page: number): Promise<BlogIndex> {
   } catch {
     // Keep the last good ISR page instead of caching an empty archive on a transient failure.
     throw new Error("Blog articles could not be loaded.");
+  }
+});
+
+// Build-time helper for prerendering archive pages; a failure here must not break the build.
+export async function getPublishedPostCount(): Promise<number> {
+  if (!db) return 0;
+  try {
+    const [row] = await db.select({ total: count() }).from(posts).where(publishedFilter(new Date()));
+    return row?.total ?? 0;
+  } catch {
+    return 0;
   }
 }

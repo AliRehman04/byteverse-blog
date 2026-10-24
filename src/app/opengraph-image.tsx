@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// Node runtime: rendered once at build and served as a static asset, not regenerated per crawler request.
 export const alt = "ByteVerse — Free developer tools, AI and tech guides";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

@@ -2,7 +2,7 @@
   "date": "2026-10-25",
   "website": "https://www.byteverse.fyi",
   "slug": "ollama-models-folder-windows-move-2026",
-  "status": "validated locally; publication recorded once applied",
+  "status": "published 2026-10-25 (post id 242); backlink appended to post 235",
   "targeting": {
     "title": "Ollama Models Folder on Windows: Find It and Move It to Another Drive",
     "metaTitle": "Ollama Models Folder on Windows: Move It to Another Drive",
@@ -107,5 +107,12 @@
     "script": "scripts/test-ollama-models-post.mjs (--offline renderer/FAQ parity, --links HTTP)",
     "limits": "Procedures were checked against documentation and issue reports, not reproduced on a machine mid-move. Ollama precedence behaviour may change in a future release."
   },
-  "publication": null
+  "publication": {
+    "appliedAt": "2026-10-25T01:41:22.047Z",
+    "postId": 242,
+    "url": "https://www.byteverse.fyi/blog/ollama-models-folder-windows-move-2026",
+    "backlinkHostPostId": 235,
+    "deployCommitForAssets": "9104689",
+    "liveCheck": "scripts/check-ollama-models-live.mjs: 200, canonical ok, 5 FAQ details + FAQPage, cover + inline photos present, og:image = photo-cover, Pexels credit metadata; archive/sitemap/feed pick the post up on the next rebuild (ISR)"
+  }
 }

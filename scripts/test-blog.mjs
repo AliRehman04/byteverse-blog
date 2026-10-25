@@ -1,6 +1,6 @@
 // Synthetic/unit checks for the blog index. Never import the real DB module or load .env files.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -257,6 +257,6 @@ test("blog colours derive from the shared site theme and reuse the homepage desi
   assert.match(styles, /background: var\(--background\)/);
   assert.match(styles, /\.page :where\(a\)/);
   assert(!/#(?:234cdb|121d32|1d2c29|c6dfb5|a3bcff|adb9cf|0f172a(?![0-9a-f])|1e293b)/i.test(styles.replace(/color: #0f172a;/g, "")));
-  const loading = read("src/app/blog/loading.tsx");
-  assert(!/#0f172a|#1e293b|text-white/.test(loading));
+  // src/app/blog/loading.tsx was removed on purpose (a loading boundary made notFound() respond 200); it must not come back.
+  assert(!existsSync(join(root, "src/app/blog/loading.tsx")));
 });

@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-25",
+  "website": "https://www.byteverse.fyi",
+  "slug": "ollama-models-folder-windows-move-2026",
+  "status": "validated locally; publication recorded once applied",
+  "targeting": {
+    "title": "Ollama Models Folder on Windows: Find It and Move It to Another Drive",
+    "metaTitle": "Ollama Models Folder on Windows: Move It to Another Drive",
+    "metaDescription": "Where Ollama stores models on Windows, how to move them to another drive without re-downloading, and why OLLAMA_MODELS gets ignored by the app's Model location.",
+    "excerpt": "Ollama keeps every model in C:\\Users\\<you>\\.ollama\\models until you tell it otherwise. Here is the exact folder layout, how to move existing models to another drive without downloading them again, and the Settings → Model location override that makes OLLAMA_MODELS look ignored.",
+    "primary": "ollama models folder windows",
+    "secondary": ["ollama models location windows", "ollama change model folder windows", "move ollama models to another drive windows", "ollama_models environment variable not working", "ollama model download location windows"],
+    "semantic": ["OLLAMA_MODELS", "Model location", "blobs", "manifests", "robocopy", "server.log", "NTFS mount point", "tray app"],
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "author": "Ali Rehman",
+    "readingTime": "11 min read",
+    "keywords": "ollama models folder windows, ollama models location windows, ollama change model folder windows, move ollama models to another drive, OLLAMA_MODELS not working, ollama model location setting, ollama blobs manifests, ollama list empty",
+    "summary": "The models folder is the one that directly contains blobs and manifests; pointing OLLAMA_MODELS at the parent .ollama folder empties ollama list|Move existing models with robocopy after quitting the tray app, then set OLLAMA_MODELS and the app's Settings → Model location to the identical path|The server config line in %LOCALAPPDATA%\\Ollama\\server.log shows which folder the running server actually uses",
+    "intent": "how-to / troubleshooting",
+    "language": "en",
+    "geography": "request parameters en/US only; not a measured market"
+  },
+  "metrics": {
+    "userReport": "Site owner reports no meaningful search traffic yet; requested another researched post (2026-10-25).",
+    "gscAuthenticated": false,
+    "analyticsReviewed": "Stored view counters only (2026-10-24 inventory): ollama-not-using-gpu-windows-2026 had 12 views in ~2.5 weeks, among the best recent troubleshooting posts.",
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No Search Console, volume, difficulty or ranking data. Topic choice rests on autocomplete wording, first-page observations and the sibling post's early views."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-25",
+    "snapshotFile": "docs/content-research/2026-10-25-inventory.json",
+    "totalPosts": 173,
+    "publishedPosts": 171,
+    "editorialChecksumExcludingViews": "f27c34c902a372a2bd32a7be33412ca0",
+    "overlapTerms": ["OLLAMA_MODELS", "Model location", "models folder", "another drive"],
+    "overlapResult": "0 posts matched (read-only regex over title and content, docs/content-research/2026-10-25-overlap-ollama-models.json).",
+    "relatedExisting": ["ollama-not-using-gpu-windows-2026", "how-to-run-ai-locally-2026"],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" },
+      { "slug": "webp-larger-than-jpg", "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e" }
+    ],
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-24",
+    "source": "Google public autocomplete (client=firefox, hl=en, gl=us) via scripts/research-blog-2026-10-24.mjs --keywords; raw output docs/content-research/2026-10-24-autocomplete.json",
+    "seedsChecked": 30,
+    "nonemptySeeds": 24,
+    "selectedEvidence": {
+      "ollama models folder windows": ["ollama models location windows", "ollama models directory windows", "ollama change model folder windows", "ollama change models directory windows", "ollama model download location windows", "ollama default model location windows", "ollama set model directory windows", "ollama model file location windows", "ollama windows change model location"],
+      "ollama move models to another drive": ["move ollama models to another drive windows", "move ollama models to another drive ubuntu", "move ollama models to external drive"],
+      "ollama_models environment variable": ["ollama_models environment variable not working", "ollama_models environment variable windows"]
+    },
+    "limits": "Wording evidence only; not volume, difficulty, trend or traffic data."
+  },
+  "serps": {
+    "duckduckgo": "First page observed 2026-10-24 for 'ollama models folder windows', 'ollama_models environment variable not working' and 'move ollama models to another drive windows' (docs/content-research/2026-10-24-ddg.txt).",
+    "selectedFirstPage": ["ai-ollama.github.io", "knightli.com", "glukhov.org", "github.com issues", "docs.ollama.com", "llmconfigurator.com", "runaihome.com", "tensorarchive.ai", "igoroseledko.com", "localaimaster.com", "mljourney.com"],
+    "gap": "Existing guides describe the environment variable only. None explains the desktop app's Model location override (July/August 2026 issues), the parent-folder mistake, the NTFS mount point regression in 0.40.x, or how to confirm the active folder from server.log.",
+    "limits": "DuckDuckGo first page with us-en parameter; Google served a CAPTCHA and was not bypassed."
+  },
+  "internalLinkPlan": ["/blog/ollama-not-using-gpu-windows-2026", "/blog/how-to-run-ai-locally-2026"],
+  "inboundLinkPlan": [
+    {
+      "post": "ollama-not-using-gpu-windows-2026",
+      "section": "6. Read the server log before reinstalling",
+      "anchorSentence": "Exact log wording changes between releases, so absence of one phrase copied from a tutorial is not a diagnosis.",
+      "appendedSentence": "The same log's startup `server config` line also records the active `OLLAMA_MODELS` path, which matters if you have [moved the models folder to another drive](/blog/ollama-models-folder-windows-move-2026) and the model list suddenly looks empty.",
+      "status": "applied by scripts/_publish-ollama-models-post.mjs --apply in the same transaction (anchor must occur exactly once; link must not already exist)"
+    }
+  ],
+  "primarySources": [
+    { "url": "https://docs.ollama.com/windows", "note": "Changing Model Location, file locations, uninstall keeps moved models" },
+    { "url": "https://docs.ollama.com/faq", "note": "Where are models stored; Windows environment variable steps" },
+    { "url": "https://docs.ollama.com/troubleshooting", "note": "Windows log locations" },
+    { "url": "https://github.com/ollama/ollama/issues/9889", "note": "Mar 2025 parent-folder mistake; Mar 2026 comments on old folder and db.sqlite" },
+    { "url": "https://github.com/ollama/ollama/issues/12154", "note": "Sep 2025 GUI vs CLI folder; \\models subfolder" },
+    { "url": "https://github.com/ollama/ollama/issues/17374", "note": "Jul 2026 root-cause trace: app Model location overrides OLLAMA_MODELS; PR #17401" },
+    { "url": "https://github.com/ollama/ollama/issues/17867", "note": "Aug 2026 confirmed workaround on 0.31.1" },
+    { "url": "https://github.com/ollama/ollama/issues/11836", "note": "Aug 2025 blank window when model location drive disconnected" },
+    { "url": "https://github.com/ollama/ollama/issues/18921", "note": "Oct 2026 NTFS mount point / junction regression since 0.40.0; PR #18949" },
+    { "url": "https://ollama.com/blog/new-app", "note": "July 2025 new app announcement" },
+    { "url": "https://learn.microsoft.com/windows-server/administration/windows-commands/robocopy", "note": "robocopy reference" }
+  ],
+  "faq": [
+    "Can I just move the whole .ollama folder to another drive?",
+    "Why does ollama list show nothing after I set OLLAMA_MODELS?",
+    "Does the app's Model location setting replace the environment variable?",
+    "Will moving models to a hard drive make Ollama slower?",
+    "Can I use a symbolic link or junction instead of changing the setting?"
+  ],
+  "images": {
+    "cover": "public/blog/ollama-models-folder/photo-cover.jpg (Pexels 35984425, NVMe SSD on a circuit board)",
+    "inline": "public/blog/ollama-models-folder/photo-inline.jpg (Pexels 5951759, external drive connected to a laptop)",
+    "type": "Real photographs under the Pexels licence; credits in the article.",
+    "bodyImages": "one inline photo in Step 3, before the robocopy command"
+  },
+  "validation": {
+    "proseWords": 2279,
+    "contentSha256": "309b1068a151070f15b72aab55409795f91c6775d3a0ab447b2f3764493588f4",
+    "script": "scripts/test-ollama-models-post.mjs (--offline renderer/FAQ parity, --links HTTP)",
+    "limits": "Procedures were checked against documentation and issue reports, not reproduced on a machine mid-move. Ollama precedence behaviour may change in a future release."
+  },
+  "publication": null
+}

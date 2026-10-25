@@ -20,6 +20,12 @@
    "photographerUrl": "https://www.pexels.com/@cottonbro/",
    "pageUrl": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/"
   },
+  "5951759": {
+   "title": "Portable Drive Connected to Laptop",
+   "photographer": "Arina Krasnikova",
+   "photographerUrl": "https://www.pexels.com/@arina-krasnikova/",
+   "pageUrl": "https://www.pexels.com/photo/portable-drive-connected-to-laptop-5951759/"
+  },
   "6779570": {
    "title": "A Person Writing on a Paper with Graph",
    "photographer": "Artem Podrez",
@@ -85,6 +91,12 @@
    "photographer": "Daniil Komov",
    "photographerUrl": "https://www.pexels.com/@dkomov/",
    "pageUrl": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/"
+  },
+  "35984425": {
+   "title": "Close-Up of Lexar NVMe SSD on Circuit Board",
+   "photographer": "Przemek Leśniewski",
+   "photographerUrl": "https://www.pexels.com/@lesior/",
+   "pageUrl": "https://www.pexels.com/photo/close-up-of-lexar-nvme-ssd-on-circuit-board-35984425/"
   }
  },
  "plan": [
@@ -173,6 +185,18 @@
    },
    "body": {
     "id": 7735769,
+    "position": "attention"
+   }
+  },
+  {
+   "slug": "ollama-models-folder-windows-move-2026",
+   "dir": "ollama-models-folder",
+   "cover": {
+    "id": 35984425,
+    "position": "attention"
+   },
+   "body": {
+    "id": 5951759,
     "position": "attention"
    }
   }

@@ -18,24 +18,25 @@ export const plan = [
   { slug: "gemini-not-showing-google-docs-gmail-2026", dir: "gemini-workspace", cover: { id: 7439136, position: "attention" }, body: { id: 20716656, position: "centre" } },
   { slug: "ollama-not-using-gpu-windows-2026", dir: "ollama-gpu", cover: { id: 17576302, position: "attention" }, body: { id: 33693626, position: "attention" } },
   { slug: "excel-csv-special-characters-utf8", dir: "csv-utf8", cover: { id: 6779570, position: "attention" }, body: { id: 7735769, position: "attention" } },
+  { slug: "ollama-models-folder-windows-move-2026", dir: "ollama-models-folder", cover: { id: 35984425, position: "attention" }, body: { id: 5951759, position: "attention" } },
 ];
 const cdn = id => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=2400`;
 const headers = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", accept: "image/*" };
 
-async function readMeta() {
+async function readMeta(ids) {
   const { chromium } = await import("playwright");
   const browser = await chromium.launch({ channel: "msedge", headless: false });
   const page = await (await browser.newContext({ locale: "en-US" })).newPage();
   const meta = {};
   try {
-    for (const entry of plan) for (const role of ["cover", "body"]) {
-      const id = entry[role].id;
+    for (const id of ids) {
       await page.goto(`https://www.pexels.com/photo/${id}/`, { waitUntil: "domcontentloaded", timeout: 60000 });
       await page.waitForSelector('a[href^="/@"], a[href*="pexels.com/@"]', { timeout: 90000 });
       meta[id] = await page.evaluate(() => {
         const links = [...document.querySelectorAll('a[href^="/@"], a[href*="pexels.com/@"]')];
         const named = links.find(a => /[A-Za-z]{2,}/.test(a.textContent ?? "") && !/follow|donate/i.test(a.textContent ?? "")) ?? links[0];
-        return { title: document.title.replace(/\s*·\s*Free Stock Photo.*$/i, "").trim(), photographer: named?.textContent?.trim() ?? null, photographerUrl: named?.href ?? null, pageUrl: location.href };
+        const clean = text => (text ?? "").replace(/\s+/g, " ").trim() || null;
+        return { title: clean(document.title.replace(/\s*·\s*Free Stock Photo.*$/i, "")), photographer: clean(named?.textContent), photographerUrl: named?.href ?? null, pageUrl: location.href };
       });
       console.log(id, JSON.stringify(meta[id]));
     }
@@ -86,9 +87,13 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
   const mode = process.argv[2];
   assert(process.argv.length === 3 && ["--meta", "--preview", "--write"].includes(mode), "Use --meta, --preview or --write");
   if (mode === "--meta") {
-    const photos = await readMeta();
-    await writeFile(ledgerPath, JSON.stringify({ date: "2026-10-24", licence: "Pexels licence (https://www.pexels.com/license/): free to use and modify; attribution appreciated and given in each article's credits section.", photos, plan }, null, 1));
-    console.log(`Ledger written: ${ledgerPath}`);
+    // Incremental: only photo pages missing from the ledger are visited; existing entries (and the `applied` record) are kept.
+    const existing = JSON.parse(await readFile(ledgerPath, "utf8").catch(() => "{}"));
+    const wanted = [...new Set(plan.flatMap(entry => [entry.cover.id, entry.body.id]))];
+    const missing = wanted.filter(id => !existing.photos?.[id]?.photographer);
+    const photos = { ...(existing.photos ?? {}), ...(missing.length ? await readMeta(missing) : {}) };
+    await writeFile(ledgerPath, JSON.stringify({ ...existing, date: existing.date ?? "2026-10-24", licence: "Pexels licence (https://www.pexels.com/license/): free to use and modify; attribution appreciated and given in each article's credits section.", photos, plan }, null, 1));
+    console.log(`Ledger written: ${ledgerPath} (${missing.length} new photo pages read)`);
   } else {
     console.log(JSON.stringify(await buildPhotos(mode === "--write"), null, 1));
   }

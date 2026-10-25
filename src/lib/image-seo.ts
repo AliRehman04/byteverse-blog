@@ -103,37 +103,54 @@ export function getPostSeoImages({
   return images;
 }
 
+// Real photographs downloaded from Pexels and self-hosted under public/blog/<post>/photo-{cover,inline}.jpg
+// (see scripts/build-real-photos-2026-10-24.mjs). They are not ByteVerse originals.
+function isSelfHostedPexelsPhoto(imageUrl: string) {
+  return /\/blog\/[^/?#]+\/photo-(?:cover|inline)\.jpg(?:[?#]|$)/.test(imageUrl);
+}
+
+function isPexelsImage(imageUrl: string) {
+  return imageUrl.includes("images.pexels.com") || isSelfHostedPexelsPhoto(imageUrl);
+}
+
 export function getImageLicenseUrl(imageUrl: string) {
+  if (isPexelsImage(imageUrl)) return "https://www.pexels.com/license/";
   if (imageUrl.startsWith(siteConfig.url)) return `${siteConfig.url}/terms`;
   if (imageUrl.includes("images.unsplash.com")) return "https://unsplash.com/license";
-  if (imageUrl.includes("images.pexels.com")) return "https://www.pexels.com/license/";
   if (imageUrl.includes("pixabay.com")) return "https://pixabay.com/service/license-summary/";
   return `${siteConfig.url}/terms`;
 }
 
 export function getImageAcquireLicensePage(imageUrl: string) {
   if (imageUrl.includes("images.unsplash.com")) return "https://unsplash.com/license";
-  if (imageUrl.includes("images.pexels.com")) return "https://www.pexels.com/license/";
+  if (isPexelsImage(imageUrl)) return "https://www.pexels.com/license/";
   if (imageUrl.includes("pixabay.com")) return "https://pixabay.com/service/license-summary/";
   return `${siteConfig.url}/terms`;
 }
 
 export function getImageCreditText(imageUrl: string) {
+  if (isPexelsImage(imageUrl)) return "Royalty-free stock photo from Pexels";
   if (imageUrl.startsWith(siteConfig.url)) return `${siteConfig.name} original illustration`;
   if (imageUrl.includes("images.unsplash.com")) return "Royalty-free stock photo from Unsplash";
-  if (imageUrl.includes("images.pexels.com")) return "Royalty-free stock photo from Pexels";
   if (imageUrl.includes("pixabay.com")) return "Royalty-free stock photo from Pixabay";
   return "Royalty-free stock photo";
 }
 
 export function getImageCopyrightNotice(imageUrl: string) {
-  if (imageUrl.startsWith(siteConfig.url)) {
+  if (imageUrl.startsWith(siteConfig.url) && !isSelfHostedPexelsPhoto(imageUrl)) {
     return `Copyright ${new Date().getFullYear()} ${siteConfig.name}. All rights reserved.`;
   }
   return "Royalty-free stock photo used under the source platform license.";
 }
 
 export function getImageCreator(imageUrl: string) {
+  if (isPexelsImage(imageUrl)) {
+    return {
+      "@type": "Organization",
+      name: "Pexels creators",
+      url: "https://www.pexels.com/",
+    };
+  }
   if (imageUrl.startsWith(siteConfig.url)) {
     return {
       "@type": "Organization",
@@ -146,13 +163,6 @@ export function getImageCreator(imageUrl: string) {
       "@type": "Organization",
       name: "Unsplash contributors",
       url: "https://unsplash.com/",
-    };
-  }
-  if (imageUrl.includes("images.pexels.com")) {
-    return {
-      "@type": "Organization",
-      name: "Pexels creators",
-      url: "https://www.pexels.com/",
     };
   }
   if (imageUrl.includes("pixabay.com")) {

@@ -194,6 +194,15 @@ test("homepage colors derive from the shared site theme instead of a separate pa
   assert(!/#(?:234cdb|121d32|1d2c29|c6dfb5|a3bcff|adb9cf)/i.test(styles + newsletter));
 });
 
+test("lead card never combines aspect-ratio with a percentage min-height and does not clamp the excerpt", () => {
+  const styles = read("src/app/home-premium.module.css");
+  const leadMedia = /\.leadLink \.articleMedia \{([^}]*)\}/.exec(styles)?.[1] ?? "";
+  assert.match(leadMedia, /aspect-ratio: 16 \/ 9/);
+  assert(!/min-height/.test(leadMedia), "min-height with aspect-ratio transfers to width and overflowed the text column");
+  assert.match(/\.leadLink \{([^}]*)\}/.exec(styles)[1], /align-items: center/);
+  assert(!/line-clamp/.test(/\.leadExcerpt \{([^}]*)\}/.exec(styles)[1]), "Lead excerpt must stay complete");
+});
+
 test("existing article drafts retain their recorded LF-normalized content hashes", () => {
   for (const [slug, hash] of [
     ["json-parse-large-numbers-precision", "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3"],

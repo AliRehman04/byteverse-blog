@@ -39,7 +39,7 @@ const searchableTools = toolCatalog.map(({ slug, name, category, description }) 
 function ArticleMedia({ post, lead = false }: { post: HomepagePost; lead?: boolean }) {
   const cover = getHomepageCover(post.coverImage);
   const sizes = lead
-    ? "(max-width: 900px) calc(100vw - 32px), (max-width: 1152px) 58vw, 660px"
+    ? "(max-width: 900px) calc(100vw - 60px), (max-width: 1152px) 52vw, 600px"
     : "(max-width: 540px) calc(100vw - 32px), (max-width: 1000px) 48vw, 354px";
   return (
     <div className={styles.articleMedia} data-article-media={lead ? "lead" : "secondary"}>

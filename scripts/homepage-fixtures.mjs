@@ -8,7 +8,8 @@ export const previewCategories = [
 ];
 
 export const previewPosts = [
-  ['Why a transparent PNG can turn black when you save it as a JPG', 'Understand backgrounds, transparency and how to choose an image format. Fictional preview text; no article is created.', 2],
+  // Lead fixture uses the longest title/excerpt the editorial checks allow (70 / 300 chars) so the lead card is stress-tested.
+  ['Why a Transparent PNG Turns Black When Saved as JPG: Causes and Fixes', 'JPEG has no alpha channel, so every transparent pixel has to become some colour and many tools pick black. Here is why that happens, how to choose a background before exporting, which settings keep edges clean, and when a different format is the better answer. Fictional preview text.', 2],
   ['Keep your spreadsheet’s special characters intact', 'A fictional guide to readable CSV exports and the details that matter.', 4],
   ['Get your coding assistant ready on Windows', 'A fictional setup guide used only to preview the homepage layout.', 1],
   ['Make everyday work a little less repetitive', 'A synthetic productivity preview for local responsive testing.', 3],
@@ -20,7 +21,7 @@ export const previewPosts = [
 ].map(([title, excerpt, categoryId], index) => ({
   id: 990000 + index, title, excerpt, categoryId, slug: `homepage-preview-${index + 1}`,
   content: 'Local preview fixture only.', coverImage: [
-    '/blog/png-jpg-background/cover.png', '/blog/csv-utf8/cover.png', '/blog/claude-code-windows/cover.png',
+    '/blog/png-jpg-background/photo-cover.jpg', '/blog/csv-utf8/cover.png', '/blog/claude-code-windows/cover.png',
     '/blog/csv-excel/cover.png', '/blog/gemini-workspace/cover.png', '/blog/ollama-gpu/cover-v2.png',
     '/blog/how-to-build-website-with-ai-2026.webp', '/blog/gemini-workspace/cover.png', '/blog/claude-code-windows/cover.png',
   ][index],

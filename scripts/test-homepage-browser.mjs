@@ -83,6 +83,24 @@ async function noOverflow(page) {
   assert.deepEqual(overflow, [], "Homepage content overflows viewport");
 }
 
+// The lead card once let its photo grow past its column and cover the title (aspect-ratio + min-height: 100%).
+async function leadCardIntact(page) {
+  await page.locator("#featured-stories").scrollIntoViewIfNeeded();
+  const state = await page.locator("#featured-stories article > a").evaluate(card => {
+    const box = element => { const r = element.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height }; };
+    const media = card.querySelector('[data-article-media="lead"]'), body = media.nextElementSibling;
+    // Only a non-visible overflow can actually hide text (e.g. a line clamp); visible overflow with descenders is not clipping.
+    const texts = [...body.querySelectorAll("h3, p")].map(element => ({ text: element.textContent.slice(0, 40), clipped: getComputedStyle(element).overflow !== "visible" && (element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1) }));
+    return { card: box(card), media: box(media), body: box(body), texts, mediaRatio: media.getBoundingClientRect().width / media.getBoundingClientRect().height };
+  });
+  const inside = (inner, outer) => inner.left >= outer.left - 1 && inner.right <= outer.right + 1 && inner.top >= outer.top - 1 && inner.bottom <= outer.bottom + 1;
+  assert(inside(state.media, state.card) && inside(state.body, state.card), `Lead photo/copy escape the card: ${JSON.stringify(state)}`);
+  const separated = state.media.right <= state.body.left + 1 || state.media.bottom <= state.body.top + 1;
+  assert(separated, `Lead photo overlaps the copy: ${JSON.stringify(state)}`);
+  assert(Math.abs(state.mediaRatio - 16 / 9) < 0.02, `Lead photo frame is not 16:9: ${state.mediaRatio}`);
+  assert.deepEqual(state.texts.filter(item => item.clipped), [], "Lead title/excerpt must not be clipped");
+}
+
 async function themeMatchesSite(page) {
   await expect(async () => {
   const state = await page.evaluate(() => {
@@ -188,6 +206,7 @@ try {
         await open(page);
         await expect(page.locator("html")).toHaveClass(new RegExp(theme));
         await noOverflow(page);
+        await leadCardIntact(page);
         await themeMatchesSite(page);
         await axe(page, `${width}-${theme}`);
         await page.screenshot({ path: join(temp, `home-${width}-${theme}.png`), fullPage: false });

@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-27",
+  "status": "published 2026-10-27 as post 243; article verified live; index refresh pending content-only deployment",
+  "website": "https://www.byteverse.fyi",
+  "slug": "csv-opens-in-one-column-excel",
+  "targeting": {
+    "title": "CSV Opens in One Column in Excel? Fix the Delimiter",
+    "metaTitle": "CSV Opens in One Column in Excel? Fix the Delimiter",
+    "metaDescription": "Fix a CSV opening in one Excel column. Choose the right delimiter, handle quoted commas, protect IDs and use Text to Columns without changing Windows settings.",
+    "excerpt": "CSV stuck in column A? Import with the correct comma, semicolon or tab separator, check quoted fields, and keep IDs intact. A focused Excel guide with examples and safer alternatives to changing regional settings.",
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "author": "Ali Rehman",
+    "primary": "csv opens in one column excel",
+    "secondary": ["excel csv not separating columns", "csv semicolon excel", "excel text to columns csv"],
+    "keywords": "csv opens in one column excel, excel csv not separating columns, csv semicolon excel, excel text to columns csv, csv delimiter excel, csv comma in quotes",
+    "summary": "Import the original CSV through From Text/CSV and choose the actual delimiter before loading|Check quotes and column types separately so company names and identifiers stay intact|Use Text to Columns for intact worksheet records; avoid global separator changes for one file",
+    "readingTime": "9 min read"
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null, "gscAuthenticated": false },
+  "research": {
+    "file": "docs/content-research/2026-10-27-csv-one-column-research.json",
+    "successfulAutocompleteSeeds": 4,
+    "serp": "8 observed DuckDuckGo results; not Google rank data",
+    "overlap": "No dedicated title or heading found for this task. Existing posts 237 and 239 mention delimiter problems briefly; this article focuses on import, quoting and worksheet repair rather than duplicating their number/encoding guidance.",
+    "limits": "Autocomplete is wording evidence, not search volume or an easy-ranking forecast. Microsoft docs establish procedures; Excel was not run locally."
+  },
+  "inventory": {
+    "total": 174,
+    "published": 172,
+    "hash": "c8c92120b76b566e8f41115b472aa1a6",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" },
+      { "slug": "webp-larger-than-jpg", "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e" }
+    ]
+  },
+  "internalLinks": ["/blog/excel-csv-leading-zeros-2026", "/blog/excel-csv-special-characters-utf8", "/tools/json-to-csv"],
+  "backlink": {
+    "host": "excel-csv-leading-zeros-2026",
+    "anchor": "If everything appears in one column, choose the correct delimiter in the import dialog before checking types.",
+    "sentence": "For the full delimiter and quotation checklist, see [why a CSV opens in one column in Excel](/blog/csv-opens-in-one-column-excel)."
+  },
+  "sources": [
+    "https://support.microsoft.com/en-us/excel/get-started/import-or-export-text-txt-or-csv-files",
+    "https://learn.microsoft.com/en-us/power-query/connectors/text-csv",
+    "https://support.microsoft.com/en-us/excel/get-started/split-text-into-different-columns-with-the-convert-text-to-columns-wizard",
+    "https://support.microsoft.com/en-us/excel/text-import-wizard",
+    "https://www.rfc-editor.org/rfc/rfc4180"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/csv-excel/photo-inline.jpg",
+    "coverFile": "public/blog/csv-excel/photo-inline.jpg",
+    "coverPhotographer": "Wolf Art",
+    "coverCredit": "https://www.pexels.com/@wolfart/",
+    "inline": "https://www.byteverse.fyi/blog/csv-utf8/photo-cover.jpg",
+    "inlineFile": "public/blog/csv-utf8/photo-cover.jpg",
+    "inlinePhotographer": "Artem Podrez",
+    "inlineCredit": "https://www.pexels.com/@artempodrez/",
+    "licenceRecord": "docs/real-photos-2026-10-24.json",
+    "note": "Previously licensed, credited, self-hosted real photographs; reused without requiring new asset deployment. Both 1200x675. Illustrative, not instructional Excel screenshots."
+  },
+  "faq": [
+    "Why does my CSV open in one column in Excel?",
+    "How do I split a CSV that is already in column A?",
+    "Should I change my Windows list separator?",
+    "Does saving as UTF-8 fix the column problem?",
+    "Why does a comma inside a company name create another column?"
+  ],
+  "validation": { "proseWords": 1826, "contentSha256": "6854472937e2037ec102ccd869dd420dec469fc8e47ec6fc35e830d6e3a0af85", "script": "scripts/test-csv-column-post.mjs" },
+  "publication": {
+    "date": "2026-10-27",
+    "postId": 243,
+    "url": "https://www.byteverse.fyi/blog/csv-opens-in-one-column-excel",
+    "publishedTimeFromLiveMetadata": "2026-10-27T05:36:01.798Z",
+    "backlinkHostPostId": 237,
+    "unrelatedEditorialPostsUnchanged": 173,
+    "liveArticleChecks": "HTTP 200, exact H1, canonical, description, today's publication date, five visible FAQs, cover and inline JPEGs, photographer credits; no unpublished CSV Diff link.",
+    "validation": "scripts/test-csv-column-post.mjs --links passed: actual MarkdownRenderer, FAQ text parity, four CSV examples plus blank-field example, all source/internal/image links HTTP 200, old draft hashes unchanged.",
+    "indexRefresh": "Content-only commit will refresh homepage, archive, feed, sitemap and the contextual backlink. Pending CSV tool app files are excluded."
+  }
+}

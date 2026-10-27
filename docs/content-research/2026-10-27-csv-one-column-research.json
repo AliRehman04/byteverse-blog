@@ -1,0 +1,208 @@
+{
+  "checkedAt": "2026-10-27T05:26:02.357Z",
+  "inventory": {
+    "total": 174,
+    "published": 172,
+    "hash": "c8c92120b76b566e8f41115b472aa1a6",
+    "database_date": "2026-10-27"
+  },
+  "overlap": [
+    {
+      "id": 78,
+      "title": "7 Best AI Spreadsheet Tools in 2026 (Ranked)",
+      "slug": "best-ai-spreadsheet-tools-2026",
+      "published": true,
+      "headings": [
+        "Quick Verdict",
+        "What Makes a Good AI Spreadsheet Tool?",
+        "How I Evaluated the Tools",
+        "Best AI Spreadsheet Tools at a Glance",
+        "1. Excel with Microsoft 365 Copilot - Best for Microsoft Teams",
+        "What Excel Copilot Does Well",
+        "Where It Can Fall Short",
+        "2. Gemini in Google Sheets - Best for Google Workspace Teams",
+        "What Gemini in Sheets Does Well",
+        "Where It Can Fall Short",
+        "3. Rows AI - Best AI-First Spreadsheet Tool",
+        "What Rows AI Does Well",
+        "Where It Can Fall Short",
+        "4. Airtable AI - Best for Spreadsheet-Style Business Workflows",
+        "What Airtable AI Does Well",
+        "Where It Can Fall Short",
+        "5. Formula Bot - Best for Quick Formula Help",
+        "What Formula Bot Does Well",
+        "Where It Can Fall Short",
+        "6. Numerous.ai - Best for AI Functions in Google Sheets",
+        "What Numerous.ai Does Well",
+        "Where It Can Fall Short",
+        "7. SheetAI - Best Lightweight Google Sheets AI Add-On",
+        "8. ChatGPT Advanced Data Analysis - Best for One-Off Spreadsheet Analysis",
+        "What ChatGPT Does Well",
+        "Where It Can Fall Short",
+        "Best AI Spreadsheet Tool by Use Case",
+        "Practical Spreadsheet AI Workflows",
+        "Clean a Messy Export",
+        "Generate Formulas You Understand",
+        "Summarize Weekly Performance",
+        "Classify Text Rows",
+        "Build a Quick Dashboard",
+        "Forecast a Simple Trend",
+        "What to Avoid",
+        "Final Recommendation",
+        "Related Guides"
+      ]
+    },
+    {
+      "id": 237,
+      "title": "Excel Removing Leading Zeros in CSV? Keep IDs Intact",
+      "slug": "excel-csv-leading-zeros-2026",
+      "published": true,
+      "headings": [
+        "Why a CSV can be correct while Excel shows the wrong value",
+        "Recommended method: import the CSV with explicit Text columns",
+        "1. Start from the untouched file",
+        "2. Check the preview before loading",
+        "3. Remove an earlier conversion before assigning Text",
+        "4. Give identifiers and amounts different types",
+        "5. Load, verify and keep a workbook copy",
+        "Faster option: turn off the relevant automatic conversions",
+        "Older Excel: use the Text Import Wizard",
+        "Recovering zeros and digits already removed",
+        "Why the zeros disappear again after saving as CSV",
+        "JSON to CSV: preserve the ID before Excel sees it",
+        "A short check before you send the file",
+        "Frequently Asked Questions",
+        "How do I stop Excel removing leading zeros from CSV files?",
+        "Do double quotes keep leading zeros in Excel?",
+        "Can I recover zeros or digits that Excel already removed?",
+        "Why do the leading zeros disappear when I reopen a saved CSV?",
+        "Does changing the Excel conversion setting also fix Power Query?",
+        "Sources and Image Credits"
+      ]
+    },
+    {
+      "id": 239,
+      "title": "Excel CSV Special Characters Broken? Fix UTF-8 Safely",
+      "slug": "excel-csv-special-characters-utf8",
+      "published": true,
+      "headings": [
+        "First, identify what is actually wrong",
+        "Import a known UTF-8 CSV without guessing",
+        "1. Begin with the original export",
+        "2. Select the source encoding and inspect known text",
+        "3. Set the delimiter separately",
+        "4. Review types and load only after the preview is correct",
+        "A small multilingual sample to check your import",
+        "Why the same bytes can display two different ways",
+        "What a UTF-8 BOM fixes—and what it cannot fix",
+        "When choosing UTF-8 still does not fix the text",
+        "Case A: the original bytes are intact",
+        "Case B: the wrong characters were already saved",
+        "Case C: original characters were replaced",
+        "Export a clean copy without repeating the problem",
+        "Common false fixes to avoid",
+        "Frequently Asked Questions",
+        "Why does Excel show strange characters in a CSV?",
+        "Does a CSV need a UTF-8 BOM to open in Excel?",
+        "Can I recover letters that became question marks?",
+        "Will changing the delimiter fix corrupted accents?",
+        "Why does saving as UTF-8 not fix text that is already garbled?",
+        "Verification Notes",
+        "Sources and Image Credits"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 2,
+      "name": "Tech Guides"
+    }
+  ],
+  "keywordResearch": {
+    "source": "Google public autocomplete; en/US request parameters, wording evidence only",
+    "observations": [
+      {
+        "seed": "csv opens in one column excel",
+        "suggestions": [
+          "csv opens in one column excel",
+          "how to open csv file in excel with columns automatically",
+          "csv file opening in one column excel",
+          "excel not opening csv in columns"
+        ]
+      },
+      {
+        "seed": "excel csv not separating columns",
+        "suggestions": [
+          "excel csv not separating columns",
+          "csv file not separating columns in excel",
+          "how to separate csv file into columns in excel"
+        ]
+      },
+      {
+        "seed": "csv semicolon excel",
+        "suggestions": [
+          "csv semicolon excel",
+          "csv semicolon delimited excel",
+          "csv semicolon separated excel",
+          "save csv excel semicolon",
+          "import csv excel semicolon",
+          "csv comma or semicolon excel",
+          "export csv excel semicolon",
+          "excel csv semicolon instead of comma",
+          "open csv with semicolon excel",
+          "convert csv semicolon to excel"
+        ]
+      },
+      {
+        "seed": "excel text to columns csv",
+        "suggestions": [
+          "excel text to columns csv",
+          "excel automatic text to columns csv",
+          "excel convert csv text to columns",
+          "excel csv automatic text to columns disable"
+        ]
+      }
+    ]
+  },
+  "serp": {
+    "query": "csv opens in one column excel",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Excel Is Opening CSV Files in One Column: 3 Solutions",
+        "url": "https://www.exceldemy.com/excel-opening-csv-in-one-column/"
+      },
+      {
+        "title": "Fix: CSV Opens in One Column in Excel - howtocsv.com",
+        "url": "https://howtocsv.com/troubleshooting/csv-opens-in-one-column-excel/"
+      },
+      {
+        "title": "CSV File Opens in One Column in Excel? Fix It Quickly - SysTools",
+        "url": "https://www.systoolsgroup.com/updates/csv-file-opens-in-one-column-in-excel/"
+      },
+      {
+        "title": "CSV Opens in One Column in Excel — What Went Wrong and How to Fix It",
+        "url": "https://wildandfreetools.com/blog/csv-opens-in-one-column-fix/"
+      },
+      {
+        "title": "Why your CSV opens in one column in Excel | RowSlice",
+        "url": "https://rowslice.com/guides/csv-opens-in-one-column-excel/"
+      },
+      {
+        "title": "CSV Files Open in Single Column - Excel 365 Version 2603 Build 16.0 ...",
+        "url": "https://learn.microsoft.com/en-us/answers/questions/5867755/csv-files-open-in-single-column-excel-365-version"
+      },
+      {
+        "title": "CSV opens in one column in Excel? How to fix it | QuickScan",
+        "url": "https://quickscanexcel.com/csv-opens-in-one-column"
+      },
+      {
+        "title": "How to Fix CSV File in Excel (5 Common Problems)",
+        "url": "https://www.exceldemy.com/how-to-fix-csv-file-excel/"
+      }
+    ],
+    "source": "DuckDuckGo HTML; not Google ranking or difficulty data"
+  },
+  "limits": "No authenticated Search Console, search volume, keyword difficulty or traffic forecast. All database queries read-only."
+}

@@ -216,6 +216,7 @@ export default function JsonToCsvPage() {
       </div>
 
       <aside aria-label="Working with invoice PDFs" className="mt-8 border-l-2 border-[#3b63c6] bg-[#faf9f6] py-4 pr-4 pl-5 text-sm leading-relaxed text-muted-foreground dark:bg-blue-200/5 [&_a]:font-medium [&_a]:text-[#203e6c] [&_a]:underline [&_a]:underline-offset-4 [&_a]:focus-visible:outline-2 [&_a]:focus-visible:outline-offset-4 [&_a]:focus-visible:outline-[#3b63c6] dark:[&_a]:text-blue-200">
+        <p className="mb-3">Have two export versions to review? After converting each snapshot, use the <Link href="/tools/csv-diff" prefetch={false}>CSV diff checker</Link> to match rows by ID and inspect added, removed and changed records.</p>
         <p>Starting with invoice PDFs rather than JSON? Use <Link href="/tools/invoice-pdf-to-excel">Invoice PDF to Excel</Link> to review summary fields from selectable-text invoices and export XLSX or CSV locally. Scanned invoices are not supported.</p>
       </aside>
 

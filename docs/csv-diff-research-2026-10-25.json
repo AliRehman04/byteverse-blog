@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-25",
+  "status": "research and implementation complete locally; functional validation passed 2026-10-26; not committed, pushed or deployed; dependency security patch required before release",
+  "inventory": { "currentTools": 42, "source": "src/lib/tool-catalog.ts", "newTask": "Structured CSV comparison by an explicitly selected unique key, rather than the existing line-based text diff or JSON conversion." },
+  "evidence": {
+    "autocomplete": "docs/content-research/2026-10-25-new-tool-autocomplete.json",
+    "seeds": 31,
+    "candidates": 6,
+    "serps": "docs/content-research/2026-10-25-new-tool-serps-1792917161455.json",
+    "serpQueries": 7,
+    "usableDuckDuckGoPages": 4,
+    "blockedDuckDuckGoPages": 3,
+    "google": "Public Google search returned a CAPTCHA. Not bypassed; DuckDuckGo observations are not Google rankings.",
+    "authenticatedGsc": false,
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingForecast": null,
+    "trafficBaseline": null
+  },
+  "candidateComparison": [
+    { "candidate": "CSV comparison", "decision": "Selected", "reason": "Clear task phrases, existing CSV/JSON audience and reusable parser. A useful repeat-export review workflow without hosting uploaded files. Competitive, not an uncovered market." },
+    { "candidate": "CSV to JSON", "decision": "Deferred", "reason": "Relevant adjacent conversion, but CSVJSON already offers CSV/TSV/Markdown inputs and several output types. Broader generic conversion adds less distinct workflow value here." },
+    { "candidate": "CSV to Excel", "decision": "Deferred", "reason": "Fits existing leading-zero guides but several observed tools already offer typed XLSX and identifier preservation. Avoid another generic converter this turn." },
+    { "candidate": "Favicon generator", "decision": "Deferred", "reason": "RealFaviconGenerator already covers SVG, mobile previews, markup and framework installation. Partial overlap with existing image conversion; demands a wider platform correctness matrix." },
+    { "candidate": "Contrast checker", "decision": "Deferred", "reason": "Useful but observed results include WebAIM, Adobe, Coolors and W3Schools with mature free workflows. No measured easier-ranking evidence." },
+    { "candidate": "robots.txt tester", "decision": "Deferred", "reason": "Autocomplete wording exists, but overlaps existing robots generator and has crawler-semantics complexity. SERP unavailable in this run; Ryte URL now says its old free tool is unavailable." }
+  ],
+  "competitorReview": [
+    { "url": "https://csvtools.com/compare-files/", "method": "Documentation and native browser synthetic test", "observation": "A=id,price + 001,10 + 002,20; B=same rows reversed. Output was 2 added, 2 removed, 1 unchanged (header). Correct for positional text diff but noisy for export reconciliation." },
+    { "url": "https://extendsclass.com/csv-diff.html", "method": "Product documentation", "observation": "Explicitly line/field-position comparison and asks for sorted files; unbounded size with browser-memory caveat. Historic comments are not proof of current bugs." },
+    { "url": "https://www.textcompare.org/csv/", "method": "Product documentation", "observation": "Paste/files, parse controls, table/text view, XLSX/CSV/HTML exports and optional sharing. These are already established features, not unique opportunities." },
+    { "url": "https://www.csvdiff.org/", "method": "Documentation and native browser synthetic setup test", "observation": "Supports single/composite/full-row comparison and mappings. With duplicate id rows and unique prices, default setup selected price as the key and showed 2/3 normalization rules active. No incorrect final-result claim made; test did not run a final comparison. Our design requires deliberate key selection and exact comparison defaults." },
+    { "url": "https://www.csvtool.io/csv-compare", "method": "Product documentation", "observation": "Key-based matching, filtering and downloadable reports already advertised; no numeric file limit stated in the reviewed FAQ." },
+    { "url": "https://www.datablist.com/tools/csv-diff", "method": "Product documentation", "observation": "Already supports composite keys, mappings, join modes, normalization, several encodings and report formats. Local processing alone is not a differentiator." }
+  ],
+  "targeting": {
+    "name": "CSV Diff Checker",
+    "slug": "csv-diff",
+    "title": "CSV Diff Checker: Compare Two CSV Files by Key",
+    "description": "Compare two CSV files by ID or composite key. Find added, removed and changed rows, inspect duplicate keys, and export reports locally with no uploads.",
+    "primary": "compare two csv files online",
+    "secondary": ["csv diff", "csv diff checker", "csv comparison tool", "compare two csv files for differences"],
+    "workflowTermsNotMeasuredDemand": ["compare CSV by key", "ignore row order", "composite key", "duplicate CSV keys", "SKU export comparison"],
+    "urlRationale": "Short, descriptive, hyphenated task URL without a year or extra exact-match landing pages.",
+    "intent": "Interactive export comparison for developers, analysts and store operators; not a general spreadsheet editor or an automatic data merger."
+  },
+  "implementationContract": {
+    "input": "Local CSV/TSV files or pasted text. Explicit per-input delimiter and encoding; UTF-8 default. Header required, duplicate headers and ragged/invalid CSV rejected. Preserve strings and leading zeros.",
+    "matching": "User-selected one or more shared key columns; row/column reordering ignored. Duplicate or blank keys fail with record numbers rather than picking a row. Compare selected shared columns; excluded and unshared columns explicitly disclosed.",
+    "results": "Exact counts, changes-only filters, search, bounded paginated preview, full before/after cell evidence and report exports. Input/settings changes invalidate prior results. No automatic source-file editing.",
+    "limits": "Bounded worker, input/row/column/cell/output budgets, cancel and timeout; no silent truncation or unbounded file claims.",
+    "privacy": "Reuse the private-tool document boundary to exclude site analytics/ads/chat from this route; restrictive same-origin CSP; no input upload, URL import, automatic content persistence or new API endpoint.",
+    "seo": "Static server-rendered content, self canonical, unique H1/title/description, custom static social image, WebApplication and BreadcrumbList. Visible FAQs without promising Google FAQ rich results.",
+    "discovery": "Tools catalogue/search, reciprocal related tools, XML and HTML sitemap, llms.txt and chat description, contextual links in relevant existing tool help. No live database edits or unsolicited outreach."
+  },
+  "primarySources": [
+    { "url": "https://www.rfc-editor.org/rfc/rfc4180", "use": "CSV records, quoted multiline fields, escaped quotes and spaces as data; informational RFC rather than a universal CSV implementation guarantee." },
+    { "url": "https://www.papaparse.com/docs", "use": "Installed Papa Parse 5.7.0; keep dynamicTyping false, header false for explicit validation, parse quoted fields, report errors and serialize safely." },
+    { "url": "https://community.owasp.org/attacks/CSV_Injection", "use": "Formula initiators including full-width variants, quoting, mitigation trade-offs and no universal safe CSV sanitizer. Preserve exact machine-readable data separately from spreadsheet-oriented export." },
+    { "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "use": "Functional people-first main content and original testing rather than keyword stuffing, invented authority or arbitrary word counts." },
+    { "url": "https://developers.google.com/search/updates#faq-deprecation", "use": "Current official changelog: Google FAQ rich results removed starting May 7, 2026; old FAQ documentation redirects here. Do not promise FAQ rich-result visibility." }
+  ],
+  "measurementPlan": {
+    "beforeRelease": "Verify functionality, downloads, keyboard/mobile layout, indexable HTML, canonical, social image and discovery links. These are engineering results, not search traffic.",
+    "afterRelease": "In owner-authenticated Search Console, filter exact new page; record indexed/canonical status and 7/28/56-day impressions, clicks, CTR and observed queries. Compare to first available baseline; do not manufacture numbers.",
+    "privacy": "Do not put CSV data, filenames, keys, result values or reports in analytics. No analytics collection added to the private workspace. User-observed pilot success can be recorded without uploading files.",
+    "successCriterion": "Users can correctly identify real changes and export a reviewable report; search growth evaluated only when real data exists.",
+    "limitations": "A new tool cannot fix all site authority, indexing or acquisition issues. No ranking, revenue, perfect security or traffic guarantee."
+  },
+  "validation": {
+    "completedAt": "2026-10-26",
+    "core": { "passed": 138, "failed": 0, "script": "scripts/test-csv-diff-core.mjs", "scope": "Synthetic parser, encoding, key matching, limits, exact reports and worker protocol tests; no user data." },
+    "uiAndSeo": { "passed": 17, "failed": 0, "script": "scripts/test-csv-diff-ui.mjs", "scope": "Actual server-rendered page and client, canonical, schema, native FAQ disclosures, discovery, isolated shell, root service-worker exclusions and actual 1200x630 PNG." },
+    "browser": {
+      "cases": 18,
+      "executions": 24,
+      "passed": 24,
+      "failed": 0,
+      "partial": false,
+      "script": "scripts/test-csv-diff-browser.mjs",
+      "latestFullReport": "OS temp/byteverse-csv-diff-browser-H6xnMp/summary.json",
+      "widths": [320, 390, 768, 1440],
+      "themes": ["light", "dark"],
+      "checks": "Native Edge file inputs, actual workers and CSV/JSON downloads; composite/duplicate keys, stale result invalidation, controlled failure/cancellation tests, keyboard, 16 empty/populated axe scans, no data-bearing network or persistence, public/private document changes, no-JavaScript state. Real device and Safari validation not performed."
+    },
+    "regressions": { "homepageAndBlogPassed": 20, "catalogueRoutes": 43, "existingImageToolBrowserSmokePassed": 3 },
+    "build": { "result": "passed", "mode": "production Next build in a credential-free disposable copy; default bundler after initial Webpack validation", "staticToolAndSocialImage": true, "databaseDisabled": true, "fontMode": "Existing cached fonts in preview; production font configuration unchanged." },
+    "previewAcceptance": {
+      "script": "scripts/check-csv-diff-preview.mjs",
+      "checkedAt": "2026-10-26T10:25:06.137Z",
+      "passed": 10,
+      "failed": 0,
+      "report": "OS temp/byteverse-csv-diff-acceptance-cW0XQ6/acceptance.json",
+      "discovery": ["/tools", "/sitemap.xml", "/site-map", "/llms.txt", "/tools/json-to-csv", "/tools/diff-checker"],
+      "canonical": "https://www.byteverse.fyi/tools/csv-diff",
+      "privateToolNavigation": "CSV Diff to ImageFixer and back replaces the document, so each private tool receives its own CSP. Verified in the final build.",
+      "largeInput": { "recordsPerFile": 20000, "columns": 25, "cellsPerFile": 500000, "bytesPerFile": 1080209, "resultRecords": 20100, "counts": { "changed": 100, "added": 100, "removed": 100, "unchanged": 19800 }, "inspectionMs": 4526, "comparisonMs": 7440, "searchMs": 322 },
+      "limits": "Single unthrottled desktop synthetic run; timings include UI overhead. Not a physical mobile test, peak memory measurement or universal speed promise."
+    },
+    "lighthouse": {
+      "toolVersion": "13.5.0",
+      "environment": "Loopback production preview in Edge, lab navigation; no field data or authenticated analytics.",
+      "desktop": { "performance": 99, "accessibility": 100, "bestPractices": 100, "seo": 100, "lcpMs": 900, "tbtMs": 40, "cls": 0.001, "report": "OS temp/csv-diff-lighthouse-desktop-20261025.json" },
+      "mobile": { "performance": 69, "accessibility": 100, "bestPractices": 100, "seo": 100, "lcpMs": 4200, "tbtMs": 630, "cls": 0.001, "report": "OS temp/csv-diff-lighthouse-mobile-final-20261025.json" },
+      "priorMobile": { "performance": 59, "tbtMs": 1680, "cls": 0.003 },
+      "limits": "Scores vary with the host and simulated throttling. Mobile report warns that the test CPU is slower than Lighthouse expects. Below-fold informational sections defer offscreen rendering; score differences are not a controlled causal benchmark. Mobile performance still needs improvement. SEO score is technical audit coverage, NOT rank, traffic or indexing proof."
+    },
+    "privacyAndCost": "No new dependency, upload API, AI/provider call or database processing. Static page/social image plus client worker; ordinary page/CDN transfer still costs hosting resources. No zero-cost or unlimited-usage guarantee.",
+    "releaseBlockers": {
+      "existingProductionDependencyAudit": { "checkedAt": "2026-10-25", "command": "npm audit --omit=dev --json", "total": 13, "critical": 2, "high": 8, "moderate": 3, "criticalPackages": ["next", "dompurify"], "npmSuggestedNextVersion": "16.4.3", "dependenciesChangedByThisTool": false },
+      "action": "Review and patch existing dependency advisories with application regression tests before public release; no forced audit fix or unreviewed downgrade was applied. Obtain explicit push approval."
+    },
+    "notPerformed": ["Live deployment or DB writes", "Authenticated GSC analysis or indexing request", "Ranking or traffic measurement", "Physical mobile, Firefox or Safari certification", "Sitewide security upgrade"]
+  },
+  "publication": null
+}

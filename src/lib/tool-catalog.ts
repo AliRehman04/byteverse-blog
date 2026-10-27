@@ -4,7 +4,7 @@ import {
   TextCursorInput, Paintbrush, Pipette, Square, Brain, FileSearch,
   CodeXml, RemoveFormatting, Wand2, FileCode, Video, Speech, QrCode,
   Clock3, Sparkles, FileImage, BarChart3, AlignLeft, FileDown,
-  Table2, ScrollText, FileType, Rows3, FileSpreadsheet,
+  Table2, ScrollText, FileType, Rows3, FileSpreadsheet, FileDiff,
 } from "lucide-react";
 import { imageStudioBrand } from "@/lib/image-studio/brand";
 
@@ -45,6 +45,7 @@ export const toolCatalog: readonly ToolEntry[] = [
   { slug: "timestamp-converter", name: "Unix Timestamp Converter", description: "Convert Unix seconds or milliseconds to dates and back, with UTC and local-time views.", category: "Encoders & Converters", icon: Clock, color: "text-yellow-500", bg: "bg-yellow-500/10" },
   { slug: "url-encoder-decoder", name: "URL Encoder & Decoder", description: "Encode or decode URLs and query components, and inspect a URL's individual parts.", category: "Encoders & Converters", icon: Link2, color: "text-sky-500", bg: "bg-sky-500/10" },
   { slug: "diff-checker", name: "Diff Checker", description: "Compare two pasted texts and see line-by-line additions, deletions and unchanged content.", category: "Formatters & Dev", icon: GitCompareArrows, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+  { slug: "csv-diff", name: "CSV Diff Checker", description: "Compare CSV exports by ID or composite key. Review changed cells, catch duplicate keys and save local CSV or JSON reports without uploads.", category: "Formatters & Dev", icon: FileDiff, color: "text-indigo-500", bg: "bg-indigo-500/10" },
   { slug: "og-preview", name: "Open Graph Preview", description: "Mock up social share cards from your title, description and image. This is not a live URL audit.", category: "SEO & Web", icon: Eye, color: "text-violet-500", bg: "bg-violet-500/10" },
   { slug: "robots-txt-generator", name: "robots.txt Generator", description: "Build crawler directives with user-agent groups, allow/disallow rules and sitemap URLs.", category: "SEO & Web", icon: Bot, color: "text-slate-500", bg: "bg-slate-500/10" },
   { slug: "schema-markup-generator", name: "Schema Markup Generator", description: "Build JSON-LD for articles, products, businesses and more; validate eligibility before publishing.", category: "SEO & Web", icon: Code, color: "text-fuchsia-500", bg: "bg-fuchsia-500/10" },
@@ -89,7 +90,8 @@ export const relatedToolSlugs: Readonly<Record<string, readonly string[]>> = {
   "uuid-generator": ["password-generator", "hash-generator", "timestamp-converter"],
   "timestamp-converter": ["cron-expression-generator", "jwt-decoder", "uuid-generator"],
   "url-encoder-decoder": ["base64-encoder-decoder", "slug-generator", "qr-code-generator", "meta-tag-generator"],
-  "diff-checker": ["json-formatter", "word-counter", "regex-tester", "plagiarism-checker"],
+  "diff-checker": ["csv-diff", "word-counter", "regex-tester", "plagiarism-checker"],
+  "csv-diff": ["json-to-csv", "diff-checker", "invoice-pdf-to-excel", "json-formatter"],
   "og-preview": ["meta-tag-generator", "seo-title-analyzer", "image-compressor", "schema-markup-generator"],
   "robots-txt-generator": ["llms-txt-generator-validator", "meta-tag-generator", "schema-markup-generator", "privacy-policy-generator"],
   "schema-markup-generator": ["meta-tag-generator", "json-formatter", "robots-txt-generator", "llms-txt-generator-validator"],
@@ -112,7 +114,7 @@ export const relatedToolSlugs: Readonly<Record<string, readonly string[]>> = {
   "ai-cv-builder": ["word-counter", "readability-checker", "ai-prompt-generator", "text-to-speech"],
   "lorem-ipsum-generator": ["html-editor", "word-counter", "flexbox-generator", "html-tag-generator"],
   "markdown-to-html": ["html-editor", "html-tag-generator", "diff-checker", "word-counter"],
-  "json-to-csv": ["json-formatter", "json-to-typescript", "diff-checker", "invoice-pdf-to-excel"],
+  "json-to-csv": ["json-formatter", "json-to-typescript", "csv-diff", "invoice-pdf-to-excel"],
   "invoice-pdf-to-excel": ["json-to-csv", "json-formatter", "diff-checker"],
   "privacy-policy-generator": ["robots-txt-generator", "meta-tag-generator", "html-tag-generator", "word-counter"],
   "json-to-typescript": ["json-formatter", "json-to-csv", "code-formatter", "diff-checker"],

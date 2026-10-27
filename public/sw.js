@@ -1,6 +1,7 @@
 const CACHE_NAME = "byteverse-v2";
 const STATIC_ASSETS = ["/", "/blog", "/tools", "/favicon.ico", "/android-chrome-192x192.png", "/android-chrome-512x512.png"];
 const studioPath = (path) => path === "/tools/image-compressor" || path.startsWith("/tools/image-compressor/")
+	|| path === "/tools/csv-diff" || path.startsWith("/tools/csv-diff/")
 	|| path === "/image-studio" || path.startsWith("/image-studio/") || path === "/image-studio-sw.js";
 
 self.addEventListener("install", (event) => {

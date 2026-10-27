@@ -1,0 +1,254 @@
+{
+  "checkedAt": "2026-10-25T08:32:41.452Z",
+  "source": "DuckDuckGo HTML first page",
+  "context": "us-en request parameter; not neutral ranking data",
+  "observations": [
+    {
+      "query": "compare two csv files online",
+      "status": 200,
+      "blocked": false,
+      "results": [
+        {
+          "title": "Free CSV Comparison Tool - Compare Two CSV Files Online",
+          "url": "https://www.textcompare.org/csv/",
+          "snippet": "Compare and find differences between CSV files online. Features include side-by-side comparison, table view, text view, and parsing options. Support for CSV, TXT and delimited text files."
+        },
+        {
+          "title": "Compare & Diff CSV Files — Free Online Tool | CSV Tools",
+          "url": "https://csvtools.com/compare-files/",
+          "snippet": "Compare two CSV files side by side and see a color-coded diff of the differences. Find added and removed lines instantly. Free, browser-based, no uploads."
+        },
+        {
+          "title": "CSV diff - Online compare tool - ExtendsClass",
+          "url": "https://extendsclass.com/csv-diff.html",
+          "snippet": "CSV diff tool allows you to compare two CSV files. You can copy paste or upload your CSV files."
+        },
+        {
+          "title": "CSV Diff Tool - Compare CSV Files Online Free | DiffSheets",
+          "url": "https://www.diffsheets.com/en/csv-diff",
+          "snippet": "Compare two CSV files online for free. Find differences between CSV spreadsheets instantly. No upload to servers - your data stays private."
+        },
+        {
+          "title": "CSV Diff - Compare Two CSV Files Online by Key",
+          "url": "https://www.csvdiff.org/",
+          "snippet": "Compare two CSV files online by key and find added, removed, or changed rows. CSV Diff runs locally in your browser and never uploads your files."
+        },
+        {
+          "title": "Compare CSV Files Online: Diff Rows by Key - listdiff.org",
+          "url": "https://listdiff.org/compare-csv",
+          "snippet": "Compare two CSV files in your browser. Match rows by ID, SKU, or email and see added, removed, and changed cells—private table diff, no upload."
+        },
+        {
+          "title": "CSV Diff Tool - Datablist",
+          "url": "https://www.datablist.com/tools/csv-diff",
+          "snippet": "Free online CSV diff tool to compare two CSV files, detect added, removed, and changed rows, preview cell-level differences, choose join and key column settings, and download the result in your browser."
+        },
+        {
+          "title": "CSV Compare - Diff Two Files by Key Column | CSVTool",
+          "url": "https://www.csvtool.io/csv-compare",
+          "snippet": "Compare two CSV files online and see every difference in seconds. Upload both files and this free CSV diff tool highlights added rows, removed rows, and changed cells with color-coded output — side by side or as a unified diff, like a spreadsheet-aware version of a code diff."
+        },
+        {
+          "title": "CSV & Excel Compare - Compare Two Files Online",
+          "url": "https://www.becsv.com/csv-compare",
+          "snippet": "Free online tool to compare two CSV or Excel files. Detect added, removed, and modified rows instantly. Secure, browser-based, and easy to use."
+        },
+        {
+          "title": "CSV Diff Online — Compare Two CSV Files Free, Row by Row",
+          "url": "https://csvtoolsonline.com/tools/csv-diff",
+          "snippet": "Compare two CSV files online free. Instantly see added, removed and changed rows with our CSV diff checker — no signup, 100% private in your browser."
+        }
+      ]
+    },
+    {
+      "query": "csv compare by key",
+      "status": 200,
+      "blocked": false,
+      "results": [
+        {
+          "title": "CSV Compare - Diff Two Files by Key Column | CSVTool",
+          "url": "https://www.csvtool.io/csv-compare",
+          "snippet": "Diff two CSV files with key-column matching: added, removed, and changed rows highlighted side by side, plus an exportable report. Browser-only."
+        },
+        {
+          "title": "Compare CSV Files by Key — CSV Diff Tool | Motifuse",
+          "url": "https://motifuse.com/tools/csv-compare",
+          "snippet": "Compare CSV or XLSX files by SKU or ID. Review added, removed and changed records, duplicate keys and price differences. Export reports in your browser."
+        },
+        {
+          "title": "CSV Diff - Compare Two CSV Files Online by Key",
+          "url": "https://www.csvdiff.org/",
+          "snippet": "Compare two CSV files online by key and find added, removed, or changed rows. CSV Diff runs locally in your browser and never uploads your files."
+        },
+        {
+          "title": "Compare CSV Files Online - Find Changes by Key Column",
+          "url": "https://csvdock.com/compare-csv",
+          "snippet": "Compare two CSV files by ID or composite keys. Find added and removed records and changed cells, then download full CSV reports without uploading your files."
+        },
+        {
+          "title": "Compare CSV Files Online: Diff Rows by Key - listdiff.org",
+          "url": "https://listdiff.org/compare-csv",
+          "snippet": "Compare two CSV files in your browser. Match rows by ID, SKU, or email and see added, removed, and changed cells—private table diff, no upload."
+        },
+        {
+          "title": "Compare CSV files by key - ExactDiff",
+          "url": "https://exactdiff.com/compare-csv-files/",
+          "snippet": "Compare two CSV files by key in your browser. Detect changed, added, removed, and duplicate rows even when the order differs."
+        },
+        {
+          "title": "Compare two CSV files by key column — data-aware CSV diff",
+          "url": "https://cruxdiff.com/go/csv-compare-by-key",
+          "snippet": "CSV compare by key column Match rows by an ID column, not by position. Reshuffled rows read like a ledger. Open the CSV tool →"
+        },
+        {
+          "title": "CSV Diff by Key Column | Compare Reordered CSV Files | MKDiff",
+          "url": "https://mkdiff.com/en/csv-diff",
+          "snippet": "Compare CSV files by key column Match records by an ID or a combination of columns, even when rows or columns move. Review added, removed and changed records, then copy or download a cell-level change report. CSV contents are processed on this device. UTF-8 files up to 2 MiB, 10,000 data records, 100 columns and 200,000 data cells per file. No sign-up."
+        },
+        {
+          "title": "CSV Diff - Compare Two CSV Files by Key Column, Free",
+          "url": "https://exploremydata.com/tools/csv-diff",
+          "snippet": "Compare two CSV files by key column instead of line position. Added, removed and changed rows, with the old values kept. Runs in your browser, nothing uploaded."
+        },
+        {
+          "title": "CSV Diff - Compare CSV Files by Key - candoya.com",
+          "url": "https://candoya.com/tools/csv-diff/",
+          "snippet": "Compare CSV files by a shared key and find added, removed, or changed rows. Review cell-level differences and export a private local report."
+        }
+      ]
+    },
+    {
+      "query": "csv to json converter",
+      "status": 202,
+      "blocked": true,
+      "results": []
+    },
+    {
+      "query": "csv to xlsx keep leading zeros",
+      "status": 200,
+      "blocked": false,
+      "results": [
+        {
+          "title": "How to Keep Leading Zeros in Excel CSV - 4 Methods",
+          "url": "https://www.exceldemy.com/keep-leading-zeros-in-excel-csv/",
+          "snippet": "This article covers 4 simple, easy-to-use, and effective methods to keep leading zeros in Microsoft Excel CSV."
+        },
+        {
+          "title": "CSV to Excel Converter, Keeps Leading Zeros | XLSX.com",
+          "url": "https://xlsx.com/tools/csv-to-excel",
+          "snippet": "Convert CSV to Excel (.xlsx) in your browser. ZIP codes keep their leading zeros, long IDs keep every digit, and plain numbers become numbers you can SUM."
+        },
+        {
+          "title": "CSV to Excel Converter - XLSX With Types, Leading Zeros and Frozen ...",
+          "url": "https://a2z.tools/csv-to-xlsx-converter",
+          "snippet": "Convert CSV to a real XLSX workbook in your browser: detect the delimiter and encoding, keep leading zeros and long IDs as text, type numbers and dates, freeze and bold the header, and set column widths."
+        },
+        {
+          "title": "CSV to XLSX: Keep Leading Zeros and Choose Column Types",
+          "url": "https://gizmobench.com/spreadsheet-converter/csv-to-xlsx",
+          "snippet": "Convert CSV or TSV to an XLSX workbook in your browser. Keep codes and long IDs as text, check column types and preview values before saving."
+        },
+        {
+          "title": "CSV to Excel Without Losing Leading Zeros | PrivConvert",
+          "url": "https://privconvert.app/guides/csv-to-excel-leading-zeros",
+          "snippet": "Quick answer Test results Repeat the test Limits How do you keep leading zeros when converting CSV to Excel? Keep identifier columns as text, not numbers. A code such as 00123 is a sequence of characters; treating it as the number 123 loses its leading zeros. PrivConvert's CSV to Excel tool writes parsed CSV values as text cells in a new XLSX ..."
+        },
+        {
+          "title": "CSV to Excel Guide - Keep Leading Zeros, Real Dates, and UTF-8 Intact",
+          "url": "https://toolstuna.com/blog/csv-to-excel-guide",
+          "snippet": "The fastest way to keep data intact is to convert the CSV to a properly typed XLSX first — with explicit cell types, real dates, preserved leading zeros where needed, and UTF-8 baked into the format itself."
+        },
+        {
+          "title": "CSV to Excel Without Losing Leading Zeros | LightUtils",
+          "url": "https://lightutils.com/csv-to-excel",
+          "snippet": "Convert a CSV to a real .xlsx where phone numbers keep their leading zero and long ID numbers are not turned into 1.2E+12. Nothing is uploaded."
+        },
+        {
+          "title": "How to Keep Leading Zeros in CSV Files When Opening in Excel",
+          "url": "https://excelerrorfinder.com/blog/keep-leading-zeros-in-csv-excel/",
+          "snippet": "If leading zeros are visible because of a custom number format (like 00000), saving as XLSX preserves the format — but if you later export to CSV, the zeros will be lost again because CSV does not store formatting. The underlying number value determines what appears in CSV exports. How do I keep leading zeros in Excel permanently?"
+        },
+        {
+          "title": "Keep Leading Zeros When Opening CSV Files in Excel",
+          "url": "https://csvdock.com/guides/keep-leading-zeros-csv-excel",
+          "snippet": "CSV guide Keep Leading Zeros When Opening CSV Files in Excel A CSV stores values as text but does not store Excel cell types. When Excel guesses that 00123 is a number, it can display 123 instead; long identifiers can also be shown in scientific notation or lose precision. Previewing the source text and creating an XLSX with identifier-like values kept as text protects the original characters ..."
+        },
+        {
+          "title": "CSV to Excel Converter (XLSX) — Fix Corrupted Leading Zeros",
+          "url": "https://jsonexport.com/csv-to-excel",
+          "snippet": "Convert CSV to real Microsoft Excel (.xlsx) files. Prevents dropped leading zeros, incorrect date conversions, and UTF-8 encoding corruption. Free & private."
+        }
+      ]
+    },
+    {
+      "query": "favicon generator svg",
+      "status": 202,
+      "blocked": true,
+      "results": []
+    },
+    {
+      "query": "color contrast checker",
+      "status": 200,
+      "blocked": false,
+      "results": [
+        {
+          "title": "Contrast Checker - WebAIM",
+          "url": "https://webaim.org/resources/contrastchecker/",
+          "snippet": "Test the contrast ratio of foreground and background colors for normal text, large text, and graphics using RGB hex values or color pickers. See the WCAG 2.0 and 2.1 levels and get a permalink or API for the results."
+        },
+        {
+          "title": "Color Contrast Checker - Coolors",
+          "url": "https://coolors.co/contrast-checker",
+          "snippet": "Check the contrast ratio of text and background colors according to the Web Content Accessibility Guidelines (WCAG). This tool helps you create accessible and readable web design with different levels of contrast (AA and AAA)."
+        },
+        {
+          "title": "Color Contrast Checker (AA/AAA) | Adobe Express",
+          "url": "https://color.adobe.com/create/color-contrast-analyzer",
+          "snippet": "Test foreground and background color contrast ratios against WCAG 2.1 accessibility guidelines. Use the interactive color wheel, extract colors from images, or explore color palettes to create readable, accessible design."
+        },
+        {
+          "title": "Colour Contrast Checker",
+          "url": "https://colourcontrast.cc/",
+          "snippet": "Check the contrast between different colour combinations against WCAG standards and UI created by Will Tarpey. Enter background and foreground colours, typeface and text size, and see the contrast ratio and grade for large and normal text."
+        },
+        {
+          "title": "Color Contrast Checker — Free WCAG AA/AAA Compliance Tool - ColorContrast",
+          "url": "https://www.colorcontrast.org/color-contrast-checker/",
+          "snippet": "Check any two colors against WCAG accessibility standards in real time. Get instant contrast ratio, pass/fail verdict, accessible alternatives, and PDF export for documentation."
+        },
+        {
+          "title": "Contrast Checker | Pick Color Online",
+          "url": "https://pickcoloronline.com/contrast-checker/",
+          "snippet": "Use this free online tool to evaluate the contrast ratio between any foreground and background colors. It shows WCAG compliance for normal text, large text, and graphics/UI elements, and helps you adjust palettes for better readability and accessibility."
+        },
+        {
+          "title": "Web Accessibility Color Contrast Checker - Conform to WCAG",
+          "url": "https://accessibleweb.com/color-contrast-checker/",
+          "snippet": "Check color combinations for web accessibility using this tool or the free Chrome extension. Learn about color contrast, its importance, and how to calculate it for different text sizes and elements."
+        },
+        {
+          "title": "Color Contrast Checker - Coolors",
+          "url": "https://coolors.co/contrast-checker/112a46-acc8e5",
+          "snippet": "A tool to calculate the contrast ratio of text and background colors according to WCAG standards. Enter the text and background colors and see the contrast level for normal and large text."
+        },
+        {
+          "title": "Color Contrast Ratio Checker — WCAG AA/AAA - ColorContrast",
+          "url": "https://www.colorcontrast.org/",
+          "snippet": "ColorContrast offers five tools to check your colors against WCAG standards in seconds: live contrast checker, image contrast checker, website scanner, color palette explorer, and color vision simulator. Learn how to design accessible interfaces with news, guides, and tips."
+        },
+        {
+          "title": "Color Contrast Checker - W3Schools",
+          "url": "https://www.w3schools.com/tools/tool_contrast_checker.php",
+          "snippet": "A tool to check the contrast ratio between a text color and a background color and see if it passes WCAG accessibility guidelines. You can enter the text and background colors, or use the default values, and see the results in different text sizes and WCAG levels."
+        }
+      ]
+    },
+    {
+      "query": "robots txt tester",
+      "status": 202,
+      "blocked": true,
+      "results": []
+    }
+  ],
+  "limits": "Observed results are not Google rankings or keyword difficulty. No CAPTCHA bypass and no authenticated analytics."
+}

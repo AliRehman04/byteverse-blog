@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { DiffCheckerTool } from "./diff-checker-tool";
 import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
 
@@ -35,6 +36,7 @@ export default function DiffCheckerPage() {
       <DiffCheckerTool />
 
       <section className="mt-16 max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
+        <p>Comparing spreadsheet exports rather than lines of text? The <Link href="/tools/csv-diff" prefetch={false}>CSV diff checker</Link> matches records by ID or composite key, so reordered rows do not create artificial additions and deletions.</p>
         <h2>How to Use This Diff Checker</h2>
         <ol>
           <li>Paste the original text in the left panel</li>

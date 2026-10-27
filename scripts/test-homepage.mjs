@@ -1,7 +1,7 @@
 // Synthetic/unit checks only. Never import the real DB module or load .env files.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -62,7 +62,9 @@ const elements = (doc, match) => findAll(node => node.type === "tag" && match(no
 test("curated tools resolve to unique, real catalog destinations", () => {
   assert.equal(home.homepageTools.length, 8);
   assert.equal(new Set(home.homepageTools.map(tool => tool.slug)).size, 8);
-  assert.equal(catalog.toolCatalog.length, 42);
+  const routes = readdirSync(join(root, "src/app/tools"), { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && existsSync(join(root, "src/app/tools", entry.name, "page.tsx")));
+  assert.equal(catalog.toolCatalog.length, routes.length);
   for (const tool of home.homepageTools) {
     const entry = catalog.toolCatalog.find(item => item.slug === tool.slug);
     assert.equal(entry.name, tool.name);
@@ -153,7 +155,7 @@ test("server-rendered homepage has a single H1, real anchors, lazy covers, non-n
   assert(!/canvas|<video|home-orbit|creative-orbit/.test(html));
   assert(textContent(doc).includes("What do you need to do?"));
   assert.equal(elements(doc, node => node.attribs["data-home-tool"]).length, 8);
-  assert.equal(elements(doc, node => node.attribs["data-tool-search-count"] === "42").length, 1);
+  assert.equal(elements(doc, node => node.attribs["data-tool-search-count"] === String(catalog.toolCatalog.length)).length, 1);
   assert(html.indexOf('id="featured-tools"') < html.indexOf('id="featured-stories"'), "Tools must not be buried below articles");
 });
 

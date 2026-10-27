@@ -1,6 +1,6 @@
 {
   "date": "2026-10-27",
-  "status": "published 2026-10-27 as post 243; article verified live; index refresh pending content-only deployment",
+  "status": "published 2026-10-27 as post 243; article and all discovery pages verified live after content-only deployment",
   "website": "https://www.byteverse.fyi",
   "slug": "csv-opens-in-one-column-excel",
   "targeting": {
@@ -78,6 +78,9 @@
     "unrelatedEditorialPostsUnchanged": 173,
     "liveArticleChecks": "HTTP 200, exact H1, canonical, description, today's publication date, five visible FAQs, cover and inline JPEGs, photographer credits; no unpublished CSV Diff link.",
     "validation": "scripts/test-csv-column-post.mjs --links passed: actual MarkdownRenderer, FAQ text parity, four CSV examples plus blank-field example, all source/internal/image links HTTP 200, old draft hashes unchanged.",
-    "indexRefresh": "Content-only commit will refresh homepage, archive, feed, sitemap and the contextual backlink. Pending CSV tool app files are excluded."
+    "releaseCommit": "2427de4e0961ef74ce9fe9011f1186023935fd30",
+    "verifiedAt": "2026-10-27T06:01:40.742Z",
+    "indexRefresh": "Vercel deployment succeeded. Strict live checks passed for homepage, blog archive, sitemap, feed and contextual backlink. Pending CSV tool app files were excluded.",
+    "mobileCheck": "390px viewport: title and article photos present, both article photos loaded, no root horizontal overflow."
   }
 }

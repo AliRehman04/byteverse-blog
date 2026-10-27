@@ -46,6 +46,7 @@ const TOOLS: { slug: string; name: string; desc: string; keywords: string[] }[] 
   { slug: "timestamp-converter", name: "Timestamp Converter", desc: "Convert Unix timestamps to dates.", keywords: ["timestamp", "unix", "date", "time", "convert", "epoch"] },
   { slug: "url-encoder-decoder", name: "URL Encoder/Decoder", desc: "Encode and decode URLs.", keywords: ["url", "encode", "decode", "link", "percent", "encoding"] },
   { slug: "diff-checker", name: "Diff Checker", desc: "Compare two texts side by side.", keywords: ["diff", "compare", "difference", "text", "merge", "change"] },
+  { slug: "csv-diff", name: "CSV Diff Checker", desc: "Compare two CSV exports by ID or composite key locally, inspect duplicate keys and export a before/after report. Use the private tool page, not this chat, for CSV data.", keywords: ["csv", "compare", "diff", "export", "sku", "reconcile", "changed", "duplicate", "key", "tsv"] },
   { slug: "og-preview", name: "OG Preview", desc: "Preview how links appear on social media.", keywords: ["og", "open", "graph", "social", "preview", "twitter", "facebook", "share"] },
   { slug: "robots-txt-generator", name: "robots.txt Generator", desc: "Build robots.txt files visually.", keywords: ["robots", "txt", "seo", "crawl", "search", "engine", "sitemap"] },
   { slug: "schema-markup-generator", name: "Schema Markup Generator", desc: "Generate JSON-LD structured data.", keywords: ["schema", "markup", "jsonld", "structured", "data", "rich", "snippet", "google"] },

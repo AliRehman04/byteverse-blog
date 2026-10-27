@@ -9,6 +9,7 @@ export function RelatedTools() {
   const pathname = usePathname();
   if (!pathname || !pathname.startsWith("/tools/")) return null;
   if (pathname.replace(/\/$/, "") === "/tools/image-compressor") return null;
+  const prefetch = pathname.replace(/\/$/, "") === "/tools/csv-diff" ? false : undefined;
 
   const slug = pathname.replace("/tools/", "").replace(/\/$/, "");
   const tools = getRelatedTools(slug);
@@ -28,6 +29,7 @@ export function RelatedTools() {
           </h2>
           <Link
             href="/tools"
+            prefetch={prefetch}
             className="group text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"
           >
             All Tools
@@ -43,6 +45,7 @@ export function RelatedTools() {
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
+                prefetch={prefetch}
                 className="group relative p-5 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
                 {/* Icon */}

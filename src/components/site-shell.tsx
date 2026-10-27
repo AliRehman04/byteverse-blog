@@ -10,11 +10,12 @@ import { ServiceWorkerRegister } from "./sw-register";
 const AdSense = dynamic(() => import("./adsense").then(module => module.AdSense), { ssr: false });
 const GoogleAnalytics = dynamic(() => import("./analytics").then(module => module.GoogleAnalytics), { ssr: false });
 const Chatbot = dynamic(() => import("./chatbot").then(module => module.Chatbot), { ssr: false });
-const studioPath = "/tools/image-compressor";
+const privateToolPaths = new Set(["/tools/image-compressor", "/tools/csv-diff"]);
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const studio = pathname?.replace(/\/$/, "") === studioPath;
+  const normalizedPath = pathname?.replace(/\/$/, "") ?? "";
+  const studio = privateToolPaths.has(normalizedPath) ? normalizedPath : null;
   const [initialStudio] = useState(studio);
 
   useEffect(() => {
@@ -30,7 +31,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       const anchor = (event.target as Element)?.closest?.("a[href]");
       if (!(anchor instanceof HTMLAnchorElement) || anchor.target || anchor.hasAttribute("download")) return;
       const url = new URL(anchor.href);
-      const nextStudio = url.origin === location.origin && url.pathname.replace(/\/$/, "") === studioPath;
+      const nextPath = url.pathname.replace(/\/$/, "");
+      const nextStudio = url.origin === location.origin && privateToolPaths.has(nextPath) ? nextPath : null;
       if (url.origin === location.origin && nextStudio !== studio) {
         event.preventDefault(); event.stopPropagation(); location.assign(url.href);
       }

@@ -17,3 +17,19 @@ export const COMPARISON_SAMPLE: { draft: string; sources: SourceInput[] } = {
 };
 
 export const REPETITION_SAMPLE = "The project team checks every reference before sharing the final report. Clear source notes make it easier for an editor to follow the argument.\n\nThe project team checks every reference before sharing the final report. This second copy is an intentional repetition in a fictional draft.\n\nClear source notes make it easier for an editor to follow the argument.";
+
+export const GUIDE_SAMPLE: { draft: string; sources: SourceInput[] } = {
+  draft: "The reading room opens before sunrise. Students use the quiet tables to review their notes. Library staff prepare the weekly schedule.",
+  sources: [
+    {
+      id: "guide-source-1",
+      label: "Reading room notice (fictional)",
+      text: "The reading room opens before sunrise. Students use the quiet tables to review their notes.",
+    },
+    {
+      id: "guide-source-2",
+      label: "Member guide (fictional)",
+      text: "Students use the quiet tables to review their notes. New members collect a printed guide.",
+    },
+  ],
+};

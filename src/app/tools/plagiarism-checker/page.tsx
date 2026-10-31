@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { generateToolMetadata, ToolJsonLd } from "@/lib/tool-seo";
+import { compareSources } from "@/lib/similarity/engine";
+import { formatCoverage } from "@/lib/similarity/report";
+import { GUIDE_SAMPLE } from "@/lib/similarity/samples";
+import { DEFAULT_MATCH_OPTIONS } from "@/lib/similarity/types";
 import { PlagiarismTool } from "./plagiarism-tool";
+import { TextHighlights } from "./text-highlights";
 
 const toolConfig = {
   name: "Text Similarity Checker",
   title: "Text Similarity Checker - Compare Two Texts Free",
   description:
-    "Compare two texts or a draft with up to five supplied sources. Review matches and context, then save a report. Free on-device matching. No web scan.",
+    "Compare two texts for similarity, highlight shared passages and find repeated sentences. Free local matching with up to five sources. No web plagiarism scan.",
   slug: "plagiarism-checker",
   keywords: [
     "text similarity checker",
@@ -90,6 +95,7 @@ export const metadata: Metadata = {
 };
 
 const guideLinkClassName = "font-medium text-primary underline decoration-primary/35 underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring";
+const guideExample = compareSources(GUIDE_SAMPLE.draft, GUIDE_SAMPLE.sources, DEFAULT_MATCH_OPTIONS);
 
 export default function PlagiarismCheckerPage() {
   return (
@@ -107,58 +113,50 @@ export default function PlagiarismCheckerPage() {
       </nav>
 
       <header className="sim-hero">
-        <div className="sim-hero-copy min-w-0">
-          <p className="sim-hero-kicker">Free · Supplied-text review</p>
-          <h1 className="sim-hero-title">Text similarity checker</h1>
-          <p className="sim-hero-subtitle">See the match. Understand the context.</p>
-          <p className="sim-hero-description">
-            Compare two texts, or a draft with up to five supplied sources. Review shared wording and source overlap—not a plagiarism verdict or an internet scan.
-          </p>
-          <div className="sim-hero-actions">
-            <a href="#similarity-workspace" className="sim-hero-primary">
-              Compare texts <ArrowRight size={16} aria-hidden="true" />
-            </a>
-            <a href="#similarity-method" className="sim-hero-secondary">How matching works</a>
-          </div>
-          <ul className="sim-hero-proof" aria-label="Tool at a glance" role="list">
-            <li>1 draft + up to 5 sources</li>
-            <li>Local matching</li>
-            <li>No account</li>
-          </ul>
-        </div>
-        <figure className="sim-hero-illustration min-w-0">
-          <figcaption className="sim-hero-demo-top">
-            <span>Shared wording</span>{" "}<span>Fictional illustration</span>
-          </figcaption>
-          <dl className="sim-demo-pair">
-            <div>
-              <dt className="sim-demo-label">Your draft</dt>
-              <dd className="sim-demo-line">Each weekday, <mark>the reading room opens before sunrise</mark>.</dd>
-            </div>
-            <div>
-              <dt className="sim-demo-label">Supplied source</dt>
-              <dd className="sim-demo-line">For early visitors, <mark>the reading room opens before sunrise</mark>.</dd>
-            </div>
-          </dl>
-          <p className="sim-demo-footer">A match is a place to review, not a verdict.</p>
-        </figure>
+        <h1 className="sim-hero-title">Text similarity checker</h1>
+        <p className="sim-hero-description">Compare two texts. See the shared wording, side by side.</p>
+        <p className="sim-hero-scope">Free, on-device comparison of sources you supply; not a plagiarism verdict or an internet scan.</p>
       </header>
 
-      <div className="mt-5"><PlagiarismTool /></div>
+      <PlagiarismTool />
 
+      <div className="sim-reading-guide">
       <nav aria-label="Text similarity guide" className="sim-guide-nav mt-6 flex flex-wrap gap-x-6 gap-y-1 border-b border-border pb-3 text-sm">
+        <a href="#similarity-workspace" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>Back to checker</a>
+        <a href="#similarity-example" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>Worked example</a>
         <a href="#similarity-method" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>Method & limits</a>
+        <a href="#similarity-troubleshooting" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>Troubleshooting</a>
         <a href="#similarity-privacy" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>Text & privacy</a>
         <a href="#similarity-faq" className={`inline-flex min-h-11 items-center ${guideLinkClassName}`}>FAQs</a>
       </nav>
 
+      <section className="sim-guide-section" aria-labelledby="similarity-purpose-heading">
+        <p className="sim-guide-byline">By <Link href="/about" className={guideLinkClassName}>ByteVerse</Link><span aria-hidden="true"> / </span>Updated <time dateTime="2026-10-31">October 31, 2026</time></p>
+        <h2 id="similarity-purpose-heading">What a text similarity checker can tell you</h2>
+        <p>A text similarity checker finds wording shared by the texts you give it. It is useful when you already have a draft and a possible source: an essay and its reading, a new article and an earlier post, or two passages that appear unusually close. ByteVerse highlights the actual matching words instead of asking you to trust a percentage on its own.</p>
+        <p>The comparison set matters. This page compares your document with up to five supplied source texts. It cannot discover a source you have not supplied. If you came here to <strong>compare two texts for plagiarism</strong>, use the results to review quotations and attribution, not to certify a paper or accuse its author.</p>
+        <div className="sim-guide-table-wrap" role="region" aria-label="Choose the right kind of comparison" tabIndex={0}>
+          <table className="sim-guide-table">
+            <caption>Choose the comparison that answers your question</caption>
+            <thead><tr><th scope="col">Your question</th><th scope="col">Suitable check</th><th scope="col">What the result means</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Do these two texts share wording?</th><td>This text similarity checker</td><td>Qualifying consecutive words appear in both supplied texts, even at different positions.</td></tr>
+              <tr><th scope="row">Did I repeat a sentence in one draft?</th><td>Repeated sentences mode</td><td>The same normalized whole sentence appears more than once. No external source is needed.</td></tr>
+              <tr><th scope="row">What changed between two versions?</th><td><Link href="/tools/diff-checker" className={guideLinkClassName}>Diff Checker</Link></td><td>Additions and deletions between versions, rather than a source-overlap measurement.</td></tr>
+              <tr><th scope="row">Does this paper match an online or academic database?</th><td>A service with access to the relevant corpus</td><td>Only the provider&apos;s actual search coverage can answer that question. ByteVerse does not run that search.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A lexical match is not the same as a semantic match. Two sentences can express the same idea with different words and receive no match here. Conversely, independently written texts can share a conventional phrase. Neither result settles authorship, permission or academic integrity.</p>
+      </section>
+
       <section aria-labelledby="similarity-start-heading" className="sim-steps mt-8">
-        <h2 id="similarity-start-heading" className="text-xl font-semibold tracking-tight text-foreground">From shared wording to a useful review</h2>
+        <h2 id="similarity-start-heading" className="text-xl font-semibold tracking-tight text-foreground">How to compare two texts for similarity</h2>
         <ol className="mt-5 grid gap-5 border-b border-border pb-7 md:grid-cols-3 md:gap-8">
           {([
-            { title: "Add your material", text: "Paste two texts, or add up to five labeled sources for one draft. Only material you supply is compared." },
-            { title: "Read the evidence", text: "Use Full documents or Focused context. Filter by review status and inspect occurrences of a selected passage." },
-            { title: "Keep a review record", text: "Add your own labels and notes. Copy a report or download TXT or HTML; printing is your choice." },
+            { title: "Add the document and source", text: "Paste the draft into Your document and the reference into Sources, or open/drop a TXT or Markdown file. On mobile, the two input tabs keep each text separate. A web address is not the text of a source." },
+            { title: "Compare and inspect", text: "Select Compare texts. Begin with the 6-word minimum, then inspect highlighted passages in Full documents or Focused context. Open Match settings only when you need a different threshold or exclusions." },
+            { title: "Record your decision", text: "Check the actual citation and surrounding argument. Add a review label and a specific note, then keep a TXT or HTML report if needed. Editing the inputs clears the old result and notes; save your report first." },
           ]).map((step, index) => (
             <li key={step.title} className="flex gap-3">
               <span aria-hidden="true" className="pt-0.5 text-xs font-semibold tabular-nums text-primary">0{index + 1}</span>
@@ -171,6 +169,47 @@ export default function PlagiarismCheckerPage() {
         </ol>
       </section>
 
+      <section id="similarity-example" className="sim-guide-section" aria-labelledby="similarity-example-heading">
+        <h2 id="similarity-example-heading">Text similarity percentage: a reproducible example</h2>
+        <p>These fictional passages are calculated by the same matching engine as the checker, with the default 6-word minimum, case ignored and exclusions off. They are not an assessment of a real writer. The highlighted draft below preserves the original wording.</p>
+        <figure className="sim-guide-example">
+          <figcaption>Your document <span>{guideExample.draft.stats.eligibleWords} eligible words</span></figcaption>
+          <blockquote><TextHighlights text={GUIDE_SAMPLE.draft} matched={guideExample.draft.matchRanges} excluded={[]} markerId="guide-draft-match" /></blockquote>
+          <dl className="sim-guide-source-pair">
+            {GUIDE_SAMPLE.sources.map((source, index) => <div key={source.id}>
+              <dt>Source {index + 1}: {source.label}</dt>
+              <dd><TextHighlights text={source.text} matched={guideExample.sources[index].sourceRanges} excluded={[]} markerId={`guide-source-${index + 1}-match`} /></dd>
+            </div>)}
+          </dl>
+        </figure>
+        <div className="sim-guide-formula" aria-label="Calculated example coverage">
+          <strong>{guideExample.draft.matchedWords} / {guideExample.draft.stats.eligibleWords} x 100 = {formatCoverage(guideExample.draft.coverage)}</strong>
+          <span>Matched eligible draft words / all eligible draft words</span>
+        </div>
+        <p>The notice matches the first 15 draft words. The member guide matches the 9-word sentence that starts with &ldquo;Students use&rdquo;. Those nine positions are already included in the first match, so they do not count twice. The result is <strong>15 matched words, not 24</strong>.</p>
+        <div className="sim-guide-table-wrap" role="region" aria-label="Verified source overlap calculation" tabIndex={0}>
+          <table className="sim-guide-table">
+            <caption>Coverage computed from the example above</caption>
+            <thead><tr><th scope="col">Measure</th><th scope="col">Result</th><th scope="col">Why</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Overall draft coverage</th><td>{formatCoverage(guideExample.draft.coverage)}</td><td>15 distinct matched positions out of 21 eligible draft words.</td></tr>
+              <tr><th scope="row">One supplied source only</th><td>{guideExample.draft.sourceOverlap.singleSourceWords} words</td><td>The opening sentence appears only in the first supplied source.</td></tr>
+              <tr><th scope="row">Multiple supplied sources</th><td>{guideExample.draft.sourceOverlap.multiSourceWords} words</td><td>The second sentence appears in both source entries.</td></tr>
+              <tr><th scope="row">No qualifying match</th><td>{guideExample.draft.sourceOverlap.unmatchedWords} words</td><td>The final sentence has no qualifying match in this supplied set.</td></tr>
+              <tr><th scope="row">Source 1 covered by the draft</th><td>{formatCoverage(guideExample.sources[0].coverage)}</td><td>All 15 words of that source occur in the draft.</td></tr>
+              <tr><th scope="row">Source 2 covered by the draft</th><td>{formatCoverage(guideExample.sources[1].coverage)}</td><td>9 of that source&apos;s 15 words occur in the draft.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Adding unrelated sentences can reduce a percentage without fixing a copied passage. Removing unrelated text can raise it without adding any shared wording. For revisions, compare the actual passages and matched-word counts with the same sources and settings. A changing denominator is not evidence that attribution improved.</p>
+        <figure className="sim-guide-screenshot">
+          <a href="/tools/text-similarity-matches.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size example screenshot">
+            <Image src="/tools/text-similarity-matches.png" width={1256} height={348} unoptimized loading="lazy" alt="ByteVerse highlights the first two sentences of the fictional draft beside the matching reading-room notice." />
+          </a>
+          <figcaption>Actual result for the fictional example. All 15 words of source 1 match, so its pane shows 100%; the 21-word draft&apos;s overall coverage is still 71.4%.</figcaption>
+        </figure>
+      </section>
+
       <div className="mt-9 grid items-start gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-12">
         <section id="similarity-method" aria-labelledby="similarity-method-heading" className="sim-method scroll-mt-24">
           <h2 id="similarity-method-heading" className="text-2xl font-semibold tracking-tight text-foreground">What the percentage measures</h2>
@@ -179,12 +218,6 @@ export default function PlagiarismCheckerPage() {
             <p>Main coverage counts the union of matched, eligible draft-word positions across sources. Each word counts once. Reverse coverage uses each source&apos;s eligible words as its denominator, so swapping draft and source can change the percentage. Source percentages are not additive.</p>
             <p>The overlap breakdown partitions all eligible draft words into matches in <strong className="text-foreground">exactly one supplied source</strong>, matches in <strong className="text-foreground">multiple supplied sources</strong>, and <strong className="text-foreground">no qualifying match</strong>. The three counts add up to the eligible-word total. Duplicate source entries count separately: adding the same source twice can move words into the multiple-source category without increasing overall coverage.</p>
             <p>For each source, &ldquo;only here&rdquo; counts draft words matched in that entry and no other supplied entry; &ldquo;also elsewhere&rdquo; counts draft words also matched in another supplied entry. &ldquo;Elsewhere&rdquo; means your supplied set, not the web. These counts do not establish original authorship, and unmatched words are not proof of originality.</p>
-            <aside aria-label="Fictional coverage calculation" className="border-l-2 border-primary bg-primary/5 py-3 pr-3 pl-4 text-foreground">
-              <p className="font-semibold">A fictional calculation</p>
-              <p className="mt-1">12 matched words out of 40 eligible draft words: 12 ÷ 40 × 100 = 30%.</p>
-              <p className="mt-2">Of those 40 words, 8 match exactly one source, 4 match multiple supplied sources and 28 have no qualifying match: 8 + 4 + 28 = 40. The 4 shared words count once in the 12 matched words, not once per source.</p>
-              <p className="mt-2">A source with 12 matched words out of 60 eligible words has 20% reverse coverage. Illustrative arithmetic, not an executed sample.</p>
-            </aside>
             <p>Evidence shows the first 150 maximal passages per source, with one actual source occurrence recorded per displayed passage. Selecting a passage looks up the same full normalized wording in that source on demand. You can navigate the first 20 qualifying occurrences in source order; the total still counts every qualifying occurrence, including overlaps.</p>
             <p>Coverage includes every qualifying matched position, even when the evidence list is capped. With no eligible words, coverage is unavailable—not zero.</p>
           </div>
@@ -195,7 +228,7 @@ export default function PlagiarismCheckerPage() {
           </div>
         </section>
 
-        <div className="sim-review-panel rounded-2xl border border-border bg-muted/50 p-5 sm:p-6">
+        <div className="sim-review-panel">
           <section aria-labelledby="similarity-limits-heading">
             <h2 id="similarity-limits-heading" className="text-xl font-semibold tracking-tight text-foreground">Know the boundaries</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -213,6 +246,43 @@ export default function PlagiarismCheckerPage() {
           </section>
         </div>
       </div>
+
+      <section className="sim-guide-section" aria-labelledby="similarity-settings-heading">
+        <h2 id="similarity-settings-heading">Choose a match length, not a target score</h2>
+        <p>The minimum is the number of consecutive matching words needed to qualify. It is not a sensitivity percentage, a confidence level or a plagiarism threshold. Start with 6 words. If a particular phrase seems missing, inspect its length and exclusions before changing a setting.</p>
+        <div className="sim-guide-table-wrap" role="region" aria-label="Minimum match settings" tabIndex={0}>
+          <table className="sim-guide-table">
+            <caption>What changes when the minimum changes</caption>
+            <thead><tr><th scope="col">Minimum</th><th scope="col">Useful for</th><th scope="col">Trade-off</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">4 words</th><td>Inspecting short phrases that deserve a closer look.</td><td>More conventional wording may qualify. A small match is not automatically meaningful.</td></tr>
+              <tr><th scope="row">6 words, default</th><td>A first pass through prose and supplied references.</td><td>Shared runs shorter than six words are omitted, even if they are identical.</td></tr>
+              <tr><th scope="row">8 words</th><td>Concentrating on longer shared wording.</td><td>Shorter unattributed quotations can disappear from the result.</td></tr>
+              <tr><th scope="row">12 words</th><td>Reviewing extended verbatim passages.</td><td>A low result with this threshold is especially poor evidence that a document has no borrowing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For example, &ldquo;The reading room opens before sunrise&rdquo; contains six words. Compared with the uppercase version of the same sentence, it produces 100% coverage with the 4- or 6-word minimum and Ignore case enabled. At 8 words it produces 0%, because the complete run is too short. Those results are tested against the actual engine; none is a judgment about whether the sentence should be cited.</p>
+        <h3>Exclusions can change both sides of the calculation</h3>
+        <p>Excluding quotes removes eligible words, not just colored highlights. If all the words in a document are excluded, there is no denominator and the result is N/A. A bibliography exclusion may remove a long matching reference list, but it does not check whether an in-text citation is present or accurate. Review a baseline without exclusions first, then record which settings you changed.</p>
+        <p>A phrase cannot match across an excluded gap. By contrast, ordinary punctuation and spacing are normalized, so changing a comma, capitalization with Ignore case on, or a line break does not necessarily remove a match. This is a wording comparison, not a punctuation diff.</p>
+      </section>
+
+      <section className="sim-guide-section" aria-labelledby="similarity-score-heading">
+        <h2 id="similarity-score-heading">What is a good similarity score?</h2>
+        <p>There is no universal safe percentage for plagiarism. A long, correctly attributed quotation can produce substantial similarity; an unattributed borrowed idea can produce none. Your assignment, publisher or organization may have its own rules, but a threshold is not a substitute for reading the matched material.</p>
+        <p><a href="https://guides.turnitin.com/hc/en-us/articles/23435833938701-Understanding-the-similarity-score" className={guideLinkClassName}>Turnitin&apos;s official explanation of similarity scores</a> says matches need review and shows why proper quotations can match. Its database and settings differ from this tool. A ByteVerse result is not a prediction of a Turnitin score, and ByteVerse has no access to Turnitin&apos;s student-paper repository.</p>
+        <h3>Review one match before judging the whole document</h3>
+        <ol className="sim-review-checklist">
+          <li><strong>Read the complete source passage.</strong> Check that the source label names the document you actually consulted. A match in two sources does not identify which author wrote it first.</li>
+          <li><strong>Separate exact wording from the underlying idea.</strong> Verbatim borrowing normally needs quotation treatment and attribution under the applicable style. A paraphrase still needs credit for the source idea, even if no words are highlighted.</li>
+          <li><strong>Verify the citation at the point of use.</strong> Check the author, title and locator when your style requires one. A reference-list entry at the end is not, by itself, a clear attribution of every passage in the draft.</li>
+          <li><strong>Make a specific review note.</strong> For example, &ldquo;Checked the quotation against page 4; citation added to the preceding sentence.&rdquo; A label such as Citation checked records your decision, not an automated verification.</li>
+          <li><strong>Revise the writing, not just the number.</strong> Correct an incomplete quotation, clarify the source of an idea, or write a genuinely independent explanation with appropriate credit. Save the report before editing, then compare again using the same sources and settings.</li>
+        </ol>
+        <p><a href="https://www.ox.ac.uk/students/academic/guidance/skills/plagiarism" className={guideLinkClassName}>Oxford&apos;s academic-integrity guidance</a> explains that changing a few words or closely following another argument without adequate acknowledgement can still be plagiarism. It also discusses quotation, inaccurate citation and reuse of your own assessed work. Check your own institution&apos;s policy rather than treating another university&apos;s rules as your assignment instructions.</p>
+        <p>Consider two more fictional sentences: &ldquo;Students review their notes at quiet tables&rdquo; and &ldquo;Learners revise in a peaceful study area.&rdquo; They share an idea but have no qualifying six-word run, so this engine finds no matched words. Whether attribution is needed depends on where the idea came from and how it is used, not on that zero.</p>
+      </section>
 
       <section aria-labelledby="similarity-use-cases-heading" className="mt-9">
         <h2 id="similarity-use-cases-heading" className="text-xl font-semibold tracking-tight text-foreground">Three practical ways to use the checker</h2>
@@ -232,6 +302,29 @@ export default function PlagiarismCheckerPage() {
         </div>
       </section>
 
+      <section id="similarity-troubleshooting" className="sim-guide-section" aria-labelledby="similarity-troubleshooting-heading">
+        <h2 id="similarity-troubleshooting-heading">Why does the result look different from what I expected?</h2>
+        <div className="sim-guide-table-wrap" role="region" aria-label="Text comparison troubleshooting" tabIndex={0}>
+          <table className="sim-guide-table">
+            <caption>Check the cause before drawing a conclusion</caption>
+            <thead><tr><th scope="col">What you see</th><th scope="col">Possible explanation</th><th scope="col">What to check</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">0% even though the ideas are similar</th><td>No consecutive word run reaches the selected minimum. Paraphrases and translations are not semantic matches here.</td><td>Read the argument and attribution manually. Do not use zero as an originality certificate.</td></tr>
+              <tr><th scope="row">A short identical phrase is not highlighted</th><td>The phrase may be below the minimum or contain excluded words.</td><td>Count its words and inspect the gray exclusion highlights. Lower the minimum only when that serves your review.</td></tr>
+              <tr><th scope="row">The percentage changes after swapping texts</th><td>Coverage is directional. The document and source can contain different numbers of eligible words.</td><td>Compare matched-word counts and each denominator, rather than expecting symmetric percentages.</td></tr>
+              <tr><th scope="row">Source percentages add up to more than the overall result</th><td>The same draft positions can match several supplied sources.</td><td>Use the overall union count and the One source only / Multiple sources breakdown. Do not add source percentages.</td></tr>
+              <tr><th scope="row">N/A, rather than 0%</th><td>There are no eligible words after exclusions.</td><td>Review quotation and reference settings. N/A is an unavailable calculation, not a passed check.</td></tr>
+              <tr><th scope="row">The matching list is shorter than the total</th><td>Displayed evidence or occurrence navigation has reached a documented cap.</td><td>Read the result warnings. Coverage still includes every qualifying matched position; exporting a report does not remove the evidence caps.</td></tr>
+              <tr><th scope="row">A copied PDF passage has odd matches</th><td>Copying can insert broken words, repeated page headers or incorrect reading order.</td><td>Inspect the pasted text against the original. Fix extraction errors before comparing. Do not remove substantive wording to lower the result.</td></tr>
+              <tr><th scope="row">A file will not open</th><td>Only UTF-8 TXT and Markdown are supported; the byte, word or character limit may also be exceeded.</td><td>Export plain text in UTF-8 or paste an appropriate section. DOCX, PDF, images and URLs are not direct imports.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Duplicate sentences are a separate kind of repetition</h3>
+        <p>The duplicate sentence checker compares whole normalized sentences within one document. Two copies of the same sentence create one group and one copy beyond the first. A third copy increases the extra-copy count to two, not three. A repeated phrase inside otherwise different sentences will not necessarily form a repeated-sentence group.</p>
+        <p>Repetition can be deliberate: a refrain, a standard notice or a repeated instruction. Inspect each occurrence in context. The tool does not delete sentences, rewrite your document or assume repetition is misconduct. For accidental duplication, edit the original document and run another check.</p>
+      </section>
+
       <div className="mt-10 grid gap-8 border-t border-border pt-8 lg:grid-cols-2 lg:gap-12">
         <section id="similarity-privacy" aria-labelledby="similarity-privacy-heading" className="sim-privacy scroll-mt-24">
           <h2 id="similarity-privacy-heading" className="text-xl font-semibold tracking-tight text-foreground">Local matching, deliberate sharing</h2>
@@ -246,8 +339,9 @@ export default function PlagiarismCheckerPage() {
           <h2 id="similarity-context-heading" className="text-xl font-semibold tracking-tight text-foreground">Similarity is not originality</h2>
           <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
             <p><a href="https://guides.turnitin.com/hc/en-us/articles/23435833938701-Understanding-the-similarity-score" className={guideLinkClassName}>Turnitin&apos;s similarity guidance</a> distinguishes matches from proof of plagiarism. ByteVerse does not use Turnitin&apos;s database or scoring method and is not endorsed by Turnitin.</p>
-            <p><a href="https://owl.purdue.edu/owl/research_and_citation/using_research/quoting_paraphrasing_and_summarizing/index.html" className={guideLinkClassName}>Purdue OWL&apos;s citation guidance</a> explains that paraphrases and summaries still require attribution. Changing words does not remove the obligation to credit ideas.</p>
+            <p><a href="https://www.ox.ac.uk/students/academic/guidance/skills/plagiarism" className={guideLinkClassName}>Oxford&apos;s quotation and paraphrasing guidance</a> explains why a source&apos;s ideas and wording need appropriate acknowledgement. Changing words does not remove the obligation to credit ideas.</p>
             <p><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" className={guideLinkClassName}>Google&apos;s SEO Starter Guide</a> says ordinary duplicate content is not a blanket spam-policy violation; abusive copying is different. This percentage predicts neither rankings nor penalties.</p>
+            <p>For website editors, comparing a new article with an older post can reveal reused introductions, product descriptions or boilerplate. That is an editorial check, not a site crawl or a canonicalization audit. Different URLs containing the same page are a separate technical issue. A low overlap result cannot promise rankings, and mechanically changing synonyms does not make a page more useful.</p>
             <p>To compare two document versions for line-by-line additions and removals, use <Link href="/tools/diff-checker" className={guideLinkClassName}>Diff Checker</Link>. Similarity finds shared normalized wording even at different positions; a diff is for reviewing changes between versions.</p>
             <p>Use <Link href="/tools/word-counter" className={guideLinkClassName}>Word Counter</Link> for length, or <Link href="/tools/readability-checker" className={guideLinkClassName}>Readability Checker</Link> for English reading estimates.</p>
           </div>
@@ -265,6 +359,7 @@ export default function PlagiarismCheckerPage() {
           ))}
         </dl>
       </section>
+      </div>
     </div>
   );
 }

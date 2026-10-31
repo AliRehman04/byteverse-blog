@@ -5,7 +5,7 @@ import {
   ArrowDownToLine, ArrowLeft, ArrowRight, ArrowRightLeft, BookOpen,
   Check, ChevronDown, Clipboard, Copy, FileSearch, FileText, Info, ListFilter,
   Layers, Loader2, Plus, RotateCcw, Search, Settings2, ShieldCheck,
-  Sparkles, Upload, X, Focus, Printer,
+  Upload, X, Focus, Printer,
 } from "lucide-react";
 import { findSourceOccurrences, getInputStats } from "@/lib/similarity/engine";
 import { inputProblem, manualSearchUrl, readTextFile } from "@/lib/similarity/input";
@@ -37,29 +37,51 @@ function PassageText({ text }: { text: string }) {
   return <><p className="sim-passage-text" dir="auto">{text.slice(0, end)}{end < text.length ? "…" : ""}</p>{end < text.length && <p className="sim-explain-line">Excerpt shortened for readability. The highlighted document and source panes retain the full passage.</p>}</>;
 }
 
-function TextInput({ id, label, value, onChange, onImport, disabled = false }: {
+function TextInput({ id, label, value, onChange, onImport, onError, disabled = false }: {
   id: string;
   label: string;
   value: string;
   onChange: (text: string) => void;
   onImport: (file: File) => void;
+  onError: (message: string) => void;
   disabled?: boolean;
 }) {
   const fileInput = useRef<HTMLInputElement>(null);
+  const [dragging, setDragging] = useState(false);
   const stats = useMemo(() => getInputStats(value), [value]);
   const overLimit = stats.words > SIMILARITY_LIMITS.maxWords || stats.characters > SIMILARITY_LIMITS.maxChars;
   return (
-    <div className="sim-editor">
+    <div className={`sim-editor${dragging ? " sim-editor-dragging" : ""}`}
+      onDragOver={(event) => {
+        if (!event.dataTransfer.types.includes("Files")) return;
+        event.preventDefault();
+        event.dataTransfer.dropEffect = disabled ? "none" : "copy";
+        setDragging(!disabled);
+      }}
+      onDragLeave={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDragging(false);
+      }}
+      onDrop={(event) => {
+        if (!event.dataTransfer.types.includes("Files")) return;
+        event.preventDefault();
+        setDragging(false);
+        if (disabled) return;
+        if (event.dataTransfer.files.length !== 1) {
+          onError("Choose one TXT or Markdown file for each text. Your current text was kept.");
+          return;
+        }
+        onImport(event.dataTransfer.files[0]);
+      }}>
       <div className="sim-editor-actions">
         <label htmlFor={id} className="sim-editor-label"><FileText size={15} aria-hidden="true" />{label}</label>
-        <button type="button" className="sim-text-button" disabled={disabled} onClick={() => fileInput.current?.click()}><Upload size={14} aria-hidden="true" />Import text</button>
+        <button type="button" className="sim-text-button sim-import-button" disabled={disabled} onClick={() => fileInput.current?.click()}><Upload size={15} aria-hidden="true" />Open file</button>
         <input ref={fileInput} type="file" accept=".txt,.md,text/plain,text/markdown" hidden aria-label={`Import ${label}`} onChange={(event) => {
           const file = event.currentTarget.files?.[0];
           event.currentTarget.value = "";
           if (file) onImport(file);
         }} />
       </div>
-      <textarea id={id} dir="auto" value={value} disabled={disabled} spellCheck={false} autoComplete="off" aria-describedby={`${id}-count`} aria-invalid={overLimit} placeholder={id === "similarity-draft" ? "Paste the writing you want to review…" : "Paste a source passage here. A URL alone is not source text."} onChange={(event) => onChange(event.target.value)} />
+      <textarea id={id} dir="auto" value={value} disabled={disabled} spellCheck={false} autoComplete="off" aria-describedby={`${id}-count`} aria-invalid={overLimit} placeholder={id === "similarity-draft" ? "Paste your document here, or drop a TXT / Markdown file." : "Paste the source text here, or drop a TXT / Markdown file."} onChange={(event) => onChange(event.target.value)} />
       <div id={`${id}-count`} className={`sim-input-count${overLimit ? " sim-error-text" : ""}`}>
         <span><strong>{count(stats.words)}</strong> / 10,000 words</span><span>{count(stats.characters)} / 60,000 chars</span>
       </div>
@@ -78,6 +100,7 @@ function ReviewFields({ value, onChange, id }: { value: ReviewNote; onChange: (v
 
 export function PlagiarismTool() {
   const [mode, setMode] = useState<CheckMode>("compare");
+  const [mobileInput, setMobileInput] = useState<"draft" | "source">("draft");
   const [draft, setDraft] = useState("");
   const [sources, setSources] = useState<SourceInput[]>([initialSource()]);
   const [activeSource, setActiveSource] = useState("source-1");
@@ -215,7 +238,7 @@ export function PlagiarismTool() {
 
   function changeMode(next: CheckMode) {
     if (mode === next) return;
-    invalidate(); setMode(next);
+    invalidate(); setMode(next); setMobileInput("draft");
     setNotice(next === "repeat" ? "Single-text mode selected. Sources are kept but are not checked in this mode." : "Source comparison selected. Add at least one source text.");
   }
 
@@ -223,11 +246,11 @@ export function PlagiarismTool() {
     if (copyInFlight.current) { setError("Wait for the pending clipboard copy to finish before running another check."); return; }
     invalidate();
     const draftProblem = inputProblem(draft);
-    if (draftProblem) { setError(`Your document: ${draftProblem}`); return; }
+    if (draftProblem) { setMobileInput("draft"); setError(`Your document: ${draftProblem}`); return; }
     if (mode === "compare") {
       for (const [index, source] of sources.entries()) {
         const problem = inputProblem(source.text);
-        if (!source.label.trim() || problem) { setError(`Source ${index + 1}: ${problem || "Add a source label."}`); setActiveSource(source.id); return; }
+        if (!source.label.trim() || problem) { setError(`Source ${index + 1}: ${problem || "Add a source label."}`); setActiveSource(source.id); setMobileInput("source"); return; }
       }
     }
     if (typeof Worker === "undefined") { setError("This browser does not support background workers. Use a current browser; your text has not been sent anywhere by this tool."); return; }
@@ -244,7 +267,11 @@ export function PlagiarismTool() {
         const result: SimilarityResult = event.data.result;
         setSnapshot({ draft: request.draft, sources: request.sources, result });
         setNotice("Check complete. Review the evidence; matching text is not a plagiarism verdict.");
-        requestAnimationFrame(() => { if (mounted.current && revision.current === id) resultsHeading.current?.focus({ preventScroll: true }); });
+        requestAnimationFrame(() => {
+          if (!mounted.current || revision.current !== id) return;
+          resultsHeading.current?.focus({ preventScroll: true });
+          resultsHeading.current?.scrollIntoView({ block: "start" });
+        });
       };
       instance.onerror = (event) => {
         event.preventDefault();
@@ -347,43 +374,56 @@ export function PlagiarismTool() {
 
   return (
     <section id="similarity-workspace" className="sim-workspace notranslate" translate="no" aria-label="Text similarity workspace">
-      <div className="sim-studio-heading"><span><span className="sim-studio-dot" />SOURCE REVIEW WORKSPACE</span><span>On-device matching <ShieldCheck size={14} aria-hidden="true" /></span></div>
+      <h2 className="sim-sr-only">Compare supplied texts or find repeated sentences</h2>
       <div className="sim-workspace-top">
         <div className="sim-mode-switch" aria-label="Check mode">
           <button type="button" aria-pressed={mode === "compare"} onClick={() => changeMode("compare")}><Layers size={16} aria-hidden="true" />Compare sources</button>
           <button type="button" aria-pressed={mode === "repeat"} onClick={() => changeMode("repeat")}><Copy size={16} aria-hidden="true" />Repeated sentences</button>
         </div>
-        <div className="sim-top-actions"><button type="button" className="sim-text-button" onClick={() => hasText ? setConfirmation({ kind: "sample" }) : loadExample()}><Sparkles size={14} aria-hidden="true" />Try an example</button><button type="button" className="sim-icon-button" aria-label="Clear all text and review notes" disabled={!hasText} onClick={() => setConfirmation({ kind: "clear" })}><RotateCcw size={16} aria-hidden="true" /></button></div>
+        <div className="sim-top-actions"><button type="button" className="sim-text-button sim-example-button" aria-label="Try an example" title="Try an example" onClick={() => hasText ? setConfirmation({ kind: "sample" }) : loadExample()}><BookOpen size={15} aria-hidden="true" /><span>Try an example</span></button><button type="button" className="sim-icon-button" aria-label="Clear all text and review notes" title="Clear all text and review notes" disabled={!hasText} onClick={() => setConfirmation({ kind: "clear" })}><RotateCcw size={16} aria-hidden="true" /></button></div>
       </div>
 
       {confirmation && <div className="sim-confirm" role="group" aria-label="Confirm replacement"><div><strong>{confirmation.kind === "clear" ? "Clear this workspace?" : confirmation.kind === "sample" ? "Replace your text with an example?" : confirmation.kind === "remove" ? `Remove ${confirmation.label}?` : `Replace text with ${confirmation.fileName}?`}</strong><p>Current results and review notes will be cleared. This cannot be undone here.</p></div><div><button type="button" className="sim-button sim-button-small" onClick={confirmAction}>{confirmation.kind === "clear" ? "Yes, clear all" : confirmation.kind === "remove" ? "Remove source" : "Replace text"}</button><button type="button" className="sim-button-secondary sim-button-small" onClick={() => setConfirmation(null)}>Keep current text</button></div></div>}
 
-      <div className="sim-workspace-intro"><div><span className="sim-step-pill">01</span><h2>{mode === "compare" ? "Start with the text, not a guess." : "Find repetition within your draft."}</h2></div><p>{mode === "compare" ? "Compare with sources you supply. We do not scan the web or assign an originality score." : "Group matching whole sentences. Repetition alone does not mean plagiarism."}</p></div>
-
+      {mode === "compare" && <div className="sim-mobile-inputs" aria-label="Text inputs">
+        <button type="button" aria-pressed={mobileInput === "draft"} onClick={() => setMobileInput("draft")}><span>1</span>Your document{draft.trim() && <Check size={14} aria-label="Contains text" />}</button>
+        <button type="button" aria-pressed={mobileInput === "source"} onClick={() => setMobileInput("source")}><span>2</span>Sources{sources.every((source) => source.text.trim()) && <Check size={14} aria-label="Contains text" />}</button>
+      </div>}
       <div className={`sim-input-grid${mode === "repeat" ? " sim-input-single" : ""}`}>
-        <div className="sim-input-card"><div className="sim-card-heading"><span className="sim-letter-badge">D</span><div><h3>Your document</h3><p>The writing you want to review</p></div></div><TextInput id="similarity-draft" label="Document text" value={draft} onChange={(text) => editText("draft", text)} onImport={(file) => void importText("draft", file)} /></div>
-        {mode === "compare" && <div className="sim-input-card sim-sources-card"><div className="sim-card-heading"><span className="sim-letter-badge sim-letter-source">S</span><div><h3>Reference sources</h3><p>Paste known sources, not website addresses</p></div><button type="button" className="sim-add-source" disabled={sources.length >= SIMILARITY_LIMITS.maxSources} onClick={() => {
+        <div className="sim-input-card" data-mobile-active={mode === "repeat" || mobileInput === "draft"}><div className="sim-card-heading"><span className="sim-letter-badge" aria-hidden="true">1</span><h3>Your document</h3><span className="sim-card-meta">Text to review</span></div><TextInput id="similarity-draft" label="Document text" value={draft} onChange={(text) => editText("draft", text)} onImport={(file) => void importText("draft", file)} onError={setError} /></div>
+        {mode === "compare" && <div className="sim-input-card sim-sources-card" data-mobile-active={mobileInput === "source"}><div className="sim-card-heading"><span className="sim-letter-badge sim-letter-source" aria-hidden="true">2</span><h3>Reference sources</h3><button type="button" className="sim-add-source" aria-label="Add source" title="Add another source (up to five)" disabled={sources.length >= SIMILARITY_LIMITS.maxSources} onClick={() => {
           invalidate(); const number = nextSourceId.current++; const source = { id: `source-${number}`, label: `Source ${number}`, text: "" }; setSources([...sources, source]); setActiveSource(source.id);
-        }}><Plus size={14} aria-hidden="true" />Add <span>({sources.length}/5)</span></button></div>
-          <div className="sim-source-tabs" aria-label="Choose a source to edit">{sources.map((source, index) => <button type="button" key={source.id} aria-pressed={activeInput.id === source.id} onClick={() => setActiveSource(source.id)}><span className={`sim-source-dot sim-source-color-${index}`} />Source {index + 1}{source.text.trim() && <Check size={11} aria-label="Contains text" />}</button>)}</div>
+        }}><Plus size={16} aria-hidden="true" /><span>{sources.length}/5</span></button></div>
+          {sources.length > 1 && <div className="sim-source-tabs" aria-label="Choose a source to edit">{sources.map((source, index) => <button type="button" key={source.id} aria-pressed={activeInput.id === source.id} onClick={() => setActiveSource(source.id)}><span className={`sim-source-dot sim-source-color-${index}`} />Source {index + 1}{source.text.trim() && <Check size={11} aria-label="Contains text" />}</button>)}</div>}
           <div className="sim-source-label"><label htmlFor="similarity-source-name">Source label</label><input id="similarity-source-name" value={activeInput.label} maxLength={100} placeholder="Article, author or source name" onChange={(event) => { invalidate(); setSources((current) => current.map((source) => source.id === activeInput.id ? { ...source, label: event.target.value } : source)); }} /><button type="button" className="sim-icon-button" disabled={sources.length === 1} aria-label={`Remove ${activeInput.label || "this source"}`} onClick={() => activeInput.text.trim() ? setConfirmation({ kind: "remove", sourceId: activeInput.id, label: activeInput.label || "this source" }) : removeSource(activeInput.id)}><X size={15} aria-hidden="true" /></button></div>
-          <TextInput id={`similarity-${activeInput.id}`} label="Source text" value={activeInput.text} onChange={(text) => editText(activeInput.id, text)} onImport={(file) => void importText(activeInput.id, file)} />
+          <TextInput id={`similarity-${activeInput.id}`} label="Source text" value={activeInput.text} onChange={(text) => editText(activeInput.id, text)} onImport={(file) => void importText(activeInput.id, file)} onError={setError} />
         </div>}
       </div>
 
-      <div className="sim-settings">
+      <div className="sim-run-bar">
+        <div className="sim-local-note"><ShieldCheck size={18} aria-hidden="true" /><div><strong>Text stays in your browser</strong><span>No account. No AI upload. <a href="#similarity-privacy">Privacy details</a></span></div></div>
+        <div className="sim-run-actions">
+          {mode === "compare" && mobileInput === "draft" && !sources.every((source) => source.text.trim()) && <button type="button" className="sim-button sim-next-source" disabled={!draft.trim() || importing || checking} onClick={() => {
+            setMobileInput("source");
+            requestAnimationFrame(() => document.getElementById(`similarity-${activeInput.id}`)?.focus());
+          }}>Add source text<ArrowRight size={16} aria-hidden="true" /></button>}
+          {checking && <button type="button" className="sim-button-secondary" onClick={cancelCheck}>Cancel</button>}
+          <button type="button" className="sim-button sim-run-button" onClick={runCheck} disabled={!draft.trim() || checking || importing}>{checking || importing ? <Loader2 className="sim-spin" size={17} aria-hidden="true" /> : <FileSearch size={17} aria-hidden="true" />}{importing ? "Reading local file…" : checking ? "Comparing locally…" : mode === "compare" ? "Compare texts" : "Find repeated sentences"}{!checking && !importing && <ArrowRight size={16} aria-hidden="true" />}</button>
+        </div>
+      </div>
+      {error && <p className="sim-alert sim-alert-error" role="alert"><Info size={16} aria-hidden="true" />{error}</p>}
+      <p className="sim-status" role="status" aria-live="polite">{notice || (checking ? "The check is running in a local background worker. You can cancel or edit your text." : "")}</p>
+      <details className="sim-settings-panel">
+        <summary><Settings2 size={16} aria-hidden="true" /><span>Match settings</span><span className="sim-settings-current">{options.minWords}-word minimum{options.excludeQuotes ? " · quotes excluded" : ""}{options.excludeReferences ? " · references excluded" : ""}</span><ChevronDown size={15} aria-hidden="true" /></summary>
+        <div className="sim-settings">
         <div className="sim-match-setting"><label htmlFor="similarity-match-length"><Settings2 size={15} aria-hidden="true" />Minimum match</label><select id="similarity-match-length" value={options.minWords} onChange={(event) => { invalidate(); setOptions({ ...options, minWords: Number(event.target.value) as MatchLength }); }}>{[4, 6, 8, 12].map((value) => <option key={value} value={value}>{value} words{value === 6 ? " · balanced" : ""}</option>)}</select></div>
         <label className="sim-checkbox"><input type="checkbox" checked={options.ignoreCase} onChange={(event) => { invalidate(); setOptions({ ...options, ignoreCase: event.target.checked }); }} />Ignore case</label>
         <label className="sim-checkbox"><input type="checkbox" checked={options.excludeQuotes} onChange={(event) => { invalidate(); setOptions({ ...options, excludeQuotes: event.target.checked }); }} />Exclude quotes</label>
         <label className="sim-checkbox"><input type="checkbox" checked={options.excludeReferences} onChange={(event) => { invalidate(); setOptions({ ...options, excludeReferences: event.target.checked }); }} />Exclude references</label>
         {mode === "compare" && <button type="button" className="sim-text-button sim-swap" onClick={() => { invalidate(); setDraft(activeInput.text); setSources((current) => current.map((source) => source.id === activeInput.id ? { ...source, text: draft } : source)); setNotice("Document and active source swapped. Run again; coverage is directional."); }}><ArrowRightLeft size={14} aria-hidden="true" />Swap texts</button>}
-      </div>
-      <div className="sim-input-footnote">UTF-8 TXT / Markdown · 256 KB per file · 10,000 words and 60,000 characters per text. <a href="#similarity-method">How matching and exclusions work <Info size={12} aria-hidden="true" /></a></div>
-      <div className="sim-run-bar"><div className="sim-local-note"><ShieldCheck size={18} aria-hidden="true" /><div><strong>On-device matching. No AI upload.</strong><span>Inputs and notes clear on reload. <a href="#similarity-privacy">Privacy details</a></span></div></div><div className="sim-run-actions">{checking && <button type="button" className="sim-button-secondary" onClick={cancelCheck}>Cancel</button>}<button type="button" className="sim-button sim-run-button" onClick={runCheck} disabled={!draft.trim() || checking || importing}>{checking || importing ? <Loader2 className="sim-spin" size={17} aria-hidden="true" /> : <FileSearch size={17} aria-hidden="true" />}{importing ? "Reading local file…" : checking ? "Comparing locally…" : mode === "compare" ? "Compare texts" : "Find repeated sentences"}{!checking && !importing && <ArrowRight size={16} aria-hidden="true" />}</button></div></div>
-      {error && <p className="sim-alert sim-alert-error" role="alert"><Info size={16} aria-hidden="true" />{error}</p>}
-      <p className="sim-status" role="status" aria-live="polite">{notice || (checking ? "The check is running in a local background worker. You can cancel or edit your text." : "")}</p>
-
-      {!snapshot && <div className="sim-empty"><div className="sim-empty-icon"><BookOpen size={21} aria-hidden="true" /></div><div><h3>Your evidence will appear here.</h3><p>{mode === "compare" ? "See matching passages, their sources and the words included in the calculation. No black-box verdict." : "Review repeated sentences and choose excerpts for a manual source search. No suspicious-writing labels."}</p></div><span className="sim-empty-tag">Evidence, not accusations</span></div>}
+        </div>
+        <div className="sim-input-footnote">UTF-8 TXT / Markdown · 256 KB per file · 10,000 words and 60,000 characters per text. <a href="#similarity-method">Method & limits <Info size={12} aria-hidden="true" /></a></div>
+      </details>
 
       {snapshot && stats && <div className="sim-results" data-testid="similarity-results">
         <div className="sim-results-title"><div><p className="sim-eyebrow">02 / READ THE EVIDENCE</p><h2 ref={resultsHeading} tabIndex={-1}>{compare ? "Your comparison, explained." : "Your repetition review."}</h2></div><button type="button" className="sim-button-secondary" onClick={() => { setReportOpen(!reportOpen); setCopyNotice(""); }}><ArrowDownToLine size={16} aria-hidden="true" />Review report</button></div>

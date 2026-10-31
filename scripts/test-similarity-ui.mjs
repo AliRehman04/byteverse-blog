@@ -145,6 +145,7 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
   }
   const context = vm.createContext(sandbox, { codeGeneration: { strings: false, wasm: false } });
   const NativeLink = ({ children, ...props }) => React.createElement("a", props, children);
+  const NativeImage = ({ src, alt, width, height, loading }) => React.createElement("img", { src, alt, width, height, loading });
   const WorkspacePlaceholder = () => React.createElement("section", { id: "similarity-workspace", "data-test-placeholder": "true" });
   class ImageResponseMock {
     constructor(element, options) { this.element = element; this.options = options; }
@@ -157,6 +158,7 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
   });
   const imports = {
     types: {},
+    samples: {},
     engine: { "./types": "types" },
     input: { "./engine": "engine", "./types": "types" },
     report: {},
@@ -169,10 +171,16 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
     },
     page: {
       "react/jsx-runtime": jsxRuntime,
+      "next/image": { __esModule: true, default: NativeImage },
       "next/link": { __esModule: true, default: NativeLink },
       "lucide-react": { ArrowRight },
       "@/lib/tool-seo": "seo",
+      "@/lib/similarity/engine": "engine",
+      "@/lib/similarity/report": "report",
+      "@/lib/similarity/samples": "samples",
+      "@/lib/similarity/types": "types",
       "./plagiarism-tool": { PlagiarismTool: WorkspacePlaceholder },
+      "./text-highlights": "highlights",
     },
     api: { "next/server": { NextResponse: NextResponseMock } },
     og: { "react/jsx-runtime": jsxRuntime, "next/og": { ImageResponse: ImageResponseMock } },
@@ -210,6 +218,7 @@ const { SIMILARITY_LIMITS: limits, DEFAULT_MATCH_OPTIONS } = runtime.load("types
 const { buildComparisonHtmlReport, buildComparisonReport, formatCoverage, REVIEW_LABELS } = runtime.load("report");
 const { selectPassages, passageContext } = runtime.load("review");
 const { PassageContext, TextHighlights } = runtime.load("highlights");
+const { GUIDE_SAMPLE } = runtime.load("samples");
 const options = Object.freeze({ ...DEFAULT_MATCH_OPTIONS, minWords: 4 });
 const supplied = (text, index = 0, label = `Source ${index + 1}`) => ({ id: `fixture-${index + 1}`, label, text });
 const compareSnapshot = (draft, texts, settings = {}, reviews = {}) => {
@@ -826,7 +835,8 @@ test("actual visible page explains no external corpus, no originality verdict, d
   for (const pattern of [/No web or academic corpus is searched/, /no AI or semantic matching/, /paraphrases, translated ideas and unsupplied sources can be missed/, /not a plagiarism verdict or an internet scan/, /Source percentages are not additive/, /coverage is unavailable—not zero/, /10,000 words and 60,000 UTF-16 characters/, /256 KB limit/, /PDF, DOCX, URLs and OCR are unsupported/, /first 150 maximal passages per source/, /150 groups and 100 occurrences per group/, /15 seconds; speed depends on your device/, /Nothing is searched automatically/, /Sitewide ads and analytics still operate separately/, /reload clears the workspace/i]) {
     assert.match(visiblePage, pattern);
   }
-  assert.match(visiblePage, /not an executed sample/);
+  assert.match(visiblePage, /Coverage computed from the example above/);
+  assert.match(visiblePage, /15 matched words, not 24/);
   assert.match(visiblePage, /recognizing quotation marks or a heading does not validate a citation/);
 });
 
@@ -913,7 +923,7 @@ function checkerDescriptor(name) {
     .flatMap((key) => property(matches[0], key) ? [[key, literal(property(matches[0], key))]] : []));
 }
 
-for (const name of ["catalog", "home", "llms", "chat"]) {
+for (const name of ["catalog", "llms", "chat"]) {
   test(`${name}: statically extracted checker descriptor agrees with supplied-text/local scope`, () => {
     const entry = checkerDescriptor(name);
     assert.equal(entry.name ?? entry.title, toolConfig.name);
@@ -930,6 +940,41 @@ for (const name of ["catalog", "home", "llms", "chat"]) {
     assert.ok(!runtime.cache.has(name), "Discovery routes must never be executed");
   });
 }
+
+test("homepage discovers the checker through the shared catalog and featured tool list", () => {
+  assert.ok(literal(initializer("home", "quickToolSlugs")).includes("plagiarism-checker"));
+  assert.match(initializer("home", "searchableTools").getText(tree("home")), /^toolCatalog\.map\(/);
+  assert.match(source("home"), /import\s*\{\s*toolCatalog\s*\}\s*from\s*"@\/lib\/tool-catalog"/);
+  assert.match(source("home"), /<HomepageToolFinder tools=\{searchableTools\}/);
+  assert.ok(!runtime.cache.has("home"));
+});
+
+test("workspace exposes local drops, mobile input selection and collapsed match settings", () => {
+  assert.match(source("client"), /event\.dataTransfer\.files\.length !== 1/);
+  assert.match(source("client"), /onImport\(event\.dataTransfer\.files\[0\]\)/);
+  assert.match(source("client"), /data-mobile-active=\{mode === "repeat" \|\| mobileInput === "draft"\}/);
+  assert.match(source("client"), /setActiveSource\(source\.id\); setMobileInput\("source"\)/);
+  assert.match(source("client"), /<details className="sim-settings-panel">/);
+  assert.match(source("client"), /resultsHeading\.current\?\.scrollIntoView\(\{ block: "start" \}\)/);
+  assert.doesNotMatch(source("client"), /sim-workspace-intro|sim-studio-heading/);
+  assert.doesNotMatch(pageHtml, /sim-hero-illustration/);
+});
+
+test("published guide example reproduces its coverage, overlap and reverse-source counts", () => {
+  const result = engine.compareSources(GUIDE_SAMPLE.draft, GUIDE_SAMPLE.sources, DEFAULT_MATCH_OPTIONS);
+  assert.equal(result.draft.stats.eligibleWords, 21);
+  assert.equal(result.draft.matchedWords, 15);
+  assert.equal(formatCoverage(result.draft.coverage), "71.4%");
+  assert.deepEqual(plain(result.draft.sourceOverlap), { singleSourceWords: 6, multiSourceWords: 9, unmatchedWords: 6 });
+  const sourceCounts = plain(result.sources.map((entry) => [entry.draftMatchedWords, formatCoverage(entry.draftCoverage), formatCoverage(entry.coverage)]));
+  assert.deepEqual(sourceCounts, [[15, "71.4%", "100%"], [9, "42.9%", "60%"]]);
+  for (const minWords of [4, 6, 8]) {
+    const same = engine.compareSources("The reading room opens before sunrise.", [{ id: "guide-case", label: "Fictional", text: "THE READING ROOM OPENS BEFORE SUNRISE!" }], { ...DEFAULT_MATCH_OPTIONS, minWords });
+    assert.equal(formatCoverage(same.draft.coverage), minWords <= 6 ? "100%" : "0%");
+  }
+  const changedWords = engine.compareSources("Students review their notes at quiet tables.", [{ id: "paraphrase", label: "Fictional", text: "Learners revise in a peaceful study area." }], DEFAULT_MATCH_OPTIONS);
+  assert.equal(changedWords.draft.matchedWords, 0);
+});
 
 test("reports include the complete eligible overlap partition and per-source counts", () => {
   const snapshot = compareSnapshot("a b c d e f g h i j extra", ["a b c d e f", "e f g h i j"]);
@@ -1040,8 +1085,33 @@ test("focused-context component renders malicious markup only as literal text", 
 });
 
 test("landing page accurately explains review enhancements and print-to-PDF boundaries", () => {
-  for (const pattern of [/exactly one supplied source/, /multiple supplied sources/, /Duplicate source entries count separately/, /8 \+ 4 \+ 28 = 40/, /first 20 qualifying occurrences/, /Focused context/, /not a direct PDF download/, /without scripts or external resources/, /not just the passages currently visible/]) assert.match(visiblePage, pattern);
+  for (const pattern of [/exactly one supplied source/, /multiple supplied sources/, /Duplicate source entries count separately/, /15 \/ 21 x 100 = 71\.4%/, /first 20 qualifying occurrences/, /Focused context/, /not a direct PDF download/, /without scripts or external resources/, /not just the passages currently visible/]) assert.match(visiblePage, pattern);
   assert.equal(elements(pageDom, (node) => hasClass(node, "sim-use-case")).length, 3);
+});
+
+test("guide answers comparison intent with original evidence and linked primary sources", () => {
+  const guide = elements(pageDom, (node) => hasClass(node, "sim-reading-guide"))[0];
+  assert.ok(guide);
+  const headings = elements(guide, (node) => node.name === "h2").map(textContent);
+  for (const heading of ["How to compare two texts for similarity", "Text similarity percentage: a reproducible example", "What is a good similarity score?", "Why does the result look different from what I expected?"]) {
+    assert.ok(headings.includes(heading));
+  }
+  for (const host of ["guides.turnitin.com", "www.ox.ac.uk", "developers.google.com"]) {
+    assert.ok(elements(guide, (node) => node.name === "a" && node.attribs.href?.startsWith(`https://${host}/`)).length);
+  }
+  assert.equal(elements(guide, (node) => node.name === "table").length, 4);
+  for (const table of elements(guide, (node) => node.name === "table")) {
+    assert.equal(elements(table, (node) => node.name === "caption").length, 1);
+    assert.ok(elements(table, (node) => node.name === "th").every((node) => ["col", "row"].includes(node.attribs.scope)));
+  }
+  assert.match(visiblePage, /There is no universal safe percentage/);
+  assert.match(visiblePage, /not a prediction of a Turnitin score/);
+  const images = elements(guide, (node) => node.name === "img");
+  assert.equal(images.length, 1);
+  assert.equal(images[0].attribs.src, "/tools/text-similarity-matches.png");
+  assert.equal(images[0].attribs.width, "1256");
+  assert.equal(images[0].attribs.height, "348");
+  assert.equal(images[0].attribs.loading, "lazy");
 });
 
 test("tool inherits ByteVerse theme tokens instead of an independent green palette", () => {

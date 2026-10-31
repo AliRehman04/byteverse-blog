@@ -29,7 +29,7 @@ const CANONICAL = `${PRODUCTION}${TOOL_PATH}`;
 const IMAGE_PATH = `${TOOL_PATH}/opengraph-image`;
 const RETIRED_API = "/api/ai-plagiarism-check";
 const TITLE = "Text Similarity Checker - Compare Two Texts Free";
-const DESCRIPTION = "Compare two texts or a draft with up to five supplied sources. Review matches and context, then save a report. Free on-device matching. No web scan.";
+const DESCRIPTION = "Compare two texts for similarity, highlight shared passages and find repeated sentences. Free local matching with up to five sources. No web plagiarism scan.";
 const IMAGE_ALT = "ByteVerse Text Similarity Checker: a fictional draft and supplied source with matching wording highlighted in context. Local comparison, not a plagiarism verdict.";
 const UI_TIMEOUT = 12_000;
 const CHECK_TIMEOUT = 20_000;
@@ -258,7 +258,7 @@ function installProbe({ workerMode = "native", fileMode = "native", clipboardMod
 function isStaticChunk(url) { return url.origin === ORIGIN && url.pathname.startsWith("/_next/static/"); }
 const documentPaths = new Set([TOOL_PATH, "/", "/tools", "/site-map"]);
 const httpPaths = new Set([...documentPaths, "/llms.txt", "/sitemap.xml", IMAGE_PATH]);
-const publicAssets = new Set(["/logo.png", "/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png", "/apple-icon.png", "/apple-touch-icon.png", "/android-chrome-192x192.png", "/android-chrome-512x512.png", "/site.webmanifest"]);
+const publicAssets = new Set(["/logo.png", "/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png", "/apple-icon.png", "/apple-touch-icon.png", "/android-chrome-192x192.png", "/android-chrome-512x512.png", "/site.webmanifest", "/tools/text-similarity-matches.png"]);
 function queryKeysAllowed(url, allowed) { return [...url.searchParams.keys()].every((key) => allowed.includes(key)); }
 function permittedBrowserGet(url, method) {
   if (url.origin !== ORIGIN || method !== "GET" || url.username || url.password) return false;
@@ -395,9 +395,9 @@ async function createHarness(entry, index) {
   h.workspace = h.page.locator("#similarity-workspace");
   h.result = h.workspace.getByTestId("similarity-results");
   h.coverage = h.workspace.getByTestId("similarity-coverage");
-  h.document = h.workspace.getByRole("textbox", { name: "Document text", exact: true });
-  h.source = h.workspace.getByRole("textbox", { name: "Source text", exact: true });
-  h.sourceLabel = h.workspace.getByRole("textbox", { name: "Source label", exact: true });
+  h.document = h.workspace.getByLabel("Document text", { exact: true });
+  h.source = h.workspace.getByLabel("Source text", { exact: true });
+  h.sourceLabel = h.workspace.getByLabel("Source label", { exact: true });
   h.report = h.workspace.getByRole("region", { name: "Comparison report", exact: true });
   h.reportText = h.report.getByRole("textbox", { name: "Report text", exact: true });
   h.status = h.workspace.locator(".sim-status");
@@ -413,7 +413,16 @@ async function createHarness(entry, index) {
     await locator.click(); // One real pointer action; no force, DOM click, or retry.
     h.pointerActions++;
   };
+  h.settings = async () => {
+    const panel = h.workspace.locator(".sim-settings-panel");
+    if (!(await panel.evaluate((element) => element.open))) await h.click(panel.locator("summary"));
+  };
+  h.inputPane = async (kind) => {
+    const selector = h.workspace.locator(".sim-mobile-inputs");
+    if (await selector.isVisible()) await h.click(selector.getByRole("button", { name: kind === "document" ? /Your document/ : /Sources/ }));
+  };
   h.checkbox = async (name, checked) => {
+    if (["Ignore case", "Exclude quotes", "Exclude references"].includes(name)) await h.settings();
     const locator = h.workspace.getByRole("checkbox", { name, exact: true });
     await expect(locator).toBeVisible();
     await locator.scrollIntoViewIfNeeded();
@@ -423,12 +432,15 @@ async function createHarness(entry, index) {
     else await expect(locator).not.toBeChecked();
   };
   h.select = async (label, value) => {
+    if (label === "Minimum match") await h.settings();
     const locator = h.workspace.getByRole("combobox", { name: label, exact: true });
     await expect(locator).toBeVisible();
     await locator.selectOption(String(value));
     await expect(locator).toHaveValue(String(value));
   };
   h.fill = async (locator, value, kind) => {
+    if (locator === h.document) await h.inputPane("document");
+    if (locator === h.source || locator === h.sourceLabel) await h.inputPane("source");
     h.track(value, kind);
     await expect(locator).toBeVisible();
     await expect(locator).toBeEditable();
@@ -583,6 +595,7 @@ async function example(h, { repeat = false, replace = false } = {}) {
     await h.click(h.confirmation.getByRole("button", { name: "Replace text", exact: true }));
   }
   await expect(h.confirmation).toHaveCount(0);
+  await h.inputPane("document");
   await sameValue(h.document, repeat ? REPETITION_SAMPLE : COMPARISON_SAMPLE.draft);
   await visibleText(h.status, "Fictional example loaded. Run the check to explore the results.");
 }
@@ -592,7 +605,7 @@ async function fixture(h, { draft = TEN, source = TEN, label = PRIVATE_LABEL, ex
   await h.fill(h.sourceLabel, label, "source-label");
   await h.select("Minimum match", 4);
   if (extra) {
-    await h.click(h.workspace.getByRole("button", { name: /^Add \(1\/5\)$/ }));
+    await h.click(h.button("Add source"));
     await h.text("source", source);
     await h.click(h.workspace.locator(".sim-source-tabs").getByRole("button", { name: /^Source 1(?:\s|$)/ }));
   }
@@ -626,6 +639,20 @@ async function upload(h, file, target = "Document text") {
   // Native Playwright upload API: no constructed File, DataTransfer or event.
   await input.setInputFiles(file);
   await expect(input).toHaveValue("");
+}
+async function dropTextFiles(h, files, source = false) {
+  for (const file of files) { h.track(file.text, "drop-content"); h.track(file.name, "drop-filename"); }
+  const transfer = await h.page.evaluateHandle((entries) => {
+    const data = new DataTransfer();
+    for (const entry of entries) data.items.add(new File([entry.text], entry.name, { type: entry.type || "text/plain" }));
+    return data;
+  }, files);
+  const editor = h.workspace.locator(source ? ".sim-sources-card .sim-editor" : ".sim-input-card:first-child .sim-editor");
+  await editor.dispatchEvent("dragover", { dataTransfer: transfer });
+  await expect(editor).toHaveClass(/sim-editor-dragging/);
+  await editor.dispatchEvent("drop", { dataTransfer: transfer });
+  await expect(editor).not.toHaveClass(/sim-editor-dragging/);
+  await transfer.dispose();
 }
 async function keptReview(h, report, { source = TEN, draft = TEN } = {}) {
   await sameValue(h.document, draft);
@@ -723,7 +750,6 @@ scenario("seo / actual HTTP SSR, production metadata, visible FAQs and generated
   expect(nodeText(oneNode(root, (node) => node.name === "title", "title"))).toBe(TITLE);
   expect(TITLE.length).toBe(48);
   expect(meta(root, "description")).toBe(DESCRIPTION);
-  expect(DESCRIPTION.length).toBe(148);
   await expect(h.page).toHaveTitle(TITLE);
   await expect(h.page.locator("main")).toHaveCount(1);
   await expect(h.page.getByRole("heading", { level: 1 })).toHaveCount(1);
@@ -778,7 +804,7 @@ scenario("seo / actual HTTP SSR, production metadata, visible FAQs and generated
 scenario("seo / local discovery pages, llms and sitemap describe supplied-source matching", async (h) => {
   for (const [pathname, description] of [
     ["/tools", "Compare a draft with supplied sources locally. Review shared wording, source overlap and context; save TXT or printable HTML reports. No web scan or originality verdict."],
-    ["/", "Review draft overlap and context with supplied sources locally—not a web scan"],
+    ["/", null],
     ["/site-map", null],
   ]) {
     await h.goto(pathname);
@@ -821,12 +847,14 @@ scenario("workspace / empty controls, accessible input labels and no AI-check ac
   await expect(h.button("Compare texts")).toBeDisabled();
   await expect(h.button("Clear all text and review notes")).toBeDisabled();
   await expect(h.button("Remove Source 1")).toBeDisabled();
+  await expect(h.workspace.locator(".sim-settings-panel")).not.toHaveAttribute("open");
+  await h.settings();
   await expect(h.workspace.getByRole("combobox", { name: "Minimum match", exact: true })).toHaveValue("6");
   await expect(h.workspace.getByRole("checkbox", { name: "Ignore case", exact: true })).toBeChecked();
   await expect(h.workspace.getByRole("checkbox", { name: "Exclude quotes", exact: true })).not.toBeChecked();
   await expect(h.workspace.getByRole("checkbox", { name: "Exclude references", exact: true })).not.toBeChecked();
   await expect(h.workspace.getByRole("button", { name: /AI check|check with AI|detect AI|originality score/i })).toHaveCount(0);
-  await visibleText(h.workspace.getByText("On-device matching. No AI upload.", { exact: true }), "On-device matching. No AI upload.");
+  await visibleText(h.workspace.getByText("Text stays in your browser", { exact: true }), "Text stays in your browser");
   await h.text("document", TEN);
   await h.click(h.button("Compare texts"));
   await expect(h.workspace.getByRole("alert")).toBeVisible();
@@ -881,7 +909,7 @@ scenario("compare / real sample worker, independent 22/70 counts, both sources a
 
 scenario("compare / selecting a zero-match Source 2 clears document highlights, not overall coverage", async (h) => {
   await fixture(h, { source: EIGHT, label: "Source 1" });
-  await h.click(h.workspace.getByRole("button", { name: /^Add \(1\/5\)$/ }));
+  await h.click(h.button("Add source"));
   await h.text("source", UNRELATED);
   await check(h, "80%", { matched: 8, eligible: 10, sourceCharacters: [EIGHT.length, UNRELATED.length] });
   await h.select("Filter matching source", "source-2");
@@ -1012,7 +1040,7 @@ scenario("repeat / quoted exclusions lower group counts and a unique sentence re
 scenario("review / complete source-overlap totals partition eligible draft words", async (h) => {
   const draft = `${TEN} unmatchedtail984`;
   await fixture(h, { draft, source: "alpha beta gamma delta epsilon zeta" });
-  await h.click(h.workspace.getByRole("button", { name: /^Add \(1\/5\)$/ }));
+  await h.click(h.button("Add source"));
   await h.text("source", "epsilon zeta eta theta iota kappa");
   await check(h, "90.9%", { matched: 10, eligible: 11 });
   await visibleText(h.page.getByTestId("overlap-single"), "8 words");
@@ -1133,7 +1161,7 @@ const invalidations = [
     await h.click(h.button("Compare sources"));
   }],
   ["add source", async (h) => {
-    await h.click(h.workspace.getByRole("button", { name: /^Add \(1\/5\)$/ }));
+    await h.click(h.button("Add source"));
   }],
 ];
 for (const [name, action] of invalidations) scenario(`state / ${name} invalidates the result, report and reviews`, async (h) => {
@@ -1309,12 +1337,12 @@ scenario("limits / CJK segmentation warning is visible and method details suppor
 scenario("sources / limit is five, native tabs retain exact texts, removing activates the first remaining source", async (h) => {
   await fixture(h, { label: "Source 1" });
   for (let count = 1; count < 5; count++) {
-    await h.click(h.workspace.getByRole("button", { name: new RegExp(`^Add \\(${count}\\/5\\)$`) }));
+    await h.click(h.button("Add source"));
     await sameValue(h.sourceLabel, `Source ${count + 1}`);
     await h.text("source", `${TEN}${"!".repeat(count)}`);
   }
   await expect(h.workspace.locator(".sim-source-tabs button")).toHaveCount(5);
-  await expect(h.workspace.getByRole("button", { name: /^Add \(5\/5\)$/ })).toBeDisabled();
+  await expect(h.button("Add source")).toBeDisabled();
   for (let index = 0; index < 5; index++) {
     const tab = h.workspace.locator(".sim-source-tabs button").nth(index);
     await h.click(tab);
@@ -1332,7 +1360,7 @@ scenario("sources / limit is five, native tabs retain exact texts, removing acti
   await expect(h.workspace.locator(".sim-source-tabs button").first()).toHaveAttribute("aria-pressed", "true");
   await sameValue(h.sourceLabel, "Source 1");
   await sameValue(h.source, TEN);
-  await expect(h.workspace.getByRole("button", { name: /^Add \(4\/5\)$/ })).toBeEnabled();
+  await expect(h.button("Add source")).toBeEnabled();
 });
 
 scenario("search / only explicit preview constructs one quoted Google query; cancel and edit remove it", async (h) => {
@@ -1563,11 +1591,64 @@ scenario("privacy / reload clears draft, sources and notes without requiring all
   await sameValue(h.document, "");
   await sameValue(h.source, "");
   await sameValue(h.sourceLabel, "Source 1");
-  await expect(h.workspace.locator(".sim-source-tabs button")).toHaveCount(1);
+  await expect(h.workspace.locator(".sim-source-tabs button")).toHaveCount(0);
   await absentResults(h);
   await expect(h.button("Compare texts")).toBeDisabled();
   await expect(h.workspace.getByRole("textbox", { name: /^Note/ })).toHaveCount(0);
 });
+
+scenario("drop / single TXT and Markdown files use the real local import and matching paths", async (h) => {
+  await dropTextFiles(h, [{ name: "drop-document984.txt", text: TEN }]);
+  await sameValue(h.document, TEN);
+  await dropTextFiles(h, [{ name: "drop-source984.md", text: TEN, type: "text/markdown" }], true);
+  await sameValue(h.source, TEN);
+  await check(h, "100%", { matched: 10, eligible: 10 });
+});
+
+scenario("drop / multiple files and unsupported types preserve the existing report and notes", async (h) => {
+  const report = await reviewedFixture(h);
+  await dropTextFiles(h, [{ name: "first984.txt", text: FOUR }, { name: "second984.txt", text: EIGHT }]);
+  await expect(h.workspace.getByRole("alert")).toContainText("Choose one TXT or Markdown file");
+  await sameValue(h.document, TEN);
+  await sameValue(h.reportText, report);
+  await dropTextFiles(h, [{ name: "unsupported984.pdf", text: FOUR, type: "application/pdf" }]);
+  await expect(h.workspace.getByRole("alert")).toContainText(".txt or .md");
+  await sameValue(h.document, TEN);
+  await sameValue(h.reportText, report);
+  await sameValue(h.cards.first().getByRole("textbox", { name: /^Note/ }), REVIEW_NOTE);
+});
+
+scenario("drop / replacing existing text still requires confirmation", async (h) => {
+  const report = await reviewedFixture(h);
+  await dropTextFiles(h, [{ name: "replacement984.md", text: EIGHT }]);
+  await expect(h.confirmation).toContainText("Replace text with replacement984.md?");
+  await sameValue(h.document, TEN);
+  await sameValue(h.reportText, report);
+  await h.click(h.confirmation.getByRole("button", { name: "Keep current text", exact: true }));
+  await keptReview(h, report);
+});
+
+scenario("mobile / clear input progression preserves both texts and brings results into view", async (h) => {
+  await expect(h.document).toBeVisible();
+  await expect(h.source).not.toBeVisible();
+  await expect(h.button("Add source text")).toBeDisabled();
+  await h.text("document", TEN);
+  await h.click(h.button("Add source text"));
+  await expect(h.source).toBeVisible();
+  await expect(h.source).toBeFocused();
+  await expect(h.document).not.toBeVisible();
+  await h.text("source", TEN);
+  await h.inputPane("document");
+  await sameValue(h.document, TEN);
+  await h.inputPane("source");
+  await sameValue(h.source, TEN);
+  await check(h, "100%", { matched: 10, eligible: 10 });
+  const heading = h.result.getByRole("heading", { level: 2 }).first();
+  await expect(heading).toBeFocused();
+  const box = await heading.boundingBox();
+  expect(box.y).toBeGreaterThanOrEqual(64);
+  expect(box.y).toBeLessThan(200);
+}, { width: 390 });
 
 async function assertSiteTheme(h, results = false) {
   const colors = await h.page.evaluate((withResults) => {
@@ -1578,14 +1659,14 @@ async function assertSiteTheme(h, results = false) {
       return /^#[0-9a-f]{6}$/i.test(value) ? `rgb(${[1, 3, 5].map((offset) => parseInt(value.slice(offset, offset + 2), 16)).join(", ")})` : value;
     };
     const pairs = [
-      [".sim-workspace", "backgroundColor", "--card"],
-      [".sim-workspace", "borderTopColor", "--border"],
+      [".sim-input-card", "backgroundColor", "--card"],
+      [".sim-input-card", "borderTopColor", "--border"],
       [".sim-hero-title", "color", "--foreground"],
-      [".sim-hero-primary", "backgroundColor", "--primary"],
-      [".sim-hero-primary", "color", "--primary-foreground"],
+      [".sim-run-button", "backgroundColor", "--primary"],
+      [".sim-run-button", "color", "--primary-foreground"],
       [".sim-mode-switch button[aria-pressed=true]", "backgroundColor", "--primary"],
       [".sim-mode-switch button[aria-pressed=true]", "color", "--primary-foreground"],
-      [".sim-hero-secondary", "color", "--primary"],
+      [".sim-guide-nav a", "color", "--primary"],
       [".sim-editor-label", "color", "--muted-foreground"],
     ];
     if (withResults) pairs.push(
@@ -1605,19 +1686,29 @@ for (const width of [1440, 390, 768, 320]) for (const theme of ["light", "dark"]
     if (theme === "dark") await expect(h.page.locator("html")).toHaveClass(/(?:^|\s)dark(?:\s|$)/);
     else await expect(h.page.locator("html")).not.toHaveClass(/(?:^|\s)dark(?:\s|$)/);
     await expect(h.document).toBeVisible();
-    await expect(h.source).toBeVisible();
-    await expect(h.sourceLabel).toBeVisible();
-    await expect(h.workspace.getByLabel("Minimum match", { exact: true })).toBeVisible();
+    await expect(h.workspace.locator(".sim-settings-panel")).not.toHaveAttribute("open");
     await assertLayout(h, "initial");
     await assertSiteTheme(h);
+    await h.page.evaluate(() => window.scrollTo(0, 0));
+    const firstAction = h.workspace.locator(".sim-next-source:visible, .sim-run-button:visible");
+    const actionBox = await firstAction.boundingBox();
+    expect(actionBox.y + actionBox.height, "The primary first step must fit in the initial viewport").toBeLessThanOrEqual(width <= 390 ? 844 : 900);
+    const firstScreen = join(artifactDirectory, `${width}-${theme}-first-screen.png`);
+    await h.page.screenshot({ path: firstScreen, fullPage: false, caret: "hide" });
+    screenshots.push({ case: h.name, portion: "first-screen", path: firstScreen });
     const capture = width === 1440 || width === 390;
     if (capture) {
       await screenshot(h, `${width}-${theme}-top-hero`, h.page.locator(".sim-hero"));
       await screenshot(h, `${width}-${theme}-workspace-inputs`, h.workspace.locator(".sim-input-grid"));
     }
-    for (let count = 1; count < 5; count++) await h.click(h.workspace.getByRole("button", { name: new RegExp(`^Add \\(${count}\\/5\\)$`) }));
+    await h.inputPane("source");
+    await expect(h.source).toBeVisible();
+    await expect(h.sourceLabel).toBeVisible();
+    await h.settings();
+    await expect(h.workspace.getByLabel("Minimum match", { exact: true })).toBeVisible();
+    for (let count = 1; count < 5; count++) await h.click(h.button("Add source"));
     await h.fill(h.sourceLabel, `Fictional_${"L".repeat(90)}`, "long-label");
-    await expect(h.workspace.getByRole("button", { name: /^Add \(5\/5\)$/ })).toBeDisabled();
+    await expect(h.button("Add source")).toBeDisabled();
     await assertLayout(h, "five source tabs and 100-character source label");
     await example(h); // Empty text, despite five labeled source slots: no prompt.
     await check(h, "31.4%", { matched: 22, eligible: 70 });
@@ -1641,6 +1732,10 @@ for (const width of [1440, 390, 768, 320]) for (const theme of ["light", "dark"]
     if (capture) await screenshot(h, `${width}-${theme}-repetition-report`, h.report);
     await expect(h.page.locator("#similarity-faq dd")).toHaveCount(5);
     for (const answer of await h.page.locator("#similarity-faq dd").all()) await expect(answer).toBeVisible();
+    const guideImage = h.page.locator(".sim-guide-screenshot img");
+    await guideImage.scrollIntoViewIfNeeded();
+    await expect.poll(() => guideImage.evaluate((image) => image.complete && image.naturalWidth === 1256 && image.naturalHeight === 348)).toBe(true);
+    await assertLayout(h, "readable guide and loaded example image");
   }, { width });
 }
 

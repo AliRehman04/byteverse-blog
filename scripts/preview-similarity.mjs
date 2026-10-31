@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const parent = dirname(root.replace(/[\\/]$/, ""));
 const [mode, previous] = process.argv.slice(2);
-assert(["--build", "--serve", "--refresh"].includes(mode), "Use --build, --refresh <copy> or --serve <copy>");
+assert(["--build", "--serve", "--refresh", "--dev"].includes(mode), "Use --build, --refresh <copy>, --serve <copy> or --dev");
 assert(process.argv.length <= 4);
 const workspace = previous ? resolve(previous) : await mkdtemp(join(parent, ".byteverse-similarity-check-"));
 assert(dirname(workspace) === parent && workspace.startsWith(join(parent, ".byteverse-similarity-check-")), "Use only a task-owned validation copy");
@@ -16,7 +16,7 @@ const env = {};
 for (const key of ["PATH", "Path", "PATHEXT", "SystemRoot", "SYSTEMROOT", "WINDIR", "COMSPEC", "TEMP", "TMP", "NUMBER_OF_PROCESSORS", "PROCESSOR_ARCHITECTURE", "ProgramFiles", "ProgramFiles(x86)"]) {
   if (process.env[key]) env[key] = process.env[key];
 }
-Object.assign(env, { NEXT_TELEMETRY_DISABLED: "1", DATABASE_URL: "", GROQ_API_KEY: "", RESEND_API_KEY: "", NODE_ENV: "production" });
+Object.assign(env, { NEXT_TELEMETRY_DISABLED: "1", DATABASE_URL: "", GROQ_API_KEY: "", RESEND_API_KEY: "", NODE_ENV: mode === "--dev" ? "development" : "production" });
 
 async function run(args) {
   await new Promise((accept, reject) => {
@@ -36,10 +36,13 @@ if (mode !== "--serve") {
   assert(!(await readdir(workspace)).some((name) => name.startsWith(".env")), "No environment files allowed in validation copy");
   console.log(`ISOLATED BUILD: ${workspace} (no app credentials or database; original preview untouched)`);
   await run(["scripts/build-invoice-workspace.mjs"]);
-  await run(["node_modules/next/dist/bin/next", "build"]);
-  console.log(`BUILD PASSED. Validation copy: ${workspace}`);
-} else {
-  assert(previous, "Provide a completed validation copy to serve");
+  if (mode !== "--dev") {
+    await run(["node_modules/next/dist/bin/next", "build"]);
+    console.log(`BUILD PASSED. Validation copy: ${workspace}`);
+  }
+}
+if (mode === "--serve" || mode === "--dev") {
+  assert(previous || mode === "--dev", "Provide a completed validation copy to serve");
   console.log(`LOCAL PREVIEW: http://127.0.0.1:3040/tools/plagiarism-checker — ${workspace}`);
-  await run(["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", "3040"]);
+  await run(["node_modules/next/dist/bin/next", mode === "--dev" ? "dev" : "start", "--hostname", "127.0.0.1", "--port", "3040"]);
 }

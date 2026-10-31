@@ -4,7 +4,7 @@ import {
   TextCursorInput, Paintbrush, Pipette, Square, Brain, FileSearch,
   CodeXml, RemoveFormatting, Wand2, FileCode, Video, Speech, QrCode,
   Clock3, Sparkles, FileImage, BarChart3, AlignLeft, FileDown,
-  Table2, ScrollText, FileType, Rows3, FileSpreadsheet, FileDiff,
+  Table2, ScrollText, FileType, Rows3, FileSpreadsheet, FileDiff, TableProperties,
 } from "lucide-react";
 import { imageStudioBrand } from "@/lib/image-studio/brand";
 
@@ -70,6 +70,7 @@ export const toolCatalog: readonly ToolEntry[] = [
   { slug: "markdown-to-html", name: "Markdown to HTML Converter", description: "Convert basic Markdown into HTML for review and copying; inspect complex documents before publishing.", category: "Encoders & Converters", icon: FileDown, color: "text-blue-500", bg: "bg-blue-500/10" },
   { slug: "json-to-csv", name: "JSON to CSV Converter", description: "Convert JSON or JSON Lines to CSV locally: choose rows, flatten nested fields, expand one array and preview columns with formula-risk protection.", category: "Encoders & Converters", icon: Table2, color: "text-green-500", bg: "bg-green-500/10" },
   { slug: "invoice-pdf-to-excel", name: "Invoice PDF to Excel", description: "Extract summary fields from selectable-text invoice PDFs, review each invoice and export XLSX or CSV locally. No OCR.", category: "Encoders & Converters", icon: FileSpreadsheet, color: "text-teal-600", bg: "bg-teal-500/10" },
+  { slug: "csv-repair", name: "CSV Repair Tool", description: "Fix delimiters, encodings and broken quotes, keep leading zeros and long IDs as text, preview every repair and export Excel-ready XLSX in your browser.", category: "Encoders & Converters", icon: TableProperties, color: "text-blue-600", bg: "bg-blue-500/10" },
   { slug: "privacy-policy-generator", name: "Privacy Policy Template Generator", description: "Draft an editable website policy template. Review it against your real data practices and legal requirements.", category: "SEO & Web", icon: ScrollText, color: "text-purple-500", bg: "bg-purple-500/10" },
   { slug: "json-to-typescript", name: "JSON to TypeScript Converter", description: "Infer interfaces or types from JSON and JSON Lines locally. Review optional fields, nulls and mixed arrays; download complete declarations.", category: "Formatters & Dev", icon: FileType, color: "text-sky-500", bg: "bg-sky-500/10" },
   { slug: "flexbox-generator", name: "CSS Flexbox Generator", description: "Explore flex direction, alignment, wrapping and gaps with a live layout preview and copyable CSS.", category: "CSS & Design", icon: Rows3, color: "text-violet-500", bg: "bg-violet-500/10" },
@@ -115,7 +116,8 @@ export const relatedToolSlugs: Readonly<Record<string, readonly string[]>> = {
   "lorem-ipsum-generator": ["html-editor", "word-counter", "flexbox-generator", "html-tag-generator"],
   "markdown-to-html": ["html-editor", "html-tag-generator", "diff-checker", "word-counter"],
   "json-to-csv": ["json-formatter", "json-to-typescript", "csv-diff", "invoice-pdf-to-excel"],
-  "invoice-pdf-to-excel": ["json-to-csv", "json-formatter", "diff-checker"],
+  "invoice-pdf-to-excel": ["json-to-csv", "json-formatter", "diff-checker", "csv-repair"],
+  "csv-repair": ["csv-diff", "json-to-csv", "invoice-pdf-to-excel", "json-formatter"],
   "privacy-policy-generator": ["robots-txt-generator", "meta-tag-generator", "html-tag-generator", "word-counter"],
   "json-to-typescript": ["json-formatter", "json-to-csv", "code-formatter", "diff-checker"],
   "flexbox-generator": ["html-editor", "css-gradient-generator", "box-shadow-generator", "color-converter"],

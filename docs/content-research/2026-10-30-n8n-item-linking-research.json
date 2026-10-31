@@ -1,0 +1,537 @@
+{
+  "checkedAt": "2026-10-30T12:06:41.527Z",
+  "inventory": {
+    "total": 175,
+    "published": 173,
+    "hash": "0a0de48b57cd068e4723dcaad3207d77",
+    "database_date": "2026-10-30"
+  },
+  "coverage": [
+    {
+      "id": 221,
+      "title": "n8n vs Zapier (2026): Pricing, AI Workflows and Hidden Costs",
+      "slug": "n8n-vs-zapier-2026-comparison",
+      "published": true,
+      "headings": [
+        "Quick Verdict: Which Should You Choose?\r",
+        "Tasks vs Executions: The Difference That Changes the Bill\r",
+        "n8n vs Zapier Pricing in 2026\r",
+        "Three Workload Examples You Can Recalculate\r",
+        "A Practical Example: Turn an Inquiry Into a Tracked Follow-Up\r",
+        "Building the Workflow in Zapier\r",
+        "Building the Workflow in n8n\r",
+        "Is Self-Hosted n8n Really Free?\r",
+        "Source-Available Does Not Mean Unrestricted Open Source\r",
+        "n8n vs Zapier for AI Workflows and Agents\r",
+        "Put Review Before the External Action\r",
+        "Integrations: Check the Action, Not Just the App Count\r",
+        "Security and Reliability Are Shared Responsibilities\r",
+        "A Seven-Day Pilot Before You Commit\r",
+        "FAQ\r",
+        "Is n8n cheaper than Zapier?\r",
+        "Is n8n free forever when self-hosted?\r",
+        "Which is better for a beginner or small business?\r",
+        "Can n8n replace Zapier?\r",
+        "Does every step in Zapier count as a task?\r",
+        "Should I include Make in the comparison?\r",
+        "Final Recommendation\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 222,
+      "title": "How to Use n8n in 2026: Complete Beginner Guide",
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "published": true,
+      "headings": [
+        "What Is n8n, in One Paragraph?\r",
+        "Cloud or Local? Choose Your Starting Point\r",
+        "The Five Concepts That Make n8n Click\r",
+        "Build Your First Workflow, Step by Step\r",
+        "Step 1: Create the workflow and add a trigger\r",
+        "Step 2: Fetch data with a node and a credential\r",
+        "Step 3: Add a decision with the If node\r",
+        "Step 4: Deliver the result\r",
+        "Step 5: Test the whole thing, then publish\r",
+        "Your Second Workflow: Make It Actually Useful\r",
+        "Templates: The Fastest Start and the Easiest Trap\r",
+        "Adding AI: Your First n8n Agent, With a Safety Gate\r",
+        "Five Beginner Mistakes That Cost the Most\r",
+        "FAQ\r",
+        "Is n8n free to use?\r",
+        "Can I run n8n locally on my own computer?\r",
+        "Do I need to know how to code?\r",
+        "Is n8n better than Zapier?\r",
+        "How do I use AI agents in n8n?\r",
+        "Where do I find example workflows?\r",
+        "Bottom Line\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 231,
+      "title": "n8n Webhook Not Working? Fix 404 and Production URL Errors",
+      "slug": "n8n-webhook-not-working-2026",
+      "published": true,
+      "headings": [
+        "Start with the response, not another restart",
+        "1. Separate the test URL from the production URL",
+        "2. Check the published version, not only the saved draft",
+        "3. Match the path and HTTP method exactly",
+        "Send one small, safe diagnostic request",
+        "4. Distinguish an n8n 404 from a routing or access failure",
+        "5. Check execution history and response mode",
+        "6. Check self-hosted public URLs and reverse proxies",
+        "7. Handle timeouts without creating duplicate work",
+        "Keep a short verification record",
+        "Frequently Asked Questions",
+        "Why does my n8n webhook work in test but not in production?",
+        "What does the requested webhook is not registered mean?",
+        "Why does a POST webhook fail when I open it in my browser?",
+        "Do I need to keep the n8n editor open?",
+        "Why did saving my changes not fix the production webhook?",
+        "Can an external service call my n8n localhost URL?",
+        "Does WEBHOOK_URL stop working in n8n 2.35.0?",
+        "Why does n8n return 200 without my expected JSON?",
+        "Sources and Image Credits"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 2,
+      "name": "Tech Guides"
+    },
+    {
+      "id": 4,
+      "name": "Coding"
+    }
+  ],
+  "protectedDrafts": [
+    {
+      "slug": "audacity-noise-reduction-voice-2026",
+      "published": false
+    },
+    {
+      "slug": "pdf-to-podcast-notebooklm-2026",
+      "published": false
+    }
+  ],
+  "previousLocalDrafts": [
+    {
+      "slug": "json-parse-large-numbers-precision",
+      "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3"
+    },
+    {
+      "slug": "n8n-binary-data-not-found",
+      "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66"
+    },
+    {
+      "slug": "webp-larger-than-jpg",
+      "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e"
+    }
+  ],
+  "host": [
+    {
+      "id": 222,
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "contentSha256": "42842cf95f8f9fed97ecc54548334ff10a8ffe7dd4736f4534f64c30229bd960",
+      "dataSection": "The Five Concepts That Make n8n Click\r\n\r\nLearn these before touching the canvas and the interface stops feeling cryptic. All definitions follow n8n's own glossary.\r\n\r\n| Concept | What it means | Why beginners get stuck without it |\r\n| --- | --- | --- |\r\n| **Trigger node** | The special first node that decides *when* the workflow runs (on a schedule, on a webhook, on an app event) | Workflows without a published trigger only run when you press the button |\r\n| **Node** | One block that does one job: fetch, transform, decide, send | Trying to do three jobs in one node creates un-debuggable workflows |\r\n| **Credential** | Stored authentication (API key, OAuth login) that nodes use to act as you | Nodes fail with auth errors until a credential is created and selected |\r\n| **Expression** | A small piece of JavaScript inside `{{ }}` that fills a field dynamically from previous nodes' data | Static values work in tests, then break on real data |\r\n| **Execution** | One complete run of the workflow, visible in the executions list | It is your billing unit on Cloud *and* your debugging history |\r\n\r\nOne more that saves hours: **data pinning**. While building, you can freeze a node's output so you can iterate on later steps without re-calling an API. Production runs ignore pinned data — it is a development convenience, not a cache.\n\nIf a Webhook trigger works in testing but fails when connected to an external app, use our [n8n webhook troubleshooting guide](/blog/n8n-webhook-not-working-2026). It separates test and production URLs, published versions, HTTP methods and routing errors.\r\n\r\n![A pencil resting on a printed circular planning chart](https://images.pexels.com/photos/7947839/pexels-photo-7947839.jpeg?auto=compress&cs=tinysrgb&w=1400 \"Five concepts — triggers, nodes, credentials, expressions, executions — carry the whole tool\")\r\n"
+    }
+  ],
+  "keywordResearch": {
+    "source": "Google public autocomplete",
+    "context": "English with US request parameters, not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n can't determine which item to use",
+        "suggestions": [
+          "n8n can t determine which item to use",
+          "n8n can t determine which item to use execute node for more info",
+          "n8n error can t determine which item to use"
+        ]
+      },
+      {
+        "seed": "n8n paired item data is unavailable",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n paireditem",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n item linking",
+        "suggestions": [
+          "n8n item linking",
+          "how to link item in ran online"
+        ]
+      },
+      {
+        "seed": "n8n itemmatching",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n first vs item",
+        "suggestions": [
+          "n8n item vs first"
+        ]
+      },
+      {
+        "seed": "n8n multiple matching items for expression",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n code node paireditem",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n item index after filter",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n code node filter items",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n referenced node is unexecuted",
+        "suggestions": [
+          "n8n referenced node is unexecuted",
+          "node-red vs n8n"
+        ]
+      },
+      {
+        "seed": "n8n all itemindex",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n run once for all items vs each item",
+        "error": "TypeError"
+      },
+      {
+        "seed": "n8n merge matching fields",
+        "suggestions": [
+          "n8n merge matching fields",
+          "match fields in mail merge"
+        ]
+      }
+    ]
+  },
+  "searchResults": {
+    "source": "DuckDuckGo HTML first-page observations, not Google rankings",
+    "observations": [
+      {
+        "query": "n8n can't determine which item to use",
+        "status": 200,
+        "blocked": false,
+        "results": [
+          {
+            "title": "How to solve \"Can't determine what item to use\"? - Questions - n8n ...",
+            "url": "https://community.n8n.io/t/how-to-solve-cant-determine-what-item-to-use/65663"
+          },
+          {
+            "title": "Can't determine which item to use (problem) - Questions - n8n Community",
+            "url": "https://community.n8n.io/t/cant-determine-which-item-to-use-problem/195215"
+          },
+          {
+            "title": "n8n \"Can't Determine Which Item to Use\": Paired Items Fixed",
+            "url": "https://www.n8ndevelopers.com/blogs/n8n-cant-determine-which-item-to-use-paired-items-fixed"
+          },
+          {
+            "title": "How to correct the error Can't determine which item to use in n8n in ...",
+            "url": "https://www.youtube.com/watch?v=fg4_ggxH1UE"
+          },
+          {
+            "title": "Drag-and-drop expression in n8n incorrectly generates ... - GitHub",
+            "url": "https://github.com/n8n-io/n8n/issues/10730"
+          },
+          {
+            "title": "The \"pairedItem\" Problem in Complex n8n Workflows: A Complete Guide",
+            "url": "https://netlintech.com/blog/paireditem-problem-in-n8n-workflows-guide"
+          },
+          {
+            "title": "Como resolver erro: Can't determine which item to use no n8n",
+            "url": "https://www.youtube.com/watch?v=PStl0WKZlJQ"
+          },
+          {
+            "title": "Common issues | Nodes | n8n Docs",
+            "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/common-issues"
+          },
+          {
+            "title": "n8n「Can't determine which item to use」錯誤該怎麼解決？",
+            "url": "https://askai.glarity.app/zh-TW/search/n8n%E3%80%8CCan-t-determine-which-item-to-use%E3%80%8D%E9%8C%AF%E8%AA%A4%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA"
+          },
+          {
+            "title": "Erro [ERROR: Can't determine which item to use] no n8n | EmpreendedorSerial",
+            "url": "https://comunidade.aalencar.com.br/c/blog/erro-error-can-t-determine-which-item-to-use-no-n8n"
+          }
+        ]
+      },
+      {
+        "query": "n8n \"pairedItem\" filter sort index",
+        "status": 200,
+        "blocked": false,
+        "results": [
+          {
+            "title": "Item linking | Connect | n8n Docs",
+            "url": "https://docs.n8n.io/connect/create-nodes/build-your-node/reference/item-linking"
+          },
+          {
+            "title": "Item linking for node creators | Build | n8n Docs",
+            "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/item-linking-for-node-creators"
+          },
+          {
+            "title": "Return the input items that produced the output items... Item Linking ...",
+            "url": "https://community.n8n.io/t/return-the-input-items-that-produced-the-output-items-item-linking/72138/2"
+          },
+          {
+            "title": "How to solve \"Can't determine what item to use\"? - Questions - n8n ...",
+            "url": "https://community.n8n.io/t/how-to-solve-cant-determine-what-item-to-use/65663"
+          },
+          {
+            "title": "Items, Runs, and pairedItem · n8n Field Guide - doc.holiday",
+            "url": "https://doc.holiday/library/n8n/items-runs-and-paireditem/"
+          },
+          {
+            "title": "n8n-docs-complete/n8n_docs_final/code_expressions/item_linking_in_the ...",
+            "url": "https://github.com/digibooms25/n8n-docs-complete/blob/main/n8n_docs_final/code_expressions/item_linking_in_the_code_node.md"
+          },
+          {
+            "title": "agent-skills/src/skills/n8n-code-node/references/ITEM_LINKING ... - GitHub",
+            "url": "https://github.com/rwilson504/agent-skills/blob/main/src/skills/n8n-code-node/references/ITEM_LINKING_CODE.md"
+          },
+          {
+            "title": "The \"pairedItem\" Problem in Complex n8n Workflows: A Complete Guide",
+            "url": "https://netlintech.com/blog/paireditem-problem-in-n8n-workflows-guide"
+          },
+          {
+            "title": "Fix pairedItem in Your n8n Custom Node (Item Linking)",
+            "url": "https://www.youtube.com/watch?v=Ch0d_btHt1k"
+          }
+        ]
+      },
+      {
+        "query": "n8n \"itemMatching\" \".item\"",
+        "status": 200,
+        "blocked": false,
+        "results": [
+          {
+            "title": "Is there a reliable way to access the current item in a loop?",
+            "url": "https://community.n8n.io/t/is-there-a-reliable-way-to-access-the-current-item-in-a-loop/65226/7"
+          }
+        ]
+      },
+      {
+        "query": "n8n \"Multiple matching items for expression\"",
+        "status": 202,
+        "blocked": true,
+        "results": []
+      }
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/item-linking-errors.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/item-linking-errors.md",
+      "status": 200,
+      "contentSha256": "b064e5c68cc992e8ace89d74a0a203e0c3e8c1771f7f0b1f28ba6f8f25592e53",
+      "chars": 6096,
+      "headings": [
+        "Item linking errors",
+        "Fix for 'Info for expressions missing from previous node' <a href=\"#fix-for-info-for-expressions-missing-from-previous-node\" id=\"fix-for-info-for-expressions-missing-from-previous-node\"></a>",
+        "Fix for 'Multiple matching items for expression' <a href=\"#fix-for-multiple-matching-items-for-expression\" id=\"fix-for-multiple-matching-items-for-expression\"></a>",
+        "Fix for 'Node is on another branch'",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node.md",
+      "status": 200,
+      "contentSha256": "9524bbdf707149800aeb7a51fdbf217dcd8d9bf3abf263bbf01d05e6a2176d5c",
+      "chars": 3548,
+      "headings": [
+        "Preserving linking in the Code node",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/accessing-linked-items-in-the-code-node.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/accessing-linked-items-in-the-code-node.md",
+      "status": 200,
+      "contentSha256": "bf2c16383aef22ee56a98d4fcda1e02180bd0725b41513417156798035028a69",
+      "chars": 3043,
+      "headings": [
+        "Accessing linked items in the Code node",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/how-items-link-through-workflows.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/how-items-link-through-workflows.md",
+      "status": 200,
+      "contentSha256": "8f59d39669e62838fe9b8fbc9d9b8755249356c9b059c94fc36b5bfe1cea0c63",
+      "chars": 4178,
+      "headings": [
+        "How items link through workflows",
+        "n8n's automatic item linking <a href=\"#n8ns-automatic-item-linking\" id=\"n8ns-automatic-item-linking\"></a>",
+        "Item linking example <a href=\"#item-linking-example\" id=\"item-linking-example\"></a>",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/reference-previous-nodes.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/reference-data/reference-previous-nodes.md",
+      "status": 200,
+      "contentSha256": "55bb616e469f7a8b67c9fbe3af22233f9de3bd38336f83e44a63f40228b6ff46",
+      "chars": 12753,
+      "headings": [
+        "Reference previous nodes",
+        "Common ways of referencing <a href=\"#common-ways-of-referencing\" id=\"common-ways-of-referencing\"></a>",
+        "Other referencing methods <a href=\"#other-referencing-methods\" id=\"other-referencing-methods\"></a>",
+        "Current node input <a href=\"#current-node-input\" id=\"current-node-input\"></a>",
+        "Output of other nodes <a href=\"#output-of-other-nodes\" id=\"output-of-other-nodes\"></a>",
+        "Reference binary data from a previous node",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/common-issues/",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/common-issues",
+      "status": 200,
+      "contentSha256": "5f301c746d0e84e441a06e7c98320140d8c10ed2120ab4af0c242f6833888550",
+      "chars": 819096,
+      "headings": [
+        "Common issues | Nodes | n8n Docs",
+        "Common issues",
+        "Code doesn't return items properly",
+        "A 'json' property isn't an object",
+        "Code doesn't return an object",
+        "'import' and 'export' may only appear at the top level",
+        "Cannot find module '<module>'",
+        "Using global variables",
+        "Can't access credentials in a code node",
+        "x-twitter",
+        "discord",
+        "linkedin",
+        "youtube"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge",
+      "status": 200,
+      "contentSha256": "6a6ecb7a2f5e9233e34a74c49ed4eb1ee205e61f294e6c829a9f8c2bc852e3cf",
+      "chars": 1082720,
+      "headings": [
+        "Merge | Nodes | n8n Docs",
+        "Merge",
+        "Node parameters",
+        "Append",
+        "Combine",
+        "SQL Query",
+        "Choose Branch",
+        "Templates and examples",
+        "Merging data streams with uneven numbers of items",
+        "Branch execution with If and Merge nodes",
+        "Try it out: A step by step example",
+        "Set up sample data using the Code nodes",
+        "Try out different merge modes",
+        "spinner",
+        "x-twitter",
+        "discord",
+        "linkedin",
+        "youtube"
+      ]
+    },
+    {
+      "url": "https://community.n8n.io/t/how-to-solve-cant-determine-what-item-to-use/65663",
+      "finalUrl": "https://community.n8n.io/t/how-to-solve-cant-determine-what-item-to-use/65663",
+      "status": 200,
+      "contentSha256": "f8d595fccfb300817e4ad84b404b9d2063bad64540b357e999713407cde69ed5",
+      "chars": 40982,
+      "headings": [
+        "How to solve \"Can't determine what item to use\"? - Questions - n8n Community",
+        "\n      How to solve \"Can't determine what item to use\"?\n    ",
+        "Documentation I’ve read:",
+        "Information on your n8n setup",
+        "\n    Related topics\n  "
+      ]
+    },
+    {
+      "url": "https://community.n8n.io/t/cant-determine-which-item-to-use-problem/195215",
+      "finalUrl": "https://community.n8n.io/t/cant-determine-which-item-to-use-problem/195215",
+      "status": 200,
+      "contentSha256": "82789c08f3d2c28d8517250254fcfe8d71efa8dd0ee22e160a366279e6c136ff",
+      "chars": 32133,
+      "headings": [
+        "Can't determine which item to use (problem) - Questions - n8n Community",
+        "\n      Can't determine which item to use (problem)\n    ",
+        "\n    Related topics\n  "
+      ]
+    },
+    {
+      "url": "https://www.n8ndevelopers.com/blogs/n8n-cant-determine-which-item-to-use-paired-items-fixed",
+      "finalUrl": "https://www.n8ndevelopers.com/blogs/n8n-cant-determine-which-item-to-use-paired-items-fixed",
+      "status": 200,
+      "contentSha256": "6c019805c607043ba7b6d655ba3ed0da53b4501b5fcae12e7e2256fbba1683b6",
+      "chars": 310224,
+      "headings": [
+        "n8n “Can’t Determine Which Item to Use”: Paired Items Fixed | n8n developers",
+        "n8n “Can’t Determine Which Item to Use”: Paired Items Fixed",
+        "n8n “Can’t Determine Which Item to Use”: Paired Items Fixed",
+        "What Are Paired Items in n8n?",
+        "Why the Error Happens",
+        "Common Causes",
+        "How to Fix the Error",
+        "Quick Troubleshooting Checklist",
+        "How to Debug Paired Item Issues",
+        "Best Practices to Prevent the Error",
+        "Why Businesses Choose Professional n8n Developers",
+        "Why Choose N8n Developers?",
+        "Conclusion",
+        "Frequently Asked Questions",
+        "n8n Expression Cheat Sheet (Free, Printable)",
+        "What Are n8n Expressions?",
+        "1. Current Item Data",
+        "2. Referencing Other Nodes",
+        "3. Workflow and Execution Variables",
+        "4. Dates and Times (Luxon)",
+        "5. Strings",
+        "6. Numbers and Math",
+        "7. Arrays",
+        "8. Objects",
+        "9. Conditional Logic and Fallbacks",
+        "10. Querying JSON with JMESPath",
+        "Common Expression Mistakes",
+        "Expressions vs the Code Node",
+        "Download the Free Printable Cheat Sheet",
+        "Why Businesses Choose Professional n8n Developers",
+        "Why Choose N8n Developers?",
+        "Conclusion"
+      ]
+    },
+    {
+      "url": "https://netlintech.com/blog/paireditem-problem-in-n8n-workflows-guide",
+      "finalUrl": "https://netlingroup.com/blog/",
+      "status": 200,
+      "contentSha256": "0a27704e0c9e06712bc6888490b0dd5e3f29755f9ce461c14b78c219650f5863",
+      "chars": 8329,
+      "headings": [
+        "Blog: üzleti rendszerek és automatizálás | Netlin Group"
+      ]
+    }
+  ],
+  "runtimeCandidate": {
+    "name": "n8n-workflow",
+    "version": "2.16.0",
+    "integrity": "sha512-JoDvHLvV4QZQBCDVQl5xkrGOmPmsacLO4TkJkErCzMmiEqIej+h14J6eCUY7gbxBj8V+GIBlpqyO63akJbXRQg==",
+    "tarball": "https://registry.npmjs.org/n8n-workflow/-/n8n-workflow-2.16.0.tgz"
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "limits": "No authenticated Search Console or volume dataset. Autocomplete is wording evidence only. Search results are an observed sample, not a ranking promise. All database reads are read-only; no production workflows used."
+}

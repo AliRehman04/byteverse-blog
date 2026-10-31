@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-30",
+  "website": "https://www.byteverse.fyi",
+  "slug": "n8n-cant-determine-which-item-to-use",
+  "targeting": {
+    "title": "n8n Can't Determine Which Item to Use? Fix Item Linking",
+    "metaTitle": "n8n Can't Determine Which Item to Use? Fix Item Linking",
+    "metaDescription": "Fix n8n's item-linking error with tested pairedItem and itemMatching examples. Avoid first() fixes that quietly select the wrong customer or order.",
+    "excerpt": "Fix n8n's \"Can't determine which item to use\" error without selecting the wrong customer. Follow tested examples for pairedItem, filtering, itemMatching, splits and aggregation, plus documented Merge guidance.",
+    "primaryKeyword": "n8n can't determine which item to use",
+    "secondaryKeywords": ["n8n item linking", "n8n item vs first", "n8n pairedItem", "n8n Code node itemMatching", "n8n multiple matching items for expression", "n8n paired item data unavailable"],
+    "keywords": "n8n can't determine which item to use, n8n item linking, n8n item vs first, n8n pairedItem, n8n itemMatching, n8n Code node filter, n8n multiple matching items for expression",
+    "intent": "Troubleshooting an ambiguous or missing linked-item reference without silently changing the business record selected",
+    "categoryId": 2,
+    "author": "ByteVerse Team",
+    "readingTime": "15 min read",
+    "summary": "Distinguish missing pairing, multiple ancestors and unexecuted nodes before changing an expression|Preserve input indexes before filtering or sorting and use itemMatching for the current Code input|Verify customer identities before reconnecting messages or writes; first() can succeed with the wrong record"
+  },
+  "research": {
+    "file": "docs/content-research/2026-10-30-n8n-item-linking-research.json",
+    "seedsAttempted": 14,
+    "autocompleteSeedsWithSuggestions": 5,
+    "autocompleteErrors": 7,
+    "usableSerps": 3,
+    "blockedSerps": 1,
+    "googleObservation": { "checkedAt": "2026-10-30T12:08:12.093Z", "query": "n8n can t determine which item to use", "blocked": true, "reason": "Google CAPTCHA; no bypass and no usable Google result or PAA data" },
+    "candidateDecision": [
+      { "topic": "n8n item linking", "decision": "selected", "evidence": "Literal error wording appears in public autocomplete; observed results include two detailed community questions, docs, videos and competing guides. No dedicated published or local draft article covers pairedItem or itemMatching. Existing n8n beginner and webhook articles provide natural internal context." },
+      { "topic": "n8n Schedule Trigger timezone", "decision": "not selected", "evidence": "Observed result set already includes official troubleshooting docs and multiple dedicated timezone/publishing guides. The item-linking topic offers a clearer independently executable example for this post." },
+      { "topic": "Excel Power Query combine CSV missing rows", "decision": "not selected", "evidence": "Candidate query returned HTTP 202 with no usable results; no Excel installation is available to validate the actual Power Query behavior." }
+    ],
+    "competitorReview": [
+      { "url": "https://www.n8ndevelopers.com/blogs/n8n-cant-determine-which-item-to-use-paired-items-fixed", "strengths": ["Explains missing versus ambiguous links", "Includes pairedItem and first() caveats"], "ourAdditionalWork": ["Execute the published code against real n8n linking logic", "Show both wrong outputs after removing the first record", "Demonstrate incorrect metadata that succeeds rather than throwing", "Clarify current input indexes versus source indexes with a negative test"] },
+      { "url": "https://netlintech.com/blog/paireditem-problem-in-n8n-workflows-guide", "observation": "Redirected to a general blog index; not counted as a reviewed troubleshooting article" },
+      { "url": "https://community.n8n.io/t/how-to-solve-cant-determine-what-item-to-use/65663", "observation": "User explicitly says first()/last() are not ideal and asks how itemMatching differs from pairing metadata; older version-specific reply is not treated as current API authority" }
+    ],
+    "claims": [
+      { "claim": "Current input, linked ancestor and positional selection are different", "source": "https://docs.n8n.io/build/work-with-data/reference-data/reference-previous-nodes", "verification": "Exact article comparison snippet executed with n8n-workflow 2.16.0" },
+      { "claim": "pairedItem is top-level metadata identifying immediate input positions", "source": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node", "verification": "Filtered, reordered and split outputs tested" },
+      { "claim": "itemMatching does not resolve multiple distinct ancestors", "source": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/item-linking-errors", "verification": "Real paired_item_multiple_matches errors asserted for both selectors" },
+      { "claim": "Merge modes and multiple-match settings change join meaning", "source": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge", "verification": "Documentation checked; no claim of executing the Merge node" },
+      { "claim": "Pinned data is a development feature, not production execution input", "source": "https://docs.n8n.io/data/data-pinning/", "verification": "Current official documentation checked" }
+    ]
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "images": {
+    "cover": "https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "coverAlt": "A developer wearing headphones works at a laptop beside large office windows",
+    "credit": "Christina Morillo / Pexels",
+    "creditUrl": "https://www.pexels.com/photo/woman-sitting-in-front-of-computer-1181676/",
+    "license": "https://www.pexels.com/license/",
+    "note": "Licensed human-shot illustrative cover, not a simulated n8n screenshot. Served from the existing allowed Pexels image host; no asset deployment required."
+  },
+  "inventory": {
+    "total": 175,
+    "published": 173,
+    "hash": "0a0de48b57cd068e4723dcaad3207d77",
+    "protectedDrafts": ["audacity-noise-reduction-voice-2026", "pdf-to-podcast-notebooklm-2026"],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" },
+      { "slug": "webp-larger-than-jpg", "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e" }
+    ]
+  },
+  "backlink": {
+    "host": "how-to-use-n8n-2026-complete-guide",
+    "anchor": "Learn these before touching the canvas and the interface stops feeling cryptic. All definitions follow n8n's own glossary.",
+    "sentence": "If a later expression cannot determine which item to use, our [n8n item-linking troubleshooting guide](/blog/n8n-cant-determine-which-item-to-use) explains how to preserve the correct customer relationship instead of blindly selecting the first record."
+  },
+  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-webhook-not-working-2026", "/tools/json-formatter"],
+  "faq": [
+    "Why does first() fix the error but repeat the same customer?",
+    "Where should pairedItem go in an n8n Code node?",
+    "What is the difference between item and itemMatching?",
+    "Should I use first() after a Merge or Aggregate node?",
+    "Why does the workflow work with one item but fail with several?"
+  ],
+  "validation": { "proseWords": 3110, "contentSha256": "151b5e68662e2a37b9c33cbeea23db926ea9e233553c718d7cd736981c4ce64f", "runtimePackage": "n8n-workflow", "runtimeVersion": "2.16.0", "nodeVersion": "v24.12.0", "scope": "Real expression library with synthetic execution records and exact article transformation code; no live n8n Cloud, task runner, Merge node or external connector execution" },
+  "publication": {
+    "status": "published",
+    "date": "2026-10-31",
+    "postId": 244,
+    "url": "https://www.byteverse.fyi/blog/n8n-cant-determine-which-item-to-use",
+    "hostId": 222,
+    "otherPostsUnchanged": 174,
+    "otherPostsHash": "16f72367fd4c54cfc4cfdab0740085c4",
+    "publishedTime": "2026-10-31T07:14:41.415Z",
+    "verification": {
+      "articleHttp": 200,
+      "articleChecksAt": "2026-10-31T07:17:42.371Z",
+      "offlineTestsPassed": 15,
+      "exactLiveCodeBlocks": 10,
+      "n8nCodeBlocks": 8,
+      "tables": 4,
+      "visibleFaqsMatchingSchema": 5,
+      "canonicalAndDescription": true,
+      "coverLoadedInBrowser": true,
+      "viewportsWithoutPageOverflow": ["1440x1000", "375x844"],
+      "discovery": "pending-isr-refresh",
+      "pendingDiscoveryPaths": ["/", "/blog", "/sitemap.xml", "/feed.xml", "/blog/how-to-use-n8n-2026-complete-guide"],
+      "cacheRefreshBlocker": "The existing Vercel CLI session has no access to the ByteVerse team, and the browser dashboard is unauthenticated. No cache purge, code deployment or account change was performed."
+    }
+  }
+}

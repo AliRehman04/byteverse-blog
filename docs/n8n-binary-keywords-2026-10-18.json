@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-18",
+  "website": "https://www.byteverse.fyi",
+  "status": "Local draft only; no database insert, publishing, scheduling, existing-content edits, image generation, commit, push or deployment.",
+  "slug": "n8n-binary-data-not-found",
+  "targeting": {
+    "title": "n8n Binary Data Not Found? Trace the Missing File",
+    "metaTitle": "n8n Binary Data Not Found? Trace the Missing File",
+    "metaDescription": "Fix n8n binary data not found errors by checking the exact item, binary field name, Code and Merge output, and upload settings before retrying.",
+    "primary": "n8n binary data not found",
+    "secondary": ["n8n expects binary file data", "n8n input binary field", "n8n no binary data exists on item", "n8n binary data from previous node", "n8n http request binary file"],
+    "longTailHypotheses": ["n8n binary data lost after Code node", "n8n binary file missing after Merge", "n8n binary file object Object error"],
+    "semantic": ["input item", "binary property", "attachment_0", "Input Binary Field", "Extract From File", "Convert to File", "Include Binary Data", "HTTP Request", "Form-Data", "Append", "Matching Fields", "getBinaryDataBuffer", "file descriptor", "item linking"],
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "intent": "Specific informational troubleshooting: get the correct readable file onto the correct n8n item; not a general n8n tutorial or upload utility",
+    "language": "English",
+    "geography": "Global English-language readers; hl=en gl=us pws=0 requested for Google, location shown unknown rather than verified US rank context"
+  },
+  "metrics": {
+    "userReport": "Historical approximately40–50 impressions and1–2 clicks on some pages; dates/pages absent",
+    "gscAuthenticated": false,
+    "gscConfiguredLocally": false,
+    "analyticsReviewed": false,
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No current query/page/country/device/export, numeric authority metric or paid keyword-gap tool. Configuration absence is not absence of a GSC property."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-18T03:47:38.974Z",
+    "totalPosts": 172,
+    "publishedPosts": 170,
+    "toolCount": 42,
+    "editorialChecksumExcludingViews": "2a04cdf12b2b34c9e1015763a862f1be",
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "previousLocalDraft": { "slug": "json-parse-large-numbers-precision", "status": "Unpublished Oct14 local draft; no new DB row and left unchanged", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+    "overlap": [
+      { "id": 222, "slug": "how-to-use-n8n-2026-complete-guide", "finding": "Setup, concepts, first workflow and AI safety, no dedicated missing-binary diagnostic" },
+      { "id": 231, "slug": "n8n-webhook-not-working-2026", "finding": "Registration, HTTP routing and response behavior; file availability inside an execution is distinct" },
+      { "id": 221, "slug": "n8n-vs-zapier-2026-comparison", "finding": "Platform pricing and workflow tradeoffs, not file errors" },
+      { "path": "/tools/json-to-csv", "finding": "Table conversion not n8n binary storage or input repair; bounded optional internal link" }
+    ],
+    "duplicateAudit": {
+      "checkedAt": "2026-10-18T04:40:42.368Z",
+      "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66",
+      "comparedPosts": 172,
+      "candidateFiveWordPhrases": 2915,
+      "exactNormalizedBodyMatches": 0,
+      "identicalNormalizedParagraphsAtLeast30Words": 0,
+      "highestCandidateOverlapPercent": 0.07,
+      "highestSharedFiveWordPhraseCount": 2,
+      "nearestPostIds": [233, 237, 239, 240],
+      "editorialSnapshotUnchanged": true,
+      "limits": "Local lexical audit, not semantic equivalence or web-wide plagiarism certification. Separate Oct14 draft hash also verified unchanged."
+    }
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-18T04:01:36.966Z",
+    "source": "Google public autocomplete client=firefox hl=en gl=us",
+    "seedsChecked": 18,
+    "nonemptySeeds": 9,
+    "observations": [
+      { "seed": "n8n binary data not found", "suggestions": [] },
+      { "seed": "n8n expects binary file data", "suggestions": [] },
+      { "seed": "n8n no binary data exists", "suggestions": ["n8n no binary data exists on item"] },
+      { "seed": "n8n input binary field", "suggestions": ["n8n input binary field", "n8n extract from file input binary field", "n8n write file to disk input binary field", "binary input vs digital input"] },
+      { "seed": "n8n binary data lost after code node", "suggestions": [] },
+      { "seed": "n8n binary data after merge", "suggestions": [] },
+      { "seed": "n8n object object binary file", "suggestions": [] },
+      { "seed": "n8n http request binary file", "suggestions": ["n8n http request binary file", "n8n http post binary file", "n8n http request send binary file"] },
+      { "seed": "n8n schedule trigger not working", "suggestions": ["n8n schedule trigger not working", "n8n schedule trigger not running", "n8n trigger not working", "warning for not coming to work"] },
+      { "seed": "n8n schedule trigger timezone", "suggestions": ["n8n schedule trigger time zone", "n8n schedule trigger change timezone"] },
+      { "seed": "cron job runs at wrong time", "suggestions": [] },
+      { "seed": "cron timezone daylight saving", "suggestions": [] },
+      { "seed": "webp larger than jpg", "suggestions": ["webp larger than jpg", "webp vs jpg size", "webp vs jpg", "webp vs jpeg"] },
+      { "seed": "webp bigger than original", "suggestions": [] },
+      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
+      { "seed": "excel csv semicolon delimiter", "suggestions": ["excel csv semicolon delimiter", "excel export csv delimiter semicolon", "excel save csv delimiter semicolon", "excel to csv semicolon delimited online", "excel open csv with semicolon delimiter", "excel csv use semicolon as delimiter", "convert excel to csv with semicolon delimiter", "how to save excel file as csv semicolon delimited"] },
+      { "seed": "json to csv nested arrays duplicate rows", "suggestions": [] },
+      { "seed": "convert nested json arrays to csv", "suggestions": ["convert json with nested arrays to csv"] }
+    ],
+    "excludedSuggestions": ["binary input vs digital input", "warning for not coming to work"],
+    "limits": "Wording, not volume, difficulty or growth. Empty suggestions do not mean zero demand; irrelevant suggestions excluded."
+  },
+  "googleSerps": {
+    "checkedOn": "2026-10-18",
+    "method": "Actual rendered Google first-page observations; requested en/US/no personalization parameter, not a neutral localized rank tracker",
+    "observations": [
+      { "query": "n8n binary data not found", "results": ["n8n Community Binary Data not passing through", "n8n Community Binary Data Node Not Working", "n8n Community must contain binary file data", "n8n Docs Work with files and images", "n8n Community Problem with binary data", "Reddit Move Binary Data", "n8n Community Execute subworkflow binary", "GitHub n8n upload issue", "n8n Community files not loading"], "features": ["AI Overview", "People also search for"], "intent": "File troubleshooting, dominated by case-specific community posts" },
+      { "query": "n8n expects binary file data", "results": ["n8n Community must contain binary file data", "n8n Community Extract from File attachment_0 item4", "n8n Community operation expects input data", "n8n Community Problem with binary data", "Width.ai n8n Binary Data", "n8n Community83962", "GitHub n8n webhook binary", "Medium form upload article", "Khairul Muhtadin Common n8n Binary File Mistakes"], "features": ["People also search for"], "intent": "Exact error diagnosis" },
+      { "query": "n8n schedule trigger not working", "results": ["n8n Community Scheduled Trigger nodes not working", "n8n Docs Common issues", "n8n Community Some scheduled workflows not triggering", "n8n Community Scheduled triggers not executing properly", "n8n Docs Schedule Trigger", "n8n Community Workflows not triggering on schedule", "GitHub n8n13301"], "features": ["AI Overview", "People also search for"] },
+      { "query": "webp larger than jpg", "results": ["ProcessWire", "Stack Overflow", "Open Source Photography", "TinyPNG", "Reddit webdev", "GitHub sharp", "Google WebP Compression Study", "XnView", "ImageUpsize"], "features": ["AI Overview", "People also ask", "People also search for"] },
+      { "query": "csv opens in one column excel", "results": ["Microsoft Q&A", "Super User", "CSV opened in Excel all data in one column", "How to open CSV in Microsoft Excel with columns", "data export support pages"], "features": ["AI Overview"] },
+      { "query": "convert nested json arrays to csv duplicate rows", "results": ["Data Den", "Stack Overflow", "Inventive HQ", "Microsoft Community Hub", "GitHub CeriosTesting", "Stevesie", "Posit", "Quora", "Vinay NP"], "features": ["AI Overview", "People also search for"] }
+    ],
+    "selectedRelatedSearches": ["N8n input binary field", "N8n binary data from previous node", "The item has no binary field data item 0", "N8n send binary data", "N8n pass binary data"],
+    "limits": "No first-page claim for ByteVerse, measured ranking probability or complete SERP census. AI Overview content is not treated as technical authority. No PAA block observed for selected binary queries; FAQs derive from actual errors and references."
+  },
+  "competitors": [
+    { "url": "https://www.width.ai/post/n8n-binary-data", "review": "Already covers binary tab/key names, downloads, Convert/Extract, Base64, screenshots and newer expression features. Do not claim these are missing. New guide adds ordered item-level diagnosis and avoids universal latest-feature assumptions." },
+    { "url": "https://community.n8n.io/t/binary-data-output-not-accessable-from-another-node/83962", "review": "Exact missing-data and object Object error; accepted Edit Fields pass-through suggestion for that workflow. Current official node documentation used for settings, not a blanket old checkbox prescription." },
+    { "url": "https://community.n8n.io/t/after-a-merge-node-binary-file-is-not-found-even-though-its-in-the-input/61484", "review": "Accepted Append vs Combine diagnosis already exists. New example teaches item relationship and stable-key checks rather than copying the discussion or making Combine universal." },
+    { "url": "https://khmuhtadin.com/blog/common-n8n-binary-file-mistakes", "review": "Already covers property names, content type, metadata and durable storage. Its pinning discussion is not used to override the current official binary-output pinning limitation. No claim that storage/retry issues were overlooked." }
+  ],
+  "candidateComparison": {
+    "method": "Qualitative evidence matrix across fit, wording evidence, competition, intent, click reason, originality and overlap; no pseudo-KD or probability score",
+    "selected": "n8n binary data not found: relevant cluster, distinct internal intent, real community errors, careful per-item decision path",
+    "alternatives": [
+      { "topic": "n8n schedule trigger not working", "decision": "Strong runner-up; docs and community already substantial, real schedule/timezone testing not available" },
+      { "topic": "WebP larger than JPG", "decision": "Relevant but needs a representative image study rather than generic format claims" },
+      { "topic": "CSV opens in one Excel column", "decision": "Established support/tutorial answers and overlap with two published CSV guides" },
+      { "topic": "Nested JSON arrays multiplying CSV rows", "decision": "Tool and strong developer/tutorial competition already cover generic expansion; future narrow data-model study" }
+    ]
+  },
+  "internalLinkPlan": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-webhook-not-working-2026", "/tools/json-to-csv"],
+  "inboundLinkPlan": [
+    { "id": 222, "slug": "how-to-use-n8n-2026-complete-guide", "anchor": "troubleshoot missing binary files", "status": "Recommendation only; reread exact paragraph after approval" },
+    { "id": 231, "slug": "n8n-webhook-not-working-2026", "anchor": "check the file on the failing input item", "status": "Recommendation only after request-delivery discussion; no live edit" }
+  ],
+  "primarySources": [
+    { "url": "https://docs.n8n.io/data/data-structure/", "supports": "Per-item json and binary structure" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.extractfromfile/", "supports": "Input Binary Field and extraction operations" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/", "supports": "File response, output field and multipart Name vs Input Data Field Name" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.converttofile/", "supports": "Text and Base64 conversion versus URL input" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.set/", "supports": "Include Binary Data and output controls" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/", "supports": "Code modes, item linking and n8n built-ins" },
+    { "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/", "supports": "Append vs Combine by matching or position" },
+    { "url": "https://docs.n8n.io/code/cookbook/code-node/get-binary-data-buffer/", "supports": "Supported buffer helper rather than internal Base64 assumptions" },
+    { "url": "https://docs.n8n.io/hosting/scaling/binary-data/", "supports": "Storage/pruning and queue constraints, not a blind mode-switch fix" },
+    { "url": "https://docs.n8n.io/data/data-pinning/", "supports": "Binary-output pinning not supported in current documentation" }
+  ],
+  "additionalDocumentation": ["https://docs.n8n.io/code/builtin/current-node-input/"],
+  "exampleVerification": {
+    "checkedAt": "2026-10-18T04:20:25.574Z",
+    "node": "24.12.0",
+    "groups": 12,
+    "script": "scripts/verify-n8n-binary-example.mjs",
+    "scope": "Synthetic JavaScript with $input.all adapter; actual n8n engine, UI, storage, Merge, Convert/Extract and uploads not executed",
+    "practiceWorkflow": "Documentation-based manual practice steps, explicitly not claimed as tested"
+  },
+  "images": {
+    "status": "Three prompts only; no assets generated/uploaded or broken URLs inserted",
+    "generationDimensions": [2400, 1350],
+    "exportDimensions": [1200, 675],
+    "proposedFilenames": ["n8n-binary-data-not-found-cover.webp", "n8n-binary-key-vs-filename.webp", "n8n-merge-append-missing-file.webp"]
+  },
+  "validation": {
+    "status": "passed",
+    "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66",
+    "proseWordsExcludingCodeAndReferences": 2798,
+    "readingMinutes": 13,
+    "titleCharacters": 49,
+    "descriptionCharacters": 143,
+    "articlePackageGroups": 6,
+    "syntheticItemChecks": 12,
+    "codeBlocks": 2,
+    "tables": 2,
+    "faqs": 5,
+    "imagePrompts": 3,
+    "generatedImages": 0,
+    "staticBrowserWidths": [320, 390, 1280],
+    "internalHttp200SelfCanonicals": 3,
+    "officialReferenceHttp200AfterRedirects": 10,
+    "lint": "passed for three new scripts",
+    "limits": "Static renderer and synthetic JavaScript, not real n8n execution, binary storage, uploads, full Next hydration or live publication."
+  }
+}

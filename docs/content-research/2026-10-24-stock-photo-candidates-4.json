@@ -1,0 +1,62 @@
+{
+ "command prompt laptop": [],
+ "powershell window": [],
+ "terminal window laptop screen": [
+  {
+   "id": "36bf133c-de08-43a5-9606-75de441a5eb5",
+   "title": "Arch Linux system update via pacman on an Acer laptop",
+   "creator": "Solijon Solayev",
+   "license": "by-sa 4.0",
+   "source": "wikimedia",
+   "provider": "wikimedia",
+   "width": 4160,
+   "height": 3120,
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Arch_Linux_system_update_via_pacman_on_an_Acer_laptop.jpg",
+   "foreign": "https://commons.wikimedia.org/w/index.php?curid=186098242",
+   "thumb": "https://api.openverse.org/v1/images/36bf133c-de08-43a5-9606-75de441a5eb5/thumb/"
+  }
+ ],
+ "gmail inbox laptop screen": [],
+ "typing document laptop": [
+  {
+   "id": "1b365acc-cefd-4327-9296-159184121741",
+   "title": "Business Man",
+   "creator": "Direct Media",
+   "license": "cc0 1.0",
+   "source": "stocksnap",
+   "provider": "stocksnap",
+   "width": 6720,
+   "height": 4480,
+   "url": "https://cdn.stocksnap.io/img-thumbs/960w/SZCQC1QEW1.jpg",
+   "foreign": "https://stocksnap.io/photo/business-man-SZCQC1QEW1",
+   "thumb": "https://api.openverse.org/v1/images/1b365acc-cefd-4327-9296-159184121741/thumb/"
+  },
+  {
+   "id": "876a680c-516f-4973-9631-0302e2120b6c",
+   "title": "The Da Vinci Code - E X E P L O R E D - Flickr - Clint Budd",
+   "creator": "Clint Budd from About 15 miles North of Swansea, Wales",
+   "license": "by 2.0",
+   "source": "wikimedia",
+   "provider": "wikimedia",
+   "width": 6000,
+   "height": 4000,
+   "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/The_Da_Vinci_Code_-_E_X_E_P_L_O_R_E_D_-_Flickr_-_Clint_Budd.jpg",
+   "foreign": "https://commons.wikimedia.org/w/index.php?curid=93038825",
+   "thumb": "https://api.openverse.org/v1/images/876a680c-516f-4973-9631-0302e2120b6c/thumb/"
+  },
+  {
+   "id": "d1eb4238-d3e2-43d3-90d2-9de67e4b0cf9",
+   "title": "Conexant CX11270 SmartMC4 (49829422293)",
+   "creator": "Cole L",
+   "license": "by-sa 2.0",
+   "source": "wikimedia",
+   "provider": "wikimedia",
+   "width": 3750,
+   "height": 5759,
+   "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Conexant_CX11270_SmartMC4_%2849829422293%29.png",
+   "foreign": "https://commons.wikimedia.org/w/index.php?curid=98900531",
+   "thumb": "https://api.openverse.org/v1/images/d1eb4238-d3e2-43d3-90d2-9de67e4b0cf9/thumb/"
+  }
+ ],
+ "accounting spreadsheet numbers laptop": []
+}

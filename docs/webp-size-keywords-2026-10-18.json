@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-18",
+  "website": "https://www.byteverse.fyi",
+  "slug": "webp-larger-than-jpg",
+  "status": "Local editorial draft only. No database insert, publishing, scheduling, live backlink edits, generated illustration files, commit, push or deployment. Experimental encodes in memory only.",
+  "targeting": {
+    "title": "WebP Larger Than JPG? What to Check Before Converting Again",
+    "metaTitle": "WebP Larger Than JPG? What to Check Before Converting Again",
+    "metaDescription": "Is your WebP larger than the original JPG? Compare lossy and lossless settings, see measured examples, and learn when keeping JPEG is the better choice.",
+    "primary": "webp larger than jpg",
+    "secondary": ["webp larger than jpeg", "webp vs jpg size", "reduce webp file size", "webp bigger than original", "jpg to webp increases file size"],
+    "semantic": ["lossy WebP", "lossless WebP", "encoder quality", "decoded pixels", "re-encoding", "SSIM", "libwebp", "cwebp", "Sharp", "dimensions", "ICC", "metadata", "byte count"],
+    "category": "Tech Guides",
+    "categoryId": 2,
+    "intent": "Informational image-conversion troubleshooting, not generic WebP converter or broad image optimization",
+    "language": "English",
+    "geography": "Global English readers; en/US search parameters, visible location unknown, not a US rank tracker"
+  },
+  "metrics": {
+    "userReport": "Historical40–50 impressions and1–2clicks on some pages, no dates/page export",
+    "gscAuthenticated": false,
+    "analyticsReviewed": false,
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No current GSC query/page/country/device data, authority metric, paid keyword-gap export or trend series."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-18T07:17:13.098Z",
+    "totalPosts": 172,
+    "publishedPosts": 170,
+    "toolCount": 42,
+    "editorialChecksumExcludingViews": "2a04cdf12b2b34c9e1015763a862f1be",
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" }
+    ],
+    "overlap": [
+      { "id": 150, "slug": "how-to-optimize-images-for-web-2026", "finding": "Broad formats/dimensions/delivery guide, not a controlled larger-WebP diagnosis. Some general format claims are too absolute; flag for separate review, do not edit without scope." },
+      { "id": 240, "slug": "png-to-jpg-black-background", "finding": "Transparency/background problem, not compressed size; new guide only cross-references that separate issue." },
+      { "path": "/tools/image-compressor", "finding": "Already warns outputs can grow; article explains why and presents controlled measurements, not a duplicate converter landing page." }
+    ],
+    "duplicateAudit": {
+      "checkedAt": "2026-10-18T07:50:41.881Z",
+      "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e",
+      "comparedPosts": 172,
+      "candidateFiveWordPhrases": 2519,
+      "exactNormalizedBodyMatches": 0,
+      "identicalNormalizedParagraphsAtLeast30Words": 0,
+      "highestCandidateOverlapPercent": 0.12,
+      "highestSharedFiveWordPhraseCount": 3,
+      "nearestPostIds": [238, 240],
+      "editorialSnapshotUnchanged": true,
+      "limits": "Local lexical check only, not semantic equivalence or web-wide plagiarism certification."
+    }
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-18T07:26:59.393Z",
+    "source": "Google public autocomplete client=firefox hl=en gl=us",
+    "seedsChecked": 15,
+    "nonemptySeeds": 10,
+    "observations": [
+      { "seed": "webp larger than jpg", "suggestions": ["webp larger than jpg", "webp vs jpg size", "webp vs jpg", "webp vs jpeg"] },
+      { "seed": "webp bigger than original", "suggestions": [] },
+      { "seed": "jpg to webp increases file size", "suggestions": [] },
+      { "seed": "why is webp larger than jpeg", "suggestions": ["webp larger than jpeg", "webp vs jpg size", "is webp better than jpeg", "webp vs jpeg"] },
+      { "seed": "webp lossless larger than jpg", "suggestions": [] },
+      { "seed": "webp quality 100 lossless", "suggestions": [] },
+      { "seed": "webp vs jpg size", "suggestions": ["webp vs jpg size", "webp to jpg size comparison", "webp vs png vs jpg size", "webp vs jpeg", "webp vs jpg"] },
+      { "seed": "reduce webp file size", "suggestions": ["reduce webp file size", "reduce webp image file size", "reduce webp size", "reduce webp image size", "webp change size", "how to compress webp images"] },
+      { "seed": "webp larger than png", "suggestions": ["webp bigger than png", "webp vs png", "is webp better than png"] },
+      { "seed": "n8n schedule trigger not working", "suggestions": ["n8n schedule trigger not working", "n8n schedule trigger not running", "n8n trigger not working", "warning for not coming to work"] },
+      { "seed": "excel csv dates wrong format", "suggestions": ["excel import csv wrong date format", "excel csv wrong format", "excel csv date format problems"] },
+      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
+      { "seed": "convert nested json arrays to csv", "suggestions": ["convert json with nested arrays to csv"] },
+      { "seed": "heic to jpg washed out", "suggestions": [] },
+      { "seed": "image dpi vs pixels", "suggestions": ["image dpi vs pixels", "image resolution dpi vs pixels", "image dpi and pixel converter", "resize image dpi and pixels", "image dpi pixel and size converter", "dpi vs image quality", "image resolution vs dpi", "pixel size vs dpi", "difference between dpi and pixels", "does dpi affect image size"] }
+    ],
+    "excludedSuggestions": ["warning for not coming to work"],
+    "limits": "Wording only; empty suggestions are not zero demand. No keyword volume/KD/trend or guaranteed click estimates."
+  },
+  "googleSerps": {
+    "checkedOn": "2026-10-18",
+    "freshQueries": [
+      { "query": "webp larger than jpg", "results": ["ProcessWire26807", "Stack Overflow conversion questions", "Open Source Photography", "TinyPNG pros/cons", "Reddit webdev", "GitHub sharp issue", "Google WebP study", "XnView", "ImageUpsize"], "features": ["AI Overview", "People also ask", "People also search for"] },
+      { "query": "heic to jpg washed out", "results": ["Apple Community", "Adobe Community", "Reddit mac", "ImageMagick discussion", "KTC support", "LemkeSoft", "YouTube"], "features": ["AI Overview", "People also ask", "Videos"] }
+    ],
+    "sameDayResearchReused": [
+      { "query": "n8n schedule trigger not working", "source": "Morning Oct18 n8n package", "results": ["n8n Community", "n8n Docs common issues", "Schedule Trigger docs", "GitHub13301"] },
+      { "query": "csv opens in one column excel", "source": "Morning Oct18 n8n package", "results": ["Microsoft Q&A", "Super User", "software help pages"] },
+      { "query": "convert nested json arrays to csv duplicate rows", "source": "Morning Oct18 n8n package", "results": ["Data Den", "Stack Overflow", "Inventive HQ", "Microsoft Community", "Stevesie", "Posit"] }
+    ],
+    "observedPaa": ["Why does no one like WebP?", "How do I resize a WebP file?", "What are the disadvantages of WebP?", "What is the difference between JPEG XL and WebP?"],
+    "paaUsage": "Broad/opinion and JPEGXL questions are not forced into the article; FAQs focus on the actual file-size intent, source documentation and reviewed discussions.",
+    "limits": "Session-specific actual Google observations with requested en/US context; not geographic rank tracking or a ByteVerse ranking claim. AI Overviews not used as technical authority."
+  },
+  "competitors": [
+    { "url": "https://processwire.com/talk/topic/26807-most-webp-images-are-much-bigger-than-their-jpg-sources/", "review": "Already discusses source JPEG quality, unequal comparisons, lossless choices, quality tuning and responsive variants. Case-specific historic forum data; do not copy its thresholds or claim this explanation is missing." },
+    { "url": "https://shortpixel.com/knowledge-base/article/why-the-resulting-webp-images-are-bigger-than-the-original-png-files/", "review": "Direct explanation and official Google FAQ link, acknowledges larger files. New value is a complete controlled matrix and decision process; its reported customer cases are not ByteVerse measurements." },
+    { "url": "https://developers.google.com/speed/webp/faq#can_a_webp_image_grow_larger_than_its_source_image", "review": "Primary documentation already explains three larger-output causes. New article turns them into checked examples and practical choices, not an invented discovery." }
+  ],
+  "unavailableCompetitorReads": [
+    { "url": "https://stackoverflow.com/questions/52246067/jpg-vs-compressed-jpg-vs-webp-why-webp-isnt-the-smallest-one", "status": "Direct fetch403; search snippets only, not claimed full review" },
+    { "url": "https://tinypng.com/blog/pros-and-cons-of-webp-images", "status": "Direct fetch404 after tinify redirect; search listing observed, content not reviewed" }
+  ],
+  "candidateComparison": {
+    "method": "Qualitative relevance/demand-evidence/competition/intent/click-value/overlap/verifiability matrix; not numeric ranking odds",
+    "selected": "WebP larger than JPG: exact observed phrasing, existing image cluster and controllable original experiment",
+    "alternatives": [
+      { "topic": "n8n Schedule Trigger failure", "decision": "Relevant but follows today's n8n draft; no actual schedule-runtime demonstration" },
+      { "topic": "CSV opens in one Excel column", "decision": "Many established answers and existing CSV-guide overlap" },
+      { "topic": "Nested JSON array duplication in CSV", "decision": "Generic expansion already covered by existing tool; defer narrow cardinality tutorial" },
+      { "topic": "HEIC conversion looks washed out", "decision": "Relevant but needs real color-managed HDR/P3 examples and device/viewer checks" }
+    ]
+  },
+  "internalLinkPlan": ["/blog/how-to-optimize-images-for-web-2026", "/tools/image-compressor", "/blog/png-to-jpg-black-background"],
+  "inboundLinkPlan": [
+    { "id": 150, "slug": "how-to-optimize-images-for-web-2026", "anchor": "why a WebP can be larger than its JPEG source", "status": "Recommendation only, no live edit; reread exact paragraph after approval" },
+    { "path": "/tools/image-compressor", "anchor": "check why your converted image grew", "status": "Recommendation only near larger-output FAQ; no live edit" }
+  ],
+  "primarySources": [
+    { "url": "https://developers.google.com/speed/webp/faq#can_a_webp_image_grow_larger_than_its_source_image", "supports": "Documented output growth causes" },
+    { "url": "https://developers.google.com/speed/webp/docs/cwebp", "supports": "Quality vs lossless mode and encoder controls" },
+    { "url": "https://developers.google.com/speed/webp/docs/webp_study", "supports": "Historic study methodology, matched SSIM and dataset averages" },
+    { "url": "https://developers.google.com/speed/webp/docs/riff_container", "supports": "Metadata, profiles, animation and transparency" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types", "supports": "Content-dependent image format choices" },
+    { "url": "https://sharp.pixelplumbing.com/api-output/#webp", "supports": "JPEG/WebP encoding options and metadata defaults" }
+  ],
+  "provenanceSources": ["https://www.pexels.com/photo/lake-and-mountain-417074/", "https://www.pexels.com/license/"],
+  "experiment": {
+    "checkedAt": "2026-10-18T07:27:01.600Z",
+    "node": "24.12.0", "sharp": "0.34.5", "libwebp": "1.6.0", "libvips": "8.17.3", "mozjpeg": "0826579",
+    "width": 600, "height": 400, "channels": 3,
+    "sourceJpegSettings": { "qualities": [45, 85], "mozjpeg": true, "chromaSubsampling": "4:2:0" },
+    "webpSettings": { "lossyQuality": [80, 95], "losslessQuality": 100, "effort": 6 },
+    "existingAssetSha256": "e2d3419bbb2aef388f983a75f3591b8c9ab246911ae84be97a6f0bad8085493b",
+    "photoProvenance": "Existing lossy WebP derivative of James Wheeler Pexels417074; not a camera original. Resized to600x400 then JPEG inputs generated.",
+    "measurements": [
+      { "fixture": "landscape", "jpegQuality": 45, "jpeg": 18012, "lossy80": 25196, "lossy95": 49440, "lossless": 205412 },
+      { "fixture": "landscape", "jpegQuality": 85, "jpeg": 44870, "lossy80": 31548, "lossy95": 66436, "lossless": 248716 },
+      { "fixture": "flat", "jpegQuality": 45, "jpeg": 3965, "lossy80": 1668, "lossy95": 2522, "lossless": 4600 },
+      { "fixture": "flat", "jpegQuality": 85, "jpeg": 5617, "lossy80": 1394, "lossy95": 2240, "lossless": 4042 },
+      { "fixture": "noise", "jpegQuality": 45, "jpeg": 18410, "lossy80": 38640, "lossy95": 73376, "lossless": 268750 },
+      { "fixture": "noise", "jpegQuality": 85, "jpeg": 77373, "lossy80": 76738, "lossy95": 141350, "lossless": 405522 }
+    ],
+    "decodedOutputs": 18,
+    "exactLosslessChecks": 6,
+    "imageFilesWritten": 0,
+    "originalsUnchanged": true,
+    "limits": "Small controlled demonstration, not representative, SSIM-matched, visually rated, live-tool-tested or a current codec superiority benchmark. Opaque pixel checks relative to decoded JPEG only."
+  },
+  "images": {
+    "status": "Three prompts only; no illustration assets generated/uploaded, experimental encodes not saved",
+    "generationDimensions": [2400, 1350], "exportDimensions": [1200, 675],
+    "proposedFilenames": ["webp-larger-than-jpg-cover.webp", "jpeg-webp-conversion-path.webp", "webp-size-comparison-matrix.webp"]
+  },
+  "validation": {
+    "status": "passed with explicit provenance HTTP limitations",
+    "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e",
+    "proseWordsExcludingReferences": 2438,
+    "readingMinutes": 12,
+    "titleCharacters": 59,
+    "descriptionCharacters": 152,
+    "articlePackageGroups": 6,
+    "measuredEncodesReproduced": 18,
+    "losslessRgbChecks": 6,
+    "tables": 2,
+    "faqs": 5,
+    "imagePrompts": 3,
+    "generatedIllustrations": 0,
+    "staticBrowserWidths": [320, 390, 1280],
+    "internalHttp200SelfCanonicals": 3,
+    "technicalReferenceHttp200": 6,
+    "photoProvenance": "Pexels photo and license pages content-read and photographer/license verified separately; direct Node HTTP403 for both, NOT marked200",
+    "lint": "passed for three new scripts",
+    "limits": "Static renderer and controlled encodes, not full Next hydration, representative/perceptual study, live-tool or SEO-impact benchmark."
+  }
+}

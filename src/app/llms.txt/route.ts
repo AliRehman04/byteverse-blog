@@ -49,6 +49,7 @@ export async function GET() {
     { name: "URL Encoder & Decoder", href: "/tools/url-encoder-decoder", desc: "Encode and decode URLs with component and full URI modes" },
     { name: "Diff Checker", href: "/tools/diff-checker", desc: "Compare two texts side by side with line-by-line diff" },
     { name: "CSV Diff Checker", href: "/tools/csv-diff", desc: "Compare CSV exports by exact single or composite keys locally; reject duplicate or blank keys, review changed fields and download CSV or JSON reports. No uploads or AI" },
+    { name: "CSV Repair Tool", href: "/tools/csv-repair", desc: "Repair CSV files in the browser: detect encodings and delimiters, flag broken quotes, ragged rows, duplicates and formula-like cells, keep leading zeros and long IDs as text, preview undoable fixes and export verified XLSX, CSV, TSV or JSON. No uploads or AI" },
     { name: "Open Graph Preview", href: "/tools/og-preview", desc: "Preview how links appear on Google, Facebook, LinkedIn, and Twitter/X" },
     { name: "robots.txt Generator", href: "/tools/robots-txt-generator", desc: "Build robots.txt files visually with user-agent rules and presets" },
     { name: "Schema Markup Generator", href: "/tools/schema-markup-generator", desc: "Generate JSON-LD structured data for rich snippets in Google" },

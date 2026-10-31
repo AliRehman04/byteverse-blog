@@ -10,7 +10,7 @@ import { ServiceWorkerRegister } from "./sw-register";
 const AdSense = dynamic(() => import("./adsense").then(module => module.AdSense), { ssr: false });
 const GoogleAnalytics = dynamic(() => import("./analytics").then(module => module.GoogleAnalytics), { ssr: false });
 const Chatbot = dynamic(() => import("./chatbot").then(module => module.Chatbot), { ssr: false });
-const privateToolPaths = new Set(["/tools/image-compressor", "/tools/csv-diff"]);
+const privateToolPaths = new Set(["/tools/image-compressor", "/tools/csv-diff", "/tools/csv-repair"]);
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

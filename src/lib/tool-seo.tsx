@@ -8,6 +8,7 @@ interface ToolSeoConfig {
   slug: string;
   keywords: string[];
   applicationCategory?: string;
+  operatingSystem?: string;
   featureList?: string[];
   audience?: string;
   faqs?: { question: string; answer: string }[];
@@ -50,7 +51,7 @@ export function generateToolJsonLd(config: ToolSeoConfig): object[] {
       url,
       description: config.description,
       applicationCategory: config.applicationCategory || "DeveloperApplication",
-      operatingSystem: "Any",
+      operatingSystem: config.operatingSystem || "Any",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       isAccessibleForFree: true,
       ...(config.featureList ? { featureList: config.featureList } : {}),

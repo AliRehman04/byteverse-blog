@@ -144,6 +144,14 @@ const nextConfig: NextConfig = {
       ],
     },
     {
+      source: "/tools/csv-repair",
+      headers: [
+        { key: "Referrer-Policy", value: "no-referrer" },
+        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+        { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'; upgrade-insecure-requests" },
+      ],
+    },
+    {
       source: "/image-studio/:path*",
       headers: [
         { key: "X-Robots-Tag", value: "noindex" },

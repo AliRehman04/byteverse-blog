@@ -21,6 +21,8 @@
     "test:json-typescript:browser": "node scripts/test-json-typescript-browser.mjs",
     "test:csv-diff": "node scripts/test-csv-diff-core.mjs && node scripts/test-csv-diff-ui.mjs",
     "test:csv-diff:browser": "node scripts/test-csv-diff-browser.mjs",
+    "test:csv-studio": "node scripts/test-csv-studio-core.mjs && node scripts/test-csv-studio-ui.mjs",
+    "test:csv-studio:browser": "node scripts/test-csv-studio-browser.mjs",
     "lint": "eslint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

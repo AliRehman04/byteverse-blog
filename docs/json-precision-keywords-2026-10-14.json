@@ -1,0 +1,185 @@
+{
+  "date": "2026-10-14",
+  "website": "https://www.byteverse.fyi",
+  "status": "Local draft only. No database insert, publication, scheduling, backlink edits, image generation, commit, push or deployment.",
+  "slug": "json-parse-large-numbers-precision",
+  "targeting": {
+    "title": "JSON.parse Rounding Large Numbers? Keep IDs Exact",
+    "metaTitle": "JSON.parse Rounding Large Numbers? Keep IDs Exact",
+    "metaDescription": "JSON.parse changing your IDs? Compare raw JSON with parsed values, preserve large numbers as strings, and use source-aware parsing without false recovery fixes.",
+    "primary": "json parse large numbers",
+    "secondary": ["json parse loses precision", "json parse rounding numbers", "javascript json parse bigint", "json parse long number", "json parse changes numbers", "json stringify bigint"],
+    "longTail": ["JSON.parse large integer precision loss", "JSON.parse context.source large numbers", "response.json large integer rounding", "BigInt after JSON.parse rounded number"],
+    "semantic": ["IEEE 754", "binary64", "Number.MAX_SAFE_INTEGER", "Number.isSafeInteger", "BigInt", "reviver", "context.source", "Response.text", "JSON.stringify", "numeric token", "string identifier", "lossless-json", "CSV", "overflow", "underflow"],
+    "category": "Coding",
+    "categoryId": 4,
+    "intent": "Informational JavaScript/API troubleshooting; exact identifiers across parsing and export, not a generic converter landing page",
+    "language": "English",
+    "geography": "Global English-language developers; gl=us requests do not establish measured US demand or rankings"
+  },
+  "performanceData": {
+    "userReported": "Approximately 40–50 impressions and 1–2 clicks on some pages; dates and page/query export absent",
+    "gscAuthenticated": false,
+    "gscConfiguredLocally": false,
+    "analyticsReviewed": false,
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null,
+    "limits": "No query/page/country/device/CTR/position trends or paid keyword-gap report. Configuration absence does not prove no GSC property exists."
+  },
+  "inventory": {
+    "checkedAt": "2026-10-14T05:43:07.915Z",
+    "totalPosts": 172,
+    "publishedPosts": 170,
+    "toolCount": 42,
+    "editorialChecksumExcludingViews": "2a04cdf12b2b34c9e1015763a862f1be",
+    "protectedDrafts": [
+      { "id": 229, "slug": "pdf-to-podcast-notebooklm-2026", "contentMd5": "07567f98b5cd73d7fd978dede5a47836", "editorialHash": "ba3e2cf545ee3b40381fd9b841f8730d" },
+      { "id": 230, "slug": "audacity-noise-reduction-voice-2026", "contentMd5": "633a2127b815f4dd2949977c777385df", "editorialHash": "f22f7e945bc5b61355ee2922a69e00cc" }
+    ],
+    "overlap": [
+      { "id": 237, "slug": "excel-csv-leading-zeros-2026", "finding": "Brief JSON precision mention; primary intent is Excel import. New draft focuses on JavaScript parsing and links to Excel instead of repeating its steps." },
+      { "path": "/tools/json-to-csv", "finding": "Already explains source-token preservation. New article adds runtime reproduction, source-aware guard, failed recovery and boundary tests, not generic converter targeting." },
+      { "id": 15, "slug": "javascript-roadmap-2026-beginner-job-ready", "finding": "Broad learning path; new draft is one concrete API problem." },
+      { "id": 240, "slug": "png-to-jpg-black-background", "finding": "Already published; excluded and untouched." }
+    ],
+    "otherTitleOverlapCandidates": [[24, 43], [36, 49], [42, 46], [90, 126]],
+    "limits": "Title resemblance is not proof of ranking cannibalization. No existing articles merged or edited.",
+    "duplicateAudit": {
+      "checkedAt": "2026-10-14T07:50:01.343Z",
+      "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3",
+      "comparedPosts": 172,
+      "candidateFiveWordPhrases": 2241,
+      "exactNormalizedBodyMatches": 0,
+      "identicalNormalizedParagraphsAtLeast30Words": 0,
+      "highestCandidateOverlapPercent": 0.18,
+      "nearestPostId": 237,
+      "sharedFiveWordPhrasesAtHighestOverlap": 4,
+      "editorialSnapshotUnchanged": true,
+      "limits": "Local lexical comparison, not semantic equivalence, a web-wide plagiarism scan or ranking evidence."
+    }
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-10-14T06:52:01.465Z",
+    "source": "Google public autocomplete, client=firefox, hl=en, gl=us",
+    "seedsChecked": 22,
+    "nonemptySeeds": 10,
+    "observations": [
+      { "seed": "n8n expects binary file data", "suggestions": [] },
+      { "seed": "n8n binary data not found", "suggestions": [] },
+      { "seed": "n8n no binary data exists", "suggestions": ["n8n no binary data exists on item"] },
+      { "seed": "json parse large numbers", "suggestions": ["json parse large numbers", "json parse long number"] },
+      { "seed": "json parse loses precision", "suggestions": [] },
+      { "seed": "json parse changes numbers", "suggestions": [] },
+      { "seed": "javascript json parse bigint", "suggestions": ["javascript json parse bigint"] },
+      { "seed": "json parse large integer precision", "suggestions": [] },
+      { "seed": "webp larger than jpg", "suggestions": ["webp larger than jpg", "webp vs jpg size", "webp vs jpg", "webp vs jpeg"] },
+      { "seed": "webp bigger than original", "suggestions": [] },
+      { "seed": "webp quality vs jpeg quality", "suggestions": [] },
+      { "seed": "csv opens in one column excel", "suggestions": ["csv opens in one column excel", "how to open csv file in excel with columns automatically", "csv file opening in one column excel", "excel not opening csv in columns"] },
+      { "seed": "excel csv semicolon delimiter", "suggestions": ["excel csv semicolon delimiter", "excel export csv delimiter semicolon", "excel save csv delimiter semicolon", "excel to csv semicolon delimited online", "excel open csv with semicolon delimiter", "excel csv use semicolon as delimiter", "convert excel to csv with semicolon delimiter", "how to save excel file as csv semicolon delimited"] },
+      { "seed": "excel csv dates wrong format", "suggestions": ["excel import csv wrong date format", "excel csv wrong format", "excel csv date format problems"] },
+      { "seed": "power query csv dates wrong locale", "suggestions": [] },
+      { "seed": "convert nested json arrays to csv", "suggestions": ["convert json with nested arrays to csv"] },
+      { "seed": "json to csv repeat parent fields", "suggestions": [] },
+      { "seed": "unexpected token less than json", "suggestions": [] },
+      { "seed": "fetch returns html instead of json", "suggestions": ["fetch returning html instead of json", "get request returns html instead of json", "javascript fetch return value"] },
+      { "seed": "json parse rounding numbers", "suggestions": [] },
+      { "seed": "json stringify bigint", "suggestions": ["json stringify bigint", "javascript json stringify bigint", "json.stringify serialize bigint", "nodejs json stringify bigint", "json stringify cannot serialize bigint", "typescript json.stringify bigint", "json stringify bigint error"] },
+      { "seed": "json large numbers as strings", "suggestions": [] }
+    ],
+    "limits": "Wording only, not volume, KD or trend. Empty suggestions do not mean zero demand. Unobserved long-tail phrases are editorial hypotheses."
+  },
+  "searchResults": {
+    "google": "Current first page/PAA unverified: shared browser timeout/incomplete page, fetch JS challenge, separate desktop attempt unusual-traffic verification; stopped without bypass.",
+    "fallbackEngine": "Bing",
+    "checkedOn": "2026-10-14",
+    "observations": [
+      { "query": "JSON.parse large numbers precision loss", "results": ["JSON Prism", "JSON Editor Online", "Flying Fish Space", "xjavascript", "JSONDock", "AI JSONMedic", "Stack Overflow"] },
+      { "query": "JSON.parse context.source large numbers", "results": ["JSON Editor Online", "MDN", "Stack Overflow", "xjavascript", "AI JSONMedic"] },
+      { "query": "n8n expects binary file data", "results": [], "limit": "No usable result list, not no competition" },
+      { "query": "n8n expects input binary file data not found", "results": ["n8n Community61484", "n8n Community83962", "n8n Docs", "Width.ai", "GitHub n8n21070", "videos"] },
+      { "query": "n8n no binary data exists on item", "results": ["n8n Community34984", "n8n Community26492", "Standard Beagle", "GitHub n8n18314", "Width.ai", "n8n Docs"] },
+      { "query": "webp larger than jpg", "results": ["WebHelpAgency", "ShortPixel", "Data Conversion Center", "WordPress support", "Stack Overflow"], "features": ["AI answer", "videos"] },
+      { "query": "csv opens in one column excel", "results": ["ExcelDemy", "SysTools", "Virtualbadge", "Microsoft Q&A", "HowToCSV", "AuditExcel"], "features": ["AI answer"] },
+      { "query": "excel csv dates wrong format", "results": ["ExcelDemy", "SoHoVi", "Microsoft Q&A", "videos", "Date and Time Converter", "CSVFix"], "features": ["AI answer", "videos"] },
+      { "query": "fetch returns html instead of json", "results": ["Stack Overflow40602751", "Stack Overflow68944809", "JSONDevTools", "DHIS2 community", "MDN", "Reddit"] }
+    ],
+    "limits": "Bing public observations, not Google rankings or a geographic rank tracker. Search result counts and AI-generated answers are not metrics or technical authority."
+  },
+  "competitors": [
+    { "url": "https://jsoneditoronline.org/indepth/parse/why-does-json-parse-corrupt-large-numbers/", "review": "Strong lossless-parser, decimal, integration and performance discussion; final update mentions source-access proposal. Opportunity: current runtime guard and reproduction, not absent basic coverage." },
+    { "url": "https://jsonprism.com/learn/json-big-numbers/", "review": "Concise strings, BigInt and decimal guidance. Add precise safe-range exceptions and decoded-response boundary rather than repeating generic advice." },
+    { "url": "https://json.iwebtools.net/blog/javascript-json-large-integer-precision/", "review": "Already covers unsafe literals, traditional revivers, strings, libraries and numeric choices. New value: current context.source guard, post-parse safe-integer false negative and actual CSV engine comparison." },
+    { "url": "https://www.aijsonmedic.com/blog/json-number-precision-loss", "review": "Already covers context.source, so it is not unique. Retrieved advice about BigInt(Math.round(value)) recovery conflicts with reproducible numeric behavior; compatibility claims conflict with checked MDN. New draft rejects this recovery and tests exact outputs." }
+  ],
+  "candidateComparison": {
+    "method": "Qualitative evidence matrix, not numerical difficulty or ranking probability. Detailed six-topic comparison in the full report.",
+    "selected": "JSON.parse large-number precision: clear intent, existing developer cluster, current source-aware gap, reproducible offline examples",
+    "alternatives": [
+      { "topic": "n8n binary file missing", "decision": "Runner-up; community demand wording, low content overlap, but no actual n8n runtime demonstration in this task" },
+      { "topic": "WebP larger than JPG", "decision": "Defer for representative measured image-set study; exact wording observed, specialist competitors" },
+      { "topic": "CSV opens in one Excel column", "decision": "Crowded exact-match tutorials and overlap with two existing CSV guides" },
+      { "topic": "Excel CSV date locale errors", "decision": "Relevant but overlapping short sections and no actual spreadsheet evidence" },
+      { "topic": "Fetch returns HTML instead of JSON", "decision": "Broad version rejected due to established references; future narrow framework/host case" }
+    ]
+  },
+  "internalLinkPlan": ["/tools/json-to-csv", "/blog/excel-csv-leading-zeros-2026", "/blog/javascript-roadmap-2026-beginner-job-ready"],
+  "inboundLinkPlan": [
+    { "id": 237, "slug": "excel-csv-leading-zeros-2026", "anchor": "prevent JSON number precision loss before export", "status": "Recommendation only; no live edit" },
+    { "path": "/tools/json-to-csv", "anchor": "why JSON.parse changes large numbers", "status": "Recommendation only; no live edit" },
+    { "id": 15, "slug": "javascript-roadmap-2026-beginner-job-ready", "anchor": "preserving exact IDs from JSON APIs", "status": "Optional after approval; no live edit" }
+  ],
+  "primarySources": [
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse", "supports": "Reviver order, primitive source and compatibility" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER", "supports": "Safe range versus representability" },
+    { "url": "https://www.rfc-editor.org/rfc/rfc8259", "supports": "Number grammar and implementation limits" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/Response/json", "supports": "Native parsing; no reviver parameter" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/Response/text", "supports": "Decoded text before numeric interpretation" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt", "supports": "Exact integer arithmetic and source-string restrictions" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/BigInt_not_serializable", "supports": "Stringify default and explicit serialization" },
+    { "url": "https://github.com/josdejong/lossless-json", "supports": "Optional maintainer library documentation, not an installed benchmark; npm page reviewed but direct HTTP verification returned403" }
+  ],
+  "seoReferences": ["https://developers.google.com/search/docs/appearance/structured-data/article", "https://developers.google.com/search/docs/appearance/title-link", "https://developers.google.com/search/updates#faq-deprecation"],
+  "schemaRecommendation": "Truthful existing Article/BlogPosting and BreadcrumbList. No review ratings. Google FAQ rich results ceased May7 2026 per checked Search Central changelog; FAQs are for readers, not rich-result eligibility.",
+  "images": {
+    "status": "Three prompts only; no generated assets or broken image placeholders",
+    "brief": "docs/content-research/2026-10-14-json-precision-image-prompts.md",
+    "generationDimensions": [2400, 1350],
+    "exportDimensions": [1200, 675],
+    "proposedFilenames": ["json-parse-large-numbers-cover.webp", "json-number-precision-boundary.webp", "json-strings-bigint-number-decision.webp"]
+  },
+  "exampleVerification": {
+    "checkedAt": "2026-10-14T07:12:12.182Z",
+    "node": "24.12.0",
+    "nodeNativeGroups": 21,
+    "legacyNoContext": "Emulated without third argument; throws on numeric tokens",
+    "edge": "155.0.4283.45",
+    "offlineEdgeNumericCases": 9,
+    "offlineEdgeResponseChecks": 2,
+    "rawCsvRows": [["9007199254740993", "7.50"], ["000123", "2.00"]],
+    "preParsedCsvRows": [["9007199254740992", "7.5"], ["000123", "2"]],
+    "limits": "Synthetic local checks, not benchmark/exhaustive validator/live API/physical-device/Excel/live-tool UI/library tests"
+  },
+  "validation": {
+    "status": "passed",
+    "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3",
+    "proseWordsExcludingCodeAndReferences": 2127,
+    "readingMinutes": 10,
+    "titleCharacters": 49,
+    "descriptionCharacters": 160,
+    "articlePackageGroups": 6,
+    "exactArticleSnippetExecutions": 6,
+    "codeBlocks": 8,
+    "tables": 2,
+    "faqs": 5,
+    "staticRendererWidths": [320, 390, 1280],
+    "internalLinksHttp200SelfCanonical": 3,
+    "technicalReferencesHttp200": 8,
+    "imagePrompts": 3,
+    "generatedImages": 0,
+    "lint": "passed for three new scripts",
+    "limits": "Static renderer and separately executed code; no full Next hydration, live Run-button test, actual image review, Google first-page/PAA verification, authenticated analytics or production publication."
+  }
+}

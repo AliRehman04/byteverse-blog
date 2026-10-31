@@ -9,7 +9,7 @@ export function RelatedTools() {
   const pathname = usePathname();
   if (!pathname || !pathname.startsWith("/tools/")) return null;
   if (pathname.replace(/\/$/, "") === "/tools/image-compressor") return null;
-  const prefetch = pathname.replace(/\/$/, "") === "/tools/csv-diff" ? false : undefined;
+  const prefetch = ["/tools/csv-diff", "/tools/csv-repair"].includes(pathname.replace(/\/$/, "")) ? false : undefined;
 
   const slug = pathname.replace("/tools/", "").replace(/\/$/, "");
   const tools = getRelatedTools(slug);

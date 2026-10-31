@@ -1,0 +1,2 @@
+# Byte-exact CSV Studio fixtures (CRLF, BOM, Windows-1252, NUL-free binary checks).
+fixtures/csv-studio/** -text

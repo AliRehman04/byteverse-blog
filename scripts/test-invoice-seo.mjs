@@ -17,6 +17,7 @@ import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import { parseDocument } from 'htmlparser2';
+import * as React from 'react';
 import { createElement } from 'react';
 import * as jsxRuntime from 'react/jsx-runtime';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -169,17 +170,24 @@ function evaluate(source, path, globals = {}, requireModule = name => { assert.f
   return loadedModule.exports;
 }
 function makeLoader(catalogOverride) {
-  const allowed = new Set([pagePath, 'src/lib/tool-seo.tsx', 'src/lib/tool-catalog.ts', 'src/app/tools/page.tsx']);
+  const allowed = new Set([pagePath, 'src/lib/tool-seo.tsx', 'src/lib/tool-catalog.ts', 'src/app/tools/page.tsx', 'src/lib/tools-hub.ts', 'src/app/tools/tools-directory.tsx', 'src/lib/image-studio/brand.ts']);
   const cache = new Map();
+  // CSS module classes resolve to their own names so rendered markup stays inspectable.
+  const cssModule = new Proxy({}, { get: (target, name) => (typeof name === 'string' ? name : undefined) });
   return function load(path) {
     assert(allowed.has(path), `Refusing to execute non-pure/unapproved module: ${path}`);
     if (cache.has(path)) return cache.get(path);
     const loaded = evaluate(read(path), path, {}, specifier => {
       if (specifier === 'react/jsx-runtime') return jsxRuntime;
+      if (specifier === 'react') return React;
       if (specifier === 'next/link') return { __esModule: true, default: MockLink };
       if (specifier === 'lucide-react') return mockIcons;
       if (specifier === '@/lib/config') return { siteConfig };
       if (specifier === './invoice-workspace-host') return { InvoiceWorkspaceHost: MockInvoiceWorkspaceHost };
+      if (specifier === './tools-hub.module.css') return cssModule;
+      if (specifier === './tools-directory') return load('src/app/tools/tools-directory.tsx');
+      if (specifier === '@/lib/tools-hub') return load('src/lib/tools-hub.ts');
+      if (specifier === '@/lib/image-studio/brand') return load('src/lib/image-studio/brand.ts');
       if (specifier === '@/lib/tool-seo') return load('src/lib/tool-seo.tsx');
       if (specifier === '@/lib/tool-catalog') return catalogOverride ?? load('src/lib/tool-catalog.ts');
       assert.fail(`Unexpected runtime import in ${path}: ${specifier}`);
@@ -315,37 +323,46 @@ test('catalogue covers current routes and related links; hub count changes with 
   for (const entries of [catalog, catalog.slice(0, -1)]) {
     const hub = makeLoader({ ...catalogue, toolCatalog: entries })('src/app/tools/page.tsx');
     const document = parseDocument(renderToStaticMarkup(createElement(hub.default)));
-    const schema = one(schemasIn(document), 'hub schema');
-    assert.equal(schema.mainEntity.numberOfItems, entries.length);
-    assert.equal(schema.mainEntity.itemListElement.length, entries.length);
-    assert.deepEqual(schema.mainEntity.itemListElement.map(item => item.url).sort(), Array.from(entries, tool => `${defaultSite}/tools/${tool.slug}`).sort());
-    assert.deepEqual(toolLinks(document), Array.from(entries, tool => `/tools/${tool.slug}`).sort());
-    assert(text(document).includes(`${entries.length} utilities for coding, content and everyday web tasks.`));
+    const graph = one(schemasIn(document), 'hub schema')['@graph'];
+    const collection = one(graph.filter(item => item['@type'] === 'CollectionPage'), 'hub collection schema');
+    assert.equal(collection.mainEntity.numberOfItems, entries.length);
+    assert.equal(collection.mainEntity.itemListElement.length, entries.length);
+    assert.deepEqual(collection.mainEntity.itemListElement.map(item => item.url).sort(), Array.from(entries, tool => `${defaultSite}/tools/${tool.slug}`).sort());
+    assert.deepEqual([...new Set(toolLinks(document))], Array.from(entries, tool => `/tools/${tool.slug}`).sort());
+    assert(text(document).includes(`${entries.length} free tools`));
   }
 });
 
 test('homepage, JSON-to-CSV, llms.txt and chat contain connected invoice discovery entries', () => {
+  // The premium homepage derives its tool shortcuts from src/lib/homepage.ts, so inspect that literal list
+  // and confirm the page still renders each shortcut as a Link to tool.href.
+  const homepageData = ast('src/lib/homepage.ts');
+  const selection = one(find(homepageData, node => ts.isObjectLiteralExpression(node) && node.properties.some(item =>
+    ts.isPropertyAssignment(item) && key(item.name) === 'slug' && ts.isStringLiteral(item.initializer) && item.initializer.text === slug)), 'homepage invoice shortcut');
+  assert.match(literal(property(selection, 'detail')), /selectable-text.*No OCR/);
   const home = ast('src/app/page.tsx');
-  const card = one(find(home, node => ts.isObjectLiteralExpression(node) && node.properties.some(item =>
-    ts.isPropertyAssignment(item) && key(item.name) === 'href' && ts.isStringLiteral(item.initializer) && item.initializer.text === toolPath)), 'homepage invoice card');
-  assert.equal(literal(property(card, 'title')), config.name);
-  assert(ts.isArrayLiteralExpression(card.parent) && ts.isPropertyAccessExpression(card.parent.parent) && card.parent.parent.name.text === 'map');
-  assert(jsxTags(card.parent.parent.parent).some(node => node.tagName.getText() === 'Link' && node.attributes.properties.some(item =>
+  assert(jsxTags(home).some(node => node.tagName.getText() === 'Link' && node.attributes.properties.some(item =>
     ts.isJsxAttribute(item) && key(item.name) === 'href' && compact(item.initializer) === '{tool.href}')));
   const csv = ast('src/app/tools/json-to-csv/page.tsx');
   assert(jsxTags(csv).some(node => node.tagName.getText() === 'Link' && node.attributes.properties.some(item =>
     ts.isJsxAttribute(item) && key(item.name) === 'href' && ts.isStringLiteral(item.initializer) && item.initializer.text === toolPath)));
 
-  // Extract literal entries ONLY; neither server route nor its imports is loaded.
+  // Extract the invoice entry ONLY; other entries may use template literals, and no route or import is loaded.
+  const arrayEntry = (file, arrayName, propName, value) => {
+    const array = initializer(file, arrayName);
+    assert(ts.isArrayLiteralExpression(array), `Expected ${arrayName} to be an array literal`);
+    return literal(one(array.elements.filter(element => ts.isObjectLiteralExpression(element) && element.properties.some(item =>
+      ts.isPropertyAssignment(item) && key(item.name) === propName && ts.isStringLiteral(item.initializer) && item.initializer.text === value)), `${arrayName} invoice entry`));
+  };
   const llms = ast('src/app/llms.txt/route.ts');
-  const llmsEntry = one(literal(initializer(llms, 'tools')).filter(tool => tool.href === toolPath), 'llms.txt invoice entry');
+  const llmsEntry = arrayEntry(llms, 'tools', 'href', toolPath);
   assert.equal(llmsEntry.name, config.name);
   assert.match(llmsEntry.desc, /Free local batch.*review.*No OCR or AI/);
   const loop = one(find(llms, node => ts.isForOfStatement(node) && node.expression.getText() === 'tools'), 'llms tool loop');
   assert(calls(loop, 'lines.push').some(node => node.arguments.some(argument =>
     ts.isTemplateExpression(argument) && argument.getText().includes('${base}${tool.href}'))));
   const chat = ast('src/app/api/chat/route.ts');
-  const chatEntry = one(literal(initializer(chat, 'TOOLS')).filter(tool => tool.slug === slug), 'chat invoice entry');
+  const chatEntry = arrayEntry(chat, 'TOOLS', 'slug', slug);
   assert.equal(chatEntry.name, config.name);
   assert(['invoice', 'pdf', 'excel', 'xlsx', 'csv'].every(word => chatEntry.keywords.includes(word)));
   assert.match(chatEntry.desc, /No OCR or AI; select files in the isolated converter, not this chat\./);

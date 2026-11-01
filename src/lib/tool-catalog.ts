@@ -18,8 +18,9 @@ export const toolCategories = [
 ] as const;
 
 type ToolCategory = (typeof toolCategories)[number]["title"];
+export type { ToolCategory };
 
-interface ToolEntry {
+export interface ToolEntry {
   slug: string;
   name: string;
   description: string;

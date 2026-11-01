@@ -104,8 +104,8 @@ export function Header({ localTool = false }: { localTool?: boolean }) {
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" prefetch={prefetch} className={`flex items-center gap-2 group shrink-0${localTool ? " h-12 w-[144px] overflow-hidden sm:w-[190px]" : ""}`}>
+            {/* Logo: the square PNG renders as a 160px box, so clip the link to the header band to stop its transparent overflow from intercepting clicks on page content. */}
+            <Link href="/" prefetch={prefetch} className={`flex items-center gap-2 group shrink-0${localTool ? " h-12 w-[144px] overflow-hidden sm:w-[190px]" : " h-16 overflow-hidden"}`}>
               <Image
                 src="/logo.png"
                 alt="ByteVerse"

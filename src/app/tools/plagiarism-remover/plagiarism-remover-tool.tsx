@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { takeRemoverHandoff } from "@/lib/plagiarism/remover-handoff";
 import {
   Wand2, Copy, Check, RotateCcw, Loader2,
@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { AI_REWRITE_LIMITS } from "@/lib/plagiarism/ai-rewrite-limits";
+import { compareSources } from "@/lib/similarity/engine";
+import { DEFAULT_MATCH_OPTIONS } from "@/lib/similarity/types";
 
 /* ── SYNONYM DICTIONARY ───────────────────────────────── */
 const SYN: Record<string, string[]> = {
@@ -502,6 +504,7 @@ export function PlagiarismRemoverTool() {
   const [copied, setCopied] = useState(false);
   const [showChanges, setShowChanges] = useState(false);
   const [usedAi, setUsedAi] = useState(false);
+  const [checkRequested, setCheckRequested] = useState(false);
 
   useEffect(() => {
     const handoff = takeRemoverHandoff();
@@ -513,6 +516,15 @@ export function PlagiarismRemoverTool() {
   const aiTooLong = input.length > AI_REWRITE_LIMITS.maxChars;
   const outWordCount = output.trim() ? output.trim().split(/\s+/).length : 0;
 
+  const overlap = useMemo(() => {
+    if (!checkRequested || !output.trim() || !input.trim()) return null;
+    try {
+      return compareSources(output, [{ id: "original", label: "Original text", text: input }], DEFAULT_MATCH_OPTIONS);
+    } catch {
+      return null;
+    }
+  }, [checkRequested, output, input]);
+
   const handleRewrite = useCallback(() => {
     if (wordCount < 20) return;
     setProcessing(true);
@@ -520,6 +532,7 @@ export function PlagiarismRemoverTool() {
     setTimeout(() => {
       const result = rewriteText(input, { strength, ...options });
       setOutput(result.text);
+      setCheckRequested(false);
       setChanges(result.changes);
       setProcessing(false);
       setShowChanges(false);
@@ -544,6 +557,7 @@ export function PlagiarismRemoverTool() {
         return;
       }
       setOutput(data.text);
+      setCheckRequested(false);
       setChanges([{ from: "Original", to: "AI Rewritten", type: "AI Rewrite" }]);
       setShowChanges(false);
     } catch {
@@ -584,7 +598,7 @@ export function PlagiarismRemoverTool() {
         </div>
         <textarea
           value={input}
-          onChange={(e) => { setInput(e.target.value); setOutput(""); setChanges([]); }}
+          onChange={(e) => { setInput(e.target.value); setOutput(""); setChanges([]); setCheckRequested(false); }}
           placeholder="Paste the text you want to reword...&#10;&#10;Rewording changes wording only. It does not make text original, so cite your sources."
           className="w-full h-48 sm:h-56 bg-transparent border-0 resize-none outline-none text-sm leading-relaxed placeholder:text-muted-foreground/50"
           spellCheck={false}
@@ -719,10 +733,50 @@ export function PlagiarismRemoverTool() {
             </div>
             <textarea
               value={output}
-              onChange={(e) => setOutput(e.target.value)}
+              onChange={(e) => { setOutput(e.target.value); setCheckRequested(false); }}
               className="w-full h-48 sm:h-56 bg-transparent border-0 resize-none outline-none text-sm leading-relaxed"
               spellCheck={false}
             />
+          </div>
+
+          {/* Check against the text that was rewritten */}
+          <div className="bg-card border border-border rounded-xl p-4 sm:p-6 mb-4">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-sm font-medium">Check against the text you rewrote</span>
+              <button
+                onClick={() => setCheckRequested(true)}
+                disabled={!output.trim() || !input.trim()}
+                className="px-3 py-1.5 text-xs rounded-lg border border-border hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                Run check
+              </button>
+            </div>
+            {checkRequested && (
+              overlap && overlap.draft.coverage !== null ? (
+                <div className="mt-4 space-y-3" aria-live="polite">
+                  <p className="text-sm">
+                    <span className="font-semibold">{Math.round(overlap.draft.coverage)}%</span> of the rewritten words still appear in exact {DEFAULT_MATCH_OPTIONS.minWords}-word sequences from the text you rewrote.
+                  </p>
+                  {overlap.draft.matchRanges.length > 0 && (
+                    <div className="space-y-2">
+                      <p className="text-xs text-muted-foreground">Examples that still match:</p>
+                      {overlap.draft.matchRanges.slice(0, 3).map((range) => (
+                        <p key={`${range.start}-${range.end}`} className="text-xs bg-muted/40 rounded-lg p-2 leading-relaxed">
+                          {output.slice(range.start, range.end).slice(0, 160)}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className="mt-4 text-sm text-muted-foreground" aria-live="polite">
+                  Not enough words to check, or this text is too long for the local check.
+                </p>
+              )
+            )}
+            <p className="text-xs text-muted-foreground mt-4">
+              Local check only: nothing is sent or searched online. It measures wording overlap with the text you rewrote, not plagiarism or originality.
+            </p>
           </div>
 
           {/* Changes list */}

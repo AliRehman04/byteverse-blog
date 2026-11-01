@@ -152,7 +152,7 @@
     "scope": "Real expression-engine evaluation and exact article JavaScript with synthetic input; no n8n Cloud, task runner, HTTP node transport or external connector execution"
   },
   "publication": {
-    "status": "published-discovery-refresh-pending",
+    "status": "published-live-verified",
     "date": "2026-11-01",
     "postId": 245,
     "url": "https://www.byteverse.fyi/blog/n8n-json-parameter-needs-to-be-valid-json",
@@ -173,9 +173,9 @@
       "faqInteraction": "First FAQ opened successfully after dismissing the existing newsletter popup without submitting it",
       "databaseAuthor": "Ali Rehman",
       "authorProfileHttp": 200,
-      "cachedArticleAuthor": "ByteVerse Team; its missing author page was identified and corrected only in the new article's database record, pending HTML cache refresh",
-      "discovery": "pending-isr-refresh",
-      "pendingCachePaths": [
+      "cachedArticleAuthor": "Corrected: the live article now links Ali Rehman to /author/ali-rehman (verified by the strict check).",
+      "discovery": "passed-strict-index-check",
+      "cachePathsVerifiedLive": [
         "/blog/n8n-json-parameter-needs-to-be-valid-json",
         "/",
         "/blog",
@@ -185,9 +185,10 @@
         "/author/ali-rehman",
         "/blog/how-to-use-n8n-2026-complete-guide"
       ],
-      "strictIndexCheckPassed": false,
-      "cacheRefreshBlocker": "The existing Vercel CLI session cannot access rehman-s-projects3; whoami --scope returned specified scope does not exist. No cache purge, account change or code deployment was attempted.",
-      "codeRelease": "No git commit, push, dependency installation or application deployment. Only the requested article, its contextual internal link and its byline correction were written to the database. Pending plagiarism-checker code remains untouched."
+      "strictIndexCheckPassed": true,
+      "strictIndexCheckedAt": "2026-11-01T09:33:22.447Z",
+      "cacheRefresh": "Resolved: the article was deployed by git push of 3da2dba and the strict discovery check passed on all listed live paths afterwards.",
+      "codeRelease": "Repository code is live: e877a4d (plagiarism checker), 3da2dba (online check, remover handoff, n8n guide) and d7d604f (tools hub). This record was updated to the verified live state in a docs-only commit; no site code changed."
     }
   }
 }

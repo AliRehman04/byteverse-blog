@@ -24,10 +24,11 @@ const seeds = [
 ];
 
 if (mode === '--keywords') {
-  assert.equal(queries.length, 0);
+  assert(queries.length <= 30, 'Use at most 30 targeted keyword seeds');
+  const selectedSeeds = queries.length ? queries : seeds;
   const observations = [];
-  for (let i = 0; i < seeds.length; i += 3) {
-    observations.push(...await Promise.all(seeds.slice(i, i + 3).map(async seed => {
+  for (let i = 0; i < selectedSeeds.length; i += 3) {
+    observations.push(...await Promise.all(selectedSeeds.slice(i, i + 3).map(async seed => {
       const url = new URL('https://suggestqueries.google.com/complete/search');
       url.search = new URLSearchParams({ client: 'firefox', hl: 'en', gl: 'us', q: seed });
       try {

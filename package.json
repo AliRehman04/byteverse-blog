@@ -15,6 +15,7 @@
     "test:invoice:browser": "node scripts/test-invoice-browser.mjs",
     "test:similarity": "node scripts/test-similarity-core.mjs && node scripts/test-similarity-ui.mjs",
     "test:similarity:browser": "node scripts/test-similarity-browser.mjs",
+    "test:plagiarism-web": "node scripts/test-plagiarism-web-core.mjs",
     "test:json-csv": "node scripts/test-json-csv-core.mjs && node scripts/test-json-csv-ui.mjs",
     "test:json-csv:browser": "node scripts/test-json-csv-browser.mjs",
     "test:json-typescript": "node scripts/test-json-typescript-core.mjs && node scripts/test-json-typescript-ui.mjs",

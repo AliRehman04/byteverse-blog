@@ -64,7 +64,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           The Text Similarity Checker compares supplied texts locally without
-          an AI provider request. It does not save drafts or notes automatically.
+          an AI provider request. When enabled, the optional online check on the checker page sends your text to ByteVerse for one check and up to 12 selected sentences to Brave Search after you click Check. It does not save drafts or notes automatically.
           If you explicitly open a manual search, the previewed query is sent
           to Google. Copied text and downloaded reports are under your control;
           sitewide analytics and advertising are separate from the comparison.

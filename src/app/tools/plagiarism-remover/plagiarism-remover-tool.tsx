@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { takeRemoverHandoff } from "@/lib/plagiarism/remover-handoff";
 import {
   Wand2, Copy, Check, RotateCcw, Loader2,
   ChevronDown, ChevronUp, ArrowRight, Sparkles,
@@ -500,6 +501,12 @@ export function PlagiarismRemoverTool() {
   const [copied, setCopied] = useState(false);
   const [showChanges, setShowChanges] = useState(false);
   const [usedAi, setUsedAi] = useState(false);
+
+  useEffect(() => {
+    const handoff = takeRemoverHandoff();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the checker handoff on mount
+    if (handoff) setInput(handoff);
+  }, []);
 
   const wordCount = input.trim() ? input.trim().split(/\s+/).length : 0;
   const outWordCount = output.trim() ? output.trim().split(/\s+/).length : 0;

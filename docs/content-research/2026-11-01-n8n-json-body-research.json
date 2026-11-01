@@ -1,0 +1,735 @@
+{
+  "checkedAt": "2026-11-01T05:34:13.055Z",
+  "inventory": {
+    "total": 176,
+    "published": 174,
+    "hash": "d815f05783de935a7684dbe1223f0192",
+    "database_date": "2026-11-01"
+  },
+  "coverage": [
+    {
+      "id": 15,
+      "title": "JavaScript Roadmap 2026: Beginner to Job Ready",
+      "slug": "javascript-roadmap-2026-beginner-job-ready",
+      "published": true,
+      "headings": [
+        "Why Learn JavaScript in 2026?",
+        "The Learning Path (Overview)",
+        "Phase 1: Foundations (Weeks 1-6)",
+        "HTML and CSS (Weeks 1-3)",
+        "Basic JavaScript (Weeks 4-6)",
+        "Phase 2: Core JavaScript (Weeks 7-14)",
+        "DOM Manipulation and Events (Weeks 7-8)",
+        "Asynchronous JavaScript (Weeks 9-10)",
+        "ES6+ Modern JavaScript (Weeks 11-12)",
+        "Tools and Environment (Weeks 13-14)",
+        "Phase 3: Frontend Framework (Weeks 15-20)",
+        "React (Recommended) or Next.js",
+        "Phase 4: Backend and Full Stack (Weeks 21-26)",
+        "Node.js and Express (Weeks 21-23)",
+        "Databases (Weeks 24-26)",
+        "Phase 5: Job Preparation (Weeks 27-32)",
+        "Build Your Portfolio",
+        "Resume and LinkedIn",
+        "Interview Preparation",
+        "JavaScript Career Paths in 2026",
+        "Common Mistakes Beginners Make",
+        "Related ByteVerse guides",
+        "Next Steps",
+        "Frequently Asked Questions",
+        "How long does it take to learn JavaScript?",
+        "Is JavaScript enough to get a job?",
+        "Should I learn TypeScript?",
+        "What is the best free resource to learn JavaScript?",
+        "Is JavaScript still worth learning in 2026?"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "25 Best VS Code Extensions 2026 for Web Developers",
+      "slug": "best-vscode-extensions-2026-web-developers",
+      "published": true,
+      "headings": [
+        "AI-Powered Extensions",
+        "1. GitHub Copilot",
+        "2. GitHub Copilot Chat",
+        "3. Cody (Sourcegraph)",
+        "4. Continue",
+        "Productivity Extensions",
+        "5. Error Lens",
+        "6. Auto Rename Tag",
+        "7. Path Intellisense",
+        "8. Import Cost",
+        "9. Better Comments",
+        "10. Project Manager",
+        "11. Todo Tree",
+        "12. Bookmarks",
+        "Code Quality Extensions",
+        "13. ESLint",
+        "14. Prettier",
+        "15. SonarLint",
+        "Styling Extensions",
+        "16. Tailwind CSS IntelliSense",
+        "17. CSS Peek",
+        "18. Color Highlight",
+        "Git Extensions",
+        "19. GitLens",
+        "20. Git Graph",
+        "Testing Extensions",
+        "21. Vitest (or Jest Runner)",
+        "22. REST Client",
+        "Framework-Specific Extensions",
+        "23. ES7+ React/Redux/React-Native Snippets",
+        "24. Thunder Client",
+        "Themes and Appearance",
+        "25. One Dark Pro / Tokyo Night / Catppuccin",
+        "My Recommended Setup",
+        "Performance Tips",
+        "Common Mistakes",
+        "Related ByteVerse guides",
+        "Related Guides",
+        "Frequently Asked Questions",
+        "How many VS Code extensions should I have?",
+        "Is GitHub Copilot worth it for VS Code?",
+        "What is the best VS Code theme?",
+        "Does VS Code work for all programming languages?",
+        "How do I make VS Code faster?"
+      ]
+    },
+    {
+      "id": 57,
+      "title": "15 Best Chrome Extensions for Developers in 2026",
+      "slug": "best-chrome-extensions-developers-2026",
+      "published": true,
+      "headings": [
+        "Debugging and Development",
+        "1. React Developer Tools",
+        "2. Vue.js Devtools",
+        "3. Redux DevTools",
+        "API and Network",
+        "4. Postman Interceptor",
+        "5. JSON Viewer",
+        "6. ModHeader",
+        "Design and CSS",
+        "7. ColorZilla",
+        "8. Fonts Ninja",
+        "9. VisBug",
+        "Productivity",
+        "10. daily.dev",
+        "11. Wappalyzer",
+        "12. Lighthouse (Built into Chrome)",
+        "Security and Privacy",
+        "13. HTTPS Everywhere",
+        "14. Cookie Editor",
+        "Utility",
+        "15. Grepper",
+        "Extensions to Avoid",
+        "Performance Tips",
+        "Our Setup",
+        "Wrapping Up",
+        "Related Guides",
+        "Keep Reading"
+      ]
+    },
+    {
+      "id": 221,
+      "title": "n8n vs Zapier (2026): Pricing, AI Workflows and Hidden Costs",
+      "slug": "n8n-vs-zapier-2026-comparison",
+      "published": true,
+      "headings": [
+        "Quick Verdict: Which Should You Choose?\r",
+        "Tasks vs Executions: The Difference That Changes the Bill\r",
+        "n8n vs Zapier Pricing in 2026\r",
+        "Three Workload Examples You Can Recalculate\r",
+        "A Practical Example: Turn an Inquiry Into a Tracked Follow-Up\r",
+        "Building the Workflow in Zapier\r",
+        "Building the Workflow in n8n\r",
+        "Is Self-Hosted n8n Really Free?\r",
+        "Source-Available Does Not Mean Unrestricted Open Source\r",
+        "n8n vs Zapier for AI Workflows and Agents\r",
+        "Put Review Before the External Action\r",
+        "Integrations: Check the Action, Not Just the App Count\r",
+        "Security and Reliability Are Shared Responsibilities\r",
+        "A Seven-Day Pilot Before You Commit\r",
+        "FAQ\r",
+        "Is n8n cheaper than Zapier?\r",
+        "Is n8n free forever when self-hosted?\r",
+        "Which is better for a beginner or small business?\r",
+        "Can n8n replace Zapier?\r",
+        "Does every step in Zapier count as a task?\r",
+        "Should I include Make in the comparison?\r",
+        "Final Recommendation\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 222,
+      "title": "How to Use n8n in 2026: Complete Beginner Guide",
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "published": true,
+      "headings": [
+        "What Is n8n, in One Paragraph?\r",
+        "Cloud or Local? Choose Your Starting Point\r",
+        "The Five Concepts That Make n8n Click\r",
+        "Build Your First Workflow, Step by Step\r",
+        "Step 1: Create the workflow and add a trigger\r",
+        "Step 2: Fetch data with a node and a credential\r",
+        "Step 3: Add a decision with the If node\r",
+        "Step 4: Deliver the result\r",
+        "Step 5: Test the whole thing, then publish\r",
+        "Your Second Workflow: Make It Actually Useful\r",
+        "Templates: The Fastest Start and the Easiest Trap\r",
+        "Adding AI: Your First n8n Agent, With a Safety Gate\r",
+        "Five Beginner Mistakes That Cost the Most\r",
+        "FAQ\r",
+        "Is n8n free to use?\r",
+        "Can I run n8n locally on my own computer?\r",
+        "Do I need to know how to code?\r",
+        "Is n8n better than Zapier?\r",
+        "How do I use AI agents in n8n?\r",
+        "Where do I find example workflows?\r",
+        "Bottom Line\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 231,
+      "title": "n8n Webhook Not Working? Fix 404 and Production URL Errors",
+      "slug": "n8n-webhook-not-working-2026",
+      "published": true,
+      "headings": [
+        "Start with the response, not another restart",
+        "1. Separate the test URL from the production URL",
+        "2. Check the published version, not only the saved draft",
+        "3. Match the path and HTTP method exactly",
+        "Send one small, safe diagnostic request",
+        "4. Distinguish an n8n 404 from a routing or access failure",
+        "5. Check execution history and response mode",
+        "6. Check self-hosted public URLs and reverse proxies",
+        "7. Handle timeouts without creating duplicate work",
+        "Keep a short verification record",
+        "Frequently Asked Questions",
+        "Why does my n8n webhook work in test but not in production?",
+        "What does the requested webhook is not registered mean?",
+        "Why does a POST webhook fail when I open it in my browser?",
+        "Do I need to keep the n8n editor open?",
+        "Why did saving my changes not fix the production webhook?",
+        "Can an external service call my n8n localhost URL?",
+        "Does WEBHOOK_URL stop working in n8n 2.35.0?",
+        "Why does n8n return 200 without my expected JSON?",
+        "Sources and Image Credits"
+      ]
+    },
+    {
+      "id": 244,
+      "title": "n8n Can't Determine Which Item to Use? Fix Item Linking",
+      "slug": "n8n-cant-determine-which-item-to-use",
+      "published": true,
+      "headings": [
+        "Start with the exact error, not a universal workaround",
+        "Understand the difference between .item, .first() and $json",
+        "Reproduce the wrong-customer problem with three records",
+        "Create three fictional customers",
+        "Filter without losing the input positions",
+        "Compare linked and positional results",
+        "Fix 1: carry the required fields forward and use $json",
+        "Fix 2: preserve pairedItem when your Code node creates new items",
+        "Preserve pairing in a one-to-one transformation",
+        "The indexing mistake to avoid",
+        "Fix 3: use itemMatching correctly inside an all-items Code node",
+        "Retrieve upstream fields inside a Code node",
+        "Fix 4: distinguish splitting from aggregation",
+        "Split a customer's tickets into separate items",
+        "Represent a genuinely combined result",
+        "Fix 5: configure Merge around identity, not coincidental order",
+        "Check branches, loops and pinned data before blaming the code",
+        "Verify the repair before reconnecting external actions",
+        "Frequently Asked Questions",
+        "Why does first() fix the error but repeat the same customer?",
+        "Where should pairedItem go in an n8n Code node?",
+        "What is the difference between item and itemMatching?",
+        "Should I use first() after a Merge or Aggregate node?",
+        "Why does the workflow work with one item but fail with several?",
+        "Sources and Further Reading"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 2,
+      "name": "Tech Guides"
+    }
+  ],
+  "protectedDrafts": [
+    {
+      "slug": "audacity-noise-reduction-voice-2026",
+      "published": false
+    },
+    {
+      "slug": "pdf-to-podcast-notebooklm-2026",
+      "published": false
+    }
+  ],
+  "previousLocalDrafts": [
+    {
+      "slug": "json-parse-large-numbers-precision",
+      "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3"
+    },
+    {
+      "slug": "n8n-binary-data-not-found",
+      "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66"
+    },
+    {
+      "slug": "webp-larger-than-jpg",
+      "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e"
+    }
+  ],
+  "host": [
+    {
+      "id": 222,
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "contentSha256": "c309c756a7317bd4f6bd3ccef113e76ab663fe6c97f75ed35edaba949661afa9",
+      "relevantParagraphs": [
+        "That is your first expression — a dynamic value instead of a hardcoded date. Select **Execute step** and confirm real JSON appears in the output panel. Test every node this way as you go; it is dramatically easier than debugging a whole chain at the end.",
+        "1. **Read every node before running.** You are importing someone else's logic. Open each node and be able to say what it does — especially any Code or HTTP Request node.\r\n2. **Expect to supply your own credentials.** Templates ship without them by design; every service node needs your own connection.\r\n3. **Delete what you do not need.** Community templates often include optional branches. Fewer nodes, fewer failure points."
+      ]
+    }
+  ],
+  "keywordResearch": {
+    "source": "Google public autocomplete",
+    "context": "English with US request parameters; not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n json parameter needs to be valid json",
+        "suggestions": [
+          "n8n json parameter needs to be valid json",
+          "n8n json parameter needs to be valid json item 0",
+          "n8n http request json parameter needs to be valid json",
+          "n8n problem in node http request json parameter needs to be valid json",
+          "valid json example"
+        ]
+      },
+      {
+        "seed": "n8n json parameter needs to be valid json item 0",
+        "suggestions": [
+          "n8n json parameter needs to be valid json item 0",
+          "valid json example"
+        ]
+      },
+      {
+        "seed": "n8n http request json parameter needs to be valid json",
+        "suggestions": [
+          "n8n http request json parameter needs to be valid json",
+          "n8n problem in node http request json parameter needs to be valid json",
+          "valid json example",
+          "json http request example"
+        ]
+      },
+      {
+        "seed": "n8n json parameter need to be an valid json",
+        "suggestions": [
+          "n8n json parameter needs to be valid json",
+          "n8n json parameter needs to be valid json item 0",
+          "n8n http request json parameter needs to be valid json",
+          "n8n problem in node http request json parameter needs to be valid json",
+          "valid json example"
+        ]
+      },
+      {
+        "seed": "n8n http request invalid json",
+        "suggestions": [
+          "n8n http request invalid json in response body"
+        ]
+      },
+      {
+        "seed": "n8n json body expression",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n json stringify",
+        "suggestions": [
+          "n8n json stringify",
+          "n8n expression json stringify",
+          "what is json.stringify"
+        ]
+      },
+      {
+        "seed": "n8n http request newline",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n json special characters",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n json body array",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n object object http request",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n json parse ai output",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n tojsonstring",
+        "suggestions": [
+          "n8n tojsonstring",
+          "wie schrotet man leinsamen",
+          "gejala paratifus",
+          "gejala hipertiroidisme"
+        ]
+      },
+      {
+        "seed": "n8n using fields below vs using json",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n raw body json",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n json parameter item 1",
+        "suggestions": []
+      },
+      {
+        "seed": "compare two csv files by key",
+        "suggestions": []
+      },
+      {
+        "seed": "compare csv files different row order",
+        "suggestions": []
+      },
+      {
+        "seed": "ollama model requires more system memory",
+        "suggestions": [
+          "ollama model requires more system memory",
+          "ollama model requires more system memory than is available",
+          "ollama error model requires more system memory",
+          "ollama error model requires more system memory than is available",
+          "ollama 500 model requires more system memory",
+          "docker ollama model requires more system memory",
+          "ollama _types responseerror model requires more system memory",
+          "ollama requires more system memory",
+          "ollama api error 500 model requires more system memory",
+          "ollama requires more system memory than is available"
+        ]
+      },
+      {
+        "seed": "ollama out of memory windows",
+        "suggestions": []
+      }
+    ]
+  },
+  "searchResults": {
+    "source": "DuckDuckGo HTML first-page observations, not Google rankings",
+    "observations": [
+      {
+        "query": "n8n \"JSON parameter needs to be valid JSON\"",
+        "status": 202,
+        "blocked": true,
+        "results": []
+      }
+    ]
+  },
+  "searchConsole": {
+    "configured": false,
+    "queried": false
+  },
+  "sources": [
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/common-issues.md",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/common-issues.md",
+      "status": 200,
+      "contentSha256": "6950bad1e10eb1051ea6910367ae30ba7bb2505b424ecaa45fac80ee1572d4d0",
+      "chars": 9589,
+      "headings": [
+        "Common Issues",
+        "Bad request - please check your parameters <a href=\"#bad-request-please-check-your-parameters\" id=\"bad-request-please-check-your-parameters\"></a>",
+        "The resource you are requesting could not be found <a href=\"#the-resource-you-are-requesting-could-not-be-found\" id=\"the-resource-you-are-requesting-could-not-be-found\"></a>",
+        "Connection refused (ECONNREFUSED) <a href=\"#connection-refused-econnrefused\" id=\"connection-refused-econnrefused\"></a>",
+        "JSON parameter need to be an valid JSON <a href=\"#json-parameter-need-to-be-an-valid-json\" id=\"json-parameter-need-to-be-an-valid-json\"></a>",
+        "Forbidden - perhaps check your credentials <a href=\"#forbidden-perhaps-check-your-credentials\" id=\"forbidden-perhaps-check-your-credentials\"></a>",
+        "429 - The service is receiving too many requests from you <a href=\"#id-429-the-service-is-receiving-too-many-requests-from-you\" id=\"id-429-the-service-is-receiving-too-many-requests-from-you\"></a>",
+        "Batching <a href=\"#batching\" id=\"batching\"></a>",
+        "Retry on Fail <a href=\"#retry-on-fail\" id=\"retry-on-fail\"></a>",
+        "Your uploaded file arrives with the wrong file name <a href=\"#your-uploaded-file-arrives-with-the-wrong-file-name\" id=\"your-uploaded-file-arrives-with-the-wrong-file-name\"></a>",
+        "Unsupported media type (415) when you send a file <a href=\"#unsupported-media-type-415-when-you-send-a-file\" id=\"unsupported-media-type-415-when-you-send-a-file\"></a>"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest.md",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest.md",
+      "status": 200,
+      "contentSha256": "8bce41e781e435087d888b9a39c77b956c911ab4443d16e558ea3d806eff69ff",
+      "chars": 19333,
+      "headings": [
+        "HTTP Request",
+        "Node parameters <a href=\"#node-parameters\" id=\"node-parameters\"></a>",
+        "Method <a href=\"#method\" id=\"method\"></a>",
+        "URL <a href=\"#url\" id=\"url\"></a>",
+        "Authentication <a href=\"#authentication\" id=\"authentication\"></a>",
+        "Send Query Parameters <a href=\"#send-query-parameters\" id=\"send-query-parameters\"></a>",
+        "Send Headers <a href=\"#send-headers\" id=\"send-headers\"></a>",
+        "Send Body <a href=\"#send-body\" id=\"send-body\"></a>",
+        "Node options <a href=\"#node-options\" id=\"node-options\"></a>",
+        "Array Format in Query Parameters <a href=\"#array-format-in-query-parameters\" id=\"array-format-in-query-parameters\"></a>",
+        "Batching <a href=\"#batching\" id=\"batching\"></a>",
+        "Ignore SSL Issues <a href=\"#ignore-ssl-issues\" id=\"ignore-ssl-issues\"></a>",
+        "Lowercase Headers <a href=\"#lowercase-headers\" id=\"lowercase-headers\"></a>",
+        "Redirects <a href=\"#redirects\" id=\"redirects\"></a>",
+        "Response <a href=\"#response\" id=\"response\"></a>",
+        "Pagination <a href=\"#pagination\" id=\"pagination\"></a>",
+        "Proxy <a href=\"#proxy\" id=\"proxy\"></a>",
+        "Timeout <a href=\"#timeout\" id=\"timeout\"></a>",
+        "Tool-only options <a href=\"#tool-only-options\" id=\"tool-only-options\"></a>",
+        "Optimize Response <a href=\"#optimize-response\" id=\"optimize-response\"></a>",
+        "Import curl command <a href=\"#import-curl-command\" id=\"import-curl-command\"></a>",
+        "Templates and examples <a href=\"#templates-and-examples\" id=\"templates-and-examples\"></a>",
+        "FAQ",
+        "How do I call an API without writing code?",
+        "How do I authenticate an API request?",
+        "How do I handle an API that returns results across many pages?",
+        "Common issues <a href=\"#common-issues\" id=\"common-issues\"></a>"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/build/work-with-data/expressions-versus-data-nodes.md",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/expressions-versus-data-nodes.md",
+      "status": 200,
+      "contentSha256": "f204acf6d37e7b8c3df41aa88d5f2b174395ee3426b3f8bc680a8b94571fc7be",
+      "chars": 5782,
+      "headings": [
+        "Expressions versus data nodes",
+        "Expressions <a href=\"#expressions\" id=\"expressions\"></a>",
+        "Code node <a href=\"#code-node\" id=\"code-node\"></a>",
+        "AI Transform node <a href=\"#ai-transform-node\" id=\"ai-transform-node\"></a>",
+        "Other data transformation nodes <a href=\"#other-data-transformation-nodes\" id=\"other-data-transformation-nodes\"></a>",
+        "Related resources"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code.md",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code.md",
+      "status": 200,
+      "contentSha256": "094f579df057161b672b010424c0af187220fb547c3ea7b3aefd59ceb195211c",
+      "chars": 10155,
+      "headings": [
+        "Code",
+        "Usage <a href=\"#usage\" id=\"usage\"></a>",
+        "JavaScript <a href=\"#javascript\" id=\"javascript\"></a>",
+        "Python (Pyodide - legacy) <a href=\"#python-pyodide-legacy\" id=\"python-pyodide-legacy\"></a>",
+        "File system and HTTP requests <a href=\"#file-system-and-http-requests\" id=\"file-system-and-http-requests\"></a>",
+        "Python (Native) <a href=\"#python-native\" id=\"python-native\"></a>",
+        "Coding in n8n <a href=\"#coding-in-n8n\" id=\"coding-in-n8n\"></a>",
+        "Use AI in the Code node <a href=\"#use-ai-in-the-code-node\" id=\"use-ai-in-the-code-node\"></a>",
+        "Common issues <a href=\"#common-issues\" id=\"common-issues\"></a>"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/code/builtin/data-transformation-functions/strings/",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/transform-data/expression-reference/string",
+      "status": 200,
+      "contentSha256": "5f23da4c3df137d4268f20cbe2aac7af56f29a18b5472e7416a316f6c0b8ac9e",
+      "chars": 1211662,
+      "headings": [
+        "String | Build | n8n Docs",
+        "String",
+        "String.base64Decode()",
+        "String.base64Encode()",
+        "String.concat()",
+        "String.extractDomain()",
+        "String.extractEmail()",
+        "String.extractUrl()",
+        "String.extractUrlPath()",
+        "String.hash()",
+        "String.includes()",
+        "String.indexOf()",
+        "String.isDomain()",
+        "String.isEmail()",
+        "String.isEmpty()",
+        "String.isNotEmpty()",
+        "String.isNumeric()",
+        "String.isUrl()",
+        "String.length",
+        "String.match()",
+        "String.parseJson()",
+        "String.quote()",
+        "String.removeMarkdown()",
+        "String.removeTags()",
+        "String.replace()",
+        "String.replaceAll()",
+        "String.replaceSpecialChars()",
+        "String.search()",
+        "String.slice()",
+        "String.split()",
+        "String.startsWith()",
+        "String.substring()"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/data/data-pinning/",
+      "finalUrl": "https://docs.n8n.io/build/work-with-data/pin-and-mock-data",
+      "status": 200,
+      "contentSha256": "1f2d0d4502fc52d400e3ac61c0047709efc3a761c443dce5ef78c98336fd4f44",
+      "chars": 585548,
+      "headings": [
+        "Pin and mock data | Build | n8n Docs",
+        "Pin and mock data",
+        "Data mocking approaches",
+        "Generate custom data using the Code or Edit Fields nodes",
+        "Output a sample data set from the Customer Datastore node",
+        "Data pinning",
+        "Pin data",
+        "Unpin data",
+        "Edit pinned data",
+        "Combine mocking with pinning",
+        "Related resources",
+        "x-twitter",
+        "discord",
+        "linkedin",
+        "youtube"
+      ]
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/",
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured",
+      "status": 200,
+      "contentSha256": "ee82ced9fac369947fe5641ba15f0fb7955a9f3da2926ff371217e3574697fd6",
+      "chars": 707938,
+      "headings": [
+        "Structured Output Parser | Nodes | n8n Docs",
+        "Structured Output Parser",
+        "Node parameters",
+        "Templates and examples",
+        "Related resources",
+        "Common issues",
+        "x-twitter",
+        "discord",
+        "linkedin",
+        "youtube"
+      ]
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify",
+      "status": 200,
+      "contentSha256": "ffec27851561c78cd1c6c73f2b708acb5dad8153b7281030ddbc8e3037341864",
+      "chars": 176890,
+      "headings": [
+        "JSON.stringify() - JavaScript | MDN",
+        "MDN",
+        "JSON.stringify()",
+        "In this article",
+        "Try it",
+        "Syntax",
+        "Parameters",
+        "Return value",
+        "Exceptions",
+        "Description",
+        "The replacer parameter",
+        "The space parameter",
+        "Examples",
+        "Using JSON.stringify",
+        "Using a function as replacer",
+        "Using an array as replacer",
+        "Using the space parameter",
+        "toJSON() behavior",
+        "Issue with serializing circular references",
+        "Using JSON.stringify() with localStorage",
+        "Well-formed JSON.stringify()",
+        "Specifications",
+        "Browser compatibility",
+        "See also",
+        "\n            Help improve MDN\n          ",
+        "MDN",
+        "Mozilla"
+      ]
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse",
+      "status": 200,
+      "contentSha256": "46c557ff782453610d69d2d874172762bad3b1d47a38c9d64a95bbca6153bcac",
+      "chars": 164779,
+      "headings": [
+        "JSON.parse() - JavaScript | MDN",
+        "MDN",
+        "JSON.parse()",
+        "In this article",
+        "Try it",
+        "Syntax",
+        "Parameters",
+        "Return value",
+        "Exceptions",
+        "Description",
+        "The reviver parameter",
+        "Examples",
+        "Using JSON.parse()",
+        "Using the reviver parameter",
+        "Using reviver when paired with the replacer of JSON.stringify()",
+        "Illegal JSON",
+        "Specifications",
+        "Browser compatibility",
+        "See also",
+        "\n            Help improve MDN\n          ",
+        "MDN",
+        "Mozilla"
+      ]
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse",
+      "status": 200,
+      "contentSha256": "552fd7b4f7f4fe4d5e280e988fc4185fc0d624f3cf2eef97e5e1fe872e43d308",
+      "chars": 197669,
+      "headings": [
+        "SyntaxError: JSON.parse: bad parsing - JavaScript | MDN",
+        "MDN",
+        "SyntaxError: JSON.parse: bad parsing",
+        "In this article",
+        "Message",
+        "Error type",
+        "What went wrong?",
+        "Examples",
+        "JSON.parse() does not allow trailing commas",
+        "Property names must be double-quoted strings",
+        "Leading zeros and decimal points",
+        "See also",
+        "\n            Help improve MDN\n          ",
+        "MDN",
+        "Mozilla"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc8259.html",
+      "finalUrl": "https://www.rfc-editor.org/rfc/rfc8259.html",
+      "status": 200,
+      "contentSha256": "5302d6ccb6cf221817bdd1f8cd7221661d4519372e0ac0b4cf641e11e8037de7",
+      "chars": 37946,
+      "headings": []
+    }
+  ],
+  "httpRequestSource": {
+    "commit": "c44bd78f3834fb4e5a14cdcee96d552a9c4e4e92",
+    "commitDate": "2026-10-31T18:05:19Z",
+    "url": "https://github.com/n8n-io/n8n/blob/c44bd78f3834fb4e5a14cdcee96d552a9c4e4e92/packages/nodes-base/nodes/HttpRequest/V3/HttpRequestV3.node.ts",
+    "rawUrl": "https://raw.githubusercontent.com/n8n-io/n8n/c44bd78f3834fb4e5a14cdcee96d552a9c4e4e92/packages/nodes-base/nodes/HttpRequest/V3/HttpRequestV3.node.ts",
+    "contentSha256": "aad36caf5f4f6c5dbfd20558908504ddcf5fa706fb758cfbd8b057538b87e26b",
+    "validationExcerpt": "// body is specified using JSON\n\t\t\t\t\t\tif (typeof jsonBodyParameter !== 'object' && jsonBodyParameter !== null) {\n\t\t\t\t\t\t\trequestOptions.body = parseJsonParameter(\n\t\t\t\t\t\t\t\tthis.getNode(),\n\t\t\t\t\t\t\t\tjsonBodyParameter,\n\t\t\t\t\t\t\t\t'JSON Body',\n\t\t\t\t\t\t\t\titemIndex,\n\t\t\t\t\t\t\t);\n\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\trequestOptions.body = jsonBodyParameter;\n\t\t\t\t\t\t}\n\t\t\t\t\t} else if (specifyBody === 'string') {\n\t\t\t\t\t\t//form urlencoded\n\t\t\t\t\t\trequestOptions.body = Object.fromEntries(new URLSearchParams(body));\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\t// Change the way data get send in case a different content-type than JSON got selected\n\t\t\t\tif (sendBody && !methodsWithoutBody.includes(requestMethod)) {\n\t\t\t\t\tif (bodyContentType === 'multipart-form-data') {\n\t\t\t\t\t\trequestOptions.formData = requestOptions.body as IDataObject;\n\t\t\t\t\t\tdelete requestOptions."
+  },
+  "runtimeCandidate": {
+    "name": "n8n-workflow",
+    "version": "2.16.0",
+    "integrity": "sha512-JoDvHLvV4QZQBCDVQl5xkrGOmPmsacLO4TkJkErCzMmiEqIej+h14J6eCUY7gbxBj8V+GIBlpqyO63akJbXRQg=="
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "limits": "No authenticated Search Console or volume dataset. Autocomplete provides query wording, not demand or ranking guarantees. Public result samples do not establish low competition. Database access was read-only; no n8n workflows or external connectors were run."
+}

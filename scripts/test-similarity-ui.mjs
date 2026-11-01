@@ -147,6 +147,7 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
   const NativeLink = ({ children, ...props }) => React.createElement("a", props, children);
   const NativeImage = ({ src, alt, width, height, loading }) => React.createElement("img", { src, alt, width, height, loading });
   const WorkspacePlaceholder = () => React.createElement("section", { id: "similarity-workspace", "data-test-placeholder": "true" });
+const WebCheckPlaceholder = () => React.createElement("section", { "data-test-placeholder": "web-check" });
   class ImageResponseMock {
     constructor(element, options) { this.element = element; this.options = options; }
   }
@@ -180,6 +181,7 @@ function createRuntime({ allowUrls = true, tracked = true } = {}) {
       "@/lib/similarity/samples": "samples",
       "@/lib/similarity/types": "types",
       "./plagiarism-tool": { PlagiarismTool: WorkspacePlaceholder },
+      "./web-check-panel": { WebCheckPanel: WebCheckPlaceholder },
       "./text-highlights": "highlights",
     },
     api: { "next/server": { NextResponse: NextResponseMock } },
@@ -832,7 +834,7 @@ test("actual schema advertises the local tool and free offer without fabricated 
 });
 
 test("actual visible page explains no external corpus, no originality verdict, directional coverage and all limits", () => {
-  for (const pattern of [/No web or academic corpus is searched/, /no AI or semantic matching/, /paraphrases, translated ideas and unsupplied sources can be missed/, /not a plagiarism verdict or an internet scan/, /Source percentages are not additive/, /coverage is unavailable—not zero/, /10,000 words and 60,000 UTF-16 characters/, /256 KB limit/, /PDF, DOCX, URLs and OCR are unsupported/, /first 150 maximal passages per source/, /150 groups and 100 occurrences per group/, /15 seconds; speed depends on your device/, /Nothing is searched automatically/, /Sitewide ads and analytics still operate separately/, /reload clears the workspace/i]) {
+  for (const pattern of [/Local compare searches no web or academic corpus/, /no AI or semantic matching/, /paraphrases, translated ideas and unsupplied sources can be missed/, /not a plagiarism verdict/, /Source percentages are not additive/, /coverage is unavailable—not zero/, /10,000 words and 60,000 UTF-16 characters/, /256 KB limit/, /PDF, DOCX, URLs and OCR are unsupported/, /first 150 maximal passages per source/, /150 groups and 100 occurrences per group/, /15 seconds; speed depends on your device/, /Nothing is searched automatically/, /Sitewide ads and analytics still operate separately/, /reload clears the workspace/i]) {
     assert.match(visiblePage, pattern);
   }
   assert.match(visiblePage, /Coverage computed from the example above/);
@@ -932,11 +934,11 @@ for (const name of ["catalog", "llms", "chat"]) {
     assert.match(description, /draft/i);
     assert.match(description, /supplied sources/i);
     assert.match(description, /locally/i);
-    assert.match(description, /(?:no|not a) web scan/i);
+    assert.match(description, /online sentence check|(?:no|not a) web scan/i);
     assert.doesNotMatch(description, falseClaims);
     assert.doesNotMatch(description, /detect plagiarism|verify (?:text )?originality|scan (?:the )?(?:internet|billions)/i);
     if (name === "chat") assert.match(description, /Paste text in the tool, not this chat/);
-    if (name !== "home") assert.match(description, /No web scan(?:, AI)? or (?:originality|plagiarism) verdict/i);
+    if (name !== "home") assert.match(description, /(?:originality|plagiarism) verdict/i);
     assert.ok(!runtime.cache.has(name), "Discovery routes must never be executed");
   });
 }

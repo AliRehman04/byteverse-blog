@@ -7,13 +7,14 @@ import { formatCoverage } from "@/lib/similarity/report";
 import { GUIDE_SAMPLE } from "@/lib/similarity/samples";
 import { DEFAULT_MATCH_OPTIONS } from "@/lib/similarity/types";
 import { PlagiarismTool } from "./plagiarism-tool";
+import { WebCheckPanel } from "./web-check-panel";
 import { TextHighlights } from "./text-highlights";
 
 const toolConfig = {
   name: "Text Similarity Checker",
   title: "Text Similarity Checker - Compare Two Texts Free",
   description:
-    "Compare two texts for similarity, highlight shared passages and find repeated sentences. Free local matching with up to five sources. No web plagiarism scan.",
+    "Compare texts locally, highlight shared passages and find repeated sentences. Optional online check flags sentence matches on public pages.",
   slug: "plagiarism-checker",
   keywords: [
     "text similarity checker",
@@ -30,6 +31,7 @@ const toolConfig = {
   audience: "Writers, editors and students reviewing source citations",
   featureList: [
     "Compare two texts or one draft with up to five supplied sources on-device",
+    "Optional online check: up to 12 sentences searched as exact phrases, with matched words and source links",
     "Consecutive normalized word matching with 4, 6, 8 or 12-word minimums",
     "Draft and reverse-source coverage, with one-source, multi-source and unmatched eligible-word totals",
     "Per-source only-here and also-elsewhere counts within supplied sources",
@@ -66,7 +68,7 @@ const toolConfig = {
     {
       question: "Can I save a report, and what happens to my text?",
       answer:
-        "Copy a report or download TXT or self-contained HTML. To print or save as PDF, open the HTML file and use your browser's Print menu; there is no direct PDF export or automatic printing. Stats-only omits source labels, notes and passage text. The tool does not upload text or save work automatically; reload clears the workspace. Manual search sends the previewed query to Google only on an explicit click. Sitewide ads and analytics are separate.",
+        "Copy a report or download TXT or self-contained HTML. To print or save as PDF, open the HTML file and use your browser's Print menu; there is no direct PDF export or automatic printing. Stats-only omits source labels, notes and passage text. Local compare and Repeat mode do not upload text. When enabled, the optional online check sends your text to ByteVerse for one check and up to 12 selected sentences to Brave Search after you click Check; ByteVerse does not store that text. Reload clears the workspace. Manual search sends the previewed query to Google only on an explicit click. Sitewide ads and analytics are separate.",
     },
   ],
 };
@@ -115,8 +117,10 @@ export default function PlagiarismCheckerPage() {
       <header className="sim-hero">
         <h1 className="sim-hero-title">Text similarity checker</h1>
         <p className="sim-hero-description">Compare two texts. See the shared wording, side by side.</p>
-        <p className="sim-hero-scope">Free, on-device comparison of sources you supply; not a plagiarism verdict or an internet scan.</p>
+        <p className="sim-hero-scope">Local comparison of sources you supply stays on-device. Optional online check finds sentence matches on public pages; not a plagiarism verdict.</p>
       </header>
+
+      <WebCheckPanel />
 
       <PlagiarismTool />
 
@@ -232,7 +236,7 @@ export default function PlagiarismCheckerPage() {
           <section aria-labelledby="similarity-limits-heading">
             <h2 id="similarity-limits-heading" className="text-xl font-semibold tracking-tight text-foreground">Know the boundaries</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
-              <p>No web or academic corpus is searched. There is no AI or semantic matching: paraphrases, translated ideas and unsupplied sources can be missed. Unspaced Chinese, Japanese or Korean text may be under-segmented, making word counts and matches less useful.</p>
+              <p>Local compare searches no web or academic corpus. When enabled, the separate online check searches up to 12 exact sentence phrases and reads only the excerpts returned. There is no AI or semantic matching: paraphrases, translated ideas and unsupplied sources can be missed. Unspaced Chinese, Japanese or Korean text may be under-segmented, making word counts and matches less useful.</p>
               <p>Each text allows 10,000 words and 60,000 UTF-16 characters. UTF-8 .txt or .md imports have a 256 KB limit; PDF, DOCX, URLs and OCR are unsupported. The cancellable local worker stops checks after 15 seconds; speed depends on your device.</p>
             </div>
           </section>
@@ -329,7 +333,7 @@ export default function PlagiarismCheckerPage() {
         <section id="similarity-privacy" aria-labelledby="similarity-privacy-heading" className="sim-privacy scroll-mt-24">
           <h2 id="similarity-privacy-heading" className="text-xl font-semibold tracking-tight text-foreground">Local matching, deliberate sharing</h2>
           <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
-            <p>The tool does not upload text or automatically persist drafts, sources or notes. Reload clears the workspace. Copy a report or download TXT or a self-contained HTML review sheet. Full reports include all result evidence, not just the passages currently visible through source or status filters; the evidence caps still apply.</p>
+            <p>Local compare and Repeat mode do not upload text or automatically persist drafts, sources or notes. When enabled, the optional online check sends your text to ByteVerse for one check and up to 12 selected sentences to Brave Search only after you click Check. Reload clears the workspace. Copy a report or download TXT or a self-contained HTML review sheet. Full reports include all result evidence, not just the passages currently visible through source or status filters; the evidence caps still apply.</p>
             <p>Choose stats-only to omit source labels, notes and passage text. If included evidence exceeds 120,000 characters, the report explicitly falls back to stats-only. Copied text and downloaded reports remain outside the workspace, so check their contents before sharing.</p>
             <p>To print or save as PDF, open the downloaded HTML yourself and choose Print in your browser. This is not a direct PDF download, and nothing prints automatically. The self-contained HTML report displays supplied text as text, without scripts or external resources.</p>
             <p>Manual search offers up to five position-sampled passages, not risk flags. Preview the exact query, then explicitly follow the Google link to search. Nothing is searched automatically. Sitewide ads and analytics still operate separately; read our <Link href="/privacy" className={guideLinkClassName}>Privacy Policy</Link>.</p>

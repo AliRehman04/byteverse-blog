@@ -1,0 +1,193 @@
+{
+  "date": "2026-11-01",
+  "website": "https://www.byteverse.fyi",
+  "slug": "n8n-json-parameter-needs-to-be-valid-json",
+  "targeting": {
+    "title": "n8n JSON Parameter Needs to Be Valid JSON: Fix the Body",
+    "metaTitle": "n8n JSON Parameter Needs to Be Valid JSON: Fix the Body",
+    "metaDescription": "Fix n8n's JSON parameter error with tested object expressions and JSON.stringify. Handle quotes, newlines, nulls, arrays, and failures on later items.",
+    "excerpt": "Fix n8n's HTTP Request JSON parameter error without damaging your data. Reproduce eight edge cases, choose the right body mode, preserve types, and validate dynamic or AI-generated values before sending requests.",
+    "primaryKeyword": "n8n json parameter needs to be valid json",
+    "secondaryKeywords": [
+      "n8n json parameter needs to be valid json item 0",
+      "n8n http request json parameter needs to be valid json",
+      "n8n expression json stringify",
+      "n8n tojsonstring",
+      "n8n JSON body expression",
+      "n8n JSON newline escaping",
+      "n8n JSON null values"
+    ],
+    "keywords": "n8n json parameter needs to be valid json, n8n http request json body, n8n json parameter item 0, n8n JSON.stringify, n8n toJsonString, n8n json body expression, n8n json newline",
+    "intent": "Troubleshoot JSON parameter construction in n8n HTTP Request without confusing expression errors, response parsing, remote schema errors, or incorrect input items",
+    "categoryId": 2,
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman",
+    "readingTime": "17 min read",
+    "summary": "Return an object for the complete JSON body instead of inserting unescaped text into a quoted template|Verify both JSON validity and exact values with eight cases covering quotes, backslashes, newlines, tabs, Unicode, and HTML|Preserve data types, validate the failing item, and check previous successful actions before replaying production writes"
+  },
+  "research": {
+    "file": "docs/content-research/2026-11-01-n8n-json-body-research.json",
+    "seedsAttempted": 20,
+    "autocompleteSeedsWithSuggestions": 8,
+    "autocompleteErrors": 0,
+    "primaryDocumentationPages": 11,
+    "usableSerps": 0,
+    "googleObservation": {
+      "checkedAt": "2026-11-01T05:27:52.793Z",
+      "query": "n8n JSON parameter needs to be valid JSON",
+      "blocked": true,
+      "reason": "CAPTCHA; no bypass, usable Google ranking data, or People Also Ask data"
+    },
+    "otherSearchLimits": [
+      "DuckDuckGo returned a challenge with HTTP 202; collection stopped immediately.",
+      "Bing returned generic n8n and Ollama navigation pages for the requested error queries; not counted as useful error-specific competition evidence.",
+      "Brave public search fetch returned HTTP 429; no further requests to work around the limit.",
+      "Search Console credentials are absent locally; no property impressions, CTR, or search click data was obtained.",
+      "Unrelated autocomplete suggestions under toJsonString were excluded from keyword selection. Empty suggestions do not prove absence of demand."
+    ],
+    "candidateDecision": [
+      {
+        "topic": "n8n JSON parameter needs to be valid JSON",
+        "decision": "selected",
+        "evidence": "Exact error and item-zero variants appear in autocomplete; existing inventory has no dedicated post; n8n community search returns relevant real user problems. Official docs and the real expression engine permit original reproducible examples. The n8n cluster and JSON formatter provide appropriate internal links.",
+        "limit": "Selection does not imply low competition, measured demand, or a ranking forecast."
+      },
+      {
+        "topic": "Ollama model requires more system memory",
+        "decision": "deferred",
+        "evidence": "Autocomplete includes the exact error and related wording, but a device-specific memory guide would require hardware and model checks beyond the reproducible JSON example available for this article."
+      },
+      {
+        "topic": "Compare CSV files by key or in different row order",
+        "decision": "deferred",
+        "evidence": "Tool alignment is relevant, but these two seeds returned no suggestions in this observation. No conclusion about volume or competition was inferred."
+      }
+    ],
+    "keywordPlacement": [
+      { "cluster": "literal JSON parameter error", "location": "Title, opening answer, quick fix, and first FAQ", "basis": "Observed autocomplete and official troubleshooting wording" },
+      { "cluster": "item 0 and later item failures", "location": "Dedicated item-index section and FAQ", "basis": "Observed item-zero autocomplete and community reports; later-item cases are explanatory coverage" },
+      { "cluster": "JSON.stringify and toJsonString", "location": "Good and bad examples, typed values, and FAQ", "basis": "Observed autocomplete, official string helper docs, and executed expressions" },
+      { "cluster": "newlines, nulls, arrays, Raw JSON, AI output", "location": "Worked dataset, type table, body-mode table, and validation example", "basis": "Supporting intent derived from documentation and user reports, not measured keyword volume" }
+    ],
+    "sourceReview": [
+      {
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/common-issues",
+        "strengths": ["Documents whole-body object expressions", "Distinguishes other request errors"],
+        "originalContribution": ["Eight executed dynamic-input cases with exact expected outcomes", "Shows a parse-success case that silently changes backslashes", "Separates JSON syntax, expression syntax, data types, transport, and API schema"]
+      },
+      {
+        "url": "https://community.n8n.io/t/error-json-parameter-need-to-be-an-valid-json-and-json-stringify-does-not-seem-to-work/28052",
+        "observation": "Author initially blamed stringify but later identified another input item as the failure. This is a historical user report, not a current API specification."
+      },
+      {
+        "url": "https://community.n8n.io/t/json-parameter-needs-to-be-valid-json-item-7/79382",
+        "observation": "Report distinguishes successful node-only testing from a later input-item error. Reply recommends inspecting item seven; quote cause is a suggestion, not independently established for that report."
+      },
+      {
+        "url": "https://community.n8n.io/t/json-parameter-needs-to-be-valid-json-with-null/70210",
+        "observation": "Illustrates confusion between null values and text interpolation. Replies contain revisions; recommendations were checked against the installed expression engine rather than copied verbatim."
+      },
+      {
+        "url": "https://community.n8n.io/t/problem-in-http-request-node-json-parameter-needs-to-be-valid-json/167881",
+        "observation": "An intended JSON string field had extra quotes and a literal equals sign; fixing local formatting exposed a separate remote 422 error. Article uses fictional data and a generic value field, not the user's payload."
+      }
+    ],
+    "claims": [
+      { "claim": "A whole-field object expression preserves quotes and nested value types", "verification": "Real n8n-workflow 2.16.0 expressions and exact article payload tests", "source": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/common-issues" },
+      { "claim": "String serialization supplies quoting and escaping; extra quotes can invalidate a template", "verification": "Article expressions tested across eight synthetic strings", "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" },
+      { "claim": "Missing, null, false, zero and array values are not interchangeable", "verification": "Typed payload, omission, null fallback and nested-string tests", "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" },
+      { "claim": "HTTP Request has separate JSON, Raw, field and response configuration", "verification": "Current documentation and pinned source reviewed; no HTTP node execution claimed", "source": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest" },
+      { "claim": "Pinned data does not replace production execution data", "verification": "Official development-only pinning documentation", "source": "https://docs.n8n.io/build/work-with-data/pin-and-mock-data" }
+    ]
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/claude-code-windows/photo-inline.jpg",
+    "coverAlt": "A person typing code on a laptop",
+    "coverCredit": "cottonbro studio / Pexels",
+    "coverCreditUrl": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/",
+    "inline": "https://www.byteverse.fyi/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "inlineCredit": "olia danilevich / Pexels",
+    "inlineCreditUrl": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/",
+    "license": "https://www.pexels.com/license/",
+    "note": "Existing licensed human-shot images visually inspected for relevance; illustrative photographs, not n8n screenshots. No asset deployment is needed."
+  },
+  "inventory": {
+    "total": 176,
+    "published": 174,
+    "hash": "d815f05783de935a7684dbe1223f0192",
+    "protectedDrafts": ["audacity-noise-reduction-voice-2026", "pdf-to-podcast-notebooklm-2026"],
+    "previousLocalDrafts": [
+      { "slug": "json-parse-large-numbers-precision", "contentSha256": "99ed536da2af89e7a8e6bc344939dcf70809f61a661be1004a8a648e0d33bef3" },
+      { "slug": "n8n-binary-data-not-found", "contentSha256": "381203d55c390b19595262e41dda6e2716b84f3d335ae38efb85d7baf12dfb66" },
+      { "slug": "webp-larger-than-jpg", "contentSha256": "fb0cce2e06e6393e3cb4805a231b6aaab65b4691c9440e8770800e496f45454e" }
+    ]
+  },
+  "backlink": {
+    "host": "how-to-use-n8n-2026-complete-guide",
+    "anchor": "Test every node this way as you go; it is dramatically easier than debugging a whole chain at the end.",
+    "sentence": "If an HTTP Request body fails after a value is inserted, our [guide to n8n's JSON parameter error](/blog/n8n-json-parameter-needs-to-be-valid-json) shows tested object expressions and correct serialization without damaging the original text."
+  },
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-cant-determine-which-item-to-use",
+    "/blog/n8n-webhook-not-working-2026",
+    "/tools/json-formatter"
+  ],
+  "faq": [
+    "Why does n8n say JSON parameter needs to be valid JSON when a validator accepts it?",
+    "What does item 0 mean in the n8n JSON error?",
+    "Should I use JSON.stringify or toJsonString in n8n?",
+    "Can changing Content Type or Response Format fix this error?",
+    "Why does the workflow pass a manual test but fail later?"
+  ],
+  "validation": {
+    "proseWords": 3612,
+    "contentSha256": "9af77433296fd4f7829b800149b42eac16130c997cebcc8e0fb87252e790c905",
+    "runtimePackage": "n8n-workflow",
+    "runtimeVersion": "2.16.0",
+    "nodeVersion": "v24.12.0",
+    "codeBlocks": 12,
+    "tables": 4,
+    "scope": "Real expression-engine evaluation and exact article JavaScript with synthetic input; no n8n Cloud, task runner, HTTP node transport or external connector execution"
+  },
+  "publication": {
+    "status": "published-discovery-refresh-pending",
+    "date": "2026-11-01",
+    "postId": 245,
+    "url": "https://www.byteverse.fyi/blog/n8n-json-parameter-needs-to-be-valid-json",
+    "publishedTime": "2026-11-01T05:59:09.724Z",
+    "hostId": 222,
+    "otherPostsUnchanged": 175,
+    "otherPostsHash": "d5b5a7db7d1d49dccece10de1abbbd1c",
+    "verification": {
+      "checkedAt": "2026-11-01T06:10:26.618Z",
+      "articleHttp": 200,
+      "offlineTestsPassed": 18,
+      "exactLiveCodeBlocks": 12,
+      "tables": 4,
+      "visibleFaqsMatchingSchema": 5,
+      "canonicalAndDescription": true,
+      "coverAndInlineImagesLoaded": true,
+      "viewportsWithoutPageOverflow": ["1440x1000", "375x844"],
+      "faqInteraction": "First FAQ opened successfully after dismissing the existing newsletter popup without submitting it",
+      "databaseAuthor": "Ali Rehman",
+      "authorProfileHttp": 200,
+      "cachedArticleAuthor": "ByteVerse Team; its missing author page was identified and corrected only in the new article's database record, pending HTML cache refresh",
+      "discovery": "pending-isr-refresh",
+      "pendingCachePaths": [
+        "/blog/n8n-json-parameter-needs-to-be-valid-json",
+        "/",
+        "/blog",
+        "/category/tech-guides",
+        "/sitemap.xml",
+        "/feed.xml",
+        "/author/ali-rehman",
+        "/blog/how-to-use-n8n-2026-complete-guide"
+      ],
+      "strictIndexCheckPassed": false,
+      "cacheRefreshBlocker": "The existing Vercel CLI session cannot access rehman-s-projects3; whoami --scope returned specified scope does not exist. No cache purge, account change or code deployment was attempted.",
+      "codeRelease": "No git commit, push, dependency installation or application deployment. Only the requested article, its contextual internal link and its byline correction were written to the database. Pending plagiarism-checker code remains untouched."
+    }
+  }
+}

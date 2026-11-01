@@ -31,7 +31,7 @@ import { AffiliateCTA } from "@/components/affiliate-cta";
 const CATEGORY_TOOLS: Record<string, { name: string; slug: string; desc: string }[]> = {
   "ai-tools": [
     { name: "AI Content Detector", slug: "ai-content-detector", desc: "Detect AI-generated text" },
-    { name: "Plagiarism Remover", slug: "plagiarism-remover", desc: "Rewrite & humanize AI text" },
+    { name: "Plagiarism Remover", slug: "plagiarism-remover", desc: "Reword your own draft (Quick or AI Rewrite)" },
     { name: "Text Similarity Checker", slug: "plagiarism-checker", desc: "Compare supplied sources and review matching passages" },
   ],
   "tech-guides": [

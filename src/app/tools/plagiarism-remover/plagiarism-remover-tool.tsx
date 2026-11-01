@@ -7,6 +7,7 @@ import {
   ChevronDown, ChevronUp, ArrowRight, Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import { AI_REWRITE_LIMITS } from "@/lib/plagiarism/ai-rewrite-limits";
 
 /* ── SYNONYM DICTIONARY ───────────────────────────────── */
 const SYN: Record<string, string[]> = {
@@ -509,6 +510,7 @@ export function PlagiarismRemoverTool() {
   }, []);
 
   const wordCount = input.trim() ? input.trim().split(/\s+/).length : 0;
+  const aiTooLong = input.length > AI_REWRITE_LIMITS.maxChars;
   const outWordCount = output.trim() ? output.trim().split(/\s+/).length : 0;
 
   const handleRewrite = useCallback(() => {
@@ -525,7 +527,7 @@ export function PlagiarismRemoverTool() {
   }, [input, strength, options, wordCount]);
 
   const handleAiRewrite = useCallback(async () => {
-    if (wordCount < 20) return;
+    if (wordCount < 20 || aiTooLong) return;
     setAiProcessing(true);
     setAiError("");
     setUsedAi(true);
@@ -550,7 +552,7 @@ export function PlagiarismRemoverTool() {
     } finally {
       setAiProcessing(false);
     }
-  }, [input, strength, wordCount]);
+  }, [input, strength, wordCount, aiTooLong]);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -583,7 +585,7 @@ export function PlagiarismRemoverTool() {
         <textarea
           value={input}
           onChange={(e) => { setInput(e.target.value); setOutput(""); setChanges([]); }}
-          placeholder="Paste your AI-generated or potentially plagiarized text here...&#10;&#10;The tool will rewrite it to make it unique and human-sounding."
+          placeholder="Paste the text you want to reword...&#10;&#10;Rewording changes wording only. It does not make text original, so cite your sources."
           className="w-full h-48 sm:h-56 bg-transparent border-0 resize-none outline-none text-sm leading-relaxed placeholder:text-muted-foreground/50"
           spellCheck={false}
         />
@@ -653,7 +655,7 @@ export function PlagiarismRemoverTool() {
             </button>
             <button
               onClick={handleAiRewrite}
-              disabled={wordCount < 20 || processing || aiProcessing}
+              disabled={wordCount < 20 || processing || aiProcessing || aiTooLong}
               className="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
             >
               {aiProcessing ? <><Loader2 size={14} className="animate-spin" /> AI Rewriting...</> : <><Sparkles size={14} /> AI Rewrite</>}
@@ -663,6 +665,11 @@ export function PlagiarismRemoverTool() {
         {aiError && (
           <p className="text-xs text-red-500 mt-2 text-right">{aiError}</p>
         )}
+        <p className="text-xs text-muted-foreground mt-2 text-right">
+          {aiTooLong
+            ? `AI Rewrite accepts up to ${AI_REWRITE_LIMITS.maxChars.toLocaleString("en-US")} characters. Shorten the text or use Quick Rewrite.`
+            : "Quick Rewrite runs in your browser. AI Rewrite sends this text to an AI provider (Groq) when you click it."}
+        </p>
       </div>
 
       {/* Output */}
@@ -753,7 +760,7 @@ export function PlagiarismRemoverTool() {
           <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
               <p className="text-sm font-medium">Check your rewritten text</p>
-              <p className="text-xs text-muted-foreground">Verify uniqueness and AI detection score</p>
+              <p className="text-xs text-muted-foreground">Compare wording with your sources, or run an AI text estimate</p>
             </div>
             <div className="flex gap-2">
               <Link
@@ -775,7 +782,7 @@ export function PlagiarismRemoverTool() {
 
       {!output && (
         <p className="text-xs text-muted-foreground text-center mt-2">
-          All processing happens in your browser. No text is sent to any server.
+          Quick Rewrite runs in your browser. AI Rewrite sends text to an AI provider only when you click it.
         </p>
       )}
     </div>

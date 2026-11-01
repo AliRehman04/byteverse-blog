@@ -57,7 +57,7 @@ export default function PrivacyPage() {
         <p>
           Certain tools&mdash;such as the AI Content Detector and Plagiarism
           Remover&mdash;may send the text you provide
-          to third-party AI or analysis APIs to generate results. This data is
+          to third-party AI or analysis APIs to generate results. The AI Rewrite option in the Plagiarism Remover sends its text to Groq, a third-party AI provider, only when you click it. This data is
           transmitted securely and is not stored by us after processing. We do
           not use your tool inputs for training, advertising, or any purpose
           other than delivering the requested result.

@@ -449,7 +449,7 @@ export function AiDetectorTool() {
           <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div>
               <p className="text-sm font-medium">AI text detected?</p>
-              <p className="text-xs text-muted-foreground">Rewrite it to sound human and pass AI detection</p>
+              <p className="text-xs text-muted-foreground">Reword flagged sentences in your own words, then review them</p>
             </div>
             <div className="flex gap-2">
               <Link href="/tools/plagiarism-remover" className="px-4 py-2 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-1.5">

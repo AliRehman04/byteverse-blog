@@ -11,41 +11,35 @@ import {
 
 const toolConfig = {
   name: "Plagiarism Remover & AI Humanizer",
-  title: "Free Plagiarism Remover & AI Humanizer â€” Rewrite Text Online",
+  title: "Free Plagiarism Remover & AI Humanizer — Rewrite Text Online",
   description:
-    "Remove plagiarism and humanize AI-generated text instantly. Replaces AI phrases, swaps synonyms, adds contractions, and makes content unique. 100% free, private, client-side tool.",
+    "Reword your draft for free: Quick Rewrite runs in your browser, and optional AI Rewrite uses an AI provider. Rewording does not make text original, so cite your sources.",
   slug: "plagiarism-remover",
   keywords: [
     "plagiarism remover",
     "ai humanizer",
     "text rewriter",
-    "remove plagiarism",
-    "humanize ai text",
     "paraphrasing tool",
     "rewrite text online",
-    "remove ai detection",
-    "make text unique",
     "free plagiarism remover online",
     "ai text humanizer free",
     "plagiarism rewriter tool",
-    "bypass ai detection",
-    "undetectable ai text",
   ],
   faqs: [
     {
       question: "How does the plagiarism remover work?",
       answer:
-        "The tool uses three strategies: it replaces 55+ common AI phrases with human-sounding alternatives, swaps 150+ words with contextual synonyms, and adds natural contractions. A strength slider controls how aggressively the text is rewritten.",
+        "Quick Rewrite runs in your browser. It replaces common AI-style phrases, swaps some words for synonyms from a built-in list, adds contractions, and restructures a few sentence patterns. AI Rewrite sends your text to an AI provider (Groq), which returns a model-written rewrite. The strength setting controls how many changes are made.",
     },
     {
-      question: "Will this remove AI detection?",
+      question: "Does rewriting make text original or pass AI detectors?",
       answer:
-        "The tool targets specific patterns that AI detectors look for â€” formulaic transitions, overused phrases, lack of contractions, and robotic vocabulary. At medium-to-heavy strength, it significantly reduces AI detection scores. For best results, also manually edit the output to add your own voice.",
+        "No guarantee. Rewriting changes wording only. It does not make text original, does not remove the need to cite sources, and cannot promise any result in an AI or plagiarism detector. Compare wording with sources you supply in the Text Similarity Checker, then review citations yourself.",
     },
     {
       question: "Is my text safe and private?",
       answer:
-        "Yes. All rewriting happens entirely in your browser using JavaScript. No text is uploaded, stored, or sent to any server. Your content never leaves your device.",
+        "Quick Rewrite runs entirely in your browser, and that text is not sent anywhere. AI Rewrite is different: when you click it, the text you submit (up to 5,000 characters) is sent to Groq, a third-party AI provider, to create the rewrite. Do not use AI Rewrite for text you are not allowed to share with that provider.",
     },
     {
       question: "Can I edit the rewritten text?",
@@ -55,12 +49,12 @@ const toolConfig = {
     {
       question: "What is the difference between Light, Medium, and Heavy?",
       answer:
-        "Light makes subtle changes â€” mainly contractions and a few key phrase replacements. Medium applies all three transformation layers at a balanced rate. Heavy aggressively rewrites the text, replacing more words and phrases for maximum uniqueness.",
+        "Light makes a few small changes, mostly contractions and some phrase replacements. Medium applies the enabled layers at a moderate rate. Heavy changes more words and sentence patterns, so re-read the result carefully to check the meaning.",
     },
     {
       question: "Is this tool completely free?",
       answer:
-        "Yes, 100% free with no signup, no credit card, and no usage limits. All processing happens locally in your browser so we have zero server costs to pass on.",
+        "Yes. There is no sign-up and no payment. Quick Rewrite has no server limit. AI Rewrite needs at least 20 words, accepts up to 5,000 characters per request, and allows 10 requests per minute per visitor.",
     },
   ],
 };
@@ -69,28 +63,28 @@ const features = [
   {
     icon: ShieldCheck,
     title: "AI Phrase Removal",
-    desc: "Replaces 55+ formulaic phrases commonly used by AI models with natural, human-sounding alternatives.",
+    desc: "Replaces formulaic phrases often found in AI-written text with simpler wording.",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
   {
     icon: Shuffle,
     title: "Synonym Swapping",
-    desc: "Swaps 150+ overused words with contextual synonyms. The strength slider controls how aggressively.",
+    desc: "Swaps some common words for synonyms from a built-in list. The strength slider controls how many words change.",
     color: "text-violet-500",
     bg: "bg-violet-500/10",
   },
   {
     icon: Quote,
     title: "Contraction Injection",
-    desc: 'Converts "it is" to "it\'s", "do not" to "don\'t" â€” one of the fastest ways to humanize text.',
+    desc: 'Converts phrases such as "it is" to "it\'s" and "do not" to "don\'t".',
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
   },
   {
     icon: Monitor,
-    title: "100% Client-Side",
-    desc: "Your text never leaves your browser. No servers, no data collection, no privacy concerns whatsoever.",
+    title: "Quick Rewrite Stays Local",
+    desc: "Quick Rewrite runs in your browser and sends nothing. AI Rewrite is optional and sends your text to an AI provider only when you click it.",
     color: "text-amber-500",
     bg: "bg-amber-500/10",
   },
@@ -104,7 +98,7 @@ const features = [
   {
     icon: Zap,
     title: "Instant Results",
-    desc: "Get your rewritten text in seconds. No waiting, no queues, no signups required to start using it.",
+    desc: "Quick Rewrite returns results right away. AI Rewrite depends on the AI provider's response time.",
     color: "text-cyan-500",
     bg: "bg-cyan-500/10",
   },
@@ -115,7 +109,7 @@ const steps = [
     num: "01",
     icon: ClipboardPaste,
     title: "Paste Your Text",
-    desc: "Copy any text â€” AI-generated, academic, or web content â€” and paste it into the input box.",
+    desc: "Paste the text you want to reword. Use AI Rewrite only for text you are allowed to share with an AI provider.",
   },
   {
     num: "02",
@@ -127,7 +121,7 @@ const steps = [
     num: "03",
     icon: MousePointerClick,
     title: "Get Results",
-    desc: "Click Rewrite and get your humanized, unique text in seconds. Copy, edit, or regenerate as needed.",
+    desc: "Click Quick Rewrite or AI Rewrite, then review the result, check the meaning, and add citations where needed.",
   },
 ];
 
@@ -170,10 +164,10 @@ export const metadata: Metadata = generateToolMetadata(toolConfig);
 
 export default function PlagiarismRemoverPage() {
   const stats = [
-    { value: "55+", label: "AI Phrases Detected" },
-    { value: "150+", label: "Synonyms Replaced" },
-    { value: "100%", label: "Client-Side Private" },
-    { value: "< 1s", label: "Processing Time" },
+    { value: "Free", label: "No sign-up needed" },
+    { value: "Local", label: "Quick Rewrite runs in your browser" },
+    { value: "5,000", label: "Max characters for AI Rewrite" },
+    { value: "10/min", label: "AI Rewrite requests per visitor" },
   ];
 
   return (
@@ -186,15 +180,15 @@ export default function PlagiarismRemoverPage() {
           <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-emerald-300 text-xs font-semibold mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              100% Free &middot; No Signup Required
+              Free &middot; No Sign-up Required
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-              Make AI Text Sound<br className="hidden sm:block" />
-              <span className="bg-linear-to-r from-violet-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Undeniably Human</span>
+              Reword Your Draft<br className="hidden sm:block" />
+              <span className="bg-linear-to-r from-violet-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Quick or AI Rewrite</span>
             </h1>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
-              Paste AI-generated or flagged text below. Our tool rewrites it to remove robotic
-              patterns and plagiarism markers â€” entirely in your browser, with zero data collection.
+              Paste your draft below. Quick Rewrite runs entirely in your browser. AI Rewrite sends
+              your text to an AI provider only when you choose it. Rewording does not make text original.
             </p>
           </div>
         </div>
@@ -235,10 +229,10 @@ export default function PlagiarismRemoverPage() {
             Core Features
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            Everything You Need to<br className="hidden sm:block" /> Make Text Uniquely Yours
+            Everything You Need to<br className="hidden sm:block" /> Reword Your Draft
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base mt-3 max-w-2xl mx-auto">
-            Three powerful transformation layers working together to remove AI fingerprints and plagiarism from your content.
+            Three rewrite layers you can turn on or off, with a strength slider and an optional AI Rewrite.
           </p>
         </div>
 
@@ -267,7 +261,7 @@ export default function PlagiarismRemoverPage() {
               How It Works
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-              Plagiarism-Free in 3 Simple Steps
+              Reword in 3 Simple Steps
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base mt-3 max-w-lg mx-auto">
               No complicated setup, no learning curve. Just paste, tweak, and rewrite.
@@ -307,14 +301,14 @@ export default function PlagiarismRemoverPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mb-5">
-              Why Use a Plagiarism Remover?
+              Why Use a Rewriting Tool?
             </h2>
             <div className="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               <p>
-                Whether you are polishing an academic paper, rewriting blog content, or humanizing AI-generated drafts from <Link href="/blog/10-best-free-ai-tools-in-2026-that-will-blow-your-mind" className="text-primary hover:underline">ChatGPT or Claude</Link>, a plagiarism remover helps you produce original text that reads naturally. Search engines and academic institutions increasingly penalize duplicate and AI-patterned content, making paraphrasing tools essential for writers, students, and marketers.
+                Whether you are polishing an academic paper, editing blog content, or revising AI-generated drafts from <Link href="/blog/10-best-free-ai-tools-in-2026-that-will-blow-your-mind" className="text-primary hover:underline">ChatGPT or Claude</Link>, a rewriting tool can help you reword sentences so they read more naturally. Rewording does not make text original and does not replace citing your sources.
               </p>
               <p>
-                ByteVerse&apos;s plagiarism remover goes beyond simple word swapping. It uses three distinct transformation layers â€” AI phrase removal, contextual synonym replacement, and contraction injection â€” to rewrite text in a way that passes both plagiarism scanners and <Link href="/tools/ai-content-detector" className="text-primary hover:underline">AI content detectors</Link>. The adjustable strength slider gives you complete control over how aggressively your text is rewritten.
+                ByteVerse&apos;s Quick Rewrite applies rule-based changes: AI-style phrase replacement, synonym swaps from a built-in list, contractions, and a few sentence restructures. A strength slider controls how many changes are made. AI Rewrite is optional and sends your text to an AI provider. Neither mode guarantees a result in any plagiarism checker or <Link href="/tools/ai-content-detector" className="text-primary hover:underline">AI content detector</Link>.
               </p>
               <p>
                 After rewriting, compare wording against supplied sources with our <Link href="/tools/plagiarism-checker" className="text-primary hover:underline">Text Similarity Checker</Link> and review citations yourself. No comparison certifies originality. Use the <Link href="/tools/word-counter" className="text-primary hover:underline">Word Counter</Link> for length requirements and the <Link href="/tools/diff-checker" className="text-primary hover:underline">Diff Checker</Link> to inspect edits.
@@ -326,11 +320,11 @@ export default function PlagiarismRemoverPage() {
             <h3 className="text-lg font-bold text-foreground mb-4">Tips for Best Results</h3>
             <div className="space-y-3">
               {[
-                { title: "Start at Medium", desc: "50% strength gives a balanced rewrite that preserves meaning while making text unique." },
-                { title: "Use Heavy for AI text", desc: "AI-generated content needs more aggressive rewriting â€” try 70%+ strength for best results." },
-                { title: "Always review output", desc: "Add your personal voice and style after rewriting for the most natural-sounding result." },
+                { title: "Start at Medium", desc: "50% strength makes a moderate set of changes. Read the result to confirm the meaning is unchanged." },
+                { title: "Use Heavy with care", desc: "Heavy strength changes more words and sentence patterns, so review every sentence for meaning." },
+                { title: "Always review output", desc: "Edit the result so it matches your voice and the facts in your sources." },
                 { title: "Check sources and citations", desc: "Compare supplied sources in the Text Similarity Checker, then review attribution. A low overlap result is not proof of originality." },
-                { title: "Combine with manual edits", desc: "The best results come from pairing automated rewriting with your own revisions." },
+                { title: "Combine with manual edits", desc: "Treat automated rewriting as a first draft that you revise yourself." },
               ].map((tip) => (
                 <div key={tip.title} className="flex gap-3 p-3.5 rounded-xl border border-border bg-card hover:border-violet-500/20 transition-colors duration-200">
                   <span className="w-1.5 h-6 rounded-full bg-linear-to-b from-violet-500 to-blue-500 shrink-0 mt-0.5" />

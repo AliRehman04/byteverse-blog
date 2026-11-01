@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { rateLimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
+import { AI_REWRITE_LIMITS } from "@/lib/plagiarism/ai-rewrite-limits";
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
@@ -15,22 +16,26 @@ export async function POST(request: Request) {
 
     // Rate limit: 10 requests per IP per minute
     const ip = getClientIp(request);
-    const rl = rateLimit(`ai-rewrite:${ip}`, { limit: 10, windowSeconds: 60 });
+    const rl = rateLimit(`ai-rewrite:${ip}`, { limit: AI_REWRITE_LIMITS.requestsPerMinute, windowSeconds: 60 });
     if (!rl.success) return rateLimitResponse(rl.resetAt);
 
     const body = await request.json();
     const text = typeof body.text === "string" ? body.text.trim() : "";
     const strength = typeof body.strength === "number" ? body.strength : 50;
 
-    if (!text || text.length < 50) {
+    if (!text || text.length < AI_REWRITE_LIMITS.minChars) {
       return NextResponse.json(
-        { error: "Text must be at least 50 characters." },
+        { error: `Text must be at least ${AI_REWRITE_LIMITS.minChars} characters.` },
         { status: 400 }
       );
     }
 
-    // Cap input at 5000 chars to prevent abuse
-    const inputText = text.slice(0, 5000);
+    if (text.length > AI_REWRITE_LIMITS.maxChars) {
+      return NextResponse.json(
+        { error: `AI Rewrite accepts up to ${AI_REWRITE_LIMITS.maxChars.toLocaleString("en-US")} characters. Shorten the text or use Quick Rewrite.` },
+        { status: 413 }
+      );
+    }
 
     const strengthLabel =
       strength <= 30 ? "lightly" : strength <= 65 ? "moderately" : "heavily";
@@ -50,7 +55,7 @@ export async function POST(request: Request) {
           },
           {
             role: "user",
-            content: inputText,
+            content: text,
           },
         ],
         temperature: strength <= 30 ? 0.3 : strength <= 65 ? 0.6 : 0.9,

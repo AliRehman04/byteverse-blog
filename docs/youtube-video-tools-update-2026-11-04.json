@@ -1,0 +1,390 @@
+{
+  "slug": "best-ai-tools-for-youtube-creators-2026",
+  "postId": 117,
+  "website": "https://www.byteverse.fyi",
+  "request": "Owner asked to improve this existing article instead of the SEO Title Analyzer: new SEO title, H1 and meta description focused on AI video creation tools, a comparison table (Tool, Best for, Free option?) for Runway, CapCut, Descript, OpusClip and Canva, pricing and free limits verified on official sites, and no generic AI descriptions.",
+  "searchConsole": {
+    "source": "Owner-provided Search Console summary pasted in chat on 2026-11-04; ByteVerse has no Search Console API access in this workflow",
+    "period": null,
+    "pageImpressions": 1951,
+    "pageClicks": 0,
+    "maxQueryImpressions": 9,
+    "queries": [
+      { "query": "best ai video creation tools for youtube", "impressions": null },
+      { "query": "best ai video tools for youtube video creation", "impressions": null },
+      { "query": "best free ai tools for youtube creators", "impressions": null },
+      { "query": "best ai tools for youtube content creation", "impressions": null }
+    ],
+    "interpretation": "Individual queries are too small to be final keyword research; the page-level 1,951 impressions with 0 clicks justify testing a title, description and content focus change."
+  },
+  "keywordResearch": {
+    "checkedAt": "2026-11-04T15:52:02.009Z",
+    "source": "Google public autocomplete via scripts/research-blog-2026-10-24.mjs --keywords (English, gl=us)",
+    "seedsAttempted": 18,
+    "seedsWithSuggestions": 18,
+    "errors": 0,
+    "notableSuggestions": [
+      "best ai tool for video creation for youtube",
+      "best ai tools to create videos for youtube",
+      "ai tools for youtube video creation free",
+      "best ai video editor for youtube free",
+      "ai video generator for youtube without watermark",
+      "ai clipping tool for youtube shorts",
+      "best ai tools for youtube thumbnails",
+      "best free ai tools for faceless youtube channel",
+      "capcut free plan limitations",
+      "runway free plan credits",
+      "opus clip alternative free no watermark",
+      "descript vs capcut"
+    ],
+    "limits": "Wording evidence only. No search volumes, keyword difficulty, SERP rank data or traffic predictions."
+  },
+  "finalResearchReview": {
+    "localDate": "2026-11-05",
+    "timeZone": "Asia/Karachi",
+    "scope": "Improve existing post 117 only. Keep the slug, original publication date and cover. Do not modify the SEO Title Analyzer.",
+    "evidence": "Owner-provided low-sample Search Console queries, 18 public autocomplete seeds, two usable DuckDuckGo result samples, three competitor articles, official product plans and YouTube policies.",
+    "searchResults": {
+      "observedAtUtc": "2026-11-04T19:26:33.774Z",
+      "engine": "DuckDuckGo HTML, us-en request parameter; not Google rank data or a neutral geolocated rank tracker",
+      "attemptedQueries": 5,
+      "usableQueries": 2,
+      "advertisementsExcluded": 2,
+      "samples": [
+        {
+          "query": "best ai video creation tools for youtube",
+          "status": 200,
+          "organicUrls": [
+            "https://www.heygen.com/blog/best-ai-video-tools-youtube-creators-2026",
+            "https://officechai.com/learn/ai-tools-for-youtube-video-creation/",
+            "https://www.heygen.com/blog/best-ai-video-generators-tested-and-reviewed",
+            "https://www.domoai.app/blog/best-ai-video-tools-for-youtube-content-creators",
+            "https://www.capcut.com/resource/top-7-free-ai-video-makers-for-youtube",
+            "https://www.revid.ai/blog/ai-tools-for-youtube-video-creation",
+            "https://www.renderforest.com/blog/best-ai-video-generators-youtube",
+            "https://techjournal.org/best-ai-video-generators"
+          ]
+        },
+        {
+          "query": "best free ai tools for youtube creators",
+          "status": 200,
+          "organicUrls": [
+            "https://fluxnote.io/guides/best-free-ai-tools-youtube-2026",
+            "https://www.heygen.com/blog/best-ai-video-tools-youtube-creators-2026",
+            "https://www.domoai.app/blog/best-ai-video-tools-for-youtube-content-creators",
+            "https://vidiq.com/free-youtube-tools/",
+            "https://www.scriptbyai.com/best-free-ai-tools-youtube-creators/",
+            "https://simplifyaitools.com/blog/best-free-ai-tools-youtube-creators-2026/",
+            "https://www.vozo.ai/blogs/youtube/ai-tools-youtube-creators",
+            "https://www.capcut.com/resource/top-7-free-ai-video-makers-for-youtube",
+            "https://theaitoolsbox.com/blog/best-ai-tools-for-youtubers-2026/",
+            "https://presenc.ai/research/best-ai-tools-for-youtube-creators-2026"
+          ]
+        }
+      ],
+      "unavailable": [
+        { "query": "ai video generator for youtube without watermark", "status": 202 },
+        { "query": "descript vs capcut for youtube", "status": 202 },
+        { "query": "ai tools for youtube shorts free", "status": 202 }
+      ],
+      "google": "Browser capture failed at Edge launch before results were collected. No Google position or People Also Ask evidence claimed; no challenge bypass."
+    },
+    "competitorsReviewed": [
+      {
+        "url": "https://www.heygen.com/blog/best-ai-video-tools-youtube-creators-2026",
+        "publisherType": "video-tool vendor",
+        "observedStructure": "Use-case shortlist, cost and credit discussion, comparison table, presenter/faceless/B-roll/Shorts categories, FAQs.",
+        "lessonApplied": "Separate generation from editing and show credit math with retry caveats. Its Runway rate and some cross-product prices conflict with current official pages; do not copy them or adopt its claimed hands-on results."
+      },
+      {
+        "url": "https://www.domoai.app/blog/best-ai-video-tools-for-youtube-content-creators",
+        "publisherType": "video-tool vendor",
+        "observedStructure": "Tool features, best-for cases, prices, pros/cons, budget and skill selection.",
+        "lessonApplied": "Make use-case selection explicit, distinguish free trials from recurring allowances, and label annual equivalents instead of calling USD 12 a month-to-month Runway price."
+      },
+      {
+        "url": "https://www.scriptbyai.com/best-free-ai-tools-youtube-creators/",
+        "publisherType": "AI tools editorial directory",
+        "observedStructure": "Comparison table, free-plan notes, setup requirements, use cases and FAQs.",
+        "lessonApplied": "Answer free-plan and export questions, but reject its blanket CapCut no-credits claim because CapCut's official page lists paid AI credits. Free account, free generation and watermark-free export are different."
+      }
+    ],
+    "keywordMap": [
+      { "intent": "primary commercial comparison", "queries": ["best ai video creation tools for youtube", "best ai video tools for youtube video creation"], "placement": "SEO title, H1, introduction, first comparison table; choose by output rather than a universal ranking" },
+      { "intent": "free creator workflow", "queries": ["best free ai tools for youtube creators", "ai tools for youtube video creation free"], "placement": "Free-plan column, YouTube Studio section and free workflow with real limitations" },
+      { "intent": "generation versus editing", "queries": ["best ai video editor for youtube", "ai video generator for youtube", "descript vs capcut"], "placement": "Generation/editing decision section, Runway and CapCut-versus-Descript comparison" },
+      { "intent": "watermark and export limits", "queries": ["ai video generator for youtube without watermark", "opus clip alternative free no watermark"], "placement": "Watermark-free creation subsection with export checks; do not promise unlimited free generated video" },
+      { "intent": "repurposing", "queries": ["ai tools for youtube shorts", "ai clipping tool for youtube shorts"], "placement": "OpusClip section and Shorts FAQ; distinguish repurposing existing footage from generating it" },
+      { "intent": "supporting production assets", "queries": ["best ai tools for youtube content creation", "best ai tools for youtube thumbnails", "ai voiceover for youtube"], "placement": "Canva, ElevenLabs and condensed surrounding workflow; preserve relevant contextual internal links" },
+      { "intent": "purchase and policy concerns", "queries": ["capcut free plan limitations", "runway free plan credits", "can ai generated videos be monetized on youtube"], "placement": "Dated billing and allowance evidence, disclosure/monetization distinctions and FAQs; policy question is editorial coverage, not measured query volume" }
+    ],
+    "cannibalization": [
+      { "slug": "best-ai-video-generators-2026", "boundary": "Generic model comparison remains on the existing page; this update targets YouTube workflow selection and links to it." },
+      { "slug": "how-to-edit-videos-with-ai-2026", "boundary": "Detailed editing tutorial remains separate; this article compares tools and practical plan limits." },
+      { "slug": "faceless-youtube-channel-with-ai-2026", "boundary": "Channel setup and faceless strategy remain separate; no duplicate article or changed slug." }
+    ],
+    "limitations": "No measured volume, keyword difficulty, backlinks, live GSC API access or reliable Google ranks. The GSC reporting period, average position, device and country breakdown are unknown. Zero clicks cannot be attributed to the old title alone; this is a bounded content experiment, not a ranking guarantee or a controlled title-only A/B test.",
+    "monitoring": {
+      "reviewDaysAfterPublication": [14, 28],
+      "metrics": ["clicks", "impressions", "CTR", "average position", "query mix", "country", "device"],
+      "method": "Filter the exact unchanged page in Search Console, compare equivalent periods and query/device/country segments, and avoid daily title changes. Record the deployment time first.",
+      "requestIndexing": "Pending owner action in the authenticated Search Console account; not submitted by this workflow."
+    }
+  },
+  "previous": {
+    "title": "Best AI Tools for YouTube Creators in 2026 (Full Workflow)",
+    "metaTitle": "Best AI Tools for YouTube Creators in 2026 (Full Workflow)",
+    "metaDescription": "The best AI tools for YouTube creators in 2026 for scripting, thumbnails, editing, voiceover, SEO, shorts, and channel growth. Tested and ranked.",
+    "excerpt": "YouTube creators in 2026 can use AI for scripting, thumbnails, editing, voiceovers, SEO, shorts, and analytics. This guide covers the best AI tools across every stage of the YouTube production workflow, from idea research to publishing and growth.",
+    "summary": "The best AI tools for YouTube creators in 2026 cover scripting, thumbnail design, video editing, voiceover, SEO optimization, and shorts repurposing.|ChatGPT, Claude, Runway, Opus Clip, ElevenLabs, Midjourney, vidIQ, and Canva AI lead different parts of the YouTube workflow.|A strong YouTube AI stack uses 4-6 tools that connect research, production, and optimization without overlapping.",
+    "keywords": "best ai tools for youtube creators 2026, ai tools for youtubers, ai video editing tools, ai thumbnail generator, ai script writer youtube, youtube seo ai tools, ai tools for youtube shorts, ai voiceover youtube",
+    "readingTime": "11",
+    "coverImage": "https://images.pexels.com/photos/2773498/pexels-photo-2773498.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "contentMd5": "78284eefa7145dc989efbd709c12a6ac",
+    "words": 2554,
+    "updatedAt": "2026-09-28T05:12:01.180Z",
+    "livePublishedAt": "2026-06-24T00:00:00.000Z",
+    "backupFile": "docs/content-backups/best-ai-tools-for-youtube-creators-2026-before-2026-11-04.md",
+    "backupSha256": "1691cb75d03e10e01d046d5a36177627dad47897716cea8b459d04fadecc9b26",
+    "problems": [
+      "Broad workflow title did not match the video-creation queries Google showed",
+      "Meta description claimed 'Tested and ranked' without any recorded tests",
+      "Unverified or outdated claims (unlimited ElevenLabs voiceover, fixed model versions, Shorts counts per upload)",
+      "No comparison table, no checked prices or free limits, no FAQ section",
+      "Three inline Pexels office photos had alt text describing YouTube dashboards and thumbnails that the photos do not show"
+    ]
+  },
+  "targeting": {
+    "title": "Best AI Video Creation Tools for YouTube Creators in 2026",
+    "metaTitle": "Best AI Video Creation Tools for YouTube in 2026",
+    "metaDescription": "Discover the best AI video creation tools for YouTube in 2026. Compare AI video generators, editors, voiceover tools, captions, and free options for creators.",
+    "excerpt": "Compare the best AI video creation tools for YouTube in 2026: Runway for AI B-roll, CapCut and Descript for editing, OpusClip for Shorts, Canva for thumbnails and ElevenLabs for voiceovers, with free plan limits checked on official pages.",
+    "summary": "Start free inside YouTube Studio: Ask Studio reviews scripts and drafts, and built-in A/B tests compare up to three titles or thumbnails.|Runway generates B-roll, CapCut and Descript edit footage, OpusClip cuts Shorts and Canva makes thumbnails; each free plan has a published limit.|Answer YouTube's AI use question for realistic generated scenes, and avoid mass-produced templates that YouTube treats as inauthentic content.",
+    "keywords": "best ai video creation tools for youtube, best ai video tools for youtube video creation, best free ai tools for youtube creators, best ai tools for youtube content creation, ai video editor for youtube, ai video generator for youtube, ai tools for youtube shorts, ai thumbnail maker for youtube, ai voiceover for youtube",
+    "readingTime": "19 min read"
+  },
+  "validation": {
+    "contentSha256": "154e5d3c8723c74d46db923e210a0b90e93cdfa5992e212321de142f73003454",
+    "proseWords": 4119,
+    "offlineTests": { "passed": 9, "failed": 0 },
+    "targetedEslint": "passed from project root",
+    "editorDiagnostics": "no errors in the article scripts or ledger",
+    "preflight": "passed: previous content and metadata match the backup; all 19 internal links return HTTP 200"
+  },
+  "faq": [
+    "What is the best AI video creation tool for YouTube?",
+    "Can I make YouTube videos with free AI tools?",
+    "Do I have to disclose AI-generated video on YouTube?",
+    "Can AI-generated videos be monetized on YouTube?",
+    "Which AI tool turns long YouTube videos into Shorts?"
+  ],
+  "internalLinks": [
+    "/blog/best-ai-video-generators-2026",
+    "/blog/how-to-edit-videos-with-ai-2026",
+    "/blog/how-to-use-canva-ai-2026-complete-guide",
+    "/blog/canva-ai-vs-adobe-express-2026",
+    "/blog/best-ai-image-generators-2026-free-paid",
+    "/blog/how-to-use-midjourney-2026-complete-guide",
+    "/tools/image-compressor",
+    "/blog/best-ai-voice-generators-2026",
+    "/blog/best-free-text-to-speech-tools-2026",
+    "/blog/claude-vs-chatgpt-2026-comparison",
+    "/blog/prompt-engineering-guide-2026-write-better-ai-prompts",
+    "/blog/perplexity-vs-google-gemini-2026-research",
+    "/tools/youtube-tag-generator",
+    "/blog/best-ai-transcription-tools-2026",
+    "/blog/best-ai-tools-for-podcasters-2026",
+    "/blog/how-to-make-ai-music-2026",
+    "/blog/faceless-youtube-channel-with-ai-2026",
+    "/blog/how-to-start-youtube-channel-2026",
+    "/blog/best-ai-content-creation-tools-2026"
+  ],
+  "verifiedFacts": [
+    {
+      "source": "Runway pricing",
+      "url": "https://runway.com/pricing",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "runwayml.com/pricing redirects to runway.com/pricing",
+        "Free: $0, 125 one-time credits, a selection of generative models, 5GB asset storage",
+        "Standard: $15 billed monthly or $12/month billed annually; 625 credits/month = 52s of Gen-4.5, 104s of Gen-4 Turbo or 78 Gen-4 images (1080p); no watermarks; 4K upscaling",
+        "Model table: Gen-4.5 costs 60 credits per 5 seconds",
+        "Pro: $35 monthly or $28/month yearly, 2,250 credits; Max: $95 monthly or $76/month yearly, 9,500 credits"
+      ],
+      "articlePhrases": ["Yes: 125 one-time credits", "The Free plan gives 125 credits once", "USD 144 billed yearly (USD 12/month equivalent)", "625 credits a month", "about 52 seconds of Gen-4.5 video, 104 seconds of Gen-4 Turbo or 78 Gen-4 images at 1080p", "60 credits per five seconds", "Standard also lists no watermarks and 4K upscaling"]
+    },
+    {
+      "source": "CapCut pricing (displayed from Pakistan)",
+      "url": "https://www.capcut.com/pricing",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Free: PKR 0, free templates and basic editing tools",
+        "Pro: PKR 2,900/month; 1,200 monthly AI credits; all premium templates and Pro features; 1 TB storage",
+        "Displayed pricing is for reference only; plan availability and features may vary by region, platform and current offering",
+        "Sign-up offer: 100 welcome credits to try Seedance video creation"
+      ],
+      "articlePhrases": ["PKR 2,900 a month", "1,200 AI credits a month", "1 TB of storage", "vary by region, platform and current offer", "100 welcome credits"]
+    },
+    {
+      "source": "CapCut AI caption generator page",
+      "url": "https://www.capcut.com/tools/ai-caption-generator",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "FAQ: the AI caption feature on CapCut Web is free to use",
+        "Supports 20+ languages",
+        "Users can upload their own SRT caption file"
+      ],
+      "articlePhrases": ["the AI caption feature in CapCut Web is free to use", "more than 20 languages", "accepts an SRT file"]
+    },
+    {
+      "source": "Descript pricing and plan comparison",
+      "url": "https://www.descript.com/pricing",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Free: $0; 60 media minutes/month; 100 AI credits (one-time); Underlord limited; 720p local export; no credit card required",
+        "Hobbyist: $16/month annual or $24 monthly; 10 media hours and 400 AI credits/month; 1080p watermark-free export; Studio Sound, Remove Filler Words, Create Clips",
+        "Creator: $24/month annual or $35 monthly; 30 media hours; 800 AI credits/month; 4K export",
+        "Transcription in 25 languages; media minutes count imported or recorded media"
+      ],
+      "articlePhrases": ["60 media minutes a month", "100 AI credits that do not renew", "720p local export", "USD 192 per person billed yearly (USD 16/month equivalent)", "10 media hours and 400 AI credits a month", "watermark-free 1080p export", "30 media hours, 800 AI credits a month and 4K export", "Descript transcribes 25 languages"]
+    },
+    {
+      "source": "OpusClip pricing and plan comparison",
+      "url": "https://www.opus.pro/pricing",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Free $0: local video up to 10GB or YouTube import; animated caption templates with watermark; no watermark-free export; MP4 export 3-day limit up to 1080p; media storage expires after 3 days; 9:16 reframe only; no virality score",
+        "Starter $15/mo: watermark-free export; virality score; 30-day export limit; more import sources such as Google Drive, Vimeo and Zoom",
+        "Pro $29/mo: 100GB storage; 9:16, 1:1 and 16:9; export to Premiere Pro and DaVinci Resolve"
+      ],
+      "articlePhrases": ["a local file of up to 10 GB", "animated captions with a watermark on Free", "MP4 exports limited to three days at up to 1080p", "media storage that expires after three days", "Starter, listed at USD 15 a month on the monthly plan", "Pro, at USD 29 a month on the monthly plan"]
+    },
+    {
+      "source": "Canva plans and pricing (displayed from Pakistan)",
+      "url": "https://www.canva.com/pricing/",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Free: 0 Rs per year",
+        "Pro: 9,200 Rs per year for one person; premium content, more powerful design tools and AI features",
+        "Standard, Premium and Ultra AI tools share a monthly AI allowance that varies by plan; fair use limits apply"
+      ],
+      "articlePhrases": ["PKR 9,200 a year for one person, billed yearly", "monthly AI allowance that varies by plan, with fair use limits"]
+    },
+    {
+      "source": "ElevenLabs pricing",
+      "url": "https://elevenlabs.io/pricing",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Free: $0, 10k credits/month, about 10 minutes of text-to-speech in the plan comparison; commercial license not included",
+        "Starter: $6/month after a $1 first-month offer; 30k credits; commercial license; instant voice cloning",
+        "Text to Speech: 1 credit per character on Multilingual v2",
+        "Credit rollover does not apply to the Free plan"
+      ],
+      "articlePhrases": ["10,000 credits a month", "about 10 minutes of text-to-speech", "Starter plan at USD 6 a month billed monthly", "30,000 credits", "one credit per character on its Multilingual v2 model", "free credits do not roll over"]
+    },
+    {
+      "source": "YouTube Help: Learn about Ask Studio in YouTube Studio",
+      "url": "https://support.google.com/youtube/answer/16291691",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "AI creative partner for ideas, channel insights and performance analysis",
+        "Script feedback; suggestions for draft, private or unlisted videos from creative best practices and historical retention data",
+        "Available to most creators, web browser on a computer only; not for Official Artist Channels, Made for Kids channels or creators under 18",
+        "Channel-connected conversations deleted after 30 days; human reviewers may read conversations"
+      ],
+      "articlePhrases": ["historical retention data", "only in a web browser on a computer", "creators under 18 do not have access", "after 30 days"]
+    },
+    {
+      "source": "YouTube Help: A/B test titles & thumbnails",
+      "url": "https://support.google.com/youtube/answer/16391400",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Up to 3 titles and/or thumbnails; the option with the highest watch time is shown to all viewers",
+        "Computer only; advanced features required; no Shorts, scheduled lives or premieres; no made for kids, mature or private videos",
+        "Tests should complete within two weeks",
+        "If any thumbnail is below 720p (1280 x 720), all experiment thumbnails are downscaled to 480p (854 x 480)"
+      ],
+      "articlePhrases": ["up to three titles, three thumbnails", "the most watch time", "within two weeks", "854 x 480"]
+    },
+    {
+      "source": "YouTube Help: Add custom thumbnails on YouTube",
+      "url": "https://support.google.com/youtube/answer/72431",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Recommended 3840 x 2160 for videos and 2160 x 3840 for Shorts; minimum width 640 pixels for videos and minimum height 640 pixels for Shorts",
+        "JPG or PNG; 16:9 for videos and 9:16 for Shorts",
+        "Mobile upload limit 2 MB for video thumbnails (10 MB podcasts); desktop 50MB for video, Shorts and podcast thumbnails",
+        "Custom thumbnails require a verified account; Shorts custom thumbnails can only be added in YouTube Studio on a computer"
+      ],
+      "articlePhrases": ["3840 x 2160", "640 pixels wide", "2 MB from mobile, 50 MB from a computer", "Shorts thumbnails can only be added on a computer", "verified YouTube account"]
+    },
+    {
+      "source": "YouTube Help: Create content for Shorts using AI-generated features",
+      "url": "https://support.google.com/youtube/answer/15260303",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Experimental tools generate images or videos from prompts as green screen backgrounds or standalone clips",
+        "Available in most countries for creators whose YouTube device language is English; may not be available in all locations",
+        "Shorts made with YouTube's generative AI tools disclose AI use automatically"
+      ],
+      "articlePhrases": ["green screen background", "device language is set to English", "labeled as AI content automatically"]
+    },
+    {
+      "source": "YouTube Help: Create with AI in the YouTube Create app",
+      "url": "https://support.google.com/youtube/answer/16631240",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Experimental and available to a limited number of creators in select countries",
+        "Gemini Omni: vertical and horizontal clips up to 10 seconds; Argentina, Australia, Brazil, Canada, India, Indonesia, New Zealand, Singapore, South Korea, Taiwan, Thailand, Turkiye and the United States",
+        "Edit with AI: 1 to 25 clips, uploads from 5 seconds to 5 minutes, with voiceover, music and captions; the same countries plus Hong Kong"
+      ],
+      "articlePhrases": ["up to 10 seconds long", "1 to 25 of your own clips", "Pakistan was not on either list"]
+    },
+    {
+      "source": "YouTube Help: Disclosing use of GenAI content",
+      "url": "https://support.google.com/youtube/answer/14328491",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Disclose realistic AI-generated or meaningfully altered content with the AI use setting in the Attributes section during upload",
+        "Required cases: a real person appears to say or do something they did not; altered footage of a real event or place; a realistic scene that did not occur; music that is the main focus",
+        "Non-realistic content and minor edits do not require disclosure",
+        "Disclosure alone does not limit audience or eligibility to earn money; consistent non-disclosure can lead to labels, removal or YouTube Partner Program suspension"
+      ],
+      "articlePhrases": ["answer the \"AI use\" question", "alters footage of a real event or place", "generates a realistic scene that did not actually occur", "suspension from the YouTube Partner Program"]
+    },
+    {
+      "source": "YouTube Help: YouTube channel monetization policies",
+      "url": "https://support.google.com/youtube/answer/1311392",
+      "checkedAt": "2026-11-04",
+      "facts": [
+        "Monetizing content should be original and authentic, not mass-produced, generic, repetitive or manipulative",
+        "July 15, 2025: the repetitious content policy was renamed inauthentic content, clarifying it includes repetitive or mass-produced content",
+        "Reviewers may focus on main theme, most viewed videos, newest videos, biggest proportion of watch time, metadata and the About section"
+      ],
+      "articlePhrases": ["July 15, 2025", "\"inauthentic content\"", "mass-produced, generic, repetitive or manipulative"]
+    }
+  ],
+  "images": {
+    "cover": "https://images.pexels.com/photos/2773498/pexels-photo-2773498.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "coverDescription": "Camera operator with a professional cinema camera rig outdoors; kept because it matches video creation",
+    "removedInline": [
+      { "pexelsId": 3184639, "previousAlt": "YouTube creator workspace with AI tools on screen", "actual": "Business team meeting with charts on a laptop, phone and tablet" },
+      { "pexelsId": 3194521, "previousAlt": "AI thumbnail generation process showing before and after", "actual": "Overhead view of four people working on laptops at a round table" },
+      { "pexelsId": 6476260, "previousAlt": "YouTube analytics dashboard showing AI-optimized performance", "actual": "Overhead desk with laptops and an ad spend chart on a monitor" }
+    ]
+  },
+  "limits": [
+    "No paid hands-on output tests, account sign-ups or tool generations were run; the guide states this.",
+    "Prices are a dated snapshot; CapCut and Canva displayed Pakistani rupee pricing for the checking location.",
+    "No Search Console API, search volume, keyword difficulty or ranking data; no traffic or ranking guarantee.",
+    "Owner's own experience with these tools has not been added yet."
+  ],
+  "publication": {
+    "status": "applied-awaiting-live-verification",
+    "appliedAt": "2026-11-04T19:35:46.590Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 176,
+    "otherPostsHash": "70da3f822d5d25ad3e109f7fc2130e97",
+    "pushed": false
+  }
+}

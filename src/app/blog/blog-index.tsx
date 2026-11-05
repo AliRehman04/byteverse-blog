@@ -21,6 +21,9 @@ export function blogIndexMetadata(page: number): Metadata {
     description,
     publisher: siteConfig.name,
     alternates: { canonical: url },
+    ...(page > 1 ? {
+      robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+    } : {}),
     openGraph: {
       type: "website", locale: "en_US", url, siteName: siteConfig.name, title, description,
       images: [{ url: `${base}/opengraph-image`, width: 1200, height: 630, alt: "ByteVerse blog" }],

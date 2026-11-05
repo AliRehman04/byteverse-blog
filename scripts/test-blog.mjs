@@ -243,6 +243,20 @@ test("blog metadata matches the shared site identity and pagination canonicals",
   assert(!read("src/app/blog/page.tsx").includes("searchParams"), "/blog must stay static: no request-time searchParams");
 });
 
+test("pagination is noindex and follow while the main blog keeps inherited indexing", async () => {
+  assert.equal(Object.hasOwn(page.metadata, "robots"), false);
+  for (const currentPage of [2, 3, 4, 5, 6]) {
+    setIndex(makePosts(currentPage === 6 ? 20 : 30), currentPage, 170);
+    const metadata = await archive.generateMetadata({ params: Promise.resolve({ page: String(currentPage) }) });
+    assert.deepEqual(plain(metadata.robots), {
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    });
+    assert.equal(metadata.alternates.canonical, `https://www.byteverse.fyi/blog/page/${currentPage}`);
+  }
+});
+
 test("blog colours derive from the shared site theme and reuse the homepage design tokens", () => {
   const styles = read("src/app/blog/blog-premium.module.css");
   const home = read("src/app/home-premium.module.css");

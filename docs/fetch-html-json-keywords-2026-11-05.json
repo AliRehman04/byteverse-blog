@@ -1,0 +1,201 @@
+{
+  "slug": "unexpected-token-html-not-valid-json",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-05",
+  "targeting": {
+    "title": "Unexpected Token '<' in JSON: Fix Fetch Returning HTML",
+    "metaTitle": "Unexpected Token '<' in JSON: Fix Fetch HTML",
+    "metaDescription": "Fix unexpected token '<' in JSON by checking HTML responses, login redirects, API routes and empty bodies. Includes tested Fetch, Next.js and Vite examples.",
+    "excerpt": "Find why an API returned HTML instead of JSON. Diagnose wrong routes, login redirects, frontend fallbacks and empty responses with tested JavaScript examples and focused Next.js and Vite fixes.",
+    "keywords": "unexpected token html is not valid json, unexpected token in json at position 0, fetch returns html instead of json, api returns html instead of json, nextjs api returns html, response json unexpected end of json input",
+    "summary": "Inspect the response URL, HTTP status, media type and body before changing the JSON parser; an HTML login or error page is not API data.|Use the eight-case reproduction and checked JSON reader to distinguish HTML, HTTP errors, empty responses and consumed streams.|Fix API routing or authentication at the source, preserve access controls, and verify the same request in the environment that failed.",
+    "readingTime": "15 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-05T04:24:41.566Z",
+    "total": 177,
+    "published": 175,
+    "hash": "392c1d23d1fca0e1da3760a5d1c88060",
+    "overlap": {
+      "checkedAt": "2026-11-05T04:24:59.599Z",
+      "terms": ["Unexpected token", "DOCTYPE", "fetch returns html"],
+      "matchingPosts": [],
+      "scope": "Database titles and body headings/mentions, including unpublished posts; exact-topic screen, not a semantic duplicate-proof guarantee."
+    },
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"],
+    "nearbyCoverage": [
+      { "slug": "nextjs-16-deployment-guide-2026-vercel-seo-custom-domain", "boundary": "Existing deployment overview, not response-format diagnosis; link for deployment context." },
+      { "slug": "n8n-json-parameter-needs-to-be-valid-json", "boundary": "Outgoing n8n body construction, not an incoming HTML response; explain the difference and link." },
+      { "slug": "javascript-roadmap-2026-beginner-job-ready", "boundary": "Language learning roadmap, not this specific Fetch failure." }
+    ]
+  },
+  "research": {
+    "selection": "Compared CSV multiline fields, n8n Code-node return shapes and HTML-as-JSON responses. Selected the exact Fetch error because the inventory has no matching topic, public wording evidence and discussions exist, and core claims can be reproduced without production credentials.",
+    "preliminarySeeds": 12,
+    "selectedTopicSeeds": 20,
+    "selectedSeedsWithSuggestions": 8,
+    "autocompleteCheckedAt": "2026-11-05T04:27:14.589Z",
+    "autocompleteContext": "Google public autocomplete, English with gl=us; wording evidence only, not measured US search demand.",
+    "observations": [
+      { "seed": "unexpected token in json at position 0", "suggestions": ["unexpected token in json at position 0", "syntaxerror unexpected token in json at position 0", "unexpected token u in json at position 0"] },
+      { "seed": "unexpected token doctype is not valid json", "suggestions": ["unexpected token doctype is not valid json", "unexpected token doctype is not valid json how to fix", "unexpected token ' ' doctype is not valid json nextjs"] },
+      { "seed": "unexpected token html is not valid json", "suggestions": ["unexpected token ' ' html is not valid json", "unexpected token ' ' doctype html is not valid json"] },
+      { "seed": "fetch returns html instead of json", "suggestions": ["get request returns html instead of json", "fetch json example", "javascript fetch return value"] },
+      { "seed": "api returns html instead of json", "suggestions": ["api returns html instead of json", "api call returns html instead of json", "rest api return html instead of json"] },
+      { "seed": "nextjs api returns html instead of json", "suggestions": [] },
+      { "seed": "react unexpected token json", "suggestions": [] },
+      { "seed": "vite fetch returns html instead of json", "suggestions": [] },
+      { "seed": "express api returns html instead of json", "suggestions": [] },
+      { "seed": "response json syntaxerror", "suggestions": [] },
+      { "seed": "response json unexpected end of json input", "suggestions": ["await response.json() unexpected end of input", "fetch response json unexpected end of input", "javascript response json unexpected end of input"] },
+      { "seed": "fetch 204 response json", "suggestions": [] },
+      { "seed": "fetch redirect login page json", "suggestions": [] },
+      { "seed": "fetch content type application json", "suggestions": ["fetch content type application json", "fetch headers content type application json", "fetch set content type application json"] },
+      { "seed": "fetch json body already read", "suggestions": [] },
+      { "seed": "response json body used", "suggestions": [] },
+      { "seed": "json parse unexpected non whitespace character", "suggestions": ["json parse unexpected non whitespace character", "json parse unexpected non whitespace character after json data"] },
+      { "seed": "no cors opaque response json", "suggestions": [] },
+      { "seed": "json response works postman not browser", "suggestions": [] },
+      { "seed": "unexpected token vercel json", "suggestions": [] }
+    ],
+    "suggestionNote": "Nonempty lists retain relevant observed suggestions, not every suggestion. Empty responses are retained, not treated as proof of no demand.",
+    "searchSamples": [
+      {
+        "checkedAt": "2026-11-05T04:27:17.017Z",
+        "engine": "DuckDuckGo HTML, us-en",
+        "query": "fetch returns html instead of json unexpected token",
+        "status": 200,
+        "observedUrls": [
+          "https://stackoverflow.com/questions/40602751/fetch-api-returning-html-instead-of-json",
+          "https://stackoverflow.com/questions/71312594/unexpected-token-in-json-when-using-fetch",
+          "https://jsondevtools.org/blog/api-returning-html-instead-of-json.html",
+          "https://trackjs.com/javascript-errors/unexpected-token/",
+          "https://jsonfmt.org/guides/unexpected-token-less-than-in-json/",
+          "https://blog.openreplay.com/fixing-unexpected-token-json/"
+        ]
+      },
+      {
+        "checkedAt": "2026-11-05T04:27:20.347Z",
+        "engine": "DuckDuckGo HTML, us-en",
+        "query": "unexpected token doctype is not valid json nextjs",
+        "status": 200,
+        "observedUrls": [
+          "https://stackoverflow.com/questions/77061741/unexpected-token-doctype-is-not-valid-json-error-in-next-js",
+          "https://stackoverflow.com/questions/76869262/nextauth-js-error-next-autherrorclient-fetch-error-unexpected-token",
+          "https://github.com/vercel/next.js/discussions/65663",
+          "https://github.com/nextauthjs/next-auth/issues/6293",
+          "https://json-beautifier.org/blog/unexpected-token-doctype-is-not-valid-json/"
+        ]
+      },
+      { "query": "vite api returns html instead of json", "status": 202, "observedUrls": [] },
+      { "query": "fetch 204 response json unexpected end", "status": 202, "observedUrls": [] }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "url": "https://jsonfmt.org/guides/unexpected-token-less-than-in-json/",
+        "read": true,
+        "observation": "Covers routes, authentication and response checks, but its generic repair framing risks confusing representation diagnosis with editing JSON syntax.",
+        "differentiation": "Keep the actual response intact, give executable scenarios and compare successful HTML, valid error JSON, false MIME labels, body consumption and no-content responses."
+      },
+      {
+        "url": "https://github.com/vercel/next.js/discussions/65663",
+        "read": true,
+        "observation": "Historical Next.js 14 build failure while a Server Component fetched its own API endpoint.",
+        "differentiation": "Explain self-fetching using current official Next.js guidance; do not copy old caching advice or claim converting to a Client Component is a universal fix."
+      },
+      { "url": "https://stackoverflow.com/questions/40602751/fetch-api-returning-html-instead-of-json", "read": false, "limitation": "Search result observed, but page content extraction failed. No claims attributed to its unseen answers." }
+    ],
+    "intentMap": [
+      { "intent": "exact error", "queries": ["unexpected token html is not valid json", "unexpected token doctype is not valid json"], "placement": "slug, metadata, opening explanation and response diagnosis" },
+      { "intent": "Fetch response format", "queries": ["fetch returns html instead of json", "api returns html instead of json"], "placement": "diagnostic table, URL example, redirect probe and checked reader" },
+      { "intent": "framework routing", "queries": ["nextjs api returns html instead of json", "vite fetch returns html instead of json"], "placement": "separate Next.js and Vite sections; these seeds returned no autocomplete suggestions" },
+      { "intent": "different JSON failure", "queries": ["response json unexpected end of json input", "fetch 204 response json"], "placement": "reproduction matrix, no-content handling and FAQ" },
+      { "intent": "misleading header fix", "queries": ["fetch content type application json"], "placement": "request Accept versus Content-Type and mislabeled-body evidence" }
+    ],
+    "limits": "No GSC access or newly measured page/query metrics, no Google SERP positions, no monthly volumes or keyword difficulty. Public result samples are not neutral ranking data. Exact-error pages are already competitive; no easy-ranking, click-growth or backlink-free guarantee."
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/Response/json", "type": "primary API reference", "supports": "JSON reader semantics and exceptions" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch", "type": "primary API guide", "supports": "HTTP errors, request headers, opaque responses, body consumption and credentials" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/API/Response/redirected", "type": "primary API reference", "supports": "Final URL, redirect detection versus prevention" },
+    { "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204", "type": "primary HTTP reference", "supports": "No response body on HTTP 204" },
+    { "url": "https://nextjs.org/docs/app/api-reference/file-conventions/route", "type": "official framework reference", "supports": "App Router file convention and Response.json" },
+    { "url": "https://nextjs.org/docs/app/guides/backend-for-frontend", "type": "official framework guide", "supports": "API access checks and reading data directly in Server Components" },
+    { "url": "https://vite.dev/config/server-options.html#server-proxy", "type": "official framework reference", "supports": "Development proxy path matching and dev-only configuration" },
+    { "url": "https://github.com/vercel/next.js/discussions/65663", "type": "historical community case", "supports": "Reported build-time self-fetch failure, not current caching policy" }
+  ],
+  "internalLinks": [
+    "/blog/javascript-roadmap-2026-beginner-job-ready",
+    "/blog/nextjs-16-deployment-guide-2026-vercel-seo-custom-domain",
+    "/blog/typescript-for-beginners-2026-complete-guide",
+    "/tools/json-to-typescript",
+    "/tools/json-formatter",
+    "/blog/n8n-json-parameter-needs-to-be-valid-json",
+    "/blog/best-free-apis-for-developers-2026"
+  ],
+  "faq": [
+    "What does unexpected token in JSON at position 0 mean?",
+    "Why does fetch return HTML instead of JSON?",
+    "Does setting Content-Type to application/json fix the error?",
+    "Why does a 204 response cause unexpected end of JSON input?",
+    "Should I use no-cors when an API works in Postman but fails in a browser?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverFile": "public/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/",
+    "coverPhotographer": "olia danilevich",
+    "inline": "https://www.byteverse.fyi/blog/claude-code-windows/photo-cover.jpg",
+    "inlineFile": "public/blog/claude-code-windows/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "inlinePhotographer": "Daniil Komov",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted coding photographs; illustrative, not claimed screenshots or measured test results."
+  },
+  "validation": {
+    "proseWords": 3252,
+    "readingTime": "15 min read",
+    "contentSha256": "4ae52bc441f9c82f9a458031e4602c1f7a35d17661d2fe9a5969eb2c10789d60",
+    "codeBlocks": 8,
+    "tables": 3,
+    "behaviorTestsPassed": 16,
+    "totalTestsPassed": 20,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: no duplicate; 177 existing posts unchanged; author, category, 7 internal links and both image URLs verified",
+    "preview": {
+      "path": "../.byteverse-fetch-json-preview/index.html",
+      "mode": "static local draft using the real MarkdownRenderer and deployed ByteVerse CSS",
+      "robots": "noindex,nofollow",
+      "layoutChecksPassed": 5,
+      "viewports": ["1440x1000 light", "375x812 light", "844x390 light", "1440x1000 dark", "375x812 dark"],
+      "pageOverflow": false,
+      "mainArticleHeadingBounds": "passed in all five states after constraining the static preview main to width 100%",
+      "mobileTableScrolling": "passed: 336px container, 372px scrollable content, 36px actual scroll offset",
+      "imagesLoaded": true,
+      "faqInteraction": "passed",
+      "screenshotsReviewed": ["desktop introduction and cover", "mobile diagnostic table"],
+      "limits": "Not a running Next.js deployment or new live post. Static preview has no production tracking scripts. Native clipboard behavior was not verified."
+    },
+    "runtime": "Node.js v24.12.0",
+    "executionScope": "Synthetic Response objects and one disposable loopback HTTP server; real curl checked without redirect following; no external API or database calls in behavior tests.",
+    "limits": "No live Next.js or Vite deployment test. Node Fetch does not validate browser CORS behavior. No production credentials or customer data used."
+  },
+  "publication": {
+    "status": "published-deployment-pending",
+    "postId": 246,
+    "publishedAt": "2026-11-05T05:06:36.077Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 177,
+    "otherPostsHash": "392c1d23d1fca0e1da3760a5d1c88060",
+    "liveUrl": "https://www.byteverse.fyi/blog/unexpected-token-html-not-valid-json",
+    "pushed": false,
+    "approvalRequired": false
+  }
+}

@@ -1,0 +1,726 @@
+{
+  "slug": "n8n-code-node-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-06",
+  "targeting": {
+    "title": "n8n Code Node Guide: Return Items Correctly and Fix Common Errors",
+    "metaTitle": "n8n Code Node Guide: Return Items, Fix Errors",
+    "metaDescription": "Learn how the n8n Code node reads and returns items, then fix 'Code doesn't return items properly', broken item links, blocked modules and task runner timeouts.",
+    "excerpt": "A complete guide to the n8n Code node: what it must return, Run Once for All Items versus Each Item, pairedItem links, arrays, binary data, Luxon dates, Python, modules and task runner timeouts, with every error message decoded and verified.",
+    "keywords": "n8n code node, n8n code node return array, code doesn't return items properly, a json property isn't an object, n8n code node multiple inputs, n8n code node python, n8n code node timeout, n8n pairedItem, n8n code node example",
+    "summary": "Return an array of items whose json key is an object, or exactly one object in each item mode|Set pairedItem whenever your code changes the item count so later nodes can still use .item|Keep HTTP calls, credentials and heavy loops out of the Code node and tune task runner limits only when batching is not enough",
+    "readingTime": "23 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-06T11:52:22.914Z",
+    "total": 178,
+    "published": 176,
+    "hash": "26221e9f8a83cb84640383bfcad72e0f",
+    "overlap": {
+      "existingN8nPosts": [
+        "how-to-use-n8n-2026-complete-guide",
+        "n8n-cant-determine-which-item-to-use",
+        "n8n-vs-zapier-2026-comparison",
+        "n8n-json-parameter-needs-to-be-valid-json",
+        "n8n-webhook-not-working-2026"
+      ],
+      "note": "No existing post covers the Code node; the existing n8n posts cover the beginner guide, Zapier comparison, webhooks, item linking and JSON body errors and are linked contextually."
+    },
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "nearbyCoverage": [
+      "n8n-cant-determine-which-item-to-use",
+      "n8n-json-parameter-needs-to-be-valid-json",
+      "how-to-use-n8n-2026-complete-guide"
+    ]
+  },
+  "research": {
+    "selection": "Compared three clusters with Google public autocomplete: 30 n8n seeds, 30 Ollama/AI coding/Excel seeds and the site's existing problem posts. The Code node cluster had the deepest and most specific demand signals (return array, multiple inputs, not working, python, timeout, console log, the two exact error messages) and fits the existing n8n cluster for internal links. Ollama context length was rejected because DuckDuckGo showed a dozen recent small-site guides on the same angle and no local hardware was available for original measurements.",
+    "preliminarySeeds": 60,
+    "selectedTopicSeeds": 30,
+    "selectedSeedsWithSuggestions": 29,
+    "autocompleteCheckedAt": "2026-11-06T11:53:45.340Z",
+    "autocompleteContext": "English / gl=us; not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n code node",
+        "suggestions": [
+          "n8n code node",
+          "n8n code node example",
+          "n8n code node python",
+          "n8n code node multiple inputs",
+          "n8n code node multiple outputs",
+          "n8n code node http request",
+          "n8n code node not working",
+          "n8n code node timeout",
+          "n8n code node console log",
+          "n8n code node return array"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n code node return",
+        "suggestions": [
+          "n8n code node return array",
+          "n8n code node return",
+          "n8n code node return json",
+          "n8n code node return string",
+          "n8n code node return binary",
+          "n13 denial code",
+          "n8n vs node-red",
+          "nin request code"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n code doesn't return items properly",
+        "suggestions": [
+          "n8n code doesn t return items properly",
+          "no response code"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n json property isn't an object",
+        "suggestions": [
+          "n8n a json property isn t an object",
+          "n8n a json property isn t an object item 0"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n format date",
+        "suggestions": [
+          "n8n format date",
+          "n8n format datetime",
+          "n8n format date expression",
+          "n8n format date javascript",
+          "n8n convert date format",
+          "n8n change date format",
+          "n8n json date format",
+          "n8n invalid date format",
+          "n8n today date format",
+          "date now format"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n date expression",
+        "suggestions": [
+          "n8n date expression",
+          "n8n expression date now",
+          "n8n expression date format",
+          "n8n current date expression",
+          "n8n today date expression",
+          "it's a date expression",
+          "ide first date"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n luxon",
+        "suggestions": [
+          "n8n luxon",
+          "n8n luxon date",
+          "n8n module luxon is disallowed",
+          "naranjas beneficios",
+          "essi o loro"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items",
+        "suggestions": [
+          "n8n loop over items",
+          "n8n loop over items example",
+          "n8n loop over items batch size",
+          "n8n loop over items reset",
+          "n8n loop over items not working",
+          "n8n loop over items index",
+          "n8n loop over items node",
+          "n8n loop over items done",
+          "n8n loop over items http request",
+          "n8n loop over items done branch"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split in batches",
+        "suggestions": [
+          "n8n split in batches",
+          "n8n split in batches node",
+          "n8n split in batches loop",
+          "n8n split in batches example",
+          "nodo split in batches n8n",
+          "bapi_outb_delivery_change batch split example",
+          "batch semi batch and continuous process",
+          "2 batch or batches"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node",
+        "suggestions": [
+          "n8n merge node",
+          "n8n merge node not working",
+          "n8n merge node wait for all inputs",
+          "n8n merge node example",
+          "n8n merge node documentation",
+          "n8n merge node append",
+          "n8n merge node wait",
+          "n8n merge node sql",
+          "n8n merge node binary",
+          "n8n merge node sql query"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n if node multiple conditions",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execute workflow",
+        "suggestions": [
+          "n8n execute workflow trigger",
+          "n8n execute workflow",
+          "n8n execute workflow node",
+          "n8n execute workflow with parameters",
+          "n8n execute workflow api",
+          "n8n execute workflow button",
+          "n8n execute workflow not working",
+          "n8n execute workflow trigger node",
+          "n8n execute workflow via api",
+          "n8n execute workflow output"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n error workflow",
+        "suggestions": [
+          "n8n error workflow",
+          "n8n error workflow not triggering",
+          "n8n error workflow template",
+          "n8n error workflow not working",
+          "n8n error workflow example",
+          "n8n workflow error handling",
+          "n8n workflow error notification",
+          "n8n workflow error trigger",
+          "n8n create error workflow",
+          "n8n error fetching workflows unauthorized"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n retry on fail",
+        "suggestions": [
+          "n8n retry on fail",
+          "n8n retry workflow on fail",
+          "n8n retry on error",
+          "n8n http request retry on fail",
+          "0xa00f4246 error retry failed"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n http request pagination",
+        "suggestions": [
+          "n8n http request pagination",
+          "n8n http request pagination example",
+          "n8n http request pagination loop",
+          "n8n http request node pagination"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n schedule trigger timezone",
+        "suggestions": [
+          "n8n schedule trigger time zone",
+          "n8n schedule trigger change timezone"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n google sheets append",
+        "suggestions": [
+          "n8n google sheets append multiple rows",
+          "n8n google sheets append",
+          "n8n google sheets append row",
+          "n8n google sheets add row",
+          "contact list template google sheets",
+          "can you merge google sheets",
+          "how to add template to google sheets"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory",
+        "suggestions": [
+          "n8n ai agent memory",
+          "n8n ai agent memory postgresql",
+          "n8n ai agent memory session id",
+          "n8n ai agent memory supabase",
+          "n8n ai agent memory mongodb",
+          "n8n ai agent memory postgres",
+          "n8n ai agent simple memory",
+          "n8n ai agent simple memory session id",
+          "n8n ai agent clear memory",
+          "n8n ai agent node memory"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n out of memory",
+        "suggestions": [
+          "n8n out of memory",
+          "n8n out of memory issue",
+          "n8n out of memory error",
+          "n8n running out of memory",
+          "n8n heap out of memory",
+          "n8n javascript heap out of memory",
+          "n8n may have run out of memory",
+          "what happens if you run out of memory",
+          "what does out of memory mean",
+          "out of memory code"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n expression",
+        "suggestions": [
+          "n8n expressions",
+          "n8n expression syntax",
+          "n8n expression if else",
+          "n8n expression if",
+          "n8n expression date",
+          "n8n expression loop",
+          "n8n expression json stringify",
+          "n8n expression date now",
+          "n8n expression current date",
+          "n8n expression editor"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execute command",
+        "suggestions": [
+          "n8n execute command node",
+          "n8n execute command",
+          "n8n execute command node not found",
+          "n8n execute command not found",
+          "n8n execute command node missing",
+          "n8n execute command missing",
+          "n8n execute command windows",
+          "execute command n8n python",
+          "n8n execute command on host",
+          "n8n execute command enable"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node",
+        "suggestions": [
+          "n8n wait node",
+          "n8n wait node webhook",
+          "n8n wait node stuck",
+          "n8n wait node bug",
+          "n8n wait node example",
+          "n8n wait for node to finish",
+          "n8n merge node wait for all inputs",
+          "n8n wait for all nodes to finish",
+          "n8n wait for multiple nodes",
+          "n8n wait for two nodes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n remove duplicates",
+        "suggestions": [
+          "n8n remove duplicates",
+          "n8n remove duplicates node",
+          "n8n remove duplicates from array",
+          "n8n remove duplicates from list",
+          "n8n remove duplicate items"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n aggregate",
+        "suggestions": [
+          "n8n aggregate node",
+          "n8n aggregate",
+          "n8n aggregate vs merge",
+          "n8n aggregate example",
+          "n8n aggregate items",
+          "n8n aggregate group by",
+          "n8n aggregate binary data",
+          "n8n loop aggregate",
+          "n8n aggregate data",
+          "n8n aggregate multiple runs"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook",
+        "suggestions": [
+          "n8n respond to webhook",
+          "n8n respond to webhook json",
+          "n8n respond to webhook with html",
+          "n8n respond to webhook not working",
+          "n8n respond to webhook node",
+          "n8n respond to webhook example",
+          "n8n respond to webhook streaming",
+          "n8n respond to webhook download file",
+          "n8n respond to webhook with file",
+          "n8n response to webhook"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n sub workflow",
+        "suggestions": [
+          "n8n sub workflow",
+          "n8n sub workflow example",
+          "n8n sub workflow output",
+          "n8n sub workflow return",
+          "n8n execute sub workflow",
+          "n8n call sub workflow",
+          "n8n create sub workflow",
+          "n8n wait for sub workflow completion",
+          "n8n pass data to sub workflow",
+          "n8n sub workflow in same workflow"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n environment variables",
+        "suggestions": [
+          "n8n environment variables",
+          "n8n environment variables docker",
+          "n8n environment variables file",
+          "n8n environment variables webhook",
+          "n8n environment variables in workflow",
+          "n8n environment variables list",
+          "n8n environment variables timezone",
+          "n8n environment variables self hosted",
+          "n8n environment variables npm",
+          "n8n environment variables docker compose"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n credentials not working",
+        "suggestions": [
+          "n8n credentials not working",
+          "n8n login not working",
+          "n8n password not working",
+          "n8n wordpress credentials not working",
+          "n8n password reset not working",
+          "network credentials not working",
+          "network credentials password not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent tool",
+        "suggestions": [
+          "n8n ai agent tool",
+          "n8n ai agent tool node",
+          "n8n ai agent tools list",
+          "n8n ai agent tool http request",
+          "n8n ai agent tool example",
+          "n8n ai agent tool calling",
+          "n8n ai agent tools tutorial",
+          "n8n ai agent tools prompt",
+          "n8n ai agent tool output",
+          "n8n ai agent tools google sheets"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n memory",
+        "suggestions": [
+          "n8n memory",
+          "n8n memory requirements",
+          "n8n memory limit",
+          "n8n memory node",
+          "n8n memory usage",
+          "n8n memory ai agent",
+          "n8n memory leak",
+          "n8n memory manager",
+          "n8n memory issues",
+          "n8n memory types"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "suggestionNote": "Suggestions are wording and intent evidence only; no volumes or difficulty scores were measured.",
+    "searchSamples": [
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n code node return array",
+        "status": 202,
+        "note": "Challenge page; no result list captured."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n code node multiple inputs",
+        "status": 202,
+        "note": "Challenge page; no result list captured."
+      },
+      {
+        "engine": "Bing",
+        "query": "n8n code node return array",
+        "status": 200,
+        "note": "Only brand and navigational pages were returned; not usable as competition evidence."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "ollama context length",
+        "status": 200,
+        "note": "Official docs plus at least twelve small-site guides from 2025-2026; used to reject that topic."
+      }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "source": "n8n Docs: Code node and Common issues",
+        "finding": "Lists the error messages but not the exact trigger conditions or a return value table."
+      },
+      {
+        "source": "n8n source result-validation.ts",
+        "finding": "Defines the exact conditions for each validation message; used to build and test the return value and error tables."
+      },
+      {
+        "source": "n8n Docs: task runners variables",
+        "finding": "Documents the 300 second task timeout, 60 second request timeout, concurrency 5 and payload limits used in the performance section."
+      }
+    ],
+    "intentMap": [
+      {
+        "query": "n8n code node return array",
+        "section": "Returning arrays, strings, numbers and lists of values"
+      },
+      {
+        "query": "code doesn't return items properly / a json property isn't an object",
+        "section": "What each Code node error message means"
+      },
+      {
+        "query": "n8n code node multiple inputs / multiple outputs",
+        "section": "Multiple inputs and multiple outputs"
+      },
+      {
+        "query": "n8n code node python",
+        "section": "Python in the Code node after n8n 2.0"
+      },
+      {
+        "query": "n8n code node timeout",
+        "section": "Timeouts, memory and large inputs on self hosted n8n"
+      },
+      {
+        "query": "n8n code node console log",
+        "section": "Debugging a Code node without guessing"
+      }
+    ],
+    "limits": "No Search Console access, no Google SERP positions (CAPTCHA), no monthly volumes or difficulty scores, no ranking or traffic prediction."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "n8n Docs: Code node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code"
+    },
+    {
+      "title": "n8n Docs: Code node common issues",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/common-issues"
+    },
+    {
+      "title": "n8n Docs: Understand n8n's data structure",
+      "url": "https://docs.n8n.io/build/work-with-data/understand-n8ns-data-structure"
+    },
+    {
+      "title": "n8n Docs: Reference previous nodes",
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/reference-previous-nodes"
+    },
+    {
+      "title": "n8n Docs: Preserving linking in the Code node",
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node"
+    },
+    {
+      "title": "n8n Docs: Item linking errors",
+      "url": "https://docs.n8n.io/build/work-with-data/reference-data/link-data-items/item-linking-errors"
+    },
+    {
+      "title": "n8n Docs: Use built-in shortcuts",
+      "url": "https://docs.n8n.io/build/code-in-n8n/use-built-in-shortcuts"
+    },
+    {
+      "title": "n8n Docs: Get the binary data buffer",
+      "url": "https://docs.n8n.io/build/code-in-n8n/cookbook/code-node/get-the-binary-data-buffer"
+    },
+    {
+      "title": "n8n Docs: Enable modules in Code node",
+      "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/enable-modules-in-code-node"
+    },
+    {
+      "title": "n8n Docs: Task runners environment variables",
+      "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/task-runners"
+    },
+    {
+      "title": "n8n source: Code node result validation",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/Code/result-validation.ts"
+    },
+    {
+      "title": "npm registry: n8n latest release metadata",
+      "url": "https://registry.npmjs.org/n8n/latest"
+    }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-cant-determine-which-item-to-use",
+    "/blog/n8n-json-parameter-needs-to-be-valid-json",
+    "/blog/n8n-webhook-not-working-2026",
+    "/blog/unexpected-token-html-not-valid-json",
+    "/tools/json-formatter"
+  ],
+  "faq": [
+    "Why does n8n say Code doesn't return items properly?",
+    "How do I return an array from the n8n Code node?",
+    "Can the n8n Code node take multiple inputs?",
+    "Why is my Code node slow or timing out?",
+    "Can I use Python packages in the n8n Code node?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/claude-code-windows/photo-cover.jpg",
+    "coverFile": "public/blog/claude-code-windows/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "coverPhotographer": "Daniil Komov",
+    "inline": "https://www.byteverse.fyi/blog/claude-code-windows/photo-inline.jpg",
+    "inlineFile": "public/blog/claude-code-windows/photo-inline.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/",
+    "inlinePhotographer": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted coding photographs; illustrative, not n8n screenshots. No asset deployment is needed."
+  },
+  "validation": {
+    "proseWords": 5045,
+    "readingTime": "23 min read",
+    "contentSha256": "2bb8947dcf4882f9124f487b0cea3586a36f15fb01339d744bfb921dbb5ac072",
+    "codeBlocks": 17,
+    "tables": 5,
+    "returnValueTable": [
+      {
+        "value": "[{ json: { a: 1 } }]",
+        "result": "1 item(s)"
+      },
+      {
+        "value": "[{ a: 1 }, { a: 2 }]",
+        "result": "2 item(s)"
+      },
+      {
+        "value": "{ json: { a: 1 } }",
+        "result": "1 item(s)"
+      },
+      {
+        "value": "null",
+        "result": "0 item(s)"
+      },
+      {
+        "value": "undefined",
+        "result": "Error: Code doesn't return items properly"
+      },
+      {
+        "value": "\"done\"",
+        "result": "Error: Code doesn't return items properly"
+      },
+      {
+        "value": "42",
+        "result": "Error: Code doesn't return items properly"
+      },
+      {
+        "value": "[1, 2, 3]",
+        "result": "Error: Code doesn't return items properly"
+      },
+      {
+        "value": "[\"a\", \"b\"]",
+        "result": "Error: Code doesn't return items properly"
+      },
+      {
+        "value": "[{ json: [1, 2] }]",
+        "result": "Error: A 'json' property isn't an object"
+      },
+      {
+        "value": "[{ json: { a: 1 }, name: \"x\" }]",
+        "result": "Error: Unknown top-level item key: name"
+      },
+      {
+        "value": "[{ json: { a: 1 }, binary: \"file\" }]",
+        "result": "Error: A 'binary' property isn't an object"
+      },
+      {
+        "value": "[{ json: { when: new Date() } }]",
+        "result": "1 item(s)"
+      }
+    ],
+    "behaviorTestsPassed": 11,
+    "totalTestsPassed": 15,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: no duplicate; 178 existing posts unchanged; author, category, 5 internal blog links, 1 tool link and both images verified",
+    "runtime": "v24.12.0",
+    "executionScope": "JavaScript examples executed in Node with emulated Code node globals and a port of n8n's validation functions; Python examples executed with local CPython; no n8n instance.",
+    "limits": "Not executed inside n8n's task runner, n8n Cloud or the editor; environment variable defaults are quoted from the documentation for n8n 2.46."
+  },
+  "publication": {
+    "status": "published-deploy-pending",
+    "postId": 247,
+    "publishedAt": "2026-11-06T12:34:36.515Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 178,
+    "otherPostsHash": "26221e9f8a83cb84640383bfcad72e0f",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-code-node-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'krdo' 2026-11-06"
+  }
+}

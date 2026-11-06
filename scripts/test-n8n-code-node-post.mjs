@@ -340,9 +340,12 @@ if (mode === "--live") {
     assert.equal(all(live, (node) => node.name === "link" && node.attribs.rel === "canonical")[0]?.attribs.href, articleUrl);
     assert.equal(meta("property", "article:published_time"), ledger.publication.publishedAt);
     for (const href of ledger.internalLinks) assert(all(live, (node) => node.name === "a" && node.attribs.href === href).length > 0, `Missing live internal link: ${href}`);
-    const schemas = all(live, (node) => node.name === "script" && node.attribs.type === "application/ld+json").map((node) => JSON.parse(DomUtils.textContent(node)));
+    const schemas = all(live, (node) => node.name === "script" && node.attribs.type === "application/ld+json").flatMap((node) => { const parsed = JSON.parse(DomUtils.textContent(node)); return parsed["@graph"] ?? [parsed]; });
     const faqSchema = schemas.find((schema) => schema["@type"] === "FAQPage");
     assert.deepEqual(faqSchema?.mainEntity.map((entity) => entity.name), ledger.faq);
+    const article = schemas.find((schema) => schema["@type"] === "BlogPosting");
+    assert.equal(article?.datePublished, ledger.publication.publishedAt);
+    assert.equal(article?.author?.name, ledger.targeting.author);
     assert.equal(all(live, (node) => node.name === "details").length, 5);
     assert.equal(all(live, (node) => node.name === "pre").length, metrics.codeBlocks);
     assert.equal(all(live, (node) => node.name === "table").length, metrics.tables);

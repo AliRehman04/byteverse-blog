@@ -23,7 +23,7 @@ const fixtures = path.join(root, "fixtures", "csv-studio");
 const temporary = mkdtempSync(path.join(tmpdir(), "byteverse-csv-studio-core-"));
 after(() => rmSync(temporary, { recursive: true, force: true }));
 const outfile = path.join(temporary, "studio.cjs");
-const modules = ["types", "encoding", "parse", "detect", "convert", "table", "validate", "repairs", "export", "engine", "recipes", "samples"];
+const modules = ["types", "encoding", "parse", "detect", "convert", "table", "validate", "repairs", "export", "engine", "recipes", "samples", "findings"];
 buildSync({
   absWorkingDir: root,
   stdin: { contents: modules.map((name) => `export * from './${name}';`).join("\n"), resolveDir: path.join(root, "src", "lib", "csv-studio"), sourcefile: "studio-test-entry.ts", loader: "ts" },
@@ -563,6 +563,40 @@ describe("export", () => {
     assert.equal(S.safeFileName("a/b:c*?.csv", "xlsx"), "a b c .xlsx".replace(" .", "."));
     assert.equal(S.sheetNameFrom("Q1 [final]: report.xlsx"), "Q1 final report");
     assert.equal(S.sheetNameFrom("history.xlsx"), "Data");
+  });
+});
+
+describe("guided findings", () => {
+  test("count-based explanations agree in number", () => {
+    const one = open("id,name,phone\n1,Ava,N/A\n1,Ava,N/A\n2, Liam,555\n");
+    assert.match(issue(one, "duplicate-rows").explanation, /^1 row repeats an earlier row/);
+    assert.match(issue(one, "whitespace").explanation, /^1 value has spaces/);
+    const many = open("id,name,phone\n1,Ava,N/A\n1,Ava,N/A\n1,Ava,N/A\n2, Liam,555\n3, Noah,556\n");
+    assert.match(issue(many, "duplicate-rows").explanation, /^2 rows repeat an earlier row/);
+    assert.match(issue(many, "whitespace").explanation, /^2 values have spaces/);
+    assert.match(issue(many, "sentinel").explanation, /^3 values match placeholders/);
+    const single = open("id,phone\n1,N/A\n2,555\n");
+    assert.match(issue(single, "sentinel").explanation, /^1 value matches placeholders/);
+  });
+  test("every finding maps to one guided group and errors always need a decision", () => {
+    const seen = new Set();
+    for (const sample of S.STUDIO_SAMPLES) {
+      for (const item of open(Buffer.from(sample.bytes()), {}, sample.fileName).snapshot().issues) {
+        const group = S.findingGroup(item);
+        assert.ok(["decide", "excel", "cleanup", "notes"].includes(group), item.code);
+        if (item.severity === "error") assert.equal(group, "decide", item.code);
+        seen.add(group);
+      }
+    }
+    assert.deepEqual([...seen].sort(), ["cleanup", "decide", "excel", "notes"]);
+    assert.deepEqual(S.FINDING_GROUPS.map((group) => group.id), ["decide", "excel", "cleanup", "notes"]);
+    const cases = [
+      ["leading-zero", "warning", "identifier", "excel"], ["formula", "warning", "security", "excel"], ["date-like", "info", "identifier", "excel"],
+      ["long-digits", "error", "identifier", "decide"], ["ragged-short", "warning", "structure", "decide"], ["mojibake", "warning", "encoding", "decide"],
+      ["duplicate-rows", "warning", "quality", "cleanup"], ["blank-rows", "info", "structure", "cleanup"], ["line-breaks", "info", "text", "notes"],
+    ];
+    for (const [code, severity, category, expected] of cases) assert.equal(S.findingGroup({ code, severity, category }), expected, code);
+    for (const code of S.SAFE_CLEANUP_CODES) assert.equal(S.findingGroup({ code, severity: "warning", category: "text" }), "cleanup", code);
   });
 });
 

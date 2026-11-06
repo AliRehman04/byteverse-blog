@@ -113,7 +113,7 @@ test("metadata: absolute title, description, canonical and social image", () => 
   assert.equal(page.dynamic, "force-static");
 });
 
-test("identity row: breadcrumb, one exact H1, value line, privacy chip and command hint", () => {
+test("identity row: breadcrumb, one exact H1, value line, privacy chip; command hint in the workspace", () => {
   assert.equal(clean(text(only(elements(dom, (node) => node.name === "h1"), "exactly one H1"))), H1);
   const crumbs = only(elements(dom, (node) => node.name === "nav" && node.attribs["aria-label"] === "Breadcrumb"), "breadcrumb");
   assert.deepEqual(elements(crumbs, (node) => node.name === "a" || node.attribs["aria-current"] === "page").map((node) => clean(text(node))), ["Home", "Tools", "CSV Repair Tool"]);
@@ -121,7 +121,7 @@ test("identity row: breadcrumb, one exact H1, value line, privacy chip and comma
   const chip = only(elements(dom, (node) => node.name === "a" && node.attribs.href === "#csv-studio-privacy"), "privacy chip");
   assert.equal(clean(text(chip)), "Processed in your browser");
   byId("csv-studio-privacy");
-  assert.match(pageText, /Press Ctrl K \(⌘ K on Mac\) for commands/);
+  assert.match(clean(text(byId("csv-repair-workspace"))), /Press Ctrl K \(⌘ K on Mac\) for commands/);
 });
 
 test("workspace is SSR'd before every education section with the exact dropzone copy", () => {
@@ -132,8 +132,11 @@ test("workspace is SSR'd before every education section with the exact dropzone 
   assert(workspaceText.includes(PRIVACY));
   assert(workspaceText.includes(LIMITATION));
   for (const label of ["Choose a file", "Paste data", "US customer list", "European export", "Inventory TSV", "Broken quotes"]) assert(workspaceText.includes(label), label);
-  const order = elements(dom, (node) => node.attribs.id === "csv-repair-workspace" || node.attribs.id === "csv-repair-how-title");
-  assert.deepEqual(order.map((node) => node.attribs.id), ["csv-repair-workspace", "csv-repair-how-title"]);
+  assert(workspaceText.includes("Start with a sample"));
+  for (const problem of ["Zeros or long IDs changed", "One column or broken accents", "Codes turn into dates or E+", "Quotes or columns out of place"]) assert(workspaceText.includes(problem), problem);
+  const sections = ["csv-repair-workspace", "csv-repair-excel-title", "csv-repair-how-title"];
+  const order = elements(dom, (node) => sections.includes(node.attribs.id));
+  assert.deepEqual(order.map((node) => node.attribs.id), sections, "tool first, then the problems it fixes, then how it works");
   assert.equal(elements(workspace, (node) => node.name === "dialog" && "open" in node.attribs).length, 0, "no dialog is open on first paint");
   const buttons = elements(workspace, (node) => node.name === "button");
   assert(buttons.every((node) => node.attribs.type === "button"), "every studio button declares type=button");

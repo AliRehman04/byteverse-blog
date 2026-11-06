@@ -1,5 +1,5 @@
 /** Bundled, fictional sample files (example.com addresses, 555 numbers). Never user data. */
-export interface StudioSample { id: string; name: string; fileName: string; description: string; bytes(): Uint8Array }
+export interface StudioSample { id: string; name: string; fileName: string; problem: string; description: string; bytes(): Uint8Array }
 
 const CUSTOMERS = [
   "Customer ID,Name,Email,Phone,ZIP,State,Signup date,Account number,Notes",
@@ -62,8 +62,8 @@ const utf8 = (text: string, bom = false) => {
 };
 
 export const STUDIO_SAMPLES: readonly StudioSample[] = [
-  { id: "customers", name: "US customer list", fileName: "sample-customers.csv", description: "ZIP codes, phone numbers, long account IDs, a formula and duplicates", bytes: () => utf8(CUSTOMERS, true) },
-  { id: "europe", name: "European export", fileName: "sample-orders-eu.csv", description: "Semicolons, decimal commas and Windows-1252 accents", bytes: () => encodeWindows1252(EUROPE) },
-  { id: "inventory", name: "Inventory TSV", fileName: "sample-inventory.tsv", description: "Tab-delimited SKUs, UPCs, quoted text and a rounded batch ID", bytes: () => utf8(INVENTORY) },
-  { id: "broken", name: "Broken quotes", fileName: "sample-broken-quotes.csv", description: "Malformed and unclosed quotes plus a row with extra fields", bytes: () => utf8(BROKEN) },
+  { id: "customers", name: "US customer list", fileName: "sample-customers.csv", problem: "Zeros or long IDs changed", description: "ZIP codes, phone numbers, long account IDs, a formula and duplicates", bytes: () => utf8(CUSTOMERS, true) },
+  { id: "europe", name: "European export", fileName: "sample-orders-eu.csv", problem: "One column or broken accents", description: "Semicolons, decimal commas and Windows-1252 accents", bytes: () => encodeWindows1252(EUROPE) },
+  { id: "inventory", name: "Inventory TSV", fileName: "sample-inventory.tsv", problem: "Codes turn into dates or E+", description: "Tab-delimited SKUs, UPCs, quoted text and a rounded batch ID", bytes: () => utf8(INVENTORY) },
+  { id: "broken", name: "Broken quotes", fileName: "sample-broken-quotes.csv", problem: "Quotes or columns out of place", description: "Malformed and unclosed quotes plus a row with extra fields", bytes: () => utf8(BROKEN) },
 ];

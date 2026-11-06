@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft, ArrowRight, Check, ChevronRight, CircleCheck, Eye, EyeOff, Info,
-  ListChecks, Locate, OctagonAlert, Redo2, RotateCcw, Save, Search, ShieldCheck, Trash2, TriangleAlert, Undo2, X,
+  ListChecks, Locate, OctagonAlert, Redo2, RotateCcw, Save, Search, ShieldCheck, Trash2, TriangleAlert, Undo2, WandSparkles, X,
 } from "lucide-react";
+import { FINDING_GROUPS, SAFE_CLEANUP_CODES, findingGroup, type FindingGroup } from "@/lib/csv-studio/findings";
 import { loadRecipes, deleteRecipe, saveRecipe, recipeOps, type Recipe, type RecipeCleanup } from "@/lib/csv-studio/recipes";
 import {
   COLUMN_TYPE_LABELS, DATE_FORMAT_LABELS, PROFILE_LABELS,
@@ -18,6 +19,7 @@ export interface Review { op: RepairOp; preview: RepairPreview }
 const SEVERITY_ICON = { error: OctagonAlert, warning: TriangleAlert, info: Info } as const;
 const SEVERITY_LABEL: Record<Severity, string> = { error: "Errors", warning: "Warnings", info: "Info" };
 const n = (value: number) => value.toLocaleString("en-US");
+const plural = (value: number, one: string, many = `${one}s`) => `${n(value)} ${value === 1 ? one : many}`;
 
 function SeverityIcon({ severity }: { severity: Severity }) {
   const Icon = SEVERITY_ICON[severity];
@@ -31,22 +33,97 @@ interface IssuesProps {
   onLocate(issue: Issue, next: boolean): void;
   onFix(issue: Issue): void;
   onDismiss(issue: Issue, dismissed: boolean): void;
+  onSafeCleanups(): void;
+  onExport(): void;
 }
 
-export function IssuesTab({ snapshot, selected, onSelect, onLocate, onFix, onDismiss }: IssuesProps) {
-  const [severities, setSeverities] = useState<Record<Severity, boolean>>({ error: true, warning: true, info: true });
+const ALL_SEVERITIES: Record<Severity, boolean> = { error: true, warning: true, info: true };
+const GROUP_ICON = { decide: OctagonAlert, excel: TriangleAlert, cleanup: WandSparkles } as const;
+
+function SummaryRow({ group, total, active, clear, onShow }: { group: Exclude<FindingGroup, "notes">; total: number; active: string; clear: string; onShow(group: FindingGroup): void }) {
+  const Icon = total ? GROUP_ICON[group] : CircleCheck;
+  return (
+    <li>
+      {total ? (
+        <button type="button" className={styles.summaryRow} data-state={group} onClick={() => onShow(group)}>
+          <Icon size={15} aria-hidden="true" /><span>{active}</span><ChevronRight size={14} aria-hidden="true" />
+        </button>
+      ) : (
+        <span className={styles.summaryRow} data-state="clear"><Icon size={15} aria-hidden="true" /><span>{clear}</span></span>
+      )}
+    </li>
+  );
+}
+
+export function IssuesTab({ snapshot, selected, onSelect, onLocate, onFix, onDismiss, onSafeCleanups, onExport }: IssuesProps) {
+  const [severities, setSeverities] = useState<Record<Severity, boolean>>(ALL_SEVERITIES);
   const [column, setColumn] = useState("all");
   const [query, setQuery] = useState("");
-  const listRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const refocus = useRef<number | null>(null);
   const dismissed = useMemo(() => new Set(snapshot.dismissed), [snapshot.dismissed]);
   const open = snapshot.issues.filter((issue) => !dismissed.has(issue.id));
   const counts = { error: 0, warning: 0, info: 0 } as Record<Severity, number>;
   for (const issue of open) counts[issue.severity]++;
+  const groups = { decide: 0, excel: 0, cleanup: 0, notes: 0 } as Record<FindingGroup, number>;
+  for (const issue of open) groups[findingGroup(issue)]++;
+  const safeCleanups = open.some((issue) => SAFE_CLEANUP_CODES.has(issue.code));
+  const columnsShown = snapshot.columns.filter((item) => !item.hidden).length;
   const columnsWithIssues = [...new Map(open.filter((issue) => issue.column !== null).map((issue) => [issue.column, issue.columnName])).entries()];
   const words = query.toLowerCase().split(/\s+/).filter(Boolean);
   const visible = open.filter((issue) => severities[issue.severity]
     && (column === "all" || (column === "file" ? issue.column === null : String(issue.column) === column))
     && words.every((word) => `${issue.name} ${issue.columnName ?? ""} ${issue.category} ${issue.explanation}`.toLowerCase().includes(word)));
+  const nextStep = groups.decide > 0
+    ? "Start with the findings under “Needs your decision”. They change how rows or characters are read."
+    : groups.excel > 0
+      ? "Export Excel (.xlsx) to keep IDs, ZIP codes and long numbers exactly as shown."
+      : groups.cleanup > 0 ? "Preview the cleanups you want, then export." : "Nothing needs fixing. Export when you’re ready.";
+
+  const showGroup = (group: FindingGroup) => {
+    setSeverities(ALL_SEVERITIES);
+    setColumn("all");
+    setQuery("");
+    requestAnimationFrame(() => {
+      const target = listRef.current?.querySelector<HTMLButtonElement>(`[data-group="${group}"] [data-issue]`);
+      target?.scrollIntoView({ block: "nearest" });
+      target?.focus({ preventScroll: true });
+    });
+  };
+
+  // A fix or dismissal unmounts the focused button; keep keyboard users at the same place in the list.
+  const keepPlace = () => {
+    const items = [...(listRef.current?.querySelectorAll<HTMLButtonElement>("[data-issue]") ?? [])];
+    refocus.current = Math.max(0, items.findIndex((item) => item.getAttribute("aria-expanded") === "true"));
+  };
+
+  useEffect(() => {
+    const index = refocus.current;
+    if (index === null) return;
+    refocus.current = null;
+    const active = document.activeElement;
+    if (active && active !== document.body && document.contains(active)) return;
+    const items = [...(listRef.current?.querySelectorAll<HTMLButtonElement>("[data-issue]") ?? [])];
+    (items[Math.min(index, items.length - 1)] ?? panelRef.current?.querySelector<HTMLButtonElement>(`.${styles.empty} button`))?.focus();
+  }, [snapshot.issues, snapshot.dismissed]);
+
+  const renderIssue = (issue: Issue) => {
+    const current = issue.id === selected;
+    return (
+      <li key={issue.id}>
+        <button type="button" data-issue className={styles.issueItem} aria-current={current} aria-expanded={current} onClick={() => { onSelect(current ? null : issue.id); if (!current && issue.locatable) onLocate(issue, false); }}>
+          <SeverityIcon severity={issue.severity} />
+          <span>
+            <strong>{issue.name}</strong>
+            <small>{issue.columnName ?? "Whole file"}{issue.row !== null ? ` · first at row ${n(issue.row + 1)}` : ""}</small>
+          </span>
+          <span className={styles.count}>{n(issue.count)}<span className={styles.srOnly}> affected</span></span>
+        </button>
+        {current && <IssueDetail issue={issue} onLocate={onLocate} onFix={(item) => { keepPlace(); onFix(item); }} onDismiss={(item, value) => { keepPlace(); onDismiss(item, value); }} />}
+      </li>
+    );
+  };
 
   const moveFocus = (event: React.KeyboardEvent) => {
     if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
@@ -58,7 +135,28 @@ export function IssuesTab({ snapshot, selected, onSelect, onLocate, onFix, onDis
   };
 
   return (
-    <div className={styles.panelBody}>
+    <div ref={panelRef} className={styles.panelBody}>
+      {open.length > 0 && (
+        <section className={styles.summary} aria-labelledby="csv-studio-summary-title">
+          <div className={styles.summaryHead}>
+            <h3 id="csv-studio-summary-title">Results</h3>
+            <p>{n(snapshot.rowCount)} rows × {n(columnsShown)} columns checked</p>
+          </div>
+          <ul className={styles.summaryList}>
+            <SummaryRow group="decide" total={groups.decide} active={`${plural(groups.decide, "finding")} ${groups.decide === 1 ? "needs" : "need"} your decision`} clear="No structure or encoding problems found" onShow={showGroup} />
+            <SummaryRow group="excel" total={groups.excel} active={`${plural(groups.excel, "finding")} where Excel would change values`} clear="No values Excel would change" onShow={showGroup} />
+            <SummaryRow group="cleanup" total={groups.cleanup} active={`${plural(groups.cleanup, "cleanup")} to review`} clear="No cleanups needed" onShow={showGroup} />
+          </ul>
+          <p className={styles.nextStep}><strong>Next step:</strong> {nextStep}</p>
+          <div className={styles.actions}>
+            {groups.decide > 0
+              ? <button type="button" className={`${styles.buttonPrimary} ${styles.small}`} onClick={() => showGroup("decide")}>Review decisions</button>
+              : <button type="button" className={`${styles.buttonPrimary} ${styles.small}`} onClick={onExport}>Continue to export</button>}
+            {safeCleanups && <button type="button" className={`${styles.button} ${styles.small}`} onClick={onSafeCleanups}>Preview safe cleanups</button>}
+            {groups.decide > 0 && <button type="button" className={`${styles.buttonQuiet} ${styles.small}`} onClick={onExport}>Go to export</button>}
+          </div>
+        </section>
+      )}
       <div className={styles.severityFilters} role="group" aria-label="Filter by severity">
         {(["error", "warning", "info"] as Severity[]).map((severity) => (
           <button key={severity} type="button" className={styles.severityChip} data-severity={severity} aria-pressed={severities[severity]} onClick={() => setSeverities((current) => ({ ...current, [severity]: !current[severity] }))}>
@@ -87,28 +185,28 @@ export function IssuesTab({ snapshot, selected, onSelect, onLocate, onFix, onDis
           <CircleCheck size={28} aria-hidden="true" />
           <strong>No open issues</strong>
           <p>Structure, encoding, identifiers, formulas, whitespace and duplicates were checked. Export when you’re ready.</p>
+          <button type="button" className={`${styles.buttonPrimary} ${styles.small}`} onClick={onExport}>Continue to export</button>
         </div>
       ) : visible.length === 0 ? (
         <p className={styles.hint} role="status">No issues match these filters.</p>
       ) : (
-        <ul ref={listRef} className={styles.issueList} aria-label="Issues" onKeyDown={moveFocus}>
-          {visible.map((issue) => {
-            const current = issue.id === selected;
+        <div ref={listRef} className={styles.issueGroups} onKeyDown={moveFocus}>
+          {FINDING_GROUPS.map((group) => {
+            const items = visible.filter((issue) => findingGroup(issue) === group.id);
+            if (!items.length) return null;
+            const titleId = `csv-studio-group-${group.id}`;
             return (
-              <li key={issue.id}>
-                <button type="button" data-issue className={styles.issueItem} aria-current={current} aria-expanded={current} onClick={() => { onSelect(current ? null : issue.id); if (!current && issue.locatable) onLocate(issue, false); }}>
-                  <SeverityIcon severity={issue.severity} />
-                  <span>
-                    <strong>{issue.name}</strong>
-                    <small>{issue.columnName ?? "Whole file"}{issue.row !== null ? ` · first at row ${n(issue.row + 1)}` : ""}</small>
-                  </span>
-                  <span className={styles.count}>{n(issue.count)}<span className={styles.srOnly}> affected</span></span>
-                </button>
-                {current && <IssueDetail issue={issue} onLocate={onLocate} onFix={onFix} onDismiss={onDismiss} />}
-              </li>
+              <section key={group.id} className={styles.issueGroup} data-group={group.id} aria-labelledby={titleId}>
+                <div className={styles.issueGroupHead}>
+                  <h3 id={titleId}>{group.title} <span className={styles.count}>{n(items.length)}</span></h3>
+                  {group.id === "cleanup" && safeCleanups && <button type="button" className={`${styles.buttonQuiet} ${styles.small}`} onClick={onSafeCleanups}>Preview safe cleanups</button>}
+                </div>
+                <p className={styles.hint}>{group.description}</p>
+                <ul className={styles.issueList} aria-labelledby={titleId}>{items.map(renderIssue)}</ul>
+              </section>
             );
           })}
-        </ul>
+        </div>
       )}
       {dismissed.size > 0 && (
         <details className={styles.dismissed}>
@@ -129,6 +227,7 @@ export function IssuesTab({ snapshot, selected, onSelect, onLocate, onFix, onDis
 }
 
 function IssueDetail({ issue, onLocate, onFix, onDismiss }: { issue: Issue; onLocate(issue: Issue, next: boolean): void; onFix(issue: Issue): void; onDismiss(issue: Issue, dismissed: boolean): void }) {
+  const reread = issue.fix?.kind === "reimport";
   return (
     <div className={styles.issueDetail}>
       <p>{issue.explanation}</p>
@@ -141,10 +240,11 @@ function IssueDetail({ issue, onLocate, onFix, onDismiss }: { issue: Issue; onLo
       <div><p className={styles.label}>Suggested action</p><p>{issue.proposedAction}</p></div>
       <div><p className={styles.label}>What changes</p><p>{issue.expectedEffect}</p></div>
       <div className={styles.actions}>
-        {issue.fix && <button type="button" className={`${styles.buttonPrimary} ${styles.small}`} onClick={() => onFix(issue)}>{issue.fix.label}</button>}
+        {issue.fix && <button type="button" className={`${reread ? styles.button : styles.buttonPrimary} ${styles.small}`} onClick={() => onFix(issue)}>{reread ? `${issue.fix.label}…` : issue.fix.label}</button>}
         {issue.locatable && <button type="button" className={`${styles.button} ${styles.small}`} onClick={() => onLocate(issue, true)}><Locate size={13} aria-hidden="true" /> Next cell</button>}
         {issue.dismissible && <button type="button" className={`${styles.buttonQuiet} ${styles.small}`} onClick={() => onDismiss(issue, true)}>Dismiss</button>}
       </div>
+      {reread && <p className={styles.hint}>A side-by-side comparison opens first. Nothing changes until you confirm.</p>}
     </div>
   );
 }
@@ -378,6 +478,13 @@ function cleanupOp(id: RecipeCleanup): RepairOp {
   return { kind: id, columns: "all" };
 }
 
+function shown(value: string | null, missing: string): React.ReactNode {
+  if (value === null) return missing;
+  if (value === "") return "(empty)";
+  const [, lead = "", body = value, trail = ""] = /^(\s*)([\s\S]*?)(\s*)$/.exec(value.replace(/\r\n|\r|\n/g, "↵")) ?? [];
+  return <>{lead && <span className={styles.ws}>{"·".repeat(lead.length)}</span>}{body}{trail && <span className={styles.ws}>{"·".repeat(trail.length)}</span>}</>;
+}
+
 interface ChangesProps {
   snapshot: StudioSnapshot;
   review: Review | null;
@@ -410,6 +517,9 @@ export function ChangesTab({ snapshot, review, busy, onPreview, onConfirm, onCan
   const { steps, cursor, canUndo, canRedo } = snapshot.history;
   const changes = snapshot.changes;
   const changed = changes.cells + changes.rowsRemoved + changes.rowsAdded + changes.columnsAdded + changes.columnsRemoved + changes.headersChanged + changes.typesChanged > 0;
+  const pending = review ? review.preview.cells + review.preview.rowsRemoved + review.preview.rowsAdded + review.preview.columnsAdded + review.preview.columnsRemoved + review.preview.headers.length : 0;
+  const sampleTotal = review ? review.preview.cells || review.preview.rowsRemoved || review.preview.rowsAdded || review.preview.samples.length : 0;
+  const edgeSpaces = review?.preview.samples.some((sample) => /^\s|\s$/.test(sample.before ?? "") || /^\s|\s$/.test(sample.after ?? "")) ?? false;
 
   return (
     <div>
@@ -417,14 +527,14 @@ export function ChangesTab({ snapshot, review, busy, onPreview, onConfirm, onCan
         <section className={styles.review} aria-labelledby="csv-studio-review-title">
           <h3 id="csv-studio-review-title" ref={reviewRef} tabIndex={-1}>Review: {review.preview.label}</h3>
           {review.preview.reason && <p className={styles.hint}>{review.preview.reason}</p>}
-          {review.preview.blocked ? <p className={styles.blocked} role="alert">{review.preview.blocked}</p> : (
+          {review.preview.blocked ? <p className={styles.blocked} role="alert">{review.preview.blocked}</p> : !pending ? <p className={styles.hint}>Nothing would change.</p> : (
             <div className={styles.reviewCounts}>
-              <span className={`${styles.pill} ${styles.pillChanged}`}>{n(review.preview.cells)} cell{review.preview.cells === 1 ? "" : "s"}</span>
-              {review.preview.rowsRemoved > 0 && <span className={styles.pill}>{n(review.preview.rowsRemoved)} row{review.preview.rowsRemoved === 1 ? "" : "s"} removed</span>}
-              {review.preview.rowsAdded > 0 && <span className={styles.pill}>{n(review.preview.rowsAdded)} row added</span>}
-              {review.preview.columnsAdded > 0 && <span className={styles.pill}>{n(review.preview.columnsAdded)} column{review.preview.columnsAdded === 1 ? "" : "s"} added</span>}
-              {review.preview.columnsRemoved > 0 && <span className={styles.pill}>{n(review.preview.columnsRemoved)} column{review.preview.columnsRemoved === 1 ? "" : "s"} removed</span>}
-              {review.preview.headers.length > 0 && <span className={styles.pill}>{n(review.preview.headers.length)} name{review.preview.headers.length === 1 ? "" : "s"}</span>}
+              {review.preview.cells > 0 && <span className={`${styles.pill} ${styles.pillChanged}`}>{plural(review.preview.cells, "cell")}</span>}
+              {review.preview.rowsRemoved > 0 && <span className={styles.pill}>{plural(review.preview.rowsRemoved, "row")} removed</span>}
+              {review.preview.rowsAdded > 0 && <span className={styles.pill}>{plural(review.preview.rowsAdded, "row")} added</span>}
+              {review.preview.columnsAdded > 0 && <span className={styles.pill}>{plural(review.preview.columnsAdded, "column")} added</span>}
+              {review.preview.columnsRemoved > 0 && <span className={styles.pill}>{plural(review.preview.columnsRemoved, "column")} removed</span>}
+              {review.preview.headers.length > 0 && <span className={styles.pill}>{plural(review.preview.headers.length, "name")}</span>}
             </div>
           )}
           {review.op.kind === "repairHeaders" && review.preview.headers.length > 0 && (
@@ -446,23 +556,24 @@ export function ChangesTab({ snapshot, review, busy, onPreview, onConfirm, onCan
             </table>
           )}
           {review.preview.samples.length > 0 && (
-            <table className={styles.diffTable}>
-              <caption className={styles.srOnly}>Examples of the proposed change</caption>
-              <thead><tr><th scope="col" style={{ width: 52 }}>Row</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
-              <tbody>
+            <>
+              <ol className={styles.changeList} aria-label="Examples of the proposed change">
                 {review.preview.samples.map((sample, index) => (
-                  <tr key={index}>
-                    <td title={sample.column}>{n(sample.row + 1)}</td>
-                    <td className={styles.before}>{sample.before === null ? "—" : sample.before === "" ? "(empty)" : sample.before.replace(/\r\n|\r|\n/g, "↵")}</td>
-                    <td className={styles.after}>{sample.after === null ? "(removed)" : sample.after === "" ? "(empty)" : sample.after.replace(/\r\n|\r|\n/g, "↵")}</td>
-                  </tr>
+                  <li key={index} className={styles.changeItem}>
+                    <p className={styles.changeWhere}>Row {n(sample.row + 1)}{sample.column ? ` · ${sample.column}` : ""}</p>
+                    <dl className={styles.changeValues}>
+                      <dt>Before</dt><dd className={styles.before}>{shown(sample.before, "—")}</dd>
+                      <dt>After</dt><dd className={styles.after}>{shown(sample.after, "(removed)")}</dd>
+                    </dl>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ol>
+              <p className={styles.hint}>Showing {n(review.preview.samples.length)} of {plural(Math.max(sampleTotal, review.preview.samples.length), "change")}.{edgeSpaces ? " · marks a space at the start or end of a value." : ""}</p>
+            </>
           )}
           {review.preview.notes.length > 0 && <div className={styles.notes}>{review.preview.notes.map((note) => <p key={note}>{note}</p>)}</div>}
           <div className={styles.actions}>
-            <button type="button" className={styles.buttonPrimary} disabled={Boolean(review.preview.blocked) || busy || (!review.preview.cells && !review.preview.rowsRemoved && !review.preview.rowsAdded && !review.preview.columnsAdded && !review.preview.columnsRemoved && !review.preview.headers.length)}
+            <button type="button" className={styles.buttonPrimary} disabled={Boolean(review.preview.blocked) || busy || !pending}
               onClick={() => onConfirm(review.op.kind === "repairHeaders" ? { kind: "repairHeaders", names } : review.op)}>
               <Check size={15} aria-hidden="true" /> Apply
             </button>
@@ -504,12 +615,12 @@ export function ChangesTab({ snapshot, review, busy, onPreview, onConfirm, onCan
           </div>
           {changed && (
             <div className={styles.reviewCounts} role="group" aria-label="Changes compared with the imported data">
-              {changes.cells > 0 && <span className={`${styles.pill} ${styles.pillChanged}`}>{n(changes.cells)} cells edited</span>}
-              {changes.rowsRemoved > 0 && <span className={styles.pill}>{n(changes.rowsRemoved)} rows removed</span>}
-              {changes.columnsAdded > 0 && <span className={styles.pill}>{n(changes.columnsAdded)} columns added</span>}
-              {changes.columnsRemoved > 0 && <span className={styles.pill}>{n(changes.columnsRemoved)} columns removed</span>}
-              {changes.headersChanged > 0 && <span className={styles.pill}>{n(changes.headersChanged)} names</span>}
-              {changes.typesChanged > 0 && <span className={styles.pill}>{n(changes.typesChanged)} typed columns</span>}
+              {changes.cells > 0 && <span className={`${styles.pill} ${styles.pillChanged}`}>{plural(changes.cells, "cell")} edited</span>}
+              {changes.rowsRemoved > 0 && <span className={styles.pill}>{plural(changes.rowsRemoved, "row")} removed</span>}
+              {changes.columnsAdded > 0 && <span className={styles.pill}>{plural(changes.columnsAdded, "column")} added</span>}
+              {changes.columnsRemoved > 0 && <span className={styles.pill}>{plural(changes.columnsRemoved, "column")} removed</span>}
+              {changes.headersChanged > 0 && <span className={styles.pill}>{plural(changes.headersChanged, "name")} changed</span>}
+              {changes.typesChanged > 0 && <span className={styles.pill}>{plural(changes.typesChanged, "typed column")}</span>}
             </div>
           )}
           <ol className={styles.history} aria-label="Applied steps">
@@ -519,7 +630,7 @@ export function ChangesTab({ snapshot, review, busy, onPreview, onConfirm, onCan
                   <span className={styles.historyDot} aria-hidden="true" />
                   <span>
                     <strong>{step.label}</strong>
-                    <small>{index === 0 ? "Starting point" : `${step.cells ? `${n(step.cells)} cells` : ""}${step.rowsRemoved ? `${step.cells ? " · " : ""}${n(step.rowsRemoved)} rows removed` : ""}${!step.cells && !step.rowsRemoved ? "Settings or structure" : ""}`}{index > cursor ? " · undone" : ""}</small>
+                    <small>{index === 0 ? "Starting point" : `${step.cells ? plural(step.cells, "cell") : ""}${step.rowsRemoved ? `${step.cells ? " · " : ""}${plural(step.rowsRemoved, "row")} removed` : ""}${!step.cells && !step.rowsRemoved ? "Settings or structure" : ""}`}{index > cursor ? " · undone" : ""}</small>
                   </span>
                 </button>
                 {inspect === step.id && <p className={styles.historyDetail}>{step.detail}</p>}

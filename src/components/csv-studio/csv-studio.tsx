@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
-  ArrowLeft, ArrowRight, CircleAlert, ClipboardPaste, Columns3, Command, Eraser, EyeOff, FileExclamationPoint, FileSpreadsheet, FileText, FlaskConical,
-  Highlighter, History, Locate, LockKeyhole, Maximize2, Minimize2, PanelRightOpen, Redo2, Replace, RotateCcw, Rows3, ShieldCheck, Trash2, Type,
+  ArrowLeft, ArrowRight, Circle, CircleAlert, CircleCheck, CircleDot, ClipboardPaste, Columns3, Command, Download, Eraser, EyeOff, FileExclamationPoint, FileSpreadsheet, FileText, FlaskConical,
+  Highlighter, History, ListChecks, Locate, LockKeyhole, Maximize2, Minimize2, Redo2, Replace, RotateCcw, Rows3, ShieldCheck, Trash2, Type,
   Undo2, Upload, WandSparkles, X,
 } from "lucide-react";
 import { StudioClient } from "@/lib/csv-studio/client";
@@ -14,7 +14,7 @@ import {
   type GridWindow, type ImportOptions, type Issue, type RepairOp, type RepairPreview, type SelectionStats, type SourceMeta, type StudioSnapshot,
 } from "@/lib/csv-studio/types";
 import { DataGrid, normalizeRange, type DataGridHandle, type GridSelection } from "./data-grid";
-import { ColumnMenu, CommandPalette, ConfirmDialog, EncodingLab, GoToDialog, PasteDialog, type MenuItem, type PaletteAction } from "./dialogs";
+import { ColumnMenu, CommandPalette, ConfirmDialog, EncodingLab, GoToDialog, PasteDialog, ReadCompareDialog, type MenuItem, type PaletteAction, type ReadComparison, type ReadSummary } from "./dialogs";
 import { ExportDock, type ExportState } from "./export-dock";
 import { ChangesTab, ColumnTab, IssuesTab, type InspectorTab, type Review } from "./inspector";
 import { SetupPanel, formatBytes, sameOptions } from "./setup-panel";
@@ -22,15 +22,19 @@ import styles from "./studio.module.css";
 
 type Phase = "idle" | "working" | "ready" | "failed";
 interface SourcePayload { bytes: ArrayBuffer | null; text: string | null; source: SourceMeta }
-interface Failure { title: string; message: string; retry: { payload: SourcePayload; options: ImportOptions } | null }
+interface Failure { title: string; message: string; code: string | null; retry: { payload: SourcePayload; options: ImportOptions } | null }
 interface ToastState { id: number; message: string; undo: boolean }
 interface ActiveReview extends Review { version: number }
+interface PendingRead { client: StudioClient; snapshot: StudioSnapshot; payload: SourcePayload }
 type DialogName = "palette" | "lab" | "paste" | "goto" | "reimport" | "delete" | "close" | null;
 type FocusTool = { tool: "pad" | "find" | "rename"; find?: string } | null;
+type View = "review" | "data";
 
 const ACCEPT = ".csv,.tsv,.tab,.txt,.psv,.dat,.gz,.zip,text/csv,text/plain,text/tab-separated-values";
 const START: GridSelection = { anchor: { row: 0, column: 0 }, focus: { row: 0, column: 0 } };
 const TABS: InspectorTab[] = ["issues", "column", "changes"];
+const READ_STEPS = ["Reading", "Decoding", "Parsing", "Checking"];
+const SAFE_CLEANUPS: RepairOp = { kind: "batch", label: "Apply safe cleanups", ops: [{ kind: "trim", columns: "all" }, { kind: "stripBom", columns: "all" }, { kind: "repairHeaders", names: null }] };
 const n = (value: number) => value.toLocaleString("en-US");
 const noop = () => {};
 const subscribeNothing = () => noop;
@@ -79,6 +83,27 @@ function cellRef(row: number, column: number): string {
   return `${columnLetter(column)}${row + 1}`;
 }
 
+// Below this width the inspector and grid share one area and the user switches between them.
+function compactLayout(): boolean {
+  return window.matchMedia("(max-width: 1099px)").matches;
+}
+
+function summarize(snapshot: StudioSnapshot, grid: GridWindow | null): ReadSummary {
+  const dismissed = new Set(snapshot.dismissed);
+  const open = snapshot.issues.filter((issue) => !dismissed.has(issue.id));
+  const errors = open.filter((issue) => issue.severity === "error");
+  const columns = snapshot.columns.filter((column) => !column.hidden);
+  return {
+    rows: snapshot.rowCount,
+    columns: columns.length,
+    errors: errors.length,
+    warnings: open.filter((issue) => issue.severity === "warning").length,
+    errorNames: [...new Set(errors.map((issue) => issue.name))].slice(0, 3),
+    headers: columns.slice(0, 4).map((column, index) => column.name || `Column ${index + 1}`),
+    preview: (grid?.rows ?? []).map((row) => row.cells.slice(0, 4).map((value) => value ?? "")),
+  };
+}
+
 export default function CsvStudio() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [snapshot, setSnapshot] = useState<StudioSnapshot | null>(null);
@@ -94,7 +119,8 @@ export default function CsvStudio() {
   const [diff, setDiff] = useState(true);
   const [compact, setCompact] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [view, setView] = useState<View>("review");
+  const [comparison, setComparison] = useState<ReadComparison | null>(null);
   const [setupCollapsed, setSetupCollapsed] = useState(true);
   const [dialog, setDialog] = useState<DialogName>(null);
   const [pendingOptions, setPendingOptions] = useState<ImportOptions | null>(null);
@@ -122,7 +148,8 @@ export default function CsvStudio() {
   const rootRef = useRef<HTMLDivElement>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dragDepth = useRef(0);
-  const inspectorToggleRef = useRef<HTMLButtonElement>(null);
+  const compareRef = useRef<PendingRead | null>(null);
+  const compareToken = useRef(0);
   const isMac = useSyncExternalStore(subscribeNothing, () => /Mac|iPhone|iPad/.test(navigator.platform), () => false);
   const mod = isMac ? "⌘" : "Ctrl";
 
@@ -160,13 +187,49 @@ export default function CsvStudio() {
   useEffect(() => () => {
     clientRef.current?.dispose();
     pendingRef.current?.dispose();
+    compareRef.current?.client.dispose();
     if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
     if (toastTimer.current) clearTimeout(toastTimer.current);
   }, []);
 
   // ---------- import ----------
+  const discardComparison = useCallback(() => {
+    compareToken.current++;
+    compareRef.current?.client.dispose();
+    compareRef.current = null;
+    setComparison(null);
+  }, []);
+
+  const openDocument = useCallback((client: StudioClient, next: StudioSnapshot, payload: SourcePayload) => {
+    clientRef.current?.dispose();
+    clientRef.current = client;
+    pendingRef.current = null;
+    sourceRef.current = payload;
+    releaseExport();
+    setSnapshot(next);
+    setDraft(next.options);
+    setSelection(START);
+    setReview(null);
+    setSelectedIssue(null);
+    setCell(null);
+    setProfile(null);
+    setStats(null);
+    setFocusTool(null);
+    setExportState({ kind: "idle" });
+    setTab("issues");
+    setView("review");
+    setDocKey((value) => value + 1);
+    setPhase("ready");
+    const dismissed = new Set(next.dismissed);
+    const open = next.issues.filter((issue) => !dismissed.has(issue.id));
+    const errors = open.filter((issue) => issue.severity === "error").length;
+    const warnings = open.filter((issue) => issue.severity === "warning").length;
+    announce(`Opened ${next.source.name}: ${n(next.rowCount)} rows, ${n(next.columns.length)} columns. ${errors ? `${n(errors)} errors, ` : ""}${n(warnings)} warnings, ${n(open.length - errors - warnings)} notes.`);
+  }, [announce, releaseExport]);
+
   const importSource = useCallback(async (payload: SourcePayload, options: ImportOptions) => {
     pendingRef.current?.dispose();
+    discardComparison();
     const token = ++importToken.current;
     setMenu(null);
     setDialog(null);
@@ -178,7 +241,7 @@ export default function CsvStudio() {
     try {
       client = StudioClient.create();
     } catch (error) {
-      setFailure({ title: FAILURE_TITLES.WORKER_UNAVAILABLE, message: messageOf(error), retry: null });
+      setFailure({ title: FAILURE_TITLES.WORKER_UNAVAILABLE, message: messageOf(error), code: "WORKER_UNAVAILABLE", retry: null });
       setPhase("failed");
       return;
     }
@@ -191,38 +254,16 @@ export default function CsvStudio() {
         onProgress: (value) => { if (token === importToken.current) setProgress(value); },
       });
       if (token !== importToken.current) { client.dispose(); return; }
-      clientRef.current?.dispose();
-      clientRef.current = client;
-      pendingRef.current = null;
-      sourceRef.current = payload;
-      releaseExport();
-      setSnapshot(next);
-      setDraft(next.options);
-      setSelection(START);
-      setReview(null);
-      setSelectedIssue(null);
-      setCell(null);
-      setProfile(null);
-      setStats(null);
-      setFocusTool(null);
-      setExportState({ kind: "idle" });
-      setTab("issues");
-      setDocKey((value) => value + 1);
-      setPhase("ready");
-      const dismissed = new Set(next.dismissed);
-      const open = next.issues.filter((issue) => !dismissed.has(issue.id));
-      const errors = open.filter((issue) => issue.severity === "error").length;
-      const warnings = open.filter((issue) => issue.severity === "warning").length;
-      announce(`Opened ${next.source.name}: ${n(next.rowCount)} rows, ${n(next.columns.length)} columns. ${errors ? `${n(errors)} errors, ` : ""}${n(warnings)} warnings, ${n(open.length - errors - warnings)} notes.`);
+      openDocument(client, next, payload);
     } catch (error) {
       if (token !== importToken.current) return;
       client.dispose();
       pendingRef.current = null;
       const code = error instanceof StudioError ? error.code : "INTERNAL";
-      setFailure({ title: FAILURE_TITLES[code] ?? "This file couldn’t be opened", message: messageOf(error), retry: sameOptions(options, DEFAULT_IMPORT_OPTIONS) ? null : { payload, options } });
+      setFailure({ title: FAILURE_TITLES[code] ?? "This file couldn’t be opened", message: messageOf(error), code, retry: sameOptions(options, DEFAULT_IMPORT_OPTIONS) ? null : { payload, options } });
       setPhase("failed");
     }
-  }, [announce, releaseExport]);
+  }, [discardComparison, openDocument]);
 
   const cancelImport = () => {
     importToken.current++;
@@ -234,7 +275,7 @@ export default function CsvStudio() {
   const openFile = useCallback(async (file: File) => {
     const source: SourceMeta = { name: file.name || "Untitled.csv", size: file.size, lastModified: file.lastModified || null, kind: "file", container: "plain", innerName: null };
     if (file.size > STUDIO_LIMITS.maxBytes) {
-      setFailure({ title: FAILURE_TITLES.FILE_LIMIT, message: `This file is ${(file.size / 1048576).toFixed(1)} MB. CSV Studio handles files up to ${STUDIO_LIMITS.maxBytes / 1048576} MB in the browser. Split it into smaller files.`, retry: null });
+      setFailure({ title: FAILURE_TITLES.FILE_LIMIT, message: `This file is ${(file.size / 1048576).toFixed(1)} MB. CSV Studio handles files up to ${STUDIO_LIMITS.maxBytes / 1048576} MB in the browser. Split it into smaller files.`, code: "FILE_LIMIT", retry: null });
       setPhase("failed");
       return;
     }
@@ -242,7 +283,7 @@ export default function CsvStudio() {
     try {
       bytes = await file.arrayBuffer();
     } catch {
-      setFailure({ title: "This file couldn’t be read", message: "Your browser couldn’t read this file. It may have been moved or is still syncing. Try again.", retry: null });
+      setFailure({ title: "This file couldn’t be read", message: "Your browser couldn’t read this file. It may have been moved or is still syncing. Try again.", code: null, retry: null });
       setPhase("failed");
       return;
     }
@@ -267,6 +308,7 @@ export default function CsvStudio() {
 
   const closeDocument = () => {
     importToken.current++;
+    discardComparison();
     clientRef.current?.dispose();
     clientRef.current = null;
     pendingRef.current?.dispose();
@@ -279,7 +321,7 @@ export default function CsvStudio() {
     setProfile(null);
     setStats(null);
     setExpanded(false);
-    setInspectorOpen(false);
+    setView("review");
     setExportState({ kind: "idle" });
     setDraft(DEFAULT_IMPORT_OPTIONS);
     setPhase("idle");
@@ -312,7 +354,7 @@ export default function CsvStudio() {
       setReview(null);
       const changed = result.snapshot.version !== before;
       const cells = result.preview.cells;
-      const message = changed ? `${result.preview.label}${cells ? ` · ${n(cells)} cell${cells === 1 ? "" : "s"}` : ""}${result.preview.rowsRemoved ? ` · ${n(result.preview.rowsRemoved)} rows removed` : ""}` : "Nothing needed changing.";
+      const message = changed ? `${result.preview.label}${cells ? ` · ${n(cells)} cell${cells === 1 ? "" : "s"}` : ""}${result.preview.rowsRemoved ? ` · ${n(result.preview.rowsRemoved)} row${result.preview.rowsRemoved === 1 ? "" : "s"} removed` : ""}` : "Nothing needed changing.";
       showToast(message, changed);
     } catch (error) {
       showToast(messageOf(error));
@@ -329,7 +371,7 @@ export default function CsvStudio() {
       const result = await client.request<RepairPreview>("preview", { op });
       setReview({ op, preview: result, version: snapshot.version });
       setTab("changes");
-      setInspectorOpen(true);
+      setView("review");
       announce(result.blocked ? `${result.label}: ${result.blocked}` : `Review ${result.label}: ${n(result.cells)} cells would change.`);
     } catch (error) {
       showToast(messageOf(error));
@@ -384,6 +426,7 @@ export default function CsvStudio() {
     try {
       const hit = await client.request<{ row: number; column: number } | null>("locate", { issueId: issue.id, after: next ? selection.focus.row : -1 });
       if (!hit) { showToast("There’s no cell to show for this issue."); return; }
+      if (next && compactLayout()) setView("data");
       moveTo(hit.row, hit.column, next);
       if (next) announce(`Row ${n(hit.row + 1)}, ${visibleColumns[hit.column]?.name || `column ${columnLetter(hit.column)}`}`);
     } catch (error) {
@@ -399,8 +442,65 @@ export default function CsvStudio() {
   const openColumnTool = (key: number | null, tool: NonNullable<FocusTool>) => {
     if (key !== null) focusColumnKey(key);
     setTab("column");
-    setInspectorOpen(true);
+    setView("review");
     setFocusTool({ ...tool });
+  };
+
+  const compareRead = async (label: string, hint: string, options: ImportOptions) => {
+    const payload = sourceRef.current;
+    const current = clientRef.current;
+    if (!payload || !current || !snapshot) return;
+    discardComparison();
+    const token = compareToken.current;
+    const before = snapshot;
+    setComparison({ label, hint, status: "loading", progress: "", message: null, current: summarize(before, null), next: null, editCount });
+    let client: StudioClient;
+    try {
+      client = StudioClient.create();
+    } catch (error) {
+      setComparison((state) => state && { ...state, status: "failed", message: messageOf(error) });
+      return;
+    }
+    const bytes = payload.bytes ? payload.bytes.slice(0) : null;
+    try {
+      const next = await client.request<StudioSnapshot>("import", { bytes, text: payload.text, source: payload.source, options }, {
+        transfer: bytes ? [bytes] : [],
+        timeoutMs: STUDIO_LIMITS.importTimeoutMs,
+        onProgress: (value) => {
+          if (token === compareToken.current) setComparison((state) => state && { ...state, progress: `${value.phase}${value.total ? ` ${Math.round((value.done / value.total) * 100)}%` : ""}` });
+        },
+      });
+      const [now, after] = await Promise.all([
+        current.request<GridWindow>("window", { start: 0, count: 4 }),
+        client.request<GridWindow>("window", { start: 0, count: 4 }),
+      ]);
+      if (token !== compareToken.current) { client.dispose(); return; }
+      compareRef.current = { client, snapshot: next, payload };
+      setComparison((state) => state && { ...state, status: "ready", current: summarize(before, now), next: summarize(next, after) });
+    } catch (error) {
+      client.dispose();
+      if (token !== compareToken.current) return;
+      setComparison((state) => state && { ...state, status: "failed", message: messageOf(error) });
+    }
+  };
+
+  const confirmRead = () => {
+    const pending = compareRef.current;
+    if (!pending) return;
+    compareRef.current = null;
+    compareToken.current++;
+    setComparison(null);
+    importToken.current++;
+    pendingRef.current?.dispose();
+    pendingRef.current = null;
+    openDocument(pending.client, pending.snapshot, pending.payload);
+    showToast("Re-read with the new setting. Your original file is unchanged.");
+  };
+
+  const goToExport = () => {
+    const button = document.getElementById("csv-studio-export-primary");
+    button?.scrollIntoView({ block: "center" });
+    button?.focus({ preventScroll: true });
   };
 
   const fixIssue = (issue: Issue) => {
@@ -408,7 +508,7 @@ export default function CsvStudio() {
     if (!fix || !snapshot) return;
     switch (fix.kind) {
       case "op": if (fix.op.kind === "setType") void apply(fix.op); else void preview(fix.op); break;
-      case "reimport": requestReimport({ ...snapshot.options, ...fix.patch }); break;
+      case "reimport": void compareRead(fix.label, issue.proposedAction, { ...snapshot.options, ...fix.patch }); break;
       case "encoding-lab": setDialog("lab"); break;
       case "pad": openColumnTool(fix.column, { tool: "pad" }); break;
       case "find-replace": openColumnTool(fix.column, { tool: "find", find: fix.find }); break;
@@ -591,7 +691,7 @@ export default function CsvStudio() {
       { id: "redo", label: "Redo", group: "Edit", icon: Redo2, shortcut: isMac ? "⌘ ⇧ Z" : "Ctrl Y", disabled: !snapshot.history.canRedo, run: () => void step("redo") },
       { id: "goto", label: "Go to cell", group: "Edit", icon: Locate, shortcut: `${mod} G`, run: () => setDialog("goto") },
       { id: "reset", label: "Reset to imported data", group: "Edit", icon: RotateCcw, disabled: editCount === 0, run: () => void step("reset") },
-      { id: "safe", label: "Preview safe cleanups (trim, BOM, headers)", group: "Repair", icon: WandSparkles, run: () => void preview({ kind: "batch", label: "Apply safe cleanups", ops: [{ kind: "trim", columns: "all" }, { kind: "stripBom", columns: "all" }, { kind: "repairHeaders", names: null }] }) },
+      { id: "safe", label: "Preview safe cleanups (trim, BOM, headers)", group: "Repair", icon: WandSparkles, run: () => void preview(SAFE_CLEANUPS) },
       { id: "blank", label: "Remove blank rows", group: "Repair", icon: Eraser, disabled: !blank, run: () => void preview({ kind: "removeBlankRows" }) },
       { id: "dupes", label: "Remove duplicate rows", group: "Repair", icon: Rows3, disabled: !duplicates, run: () => void preview({ kind: "removeDuplicateRows" }) },
     );
@@ -603,13 +703,13 @@ export default function CsvStudio() {
       );
     }
     actions.push(
-      { id: "issues", label: "Show issues", group: "View", icon: FileExclamationPoint, run: () => { setTab("issues"); setInspectorOpen(true); } },
-      { id: "column", label: "Show column details", group: "View", icon: Columns3, run: () => { setTab("column"); setInspectorOpen(true); } },
-      { id: "changes", label: "Show changes and history", group: "View", icon: History, run: () => { setTab("changes"); setInspectorOpen(true); } },
+      { id: "issues", label: "Show issues", group: "View", icon: FileExclamationPoint, run: () => { setTab("issues"); setView("review"); } },
+      { id: "column", label: "Show column details", group: "View", icon: Columns3, run: () => { setTab("column"); setView("review"); } },
+      { id: "changes", label: "Show changes and history", group: "View", icon: History, run: () => { setTab("changes"); setView("review"); } },
       { id: "diff", label: diff ? "Hide change highlights" : "Highlight changed cells", group: "View", icon: Highlighter, run: () => setDiff((value) => !value) },
       { id: "density", label: compact ? "Comfortable rows" : "Compact rows", group: "View", icon: Rows3, run: () => setCompact((value) => !value) },
       { id: "expand", label: expanded ? "Exit full screen" : "Full screen workspace", group: "View", icon: expanded ? Minimize2 : Maximize2, run: () => setExpanded((value) => !value) },
-      { id: "export", label: "Export…", group: "Export", icon: FileSpreadsheet, run: () => { const button = document.getElementById("csv-studio-export-primary"); button?.scrollIntoView({ block: "center" }); button?.focus({ preventScroll: true }); } },
+      { id: "export", label: "Export…", group: "Export", icon: FileSpreadsheet, run: goToExport },
     );
     return actions;
   };
@@ -628,7 +728,6 @@ export default function CsvStudio() {
       const key = event.key.toLowerCase();
       if (modKey && key === "k" && !event.shiftKey && !event.altKey) { event.preventDefault(); openPalette(); return; }
       if (event.key === "Escape" && expanded && !menu) { setExpanded(false); return; }
-      if (event.key === "Escape" && inspectorOpen && !menu) { setInspectorOpen(false); inspectorToggleRef.current?.focus(); return; }
       if (!ready || editable(event.target)) return;
       const inStudio = rootRef.current?.contains(event.target as Node) || event.target === document.body;
       if (!inStudio) return;
@@ -658,11 +757,25 @@ export default function CsvStudio() {
   const stage = () => {
     if (phase === "working") {
       const percent = progress && progress.total ? Math.round((progress.done / progress.total) * 100) : null;
+      const active = Math.max(0, READ_STEPS.indexOf(progress?.phase ?? "Reading"));
       return (
         <div className={styles.working} role="status" aria-live="polite">
           <h2>Reading {workingName}</h2>
-          <p>{progress?.phase ?? "Reading"}{percent !== null ? ` · ${percent}%` : "…"} Everything happens in this browser tab.</p>
+          <ol className={styles.readSteps}>
+            {READ_STEPS.map((step, index) => {
+              const state = index < active ? "done" : index === active ? "current" : "pending";
+              const Icon = state === "done" ? CircleCheck : state === "current" ? CircleDot : Circle;
+              return (
+                <li key={step} data-state={state}>
+                  <Icon size={15} aria-hidden="true" />
+                  <span>{step}{state === "current" && percent !== null ? ` ${percent}%` : ""}</span>
+                  <span className={styles.srOnly}>{state === "done" ? " (done)" : state === "current" ? " (in progress)" : ""}</span>
+                </li>
+              );
+            })}
+          </ol>
           <div className={styles.progressTrack}><div className={styles.progressBar} style={{ width: `${percent ?? 0}%` }} data-indeterminate={percent === null || undefined} /></div>
+          <p>Everything happens in this browser tab.</p>
           <button type="button" className={styles.button} onClick={cancelImport}>Cancel</button>
         </div>
       );
@@ -675,6 +788,7 @@ export default function CsvStudio() {
           <p>{failure.message}</p>
           <div className={styles.actions}>
             <button type="button" className={styles.buttonPrimary} onClick={pickFile}><Upload size={15} aria-hidden="true" /> Choose another file</button>
+            {failure.code === "PDF_FILE" && <a className={styles.button} href="/tools/invoice-pdf-to-excel">Open Invoice PDF to Excel</a>}
             {retry && <button type="button" className={styles.button} onClick={() => void importSource(retry.payload, DEFAULT_IMPORT_OPTIONS)}>Retry with automatic settings</button>}
             {snapshot && <button type="button" className={styles.button} onClick={() => setPhase("ready")}>Back to {snapshot.source.name}</button>}
           </div>
@@ -682,28 +796,36 @@ export default function CsvStudio() {
       );
     }
     return (
-      <div className={styles.dropzone} data-active={dragging || undefined}>
-        <span className={styles.dropIcon}><Upload size={24} aria-hidden="true" /></span>
-        <h2>Drop a CSV file to inspect and repair</h2>
-        <p>CSV or delimited TXT. Processed in your browser.</p>
-        <div className={styles.dropActions}>
-          <button type="button" className={styles.buttonPrimary} onClick={pickFile}><Upload size={15} aria-hidden="true" /> Choose a file</button>
-          <button type="button" className={styles.button} onClick={() => setDialog("paste")}><ClipboardPaste size={15} aria-hidden="true" /> Paste data</button>
+      <div className={styles.start}>
+        <div className={styles.dropzone} data-active={dragging || undefined}>
+          <span className={styles.dropIcon}><Upload size={24} aria-hidden="true" /></span>
+          <h2>Drop a CSV file to inspect and repair</h2>
+          <p>CSV or delimited TXT. Processed in your browser.</p>
+          <div className={styles.dropActions}>
+            <button type="button" className={styles.buttonPrimary} onClick={pickFile}><Upload size={15} aria-hidden="true" /> Choose a file</button>
+            <button type="button" className={styles.button} onClick={() => setDialog("paste")}><ClipboardPaste size={15} aria-hidden="true" /> Paste data</button>
+          </div>
+          <p className={`${styles.pasteTip} ${styles.hideMobile}`}>Or press <kbd className={styles.kbd}>{mod}</kbd> <kbd className={styles.kbd}>V</kbd> anywhere on this page to paste a table.</p>
+          <p className={styles.limits}>
+            <span>Up to {STUDIO_LIMITS.maxBytes / 1048576} MB</span>
+            <span>{n(STUDIO_LIMITS.maxRows)} rows</span>
+            <span className={styles.hideMobile}>{n(STUDIO_LIMITS.maxColumns)} columns</span>
+            <span className={styles.hideMobile}>.csv .tsv .txt .gz .zip</span>
+          </p>
         </div>
-        <div className={styles.samples} role="group" aria-label="Sample files">
-          {STUDIO_SAMPLES.map((sample) => (
-            <button key={sample.id} type="button" className={styles.sample} onClick={() => openSample(sample)}>
-              <strong>{sample.name}</strong>
-              <span>{sample.description}</span>
-            </button>
-          ))}
-        </div>
-        <p className={styles.limits}>
-          <span>Up to {STUDIO_LIMITS.maxBytes / 1048576} MB</span>
-          <span>{n(STUDIO_LIMITS.maxRows)} rows</span>
-          <span>{n(STUDIO_LIMITS.maxColumns)} columns</span>
-          <span>.csv .tsv .txt .gz .zip</span>
-        </p>
+        <section className={styles.samplePanel} aria-labelledby="csv-studio-samples-title">
+          <h3 id="csv-studio-samples-title">Start with a sample</h3>
+          <p>Each sample shows a common Excel problem. All samples are fictional.</p>
+          <div className={styles.samples} role="group" aria-label="Sample files">
+            {STUDIO_SAMPLES.map((sample) => (
+              <button key={sample.id} type="button" className={styles.sample} onClick={() => openSample(sample)}>
+                <strong>{sample.problem}</strong>
+                <span>{sample.name}<span className={styles.sampleDetail}> · {sample.description}</span></span>
+                <ArrowRight size={15} aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        </section>
       </div>
     );
   };
@@ -746,7 +868,7 @@ export default function CsvStudio() {
           if (file) void openFile(file);
         }}
       />
-      <div className={styles.frame} data-empty={!ready || undefined} data-alone={!ready || undefined}>
+      <div className={styles.frame} data-empty={!ready || undefined} data-alone={!ready || undefined} data-view={ready ? view : undefined}>
         <div className={styles.toolbar} role="toolbar" aria-label="CSV Studio">
           <span className={styles.brand}><span className={styles.brandMark}><FileSpreadsheet size={14} aria-hidden="true" /></span><span>CSV Studio</span></span>
           {ready && (
@@ -769,8 +891,8 @@ export default function CsvStudio() {
             <Command size={14} aria-hidden="true" /> Commands <span className={styles.kbd}>{mod} K</span>
           </button>
           {ready && (
-            <button ref={inspectorToggleRef} type="button" className={`${styles.button} ${styles.small} ${styles.panelToggle}`} aria-expanded={inspectorOpen} aria-controls="csv-studio-inspector" onClick={() => { setInspectorOpen(true); requestAnimationFrame(() => document.getElementById(`csv-studio-tab-${tab}`)?.focus()); }}>
-              <PanelRightOpen size={14} aria-hidden="true" /> Issues <span className={styles.count}>{n(openIssues.total)}</span>
+            <button type="button" className={`${styles.button} ${styles.small}`} onClick={goToExport}>
+              <Download size={14} aria-hidden="true" /> Export
             </button>
           )}
           {ready && (
@@ -779,6 +901,17 @@ export default function CsvStudio() {
             </button>
           )}
         </div>
+
+        {ready && (
+          <div className={styles.viewSwitch} role="group" aria-label="Workspace view">
+            <button type="button" aria-pressed={view === "review"} aria-controls="csv-studio-inspector" onClick={() => setView("review")}>
+              <ListChecks size={15} aria-hidden="true" /> Review <span className={styles.count}>{n(openIssues.total)}</span>
+            </button>
+            <button type="button" aria-pressed={view === "data"} aria-controls="csv-studio-data" onClick={() => setView("data")}>
+              <Rows3 size={15} aria-hidden="true" /> Data
+            </button>
+          </div>
+        )}
 
         {ready && (
           <SetupPanel
@@ -797,7 +930,7 @@ export default function CsvStudio() {
           />
         )}
 
-        <section className={styles.center} aria-label={ready ? "Data grid" : "Open a file"}>
+        <section id="csv-studio-data" className={styles.center} aria-label={ready ? "Data grid" : "Open a file"}>
           {ready ? (
             <>
               <div className={styles.gridBar} aria-live="off">
@@ -807,7 +940,7 @@ export default function CsvStudio() {
                   <span><span className={`${styles.dot} ${styles.dotError}`} /> Error</span>
                   <span><span className={`${styles.dot} ${styles.dotWarning}`} /> Warning</span>
                   <span style={{ color: "var(--cs-ok)" }}>Protected ID</span>
-                  <span style={{ color: "var(--cs-warn)" }}>Formula-like</span>
+                  <span className={styles.legendFormula}>Formula-like</span>
                 </span>
               </div>
               <DataGrid
@@ -835,19 +968,11 @@ export default function CsvStudio() {
             <div className={styles.stage}>{stage()}</div>
           )}
           {dragging && ready && <div className={styles.dropOverlay}>Drop to open this file instead</div>}
-          {toast && (
-            <div className={styles.toast} key={toast.id}>
-              <span>{toast.message}</span>
-              {toast.undo && <button type="button" className={styles.toastAction} onClick={() => { setToast(null); void step("undo"); }}>Undo</button>}
-              <button type="button" aria-label="Dismiss message" onClick={() => setToast(null)}><X size={14} aria-hidden="true" /></button>
-            </div>
-          )}
         </section>
 
         {ready && (
           <>
-            <div className={styles.drawerBackdrop} data-open={inspectorOpen || undefined} onClick={() => setInspectorOpen(false)} aria-hidden="true" />
-            <aside id="csv-studio-inspector" className={styles.right} data-open={inspectorOpen || undefined} aria-label="Inspector">
+            <aside id="csv-studio-inspector" className={styles.right} aria-label="Inspector">
               <div className={styles.tabs}>
                 <div className={styles.tabList} role="tablist" aria-label="Inspector" onKeyDown={onTabKey}>
                   {TABS.map((value) => (
@@ -869,12 +994,10 @@ export default function CsvStudio() {
                     </button>
                   ))}
                 </div>
-                <span className={styles.spacer} />
-                <button type="button" className={`${styles.iconButton} ${styles.panelToggle}`} aria-label="Close inspector" onClick={() => { setInspectorOpen(false); inspectorToggleRef.current?.focus(); }}><X size={16} aria-hidden="true" /></button>
               </div>
               <div id="csv-studio-tabpanel" role="tabpanel" aria-labelledby={`csv-studio-tab-${tab}`} className={styles.inspectorBody} tabIndex={-1}>
                 {tab === "issues" && (
-                  <IssuesTab snapshot={snapshot} selected={selectedIssue} onSelect={setSelectedIssue} onLocate={(issue, next) => void locateIssue(issue, next)} onFix={fixIssue} onDismiss={(issue, value) => void dismissIssue(issue, value)} />
+                  <IssuesTab snapshot={snapshot} selected={selectedIssue} onSelect={setSelectedIssue} onLocate={(issue, next) => void locateIssue(issue, next)} onFix={fixIssue} onDismiss={(issue, value) => void dismissIssue(issue, value)} onSafeCleanups={() => void preview(SAFE_CLEANUPS)} onExport={goToExport} />
                 )}
                 {tab === "column" && (
                   <ColumnTab
@@ -919,10 +1042,20 @@ export default function CsvStudio() {
               <span>{editCount ? `${n(editCount)} change${editCount === 1 ? "" : "s"} applied` : "No changes yet"}</span>
             </>
           ) : (
-            <span>{phase === "working" ? "Reading…" : "No file open"}</span>
+            <>
+              <span>{phase === "working" ? "Reading…" : "No file open"}</span>
+              <span className={styles.hideMobile}>Press Ctrl K (⌘ K on Mac) for commands</span>
+            </>
           )}
           <span className={styles.statusEnd}><LockKeyhole size={12} aria-hidden="true" /> Processed in your browser</span>
         </div>
+        {toast && (
+          <div className={styles.toast} key={toast.id}>
+            <span>{toast.message}</span>
+            {toast.undo && <button type="button" className={styles.toastAction} onClick={() => { setToast(null); void step("undo"); }}>Undo</button>}
+            <button type="button" aria-label="Dismiss message" onClick={() => setToast(null)}><X size={14} aria-hidden="true" /></button>
+          </div>
+        )}
       </div>
 
       {ready && (
@@ -952,6 +1085,7 @@ export default function CsvStudio() {
       {ready && (
         <>
           <EncodingLab open={dialog === "lab"} onClose={() => setDialog(null)} load={loadLab} current={snapshot.report.encoding.used} onChoose={(encoding) => { setDialog(null); requestReimport({ ...snapshot.options, encoding }); }} />
+          <ReadCompareDialog comparison={comparison} onKeep={discardComparison} onConfirm={confirmRead} />
           <GoToDialog open={dialog === "goto"} onClose={() => setDialog(null)} rowCount={rowCount} columns={visibleColumns} initial={selection.focus} onGo={(row, column) => moveTo(row, column, true)} />
           <ConfirmDialog
             open={dialog === "reimport"}

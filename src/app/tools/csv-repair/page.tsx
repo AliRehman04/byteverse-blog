@@ -76,22 +76,11 @@ export default function CsvRepairPage() {
           </div>
           <div className={styles.identityMeta}>
             <a className={styles.privacyChip} href="#csv-studio-privacy"><LockKeyhole size={14} aria-hidden="true" /> Processed in your browser</a>
-            <p className={styles.commandHint}>Press <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> on Mac) for commands</p>
           </div>
         </header>
 
         <section id="csv-repair-workspace" aria-label="CSV Studio workspace" className={styles.workspace}>
           <CsvStudio />
-        </section>
-
-        <section className={styles.section} aria-labelledby="csv-repair-how-title">
-          <p className={styles.eyebrow}>HOW CSV STUDIO WORKS</p>
-          <h2 id="csv-repair-how-title">Fix your CSV. Keep your data intact.</h2>
-          <ol className={styles.steps}>
-            <li><span>01</span><h3>Inspect</h3><p>Drop a file and CSV Studio reads its encoding, delimiter, quotes and line endings, then checks every column. Each finding says what is wrong, where it is, and what fixing it would change.</p></li>
-            <li><span>02</span><h3>Repair with a preview</h3><p>Trim spaces, rebuild header names, remove blank or duplicate rows, split and merge columns, or find and replace. Every repair shows before and after values first, and every step can be undone.</p></li>
-            <li><span>03</span><h3>Export what Excel expects</h3><p>The XLSX export writes text and ID columns as text cells, and numbers or dates as typed cells only in columns you set to those types. It then reads the workbook back to verify it before the download starts.</p></li>
-          </ol>
         </section>
 
         <section className={styles.section} aria-labelledby="csv-repair-excel-title">
@@ -120,6 +109,16 @@ export default function CsvRepairPage() {
               <p>A semicolon file on a comma system, or a tab file named .csv, opens as one long column. The detector checks which delimiter splits rows consistently and tells you why.</p>
             </article>
           </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="csv-repair-how-title">
+          <p className={styles.eyebrow}>HOW CSV STUDIO WORKS</p>
+          <h2 id="csv-repair-how-title">Fix your CSV. Keep your data intact.</h2>
+          <ol className={styles.steps}>
+            <li><span>01</span><h3>Inspect</h3><p>Drop a file and CSV Studio reads its encoding, delimiter, quotes and line endings, then checks every column. Each finding says what is wrong, where it is, and what fixing it would change.</p></li>
+            <li><span>02</span><h3>Repair with a preview</h3><p>Trim spaces, rebuild header names, remove blank or duplicate rows, split and merge columns, or find and replace. Every repair shows before and after values first, and every step can be undone.</p></li>
+            <li><span>03</span><h3>Export what Excel expects</h3><p>The XLSX export writes text and ID columns as text cells, and numbers or dates as typed cells only in columns you set to those types. It then reads the workbook back to verify it before the download starts.</p></li>
+          </ol>
         </section>
 
         <div className={styles.split}>

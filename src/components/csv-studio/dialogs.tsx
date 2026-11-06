@@ -26,6 +26,8 @@ export function Modal({ open, title, onClose, children, footer, wide, className,
     if (open && !dialog.open) {
       previous.current = document.activeElement;
       dialog.showModal();
+      // React's autoFocus runs before showModal() and is lost, so dialogs mark their first focus target with data-autofocus.
+      dialog.querySelector<HTMLElement>("[data-autofocus]")?.focus();
     } else if (!open && dialog.open) dialog.close();
   }, [open]);
   useEffect(() => () => { if (ref.current?.open) ref.current.close(); }, []);
@@ -93,7 +95,7 @@ function PaletteBody({ onClose, actions }: { onClose(): void; actions: PaletteAc
       <div className={styles.paletteInput}>
         <Search size={18} aria-hidden="true" />
         <input
-          autoFocus
+          data-autofocus
           role="combobox"
           aria-expanded="true"
           aria-controls="csv-studio-palette-list"
@@ -205,11 +207,106 @@ export function ConfirmDialog({ open, title, body, confirmLabel, danger, onConfi
 }) {
   return (
     <Modal open={open} title={title} onClose={onClose} footer={<>
-      <button type="button" className={styles.button} onClick={onClose}>Cancel</button>
-      <button type="button" className={danger ? styles.buttonDanger : styles.buttonPrimary} onClick={() => { onConfirm(); onClose(); }} autoFocus>{confirmLabel}</button>
+      <button type="button" className={styles.button} onClick={onClose} data-autofocus={danger || undefined}>Cancel</button>
+      <button type="button" className={danger ? styles.buttonDanger : styles.buttonPrimary} onClick={() => { onConfirm(); onClose(); }} data-autofocus={!danger || undefined}>{confirmLabel}</button>
     </>}>
       <div className={styles.dialogBody}>{body}</div>
     </Modal>
+  );
+}
+
+export interface ReadSummary { rows: number; columns: number; errors: number; warnings: number; errorNames: string[]; headers: string[]; preview: string[][] }
+export interface ReadComparison {
+  label: string;
+  hint: string;
+  status: "loading" | "ready" | "failed";
+  progress: string;
+  message: string | null;
+  current: ReadSummary;
+  next: ReadSummary | null;
+  editCount: number;
+}
+
+const count = (value: number) => value.toLocaleString("en-US");
+
+export function ReadCompareDialog({ comparison, onKeep, onConfirm }: { comparison: ReadComparison | null; onKeep(): void; onConfirm(): void }) {
+  const label = comparison?.label ?? "";
+  return (
+    <Modal open={comparison !== null} title={`Before you ${label.charAt(0).toLowerCase()}${label.slice(1)}`} onClose={onKeep} wide footer={comparison && <>
+      <button type="button" className={styles.button} onClick={onKeep} data-autofocus>Keep current reading</button>
+      <button type="button" className={comparison.editCount > 0 ? styles.buttonDanger : styles.button} disabled={comparison.status !== "ready"} onClick={onConfirm}>
+        {comparison.editCount > 0 ? "Re-read and clear changes" : "Re-read the file"}
+      </button>
+    </>}>
+      {comparison && <CompareBody comparison={comparison} />}
+    </Modal>
+  );
+}
+
+function CompareBody({ comparison }: { comparison: ReadComparison }) {
+  const { current, next, status, editCount } = comparison;
+  return (
+    <div className={styles.dialogBody} tabIndex={status === "ready" ? 0 : undefined} aria-label={status === "ready" ? "Comparison details" : undefined} role={status === "ready" ? "region" : undefined}>
+      <p className={styles.hint}>{comparison.hint}</p>
+      {status === "loading" && <p className={styles.hint} role="status">Reading your original file again with the new setting{comparison.progress ? ` · ${comparison.progress}` : "…"} Nothing changes until you confirm.</p>}
+      {status === "failed" && <p className={styles.blocked} role="alert">{comparison.message}</p>}
+      {status === "ready" && next && (
+        <>
+          <table className={styles.compareTable}>
+            <caption className={styles.srOnly}>The current reading compared with re-reading the file</caption>
+            <thead><tr><th scope="col"><span className={styles.srOnly}>Measure</span></th><th scope="col">Current reading</th><th scope="col">After re-reading</th></tr></thead>
+            <tbody>
+              <CompareRow label="Data rows" before={count(current.rows)} after={count(next.rows)} changed={current.rows !== next.rows} />
+              <CompareRow label="Columns" before={count(current.columns)} after={count(next.columns)} changed={current.columns !== next.columns} />
+              <CompareRow label="Errors" before={<Problems total={current.errors} names={current.errorNames} />} after={<Problems total={next.errors} names={next.errorNames} />} changed={current.errors !== next.errors} />
+              <CompareRow label="Warnings" before={count(current.warnings)} after={count(next.warnings)} changed={current.warnings !== next.warnings} />
+            </tbody>
+          </table>
+          <div className={styles.compareRows}>
+            <PreviewTable caption="First rows now" summary={current} />
+            <PreviewTable caption="First rows after re-reading" summary={next} against={current} />
+          </div>
+          <p className={styles.hint}>Re-reading starts a new working copy from your original file. Undo can’t reverse it; you can switch back in Import settings.</p>
+          {editCount > 0 && <p className={styles.blocked}>Your {count(editCount)} applied change{editCount === 1 ? "" : "s"} will be cleared. Export first if you need them.</p>}
+        </>
+      )}
+    </div>
+  );
+}
+
+function CompareRow({ label, before, after, changed }: { label: string; before: React.ReactNode; after: React.ReactNode; changed: boolean }) {
+  return (
+    <tr>
+      <th scope="row">{label}</th>
+      <td>{before}</td>
+      <td data-changed={changed || undefined}>{after}{changed && <span className={styles.changeTag}>Changed</span>}</td>
+    </tr>
+  );
+}
+
+function Problems({ total, names }: { total: number; names: string[] }) {
+  return <>{count(total)}{names.length > 0 && <small>{names.join(", ")}</small>}</>;
+}
+
+function PreviewTable({ caption, summary, against }: { caption: string; summary: ReadSummary; against?: ReadSummary }) {
+  return (
+    <table className={styles.previewTable}>
+      <caption>{caption}</caption>
+      <thead><tr><th scope="col">Row</th>{summary.headers.map((name, index) => <th scope="col" key={index} title={name}>{name}</th>)}</tr></thead>
+      <tbody>
+        {summary.preview.length === 0
+          ? <tr><td colSpan={summary.headers.length + 1}>No data rows</td></tr>
+          : summary.preview.map((cells, row) => (
+            <tr key={row}>
+              <th scope="row">{row + 1}</th>
+              {cells.map((value, column) => {
+                const changed = against !== undefined && (against.preview[row]?.[column] ?? null) !== value;
+                return <td key={column} title={value} data-changed={changed || undefined}>{value.replace(/\r\n|\r|\n/g, "↵")}{changed && <span className={styles.srOnly}> (differs)</span>}</td>;
+              })}
+            </tr>
+          ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -228,7 +325,7 @@ function PasteBody({ onClose, onImport }: { onClose(): void; onImport(text: stri
     <>
       <div className={styles.dialogBody}>
         <label className={styles.field} htmlFor="csv-studio-paste">CSV, TSV or cells copied from a spreadsheet
-          <textarea id="csv-studio-paste" className={styles.textarea} style={{ minHeight: 240 }} value={text} onChange={(event) => setText(event.target.value)} spellCheck={false} autoFocus placeholder={"id,name,zip\n001,Ava,02115"} aria-describedby="csv-studio-paste-hint" />
+          <textarea id="csv-studio-paste" className={styles.textarea} style={{ minHeight: 240 }} value={text} onChange={(event) => setText(event.target.value)} spellCheck={false} data-autofocus placeholder={"id,name,zip\n001,Ava,02115"} aria-describedby="csv-studio-paste-hint" />
         </label>
         <p id="csv-studio-paste-hint" className={tooLong ? styles.blocked : styles.hint}>{tooLong ? `That’s more than ${STUDIO_LIMITS.maxPasteChars.toLocaleString("en-US")} characters. Save it as a file and drop it here instead.` : `${text.length.toLocaleString("en-US")} characters · pasted text stays in this browser tab. Cells copied from Excel or Google Sheets are tab-separated, which Auto detects.`}</p>
       </div>
@@ -260,7 +357,7 @@ function GoToBody({ rowCount, columns, initial, onGo, onClose }: GoToProps & { o
       <div className={styles.dialogBody}>
         <div className={styles.fieldRow}>
           <label className={styles.field}>Row (1–{rowCount.toLocaleString("en-US")})
-            <input className={styles.input} inputMode="numeric" value={row} onChange={(event) => setRow(event.target.value.replace(/[^\d]/g, ""))} autoFocus aria-invalid={!valid} />
+            <input className={styles.input} inputMode="numeric" value={row} onChange={(event) => setRow(event.target.value.replace(/[^\d]/g, ""))} data-autofocus aria-invalid={!valid} />
           </label>
           <label className={styles.field}>Column
             <select className={styles.select} value={column} onChange={(event) => setColumn(Number(event.target.value))}>

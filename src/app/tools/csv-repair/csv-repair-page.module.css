@@ -20,8 +20,6 @@
 .identityMeta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .privacyChip { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; padding: 0 12px; border: 1px solid color-mix(in srgb, var(--primary) 32%, var(--border)); border-radius: 999px; background: color-mix(in srgb, var(--primary) 7%, var(--background)); color: var(--primary); font-size: .8rem; font-weight: 600; }
 .privacyChip:hover { border-color: var(--primary); }
-.commandHint { color: var(--muted-foreground); font-size: .78rem; }
-.commandHint kbd { display: inline-block; min-width: 20px; padding: 1px 6px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 5px; background: var(--card); color: var(--foreground); font-family: var(--font-geist-mono), monospace; font-size: .72rem; text-align: center; }
 .workspace { scroll-margin-top: 76px; }
 
 .section, .split, .limits, .endnote { max-width: 1160px; margin-inline: auto; }
@@ -78,7 +76,9 @@
   .limits { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 767px) {
-  .commandHint { display: none; }
+  .identity { padding-block: 4px 12px; }
+  .identityCopy p { font-size: .95rem; line-height: 1.55; }
+  .identityMeta { display: none; }
   .steps, .cards, .split, .guides { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .section, .split { margin-top: 52px; }
   .callout { padding: 16px; }

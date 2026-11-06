@@ -158,6 +158,16 @@ export const DataGrid = forwardRef<DataGridHandle, Props>(function DataGrid(prop
   const range = normalizeRange(selection);
   const active = selection.focus;
 
+  const revealColumn = useCallback((column: number) => {
+    const root = rootRef.current;
+    if (!root) return;
+    const left = offsets[column] ?? 0;
+    const right = offsets[column + 1] ?? left;
+    const visibleWidth = root.clientWidth - gutter;
+    if (left < root.scrollLeft) root.scrollLeft = left;
+    else if (right > root.scrollLeft + visibleWidth) root.scrollLeft = right - visibleWidth;
+  }, [offsets]);
+
   const scrollTo = useCallback((row: number, column: number) => {
     const root = rootRef.current;
     if (!root) return;
@@ -165,12 +175,8 @@ export const DataGrid = forwardRef<DataGridHandle, Props>(function DataGrid(prop
     const bottom = top + rowHeight;
     if (top < root.scrollTop + headHeight) root.scrollTop = top - headHeight;
     else if (bottom > root.scrollTop + root.clientHeight) root.scrollTop = bottom - root.clientHeight;
-    const left = offsets[column] ?? 0;
-    const right = offsets[column + 1] ?? left;
-    const visibleWidth = root.clientWidth - gutter;
-    if (left < root.scrollLeft) root.scrollLeft = left;
-    else if (right > root.scrollLeft + visibleWidth) root.scrollLeft = right - visibleWidth;
-  }, [offsets, rowHeight]);
+    revealColumn(column);
+  }, [revealColumn, rowHeight]);
 
   useImperativeHandle(ref, () => ({ focus: () => rootRef.current?.focus({ preventScroll: true }), scrollTo }), [scrollTo]);
 
@@ -224,6 +230,8 @@ export const DataGrid = forwardRef<DataGridHandle, Props>(function DataGrid(prop
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (editing || !rowCount || !columns.length) return;
+    // Header buttons live inside the grid; their Tab, Enter and Space must keep native button behaviour.
+    if (event.target !== event.currentTarget) return;
     const mod = event.ctrlKey || event.metaKey;
     const page = Math.max(1, Math.floor((viewport.height - headHeight) / rowHeight) - 1);
     const { row, column } = active;
@@ -370,7 +378,7 @@ export const DataGrid = forwardRef<DataGridHandle, Props>(function DataGrid(prop
               const badge = typeBadge(column);
               const blank = !column.name.trim();
               return (
-                <div key={column.key} role="columnheader" aria-colindex={position + 2} className={styles.headCell} style={{ width: columnWidth(column) }} data-active={position >= range.left && position <= range.right ? "" : undefined}>
+                <div key={column.key} role="columnheader" aria-colindex={position + 2} className={styles.headCell} style={{ width: columnWidth(column) }} onFocus={() => revealColumn(position)} data-active={position >= range.left && position <= range.right ? "" : undefined}>
                   <button type="button" className={styles.headLabel} data-blank={blank || undefined} data-changed={props.changedHeaders.has(column.key) || undefined} onClick={() => { props.onColumnSelect(column); onSelection({ anchor: { row: 0, column: position }, focus: { row: Math.max(rowCount - 1, 0), column: position } }); }} title={column.name || "Untitled column"}>
                     {blank ? `Untitled ${columnLetter(position)}` : column.name}
                   </button>

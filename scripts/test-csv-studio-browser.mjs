@@ -62,6 +62,12 @@ async function scenario(name, run, { width = 1440, theme = "light" } = {}) {
 
 async function openSample(page, name) {
   await page.getByRole("button", { name: new RegExp(name) }).click();
+  await expect(page.getByRole("grid", { includeHidden: true })).toBeAttached();
+  const views = page.getByRole("group", { name: "Workspace view" });
+  if (await views.isVisible()) {
+    await expect(page.getByRole("heading", { name: "Results" })).toBeVisible();
+    await views.getByRole("button", { name: "Data" }).click();
+  }
   const grid = page.getByRole("grid");
   await expect(grid).toBeVisible();
   await expect(grid.getByRole("gridcell").first()).not.toBeEmpty();
@@ -102,6 +108,7 @@ try {
     await expect(page.getByText(/Excel removes leading zeros when it opens a CSV directly/).first()).toBeVisible();
     await page.getByRole("button", { name: /^Keep as text/ }).first().click();
     await expect(issue).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => document.activeElement?.hasAttribute("data-issue") ?? false), { message: "focus stays in the findings list after a fix" }).toBe(true);
     await expect(page.getByRole("button", { name: "Undo", exact: true })).toBeVisible();
     await page.keyboard.press("Control+z");
     await expect(issue).toHaveCount(1);
@@ -152,10 +159,14 @@ try {
     await expect(page.getByRole("button", { name: "Compact rows" })).toHaveAttribute("aria-pressed", "true");
     await page.keyboard.press("Control+g");
     const row = page.getByRole("textbox", { name: /Row/ });
+    await expect(row).toBeFocused();
     await row.fill("5");
     await row.press("Enter");
     await expect(page.locator("strong", { hasText: /^A5$/ })).toBeVisible();
     await expect(page.getByRole("grid")).toBeFocused();
+    await page.getByRole("grid").getByRole("button", { name: "Name", exact: true }).focus();
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("button", { name: "Column options for Name" })).toBeFocused();
   });
 
   await scenario("European sample: Windows-1252 accents and the Encoding Lab", async (page) => {
@@ -175,6 +186,42 @@ try {
     await expect(page.getByRole("button", { name: /Unclosed quote/ })).toBeVisible();
     await expect(page.getByText(/still open/).first()).toBeVisible();
   });
+
+  await scenario("re-read fixes compare first and keep the current reading by default", async (page) => {
+    await openSample(page, "Broken quotes");
+    await page.getByRole("button", { name: /Unclosed quote/ }).click();
+    const fix = page.getByRole("button", { name: "Re-import with Quote: None…" });
+    await fix.click();
+    const dialog = page.getByRole("dialog", { name: "Before you re-import with Quote: None" });
+    await expect(dialog.getByRole("columnheader", { name: "After re-reading" })).toBeVisible();
+    const rows = dialog.getByRole("row", { name: /Data rows/ });
+    await expect(rows).toContainText("5");
+    await expect(rows).toContainText("6");
+    await expect(dialog.getByRole("button", { name: "Keep current reading" })).toBeFocused();
+    const evidence = await axe(page, "re-read comparison");
+    await dialog.getByRole("button", { name: "Keep current reading" }).click();
+    await expect(dialog).toBeHidden();
+    await expect(page.getByRole("grid", { name: /5 rows/ })).toBeVisible();
+    await fix.click();
+    await dialog.getByRole("button", { name: "Re-read the file" }).click();
+    await expect(dialog).toBeHidden();
+    await expect(page.getByRole("grid", { name: /6 rows/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Unclosed quote/ })).toHaveCount(0);
+    return evidence;
+  });
+
+  await scenario("mobile: findings open first, Data shows the grid and Export is one tap away", async (page) => {
+    await page.getByRole("button", { name: /US customer list/ }).click();
+    await expect(page.getByRole("heading", { name: "Results" })).toBeVisible();
+    await expect(page.locator("[data-issue]").first()).toBeVisible();
+    await expect(page.getByRole("grid")).toBeHidden();
+    const evidence = await axe(page, "review 375");
+    await page.getByRole("group", { name: "Workspace view" }).getByRole("button", { name: "Data" }).click();
+    await expect(page.getByRole("grid")).toBeVisible();
+    await page.getByRole("button", { name: "Export", exact: true }).click();
+    await expect(page.locator("#csv-studio-export-primary")).toBeFocused();
+    return evidence;
+  }, { width: 375 });
 
   for (const [width, theme] of [[375, "light"], [768, "light"], [1280, "light"], [1440, "light"], [1440, "dark"], [375, "dark"]]) {
     await scenario(`responsive ${width}px ${theme}: no page overflow, screenshot and axe`, async (page) => {

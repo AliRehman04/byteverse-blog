@@ -249,6 +249,9 @@ function make(input: IssueInput): Issue {
 
 const n = (value: number) => value.toLocaleString("en-US");
 const plural = (count: number, one: string, many = `${one}s`) => `${n(count)} ${count === 1 ? one : many}`;
+const verb = (count: number, one: string, many: string) => (count === 1 ? one : many);
+const SINGULAR_VERBS: Record<string, string> = { have: "has", contain: "contains", match: "matches", are: "is", begin: "begins" };
+const singular = (text: string) => text.replace(/^(already )?(have|contain|match|are|begin)\b/, (_, already: string | undefined, word: string) => `${already ?? ""}${SINGULAR_VERBS[word]}`);
 const quoteList = (items: string[]) => items.map((item) => `“${item}”`).join(", ");
 
 function columnIssues(column: ColumnState, position: number, analysis: ColumnAnalysis, rowCount: number, issues: Issue[]): void {
@@ -284,8 +287,8 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     issues.push(make({
       ...base, code: "leading-zero", name: "Leading zeros at risk", severity: "warning", category: "identifier", count: zeros, row: first(FLAG.LEADING_ZERO), examples: examples(FLAG.LEADING_ZERO),
       explanation: numeric
-        ? `${plural(zeros, "value")} start with zero, such as ${sample}. As a number, Excel would store ${stripped}. These cells will be written as text instead.`
-        : `${plural(zeros, "value")} start with zero, such as ${sample}. Excel removes leading zeros when it opens a CSV directly, so ${sample} becomes ${stripped}.`,
+        ? `${plural(zeros, "value")} ${verb(zeros, "starts", "start")} with zero, such as ${sample}. As a number, Excel would store ${stripped}. These cells will be written as text instead.`
+        : `${plural(zeros, "value")} ${verb(zeros, "starts", "start")} with zero, such as ${sample}. Excel removes leading zeros when it opens a CSV directly, so ${sample} becomes ${stripped}.`,
       action: "Keep this column as text, or apply an identifier profile.",
       effect: `In the Excel export these cells are real text cells with Text format, so ${sample} stays ${sample}.`,
       fix: protectOp,
@@ -298,7 +301,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     issues.push(make({
       ...base, code: "long-digits", name: "Long numbers beyond Excel’s precision", severity: column.type === "integer" || column.type === "decimal" ? "error" : "warning", category: "identifier",
       count: long, row: first(FLAG.LONG_DIGITS), examples: examples(FLAG.LONG_DIGITS),
-      explanation: `${plural(long, "value")} have 16 or more digits, such as ${sample}. Excel stores numbers with 15 significant digits, so the final digits would become zeros.`,
+      explanation: `${plural(long, "value")} ${verb(long, "has", "have")} 16 or more digits, such as ${sample}. Excel stores numbers with 15 significant digits, so the final digits would become zeros.`,
       action: "Keep this column as text.",
       effect: "Exported as text cells, every digit stays exactly as imported.",
       fix: { ...protectOp, op: { kind: "setType", columns: [column.key], type: "text", profile: profile === "other" ? "account" : profile, dateFormat: null } },
@@ -309,7 +312,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
   if (scientific > 0) {
     issues.push(make({
       ...base, code: "scientific", name: "Values already in scientific notation", severity: "warning", category: "identifier", count: scientific, row: first(FLAG.SCIENTIFIC), examples: examples(FLAG.SCIENTIFIC),
-      explanation: `${plural(scientific, "value")} look like ${examples(FLAG.SCIENTIFIC)[0]}. This usually means a spreadsheet already rounded a long ID before the CSV was saved. The original digits are not in this file and can’t be recovered here.`,
+      explanation: `${plural(scientific, "value")} ${verb(scientific, "looks", "look")} like ${examples(FLAG.SCIENTIFIC)[0]}. This usually means a spreadsheet already rounded a long ID before the CSV was saved. The original digits are not in this file and can’t be recovered here.`,
       action: "Export the data again from the source system. Keep the column as text to avoid further changes.",
       effect: "CSV Studio keeps these values exactly as written; it does not invent digits.",
       fix: protectedColumn ? null : protectOp,
@@ -321,7 +324,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     if (short > 0) {
       issues.push(make({
         ...base, code: "zip-short", name: "ZIP codes with missing digits", severity: "warning", category: "identifier", count: short, row: first(FLAG.SHORT_DIGITS), examples: examples(FLAG.SHORT_DIGITS),
-        explanation: `${plural(short, "value")} have only 3–4 digits, such as ${examples(FLAG.SHORT_DIGITS)[0]}. Their leading zeros were probably removed before this file was saved. CSV Studio can’t know the missing digits.`,
+        explanation: `${plural(short, "value")} ${verb(short, "has", "have")} only 3–4 digits, such as ${examples(FLAG.SHORT_DIGITS)[0]}. Their leading zeros were probably removed before this file was saved. CSV Studio can’t know the missing digits.`,
         action: "Pad only if you know every value should have a fixed length (for example 5 for US ZIP codes). Otherwise correct them at the source.",
         effect: "Padding adds zeros on the left of digit-only values shorter than the length you type.",
         fix: { kind: "pad", label: "Pad to a length you choose", column: column.key },
@@ -333,7 +336,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     issues.push(make({
       ...base, code: "profile-mismatch", name: `Values that don’t match ${PROFILE_LABELS[column.profile]}`, severity: "info", category: "identifier",
       count: analysis.profileFailures, row: analysis.profileFirst, examples: analysis.profileExamples,
-      explanation: `${plural(analysis.profileFailures, "value")} don’t follow the usual ${PROFILE_LABELS[column.profile]} pattern, for example ${quoteList(analysis.profileExamples.slice(0, 2))}. They are still exported as text, unchanged.`,
+      explanation: `${plural(analysis.profileFailures, "value")} ${verb(analysis.profileFailures, "doesn’t", "don’t")} follow the usual ${PROFILE_LABELS[column.profile]} pattern, for example ${quoteList(analysis.profileExamples.slice(0, 2))}. They are still exported as text, unchanged.`,
       action: "Review these cells and correct them if they are typos.",
       effect: "No automatic change is made.",
     }));
@@ -344,7 +347,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     issues.push(make({
       ...base, code: "formula", name: "Formula-like values", severity: "warning", category: "security", count: formula, row: first(FLAG.FORMULA),
       examples: examples(FLAG.FORMULA),
-      explanation: `${plural(formula, "value")} begin with =, +, − or @ (for example ${quoteList(examples(FLAG.FORMULA).slice(0, 2))}). Spreadsheet apps can run text like this as a formula when a CSV is opened.`,
+      explanation: `${plural(formula, "value")} ${verb(formula, "begins", "begin")} with =, +, − or @ (for example ${quoteList(examples(FLAG.FORMULA).slice(0, 2))}). Spreadsheet apps can run text like this as a formula when a CSV is opened.`,
       action: "Export Excel (.xlsx), where every value is a text cell, or use spreadsheet-safe CSV.",
       effect: "The XLSX export never writes formulas. Spreadsheet-safe CSV adds an apostrophe in front of these values.",
     }));
@@ -355,7 +358,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     if (dates > 0 && column.type === "auto") {
       issues.push(make({
         ...base, code: "date-like", name: "Text Excel may turn into dates", severity: "info", category: "identifier", count: dates, row: first(FLAG.DATE_LIKE), examples: examples(FLAG.DATE_LIKE),
-        explanation: `${plural(dates, "value")} look like dates or times to Excel, such as ${examples(FLAG.DATE_LIKE)[0]}. Opening this CSV directly in Excel can convert them.`,
+        explanation: `${plural(dates, "value")} ${verb(dates, "looks", "look")} like dates or times to Excel, such as ${examples(FLAG.DATE_LIKE)[0]}. Opening this CSV directly in Excel can convert them.`,
         action: "Leave the column as Automatic or Text to keep the exact text, or choose Date with an explicit format.",
         effect: "The Excel export keeps these values as text unless you set the Date type.",
         fix: protectOp,
@@ -388,7 +391,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
     } else if (share >= 0.8) {
       issues.push(make({
         ...base, code: "mixed-types", name: "Mostly numbers, some text", severity: "warning", category: "type", count: analysis.nonNumeric, row: analysis.nonNumericFirst, examples: analysis.nonNumericExamples,
-        explanation: `${Math.round(share * 100)}% of ${label} is numeric, but ${plural(analysis.nonNumeric, "value")} aren’t, such as ${quoteList(analysis.nonNumericExamples.slice(0, 2))}. Totals and filters may treat them differently.`,
+        explanation: `${Math.round(share * 100)}% of ${label} is numeric, but ${plural(analysis.nonNumeric, "value")} ${verb(analysis.nonNumeric, "isn’t", "aren’t")}, such as ${quoteList(analysis.nonNumericExamples.slice(0, 2))}. Totals and filters may treat them differently.`,
         action: "Review these cells. Correct typos, or keep the column as text if the mix is intentional.",
         effect: "No automatic change is made.",
       }));
@@ -442,7 +445,7 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
       "already begin with an apostrophe ('). It is part of the text in this file, not Excel’s hidden text marker.",
       "Remove it with Find and replace if it was added by another tool.", "Exports keep the apostrophe as part of the value.", null],
     [FLAG.SENTINEL, "sentinel", "Placeholder values like NULL or N/A", "info", "quality",
-      "are placeholders such as NULL, N/A or #N/A rather than real data.",
+      "match placeholders such as NULL, N/A or #N/A rather than real data.",
       "Replace them with empty cells if your target system expects blanks.", "Find and replace changes only exact matches.",
       { kind: "find-replace", label: "Find and replace", column: column.key, find: examples(FLAG.SENTINEL)[0] ?? "NULL" }],
     [FLAG.VERY_LONG, "very-long", "Very long values", "info", "quality",
@@ -452,14 +455,14 @@ function columnIssues(column: ColumnState, position: number, analysis: ColumnAna
   for (const [flag, code, name, severity, category, explanation, action, effect, fix] of simple) {
     const total = count(flag);
     if (!total) continue;
-    issues.push(make({ ...base, code, name, severity, category, count: total, row: first(flag), examples: examples(flag), explanation: `${plural(total, "value")} ${explanation}`, action, effect, fix }));
+    issues.push(make({ ...base, code, name, severity, category, count: total, row: first(flag), examples: examples(flag), explanation: `${plural(total, "value")} ${total === 1 ? singular(explanation) : explanation}`, action, effect, fix }));
   }
 
   const tooLong = count(FLAG.TOO_LONG);
   if (tooLong > 0) {
     issues.push(make({
       ...base, code: "too-long", name: "Too long for an Excel cell", severity: "error", category: "quality", count: tooLong, row: first(FLAG.TOO_LONG),
-      explanation: `${plural(tooLong, "value")} exceed Excel’s limit of ${n(STUDIO_LIMITS.excelCellChars)} characters per cell. Excel export is blocked so nothing is silently cut off.`,
+      explanation: `${plural(tooLong, "value")} ${verb(tooLong, "exceeds", "exceed")} Excel’s limit of ${n(STUDIO_LIMITS.excelCellChars)} characters per cell. Excel export is blocked so nothing is silently cut off.`,
       action: "Shorten or split these values, or export CSV instead.",
       effect: "CSV export keeps the full text.",
       dismissible: false,
@@ -559,7 +562,7 @@ function fileIssues(ctx: ValidationContext, columns: ColumnState[], rows: RowAna
   if (rows.malformed > 0) {
     issues.push(make({
       code: "malformed-quotes", name: "Text after a closing quote", severity: "error", category: "structure", count: rows.malformed, row: rows.malformedFirst,
-      explanation: `${plural(rows.malformed, "row")} contain a quoted value followed by more text, such as "abc"def. CSV Studio kept all characters (as Excel does), but the row may be split differently than intended.`,
+      explanation: `${plural(rows.malformed, "row")} ${verb(rows.malformed, "contains", "contain")} a quoted value followed by more text, such as "abc"def. CSV Studio kept all characters (as Excel does), but the row may be split differently than intended.`,
       action: "Review these rows in the raw record view. If quotes are ordinary characters in this file, re-import with Quote: None.",
       effect: "Re-importing reads the original bytes again; nothing in the source file changes.",
       fix: { kind: "reimport", label: "Re-import with Quote: None", patch: { quote: "none" } },
@@ -568,14 +571,14 @@ function fileIssues(ctx: ValidationContext, columns: ColumnState[], rows: RowAna
   if (report.strayQuotes > 0) {
     issues.push(make({
       code: "stray-quotes", name: "Quote marks inside unquoted values", severity: "info", category: "text", count: report.strayQuotes,
-      explanation: `${plural(report.strayQuotes, "value")} contain a quote character without being wrapped in quotes (for example 5'10" or 12" ruler). They were kept exactly as typed.`,
+      explanation: `${plural(report.strayQuotes, "value")} ${verb(report.strayQuotes, "contains", "contain")} a quote character without being wrapped in quotes (for example 5'10" or 12" ruler). ${verb(report.strayQuotes, "It was", "They were")} kept exactly as typed.`,
       action: "No action is needed unless a value looks cut off.", effect: "CSV exports quote these values correctly.", locatable: false,
     }));
   }
   if (rows.long > 0) {
     issues.push(make({
       code: "ragged-long", name: "Rows with extra fields", severity: "error", category: "structure", count: rows.long, row: rows.longFirst,
-      explanation: `${plural(rows.long, "row")} have more fields than the header (${n(imported.headerWidth)}). The extra values are shown in untitled columns on the right, so nothing is dropped.`,
+      explanation: `${plural(rows.long, "row")} ${verb(rows.long, "has", "have")} more fields than the header (${n(imported.headerWidth)}). The extra values are shown in untitled columns on the right, so nothing is dropped.`,
       action: "Review those rows. An unquoted delimiter inside a value is the usual cause.",
       effect: "If the extra values are noise, delete the extra column. If not, fix the source and re-import.",
     }));
@@ -583,7 +586,7 @@ function fileIssues(ctx: ValidationContext, columns: ColumnState[], rows: RowAna
   if (rows.short > 0) {
     issues.push(make({
       code: "ragged-short", name: "Rows with missing fields", severity: "warning", category: "structure", count: rows.short, row: rows.shortFirst,
-      explanation: `${plural(rows.short, "row")} have fewer fields than the header. Missing cells are shown with a dash and exported as empty cells.`,
+      explanation: `${plural(rows.short, "row")} ${verb(rows.short, "has", "have")} fewer fields than the header. Missing cells are shown with a dash and exported as empty cells.`,
       action: "Review those rows. Values after a missing field may belong to a different column.",
       effect: "No automatic change is made.",
     }));
@@ -591,7 +594,7 @@ function fileIssues(ctx: ValidationContext, columns: ColumnState[], rows: RowAna
   if (rows.blank > 0) {
     issues.push(make({
       code: "blank-rows", name: "Blank rows", severity: "info", category: "structure", count: rows.blank, row: rows.blankFirst,
-      explanation: `${plural(rows.blank, "row")} contain no values.`,
+      explanation: `${plural(rows.blank, "row")} ${verb(rows.blank, "contains", "contain")} no values.`,
       action: "Remove fully blank rows.", effect: "Only rows where every visible cell is empty are removed. You can undo this.",
       fix: { kind: "op", label: "Remove blank rows", op: { kind: "removeBlankRows" } },
     }));
@@ -599,7 +602,7 @@ function fileIssues(ctx: ValidationContext, columns: ColumnState[], rows: RowAna
   if (rows.duplicates > 0) {
     issues.push(make({
       code: "duplicate-rows", name: "Exact duplicate rows", severity: "warning", category: "quality", count: rows.duplicates, row: rows.duplicateFirst,
-      explanation: `${plural(rows.duplicates, "row")} repeat an earlier row exactly, cell for cell.`,
+      explanation: `${plural(rows.duplicates, "row")} ${verb(rows.duplicates, "repeats", "repeat")} an earlier row exactly, cell for cell.`,
       action: "Preview the duplicates, then remove them if they are not intentional.",
       effect: "The first copy of each row is kept; later exact copies are removed. You can undo this.",
       fix: { kind: "op", label: "Review duplicate removal", op: { kind: "removeDuplicateRows" } },
@@ -816,7 +819,7 @@ export function exportBlockers(state: TableState): { xlsx: string | null; json: 
   const jsonProblem = names.some((name) => !name.trim()) ? "Every column needs a name for JSON export. Repair header names first."
     : new Set(names).size !== names.length ? "Column names must be unique for JSON export. Repair header names first." : null;
   return {
-    xlsx: tooLong ? `${plural(tooLong, "cell")} exceed Excel’s ${n(STUDIO_LIMITS.excelCellChars)}-character limit (first: row ${n(firstRow + 1)}, ${firstColumn}). Shorten them or export CSV.` : null,
+    xlsx: tooLong ? `${plural(tooLong, "cell")} ${verb(tooLong, "exceeds", "exceed")} Excel’s ${n(STUDIO_LIMITS.excelCellChars)}-character limit (first: row ${n(firstRow + 1)}, ${firstColumn}). Shorten them or export CSV.` : null,
     json: jsonProblem,
   };
 }

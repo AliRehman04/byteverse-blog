@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import {
   Copy, Download, RotateCcw, Maximize2, Minimize2,
-  Columns, Rows, Check, ChevronDown, Smartphone, Monitor,
+  Columns, Rows, Check, Smartphone, Monitor, Tablet, Play, TriangleAlert, LockKeyhole,
 } from "lucide-react";
 
 /* ── Templates ────────────────────────────────────────── */
@@ -513,241 +513,362 @@ const TEMPLATES: Record<string, { label: string; code: string }> = {
 };
 
 const DEFAULT_CODE = TEMPLATES.starter.code;
+const STORAGE_KEY = "byteverse.html-editor.v1";
+const PREVIEW_WIDTHS = {
+  desktop: { label: "Desktop", width: "100%" as const, hint: "Full width" },
+  tablet: { label: "Tablet", width: 768, hint: "768px" },
+  phone: { label: "Phone", width: 375, hint: "375px" },
+};
+type PreviewWidth = keyof typeof PREVIEW_WIDTHS;
+type PreviewError = { id: number; message: string };
+
+// Injected on the same line as <head> so reported line numbers still match the editor.
+const CAPTURE_SCRIPT = '<script data-byteverse-preview>(function(){var send=function(kind,message){try{parent.postMessage({byteversePreview:true,kind:kind,message:String(message).slice(0,500)},"*")}catch(e){}};window.addEventListener("error",function(e){send("error",(e.message||"Script error")+(e.lineno?" (line "+e.lineno+")":""))});window.addEventListener("unhandledrejection",function(e){var r=e.reason;send("error","Unhandled promise rejection: "+(r&&r.message?r.message:r))});var original=console.error;console.error=function(){send("error",Array.prototype.map.call(arguments,function(a){if(typeof a==="string")return a;try{return JSON.stringify(a)}catch(_){return String(a)}}).join(" "));original.apply(console,arguments)}})()</script>';
+
+function withErrorCapture(code: string) {
+  const head = code.match(/<head[^>]*>/i);
+  if (head?.index !== undefined) return code.slice(0, head.index + head[0].length) + CAPTURE_SCRIPT + code.slice(head.index + head[0].length);
+  const html = code.match(/<html[^>]*>/i);
+  if (html?.index !== undefined) return code.slice(0, html.index + html[0].length) + CAPTURE_SCRIPT + code.slice(html.index + html[0].length);
+  return CAPTURE_SCRIPT + code;
+}
+
+const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+const MOD = isMac ? "⌘" : "Ctrl";
+
+const toolButton = "inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 text-xs font-medium text-foreground min-h-[44px] sm:min-h-[34px] hover:bg-muted transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed";
+const segment = (active: boolean) => `inline-flex items-center gap-1.5 rounded-md px-2.5 min-h-[44px] sm:min-h-[30px] text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${active ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`;
 
 /* ── Main Component ───────────────────────────────────── */
 export function HtmlEditorTool() {
   const [code, setCode] = useState(DEFAULT_CODE);
-  const [layout, setLayout] = useState<"horizontal" | "vertical">("horizontal");
-  const [previewWidth, setPreviewWidth] = useState<"full" | "mobile">("full");
+  const [previewCode, setPreviewCode] = useState(DEFAULT_CODE);
+  const [autoUpdate, setAutoUpdate] = useState(true);
+  const [layout, setLayout] = useState<"side" | "stacked">("side");
+  const [previewWidth, setPreviewWidth] = useState<PreviewWidth>("desktop");
   const [fullscreen, setFullscreen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [templateOpen, setTemplateOpen] = useState(false);
-  const templateRef = useRef<HTMLDivElement>(null);
+  const [template, setTemplate] = useState("starter");
+  const [draft, setDraft] = useState<string | null>(null);
+  const [errors, setErrors] = useState<PreviewError[]>([]);
+  const [hint, setHint] = useState("Tab inserts two spaces. Press Esc, then Tab, to leave the editor.");
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const lineCountRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const paneRef = useRef<HTMLDivElement>(null);
+  const fullscreenButtonRef = useRef<HTMLButtonElement>(null);
+  const tabCapture = useRef(true);
+  const errorId = useRef(0);
+  const [paneWidth, setPaneWidth] = useState(0);
 
   const lines = code.split("\n");
-  const charCount = code.length;
   const lineCount = lines.length;
+  const charCount = code.length;
+  const dirty = code !== previewCode;
 
-  // Sync scroll between line numbers and textarea
-  const handleScroll = useCallback(() => {
-    if (editorRef.current && lineCountRef.current) {
-      lineCountRef.current.scrollTop = editorRef.current.scrollTop;
-    }
+  // Restore banner: offer the last session instead of silently replacing the default template.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && saved !== DEFAULT_CODE) setDraft(saved);
+      } catch { /* storage unavailable */ }
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
-  // Close template dropdown on outside click
+  // Autosave once the restore decision is made; the default template is never stored.
   useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (templateRef.current && !templateRef.current.contains(e.target as Node)) {
-        setTemplateOpen(false);
-      }
-    }
-    if (templateOpen) {
-      document.addEventListener("mousedown", handleClick);
-      return () => document.removeEventListener("mousedown", handleClick);
-    }
-  }, [templateOpen]);
+    if (draft !== null) return;
+    const timer = setTimeout(() => {
+      try {
+        if (code === DEFAULT_CODE) localStorage.removeItem(STORAGE_KEY);
+        else localStorage.setItem(STORAGE_KEY, code);
+      } catch { /* storage unavailable */ }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [code, draft]);
 
-  // Handle tab key in textarea
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Tab") {
-      e.preventDefault();
-      const target = e.currentTarget;
+  // Debounced live preview. Errors belong to one render, so they are cleared with each new document.
+  const publish = useCallback((next: string) => { setPreviewCode(next); setErrors([]); }, []);
+  useEffect(() => {
+    if (!autoUpdate) return;
+    const timer = setTimeout(() => publish(code), 150);
+    return () => clearTimeout(timer);
+  }, [code, autoUpdate, publish]);
+
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.source !== frameRef.current?.contentWindow) return;
+      const data = event.data as { byteversePreview?: boolean; message?: unknown } | null;
+      if (!data || data.byteversePreview !== true || typeof data.message !== "string") return;
+      const message = data.message;
+      setErrors((list) => [...list.slice(-19), { id: ++errorId.current, message }]);
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
+  // Fixed preview widths wider than the pane are scaled down so the whole viewport stays visible.
+  useEffect(() => {
+    const pane = paneRef.current;
+    if (!pane || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) setPaneWidth(entry.contentRect.width);
+    });
+    observer.observe(pane);
+    return () => observer.disconnect();
+  }, []);
+
+  // Fullscreen: lock page scroll, exit with Escape, return focus to the toggle.
+  useEffect(() => {
+    if (!fullscreen) return;
+    const toggle = fullscreenButtonRef.current;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      if (document.activeElement === editorRef.current && tabCapture.current) return;
+      setFullscreen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+      toggle?.focus();
+    };
+  }, [fullscreen]);
+
+  const handleScroll = useCallback(() => {
+    if (editorRef.current && lineCountRef.current) lineCountRef.current.scrollTop = editorRef.current.scrollTop;
+  }, []);
+
+  const run = useCallback(() => publish(code), [code, publish]);
+
+  const handleDownload = useCallback(() => {
+    const blob = new Blob([code], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "index.html";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }, [code]);
+
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const mod = event.ctrlKey || event.metaKey;
+    if (event.key === "Escape" && tabCapture.current) {
+      event.preventDefault();
+      tabCapture.current = false;
+      setHint("Tab now moves focus. Click or type in the editor to make Tab indent again.");
+      return;
+    }
+    if (mod && event.key === "Enter") { event.preventDefault(); run(); return; }
+    if (mod && event.key.toLowerCase() === "s") { event.preventDefault(); handleDownload(); return; }
+    if (event.key === "Tab" && !event.shiftKey && tabCapture.current) {
+      event.preventDefault();
+      const target = event.currentTarget;
       const start = target.selectionStart;
       const end = target.selectionEnd;
-      const newCode = code.substring(0, start) + "  " + code.substring(end);
-      setCode(newCode);
-      requestAnimationFrame(() => {
-        target.selectionStart = target.selectionEnd = start + 2;
-      });
+      setCode(code.substring(0, start) + "  " + code.substring(end));
+      requestAnimationFrame(() => { target.selectionStart = target.selectionEnd = start + 2; });
     }
-  }, [code]);
+  }, [code, handleDownload, run]);
+
+  const reenableTab = useCallback(() => {
+    if (tabCapture.current) return;
+    tabCapture.current = true;
+    setHint("Tab inserts two spaces. Press Esc, then Tab, to leave the editor.");
+  }, []);
 
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch { /* noop */ }
-  }, [code]);
-
-  const handleDownload = useCallback(() => {
-    const blob = new Blob([code], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "index.html";
-    a.click();
-    URL.revokeObjectURL(url);
+    } catch { /* clipboard unavailable */ }
   }, [code]);
 
   const handleTemplate = useCallback((key: string) => {
+    setTemplate(key);
     setCode(TEMPLATES[key].code);
-    setTemplateOpen(false);
+    if (!autoUpdate) publish(TEMPLATES[key].code);
+  }, [autoUpdate, publish]);
+
+  const handleReset = useCallback(() => {
+    setTemplate("starter");
+    setCode(DEFAULT_CODE);
+    publish(DEFAULT_CODE);
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* storage unavailable */ }
+  }, [publish]);
+
+  const restoreDraft = useCallback(() => {
+    if (draft === null) return;
+    setCode(draft);
+    publish(draft);
+    setDraft(null);
+  }, [draft, publish]);
+
+  const discardDraft = useCallback(() => {
+    try { localStorage.removeItem(STORAGE_KEY); } catch { /* storage unavailable */ }
+    setDraft(null);
   }, []);
 
-  const isHoriz = layout === "horizontal";
+  const side = layout === "side";
+  const width = PREVIEW_WIDTHS[previewWidth];
+  const targetWidth = typeof width.width === "number" ? width.width : null;
+  const scale = targetWidth !== null && paneWidth > 0 && targetWidth > paneWidth ? paneWidth / targetWidth : 1;
+  const scaled = scale < 1;
 
   return (
-    <div className={fullscreen ? "fixed inset-0 z-50 bg-background flex flex-col" : ""}>
+    <section
+      id="html-editor"
+      aria-label="Live HTML editor"
+      className={fullscreen ? "fixed inset-0 z-[70] flex flex-col bg-background p-3 sm:p-4" : "scroll-mt-20"}
+      data-fullscreen={fullscreen || undefined}
+    >
+      {draft !== null && (
+        <div role="region" aria-label="Restore last session" className="mb-3 flex flex-wrap items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
+          <span className="flex-1 min-w-[12rem]">You have unsaved work from your last visit in this browser.</span>
+          <button type="button" className={`${toolButton} bg-primary text-primary-foreground border-primary hover:bg-primary/90`} onClick={restoreDraft}>Restore it</button>
+          <button type="button" className={toolButton} onClick={discardDraft}>Start fresh</button>
+        </div>
+      )}
+
       {/* ── Toolbar ────────────────────────────────── */}
-      <div className={`flex flex-wrap items-center gap-2 mb-3 ${fullscreen ? "px-4 pt-4" : ""}`}>
-        {/* Templates dropdown */}
-        <div className="relative" ref={templateRef}>
-          <button
-            onClick={() => setTemplateOpen(!templateOpen)}
-            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-1.5"
+      <div role="toolbar" aria-label="Editor controls" className="flex flex-wrap items-center gap-2 mb-3">
+        <label className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground">
+          <span className="sr-only sm:not-sr-only">Template</span>
+          <select
+            value={template}
+            onChange={(event) => handleTemplate(event.target.value)}
+            aria-label="Template"
+            className="rounded-lg border border-border bg-card px-3 min-h-[44px] sm:min-h-[34px] text-xs font-medium text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            Templates <ChevronDown size={12} />
-          </button>
-          {templateOpen && (
-            <div className="absolute top-full left-0 mt-1 w-48 bg-card border border-border rounded-lg shadow-xl z-50 py-1">
-              {Object.entries(TEMPLATES).map(([key, { label }]) => (
-                <button
-                  key={key}
-                  onClick={() => handleTemplate(key)}
-                  className="w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors"
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          )}
+            {Object.entries(TEMPLATES).map(([key, { label }]) => <option key={key} value={key}>{label}</option>)}
+          </select>
+        </label>
+
+        <div className="hidden md:inline-flex items-center gap-1 rounded-lg bg-muted p-0.5" role="group" aria-label="Layout">
+          <button type="button" className={segment(side)} aria-pressed={side} onClick={() => setLayout("side")}><Columns size={14} aria-hidden="true" /> Side by side</button>
+          <button type="button" className={segment(!side)} aria-pressed={!side} onClick={() => setLayout("stacked")}><Rows size={14} aria-hidden="true" /> Stacked</button>
         </div>
 
-        <div className="h-5 w-px bg-border hidden sm:block" />
-
-        {/* Layout toggle */}
-        <div className="hidden sm:flex items-center gap-1 bg-muted rounded-lg p-0.5">
-          <button
-            onClick={() => setLayout("horizontal")}
-            className={`p-1.5 rounded-md transition-colors ${isHoriz ? "bg-background shadow-sm" : "hover:bg-background/50"}`}
-            title="Side by side"
-          >
-            <Columns size={14} />
-          </button>
-          <button
-            onClick={() => setLayout("vertical")}
-            className={`p-1.5 rounded-md transition-colors ${!isHoriz ? "bg-background shadow-sm" : "hover:bg-background/50"}`}
-            title="Stacked"
-          >
-            <Rows size={14} />
-          </button>
-        </div>
-
-        {/* Preview width toggle */}
-        <div className="hidden sm:flex items-center gap-1 bg-muted rounded-lg p-0.5">
-          <button
-            onClick={() => setPreviewWidth("full")}
-            className={`p-1.5 rounded-md transition-colors ${previewWidth === "full" ? "bg-background shadow-sm" : "hover:bg-background/50"}`}
-            title="Desktop preview"
-          >
-            <Monitor size={14} />
-          </button>
-          <button
-            onClick={() => setPreviewWidth("mobile")}
-            className={`p-1.5 rounded-md transition-colors ${previewWidth === "mobile" ? "bg-background shadow-sm" : "hover:bg-background/50"}`}
-            title="Mobile preview (375px)"
-          >
-            <Smartphone size={14} />
-          </button>
+        <div className="inline-flex items-center gap-1 rounded-lg bg-muted p-0.5" role="group" aria-label="Preview width">
+          <button type="button" className={segment(previewWidth === "desktop")} aria-pressed={previewWidth === "desktop"} onClick={() => setPreviewWidth("desktop")}><Monitor size={14} aria-hidden="true" /> Desktop</button>
+          <button type="button" className={segment(previewWidth === "tablet")} aria-pressed={previewWidth === "tablet"} onClick={() => setPreviewWidth("tablet")}><Tablet size={14} aria-hidden="true" /> 768</button>
+          <button type="button" className={segment(previewWidth === "phone")} aria-pressed={previewWidth === "phone"} onClick={() => setPreviewWidth("phone")}><Smartphone size={14} aria-hidden="true" /> 375</button>
         </div>
 
         <div className="flex-1" />
 
-        {/* Action buttons */}
-        <button
-          onClick={handleCopy}
-          className="px-3 py-1.5 text-xs rounded-lg border border-border hover:bg-muted transition-colors flex items-center gap-1.5"
-        >
-          {copied ? <><Check size={12} className="text-green-500" /> Copied</> : <><Copy size={12} /> Copy</>}
+        <label className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground min-h-[44px] sm:min-h-[34px] cursor-pointer select-none">
+          <input type="checkbox" className="h-4 w-4 accent-[var(--primary)]" checked={autoUpdate} onChange={(event) => { setAutoUpdate(event.target.checked); if (event.target.checked) publish(code); }} />
+          Auto-update
+        </label>
+        {!autoUpdate && (
+          <button type="button" className={`${toolButton} bg-primary text-primary-foreground border-primary hover:bg-primary/90`} onClick={run} disabled={!dirty} title={`Run (${MOD} Enter)`}>
+            <Play size={13} aria-hidden="true" /> Run
+          </button>
+        )}
+        <button type="button" className={toolButton} onClick={handleCopy}>
+          {copied ? <><Check size={13} aria-hidden="true" className="text-emerald-600" /> Copied</> : <><Copy size={13} aria-hidden="true" /> Copy</>}
+        </button>
+        <button type="button" className={toolButton} onClick={handleDownload} title={`Download index.html (${MOD} S)`}>
+          <Download size={13} aria-hidden="true" /> Download
+        </button>
+        <button type="button" className={toolButton} onClick={handleReset}>
+          <RotateCcw size={13} aria-hidden="true" /> Reset
         </button>
         <button
-          onClick={handleDownload}
-          className="px-3 py-1.5 text-xs rounded-lg border border-border hover:bg-muted transition-colors flex items-center gap-1.5"
+          ref={fullscreenButtonRef}
+          type="button"
+          className={toolButton}
+          aria-pressed={fullscreen}
+          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+          title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
+          onClick={() => setFullscreen((value) => !value)}
         >
-          <Download size={12} /> Download
-        </button>
-        <button
-          onClick={() => setCode(DEFAULT_CODE)}
-          className="px-3 py-1.5 text-xs rounded-lg border border-border hover:bg-muted transition-colors flex items-center gap-1.5"
-        >
-          <RotateCcw size={12} /> Reset
-        </button>
-        <button
-          onClick={() => setFullscreen(!fullscreen)}
-          className="p-1.5 rounded-lg border border-border hover:bg-muted transition-colors"
-          title={fullscreen ? "Exit fullscreen" : "Fullscreen"}
-        >
-          {fullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+          {fullscreen ? <Minimize2 size={14} aria-hidden="true" /> : <Maximize2 size={14} aria-hidden="true" />}
+          <span className="hidden sm:inline">{fullscreen ? "Exit" : "Full screen"}</span>
         </button>
       </div>
 
       {/* ── Editor + Preview ───────────────────────── */}
-      <div className={`flex-1 grid gap-3 ${isHoriz ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} ${fullscreen ? "px-4 pb-4 min-h-0" : ""}`}
-        style={fullscreen ? { height: "calc(100% - 60px)" } : { minHeight: isHoriz ? 600 : 800 }}
+      <div
+        className={`grid gap-3 ${side ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} ${fullscreen ? "flex-1 min-h-0" : ""}`}
+        style={fullscreen ? undefined : { minHeight: side ? 560 : 820 }}
       >
-        {/* Code Editor */}
-        <div className="bg-[#1e1e2e] rounded-xl overflow-hidden flex flex-col border border-border">
-          <div className="flex items-center justify-between px-3 py-2 border-b border-white/10">
-            <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-red-500/80" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <span className="w-3 h-3 rounded-full bg-green-500/80" />
-            </div>
-            <span className="text-[11px] text-gray-400 font-mono">index.html</span>
-            <span className="text-[11px] text-gray-500">{lineCount} lines &middot; {charCount} chars</span>
+        {/* Code editor */}
+        <div className={`flex flex-col overflow-hidden rounded-xl border border-border bg-[#1e1e2e] ${fullscreen ? "min-h-0" : "min-h-[320px] md:min-h-0"}`} style={fullscreen ? undefined : { height: side ? undefined : 420 }}>
+          <div className="flex items-center justify-between gap-3 px-3 py-2 border-b border-white/10">
+            <span className="text-[11px] font-mono text-gray-300" id="html-editor-label">index.html</span>
+            <span className="text-[11px] text-gray-400" aria-hidden="true">{lineCount} lines · {charCount} chars</span>
           </div>
           <div className="flex flex-1 min-h-0 overflow-hidden">
-            {/* Line numbers */}
-            <div
-              ref={lineCountRef}
-              className="w-10 sm:w-12 flex-shrink-0 overflow-hidden text-right pr-2 pt-3 pb-3 select-none bg-[#16161e]"
-              style={{ lineHeight: "1.6", fontSize: "13px" }}
-            >
-              {lines.map((_, i) => (
-                <div key={i} className="text-gray-600 font-mono">{i + 1}</div>
-              ))}
+            <div ref={lineCountRef} aria-hidden="true" className="w-10 sm:w-12 shrink-0 overflow-hidden bg-[#16161e] pt-3 pb-3 pr-2 text-right font-mono text-[13px] leading-[1.6] text-gray-400 select-none">
+              {lines.map((_, index) => <div key={index}>{index + 1}</div>)}
             </div>
-            {/* Textarea */}
             <textarea
               ref={editorRef}
               value={code}
-              onChange={(e) => setCode(e.target.value)}
+              onChange={(event) => { reenableTab(); setCode(event.target.value); }}
               onScroll={handleScroll}
               onKeyDown={handleKeyDown}
+              onFocus={reenableTab}
+              onPointerDown={reenableTab}
               spellCheck={false}
-              className="flex-1 bg-transparent text-gray-200 font-mono text-[13px] leading-[1.6] p-3 resize-none outline-none overflow-auto"
-              style={{ tabSize: 2 }}
+              autoCapitalize="off"
+              autoCorrect="off"
+              wrap="off"
+              aria-label="HTML source"
+              aria-describedby="html-editor-hint"
+              className="flex-1 resize-none overflow-auto bg-transparent p-3 font-mono text-[13px] leading-[1.6] text-gray-100 outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--primary)]"
+              style={{ tabSize: 2, whiteSpace: "pre" }}
             />
           </div>
         </div>
 
         {/* Preview */}
-        <div className="bg-card rounded-xl overflow-hidden flex flex-col border border-border">
-          <div className="flex items-center justify-between px-3 py-2 border-b border-border">
-            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Live Preview</span>
-            <span className="text-[11px] text-muted-foreground">
-              {previewWidth === "mobile" ? "375px" : "100%"}
-            </span>
+        <div className={`flex flex-col overflow-hidden rounded-xl border border-border bg-card ${fullscreen ? "min-h-0" : "min-h-[360px] md:min-h-0"}`} style={fullscreen ? undefined : { height: side ? undefined : 400 }}>
+          <div className="flex items-center justify-between gap-3 px-3 py-2 border-b border-border">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Live preview</span>
+            <span className="text-[11px] text-muted-foreground">{width.hint}{scaled ? ` · scaled to ${Math.round(scale * 100)}%` : ""}{!autoUpdate && dirty ? " · changes not run yet" : ""}</span>
           </div>
-          <div className="flex-1 bg-white flex justify-center overflow-auto" style={{ minHeight: isHoriz ? 0 : 400 }}>
-            <iframe
-              srcDoc={code}
-              sandbox="allow-scripts"
-              title="HTML Preview"
-              className="border-0 h-full bg-white"
-              style={{
-                width: previewWidth === "mobile" ? 375 : "100%",
-                maxWidth: "100%",
-                minHeight: isHoriz ? "100%" : 400,
-              }}
-            />
+          <div ref={paneRef} className="flex flex-1 justify-center overflow-hidden bg-neutral-200/60 dark:bg-neutral-800/60 min-h-0">
+            <div className="h-full min-h-[320px] overflow-hidden" style={{ width: targetWidth === null ? "100%" : Math.floor(targetWidth * scale) }}>
+              <iframe
+                ref={frameRef}
+                srcDoc={withErrorCapture(previewCode)}
+                sandbox="allow-scripts allow-modals allow-forms allow-popups"
+                title="Rendered HTML preview"
+                className="block border-0 bg-white"
+                style={scaled
+                  ? { width: targetWidth ?? "100%", height: `${100 / scale}%`, minHeight: 320 / scale, transform: `scale(${scale})`, transformOrigin: "top left" }
+                  : { width: targetWidth ?? "100%", height: "100%", minHeight: 320 }}
+              />
+            </div>
           </div>
+          {errors.length > 0 && (
+            <div role="status" aria-live="polite" className="border-t border-border bg-card px-3 py-2 text-xs">
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-semibold text-red-600 dark:text-red-400 inline-flex items-center gap-1.5"><TriangleAlert size={13} aria-hidden="true" /> {errors.length} preview error{errors.length === 1 ? "" : "s"}</span>
+                <button type="button" className="px-2 text-muted-foreground hover:text-foreground underline underline-offset-2 min-h-[44px] sm:min-h-[28px]" onClick={() => setErrors([])}>Clear</button>
+              </div>
+              <ul className="mt-1 max-h-24 overflow-auto font-mono text-[11px] leading-relaxed text-foreground">
+                {errors.map((error) => <li key={error.id}>{error.message}</li>)}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
-    </div>
+
+      <p id="html-editor-hint" role="status" className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+        <span>{hint}</span>
+        <span className="hidden sm:inline">{MOD} Enter runs · {MOD} S downloads</span>
+        <span className="ml-auto inline-flex items-center gap-1"><LockKeyhole size={11} aria-hidden="true" /> Runs in your browser; nothing is uploaded</span>
+      </p>
+    </section>
   );
 }

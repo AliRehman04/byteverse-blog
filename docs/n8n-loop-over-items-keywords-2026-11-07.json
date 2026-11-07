@@ -1,0 +1,495 @@
+{
+  "slug": "n8n-loop-over-items-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-07",
+  "targeting": {
+    "title": "n8n Loop Over Items: Batch Size, Done Branch, Reset and Rate Limits",
+    "metaTitle": "n8n Loop Over Items: Batches, Done Branch, Fixes",
+    "metaDescription": "How the n8n Loop Over Items node works: batch size, loop and done outputs, Reset, noItemsLeft, nested loops, rate limits, and fixes for loops that stop early.",
+    "excerpt": "A source-verified guide to the n8n Loop Over Items node: when you need it, what the loop and done outputs emit on each run, batch size, index and last batch detection, Reset, nested loops, rate limits versus HTTP Request batching, and fixes for loops that run once or never finish.",
+    "keywords": "n8n loop over items, n8n loop over items example, n8n loop over items batch size, n8n loop over items not working, n8n loop over items done branch, n8n loop over items reset, n8n split in batches, n8n nested loop, n8n rate limit, n8n loop over items index",
+    "summary": "The node is only needed for nodes that run once, for pacing API calls and for chunking; n8n iterates everything else itself|The done output returns the items that flowed back into the node, so a missing loop-back means done never runs|Prefer HTTP Request Batching and Pagination for rate limits and pages; use Reset only for pagination or nested loops with a tested exit",
+    "readingTime": "19 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-07T09:58:32.846Z",
+    "total": 179,
+    "published": 177,
+    "hash": "3d75e2f3af27462f10094433d5674a7b",
+    "overlap": {
+      "existingN8nPosts": [
+        "how-to-use-n8n-2026-complete-guide",
+        "n8n-cant-determine-which-item-to-use",
+        "n8n-vs-zapier-2026-comparison",
+        "n8n-code-node-guide",
+        "n8n-json-parameter-needs-to-be-valid-json",
+        "n8n-webhook-not-working-2026"
+      ],
+      "note": "No existing post covers Loop Over Items; the Code node guide mentions the Loop Over Items node and links are reciprocal in intent."
+    },
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "nearbyCoverage": [
+      "n8n-code-node-guide",
+      "n8n-cant-determine-which-item-to-use",
+      "how-to-use-n8n-2026-complete-guide"
+    ]
+  },
+  "research": {
+    "selection": "Yesterday's 30 n8n seeds already showed 'n8n loop over items' with ten specific suggestions (example, batch size, reset, not working, index, node, done, http request, done branch) and 'n8n split in batches' with eight. Today 30 loop specific seeds added 'n8n nested loop', 'n8n loop until', 'n8n loop over items index' and a ten suggestion 'n8n rate limit' cluster that the same node addresses. The topic is evergreen, fits the existing n8n cluster and can be verified against the node's source code.",
+    "preliminarySeeds": 60,
+    "selectedTopicSeeds": 30,
+    "selectedSeedsWithSuggestions": 14,
+    "autocompleteCheckedAt": "2026-11-07T09:44:21.005Z",
+    "autocompleteContext": "English / gl=us; not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n loop over items done branch",
+        "suggestions": [
+          "n8n loop over items done branch",
+          "how to play out of the loop",
+          "how to keep loop in mail"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items reset",
+        "suggestions": [
+          "n8n loop over items reset",
+          "computer stuck in reset loop",
+          "how to reset loop pedal"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items batch size",
+        "suggestions": [
+          "n8n loop over items batch size"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items not working",
+        "suggestions": [
+          "n8n loop over items not working",
+          "how to play out of the loop"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items example",
+        "suggestions": [
+          "n8n loop over items example",
+          "loop statement example",
+          "what is loop example"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items aggregate",
+        "suggestions": [
+          "n8n loop over items aggregate"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items wait",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items sub workflow",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items infinite loop",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items only first item",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items executes once",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items vs split in batches",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n nested loop",
+        "suggestions": [
+          "n8n nested loops",
+          "n8n nested loop over items",
+          "n8n nested loop not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop until",
+        "suggestions": [
+          "n8n loop until",
+          "n8n loop until condition",
+          "n8n repeat until",
+          "n8n loop while",
+          "n8n loop while true"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items pagination",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items http request",
+        "suggestions": [
+          "n8n loop over items http request"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split in batches done",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split in batches reset",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split in batches batch size",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n rate limit",
+        "suggestions": [
+          "n8n rate limit",
+          "n8n rate limit node",
+          "n8n rate limit reached",
+          "n8n rate limit openai",
+          "n8n rate limit workflow",
+          "n8n openai rate limit reached",
+          "n8n webhook rate limit",
+          "n8n api rate limit",
+          "n8n mcp rate limit",
+          "n8n gemini rate limit"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node loop",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items index",
+        "suggestions": [
+          "n8n loop over items index",
+          "n8n loop over items get index",
+          "n8n loop over items current index",
+          "n8n loop over items get current index"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n runindex",
+        "suggestions": [
+          "n8n runindex"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items code node",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n process items one at a time",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items output",
+        "suggestions": [
+          "n8n loop over items output"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items multiple times",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items combine results",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n loop over items google sheets",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n for each loop",
+        "suggestions": [
+          "n8n for each loop",
+          "n8n loop for each item",
+          "what is for each loop in java",
+          "java for each loop example"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "priorObservations": [
+      {
+        "seed": "n8n loop over items",
+        "suggestions": [
+          "n8n loop over items",
+          "n8n loop over items example",
+          "n8n loop over items batch size",
+          "n8n loop over items reset",
+          "n8n loop over items not working",
+          "n8n loop over items index",
+          "n8n loop over items node",
+          "n8n loop over items done",
+          "n8n loop over items http request",
+          "n8n loop over items done branch"
+        ],
+        "checkedAt": "2026-11-06"
+      },
+      {
+        "seed": "n8n split in batches",
+        "suggestions": [
+          "n8n split in batches",
+          "n8n split in batches node",
+          "n8n split in batches loop",
+          "n8n split in batches example",
+          "nodo split in batches n8n",
+          "bapi_outb_delivery_change batch split example",
+          "batch semi batch and continuous process",
+          "2 batch or batches"
+        ],
+        "checkedAt": "2026-11-06"
+      }
+    ],
+    "suggestionNote": "Suggestions are wording and intent evidence only; no volumes or difficulty scores were measured. Many long seeds returned no suggestions, which is expected for specific phrasings.",
+    "searchSamples": [
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n code node return array",
+        "status": 202,
+        "note": "Challenge page on 2026-11-06; n8n SERP sampling is unavailable from this environment."
+      }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "source": "n8n Docs: Loop Over Items node",
+        "finding": "Documents parameters, Reset and two context expressions, but not the run by run behaviour or what the done output contains."
+      },
+      {
+        "source": "n8n source SplitInBatchesV3.node.ts",
+        "finding": "Defines the done/loop outputs, processedItems accumulation, noItemsLeft timing, maxRunIndex and Reset; used for the run table and the fixes table."
+      },
+      {
+        "source": "n8n Docs: Handle rate limits, HTTP Request, Wait",
+        "finding": "Three documented remedies compared; HTTP Request Batching is described as the equivalent of Loop plus Wait."
+      }
+    ],
+    "intentMap": [
+      {
+        "query": "n8n loop over items not working / only runs once",
+        "section": "The loop-back connection"
+      },
+      {
+        "query": "n8n loop over items done branch / output",
+        "section": "How the node works, run by run"
+      },
+      {
+        "query": "n8n loop over items batch size",
+        "section": "Batch size: what it changes and what it does not"
+      },
+      {
+        "query": "n8n loop over items index / runindex",
+        "section": "Reading the index and detecting the last batch"
+      },
+      {
+        "query": "n8n loop over items reset / loop until / nested loop",
+        "section": "Reset: when the node must forget its state; Nested loops and sub-workflows"
+      },
+      {
+        "query": "n8n rate limit",
+        "section": "Rate limits: Loop and Wait versus HTTP Request batching"
+      }
+    ],
+    "limits": "No Search Console access, no Google SERP positions, no monthly volumes or difficulty scores, no ranking or traffic prediction."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "n8n Docs: Loop Over Items (Split in Batches)",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitinbatches"
+    },
+    {
+      "title": "n8n Docs: Looping in n8n",
+      "url": "https://docs.n8n.io/build/flow-logic/loop"
+    },
+    {
+      "title": "n8n Docs: Handle rate limits",
+      "url": "https://docs.n8n.io/integrations/builtin/handle-rate-limits"
+    },
+    {
+      "title": "n8n Docs: HTTP Request node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest"
+    },
+    {
+      "title": "n8n Docs: Wait node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait"
+    },
+    {
+      "title": "n8n Docs: n8n metadata variables",
+      "url": "https://docs.n8n.io/build/code-in-n8n/use-built-in-shortcuts/n8n-metadata"
+    },
+    {
+      "title": "n8n Docs: Break workflows into smaller parts",
+      "url": "https://docs.n8n.io/build/flow-logic/break-workflows-into-smaller-parts"
+    },
+    {
+      "title": "n8n source: SplitInBatchesV3.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/SplitInBatches/v3/SplitInBatchesV3.node.ts"
+    },
+    {
+      "title": "npm registry: n8n latest release metadata",
+      "url": "https://registry.npmjs.org/n8n/latest"
+    }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-cant-determine-which-item-to-use",
+    "/blog/n8n-code-node-guide",
+    "/blog/n8n-json-parameter-needs-to-be-valid-json"
+  ],
+  "faq": [
+    "Why does my n8n Loop Over Items node only run once?",
+    "What does the done output of Loop Over Items contain?",
+    "How do I get the current index inside an n8n loop?",
+    "How do I handle API rate limits in n8n without a loop?",
+    "Can I nest Loop Over Items nodes in n8n?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverFile": "public/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/",
+    "coverPhotographer": "olia danilevich",
+    "inline": "https://www.byteverse.fyi/blog/claude-code-windows/photo-cover.jpg",
+    "inlineFile": "public/blog/claude-code-windows/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "inlinePhotographer": "Daniil Komov",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted coding photographs; illustrative, not n8n screenshots. No asset deployment is needed."
+  },
+  "validation": {
+    "proseWords": 4080,
+    "readingTime": "19 min read",
+    "contentSha256": "52e78e75d05d734ebf83a1c7b6648ad74032cf35c397289c8a838875830a8550",
+    "codeBlocks": 3,
+    "tables": 4,
+    "behaviourTable": [
+      {
+        "items": 7,
+        "batchSize": 3,
+        "runs": 4
+      },
+      {
+        "items": 6,
+        "batchSize": 2,
+        "runs": 4
+      },
+      {
+        "items": 1,
+        "batchSize": 1,
+        "runs": 2
+      },
+      {
+        "items": 10,
+        "batchSize": 10,
+        "runs": 2
+      },
+      {
+        "items": 500,
+        "batchSize": 1,
+        "runs": 501
+      }
+    ],
+    "behaviorTestsPassed": 8,
+    "totalTestsPassed": 12,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: no duplicate; 179 existing posts unchanged; author, category, 4 internal blog links and both images verified",
+    "runtime": "v24.12.0",
+    "executionScope": "JavaScript port of SplitInBatchesV3.execute() driven by a loop simulator in Node; the Code node example executed with an emulated $input; no n8n instance.",
+    "limits": "Not executed inside n8n's execution engine, Cloud or the editor; parameter names and defaults are quoted from the documentation for n8n 2.46."
+  },
+  "publication": {
+    "status": "published-deploy-pending",
+    "postId": 248,
+    "publishedAt": "2026-11-07T10:08:59.028Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 179,
+    "otherPostsHash": "3d75e2f3af27462f10094433d5674a7b",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-loop-over-items-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'han krdo' 2026-11-07"
+  }
+}

@@ -1,0 +1,590 @@
+{
+  "slug": "n8n-sub-workflow-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-08",
+  "targeting": {
+    "title": "n8n Sub-workflows: Pass Data, Return Output and Wait for Completion",
+    "metaTitle": "n8n Sub-workflow Guide: Inputs, Output, Waiting",
+    "metaDescription": "How n8n sub-workflows work: input modes, run once with all items vs each item, what the parent gets back, the wait option, publishing, caller policy and fixes.",
+    "excerpt": "A source-verified guide to n8n sub-workflows: the three input data modes, how data crosses between parent and child, run once with all items versus each item, what the parent receives after loops and If nodes, the wait option, errors, caller policy, drafts versus published versions, and fixes.",
+    "keywords": "n8n sub workflow, n8n execute workflow, n8n execute sub workflow, n8n sub workflow example, n8n pass data to sub workflow, n8n sub workflow output, n8n sub workflow return, n8n wait for sub workflow completion, n8n execute workflow trigger, n8n execute workflow not working",
+    "summary": "Declare inputs in the child's trigger: undeclared fields are dropped on the way in, and the parent receives whatever the child's last node produced|Run once with all items for batches, Run once for each item for per record execution records; turning Wait for Sub-Workflow Completion off returns the parent's own input|Production runs use the child's published version and respect its caller policy, so publish the child and allow the parent before going live",
+    "readingTime": "26 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-08T06:32:23.386Z",
+    "total": 180,
+    "published": 178,
+    "hash": "a4a244042fa084e27edb120895e98df1",
+    "overlap": {
+      "existingN8nPosts": [
+        "how-to-use-n8n-2026-complete-guide",
+        "n8n-cant-determine-which-item-to-use",
+        "n8n-vs-zapier-2026-comparison",
+        "n8n-code-node-guide",
+        "n8n-json-parameter-needs-to-be-valid-json",
+        "n8n-webhook-not-working-2026",
+        "n8n-loop-over-items-guide"
+      ],
+      "note": "No existing post covers sub-workflows; the Loop Over Items guide and the item linking post mention sub-workflows in passing and are linked from this article."
+    },
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "nearbyCoverage": [
+      "n8n-loop-over-items-guide",
+      "n8n-code-node-guide",
+      "n8n-cant-determine-which-item-to-use",
+      "how-to-use-n8n-2026-complete-guide"
+    ]
+  },
+  "research": {
+    "selection": "The 6 November n8n seed set already showed 'n8n sub workflow' (10 suggestions: example, output, return, execute, call, create, wait for completion, pass data, same workflow) and 'n8n execute workflow' (10: trigger, node, with parameters, api, button, not working, trigger node, via api, output). Today's 30 seeds re-confirmed both plus 'n8n execute workflow trigger' (5). The competing Merge node cluster had only one strong head term with long tail seeds returning nothing and several dedicated blog guides already ranking in the DuckDuckGo sample, while the sub-workflow sample was dominated by official docs, community threads and a template, so this topic was chosen. It fits the existing n8n cluster and can be verified against the node and engine source.",
+    "preliminarySeeds": 60,
+    "selectedTopicSeeds": 30,
+    "selectedSeedsWithSuggestions": 17,
+    "autocompleteCheckedAt": "2026-11-08T06:31:25.799Z",
+    "autocompleteContext": "English / gl=us; not measured US demand",
+    "observationsFile": "docs/content-research/2026-11-08-keywords-merge.json",
+    "observations": [
+      {
+        "seed": "n8n merge node",
+        "suggestions": [
+          "n8n merge node",
+          "n8n merge node not working",
+          "n8n merge node wait for all inputs",
+          "n8n merge node example",
+          "n8n merge node documentation",
+          "n8n merge node append",
+          "n8n merge node wait",
+          "n8n merge node sql",
+          "n8n merge node binary",
+          "n8n merge node sql query"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node wait for both inputs",
+        "suggestions": [
+          "n8n merge node wait for all inputs"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node only one input",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node combine",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node combine by position",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node combine by fields",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node sql query",
+        "suggestions": [
+          "n8n merge node sql query",
+          "merge into sql examples"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node choose branch",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node 3 inputs",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge two branches",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n combine data from two nodes",
+        "suggestions": [
+          "n8n combine data from multiple nodes",
+          "can you connect multiple raspberry pi together"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge json",
+        "suggestions": [
+          "n8n merge json",
+          "n8n merge json array",
+          "n8n merge json and binary",
+          "n8n combine json",
+          "n8n merge two json"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge arrays",
+        "suggestions": [
+          "n8n merge arrays",
+          "n8n merge two arrays",
+          "n8n merge 2 arrays",
+          "merge with or merge to",
+          "merge left meaning"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n join data",
+        "suggestions": [
+          "n8n join data",
+          "n8n combine data",
+          "n8n merge data",
+          "n8n merge data from loop",
+          "n8n combine data from multiple nodes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node include unpaired",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node not merging",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node executes twice",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n aggregate vs merge",
+        "suggestions": [
+          "n8n aggregate vs merge",
+          "aggregate vs merge",
+          "aggregate vs combine",
+          "aggregate vs collective"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait for all nodes",
+        "suggestions": [
+          "n8n wait for all nodes to finish",
+          "n8n wait for all nodes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge after if",
+        "suggestions": [
+          "n8n merge after if",
+          "what does merge and don't merge mean",
+          "what happens to employees after a merger",
+          "merge left meaning"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node after loop",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node http request",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook",
+        "suggestions": [
+          "n8n respond to webhook",
+          "n8n respond to webhook json",
+          "n8n respond to webhook with html",
+          "n8n respond to webhook not working",
+          "n8n respond to webhook node",
+          "n8n respond to webhook example",
+          "n8n respond to webhook streaming",
+          "n8n respond to webhook download file",
+          "n8n respond to webhook with file",
+          "n8n response to webhook"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook not working",
+        "suggestions": [
+          "n8n respond to webhook not working",
+          "webhook not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook response",
+        "suggestions": [
+          "n8n webhook response",
+          "n8n webhook response json",
+          "n8n webhook response html",
+          "n8n webhook response data",
+          "n8n webhook response immediately",
+          "n8n webhook response node",
+          "n8n webhook response body",
+          "n8n webhook response timeout",
+          "n8n webhook example",
+          "n8n webhook api"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n sub workflow",
+        "suggestions": [
+          "n8n sub workflow",
+          "n8n sub workflow example",
+          "n8n sub workflow output",
+          "n8n sub workflow return",
+          "n8n execute sub workflow",
+          "n8n call sub workflow",
+          "n8n create sub workflow",
+          "n8n wait for sub workflow completion",
+          "n8n pass data to sub workflow",
+          "n8n sub workflow in same workflow"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execute workflow trigger",
+        "suggestions": [
+          "n8n execute workflow trigger",
+          "n8n execute workflow trigger node",
+          "n8n execute sub workflow trigger",
+          "n8n-nodes-base.execute workflow trigger",
+          "power automate approval workflow examples"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n out of memory",
+        "suggestions": [
+          "n8n out of memory",
+          "n8n out of memory issue",
+          "n8n out of memory error",
+          "n8n running out of memory",
+          "n8n heap out of memory",
+          "n8n javascript heap out of memory",
+          "n8n may have run out of memory",
+          "what happens if you run out of memory",
+          "what does out of memory mean",
+          "out of memory code"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory",
+        "suggestions": [
+          "n8n ai agent memory",
+          "n8n ai agent memory postgresql",
+          "n8n ai agent memory session id",
+          "n8n ai agent memory supabase",
+          "n8n ai agent memory mongodb",
+          "n8n ai agent memory postgres",
+          "n8n ai agent simple memory",
+          "n8n ai agent simple memory session id",
+          "n8n ai agent clear memory",
+          "n8n ai agent node memory"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n merge node enrich input",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "priorObservations": [
+      {
+        "seed": "n8n sub workflow",
+        "suggestions": [
+          "n8n sub workflow",
+          "n8n sub workflow example",
+          "n8n sub workflow output",
+          "n8n sub workflow return",
+          "n8n execute sub workflow",
+          "n8n call sub workflow",
+          "n8n create sub workflow",
+          "n8n wait for sub workflow completion",
+          "n8n pass data to sub workflow",
+          "n8n sub workflow in same workflow"
+        ],
+        "checkedAt": "2026-11-06"
+      },
+      {
+        "seed": "n8n execute workflow",
+        "suggestions": [
+          "n8n execute workflow trigger",
+          "n8n execute workflow",
+          "n8n execute workflow node",
+          "n8n execute workflow with parameters",
+          "n8n execute workflow api",
+          "n8n execute workflow button",
+          "n8n execute workflow not working",
+          "n8n execute workflow trigger node",
+          "n8n execute workflow via api",
+          "n8n execute workflow output"
+        ],
+        "checkedAt": "2026-11-06"
+      }
+    ],
+    "suggestionNote": "Suggestions are wording and intent evidence only; no volumes or difficulty scores were measured. Long specific seeds often return no suggestions, which is expected.",
+    "searchSamples": [
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n sub workflow pass data",
+        "status": 200,
+        "topResults": [
+          "docs.n8n.io Execute Sub-workflow",
+          "docs.n8n.io Break workflows into smaller parts",
+          "community.n8n.io Passing Parameters to a sub-workflow (40842)",
+          "community.n8n.io Pass Parameters to Execute Workflow (712)",
+          "book.st-hakky.com n8n sub-workflow design",
+          "n8n.io template 8556 nested data processing loops",
+          "medium.com Using the Execute Workflow node",
+          "youtube.com Create Sub-Workflows in n8n",
+          "deepwiki.com handy-n8n sub-workflows and error handling",
+          "nordflux.de Sub-Workflows in n8n"
+        ],
+        "note": "Docs, community threads and one template dominate; few dedicated long form guides."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n merge node wait for all inputs",
+        "status": 200,
+        "note": "Rejected cluster: four dedicated blog guides (generactorai, nordflux, runxbuild, ryanandmattdatascience) plus docs, two GitHub issues and two community threads already rank."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n merge node not working / n8n execute sub-workflow output",
+        "status": 202,
+        "note": "Challenge pages; no sample."
+      },
+      {
+        "engine": "Bing",
+        "query": "six queries",
+        "status": 200,
+        "note": "Plain HTML returned generic n8n brand results for every query; not usable as competition evidence."
+      }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "source": "n8n Docs: Execute Sub-workflow and Execute Sub-workflow Trigger",
+        "finding": "Document source options, workflow inputs, mode, the wait option and the three input data modes, but not what the parent receives after loops or If nodes, the wait off output, publishing requirements or the error messages."
+      },
+      {
+        "source": "n8n source ExecuteWorkflow.node.ts (versions 1 to 1.4) and ExecuteWorkflowTrigger.node.ts (versions 1 to 1.3) at the 2.46.6 tag",
+        "finding": "Source and mode parameters, Wait For Sub-Workflow Completion default true, each mode pairedItem per item, once mode pairedItem by position or fallback, wait off returns input items, continue on fail error items, first item expression hint, schema trimming with null fallback, Items to Return only below 1.2."
+      },
+      {
+        "source": "n8n source sub-workflow-output.ts and workflow-execute-additional-data.ts at the 2.46.6 tag",
+        "finding": "Trigger 1.3 flattens main outputs into one; runs merged per branch from trigger 1.2 (fix for issue 9989 in 2.23.0); pinned data substitution in manual mode; draft for manual roots, published version otherwise with 'Workflow is not active and cannot be executed.'; timeout resolution; queue mode in the same worker; detached execution errors logged only."
+      },
+      {
+        "source": "n8n source subworkflow-policy-checker.ts, subworkflow-policy-denial.error.ts, utils.ts, execution-lifecycle-hooks.ts",
+        "finding": "Caller policy values and default, exact denial message and descriptions, 'Missing node to start execution' message, error workflow dispatch for non manual sub-executions, binary data duplication to the parent."
+      },
+      {
+        "source": "GitHub issue n8n-io/n8n#9989 and community thread 40842",
+        "finding": "Real reports of the last run only output and of parameters not arriving in the child; both are addressed in dedicated sections."
+      }
+    ],
+    "intentMap": [
+      {
+        "query": "n8n pass data to sub workflow / execute workflow with parameters",
+        "section": "Defining inputs: the three input data modes"
+      },
+      {
+        "query": "n8n sub workflow output / return",
+        "section": "What the parent gets back"
+      },
+      {
+        "query": "n8n wait for sub workflow completion",
+        "section": "Wait for Sub-Workflow Completion: fire and forget"
+      },
+      {
+        "query": "n8n execute workflow not working",
+        "section": "Fixing the common failures; Drafts, publishing and testing a sub-workflow; Permissions"
+      },
+      {
+        "query": "n8n execute workflow via api / button",
+        "section": "Calling a workflow from outside: API, webhooks and AI tools"
+      },
+      {
+        "query": "n8n create sub workflow / sub workflow example",
+        "section": "The two nodes and how data crosses the boundary; Drafts, publishing and testing a sub-workflow"
+      }
+    ],
+    "limits": "No Search Console access, no Google SERP positions, no monthly volumes or difficulty scores, no ranking or traffic prediction."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "n8n Docs: Execute Sub-workflow node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow"
+    },
+    {
+      "title": "n8n Docs: Execute Sub-workflow Trigger node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger"
+    },
+    {
+      "title": "n8n Docs: Break workflows into smaller parts",
+      "url": "https://docs.n8n.io/build/flow-logic/break-workflows-into-smaller-parts"
+    },
+    {
+      "title": "n8n Docs: Convert to sub-workflows",
+      "url": "https://docs.n8n.io/build/flow-logic/convert-to-sub-workflows"
+    },
+    {
+      "title": "n8n Docs: Configure workflow settings",
+      "url": "https://docs.n8n.io/build/manage-workflows/configure-workflow-settings"
+    },
+    {
+      "title": "n8n Docs: Save and publish workflows",
+      "url": "https://docs.n8n.io/build/understand-workflows/save-and-publish-workflows"
+    },
+    {
+      "title": "n8n Docs: Fix memory issues",
+      "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/scaling/fix-memory-issues"
+    },
+    {
+      "title": "n8n Docs: Workflows environment variables",
+      "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/workflows"
+    },
+    {
+      "title": "n8n Docs: Call n8n Workflow Tool",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow"
+    },
+    {
+      "title": "n8n Docs: Public API Workflow endpoints",
+      "url": "https://docs.n8n.io/connect/n8n-api/workflow"
+    },
+    {
+      "title": "n8n source: ExecuteWorkflow.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/ExecuteWorkflow/ExecuteWorkflow/ExecuteWorkflow.node.ts"
+    },
+    {
+      "title": "n8n source: ExecuteWorkflowTrigger.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/ExecuteWorkflow/ExecuteWorkflowTrigger/ExecuteWorkflowTrigger.node.ts"
+    },
+    {
+      "title": "n8n source: sub-workflow-output.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/workflow/src/sub-workflow-output.ts"
+    },
+    {
+      "title": "GitHub: n8n issue 9989",
+      "url": "https://github.com/n8n-io/n8n/issues/9989"
+    },
+    {
+      "title": "npm registry: n8n latest release metadata",
+      "url": "https://registry.npmjs.org/n8n/latest"
+    }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-loop-over-items-guide",
+    "/blog/n8n-cant-determine-which-item-to-use",
+    "/blog/n8n-code-node-guide"
+  ],
+  "faq": [
+    "How do I pass data to a sub-workflow in n8n?",
+    "Why does my n8n sub-workflow return only the last item or batch?",
+    "What does Wait for Sub-Workflow Completion do in n8n?",
+    "Why does n8n say the workflow is not active and cannot be executed?",
+    "Can an AI agent call an n8n sub-workflow?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/cursor-planning-next-moves/photo-inline.jpg",
+    "coverFile": "public/blog/cursor-planning-next-moves/photo-inline.jpg",
+    "coverCredit": "https://www.pexels.com/photo/woman-in-black-hoodie-using-a-laptop-5473309/",
+    "coverPhotographer": "cottonbro studio",
+    "inline": "https://www.byteverse.fyi/blog/csv-excel/photo-cover.jpg",
+    "inlineFile": "public/blog/csv-excel/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/woman-looking-at-the-screen-of-her-laptop-8297058/",
+    "inlinePhotographer": "Mikhail Nilov",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted photographs already used on the site; illustrative, not n8n screenshots. No asset deployment is needed."
+  },
+  "validation": {
+    "proseWords": 5583,
+    "readingTime": "26 min read",
+    "contentSha256": "bb8d59d9f8157e419b869670704467dd8e821da198ec6b75aec941d3a1e23061",
+    "codeBlocks": 4,
+    "tables": 4,
+    "behaviorTestsPassed": 6,
+    "totalTestsPassed": 10,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: no duplicate; 180 existing posts unchanged (hash a4a244042fa084e27edb120895e98df1); author, category, 4 internal blog links and both images verified",
+    "runtime": "v24.12.0",
+    "executionScope": "JavaScript ports of the trigger's schema trimming, the engine's sub-workflow output merging and the Execute Sub-workflow node's wait and mode handling, run against synthetic items in Node; the Code node example executed with emulated $input and $(); no n8n instance.",
+    "limits": "Not executed inside n8n's execution engine, Cloud or the editor; parameter names, defaults and messages are quoted from the 2.46.6 sources and documentation."
+  },
+  "publication": {
+    "status": "draft-local",
+    "postId": null,
+    "publishedAt": null,
+    "databaseWrites": 0,
+    "approvalRequired": true,
+    "pushed": false
+  }
+}

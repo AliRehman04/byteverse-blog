@@ -1,0 +1,599 @@
+{
+  "slug": "n8n-ai-agent-memory-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-09",
+  "targeting": {
+    "title": "n8n AI Agent Memory: Session ID, Simple Memory vs Postgres and Fixes",
+    "metaTitle": "n8n AI Agent Memory: Session ID, Postgres, Fixes",
+    "metaDescription": "n8n AI agent memory explained: Simple Memory vs Postgres Chat Memory, per user session IDs, context window length, clearing memory, No session ID found fix.",
+    "excerpt": "A source-verified guide to n8n AI agent memory: how session IDs are resolved and scoped, how Simple Memory stores and expires history, what Context Window Length counts, Postgres Chat Memory setup and pruning, Chat Memory Manager, per user memory for Telegram and WhatsApp, and fixes for the errors.",
+    "keywords": "n8n ai agent memory, n8n simple memory, n8n simple memory session id, n8n postgres chat memory, n8n ai agent memory session id, n8n simple memory context window length, n8n ai agent clear memory, n8n chat memory manager, n8n simple memory vs postgres, n8n no session id found",
+    "summary": "Memory is a per session message list replayed into the prompt; the Session ID decides who shares it, and version 1.4 nodes append their own name to the key in the default mode|Simple Memory lives in the n8n process, drops sessions idle for 60 minutes and is lost on restart or in queue mode; Postgres and Redis Chat Memory persist|Context Window Length counts stored messages, not tokens, and tool calls consume extra messages; clear or inspect memory with the Chat Memory Manager on the same memory node",
+    "readingTime": "23 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-09T14:51:17.961Z",
+    "total": 181,
+    "published": 179,
+    "hash": "9920ee05845cb1c2c7863a2c55ee2274",
+    "overlap": {
+      "existingN8nPosts": [
+        "how-to-use-n8n-2026-complete-guide",
+        "n8n-cant-determine-which-item-to-use",
+        "n8n-vs-zapier-2026-comparison",
+        "n8n-code-node-guide",
+        "n8n-json-parameter-needs-to-be-valid-json",
+        "n8n-webhook-not-working-2026",
+        "n8n-loop-over-items-guide",
+        "n8n-sub-workflow-guide"
+      ],
+      "note": "No existing post covers AI agent memory, Simple Memory, session IDs or Postgres Chat Memory; this is the site's first AI agent article and links into the n8n cluster."
+    },
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "nearbyCoverage": [
+      "n8n-loop-over-items-guide",
+      "n8n-sub-workflow-guide",
+      "n8n-code-node-guide",
+      "n8n-webhook-not-working-2026",
+      "how-to-use-n8n-2026-complete-guide"
+    ]
+  },
+  "research": {
+    "selection": "Thirty fresh seeds across three candidate clusters. AI agent memory was the richest by far: 'n8n ai agent memory' (10 suggestions: postgresql, session id, supabase, mongodb, postgres, simple memory, simple memory session id, clear memory, node memory), 'n8n simple memory' (10: session id, key, clear, context window length, node, error, session key, vs postgres, not working), 'n8n postgres chat memory' (9: supabase, setup, no session id found, node, schema, clear, error in sub node), 'n8n simple memory session key' (7: from previous node, session id error, no session id found) and 'n8n chat memory manager' (4). The out of memory cluster had one strong head and thin long tail; the Respond to Webhook cluster overlaps the existing webhook article. DuckDuckGo sampling for memory queries showed official docs, community threads and several setup level blog posts, leaving room for a source verified guide on session resolution, expiry, window arithmetic and errors.",
+    "preliminarySeeds": 30,
+    "selectedTopicSeeds": 30,
+    "selectedSeedsWithSuggestions": 22,
+    "autocompleteCheckedAt": "2026-11-09T14:27:17.616Z",
+    "autocompleteContext": "English / gl=us; not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n out of memory",
+        "suggestions": [
+          "n8n out of memory",
+          "n8n out of memory issue",
+          "n8n out of memory error",
+          "n8n running out of memory",
+          "n8n heap out of memory",
+          "n8n javascript heap out of memory",
+          "n8n may have run out of memory",
+          "what happens if you run out of memory",
+          "what does out of memory mean",
+          "out of memory code"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n javascript heap out of memory",
+        "suggestions": [
+          "n8n javascript heap out of memory",
+          "n8n reached heap limit allocation failed javascript heap out of memory",
+          "what is javascript heap out of memory"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n may have run out of memory",
+        "suggestions": [
+          "n8n may have run out of memory",
+          "n8n may have run out of memory while executing it",
+          "what happens if you run out of memory"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execution stopped at this node",
+        "suggestions": [
+          "n8n stop execution node"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n memory limit",
+        "suggestions": [
+          "n8n memory limit",
+          "n8n cloud memory limit"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n increase memory",
+        "suggestions": [
+          "how to increase n8n memory",
+          "n8n add memory",
+          "n8n docker increase memory",
+          "memory refreshing procedure"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n max old space size",
+        "suggestions": [
+          "n8n max old space size",
+          "max-old-space-size"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n docker memory",
+        "suggestions": [
+          "n8n docker memory",
+          "n8n docker ram",
+          "n8n docker increase memory",
+          "docker memory requirements"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n memory usage",
+        "suggestions": [
+          "n8n memory usage",
+          "n8n ram usage",
+          "n8n memory consumption",
+          "n8n use memory",
+          "n8n high memory usage"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n large data",
+        "suggestions": [
+          "n8n large dataset",
+          "n8n large data",
+          "n8n big data"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook",
+        "suggestions": [
+          "n8n respond to webhook",
+          "n8n respond to webhook json",
+          "n8n respond to webhook with html",
+          "n8n respond to webhook not working",
+          "n8n respond to webhook node",
+          "n8n respond to webhook example",
+          "n8n respond to webhook streaming",
+          "n8n respond to webhook download file",
+          "n8n respond to webhook with file",
+          "n8n response to webhook"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook json",
+        "suggestions": [
+          "n8n respond to webhook json",
+          "n8n respond to webhook invalid json in response body field",
+          "webhook response example",
+          "webhook response codes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook not working",
+        "suggestions": [
+          "n8n respond to webhook not working",
+          "webhook not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook response immediately",
+        "suggestions": [
+          "n8n webhook response immediately",
+          "webhook response example",
+          "webhook response codes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook response timeout",
+        "suggestions": [
+          "n8n webhook response timeout",
+          "request timeout vs response timeout"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook respond when last node finishes",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook binary",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook redirect",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n respond to webhook status code",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook no respond to webhook node found",
+        "suggestions": [
+          "n8n no respond to webhook node found in the workflow",
+          "webhook response example",
+          "what is a webhook notification",
+          "webhook examples"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory",
+        "suggestions": [
+          "n8n ai agent memory",
+          "n8n ai agent memory postgresql",
+          "n8n ai agent memory session id",
+          "n8n ai agent memory supabase",
+          "n8n ai agent memory mongodb",
+          "n8n ai agent memory postgres",
+          "n8n ai agent simple memory",
+          "n8n ai agent simple memory session id",
+          "n8n ai agent clear memory",
+          "n8n ai agent node memory"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n simple memory",
+        "suggestions": [
+          "n8n simple memory",
+          "n8n simple memory session id",
+          "n8n simple memory key",
+          "n8n simple memory clear",
+          "n8n simple memory context window length",
+          "n8n simple memory node",
+          "n8n simple memory error",
+          "n8n simple memory session key",
+          "n8n simple memory vs postgres",
+          "n8n simple memory not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory session id",
+        "suggestions": [
+          "n8n ai agent memory session id",
+          "n8n ai agent simple memory session id",
+          "n8n ai agent simple memory no session id found"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory not working",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n postgres chat memory",
+        "suggestions": [
+          "n8n postgres chat memory",
+          "n8n postgres chat memory supabase",
+          "n8n postgres chat memory setup",
+          "n8n postgres chat memory no session id found",
+          "n8n postgres chat memory node",
+          "n8n postgres chat memory schema",
+          "n8n clear postgres chat memory",
+          "n8n error in sub node postgres chat memory",
+          "postgresql memory requirements"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n chat memory manager",
+        "suggestions": [
+          "n8n chat memory manager",
+          "n8n chat memory manager example",
+          "n8n chat memory manager node",
+          "n8n how to use chat memory manager"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent remember conversation",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent context window",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n simple memory session key",
+        "suggestions": [
+          "n8n simple memory session key",
+          "n8n simple memory session key from previous node",
+          "n8n simple memory session id",
+          "n8n simple memory session id error",
+          "n8n simple memory no session id found",
+          "n8n ai agent simple memory session id",
+          "n8n simple memory no session id"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n ai agent memory multiple users",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "priorObservations": [
+      {
+        "seed": "n8n ai agent memory",
+        "suggestions": [
+          "n8n ai agent memory",
+          "n8n ai agent memory postgresql",
+          "n8n ai agent memory session id",
+          "n8n ai agent memory supabase",
+          "n8n ai agent memory mongodb",
+          "n8n ai agent memory postgres",
+          "n8n ai agent simple memory",
+          "n8n ai agent simple memory session id",
+          "n8n ai agent clear memory",
+          "n8n ai agent node memory"
+        ],
+        "checkedAt": "2026-11-06"
+      }
+    ],
+    "suggestionNote": "Suggestions are wording and intent evidence only; no volumes or difficulty scores were measured.",
+    "searchSamples": [
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n simple memory session id",
+        "status": 200,
+        "topResults": [
+          "docs.n8n.io Simple Memory",
+          "community.n8n.io Simple Memory (Session Key) 127066",
+          "community.n8n.io What is the meaning of session id in simple memory 255860",
+          "docs.n8n.io Simple Memory common issues",
+          "learn.ynteractive.com Fix No session ID found",
+          "theowllogic.com Simple Memory beginner guide",
+          "community.n8n.io Simple Memory not isolating sessions 140865",
+          "community.n8n.io Simple Memory Session ID Not supported 218018",
+          "towardsai.com n8n AI Agent Node Memory setup guide",
+          "community.n8n.io Simple memory issue 259690"
+        ],
+        "note": "Docs, four community threads and three setup level posts; none explain scoping, expiry or the window arithmetic."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n ai agent memory postgres",
+        "status": 200,
+        "topResults": [
+          "github.com rufaromugabe n8n-nodes-postgres-memory-advanced",
+          "blog.n8n.io AI Agent Memory types storage retrieval",
+          "towardsai.com n8n AI Agent Node Memory setup guide",
+          "docs.n8n.io Postgres Chat Memory",
+          "mardenseo.com n8n AI agents with persistent memory",
+          "n8n.io Postgres Chat Memory integrations",
+          "docs.n8n.io Postgres node",
+          "n8nautomation.cloud Postgres Chat Memory and tools",
+          "itsmepotato.com add PostgreSQL chat memory",
+          "hackceleration.com Postgres Chat Memory"
+        ],
+        "note": "Setup focused posts and the n8n blog's conceptual article; table schema, pruning and scoping are not covered."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n no session id found / n8n simple memory context window length",
+        "status": 202,
+        "note": "Challenge pages; no sample."
+      }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "source": "n8n Docs: Simple Memory, Postgres Chat Memory, Chat Memory Manager, Chat Trigger, agent common issues",
+        "finding": "Document parameters, the queue mode warning, the single memory instance note, No sessionId guidance, Load Previous Session and the old version Simple Memory error, but not resolution order, scoping, the one hour expiry, the table schema or the window arithmetic."
+      },
+      {
+        "source": "n8n source MemoryBufferWindow.node.ts, descriptions.ts and utils/helpers.ts at the 2.46.6 tag",
+        "finding": "In process map keyed workflowId__sessionId, stale sessions cleared after 60 minutes on every access, versions 1 to 1.4, Session ID options and defaults, context window default 5, getSessionId resolution order and exact error texts, session key scoping with the sanitised node name from version 1.4 (Postgres 1.4, Redis 1.6, MongoDB 1.1)."
+      },
+      {
+        "source": "n8n source MemoryPostgresChat.node.ts, MemoryRedisChat.node.ts, MemoryManager.node.ts",
+        "finding": "Default table n8n_chat_histories, identifier validation and error text, window only from Postgres 1.1 and Redis 1.3, Redis Session Time To Live, Chat Memory Manager operations, defaults and simplified output shape."
+      },
+      {
+        "source": "n8n source agent-execution/memoryManagement.ts and ToolsAgent common.ts",
+        "finding": "Tool turns are saved as human, AI with tool calls, tool messages and final AI message; orphan cleanup after trimming; structured output stringified for memory; memory fetched once at item index 0."
+      },
+      {
+        "source": "LangChain source BufferWindowMemory and PostgresChatMessageHistory",
+        "finding": "Window returns the last k × 2 messages; Postgres table id serial, session_id varchar(255), message jsonb; reads ordered by id; clear deletes the session's rows."
+      }
+    ],
+    "intentMap": [
+      {
+        "query": "n8n simple memory session id / session key / no session id found",
+        "section": "Session ID: the key that decides what the agent remembers"
+      },
+      {
+        "query": "n8n ai agent memory postgres / supabase / schema",
+        "section": "Postgres Chat Memory in depth"
+      },
+      {
+        "query": "n8n simple memory context window length",
+        "section": "Context Window Length counts messages, not tokens"
+      },
+      {
+        "query": "n8n ai agent clear memory / chat memory manager",
+        "section": "Clearing, inspecting and injecting memory with Chat Memory Manager"
+      },
+      {
+        "query": "n8n simple memory vs postgres",
+        "section": "The memory nodes compared"
+      },
+      {
+        "query": "n8n simple memory not working / error",
+        "section": "Fixing the common failures"
+      }
+    ],
+    "limits": "No Search Console access, no Google SERP positions, no monthly volumes or difficulty scores, no ranking or traffic prediction."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "n8n Docs: Simple Memory",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow"
+    },
+    {
+      "title": "n8n Docs: Simple Memory common issues",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow/common-issues"
+    },
+    {
+      "title": "n8n Docs: Postgres Chat Memory",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorypostgreschat"
+    },
+    {
+      "title": "n8n Docs: Redis Chat Memory",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryredischat"
+    },
+    {
+      "title": "n8n Docs: Chat Memory Manager",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager"
+    },
+    {
+      "title": "n8n Docs: How memory works",
+      "url": "https://docs.n8n.io/build/integrate-ai/understand-ai-components/how-memory-works"
+    },
+    {
+      "title": "n8n Docs: Chat Trigger",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger"
+    },
+    {
+      "title": "n8n Docs: Chat Trigger common issues",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/common-issues"
+    },
+    {
+      "title": "n8n Docs: AI Agent common issues",
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/common-issues"
+    },
+    {
+      "title": "n8n source: MemoryBufferWindow.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/nodes/memory/MemoryBufferWindow/MemoryBufferWindow.node.ts"
+    },
+    {
+      "title": "n8n source: MemoryPostgresChat.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/nodes/memory/MemoryPostgresChat/MemoryPostgresChat.node.ts"
+    },
+    {
+      "title": "n8n source: memory helpers",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/utils/helpers.ts"
+    },
+    {
+      "title": "n8n source: agent memory management",
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/utils/agent-execution/memoryManagement.ts"
+    },
+    {
+      "title": "LangChain source: BufferWindowMemory",
+      "url": "https://github.com/langchain-ai/langchainjs/blob/main/libs/langchain-classic/src/memory/buffer_window_memory.ts"
+    },
+    {
+      "title": "npm registry: n8n latest release metadata",
+      "url": "https://registry.npmjs.org/n8n/latest"
+    }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-loop-over-items-guide",
+    "/blog/n8n-sub-workflow-guide",
+    "/blog/n8n-code-node-guide",
+    "/blog/n8n-webhook-not-working-2026"
+  ],
+  "faq": [
+    "How does the Simple Memory node store chat history in n8n?",
+    "What does No session ID found mean in n8n?",
+    "How do I give each user their own memory in an n8n AI agent?",
+    "How do I clear an AI agent's memory in n8n?",
+    "Should I use Simple Memory or Postgres Chat Memory?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/csv-utf8/photo-cover.jpg",
+    "coverFile": "public/blog/csv-utf8/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/a-person-writing-on-a-paper-with-graph-6779570/",
+    "coverPhotographer": "Artem Podrez",
+    "inline": "https://www.byteverse.fyi/blog/gemini-workspace/photo-cover.jpg",
+    "inlineFile": "public/blog/gemini-workspace/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/person-using-a-laptop-on-a-table-7439136/",
+    "inlinePhotographer": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted photographs already used on the site; both viewed before writing the alt text; illustrative, not n8n screenshots. No asset deployment is needed."
+  },
+  "validation": {
+    "proseWords": 4973,
+    "readingTime": "23 min read",
+    "contentSha256": "d5c33e86da5f9ecfd72b5370323f2e3943453fae8d6dae0e5c6b3d4c34e67535",
+    "codeBlocks": 4,
+    "tables": 4,
+    "behaviorTestsPassed": 6,
+    "totalTestsPassed": 10,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: no duplicate; 181 existing posts unchanged (hash 9920ee05845cb1c2c7863a2c55ee2274); author, category, 5 internal blog links and both images verified",
+    "runtime": "v24.12.0",
+    "executionScope": "JavaScript ports of getSessionId resolution and scoping, the Simple Memory singleton with its one hour expiry, the window buffer slice and the agent's tool turn storage, run against synthetic messages in Node; the Code node example executed with an emulated $input; no n8n instance, model or database.",
+    "limits": "Not executed inside n8n's execution engine, Cloud or the editor; parameter names, defaults and messages are quoted from the 2.46.6 sources and documentation."
+  },
+  "publication": {
+    "status": "published-deploy-pending",
+    "postId": 250,
+    "publishedAt": "2026-11-09T14:57:40.894Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 181,
+    "otherPostsHash": "9920ee05845cb1c2c7863a2c55ee2274",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-ai-agent-memory-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'push' 2026-11-09",
+    "pushed": true
+  }
+}

@@ -1,0 +1,521 @@
+{
+  "slug": "n8n-wait-node-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-11",
+  "targeting": {
+    "title": "n8n Wait Node: Resume URL, Webhook Waits and Stuck Executions",
+    "metaTitle": "n8n Wait Node: Resume URL, Timers, Stuck Fixes",
+    "metaDescription": "n8n Wait node explained: timed waits and the 65 second rule, $execution.resumeUrl, Limit Wait Time, 401, 404 and 409 answers, and executions stuck in Waiting.",
+    "excerpt": "A source-verified guide to the n8n Wait node: what waiting means inside n8n, the 65 second rule, how $execution.resumeUrl is built and validated, what the node outputs after a webhook or a timeout, every answer of the resume endpoint, delays per item, and the causes of executions stuck in Waiting.",
+    "keywords": "n8n wait node, n8n wait node webhook, n8n wait node stuck, n8n wait for webhook, n8n resume url, n8n execution resumeUrl, n8n wait until, n8n delay between items, n8n wait for approval, n8n pause workflow, n8n webhook waiting",
+    "summary": "Timers under 65 seconds sleep in the process; longer timers and every webhook or form wait are saved with the status Waiting and resumed by a service on the main process that polls every 60 seconds|$execution.resumeUrl holds the execution ID and a signature token, must be sent before the Wait node, uses GET by default, and after a webhook resume the node outputs the request instead of its input items|Stuck executions come from a callback that never ended the wait (409 too early, 404 wrong method or suffix, 401 missing token, unreachable URL), no Limit Wait Time, a stopped main process or a workflow timeout shorter than the wait",
+    "readingTime": "25 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-11T09:43:52.598Z",
+    "total": 182,
+    "published": 180,
+    "hash": "1c21b3cc5bf6ebb1cb8331255894541b",
+    "overlap": {
+      "existingN8nPosts": [
+        "how-to-use-n8n-2026-complete-guide",
+        "n8n-sub-workflow-guide",
+        "n8n-cant-determine-which-item-to-use",
+        "n8n-vs-zapier-2026-comparison",
+        "n8n-ai-agent-memory-guide",
+        "n8n-loop-over-items-guide",
+        "n8n-code-node-guide",
+        "n8n-json-parameter-needs-to-be-valid-json",
+        "n8n-webhook-not-working-2026"
+      ],
+      "note": "No existing post covers the Wait node. The Loop Over Items guide mentions a Wait node for rate limits and the sub-workflow guide covers waiting for a child workflow; both are linked instead of repeated."
+    },
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "nearbyCoverage": [
+      "n8n-loop-over-items-guide",
+      "n8n-sub-workflow-guide",
+      "n8n-webhook-not-working-2026",
+      "n8n-code-node-guide",
+      "how-to-use-n8n-2026-complete-guide"
+    ]
+  },
+  "research": {
+    "selection": "Thirty candidate seeds across the n8n cluster were checked first (docs/content-research/2026-11-11-keywords-n8n.json). Schedule Trigger and error handling had the richest suggestions, but DuckDuckGo samples for both showed many dedicated blog guides. 'n8n wait node' returned 10 suggestions (webhook, stuck, bug, example, wait for node to finish, merge node wait for all inputs, wait for all nodes to finish, wait for multiple nodes, wait for two nodes) and the sample for 'n8n wait node stuck' was dominated by community threads, GitHub issues and the documentation, with no dedicated source level guide. Thirty focused seeds followed: 'n8n wait until' (10: wait for webhook, wait for approval, wait for user input, wait for response, wait for sub workflow completion), 'n8n human in the loop' (10), 'n8n delay' (7: delay node, delay between items, random delay, http request delay), 'n8n pause workflow' (6), 'n8n waiting execution' (6, including 'n8n querying database for waiting executions'), 'n8n wait for webhook' (5), 'n8n resume url' (3) and 'n8n webhook-waiting' (3).",
+    "preliminarySeeds": 30,
+    "selectedTopicSeeds": 30,
+    "selectedSeedsWithSuggestions": 15,
+    "autocompleteCheckedAt": "2026-11-11T09:49:58.750Z",
+    "autocompleteContext": "English / gl=us; not measured US demand",
+    "observations": [
+      {
+        "seed": "n8n wait node",
+        "suggestions": [
+          "n8n wait node",
+          "n8n wait node webhook",
+          "n8n wait node stuck",
+          "n8n wait node bug",
+          "n8n wait node example",
+          "n8n wait for node to finish",
+          "n8n merge node wait for all inputs",
+          "n8n wait for all nodes to finish",
+          "n8n wait for multiple nodes",
+          "n8n wait for two nodes"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node webhook",
+        "suggestions": [
+          "n8n wait node webhook",
+          "webhook not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node stuck",
+        "suggestions": [
+          "n8n wait node stuck",
+          "npm install getting stuck"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node resume",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait for webhook",
+        "suggestions": [
+          "n8n wait for webhook",
+          "n8n wait webhook call",
+          "n8n wait node webhook",
+          "webhook not working",
+          "webhook examples"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n resume url",
+        "suggestions": [
+          "n8n resume url",
+          "what is a resume url",
+          "ajouter un cv sur linkedin"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execution resumeurl",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node not working",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node timeout",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node form",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node approval",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n human in the loop",
+        "suggestions": [
+          "n8n human in the loop",
+          "n8n human in the loop node",
+          "n8n human in the loop telegram",
+          "n8n human in the loop slack",
+          "n8n human in the loop chat",
+          "n8n human in the loop documentation",
+          "n8n human in the loop example",
+          "n8n human in the loop webhook",
+          "n8n human in the loop gmail",
+          "n8n human in the loop discord"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n waiting execution",
+        "suggestions": [
+          "n8n wait for execution",
+          "n8n querying database for waiting executions",
+          "n8n execution waiting in the queue",
+          "day of execution process",
+          "how long does it take for someone to get executed",
+          "what happens 24 hours before execution"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n execution waiting",
+        "suggestions": [
+          "n8n execution waiting in the queue",
+          "day of execution process"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait until",
+        "suggestions": [
+          "n8n wait until",
+          "n8n wait for all inputs",
+          "n8n wait for node to finish",
+          "n8n wait for webhook",
+          "n8n wait for sub workflow completion",
+          "n8n wait for user input",
+          "n8n wait for all nodes to finish",
+          "n8n wait for approval",
+          "n8n wait for multiple nodes",
+          "n8n wait for response"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node loop",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n delay",
+        "suggestions": [
+          "n8n delay node",
+          "n8n delay",
+          "n8n delay between items",
+          "n8n add delay",
+          "n8n random delay",
+          "n8n http request delay",
+          "delay of or delay in"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n delay between requests",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node vs",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node limit",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node max",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n webhook-waiting",
+        "suggestions": [
+          "n8n webhook waiting",
+          "n8n wait webhook call",
+          "webhook not working"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node at specified time",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node sub workflow",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n pause workflow",
+        "suggestions": [
+          "n8n pause workflow",
+          "n8n stop workflow",
+          "n8n stop workflow execution",
+          "n8n stop workflow node",
+          "make a pause or take a pause",
+          "pause obligatoire"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n resume workflow",
+        "suggestions": [
+          "n8n resume workflow",
+          "resume to work or resume work"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait 1 second",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n sleep",
+        "suggestions": [
+          "n8n sleep",
+          "n8n sleep node",
+          "neuro sleep drink near me",
+          "is nouri awake"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n wait node rate limit",
+        "suggestions": [],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n approval workflow",
+        "suggestions": [
+          "n8n approval workflow",
+          "n8n approval process",
+          "n8n document approval workflow",
+          "what is an approval workflow"
+        ],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "serpSamples": [
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n wait node stuck",
+        "status": 200,
+        "topResults": [
+          "community.n8n.io Help with Wait Node: Flows Stuck in Waiting Status After Time Passed",
+          "community.n8n.io How to fix a malfunctioning wait node with active, running executions",
+          "docs.n8n.io Wait node",
+          "github.com n8n-io/n8n issue 28208 Parent Workflow Stuck in Waiting State After Sub-workflow",
+          "docs.n8n.io Wait (flow logic)",
+          "lune.dev Why is my n8n workflow stuck in waiting mode after form submission",
+          "github.com n8n-io/n8n issue 12665 Wait Nodes Not Waiting Correctly",
+          "reddit.com r/n8n wait node is not executing",
+          "n8nchronicles.blogspot.com When n8n Nodes Get Stuck"
+        ],
+        "note": "Forum threads, issues and documentation; one general blog post. Titles only were sampled; the threads were not read and are not cited."
+      },
+      {
+        "engine": "DuckDuckGo",
+        "query": "n8n schedule trigger not working / n8n error handling workflow (rejected candidates)",
+        "status": 200,
+        "note": "Both samples listed five or more dedicated blog guides each, so those topics were not chosen."
+      }
+    ],
+    "competitorAndCaseReview": [
+      {
+        "source": "n8n Docs: Wait node",
+        "finding": "Documents the four resume options, the parameters, Limit Wait Time, Webhook Suffix, the partial execution limitation and the note that waits under 65 seconds are not offloaded. Does not cover the tracker's poll, the signature token, endpoint responses, the output after a webhook resume versus a timeout, the early callback conflict or the timeout on resume."
+      },
+      {
+        "source": "n8n source Wait.node.ts, validation.ts and base-execute-context.ts at the 2.47.4 tag",
+        "finding": "Versions 1 and 1.1 and their defaults, wake up calculation, validation messages, acceptsResumeRequest false for timers, MAX_IN_PROCESS_WAIT_MS 65000, WAIT_INDEFINITELY 3000-01-01, WAIT_FOR_SUB_EXECUTION 2999-12-31, input items returned unchanged."
+      },
+      {
+        "source": "n8n source wait-tracker.ts, execution.repository.ts, resume-attempt.service.ts, executions.config.ts",
+        "finding": "60 second poll on the leader, 70 second selection window, immediate first poll, 'Only saved workflows can be resumed.', stored workflow data used on resume, N8N_EXECUTIONS_MAX_RESUME_ATTEMPTS default 2 then crashed, parent parked on a sub-execution and swept each tick."
+      },
+      {
+        "source": "n8n source waiting-webhooks.ts, get-additional-keys.ts, webhook-helpers.ts, endpoints.config.ts, Webhook description.ts",
+        "finding": "resumeUrl = waiting base + execution ID + signature token; 401 Invalid token, 404 not found or no matching path/method, 409 running already, finished already or finished with error, 307 redirect for form waits; token stripped from the request; request item placed on the resuming node; endpoints webhook-waiting and form-waiting with their environment variables; HTTP Method default GET, Respond default Immediately."
+      },
+      {
+        "source": "n8n source workflow-runner.ts",
+        "finding": "On resume the workflow timeout is reduced by the time since the original start and the execution is stopped at once when nothing is left; EXECUTIONS_TIMEOUT default -1, EXECUTIONS_TIMEOUT_MAX default 3600 seconds."
+      }
+    ],
+    "intentMap": [
+      {
+        "query": "n8n wait node / n8n wait node example",
+        "section": "The four ways a Wait node resumes"
+      },
+      {
+        "query": "n8n waiting execution / n8n querying database for waiting executions",
+        "section": "What waiting means inside n8n"
+      },
+      {
+        "query": "n8n delay / n8n delay between items / n8n random delay",
+        "section": "Timed waits: After Time Interval and At Specified Time"
+      },
+      {
+        "query": "n8n wait node webhook / n8n wait for webhook / n8n resume url",
+        "section": "On Webhook Call and $execution.resumeUrl"
+      },
+      {
+        "query": "n8n wait for approval / n8n human in the loop",
+        "section": "On Form Submitted and send and wait"
+      },
+      {
+        "query": "n8n wait node stuck / n8n wait node bug",
+        "section": "Why executions stay stuck in Waiting"
+      },
+      {
+        "query": "n8n wait for all nodes to finish / n8n merge node wait for all inputs",
+        "section": "The Wait node does not wait for other branches"
+      }
+    ],
+    "limits": "No Search Console access, no Google SERP positions, no monthly volumes or difficulty scores, no ranking or traffic prediction."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "n8n Docs: Wait node",
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait"
+    },
+    {
+      "title": "n8n source: Wait.node.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/nodes-base/nodes/Wait/Wait.node.ts"
+    },
+    {
+      "title": "n8n source: wait-tracker.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/cli/src/wait-tracker.ts"
+    },
+    {
+      "title": "n8n source: waiting-webhooks.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/cli/src/webhooks/waiting-webhooks.ts"
+    },
+    {
+      "title": "n8n source: base-execute-context.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/core/src/execution-engine/node-execution-context/base-execute-context.ts"
+    },
+    {
+      "title": "n8n source: workflow constants",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/workflow/src/constants.ts"
+    },
+    {
+      "title": "n8n source: get-additional-keys.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/core/src/execution-engine/node-execution-context/utils/get-additional-keys.ts"
+    },
+    {
+      "title": "n8n source: webhook-helpers.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/cli/src/webhooks/webhook-helpers.ts"
+    },
+    {
+      "title": "n8n source: execution.repository.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/%40n8n/db/src/repositories/execution.repository.ts"
+    },
+    {
+      "title": "n8n source: workflow-runner.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/cli/src/workflow-runner.ts"
+    },
+    {
+      "title": "n8n source: executions.config.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/%40n8n/config/src/configs/executions.config.ts"
+    },
+    {
+      "title": "n8n source: endpoints.config.ts",
+      "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/%40n8n/config/src/configs/endpoints.config.ts"
+    },
+    {
+      "title": "npm registry: n8n latest release metadata",
+      "url": "https://registry.npmjs.org/n8n/latest"
+    }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-loop-over-items-guide",
+    "/blog/n8n-webhook-not-working-2026",
+    "/blog/n8n-code-node-guide",
+    "/blog/n8n-sub-workflow-guide"
+  ],
+  "faq": [
+    "How does the Wait node work in n8n?",
+    "What is $execution.resumeUrl in n8n?",
+    "Why is my n8n execution stuck in Waiting?",
+    "How do I add a delay between items or requests in n8n?",
+    "Does a long wait use resources or count toward the workflow timeout?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverFile": "public/blog/cursor-planning-next-moves/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/person-coding-on-a-macbook-pro-4974912/",
+    "coverPhotographer": "olia danilevich",
+    "inline": "https://www.byteverse.fyi/blog/claude-code-windows/photo-cover.jpg",
+    "inlineFile": "public/blog/claude-code-windows/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "inlinePhotographer": "Daniil Komov",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed, self-hosted photographs already used on the site; the alt text follows the photograph's Pexels title; illustrative, not n8n screenshots. No asset deployment is needed."
+  },
+  "validation": {
+    "proseWords": 5419,
+    "readingTime": "25 min read",
+    "contentSha256": "0993985380b7d1fe3a381b2bc37e2eef00cea5493c1af17407bbad57b273476e",
+    "codeBlocks": 8,
+    "tables": 4,
+    "behaviorTestsPassed": 7,
+    "totalTestsPassed": 11,
+    "testsFailed": 0,
+    "targetedEslint": "passed",
+    "readOnlyPreflight": "passed: no duplicate; 182 existing posts unchanged (hash 1c21b3cc5bf6ebb1cb8331255894541b); author, category, 5 internal blog links and both images verified",
+    "runtime": "v24.12.0",
+    "executionScope": "JavaScript ports of the Wait node's wake up calculation and validation, putExecutionToWait, the waiting executions query window, the waiting webhook endpoint's checks, the signature and suffix parsing and the runner's timeout on resume, run against synthetic executions in Node; the Code node example executed with emulated $input and $; no n8n instance, reverse proxy or real callback.",
+    "limits": "Not executed inside n8n's execution engine, Cloud or the editor; parameter names, defaults and messages are quoted from the 2.47.4 sources and documentation. The time zone note reports a difference between the documentation and the source without an instance test."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 251,
+    "publishedAt": "2026-11-11T11:17:12.092Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 182,
+    "otherPostsHash": "1c21b3cc5bf6ebb1cb8331255894541b",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-wait-node-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'live push' 2026-11-11",
+    "pushed": false
+  }
+}

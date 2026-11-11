@@ -1,609 +1,217 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  Copy, Download, RotateCcw, Maximize2, Minimize2,
-  Columns, Rows, Check, Smartphone, Monitor, Tablet, Play, TriangleAlert, LockKeyhole,
+  Check, ChevronDown, CircleX, Columns2, Copy, Download, Ellipsis, FileArchive, GripVertical, Info, LockKeyhole,
+  Maximize2, Minimize2, Monitor, Play, RotateCcw, RotateCw, Rows2, Ruler, Share2, Smartphone, SquareTerminal,
+  Tablet, Trash2, TriangleAlert, Upload, WandSparkles,
 } from "lucide-react";
+import {
+  buildDocument, describeConsoleMessage, parseProject, serializeProject, splitDocument, SOURCE_LABELS,
+  type ConsoleLevel, type LineSegment, type PlaygroundProject, type PlaygroundSource,
+} from "@/lib/html-playground";
+import { CodeEditor } from "./code-editor";
+import { TEMPLATES } from "./templates";
 
-/* ── Templates ────────────────────────────────────────── */
-const TEMPLATES: Record<string, { label: string; code: string }> = {
-  starter: {
-    label: "Starter Page",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Page</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      line-height: 1.6;
-      color: #1a1a2e;
-      padding: 2rem;
-      background: #fafafa;
-    }
-    h1 { color: #e94560; margin-bottom: 0.5rem; }
-    p { color: #555; max-width: 600px; }
-  </style>
-</head>
-<body>
-  <h1>Hello, World!</h1>
-  <p>Start editing this HTML to see live changes in the preview panel. You can add any HTML, CSS, and JavaScript.</p>
-</body>
-</html>`,
-  },
-  card: {
-    label: "Profile Card",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    }
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f093fb, #f5576c);
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-    }
-    .card h2 { font-size: 1.3rem; color: #1a1a2e; }
-    .card p { color: #888; font-size: 0.9rem; margin: 0.3rem 0 1.2rem; }
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #eee;
-      padding-top: 1rem;
-    }
-    .stats div { text-align: center; }
-    .stats strong { display: block; color: #1a1a2e; font-size: 1.1rem; }
-    .stats span { font-size: 0.75rem; color: #aaa; text-transform: uppercase; }
-    .btn {
-      display: inline-block;
-      margin-top: 1.2rem;
-      padding: 0.6rem 2rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="avatar">JD</div>
-    <h2>Jane Doe</h2>
-    <p>Full-Stack Developer</p>
-    <div class="stats">
-      <div><strong>142</strong><span>Projects</span></div>
-      <div><strong>8.5k</strong><span>Followers</span></div>
-      <div><strong>320</strong><span>Following</span></div>
-    </div>
-    <button class="btn">Follow</button>
-  </div>
-</body>
-</html>`,
-  },
-  form: {
-    label: "Contact Form",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f0f4f8;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-    }
-    .form-container {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 12px;
-      width: 400px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    }
-    h2 { margin-bottom: 0.3rem; color: #1a1a2e; }
-    .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 1.5rem; }
-    .field { margin-bottom: 1rem; }
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 0.3rem;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 0.65rem 0.8rem;
-      border: 1.5px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-family: inherit;
-      transition: border 0.2s;
-    }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
-    }
-    textarea { resize: vertical; min-height: 100px; }
-    .btn {
-      width: 100%;
-      padding: 0.75rem;
-      background: #667eea;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn:hover { background: #5a6fd6; }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h2>Get in Touch</h2>
-    <p class="subtitle">We'd love to hear from you</p>
-    <form onsubmit="event.preventDefault(); alert('Message sent!')">
-      <div class="field">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="John Doe" required>
-      </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="john@example.com" required>
-      </div>
-      <div class="field">
-        <label for="msg">Message</label>
-        <textarea id="msg" placeholder="Your message..." required></textarea>
-      </div>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </div>
-</body>
-</html>`,
-  },
-  grid: {
-    label: "CSS Grid Gallery",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #111;
-      padding: 1.5rem;
-    }
-    h1 {
-      color: white;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 12px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .item {
-      aspect-ratio: 1;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .item:hover { transform: scale(1.03); }
-    .item:nth-child(1) { background: linear-gradient(135deg, #f093fb, #f5576c); }
-    .item:nth-child(2) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-    .item:nth-child(3) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-    .item:nth-child(4) { background: linear-gradient(135deg, #fa709a, #fee140); }
-    .item:nth-child(5) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
-    .item:nth-child(6) { background: linear-gradient(135deg, #fccb90, #d57eeb); }
-    .item:nth-child(7) { background: linear-gradient(135deg, #667eea, #764ba2); }
-    .item:nth-child(8) { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
-    .label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.8rem;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-  </style>
-</head>
-<body>
-  <h1>CSS Grid Gallery</h1>
-  <div class="gallery">
-    <div class="item"><div class="label">Sunset</div></div>
-    <div class="item"><div class="label">Ocean</div></div>
-    <div class="item"><div class="label">Forest</div></div>
-    <div class="item"><div class="label">Desert</div></div>
-    <div class="item"><div class="label">Mountains</div></div>
-    <div class="item"><div class="label">Aurora</div></div>
-    <div class="item"><div class="label">Galaxy</div></div>
-    <div class="item"><div class="label">Clouds</div></div>
-  </div>
-</body>
-</html>`,
-  },
-  navbar: {
-    label: "Responsive Navbar",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #fafafa; }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 2rem;
-      background: white;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-    }
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none;
-      color: #555;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #667eea; }
-    .cta {
-      padding: 0.5rem 1.2rem;
-      background: #667eea;
-      color: white !important;
-      border-radius: 6px;
-      -webkit-text-fill-color: white;
-    }
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-    .hero h1 { font-size: 2.5rem; color: #1a1a2e; margin-bottom: 0.8rem; }
-    .hero p { color: #888; font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="logo">Brand</div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#" class="cta">Get Started</a></li>
-    </ul>
-  </nav>
-  <div class="hero">
-    <h1>Build Something Amazing</h1>
-    <p>A beautiful responsive navbar built with pure HTML and CSS. No JavaScript needed.</p>
-  </div>
-</body>
-</html>`,
-  },
-  animation: {
-    label: "CSS Animation",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #0f0f23;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      overflow: hidden;
-    }
-    .loader {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 2rem;
-    }
-    .loader span {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      animation: bounce 1.4s ease-in-out infinite;
-    }
-    .loader span:nth-child(1) { background: #f5576c; animation-delay: 0s; }
-    .loader span:nth-child(2) { background: #ffd93d; animation-delay: 0.15s; }
-    .loader span:nth-child(3) { background: #6bcb77; animation-delay: 0.3s; }
-    .loader span:nth-child(4) { background: #4d96ff; animation-delay: 0.45s; }
-    .loader span:nth-child(5) { background: #a855f7; animation-delay: 0.6s; }
+const TEMPLATE_PROJECTS: Record<string, PlaygroundProject> = Object.fromEntries(
+  Object.entries(TEMPLATES).map(([key, template]) => [key, splitDocument(template.code)]),
+);
+const DEFAULT_PROJECT = TEMPLATE_PROJECTS.starter;
+const DEFAULT_SAVED = serializeProject(DEFAULT_PROJECT);
+const STORAGE_KEY = "byteverse.html-editor.v2";
+const LEGACY_STORAGE_KEY = "byteverse.html-editor.v1";
+const SOURCES: PlaygroundSource[] = ["html", "css", "js"];
+const FILE_NAMES: Record<PlaygroundSource, string> = { html: "index.html", css: "styles.css", js: "script.js" };
+const EDITOR_LABELS: Record<PlaygroundSource, string> = { html: "HTML source", css: "CSS source", js: "JavaScript source" };
+const TAB_DOTS: Record<PlaygroundSource, string> = { html: "bg-orange-400", css: "bg-sky-400", js: "bg-yellow-300" };
+const DEVICES = {
+  desktop: { label: "Desktop", icon: Monitor, portrait: null, landscape: null },
+  tablet: { label: "Tablet 768px", icon: Tablet, portrait: 768, landscape: 1024 },
+  phone: { label: "Phone 375px", icon: Smartphone, portrait: 375, landscape: 667 },
+  custom: { label: "Custom width", icon: Ruler, portrait: null, landscape: null },
+} as const;
+type Device = keyof typeof DEVICES;
+type ConsoleEntry = { id: number; level: ConsoleLevel; text: string; count: number };
+type Status = { text: string; tone: "ok" | "error" };
 
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-      40% { transform: scale(1.2); opacity: 1; }
-    }
-
-    .text {
-      color: white;
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    .ring {
-      width: 120px;
-      height: 120px;
-      border: 3px solid transparent;
-      border-top-color: #667eea;
-      border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .ring::before {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 3px solid transparent;
-      border-top-color: #f5576c;
-      border-radius: 50%;
-      animation: spin 1s linear reverse infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
-</head>
-<body>
-  <div class="ring"></div>
-  <div class="loader">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <div class="text">Loading</div>
-</body>
-</html>`,
-  },
-  landing: {
-    label: "Mini Landing Page",
-    code: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; }
-    .hero {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 2rem;
-    }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; }
-    .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 500px; margin: 0 auto 1.5rem; }
-    .hero-btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background: white;
-      color: #667eea;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: transform 0.2s;
-    }
-    .hero-btn:hover { transform: translateY(-2px); }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 800px;
-      margin: -3rem auto 3rem;
-      padding: 0 1.5rem;
-    }
-    .feature {
-      background: white;
-      padding: 1.8rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .feature .icon { font-size: 2rem; margin-bottom: 0.8rem; }
-    .feature h3 { margin-bottom: 0.4rem; font-size: 1rem; }
-    .feature p { font-size: 0.85rem; color: #666; line-height: 1.5; }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #f8f9fa;
-      color: #888;
-      font-size: 0.85rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="hero">
-    <div>
-      <h1>Ship Faster</h1>
-      <p>Build beautiful web experiences with clean HTML and CSS. No frameworks, no build tools, just code.</p>
-      <a href="#features" class="hero-btn">Explore Features</a>
-    </div>
-  </div>
-  <div class="features" id="features">
-    <div class="feature">
-      <div class="icon">\u26A1</div>
-      <h3>Lightning Fast</h3>
-      <p>Zero dependencies means instant load times.</p>
-    </div>
-    <div class="feature">
-      <div class="icon">\uD83C\uDFA8</div>
-      <h3>Beautiful Design</h3>
-      <p>Modern gradients and clean typography.</p>
-    </div>
-    <div class="feature">
-      <div class="icon">\uD83D\uDD12</div>
-      <h3>Secure by Default</h3>
-      <p>No external requests, fully self-contained.</p>
-    </div>
-  </div>
-  <footer>&copy; 2026 MyApp. Built with HTML &amp; CSS.</footer>
-</body>
-</html>`,
-  },
+const CONSOLE_TONES: Record<ConsoleLevel, string> = {
+  error: "text-red-200",
+  warn: "text-amber-200",
+  info: "text-sky-200",
+  log: "text-slate-200",
+  debug: "text-slate-300",
 };
+const CONSOLE_PREFIX: Record<ConsoleLevel, string> = { error: "Error: ", warn: "Warning: ", info: "Info: ", log: "", debug: "Debug: " };
 
-const DEFAULT_CODE = TEMPLATES.starter.code;
-const STORAGE_KEY = "byteverse.html-editor.v1";
-const PREVIEW_WIDTHS = {
-  desktop: { label: "Desktop", width: "100%" as const, hint: "Full width" },
-  tablet: { label: "Tablet", width: 768, hint: "768px" },
-  phone: { label: "Phone", width: 375, hint: "375px" },
-};
-type PreviewWidth = keyof typeof PREVIEW_WIDTHS;
-type PreviewError = { id: number; message: string };
+const ring = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400";
+const control = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[36px] ${ring}`;
+const textButton = `${control} px-3`;
+const iconButton = `${control} w-[44px] sm:w-9`;
+const runButton = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-emerald-400 px-3.5 text-xs font-semibold text-slate-950 transition-colors hover:bg-emerald-300 sm:min-h-[36px] ${ring}`;
+const segment = (active: boolean) => `inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[30px] sm:min-w-[34px] ${ring} ${active ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-100"}`;
+const menuItem = `flex min-h-[44px] w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-left text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 focus-visible:bg-white/10 sm:min-h-[36px] ${ring}`;
 
-// Injected on the same line as <head> so reported line numbers still match the editor.
-const CAPTURE_SCRIPT = '<script data-byteverse-preview>(function(){var send=function(kind,message){try{parent.postMessage({byteversePreview:true,kind:kind,message:String(message).slice(0,500)},"*")}catch(e){}};window.addEventListener("error",function(e){send("error",(e.message||"Script error")+(e.lineno?" (line "+e.lineno+")":""))});window.addEventListener("unhandledrejection",function(e){var r=e.reason;send("error","Unhandled promise rejection: "+(r&&r.message?r.message:r))});var original=console.error;console.error=function(){send("error",Array.prototype.map.call(arguments,function(a){if(typeof a==="string")return a;try{return JSON.stringify(a)}catch(_){return String(a)}}).join(" "));original.apply(console,arguments)}})()</script>';
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
-function withErrorCapture(code: string) {
-  const head = code.match(/<head[^>]*>/i);
-  if (head?.index !== undefined) return code.slice(0, head.index + head[0].length) + CAPTURE_SCRIPT + code.slice(head.index + head[0].length);
-  const html = code.match(/<html[^>]*>/i);
-  if (html?.index !== undefined) return code.slice(0, html.index + html[0].length) + CAPTURE_SCRIPT + code.slice(html.index + html[0].length);
-  return CAPTURE_SCRIPT + code;
+function saveFile(data: BlobPart, type: string, name: string) {
+  const url = URL.createObjectURL(new Blob([data], { type }));
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = name;
+  anchor.click();
+  URL.revokeObjectURL(url);
 }
 
-const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
-const MOD = isMac ? "⌘" : "Ctrl";
+const clearHash = () => window.history.replaceState(null, "", window.location.pathname + window.location.search);
 
-const toolButton = "inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 text-xs font-medium text-foreground min-h-[44px] sm:min-h-[34px] hover:bg-muted transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed";
-const segment = (active: boolean) => `inline-flex items-center gap-1.5 rounded-md px-2.5 min-h-[44px] sm:min-h-[30px] text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${active ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`;
-
-/* ── Main Component ───────────────────────────────────── */
 export function HtmlEditorTool() {
-  const [code, setCode] = useState(DEFAULT_CODE);
-  const [previewCode, setPreviewCode] = useState(DEFAULT_CODE);
-  const [autoUpdate, setAutoUpdate] = useState(true);
+  const [project, setProject] = useState(DEFAULT_PROJECT);
+  const [published, setPublished] = useState(DEFAULT_PROJECT);
+  const [runId, setRunId] = useState(0);
+  const [tab, setTab] = useState<PlaygroundSource>("html");
+  const [autoRun, setAutoRun] = useState(true);
   const [layout, setLayout] = useState<"side" | "stacked">("side");
-  const [previewWidth, setPreviewWidth] = useState<PreviewWidth>("desktop");
+  const [split, setSplit] = useState(50);
+  const [device, setDevice] = useState<Device>("desktop");
+  const [rotated, setRotated] = useState(false);
+  const [customWidth, setCustomWidth] = useState(1024);
   const [fullscreen, setFullscreen] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [template, setTemplate] = useState("starter");
-  const [draft, setDraft] = useState<string | null>(null);
-  const [errors, setErrors] = useState<PreviewError[]>([]);
-  const [hint, setHint] = useState("Tab inserts two spaces. Press Esc, then Tab, to leave the editor.");
-  const editorRef = useRef<HTMLTextAreaElement>(null);
-  const lineCountRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<HTMLIFrameElement>(null);
-  const paneRef = useRef<HTMLDivElement>(null);
-  const fullscreenButtonRef = useRef<HTMLButtonElement>(null);
-  const tabCapture = useRef(true);
-  const errorId = useRef(0);
+  const [draft, setDraft] = useState<PlaygroundProject | null>(null);
+  const [gated, setGated] = useState(false);
+  const [entries, setEntries] = useState<ConsoleEntry[]>([]);
+  const [consoleOpen, setConsoleOpen] = useState<boolean | null>(null);
+  const [status, setStatus] = useState<Status | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [formatting, setFormatting] = useState(false);
+  const [mod, setMod] = useState("Ctrl");
   const [paneWidth, setPaneWidth] = useState(0);
 
-  const lines = code.split("\n");
-  const lineCount = lines.length;
-  const charCount = code.length;
-  const dirty = code !== previewCode;
+  const sectionRef = useRef<HTMLElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const paneRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const fullscreenButtonRef = useRef<HTMLButtonElement>(null);
+  const segmentsRef = useRef<LineSegment[]>([]);
+  const projectRef = useRef(project);
+  const sharedRef = useRef<PlaygroundProject | null>(null);
+  const statusTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const entryId = useRef(0);
+  const lastEscape = useRef(0);
 
-  // Restore banner: offer the last session instead of silently replacing the default template.
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved && saved !== DEFAULT_CODE) setDraft(saved);
-      } catch { /* storage unavailable */ }
-    });
-    return () => cancelAnimationFrame(frame);
+  const built = useMemo(() => buildDocument(published, { capture: true }), [published]);
+  useEffect(() => { segmentsRef.current = built.segments; }, [built]);
+  useEffect(() => { projectRef.current = project; }, [project]);
+
+  const announce = useCallback((text: string, tone: Status["tone"] = "ok") => {
+    if (statusTimer.current) clearTimeout(statusTimer.current);
+    setStatus({ text, tone });
+    statusTimer.current = setTimeout(() => setStatus(null), 7000);
+  }, []);
+  useEffect(() => () => { if (statusTimer.current) clearTimeout(statusTimer.current); }, []);
+
+  // Console output belongs to one render, so it is cleared with each new document.
+  const publish = useCallback((next: PlaygroundProject) => {
+    setPublished(next);
+    setEntries([]);
+    setRunId((id) => id + 1);
+    setGated(false);
   }, []);
 
-  // Autosave once the restore decision is made; the default template is never stored.
+  // Once the user changes shared code it becomes their own work: drop the link and allow autosave.
+  const leaveSharedLink = useCallback(() => {
+    if (!sharedRef.current) return;
+    sharedRef.current = null;
+    clearHash();
+  }, []);
+
+  const loadTemplate = useCallback((key: string) => {
+    const next = TEMPLATE_PROJECTS[key];
+    if (!next) return;
+    leaveSharedLink();
+    setTemplate(key);
+    setProject(next);
+    publish(next);
+  }, [leaveSharedLink, publish]);
+
+  const openFromHash = useCallback(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith("#template=")) {
+      const key = hash.slice("#template=".length);
+      if (!TEMPLATE_PROJECTS[key]) return;
+      loadTemplate(key);
+      clearHash();
+      sectionRef.current?.scrollIntoView({ block: "start" });
+      return;
+    }
+    if (!hash.startsWith("#code=")) return;
+    import("@/lib/html-playground-export").then(({ decodeShare }) => {
+      const shared = decodeShare(hash);
+      if (!shared) {
+        announce("This share link is incomplete or invalid.", "error");
+        return;
+      }
+      sharedRef.current = shared;
+      setProject(shared);
+      setEntries([]);
+      setGated(true);
+    }).catch(() => announce("The share link could not be opened.", "error"));
+  }, [announce, loadTemplate]);
+
+  // Restore banner: offer the last session instead of silently replacing the starter page.
   useEffect(() => {
-    if (draft !== null) return;
+    const frame = requestAnimationFrame(() => {
+      if (/Mac|iPhone|iPad/.test(navigator.platform)) setMod("⌘");
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const legacy = saved === null ? localStorage.getItem(LEGACY_STORAGE_KEY) : null;
+        const found = saved !== null ? parseProject(saved) : legacy ? { html: legacy, css: "", js: "" } : null;
+        if (found && serializeProject(found) !== DEFAULT_SAVED) setDraft(found);
+      } catch { /* storage unavailable */ }
+      openFromHash();
+    });
+    window.addEventListener("hashchange", openFromHash);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", openFromHash);
+    };
+  }, [openFromHash]);
+
+  // Autosave once the restore decision is made; the starter page and untouched shared code are never stored.
+  useEffect(() => {
+    if (draft !== null || project === sharedRef.current) return;
     const timer = setTimeout(() => {
       try {
-        if (code === DEFAULT_CODE) localStorage.removeItem(STORAGE_KEY);
-        else localStorage.setItem(STORAGE_KEY, code);
+        const saved = serializeProject(project);
+        if (saved === DEFAULT_SAVED) localStorage.removeItem(STORAGE_KEY);
+        else localStorage.setItem(STORAGE_KEY, saved);
       } catch { /* storage unavailable */ }
     }, 400);
     return () => clearTimeout(timer);
-  }, [code, draft]);
+  }, [project, draft]);
 
-  // Debounced live preview. Errors belong to one render, so they are cleared with each new document.
-  const publish = useCallback((next: string) => { setPreviewCode(next); setErrors([]); }, []);
+  // Debounced live preview. Shared code waits for an explicit Run.
   useEffect(() => {
-    if (!autoUpdate) return;
-    const timer = setTimeout(() => publish(code), 150);
+    if (!autoRun || gated || project === published) return;
+    const timer = setTimeout(() => publish(project), 150);
     return () => clearTimeout(timer);
-  }, [code, autoUpdate, publish]);
+  }, [project, published, autoRun, gated, publish]);
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (event.source !== frameRef.current?.contentWindow) return;
-      const data = event.data as { byteversePreview?: boolean; message?: unknown } | null;
-      if (!data || data.byteversePreview !== true || typeof data.message !== "string") return;
-      const message = data.message;
-      setErrors((list) => [...list.slice(-19), { id: ++errorId.current, message }]);
+      const message = describeConsoleMessage(event.data, segmentsRef.current, window.location.href);
+      if (!message) return;
+      const id = ++entryId.current;
+      setEntries((list) => {
+        const last = list[list.length - 1];
+        if (last && last.level === message.level && last.text === message.text) return [...list.slice(0, -1), { ...last, count: last.count + 1 }];
+        return [...list.slice(-199), { id, ...message, count: 1 }];
+      });
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -613,8 +221,8 @@ export function HtmlEditorTool() {
   useEffect(() => {
     const pane = paneRef.current;
     if (!pane || typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver((entries) => {
-      const entry = entries[0];
+    const observer = new ResizeObserver((observed) => {
+      const entry = observed[0];
       if (entry) setPaneWidth(entry.contentRect.width);
     });
     observer.observe(pane);
@@ -628,8 +236,12 @@ export function HtmlEditorTool() {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      if (document.activeElement === editorRef.current && tabCapture.current) return;
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      // Inside the code area the first Esc releases Tab; only a second Esc leaves full screen.
+      if (event.target instanceof Element && event.target.closest(".cm-editor") && Date.now() - lastEscape.current > 2000) {
+        lastEscape.current = Date.now();
+        return;
+      }
       setFullscreen(false);
     };
     window.addEventListener("keydown", onKey);
@@ -640,235 +252,546 @@ export function HtmlEditorTool() {
     };
   }, [fullscreen]);
 
-  const handleScroll = useCallback(() => {
-    if (editorRef.current && lineCountRef.current) lineCountRef.current.scrollTop = editorRef.current.scrollTop;
-  }, []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    menuRef.current?.querySelector<HTMLElement>("[role=menuitem]")?.focus();
+    const onPointer = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (!menuRef.current?.contains(target) && !menuButtonRef.current?.contains(target)) setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    return () => document.removeEventListener("pointerdown", onPointer);
+  }, [menuOpen]);
 
-  const run = useCallback(() => publish(code), [code, publish]);
+  const edit = useCallback((source: PlaygroundSource, value: string, replacedAll: boolean) => {
+    leaveSharedLink();
+    // Pasting a whole page over a template must not inherit the template's untouched CSS and JS.
+    const current = projectRef.current;
+    const base = TEMPLATE_PROJECTS[template];
+    const replaced = source === "html" && replacedAll;
+    const dropCss = replaced && base.css !== "" && current.css === base.css;
+    const dropJs = replaced && base.js !== "" && current.js === base.js;
+    setProject((now) => (now[source] === value ? now : { ...now, ...(dropCss && { css: "" }), ...(dropJs && { js: "" }), [source]: value }));
+    if (dropCss || dropJs) announce("You replaced the whole HTML tab, so the template's unused CSS and JS were cleared. Undo with Ctrl Z in those tabs.");
+  }, [announce, leaveSharedLink, template]);
 
-  const handleDownload = useCallback(() => {
-    const blob = new Blob([code], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "index.html";
-    anchor.click();
-    URL.revokeObjectURL(url);
-  }, [code]);
+  const run = useCallback(() => publish(project), [project, publish]);
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    const mod = event.ctrlKey || event.metaKey;
-    if (event.key === "Escape" && tabCapture.current) {
-      event.preventDefault();
-      tabCapture.current = false;
-      setHint("Tab now moves focus. Click or type in the editor to make Tab indent again.");
+  const download = useCallback(() => {
+    saveFile(buildDocument(project).doc, "text/html", "index.html");
+  }, [project]);
+
+  const downloadZip = useCallback(async () => {
+    try {
+      const { zipProject } = await import("@/lib/html-playground-export");
+      saveFile(zipProject(project).slice(), "application/zip", "byteverse-html-project.zip");
+      announce("ZIP downloaded with index.html and any CSS and JS files.");
+    } catch {
+      announce("The ZIP file could not be created.", "error");
+    }
+  }, [announce, project]);
+
+  const copyText = useCallback(async (text: string, done: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      announce(done);
+      return true;
+    } catch {
+      announce("Copying was blocked by the browser.", "error");
+      return false;
+    }
+  }, [announce]);
+
+  const copyTab = useCallback(async () => {
+    if (!(await copyText(project[tab], `${SOURCE_LABELS[tab]} copied.`))) return;
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }, [copyText, project, tab]);
+
+  const share = useCallback(async () => {
+    try {
+      const { encodeShare } = await import("@/lib/html-playground-export");
+      const hash = encodeShare(project);
+      if (!hash) {
+        announce("This project is too large for a link. Download it instead.", "error");
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}${hash}`);
+        announce("Share link copied. The code runs only after the recipient presses Run.");
+      } catch {
+        window.history.replaceState(null, "", hash);
+        announce("Copying was blocked. The link is now in the address bar.");
+      }
+    } catch {
+      announce("The share link could not be created.", "error");
+    }
+  }, [announce, project]);
+
+  const format = useCallback(async () => {
+    const source = project;
+    setFormatting(true);
+    try {
+      const [prettier, ...plugins] = await Promise.all([
+        import("prettier/standalone"),
+        import("prettier/plugins/html"),
+        import("prettier/plugins/postcss"),
+        import("prettier/plugins/babel"),
+        import("prettier/plugins/estree"),
+      ]);
+      const next = { ...source };
+      const problems: string[] = [];
+      for (const [key, parser] of [["html", "html"], ["css", "css"], ["js", "babel"]] as const) {
+        if (!source[key].trim()) continue;
+        try {
+          next[key] = (await prettier.format(source[key], { parser, plugins, printWidth: 100 })).replace(/\n$/, "");
+        } catch (error) {
+          problems.push(`${SOURCE_LABELS[key]}: ${String(error instanceof Error ? error.message : error).split("\n")[0]}`);
+        }
+      }
+      if (projectRef.current !== source) {
+        announce("The code changed while formatting. Format again.", "error");
+        return;
+      }
+      leaveSharedLink();
+      setProject(next);
+      if (problems.length) announce(`Not formatted. ${problems.join(" · ")}`, "error");
+      else announce("Code formatted. Undo with Ctrl Z in each tab.");
+    } catch {
+      announce("The formatter could not be loaded.", "error");
+    } finally {
+      setFormatting(false);
+    }
+  }, [announce, leaveSharedLink, project]);
+
+  const importFiles = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files ?? []);
+    event.target.value = "";
+    const imported: Partial<PlaygroundProject> = {};
+    const names: string[] = [];
+    let first: PlaygroundSource | null = null;
+    try {
+      for (const file of files) {
+        if (file.size > 1_000_000) {
+          announce(`${file.name} is larger than 1 MB and was not imported.`, "error");
+          return;
+        }
+        const source: PlaygroundSource = /\.css$/i.test(file.name) ? "css" : /\.m?js$/i.test(file.name) ? "js" : "html";
+        imported[source] = (await file.text()).replace(/\r\n?/g, "\n");
+        names.push(`${file.name} into ${SOURCE_LABELS[source]}`);
+        first ??= source;
+      }
+    } catch {
+      announce("The file could not be read.", "error");
       return;
     }
-    if (mod && event.key === "Enter") { event.preventDefault(); run(); return; }
-    if (mod && event.key.toLowerCase() === "s") { event.preventDefault(); handleDownload(); return; }
-    if (event.key === "Tab" && !event.shiftKey && tabCapture.current) {
-      event.preventDefault();
-      const target = event.currentTarget;
-      const start = target.selectionStart;
-      const end = target.selectionEnd;
-      setCode(code.substring(0, start) + "  " + code.substring(end));
-      requestAnimationFrame(() => { target.selectionStart = target.selectionEnd = start + 2; });
-    }
-  }, [code, handleDownload, run]);
+    if (!first) return;
+    leaveSharedLink();
+    setProject((current) => ({ ...current, ...imported }));
+    setTab(first);
+    announce(`Imported ${names.join(", ")}.`);
+  }, [announce, leaveSharedLink]);
 
-  const reenableTab = useCallback(() => {
-    if (tabCapture.current) return;
-    tabCapture.current = true;
-    setHint("Tab inserts two spaces. Press Esc, then Tab, to leave the editor.");
-  }, []);
-
-  const handleCopy = useCallback(async () => {
+  const reset = useCallback(() => {
+    loadTemplate("starter");
     try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch { /* clipboard unavailable */ }
-  }, [code]);
-
-  const handleTemplate = useCallback((key: string) => {
-    setTemplate(key);
-    setCode(TEMPLATES[key].code);
-    if (!autoUpdate) publish(TEMPLATES[key].code);
-  }, [autoUpdate, publish]);
-
-  const handleReset = useCallback(() => {
-    setTemplate("starter");
-    setCode(DEFAULT_CODE);
-    publish(DEFAULT_CODE);
-    try { localStorage.removeItem(STORAGE_KEY); } catch { /* storage unavailable */ }
-  }, [publish]);
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch { /* storage unavailable */ }
+    announce("Editor reset to the starter page.");
+  }, [announce, loadTemplate]);
 
   const restoreDraft = useCallback(() => {
     if (draft === null) return;
-    setCode(draft);
+    leaveSharedLink();
+    setProject(draft);
     publish(draft);
     setDraft(null);
-  }, [draft, publish]);
+    try { localStorage.removeItem(LEGACY_STORAGE_KEY); } catch { /* storage unavailable */ }
+  }, [draft, leaveSharedLink, publish]);
 
   const discardDraft = useCallback(() => {
-    try { localStorage.removeItem(STORAGE_KEY); } catch { /* storage unavailable */ }
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch { /* storage unavailable */ }
     setDraft(null);
   }, []);
 
+  const closeMenu = useCallback((refocus = true) => {
+    setMenuOpen(false);
+    if (refocus) menuButtonRef.current?.focus();
+  }, []);
+
+  const onMenuKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const items = Array.from(event.currentTarget.querySelectorAll<HTMLElement>("[role=menuitem]")).filter((item) => item.offsetParent !== null);
+    const index = items.indexOf(document.activeElement as HTMLElement);
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeMenu();
+    } else if (event.key === "Tab") {
+      closeMenu(false);
+    } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      items[(index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus();
+    } else if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      items[event.key === "Home" ? 0 : items.length - 1]?.focus();
+    }
+  };
+
+  const onTabKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    const next = SOURCES[(SOURCES.indexOf(tab) + (event.key === "ArrowRight" ? 1 : -1) + SOURCES.length) % SOURCES.length];
+    setTab(next);
+    document.getElementById(`html-editor-tab-${next}`)?.focus();
+  };
+
+  const onWorkspaceKey = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.defaultPrevented || !(event.ctrlKey || event.metaKey)) return;
+    if (event.key === "Enter") {
+      event.preventDefault();
+      run();
+    } else if (event.key.toLowerCase() === "s") {
+      event.preventDefault();
+      download();
+    }
+  };
+
+  const onSplitDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    const rect = bodyRef.current?.getBoundingClientRect();
+    if (rect) setSplit(Math.round(clamp(((event.clientX - rect.left) / rect.width) * 100, 25, 75)));
+  };
+
+  const onSplitKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const next = event.key === "ArrowLeft" ? split - 2 : event.key === "ArrowRight" ? split + 2 : event.key === "Home" ? 25 : event.key === "End" ? 75 : null;
+    if (next === null) return;
+    event.preventDefault();
+    setSplit(clamp(next, 25, 75));
+  };
+
   const side = layout === "side";
-  const width = PREVIEW_WIDTHS[previewWidth];
-  const targetWidth = typeof width.width === "number" ? width.width : null;
+  const dirty = project !== published;
+  const preset = DEVICES[device];
+  const targetWidth = device === "custom" ? clamp(customWidth, 240, 2560) : rotated ? preset.landscape : preset.portrait;
   const scale = targetWidth !== null && paneWidth > 0 && targetWidth > paneWidth ? paneWidth / targetWidth : 1;
   const scaled = scale < 1;
+  const sizeLabel = `${targetWidth === null ? "Fits the pane" : `${targetWidth}px`}${scaled ? ` · scaled to ${Math.round(scale * 100)}%` : ""}${!autoRun && dirty ? " · changes not run yet" : ""}`;
+  const consoleShown = consoleOpen ?? entries.length > 0;
+  const errorCount = entries.reduce((total, entry) => total + (entry.level === "error" ? entry.count : 0), 0);
+  const warningCount = entries.reduce((total, entry) => total + (entry.level === "warn" ? entry.count : 0), 0);
+  const lineCount = project[tab].split("\n").length;
 
   return (
     <section
+      ref={sectionRef}
       id="html-editor"
       aria-label="Live HTML editor"
-      className={fullscreen ? "fixed inset-0 z-[70] flex flex-col bg-background p-3 sm:p-4" : "scroll-mt-20"}
+      onKeyDown={onWorkspaceKey}
       data-fullscreen={fullscreen || undefined}
+      style={{ colorScheme: "dark" }}
+      className={`flex flex-col bg-[#0b1120] text-slate-200 ${fullscreen ? "fixed inset-0 z-[70]" : "scroll-mt-20 rounded-2xl border border-slate-800 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.55)]"}`}
     >
       {draft !== null && (
-        <div role="region" aria-label="Restore last session" className="mb-3 flex flex-wrap items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
-          <span className="flex-1 min-w-[12rem]">You have unsaved work from your last visit in this browser.</span>
-          <button type="button" className={`${toolButton} bg-primary text-primary-foreground border-primary hover:bg-primary/90`} onClick={restoreDraft}>Restore it</button>
-          <button type="button" className={toolButton} onClick={discardDraft}>Start fresh</button>
+        <div role="region" aria-label="Restore last session" className={`flex flex-wrap items-center gap-3 border-b border-sky-400/20 bg-sky-500/10 px-3 py-2.5 text-sm text-slate-100 ${fullscreen ? "" : "rounded-t-2xl"}`}>
+          <span className="min-w-[12rem] flex-1">You have unsaved work from your last visit in this browser.</span>
+          <button type="button" className={runButton} onClick={restoreDraft}>Restore it</button>
+          <button type="button" className={textButton} onClick={discardDraft}>Start fresh</button>
         </div>
       )}
 
-      {/* ── Toolbar ────────────────────────────────── */}
-      <div role="toolbar" aria-label="Editor controls" className="flex flex-wrap items-center gap-2 mb-3">
-        <label className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground">
+      <div role="toolbar" aria-label="Editor controls" className={`relative z-20 flex flex-wrap items-center gap-2 border-b border-white/10 bg-[#0f172a] px-3 py-2.5 ${fullscreen || draft !== null ? "" : "rounded-t-2xl"}`}>
+        <label className="flex min-w-0 flex-1 items-center gap-2 text-xs font-medium text-slate-300 sm:flex-none">
           <span className="sr-only sm:not-sr-only">Template</span>
           <select
             value={template}
-            onChange={(event) => handleTemplate(event.target.value)}
+            onChange={(event) => loadTemplate(event.target.value)}
             aria-label="Template"
-            className="rounded-lg border border-border bg-card px-3 min-h-[44px] sm:min-h-[34px] text-xs font-medium text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className={`min-h-[44px] w-full min-w-0 cursor-pointer rounded-lg border border-white/10 bg-[#0b1120] px-2.5 text-xs font-medium text-slate-100 sm:min-h-[36px] sm:w-auto ${ring}`}
           >
             {Object.entries(TEMPLATES).map(([key, { label }]) => <option key={key} value={key}>{label}</option>)}
           </select>
         </label>
 
-        <div className="hidden md:inline-flex items-center gap-1 rounded-lg bg-muted p-0.5" role="group" aria-label="Layout">
-          <button type="button" className={segment(side)} aria-pressed={side} onClick={() => setLayout("side")}><Columns size={14} aria-hidden="true" /> Side by side</button>
-          <button type="button" className={segment(!side)} aria-pressed={!side} onClick={() => setLayout("stacked")}><Rows size={14} aria-hidden="true" /> Stacked</button>
-        </div>
-
-        <div className="inline-flex items-center gap-1 rounded-lg bg-muted p-0.5" role="group" aria-label="Preview width">
-          <button type="button" className={segment(previewWidth === "desktop")} aria-pressed={previewWidth === "desktop"} onClick={() => setPreviewWidth("desktop")}><Monitor size={14} aria-hidden="true" /> Desktop</button>
-          <button type="button" className={segment(previewWidth === "tablet")} aria-pressed={previewWidth === "tablet"} onClick={() => setPreviewWidth("tablet")}><Tablet size={14} aria-hidden="true" /> 768</button>
-          <button type="button" className={segment(previewWidth === "phone")} aria-pressed={previewWidth === "phone"} onClick={() => setPreviewWidth("phone")}><Smartphone size={14} aria-hidden="true" /> 375</button>
-        </div>
-
-        <div className="flex-1" />
-
-        <label className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground min-h-[44px] sm:min-h-[34px] cursor-pointer select-none">
-          <input type="checkbox" className="h-4 w-4 accent-[var(--primary)]" checked={autoUpdate} onChange={(event) => { setAutoUpdate(event.target.checked); if (event.target.checked) publish(code); }} />
-          Auto-update
+        <button type="button" className={runButton} onClick={run} title={`Run (${mod} Enter)`}>
+          <Play size={13} aria-hidden="true" fill="currentColor" /> Run
+        </button>
+        <label className="inline-flex min-h-[44px] cursor-pointer select-none items-center gap-2 text-xs font-medium text-slate-300 sm:min-h-[36px]">
+          <input
+            type="checkbox"
+            className="h-4 w-4 cursor-pointer accent-emerald-400"
+            checked={autoRun}
+            onChange={(event) => setAutoRun(event.target.checked)}
+          />
+          Auto-run
         </label>
-        {!autoUpdate && (
-          <button type="button" className={`${toolButton} bg-primary text-primary-foreground border-primary hover:bg-primary/90`} onClick={run} disabled={!dirty} title={`Run (${MOD} Enter)`}>
-            <Play size={13} aria-hidden="true" /> Run
+
+        <div className="hidden flex-1 sm:block" />
+
+        <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
+          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={format} disabled={formatting} aria-label="Format code" title="Format HTML, CSS and JS with Prettier">
+            <WandSparkles size={14} aria-hidden="true" /> <span className="hidden lg:inline">{formatting ? "Formatting" : "Format"}</span>
           </button>
-        )}
-        <button type="button" className={toolButton} onClick={handleCopy}>
-          {copied ? <><Check size={13} aria-hidden="true" className="text-emerald-600" /> Copied</> : <><Copy size={13} aria-hidden="true" /> Copy</>}
-        </button>
-        <button type="button" className={toolButton} onClick={handleDownload} title={`Download index.html (${MOD} S)`}>
-          <Download size={13} aria-hidden="true" /> Download
-        </button>
-        <button type="button" className={toolButton} onClick={handleReset}>
-          <RotateCcw size={13} aria-hidden="true" /> Reset
-        </button>
-        <button
-          ref={fullscreenButtonRef}
-          type="button"
-          className={toolButton}
-          aria-pressed={fullscreen}
-          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
-          title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
-          onClick={() => setFullscreen((value) => !value)}
-        >
-          {fullscreen ? <Minimize2 size={14} aria-hidden="true" /> : <Maximize2 size={14} aria-hidden="true" />}
-          <span className="hidden sm:inline">{fullscreen ? "Exit" : "Full screen"}</span>
-        </button>
+          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={share} aria-label="Copy share link" title="Copy a link that contains this code">
+            <Share2 size={14} aria-hidden="true" /> <span className="hidden lg:inline">Share</span>
+          </button>
+          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={download} aria-label="Download index.html" title={`Download index.html (${mod} S)`}>
+            <Download size={14} aria-hidden="true" /> <span className="hidden lg:inline">Download</span>
+          </button>
+          <div className="relative">
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className={iconButton}
+              aria-haspopup="menu"
+              aria-expanded={menuOpen}
+              aria-controls="html-editor-menu"
+              aria-label="More actions"
+              title="More actions"
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              <Ellipsis size={16} aria-hidden="true" />
+            </button>
+            {menuOpen && (
+              <div
+                ref={menuRef}
+                id="html-editor-menu"
+                role="menu"
+                aria-label="More actions"
+                onKeyDown={onMenuKey}
+                className="absolute right-0 top-full z-30 mt-1.5 w-60 rounded-xl border border-white/10 bg-[#111a2e] p-1.5 shadow-2xl shadow-black/50"
+              >
+                <button type="button" role="menuitem" className={menuItem} onClick={() => { closeMenu(); fileRef.current?.click(); }}>
+                  <Upload size={14} aria-hidden="true" /> Import HTML, CSS or JS files
+                </button>
+                <button type="button" role="menuitem" className={menuItem} onClick={() => { closeMenu(); void copyText(buildDocument(project).doc, "Combined HTML copied."); }}>
+                  <Copy size={14} aria-hidden="true" /> Copy combined HTML
+                </button>
+                <button type="button" role="menuitem" className={menuItem} onClick={() => { closeMenu(); void downloadZip(); }}>
+                  <FileArchive size={14} aria-hidden="true" /> Download ZIP
+                </button>
+                <button type="button" role="menuitem" className={`${menuItem} hidden md:flex`} onClick={() => { closeMenu(); setLayout(side ? "stacked" : "side"); }}>
+                  {side ? <Rows2 size={14} aria-hidden="true" /> : <Columns2 size={14} aria-hidden="true" />} {side ? "Stack editor above preview" : "Show side by side"}
+                </button>
+                <div className="my-1 border-t border-white/10" role="separator" />
+                <button type="button" role="menuitem" className={menuItem} onClick={() => { closeMenu(); reset(); }}>
+                  <RotateCcw size={14} aria-hidden="true" /> Reset editor
+                </button>
+              </div>
+            )}
+          </div>
+          <button
+            ref={fullscreenButtonRef}
+            type="button"
+            className={iconButton}
+            aria-pressed={fullscreen}
+            aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+            title={fullscreen ? "Exit full screen (Esc)" : "Full screen"}
+            onClick={() => setFullscreen((value) => !value)}
+          >
+            {fullscreen ? <Minimize2 size={14} aria-hidden="true" /> : <Maximize2 size={14} aria-hidden="true" />}
+          </button>
+        </div>
+        <input ref={fileRef} type="file" hidden multiple accept=".html,.htm,.css,.js,.mjs,.txt" onChange={importFiles} />
       </div>
 
-      {/* ── Editor + Preview ───────────────────────── */}
       <div
-        className={`grid gap-3 ${side ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} ${fullscreen ? "flex-1 min-h-0" : ""}`}
-        style={fullscreen ? undefined : { minHeight: side ? 560 : 820 }}
+        ref={bodyRef}
+        style={{ "--split": `${split}%` } as React.CSSProperties}
+        className={`flex min-h-0 flex-col ${side ? "md:flex-row" : ""} ${fullscreen ? "flex-1" : side ? "md:h-[640px]" : ""}`}
       >
-        {/* Code editor */}
-        <div className={`flex flex-col overflow-hidden rounded-xl border border-border bg-[#1e1e2e] ${fullscreen ? "min-h-0" : "min-h-[320px] md:min-h-0"}`} style={fullscreen ? undefined : { height: side ? undefined : 420 }}>
-          <div className="flex items-center justify-between gap-3 px-3 py-2 border-b border-white/10">
-            <span className="text-[11px] font-mono text-gray-300" id="html-editor-label">index.html</span>
-            <span className="text-[11px] text-gray-400" aria-hidden="true">{lineCount} lines · {charCount} chars</span>
-          </div>
-          <div className="flex flex-1 min-h-0 overflow-hidden">
-            <div ref={lineCountRef} aria-hidden="true" className="w-10 sm:w-12 shrink-0 overflow-hidden bg-[#16161e] pt-3 pb-3 pr-2 text-right font-mono text-[13px] leading-[1.6] text-gray-400 select-none">
-              {lines.map((_, index) => <div key={index}>{index + 1}</div>)}
+        {/* Code */}
+        <div className={`relative flex min-w-0 flex-col after:pointer-events-none after:absolute after:inset-0 after:z-10 focus-within:after:shadow-[inset_0_0_0_2px_#38bdf8] ${fullscreen ? "min-h-0 flex-1" : `h-[380px] ${side ? "md:h-auto" : "md:h-[420px]"}`} ${side ? "md:w-[var(--split)] md:flex-none" : ""}`}>
+          <div className="flex items-center gap-2 border-b border-white/10 bg-[#0f172a] pl-1 pr-2">
+            <div role="tablist" aria-label="Code tabs" className="flex" onKeyDown={onTabKey}>
+              {SOURCES.map((source) => {
+                const active = tab === source;
+                return (
+                  <button
+                    key={source}
+                    type="button"
+                    role="tab"
+                    id={`html-editor-tab-${source}`}
+                    aria-selected={active}
+                    aria-controls={`html-editor-panel-${source}`}
+                    tabIndex={active ? 0 : -1}
+                    onClick={() => setTab(source)}
+                    className={`relative inline-flex min-h-[44px] cursor-pointer items-center gap-2 px-3.5 text-xs font-semibold transition-colors sm:min-h-[40px] ${ring} ${active ? "text-white after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:rounded-full after:bg-sky-400" : "text-slate-400 hover:text-slate-100"}`}
+                  >
+                    <span className={`h-2 w-2 rounded-full ${TAB_DOTS[source]}`} aria-hidden="true" /> {SOURCE_LABELS[source]}
+                  </button>
+                );
+              })}
             </div>
-            <textarea
-              ref={editorRef}
-              value={code}
-              onChange={(event) => { reenableTab(); setCode(event.target.value); }}
-              onScroll={handleScroll}
-              onKeyDown={handleKeyDown}
-              onFocus={reenableTab}
-              onPointerDown={reenableTab}
-              spellCheck={false}
-              autoCapitalize="off"
-              autoCorrect="off"
-              wrap="off"
-              aria-label="HTML source"
-              aria-describedby="html-editor-hint"
-              className="flex-1 resize-none overflow-auto bg-transparent p-3 font-mono text-[13px] leading-[1.6] text-gray-100 outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--primary)]"
-              style={{ tabSize: 2, whiteSpace: "pre" }}
-            />
+            <span className="ml-auto hidden text-xs text-slate-400 sm:inline" aria-hidden="true">{FILE_NAMES[tab]} · {lineCount} {lineCount === 1 ? "line" : "lines"}</span>
+            <button type="button" className={`ml-auto sm:ml-0 ${segment(false)}`} onClick={copyTab} aria-label={`Copy ${SOURCE_LABELS[tab]}`} title={`Copy ${SOURCE_LABELS[tab]}`}>
+              {copied ? <Check size={14} aria-hidden="true" className="text-emerald-300" /> : <Copy size={14} aria-hidden="true" />}
+            </button>
           </div>
+          <div className="min-h-0 flex-1">
+            {SOURCES.map((source) => (
+              <div key={source} role="tabpanel" id={`html-editor-panel-${source}`} aria-labelledby={`html-editor-tab-${source}`} hidden={tab !== source} className="h-full min-h-0">
+                <CodeEditor
+                  language={source}
+                  value={project[source]}
+                  active={tab === source}
+                  label={EDITOR_LABELS[source]}
+                  describedBy="html-editor-hint"
+                  onChange={(value, replacedAll) => edit(source, value, replacedAll)}
+                  onRun={run}
+                  onSave={download}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div
+          role="separator"
+          tabIndex={0}
+          aria-orientation="vertical"
+          aria-label="Resize editor and preview"
+          aria-valuemin={25}
+          aria-valuemax={75}
+          aria-valuenow={split}
+          onPointerDown={(event) => event.currentTarget.setPointerCapture(event.pointerId)}
+          onPointerMove={onSplitDrag}
+          onKeyDown={onSplitKey}
+          className={`hidden w-2 shrink-0 cursor-col-resize touch-none items-center justify-center border-x border-white/10 bg-[#0f172a] text-slate-400 transition-colors hover:bg-sky-500/20 hover:text-white ${ring} ${side ? "md:flex" : ""}`}
+        >
+          <GripVertical size={12} aria-hidden="true" />
         </div>
 
         {/* Preview */}
-        <div className={`flex flex-col overflow-hidden rounded-xl border border-border bg-card ${fullscreen ? "min-h-0" : "min-h-[360px] md:min-h-0"}`} style={fullscreen ? undefined : { height: side ? undefined : 400 }}>
-          <div className="flex items-center justify-between gap-3 px-3 py-2 border-b border-border">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Live preview</span>
-            <span className="text-[11px] text-muted-foreground">{width.hint}{scaled ? ` · scaled to ${Math.round(scale * 100)}%` : ""}{!autoUpdate && dirty ? " · changes not run yet" : ""}</span>
-          </div>
-          <div ref={paneRef} className="flex flex-1 justify-center overflow-hidden bg-neutral-200/60 dark:bg-neutral-800/60 min-h-0">
-            <div className="h-full min-h-[320px] overflow-hidden" style={{ width: targetWidth === null ? "100%" : Math.floor(targetWidth * scale) }}>
-              <iframe
-                ref={frameRef}
-                srcDoc={withErrorCapture(previewCode)}
-                sandbox="allow-scripts allow-modals allow-forms allow-popups"
-                title="Rendered HTML preview"
-                className="block border-0 bg-white"
-                style={scaled
-                  ? { width: targetWidth ?? "100%", height: `${100 / scale}%`, minHeight: 320 / scale, transform: `scale(${scale})`, transformOrigin: "top left" }
-                  : { width: targetWidth ?? "100%", height: "100%", minHeight: 320 }}
-              />
-            </div>
-          </div>
-          {errors.length > 0 && (
-            <div role="status" aria-live="polite" className="border-t border-border bg-card px-3 py-2 text-xs">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-semibold text-red-600 dark:text-red-400 inline-flex items-center gap-1.5"><TriangleAlert size={13} aria-hidden="true" /> {errors.length} preview error{errors.length === 1 ? "" : "s"}</span>
-                <button type="button" className="px-2 text-muted-foreground hover:text-foreground underline underline-offset-2 min-h-[44px] sm:min-h-[28px]" onClick={() => setErrors([])}>Clear</button>
+        <div className={`flex min-w-0 flex-col border-t border-white/10 ${fullscreen ? "min-h-0 flex-1" : `h-[460px] ${side ? "md:h-auto" : "md:h-[520px]"}`} ${side ? "md:flex-1 md:border-t-0" : ""}`}>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-white/10 bg-[#0f172a] px-3 py-1.5">
+            <span className="flex items-center gap-1.5" aria-hidden="true">
+              <span className="h-2.5 w-2.5 rounded-full bg-slate-600" /><span className="h-2.5 w-2.5 rounded-full bg-slate-600" /><span className="h-2.5 w-2.5 rounded-full bg-slate-600" />
+            </span>
+            <span className="text-xs font-semibold text-slate-100">Preview</span>
+            <span className="text-xs text-slate-400">{sizeLabel}</span>
+            <div className="ml-auto flex items-center gap-1.5">
+              {device === "custom" && (
+                <label className="flex items-center gap-1.5 text-xs text-slate-300">
+                  <span className="sr-only">Custom preview width in pixels</span>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min={240}
+                    max={2560}
+                    value={customWidth}
+                    onChange={(event) => { const next = Number(event.target.value); if (Number.isFinite(next)) setCustomWidth(next); }}
+                    className={`min-h-[44px] w-20 rounded-md border border-white/10 bg-[#0b1120] px-2 text-xs text-slate-100 sm:min-h-[30px] ${ring}`}
+                  />
+                  px
+                </label>
+              )}
+              <div role="group" aria-label="Preview width" className="inline-flex items-center gap-0.5 rounded-lg bg-white/5 p-0.5">
+                {(Object.keys(DEVICES) as Device[]).map((key) => {
+                  const Icon = DEVICES[key].icon;
+                  return (
+                    <button key={key} type="button" className={segment(device === key)} aria-pressed={device === key} aria-label={DEVICES[key].label} title={DEVICES[key].label} onClick={() => setDevice(key)}>
+                      <Icon size={14} aria-hidden="true" />
+                    </button>
+                  );
+                })}
               </div>
-              <ul className="mt-1 max-h-24 overflow-auto font-mono text-[11px] leading-relaxed text-foreground">
-                {errors.map((error) => <li key={error.id}>{error.message}</li>)}
-              </ul>
+              <button
+                type="button"
+                className={segment(rotated && preset.landscape !== null)}
+                aria-pressed={rotated && preset.landscape !== null}
+                aria-label="Rotate to landscape"
+                title="Rotate to landscape"
+                disabled={preset.landscape === null}
+                onClick={() => setRotated((value) => !value)}
+              >
+                <RotateCw size={14} aria-hidden="true" />
+              </button>
             </div>
-          )}
+          </div>
+
+          <div ref={paneRef} className={`flex min-h-0 flex-1 justify-center overflow-hidden bg-[#070b14] ${targetWidth === null ? "" : "p-3"}`}>
+            {gated ? (
+              <div className="m-auto max-w-sm p-6 text-center">
+                <Share2 size={22} aria-hidden="true" className="mx-auto mb-3 text-sky-300" />
+                <p className="text-sm font-semibold text-white">This code came from a shared link</p>
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-300">It has not run yet. Check the HTML, CSS and JS tabs first, then run it.</p>
+                <button type="button" className={`${runButton} mt-4`} onClick={run}><Play size={13} aria-hidden="true" fill="currentColor" /> Run this code</button>
+              </div>
+            ) : (
+              <div className={`h-full min-h-[280px] overflow-hidden bg-white ${targetWidth === null ? "" : "rounded-lg shadow-[0_0_0_1px_rgba(148,163,184,0.3)]"}`} style={{ width: targetWidth === null ? "100%" : Math.floor(targetWidth * scale) }}>
+                <iframe
+                  key={runId}
+                  ref={frameRef}
+                  srcDoc={built.doc}
+                  sandbox="allow-scripts allow-modals allow-forms allow-popups"
+                  title="Rendered HTML preview"
+                  className="block border-0 bg-white"
+                  style={scaled
+                    ? { width: targetWidth ?? "100%", height: `${100 / scale}%`, minHeight: 280 / scale, transform: `scale(${scale})`, transformOrigin: "top left" }
+                    : { width: targetWidth ?? "100%", height: "100%", minHeight: 280 }}
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-white/10 bg-[#0b1120]">
+            <div className="flex items-center gap-1 pl-3 pr-2">
+              <button
+                type="button"
+                className={`flex min-h-[44px] flex-1 cursor-pointer items-center gap-2 rounded-md text-left text-xs font-semibold text-slate-100 sm:min-h-[36px] ${ring}`}
+                aria-expanded={consoleShown}
+                aria-controls="html-editor-console"
+                onClick={() => setConsoleOpen(!consoleShown)}
+              >
+                <SquareTerminal size={14} aria-hidden="true" className="text-slate-400" /> Console
+                {errorCount > 0 && <span className="rounded-full bg-red-500/20 px-2 py-0.5 text-[11px] font-medium text-red-200">{errorCount} {errorCount === 1 ? "error" : "errors"}</span>}
+                {warningCount > 0 && <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[11px] font-medium text-amber-200">{warningCount} {warningCount === 1 ? "warning" : "warnings"}</span>}
+                <ChevronDown size={14} aria-hidden="true" className={`ml-auto text-slate-400 transition-transform motion-reduce:transition-none ${consoleShown ? "rotate-180" : ""}`} />
+              </button>
+              {entries.length > 0 && (
+                <button type="button" className={segment(false)} onClick={() => setEntries([])} aria-label="Clear console" title="Clear console">
+                  <Trash2 size={14} aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <div
+              id="html-editor-console"
+              role="log"
+              aria-label="Preview console"
+              tabIndex={0}
+              hidden={!consoleShown}
+              className={`max-h-40 overflow-auto border-t border-white/10 px-3 py-2 font-mono text-xs leading-relaxed ${ring}`}
+            >
+              {entries.length === 0 ? (
+                <p className="text-slate-400">No output yet. console.log calls, warnings and errors from your code appear here.</p>
+              ) : (
+                <ul>
+                  {entries.map((entry) => (
+                    <li key={entry.id} className={`flex items-start gap-2 border-b border-white/5 py-1 last:border-0 ${CONSOLE_TONES[entry.level]}`}>
+                      <span className="mt-0.5 w-[13px] shrink-0" aria-hidden="true">
+                        {entry.level === "error" ? <CircleX size={13} /> : entry.level === "warn" ? <TriangleAlert size={13} /> : entry.level === "info" ? <Info size={13} /> : null}
+                      </span>
+                      <span className="min-w-0 flex-1 whitespace-pre-wrap break-words"><span className="sr-only">{CONSOLE_PREFIX[entry.level]}</span>{entry.text}</span>
+                      {entry.count > 1 && <span className="shrink-0 rounded-full bg-white/10 px-1.5 text-[11px] text-slate-200">×{entry.count}</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
-      <p id="html-editor-hint" role="status" className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
-        <span>{hint}</span>
-        <span className="hidden sm:inline">{MOD} Enter runs · {MOD} S downloads</span>
-        <span className="ml-auto inline-flex items-center gap-1"><LockKeyhole size={11} aria-hidden="true" /> Runs in your browser; nothing is uploaded</span>
-      </p>
+      <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-white/10 bg-[#0f172a] px-3 py-2 text-xs text-slate-400 ${fullscreen ? "" : "rounded-b-2xl"}`}>
+        <span role="status" aria-live="polite" className={`font-medium ${status?.tone === "error" ? "text-red-300" : "text-emerald-300"}`}>{status?.text}</span>
+        <span id="html-editor-hint">Tab indents. Press Esc, then Tab, to leave the editor.</span>
+        <span className="hidden sm:inline">{mod} Enter runs · {mod} S downloads</span>
+        <span className="ml-auto inline-flex items-center gap-1.5"><LockKeyhole size={12} aria-hidden="true" /> Runs in your browser; nothing is uploaded</span>
+      </div>
     </section>
   );
 }

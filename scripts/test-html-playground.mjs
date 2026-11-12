@@ -104,7 +104,11 @@ test("every template splits into tabs and rebuilds to the same page", () => {
     const thumbnail = staticPreview(code);
     assert.ok(!/<script|\son[a-z]+=|javascript:/i.test(thumbnail), `${key} thumbnail must not contain script`);
     assert.ok(thumbnail.includes("<style>") && thumbnail.includes("</body>"), `${key} thumbnail keeps its styles`);
+    assert.ok(code.includes('<meta name="viewport" content="width=device-width, initial-scale=1.0">'), `${key} needs a viewport tag to be responsive on phones`);
+    assert.ok(!/^\s*width: (3[3-9]\d|[4-9]\d\d|\d{4,})px;/m.test(code), `${key} must not set a fixed width wider than a phone`);
   }
+  for (const key of ["navbar", "landing", "form"]) assert.ok(TEMPLATES[key].code.includes("@media (max-width:"), `${key} needs small-screen rules`);
+  assert.ok(!TEMPLATES.landing.code.includes("repeat(3, 1fr)"), "the landing page must not force three columns");
   assert.ok(TEMPLATES.form.code.includes("onsubmit="), "the form template keeps its handler in the editor");
   const starter = splitDocument(TEMPLATES.starter.code);
   assert.match(starter.js, /^const button = document\.getElementById\("greet"\);/);

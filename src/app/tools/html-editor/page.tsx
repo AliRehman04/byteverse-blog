@@ -240,6 +240,7 @@ export default function HtmlEditorPage() {
                 <iframe
                   srcDoc={card.preview}
                   sandbox=""
+                  scrolling="no"
                   loading="lazy"
                   tabIndex={-1}
                   title={`${card.label} template preview`}

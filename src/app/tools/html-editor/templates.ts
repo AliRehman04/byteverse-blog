@@ -52,6 +52,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -61,12 +62,14 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
       justify-content: center;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 1rem;
     }
     .card {
       background: white;
       border-radius: 16px;
       padding: 2.5rem;
-      width: 320px;
+      width: 100%;
+      max-width: 320px;
       text-align: center;
       box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     }
@@ -128,6 +131,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -137,13 +141,18 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
       justify-content: center;
       background: #f0f4f8;
       font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 1rem;
     }
     .form-container {
       background: white;
       padding: 2.5rem;
       border-radius: 12px;
-      width: 400px;
+      width: 100%;
+      max-width: 400px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    @media (max-width: 480px) {
+      .form-container { padding: 1.5rem; }
     }
     h2 { margin-bottom: 0.3rem; color: #1a1a2e; }
     .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 1.5rem; }
@@ -215,6 +224,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -230,7 +240,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 12px;
       max-width: 800px;
       margin: 0 auto;
@@ -330,6 +340,12 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
     }
     .hero h1 { font-size: 2.5rem; color: #1a1a2e; margin-bottom: 0.8rem; }
     .hero p { color: #888; font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 0.8rem 1rem; }
+      .nav-links { width: 100%; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
+      .hero { padding: 3rem 1.25rem; }
+      .hero h1 { font-size: 1.9rem; }
+    }
   </style>
 </head>
 <body>
@@ -356,6 +372,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -443,6 +460,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a1a2e; }
@@ -472,7 +490,7 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
     .hero-btn:hover { transform: translateY(-2px); }
     .features {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
       max-width: 800px;
       margin: -3rem auto 3rem;
@@ -494,6 +512,11 @@ export const TEMPLATES: Record<string, { label: string; description: string; cod
       background: #f8f9fa;
       color: #888;
       font-size: 0.85rem;
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .features { gap: 1.25rem; margin-top: -2rem; padding: 0 1rem; }
     }
   </style>
 </head>

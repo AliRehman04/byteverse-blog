@@ -1,0 +1,200 @@
+{
+  "slug": "n8n-split-out-node-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-12",
+  "targeting": {
+    "title": "n8n Split Out Node: Arrays, Nested JSON and Common Fixes",
+    "metaTitle": "n8n Split Out: Arrays, Nested JSON and Fixes",
+    "metaDescription": "Learn n8n Split Out with tested examples: expand arrays, preserve parent IDs, handle nested JSON and binary files, and fix empty or unexpected outputs.",
+    "excerpt": "A source-checked n8n Split Out guide with input and output examples, parent IDs, nested arrays, multiple fields, empty values, binary attachments, item linking and two tested Code node alternatives.",
+    "keywords": "n8n split out node, n8n split out array, n8n split out json array, n8n split out vs loop, n8n array to items, n8n split out binary files, n8n split out not working, n8n split out nested array, n8n split out multiple fields",
+    "summary": "Split Out expands a collection inside each item; it is not the same as batching existing items with Loop Over Items|Selected parent fields and an explicit destination preserve useful identifiers and make the output shape predictable|Multiple arrays align by position, empty arrays emit no children, serialized JSON needs parsing, and binary splitting retains attachment field names",
+    "readingTime": "21 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-12T12:32:57.680Z",
+    "total": 183,
+    "published": 181,
+    "hash": "42be303a4ce25583177f26e0c245461d",
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ],
+    "overlap": {
+      "checkedAt": "2026-11-12T12:32:38.266Z",
+      "terms": ["split out", "splitout", "array to items"],
+      "matchingPosts": ["n8n-code-node-guide"],
+      "finding": "The Code node guide has a short array-to-items example. No dedicated Split Out article matched. The new guide focuses on the built-in node's options, output shapes, data contracts and troubleshooting; adjacent Code and Loop guides are linked."
+    }
+  },
+  "research": {
+    "selection": "Split Out extends the existing n8n data-processing cluster without repeating the recent Loop Over Items or Wait guides. Twelve focused autocomplete seeds were checked, seven returned suggestions. A current DuckDuckGo sample includes dedicated guides as well as documentation and community questions, so no low-competition or easy-ranking claim is made. Differentiation is tested output behavior, positional multi-array matching, empty/missing/null distinctions and safe parent-field handling.",
+    "autocompleteCheckedAt": "2026-11-12T12:32:36.104Z",
+    "autocompleteContext": "Google public autocomplete, English / gl=us; wording evidence only, not measured US demand.",
+    "observations": [
+      {
+        "seed": "n8n split out",
+        "suggestions": ["n8n split out node", "n8n split out", "n8n split out example", "n8n split out array", "n8n split out json array", "n8n split out binary files", "n8n split out json", "n8n split out vs loop", "n8n split out node example", "n8n split out items"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split out array",
+        "suggestions": ["n8n split out array", "n8n split out json array"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split out json",
+        "suggestions": ["n8n split out json array", "n8n split out json"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n split out vs loop",
+        "suggestions": ["n8n split out vs loop", "n8n split out loop", "single loop vs double loop"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      { "seed": "n8n split out multiple fields", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n split out nested array", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n split out keep other fields", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n split out empty array", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      {
+        "seed": "n8n split out binary files",
+        "suggestions": ["n8n split out binary files", "n8n split out binary data", "n8n split binary files"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      {
+        "seed": "n8n array to items",
+        "suggestions": ["n8n array to items", "n8n json array to items"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      },
+      { "seed": "n8n split object into items", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      {
+        "seed": "n8n split out not working",
+        "suggestions": ["n8n split out not working"],
+        "monthlyVolume": null,
+        "keywordDifficulty": null
+      }
+    ],
+    "serpSamples": [
+      {
+        "engine": "DuckDuckGo HTML",
+        "checkedAt": "2026-11-12T12:32:59.463Z",
+        "query": "n8n split out nested array",
+        "status": 200,
+        "results": [
+          { "title": "n8n Split Out Node: Complete Guide with 4 Real Examples 2026", "url": "https://ryanandmattdatascience.com/n8n-split-out-node/" },
+          { "title": "Split Out | Nodes | n8n Docs", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitout" },
+          { "title": "Splitting out sub-array for each item", "url": "https://community.n8n.io/t/splitting-out-sub-array-for-each-item/42477" },
+          { "title": "How to split out array correctly?", "url": "https://community.n8n.io/t/how-to-split-out-array-correctly/160504" },
+          { "title": "Split a Single Item into Multiple Items Using the Split Out Node", "url": "https://www.hesham.us/n8n-encyclopedia/split-a-single-item-into-multiple-items-using-the-split-out-node" },
+          { "title": "Problem with iterating Nested Array output in n8n javascript", "url": "https://stackoverflow.com/questions/68275892/problem-with-iterating-nested-array-output-in-n8n-javascript" },
+          { "title": "Array | Build | n8n Docs", "url": "https://docs.n8n.io/build/work-with-data/transform-data/expression-reference/array" },
+          { "title": "Split out binary data", "url": "https://n8n.io/workflows/1621-split-out-binary-data/" },
+          { "title": "n8n-docs Split Out documentation", "url": "https://github.com/n8n-io/n8n-docs/blob/main/docs/integrations/builtin/core-nodes/n8n-nodes-base.splitout.md" },
+          { "title": "Split Items of Sub-Array in N8N", "url": "https://www.thiscodeworks.com/split-items-of-sub-array-in-n8n-n8n-halo-json/6123d3afe6240c001434a16c" }
+        ],
+        "limits": "Titles and links observed in one us-en sample. Competitor bodies were not reviewed. This is not Google ranking or keyword-difficulty data."
+      }
+    ],
+    "intentMap": [
+      { "query": "n8n split out array / json array", "section": "A complete example: one order becomes two order lines" },
+      { "query": "n8n split out nested array", "section": "Nested arrays need the correct path and sometimes two splits" },
+      { "query": "n8n split out multiple fields", "section": "Splitting several fields pairs values by position" },
+      { "query": "n8n split out not working", "section": "Troubleshoot Split Out without guessing" },
+      { "query": "n8n split out vs loop", "section": "Split Out versus Loop Over Items, Aggregate and Code" },
+      { "query": "n8n split out binary files", "section": "Binary files: split attachments, not the JSON metadata" }
+    ],
+    "primarySourceNotes": [
+      "Node 1.1 supports explicit destination paths with dot notation; node 1 uses literal destination keys.",
+      "Single object arrays with No Other Fields and no destination are promoted into output JSON; other modes preserve a named split field.",
+      "Multiple fields align by element index and use the longest selected sequence; missing tails are omitted rather than replaced with fake values.",
+      "Absent fields become empty arrays; null and strings are wrapped as single values; plain objects use Object.values.",
+      "The real execute method was exercised with a mocked field-list parser and hint tracker, not a running n8n workflow. Hint behavior was separately read in SplitOut/utils.ts.",
+      "Aggregate documentation was checked to distinguish collection from array expansion."
+    ],
+    "limits": "No private Search Console access, search volumes, keyword difficulty scores, ranking probabilities or traffic predictions. No production workflow or connector executed."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    { "title": "n8n Docs: Split Out parameters and options", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitout" },
+    { "title": "n8n Docs: Data structure", "url": "https://docs.n8n.io/build/work-with-data/understand-n8ns-data-structure" },
+    { "title": "n8n Docs: Loop Over Items", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitinbatches" },
+    { "title": "n8n 2.47.4: SplitOut.node.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/nodes-base/nodes/Transform/SplitOut/SplitOut.node.ts" },
+    { "title": "n8n 2.47.4: FieldsTracker", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.4/packages/nodes-base/nodes/Transform/SplitOut/utils.ts" }
+  ],
+  "internalLinks": [
+    "/blog/how-to-use-n8n-2026-complete-guide",
+    "/blog/n8n-json-parameter-needs-to-be-valid-json",
+    "/blog/n8n-code-node-guide",
+    "/blog/n8n-loop-over-items-guide",
+    "/blog/n8n-cant-determine-which-item-to-use"
+  ],
+  "faq": [
+    "What does the Split Out node do in n8n?",
+    "What is the difference between Split Out and Loop Over Items?",
+    "How do I split a nested JSON array and keep the parent ID?",
+    "Why does Split Out return no items or just one item?",
+    "Can Split Out separate binary files in n8n?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/csv-utf8/photo-cover.jpg",
+    "coverFile": "public/blog/csv-utf8/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/a-person-writing-on-a-paper-with-graph-6779570/",
+    "coverPhotographer": "Artem Podrez",
+    "inline": "https://www.byteverse.fyi/blog/csv-excel/photo-cover.jpg",
+    "inlineFile": "public/blog/csv-excel/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/woman-looking-at-the-screen-of-her-laptop-8297058/",
+    "inlinePhotographer": "Mikhail Nilov",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing self-hosted licensed photographs, both visually inspected on 12 November. Inline alt describes a woman taking notes beside spreadsheet data. Illustrative images, not n8n screenshots; no asset deployment needed."
+  },
+  "validation": {
+    "proseWords": 4480,
+    "readingTime": "21 min read",
+    "contentSha256": "4be825f268cf987aaf0432723676a64b642bdea2b88bfba0c58c6d1d5a066144",
+    "codeBlocks": 9,
+    "tables": 4,
+    "sourceUrl": "https://raw.githubusercontent.com/n8n-io/n8n/n8n%402.47.4/packages/nodes-base/nodes/Transform/SplitOut/SplitOut.node.ts",
+    "sourceSha256": "e44d18a45d070aadf2fc94d9631d757833b09d3319ea8db9bfc09a22591ff43d",
+    "sourceTestsPassed": 9,
+    "offlineTestsPassed": 8,
+    "totalTestsPassed": 17,
+    "testsFailed": 0,
+    "targetedEslint": "passed: repository npm lint with --max-warnings 0 on both new scripts",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: unique slug; 183 existing posts, 181 published, hash 42be303a4ce25583177f26e0c245461d unchanged; author, category, five published internal links and both images verified; zero database writes",
+    "preview": {
+      "path": "../.byteverse-split-out-preview/index.html",
+      "statesPassed": ["320 light", "375 light", "375 dark", "768 light", "1440 light"],
+      "checks": "Positive main/article/H1/body bounds, no horizontal page overflow, two decoded images, four internally scrollable tables, nine code blocks, FAQ Enter-key interaction and no page errors. Mobile and desktop screenshots visually reviewed.",
+      "limits": "Static noindex preview with the existing MarkdownRenderer and public site CSS, not a deployed Next.js route. No production scripts, analytics or database writes. Copy buttons are inert in the static preview."
+    },
+    "executionScope": "Synthetic inputs against the actual pinned Split Out execute method and real Lodash helpers, with mocked node context, field-list parser and hint tracker. Both article Code snippets and the binary expression executed with emulated inputs. No n8n server, spreadsheet, database mutation or external API action."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 252,
+    "publishedAt": "2026-11-12T15:16:34.780Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-split-out-node-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'live krdo' 2026-11-12",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 183,
+    "otherPostsHash": "42be303a4ce25583177f26e0c245461d",
+    "pushed": false
+  }
+}

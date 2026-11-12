@@ -244,7 +244,7 @@ export default function HtmlEditorPage() {
                   loading="lazy"
                   tabIndex={-1}
                   title={`${card.label} template preview`}
-                  className="pointer-events-none h-[288px] w-[200%] max-w-none origin-top-left scale-50 border-0 sm:h-[480px] sm:w-[333.34%] sm:scale-[0.3]"
+                  className="pointer-events-none h-[480px] w-[333.34%] max-w-none origin-top-left scale-[0.3] border-0"
                 />
               </div>
               <div className="flex flex-1 flex-col p-4">

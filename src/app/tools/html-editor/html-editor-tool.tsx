@@ -44,12 +44,12 @@ const CONSOLE_TONES: Record<ConsoleLevel, string> = {
 const CONSOLE_PREFIX: Record<ConsoleLevel, string> = { error: "Error: ", warn: "Warning: ", info: "Info: ", log: "", debug: "Debug: " };
 
 const ring = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400";
-const control = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[36px] ${ring}`;
+const control = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50 md:min-h-[36px] ${ring}`;
 const textButton = `${control} px-3`;
-const iconButton = `${control} w-[44px] sm:w-9`;
-const runButton = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-emerald-400 px-3.5 text-xs font-semibold text-slate-950 transition-colors hover:bg-emerald-300 sm:min-h-[36px] ${ring}`;
-const segment = (active: boolean) => `inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[30px] sm:min-w-[34px] ${ring} ${active ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-100"}`;
-const menuItem = `flex min-h-[44px] w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-left text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 focus-visible:bg-white/10 sm:min-h-[36px] ${ring}`;
+const iconButton = `${control} w-[44px] md:w-9`;
+const runButton = `inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-emerald-400 px-3.5 text-xs font-semibold text-slate-950 transition-colors hover:bg-emerald-300 md:min-h-[36px] ${ring}`;
+const segment = (active: boolean) => `inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-50 md:min-h-[30px] md:min-w-[34px] ${ring} ${active ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-100"}`;
+const menuItem = `flex min-h-[44px] w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-left text-xs font-medium text-slate-200 transition-colors hover:bg-white/10 focus-visible:bg-white/10 md:min-h-[36px] ${ring}`;
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
@@ -510,7 +510,7 @@ export function HtmlEditorTool() {
             value={template}
             onChange={(event) => loadTemplate(event.target.value)}
             aria-label="Template"
-            className={`min-h-[44px] w-full min-w-0 cursor-pointer rounded-lg border border-white/10 bg-[#0b1120] px-2.5 text-xs font-medium text-slate-100 sm:min-h-[36px] sm:w-auto ${ring}`}
+            className={`min-h-[44px] w-full min-w-0 cursor-pointer rounded-lg border border-white/10 bg-[#0b1120] px-2.5 text-xs font-medium text-slate-100 sm:w-auto md:min-h-[36px] ${ring}`}
           >
             {Object.entries(TEMPLATES).map(([key, { label }]) => <option key={key} value={key}>{label}</option>)}
           </select>
@@ -519,7 +519,7 @@ export function HtmlEditorTool() {
         <button type="button" className={runButton} onClick={run} title={`Run (${mod} Enter)`}>
           <Play size={13} aria-hidden="true" fill="currentColor" /> Run
         </button>
-        <label className="inline-flex min-h-[44px] cursor-pointer select-none items-center gap-2 text-xs font-medium text-slate-300 sm:min-h-[36px]">
+        <label className="inline-flex min-h-[44px] cursor-pointer select-none items-center gap-2 text-xs font-medium text-slate-300 md:min-h-[36px]">
           <input
             type="checkbox"
             className="h-4 w-4 cursor-pointer accent-emerald-400"
@@ -532,13 +532,13 @@ export function HtmlEditorTool() {
         <div className="hidden flex-1 sm:block" />
 
         <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
-          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={format} disabled={formatting} aria-label="Format code" title="Format HTML, CSS and JS with Prettier">
+          <button type="button" className={`${control} w-[44px] md:w-9 lg:w-auto lg:px-3`} onClick={format} disabled={formatting} aria-label="Format code" title="Format HTML, CSS and JS with Prettier">
             <WandSparkles size={14} aria-hidden="true" /> <span className="hidden lg:inline">{formatting ? "Formatting" : "Format"}</span>
           </button>
-          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={share} aria-label="Copy share link" title="Copy a link that contains this code">
+          <button type="button" className={`${control} w-[44px] md:w-9 lg:w-auto lg:px-3`} onClick={share} aria-label="Copy share link" title="Copy a link that contains this code">
             <Share2 size={14} aria-hidden="true" /> <span className="hidden lg:inline">Share</span>
           </button>
-          <button type="button" className={`${control} w-[44px] sm:w-9 lg:w-auto lg:px-3`} onClick={download} aria-label="Download index.html" title={`Download index.html (${mod} S)`}>
+          <button type="button" className={`${control} w-[44px] md:w-9 lg:w-auto lg:px-3`} onClick={download} aria-label="Download index.html" title={`Download index.html (${mod} S)`}>
             <Download size={14} aria-hidden="true" /> <span className="hidden lg:inline">Download</span>
           </button>
           <div className="relative">
@@ -619,7 +619,7 @@ export function HtmlEditorTool() {
                     aria-controls={`html-editor-panel-${source}`}
                     tabIndex={active ? 0 : -1}
                     onClick={() => setTab(source)}
-                    className={`relative inline-flex min-h-[44px] cursor-pointer items-center gap-2 px-3.5 text-xs font-semibold transition-colors sm:min-h-[40px] ${ring} ${active ? "text-white after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:rounded-full after:bg-sky-400" : "text-slate-400 hover:text-slate-100"}`}
+                    className={`relative inline-flex min-h-[44px] cursor-pointer items-center gap-2 px-3.5 text-xs font-semibold transition-colors md:min-h-[40px] ${ring} ${active ? "text-white after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:rounded-full after:bg-sky-400" : "text-slate-400 hover:text-slate-100"}`}
                   >
                     <span className={`h-2 w-2 rounded-full ${TAB_DOTS[source]}`} aria-hidden="true" /> {SOURCE_LABELS[source]}
                   </button>
@@ -684,7 +684,7 @@ export function HtmlEditorTool() {
                     max={2560}
                     value={customWidth}
                     onChange={(event) => { const next = Number(event.target.value); if (Number.isFinite(next)) setCustomWidth(next); }}
-                    className={`min-h-[44px] w-20 rounded-md border border-white/10 bg-[#0b1120] px-2 text-xs text-slate-100 sm:min-h-[30px] ${ring}`}
+                    className={`min-h-[44px] w-20 rounded-md border border-white/10 bg-[#0b1120] px-2 text-xs text-slate-100 md:min-h-[30px] ${ring}`}
                   />
                   px
                 </label>
@@ -742,7 +742,7 @@ export function HtmlEditorTool() {
             <div className="flex items-center gap-1 pl-3 pr-2">
               <button
                 type="button"
-                className={`flex min-h-[44px] flex-1 cursor-pointer items-center gap-2 rounded-md text-left text-xs font-semibold text-slate-100 sm:min-h-[36px] ${ring}`}
+                className={`flex min-h-[44px] flex-1 cursor-pointer items-center gap-2 rounded-md text-left text-xs font-semibold text-slate-100 md:min-h-[36px] ${ring}`}
                 aria-expanded={consoleShown}
                 aria-controls="html-editor-console"
                 onClick={() => setConsoleOpen(!consoleShown)}

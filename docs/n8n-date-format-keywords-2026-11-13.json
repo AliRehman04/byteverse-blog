@@ -1,0 +1,156 @@
+{
+  "slug": "n8n-date-format-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-13",
+  "targeting": {
+    "title": "n8n Date Format: Expressions, Timezones and Invalid DateTime Fixes",
+    "metaTitle": "n8n Date Format: Timezones, Timestamps and Fixes",
+    "metaDescription": "Format dates in n8n with tested Luxon examples. Fix Invalid DateTime, timezone shifts, Unix timestamps and Code node errors, including DST edge cases.",
+    "excerpt": "A practical n8n date-formatting guide with copy-ready expressions, Date & Time node setup, timezone conversion, Unix units, invalid-date validation, DST boundaries and tested Code node examples.",
+    "keywords": "n8n date format, n8n date format expression, n8n invalid datetime, n8n convert unix timestamp to date, n8n date timezone, n8n today date format, n8n date comparison, n8n add days to date, n8n date to string, n8n luxon",
+    "summary": "Parse the source format, select the timezone and format the result; preserve machine timestamps separately from display strings|Use native toFormat and duration objects in Code nodes because some n8n expression shortcuts have different behavior|Validate missing values, Unix units, DST ambiguity and date-only semantics before writing records or scheduling appointments",
+    "readingTime": "20 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-13T16:02:59.207Z",
+    "total": 184,
+    "published": 182,
+    "hash": "13693003b39c57798db240855905751d",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"],
+    "overlap": {
+      "checkedAt": "2026-11-13T15:59:37.211Z",
+      "terms": ["Luxon", "date format"],
+      "matchingPosts": ["best-ai-spreadsheet-tools-2026", "how-to-use-ai-in-excel-google-sheets-2026", "how-to-write-resume-with-ai-2026", "n8n-code-node-guide"],
+      "finding": "Only the Code node guide contains a short n8n/Luxon section. Other matches are incidental date-format mentions. No dedicated n8n date-formatting guide matched. The initial broader overlap request failed with NeonDbError; this narrower read-only retry succeeded."
+    }
+  },
+  "research": {
+    "selection": "Compared fresh Edit Fields/Set and date/time wording across 12 candidate seeds. Chose the date/time cluster for explicit troubleshooting intent around Invalid DateTime, Unix conversions, timezone shifts and comparisons. A focused 12-seed pass returned suggestions for ten seeds. Existing search results include dedicated guides, so this is not an easy-ranking or low-competition claim; the differentiating content is executed boundary examples and strict validation patterns.",
+    "candidateCheckedAt": "2026-11-13T15:29:58.826Z",
+    "candidateSeedCount": 12,
+    "autocompleteCheckedAt": "2026-11-13T16:02:56.697Z",
+    "autocompleteContext": "Google public autocomplete, English / gl=us. Wording evidence only, not measured US demand.",
+    "observations": [
+      { "seed": "n8n date format", "suggestions": ["n8n date format", "n8n date format expression", "n8n format date time", "n8n format date javascript", "n8n convert date format", "n8n change date format", "n8n json date format", "n8n invalid date format", "n8n today date format", "n8n form date time"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date format expression", "suggestions": ["n8n date format expression"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n today date format", "suggestions": ["n8n today date format"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n invalid datetime", "suggestions": ["n8n invalid datetime", "invalid datetime or timezone of system"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date timezone", "suggestions": ["n8n date timezone", "n8n set timezone", "n8n set timezone docker", "n8n date time timezone", "date set timezone", "date with timezone"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n convert unix timestamp to date", "suggestions": ["n8n convert unix timestamp to date", "date to unix timestamp"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date comparison", "suggestions": ["n8n date comparison", "n8n date compare"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n plus days", "suggestions": ["n8n add days to date"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date time format", "suggestions": ["n8n date time format", "date and time format with timezone", "date/time formats"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date to string", "suggestions": ["n8n date to string", "n8n convert string to date"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n format is not a function", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n date format dd mm yyyy", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "serpSamples": [
+      {
+        "engine": "DuckDuckGo HTML",
+        "checkedAt": "2026-11-13T15:59:39.615Z",
+        "query": "n8n date format expression",
+        "status": 200,
+        "results": [
+          { "title": "Datetime | Build | n8n Docs", "url": "https://docs.n8n.io/build/work-with-data/transform-data/expression-reference/datetime" },
+          { "title": "Date & Time | Nodes | n8n Docs", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.datetime" },
+          { "title": "How to Format Dates in n8n Expressions Like a Pro", "url": "https://growwstacks.com/blog/how-to-format-dates-in-n8n-expressions" },
+          { "title": "How to format date like this?", "url": "https://community.n8n.io/t/how-to-format-date-like-this/14345" },
+          { "title": "Format Dates in n8n Without Errors (Complete Guide)", "url": "https://agentforeverything.com/format-dates-in-n8n/" },
+          { "title": "How to change date format?", "url": "https://community.n8n.io/t/how-to-change-date-format/43154" },
+          { "title": "Working with dates and times", "url": "https://n8n.io/workflows/1744-working-with-dates-and-times/" },
+          { "title": "Convert a date from one format to another", "url": "https://n8n.io/workflows/575-convert-a-date-from-one-format-to-another/" },
+          { "title": "Mastering Time: A Guide to Manipulating Dates and Times in n8n", "url": "https://medium.com/@shamalchathuranga2/mastering-time-a-guide-to-manipulating-dates-and-times-in-n8n-3e13a50e4a5e" },
+          { "title": "n8n Expressions Tutorial", "url": "https://codingkit.com/n8n/expressions/" }
+        ],
+        "limits": "Titles and links only, not a competitor-content audit or a neutral Google rank measurement."
+      }
+    ],
+    "intentMap": [
+      { "query": "n8n date format / date format expression", "section": "Quick reference: common n8n date expressions" },
+      { "query": "n8n invalid datetime", "section": "Validate every input before formatting it" },
+      { "query": "n8n date timezone", "section": "Timezone conversion versus assigning a timezone" },
+      { "query": "n8n convert unix timestamp to date", "section": "Unix timestamps: seconds and milliseconds are not interchangeable" },
+      { "query": "n8n date comparison", "section": "Compare dates as instants or as business-calendar dates" },
+      { "query": "n8n add days to date", "section": "Add days and months according to the rule you actually mean" }
+    ],
+    "primarySourceNotes": [
+      "n8n docs explicitly distinguish custom expression format()/plus(n,unit) from native Code-node toFormat()/plus(durationObject).",
+      "n8n Date & Time docs describe Format a Date, From Date Format, Include Input Fields and Use Workflow Timezone.",
+      "n8n date-handling docs explain string serialization between nodes, workflow/instance timezone and $now/$today.",
+      "Real Luxon 3.7.2 verifies epoch seconds1794595500 and milliseconds1794595500000 for 2026-11-13T18:45:00Z.",
+      "Real Luxon verifies 2026-03-08 New York DST gap normalization, two offsets for 2026-11-01 01:30, calendar days versus elapsed hours and month-end clamping.",
+      "The tagged zone guide contains historical wording about ambiguity detection; the article's getPossibleOffsets claim is grounded in the executed 3.7.2 API rather than assuming automatic disambiguation."
+    ],
+    "limits": "No private Search Console access, volumes, keyword difficulty scores or ranking forecasts. No live n8n instance or connector writes."
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "n8n Docs: Work with dates and times", "url": "https://docs.n8n.io/build/work-with-data/handle-special-data-types/work-with-dates-and-times" },
+    { "title": "n8n Docs: Date & Time node", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.datetime" },
+    { "title": "n8n Docs: Datetime expression reference", "url": "https://docs.n8n.io/build/work-with-data/transform-data/expression-reference/datetime" },
+    { "title": "Luxon 3.7.2: Parsing", "url": "https://github.com/moment/luxon/blob/3.7.2/docs/parsing.md" },
+    { "title": "Luxon 3.7.2: Timezones", "url": "https://github.com/moment/luxon/blob/3.7.2/docs/zones.md" },
+    { "title": "Luxon 3.7.2: Arithmetic", "url": "https://github.com/moment/luxon/blob/3.7.2/docs/math.md" },
+    { "title": "Luxon 3.7.2: DateTime implementation", "url": "https://github.com/moment/luxon/blob/3.7.2/src/datetime.js" }
+  ],
+  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-code-node-guide", "/blog/n8n-split-out-node-guide", "/blog/n8n-wait-node-guide", "/blog/n8n-json-parameter-needs-to-be-valid-json"],
+  "faq": [
+    "How do I format a date in n8n?",
+    "Why does n8n return Invalid DateTime?",
+    "Should I use yyyy or YYYY in an n8n custom date format?",
+    "How do I convert a Unix timestamp to a date in n8n?",
+    "Why does a date expression work in Edit Fields but fail in the Code node?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/claude-code-windows/photo-cover.jpg",
+    "coverFile": "public/blog/claude-code-windows/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "coverPhotographer": "Daniil Komov",
+    "inline": "https://www.byteverse.fyi/blog/gemini-workspace/photo-cover.jpg",
+    "inlineFile": "public/blog/gemini-workspace/photo-cover.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/person-using-a-laptop-on-a-table-7439136/",
+    "inlinePhotographer": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed self-hosted photos. Both visually inspected: cover shows code on a laptop beside coffee; inline shows a person using a browser task application. Illustrative, not n8n screenshots."
+  },
+  "validation": {
+    "proseWords": 4270,
+    "readingTime": "20 min read",
+    "contentSha256": "876e5d3128bfa522ce6944cfa577a8818fcf5186db74041b4917e28268b41702",
+    "codeBlocks": 10,
+    "tables": 4,
+    "luxonVersion": "3.7.2",
+    "fixturePackage": "../.byteverse-n8n-item-linking-check/node_modules/luxon",
+    "nativeBehaviorTestsPassed": 8,
+    "totalTestsPassed": 17,
+    "testsFailed": 0,
+    "articleExpressionsExecuted": 15,
+    "codeNodeExamplesExecuted": 3,
+    "targetedEslint": "passed: repository npm lint on both new scripts with --max-warnings 0",
+    "editorDiagnostics": "no errors",
+    "readOnlyPreflight": "passed: unique slug, author/category, five published internal links and both photos verified; 184 existing posts, 182 published, hash13693003b39c57798db240855905751d unchanged; zero database writes",
+    "preview": {
+      "path": "../.byteverse-date-format-preview/index.html",
+      "statesPassed": ["320 light", "375 light", "375 dark", "768 light", "1440 light"],
+      "checks": "Positive visible article/H1/body bounds, no horizontal page overflow, two decoded images, four scrollable tables, ten code blocks, FAQ Enter-key interaction and no page errors. Mobile and desktop screenshots visually reviewed.",
+      "limits": "Static noindex preview using the actual MarkdownRenderer and public site CSS, not a deployed Next.js route. No production scripts or database writes; copy buttons are inert in this local preview."
+    },
+    "executionScope": "Real existing Luxon 3.7.2 dependency with fixed synthetic inputs and explicit zones. No package install or production dependency change. Code-node globals emulated; no n8n server, scheduling, API action or database write."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 253,
+    "publishedAt": "2026-11-13T16:23:17.397Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-date-format-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'live kro' 2026-11-13",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 184,
+    "otherPostsHash": "13693003b39c57798db240855905751d",
+    "pushed": false
+  }
+}

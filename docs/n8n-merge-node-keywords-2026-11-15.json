@@ -115,6 +115,8 @@
     "sourceCommitDate": "2026-11-15T03:44:47Z",
     "n8nLatestNpm": "2.47.7",
     "tagVersusMaster": "Merge v3 action, mode, description and sandbox files byte-identical; helpers/utils.ts differs by one moved UserError import; workflow-execute.ts differs by a refactor that moved the waiting-node block into addWaitingNodeToEmptyStack with identical rules.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Seven FAQs are visible; the site-wide FAQPage JSON-LD in src/app/blog/[slug]/page.tsx uses faqs.slice(0, 5), so the last two (binary files, SQL column names) appear on the page but not in the schema. Shared page code left unchanged.",
     "sourceSha256": {
       "versionDescription.ts": "09951ed1b6bd26afe526d36c0b38809d7ad055077d2ae8368a3b7c5ebd8d3d0f",
       "combineBySql.ts": "be5fef3f66b0889eb45ac4ba2ea246c016f479397bc9bf1370858587a1cd5edf",
@@ -156,12 +158,22 @@
       "backupFile": "docs/content-backups/n8n-merge-node-guide-before-2026-11-15-revision.md"
     },
     "publication": {
-      "status": "applied",
+      "status": "published-live-verified",
       "appliedAt": "2026-11-15T16:42:08.325Z",
       "databaseWrites": 1,
       "fieldsChanged": ["excerpt", "summary", "keywords", "reading_time", "content", "updated_at"],
       "otherPostsUnchanged": 185,
-      "otherPostsHash": "a046bad03b9b375cc52c3c9291b45b2c"
+      "otherPostsHash": "a046bad03b9b375cc52c3c9291b45b2c",
+      "releaseCommit": "a4f0f01cac173ffcf1ed44d06beaa0573cbd75c2",
+      "deploymentStatus": "success",
+      "liveVerification": {
+        "command": "node scripts/test-n8n-merge-node-post.mjs --live",
+        "result": "13/13 passed: offline checks plus live title, meta description, canonical, original publish date, author, FAQPage schema (first five of seven, per the site-wide cap), exact code blocks, three tables, seven FAQ details and eight internal links",
+        "modifiedTime": "2026-11-15T16:42:08.325Z",
+        "browser": "Fresh Edge contexts at 375px and 1440px: HTTP 200, no horizontal overflow, seven FAQs, three tables, nine code blocks, last FAQ opens with the keyboard; 'five modes' absent and email_1 present.",
+        "preExistingIssue": "Minified React error #418 (hydration text mismatch) also occurs on /blog/n8n-date-format-guide; site-wide and unrelated to this revision. Shared code not changed."
+      },
+      "indexingRequest": "Not submitted; owner action in Search Console"
     }
   },
   "publication": {

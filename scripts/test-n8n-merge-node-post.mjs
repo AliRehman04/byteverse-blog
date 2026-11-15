@@ -220,11 +220,16 @@ test("the real renderer preserves code blocks, tables and the intended links", (
   assert(external.every((node) => node.attribs.rel.includes("noopener")));
 });
 
+const pageSource = readFileSync(new URL("../src/app/blog/[slug]/page.tsx", import.meta.url), "utf8");
+// The site-wide FAQPage schema only carries the first few visible questions.
+const faqSchemaLimit = Number(pageSource.match(/mainEntity: faqs\.slice\(0, (\d+)\)/)?.[1]);
+
 test("every visible FAQ matches the existing schema extractor exactly", () => {
-  const source = readFileSync(new URL("../src/app/blog/[slug]/page.tsx", import.meta.url), "utf8");
+  const source = pageSource;
   const start = source.indexOf("  const faqRegex =");
   const end = source.indexOf("  // Auto-extract HowTo", start);
   assert(start > 0 && end > start);
+  assert.equal(faqSchemaLimit, ledger.validation.faqSchemaLimit, "FAQPage schema cap changed in page.tsx");
   const compiled = ts.transpileModule(source.slice(start, end), { compilerOptions: { target: ts.ScriptTarget.ES2022 } }).outputText;
   const faqs = new Function("post", `${compiled}; return faqs;`)({ content });
   const details = all(document, (node) => node.name === "details");
@@ -369,7 +374,7 @@ if (mode === "--live") {
       const schema = JSON.parse(DomUtils.textContent(node));
       return schema["@graph"] ?? [schema];
     });
-    assert.deepEqual(schemas.find((schema) => schema["@type"] === "FAQPage")?.mainEntity.map((entity) => entity.name), ledger.faq);
+    assert.deepEqual(schemas.find((schema) => schema["@type"] === "FAQPage")?.mainEntity.map((entity) => entity.name), ledger.faq.slice(0, faqSchemaLimit));
     const article = schemas.find((schema) => schema["@type"] === "BlogPosting");
     assert.equal(article?.author?.name, ledger.targeting.author);
     assert.equal(article?.datePublished, ledger.publication.publishedAt);

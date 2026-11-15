@@ -136,6 +136,20 @@
       "sentenceStats": { "count": 198, "meanWords": 18.5, "stdevWords": 10.1 },
       "limits": "Local lexical comparison, not a web-wide plagiarism scan or an AI-detector verdict."
     },
+    "releaseCommit": "83307017ca305882c46dcab70ebce5455b725289",
+    "pushed": true,
+    "liveVerification": {
+      "command": "node scripts/test-n8n-merge-node-post.mjs --live",
+      "result": "13/13 passed: 12 offline checks plus live metadata, canonical, publish date, author, FAQ schema, exact code blocks, tables and internal links",
+      "discovery": [
+        { "path": "/blog/n8n-merge-node-guide", "status": 200, "titleVerified": true },
+        { "path": "/sitemap.xml", "status": 200, "listsPost": true },
+        { "path": "/blog", "status": 200, "listsPost": true },
+        { "path": "/category/tech-guides", "status": 200, "listsPost": true },
+        { "path": "/feed.xml", "status": 200, "listsPost": true }
+      ],
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    },
     "preview": {
       "path": "../.byteverse-merge-preview/index.html",
       "statesPassed": ["320 light", "375 light", "375 dark", "768 light", "1440 light"],

@@ -1,0 +1,145 @@
+{
+  "slug": "n8n-merge-node-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-15",
+  "targeting": {
+    "title": "n8n Merge Node: Fix Waiting Issues, Combine Modes and SQL Joins",
+    "metaTitle": "n8n Merge Node: Waiting Fixes, Modes and SQL",
+    "metaDescription": "Fix the n8n Merge node when it never runs or drops items. See what each mode does with an empty branch, v0 vs v1 execution order, and tested SQL joins.",
+    "excerpt": "A source-checked n8n Merge node guide: how the engine decides when a waiting Merge runs, what Append, Combine, SQL Query and Choose Branch do when one branch is empty, v0 versus v1 execution order, executed AlaSQL join examples and a repair table for the usual errors.",
+    "keywords": "n8n merge node, n8n merge node not working, n8n merge node wait for all inputs, n8n merge node append, n8n merge node sql, n8n merge node example, n8n combine by matching fields, n8n execution order v0 vs v1, n8n merge three inputs, n8n merge node empty input",
+    "summary": "Pick the Merge mode by data shape: Append after an If split, Matching Fields for keyed joins, SQL Query for three or more inputs|In the v1 execution order a Merge runs with an empty input for a branch that produced nothing, except Choose Branch, which never runs|SQL mode needs bracketed reserved words, explicit aliases for shared columns and node version 3.2 for the Empty Query Result option",
+    "readingTime": "20 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-15T13:10:00.000Z",
+    "total": 185,
+    "published": 183,
+    "hash": "a046bad03b9b375cc52c3c9291b45b2c",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"],
+    "overlap": {
+      "source": "docs/content-research/2026-11-15-keywords-candidates.json",
+      "n8nPosts": 12,
+      "finding": "Twelve published n8n posts exist (beginner guide, vs Zapier, webhook, item linking, JSON body, Code node, Loop Over Items, sub-workflow, AI agent memory, Wait node, Split Out, date format). None has a Merge node section heading; the Merge node is only mentioned in passing. No dedicated Merge node, execution order or SQL Query mode guide exists on the site."
+    }
+  },
+  "research": {
+    "selection": "Ran 48 n8n seeds through Google public autocomplete on 15 November 2026. The Merge node cluster returned a full set of ten troubleshooting-flavoured suggestions (not working, wait for all inputs, example, append, wait, sql, binary, sql query) and ties directly into the published item linking, Loop Over Items and Split Out guides. Error handling, Schedule Trigger and HTTP pagination were the runner-up clusters and remain open for later posts. Existing search results include the official docs, community threads, GitHub issues and several blog guides, so this is not a low-competition claim; the differentiator is an engine-level explanation grounded in the pinned source commit plus executed SQL examples including failure cases.",
+    "candidateFile": "docs/content-research/2026-11-15-keywords-candidates.json",
+    "candidateSeedCount": 48,
+    "autocompleteCheckedAt": "2026-11-15T13:10:00.000Z",
+    "autocompleteContext": "Google public autocomplete, English / gl=us. Wording evidence only, not measured US demand.",
+    "observations": [
+      { "seed": "n8n merge node", "suggestions": ["n8n merge node", "n8n merge node not working", "n8n merge node wait for all inputs", "n8n merge node example", "n8n merge node documentation", "n8n merge node append", "n8n merge node wait", "n8n merge node sql", "n8n merge node binary", "n8n merge node sql query"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n execution order", "suggestions": ["n8n execution order", "n8n execution order v0 vs v1", "n8n execution order v1", "n8n node execution order", "n8n workflow execution order"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n merge node not waiting", "suggestions": [], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n compare datasets", "suggestions": ["n8n compare datasets", "n8n compare datasets node", "n8n compare datasets not working"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n if node", "suggestions": ["n8n if node", "n8n if node example", "n8n if node executed", "n8n if node not working", "n8n if node output", "n8n if node expression", "n8n if node error", "n8n if node regex", "n8n if node array", "n8n check if node executed"], "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "serpSamples": {
+      "file": "docs/content-research/2026-11-15-ddg-merge.json",
+      "engine": "DuckDuckGo HTML",
+      "queries": ["n8n merge node not working", "n8n merge node wait for all inputs", "n8n merge node sql"],
+      "limits": "Titles and links only, not a competitor-content audit or a neutral Google rank measurement."
+    },
+    "intentMap": [
+      { "query": "n8n merge node / example", "section": "Choose the mode before you connect anything" },
+      { "query": "n8n merge node not working / wait for all inputs", "section": "How n8n decides when a Merge node runs" },
+      { "query": "n8n execution order v0 vs v1", "section": "v0 and v1 execution order change what the Merge node does" },
+      { "query": "n8n merge node append", "section": "Append: the safe choice after an If split" },
+      { "query": "n8n combine by matching fields", "section": "Combine by Matching Fields: the join most workflows actually need" },
+      { "query": "n8n merge node sql / sql query", "section": "SQL Query mode: when two inputs or five join types are not enough" }
+    ],
+    "primarySourceNotes": [
+      "Merge v3 versionDescription declares requiredInputs as [0, 1] for chooseBranch and 1 for every other mode; default node version 3.2; versions 3, 3.1, 3.2 share the implementation.",
+      "workflow-execute.ts: in v1 a child is only scheduled when the output array has items (or, under legacy order, when connected to input index > 0); addWaitingNodeToEmptyStack fills missing inputs with [] and honours requiredInputs; forceInputNodeExecution is true only outside v1.",
+      "combineByPosition.ts: item count is the minimum across inputs unless includeUnpaired; zero rows adds the hint about Include Any Unpaired Items; without the clash option the last input wins; the option preset is addSuffix.",
+      "combineByFields.ts: keepMatches with an empty input returns [] (no output, children not scheduled); enrichInput1 with empty input1 returns []; otherwise the non-empty input is passed through; items missing the match field go to unmatched; multipleMatches default 'all'; joinMode default keepMatches; strict compare unless fuzzyCompare.",
+      "combineBySql.ts: tables input1..inputN, isolated-vm sandbox with memory limit and 30000 ms timeout, error messages 'Dataset too large for the SQL sandbox', 'SQL query exceeded the 30 second execution limit', 'Issue while executing query'; success item only for typeVersion <= 3.1 or emptyQueryResult === 'success'; parameters validated as string/number/boolean/null.",
+      "AlaSQL 4.4.0 (declared by packages/nodes-base) parse-fails on unquoted total and plan; brackets and backticks work; SELECT * keeps the later table's value for shared column names; = compares loosely so 101 matches '101'.",
+      "n8n docs: Merge node overhauled in 0.194.0; more than two inputs and SQL Query from 1.49.0; Empty Query Result from 1.95.0 on node version 3.2; legacy v0 forces the other If branch to execute."
+    ],
+    "limits": "No private Search Console access, volumes, keyword difficulty scores or ranking forecasts. No live n8n instance was run; engine behaviour is source-derived."
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "n8n Docs: Merge node", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge" },
+    { "title": "n8n Docs: Merge data", "url": "https://docs.n8n.io/build/flow-logic/merge-data" },
+    { "title": "n8n Docs: Understand execution order", "url": "https://docs.n8n.io/build/flow-logic/understand-execution-order" },
+    { "title": "n8n source: Merge v3 versionDescription.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/nodes-base/nodes/Merge/v3/actions/versionDescription.ts" },
+    { "title": "n8n source: workflow-execute.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/core/src/execution-engine/workflow-execute.ts" },
+    { "title": "n8n source: Merge v3 combineBySql.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/nodes-base/nodes/Merge/v3/actions/mode/combineBySql.ts" },
+    { "title": "AlaSQL wiki: Supported SQL statements", "url": "https://github.com/alasql/alasql/wiki/Supported-SQL-statements" }
+  ],
+  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-cant-determine-which-item-to-use", "/blog/n8n-sub-workflow-guide", "/blog/n8n-loop-over-items-guide", "/blog/n8n-code-node-guide", "/blog/n8n-split-out-node-guide"],
+  "faq": [
+    "Why does the n8n Merge node not run when one branch is empty?",
+    "Does the Merge node wait for all inputs?",
+    "How do I merge more than two inputs in n8n?",
+    "What is the difference between Append and Combine in the Merge node?",
+    "Why does the SQL mode of the Merge node fail on a column name?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/csv-excel/photo-cover.jpg",
+    "coverFile": "public/blog/csv-excel/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/woman-looking-at-the-screen-of-her-laptop-8297058/",
+    "coverPhotographer": "Mikhail Nilov",
+    "inline": "https://www.byteverse.fyi/blog/csv-excel/photo-inline.jpg",
+    "inlineFile": "public/blog/csv-excel/photo-inline.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/person-analyzing-data-on-laptop-screen-34639577/",
+    "inlinePhotographer": "Wolf Art",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed self-hosted photos, both visually inspected on 15 November. Cover shows a woman at a desk with a laptop spreadsheet and folders; inline shows tabular data on a laptop screen. Neither is used as the cover of another n8n post. Illustrative, not n8n screenshots."
+  },
+  "validation": {
+    "proseWords": 4209,
+    "readingTime": "20 min read",
+    "contentSha256": "6946532e63e1b930f3ba1f37d88d068a59e8d24b2e86afd6e62d784227e24677",
+    "codeBlocks": 9,
+    "tables": 3,
+    "alasqlVersion": "4.4.0",
+    "fixturePackage": "../.byteverse-merge-check/node_modules/alasql",
+    "sourceCommit": "51f8cf624992e5813c31684359d95db5bf378092",
+    "sourceCommitDate": "2026-11-15T03:44:47Z",
+    "n8nLatestNpm": "2.47.7",
+    "sourceSha256": {
+      "versionDescription.ts": "09951ed1b6bd26afe526d36c0b38809d7ad055077d2ae8368a3b7c5ebd8d3d0f",
+      "combineBySql.ts": "be5fef3f66b0889eb45ac4ba2ea246c016f479397bc9bf1370858587a1cd5edf",
+      "combineByPosition.ts": "74927a7fca3bde79a46f5755f4662e4ddcbb6b65e7f97fdfb8f74d3744e841e6",
+      "combineByFields.ts": "5be27edab7bda917b9781187af9e8e540b7b9812f2d4c5794c738cf6336ed402",
+      "workflow-execute.ts": "1620f459c2805dc1ad0629fa7ff55242abdf97014f07ada2882de8488b3b2124"
+    }
+  },
+  "publication": {
+    "status": "published-live-verified",
+    "postId": 254,
+    "publishedAt": "2026-11-15T14:15:00.246Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-merge-node-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'blog add krdo ma test krke check krnuga' 2026-11-15",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 185,
+    "otherPostsHash": "a046bad03b9b375cc52c3c9291b45b2c",
+    "originalityAudit": {
+      "checkedAt": "2026-11-15T14:10:00.000Z",
+      "method": "Case-normalised five-word phrase overlap against all 185 stored posts and the official Merge node docs page; code blocks, tables and links excluded",
+      "draftPhrases": 3554,
+      "highestPostOverlap": { "slug": "n8n-loop-over-items-guide", "sharedPhrases": 16, "percent": 0.45, "nature": "link anchors and the series' verification-notes wording" },
+      "docsOverlap": { "sharedPhrases": 14, "percent": 0.39, "nature": "UI option names and version numbers only" },
+      "identicalParagraphs30Words": 0,
+      "aiTellWords": 0,
+      "emDashes": 0,
+      "sentenceStats": { "count": 198, "meanWords": 18.5, "stdevWords": 10.1 },
+      "limits": "Local lexical comparison, not a web-wide plagiarism scan or an AI-detector verdict."
+    },
+    "preview": {
+      "path": "../.byteverse-merge-preview/index.html",
+      "statesPassed": ["320 light", "375 light", "375 dark", "768 light", "1440 light"],
+      "checks": "No horizontal overflow, two decoded images, three scrollable tables, nine code blocks, FAQ Enter-key toggle, no page errors; 1440 and 375-dark screenshots visually reviewed."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-15T13:17:25.229Z",
+    "query": "n8n merge node not working",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Merge Node not working as expected?! - Questions - n8n Community",
+        "url": "https://community.n8n.io/t/merge-node-not-working-as-expected/158326"
+      },
+      {
+        "title": "Merge Node not properly working - Questions - n8n Community",
+        "url": "https://community.n8n.io/t/merge-node-not-properly-working/40889"
+      },
+      {
+        "title": "Merge | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge"
+      },
+      {
+        "title": "Merge Node broken after update - Self Hosted · Issue #19393 · n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n/issues/19393"
+      },
+      {
+        "title": "Common issues | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/common-issues"
+      },
+      {
+        "title": "Unable to Merge with the Merge Node · Issue #19001 · n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n/issues/19001"
+      },
+      {
+        "title": "n8n Merge Node Fails to Combine 'customerID' Fields in Workflow 2",
+        "url": "https://www.lune.dev/questions/7567/nn-merge-node-fails-to-combine-customerid-fields-in-workflow"
+      },
+      {
+        "title": "n8n Merge Node: Complete Guide to Combining Workflow Data",
+        "url": "https://ryanandmattdatascience.com/n8n-merge-node/"
+      },
+      {
+        "title": "How To Use Merge Node in n8n (2026) - Full Guide - YouTube",
+        "url": "https://www.youtube.com/watch?v=W3zLrQEtDRM"
+      },
+      {
+        "title": "Fix n8n Merge Issues & Execution Loops Fast - weblineglobal.com",
+        "url": "https://www.weblineglobal.com/blog/fix-n8n-merge-issues-execution-loops/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-15T13:17:27.464Z",
+    "query": "n8n merge node wait for all inputs",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Merge | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge"
+      },
+      {
+        "title": "Merge Node don't wait for all inputs - Questions - n8n Community",
+        "url": "https://community.n8n.io/t/merge-node-dont-wait-for-all-inputs/135843"
+      },
+      {
+        "title": "How to Avoid Waiting for All Inputs in a Node with Multiple Branches ...",
+        "url": "https://community.n8n.io/t/how-to-avoid-waiting-for-all-inputs-in-a-node-with-multiple-branches/64316"
+      },
+      {
+        "title": "Merge data | Build | n8n Docs",
+        "url": "https://docs.n8n.io/build/flow-logic/merge-data"
+      },
+      {
+        "title": "BUG: Merge Node \"Wait for both Inputs to arrive\" is not waiting and ...",
+        "url": "https://github.com/n8n-io/n8n/issues/6596"
+      },
+      {
+        "title": "Bug - Merge Node does not wait for both inputs · Issue #3949 · n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n/issues/3949"
+      },
+      {
+        "title": "Merge Node is \"Waiting for input\" (Hangs) | Scriflow",
+        "url": "https://scriflow.busca.software/blog/en/n8n-merge-node-waiting-for-input"
+      },
+      {
+        "title": "Execution Order & Merge in n8n: Understanding Branches",
+        "url": "https://nordflux.de/en/guides/execution-order-and-merge-why-branches-don-t-run-the-way-you-think"
+      },
+      {
+        "title": "The n8n Merge Node: Combining Two Streams Without Losing Items",
+        "url": "https://www.runxbuild.com/blog/n8n-merge-node/"
+      },
+      {
+        "title": "n8n Merge Node: Complete Guide to Combining Workflow Data",
+        "url": "https://ryanandmattdatascience.com/n8n-merge-node/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-15T13:17:29.643Z",
+    "query": "n8n merge node sql",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Merge | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge"
+      },
+      {
+        "title": "Microsoft SQL | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.microsoftsql"
+      },
+      {
+        "title": "Master the n8n Merge Node: The Complete Guide to Append, Combine, SQL ...",
+        "url": "https://www.youtube.com/watch?v=jm_brFk5ODQ"
+      },
+      {
+        "title": "Merge Node SQL Column Name the Same - Questions - n8n Community",
+        "url": "https://community.n8n.io/t/merge-node-sql-column-name-the-same/77965"
+      },
+      {
+        "title": "Merge Extended | n8n community node | NCNodes",
+        "url": "https://ncnodes.com/package/n8n-nodes-solobuilder-merge/mergeExtended/Default:Default"
+      },
+      {
+        "title": "n8n Merge Node — Append, Combine & SQL-Style Joins",
+        "url": "https://thirdygayares.com/n8n/n8n-merge-node"
+      },
+      {
+        "title": "n8n Merge Node Masterclass: Combine, Append & SQL",
+        "url": "https://www.youtube.com/watch?v=1pfThpvVJfc"
+      },
+      {
+        "title": "Merge Extended | n8n community node | NCNodes",
+        "url": "https://ncnodes.com/package/n8n-nodes-merge-combine-sql-fixed/mergeExtended/Default:Default"
+      },
+      {
+        "title": "Configure the n8n Merge Node: 4 Modes to Join Two Branches | Hack ...",
+        "url": "https://hackceleration.com/resources/integrations/n8n/merge"
+      },
+      {
+        "title": "n8n-docs/docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md ...",
+        "url": "https://github.com/n8n-io/n8n-docs/blob/main/docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md"
+      }
+    ]
+  }
+]

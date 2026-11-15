@@ -1,0 +1,1063 @@
+{
+  "checkedAt": "2026-11-15T13:08:57.641Z",
+  "inventory": {
+    "total": 185,
+    "published": 183,
+    "hash": "a046bad03b9b375cc52c3c9291b45b2c",
+    "database_date": "2026-11-15"
+  },
+  "n8nPosts": [
+    {
+      "id": 221,
+      "title": "n8n vs Zapier (2026): Pricing, AI Workflows and Hidden Costs",
+      "slug": "n8n-vs-zapier-2026-comparison",
+      "published": true,
+      "views": 3,
+      "created": "2026-09-15",
+      "headings": [
+        "Quick Verdict: Which Should You Choose?\r",
+        "Tasks vs Executions: The Difference That Changes the Bill\r",
+        "n8n vs Zapier Pricing in 2026\r",
+        "Three Workload Examples You Can Recalculate\r",
+        "A Practical Example: Turn an Inquiry Into a Tracked Follow-Up\r",
+        "Building the Workflow in Zapier\r",
+        "Building the Workflow in n8n\r",
+        "Is Self-Hosted n8n Really Free?\r",
+        "Source-Available Does Not Mean Unrestricted Open Source\r",
+        "n8n vs Zapier for AI Workflows and Agents\r",
+        "Put Review Before the External Action\r",
+        "Integrations: Check the Action, Not Just the App Count\r",
+        "Security and Reliability Are Shared Responsibilities\r",
+        "A Seven-Day Pilot Before You Commit\r",
+        "FAQ\r",
+        "Is n8n cheaper than Zapier?\r",
+        "Is n8n free forever when self-hosted?\r",
+        "Which is better for a beginner or small business?\r",
+        "Can n8n replace Zapier?\r",
+        "Does every step in Zapier count as a task?\r",
+        "Should I include Make in the comparison?\r",
+        "Final Recommendation\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 222,
+      "title": "How to Use n8n in 2026: Complete Beginner Guide",
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "published": true,
+      "views": 12,
+      "created": "2026-09-16",
+      "headings": [
+        "What Is n8n, in One Paragraph?\r",
+        "Cloud or Local? Choose Your Starting Point\r",
+        "The Five Concepts That Make n8n Click\r",
+        "Build Your First Workflow, Step by Step\r",
+        "Step 1: Create the workflow and add a trigger\r",
+        "Step 2: Fetch data with a node and a credential\r",
+        "Step 3: Add a decision with the If node\r",
+        "Step 4: Deliver the result\r",
+        "Step 5: Test the whole thing, then publish\r",
+        "Your Second Workflow: Make It Actually Useful\r",
+        "Templates: The Fastest Start and the Easiest Trap\r",
+        "Adding AI: Your First n8n Agent, With a Safety Gate\r",
+        "Five Beginner Mistakes That Cost the Most\r",
+        "FAQ\r",
+        "Is n8n free to use?\r",
+        "Can I run n8n locally on my own computer?\r",
+        "Do I need to know how to code?\r",
+        "Is n8n better than Zapier?\r",
+        "How do I use AI agents in n8n?\r",
+        "Where do I find example workflows?\r",
+        "Bottom Line\r",
+        "Sources and Image Credits\r"
+      ]
+    },
+    {
+      "id": 231,
+      "title": "n8n Webhook Not Working? Fix 404 and Production URL Errors",
+      "slug": "n8n-webhook-not-working-2026",
+      "published": true,
+      "views": 0,
+      "created": "2026-10-01",
+      "headings": [
+        "Start with the response, not another restart",
+        "1. Separate the test URL from the production URL",
+        "2. Check the published version, not only the saved draft",
+        "3. Match the path and HTTP method exactly",
+        "Send one small, safe diagnostic request",
+        "4. Distinguish an n8n 404 from a routing or access failure",
+        "5. Check execution history and response mode",
+        "6. Check self-hosted public URLs and reverse proxies",
+        "7. Handle timeouts without creating duplicate work",
+        "Keep a short verification record",
+        "Frequently Asked Questions",
+        "Why does my n8n webhook work in test but not in production?",
+        "What does the requested webhook is not registered mean?",
+        "Why does a POST webhook fail when I open it in my browser?",
+        "Do I need to keep the n8n editor open?",
+        "Why did saving my changes not fix the production webhook?",
+        "Can an external service call my n8n localhost URL?",
+        "Does WEBHOOK_URL stop working in n8n 2.35.0?",
+        "Why does n8n return 200 without my expected JSON?",
+        "Sources and Image Credits"
+      ]
+    },
+    {
+      "id": 244,
+      "title": "n8n Can't Determine Which Item to Use? Fix Item Linking",
+      "slug": "n8n-cant-determine-which-item-to-use",
+      "published": true,
+      "views": 3,
+      "created": "2026-10-31",
+      "headings": [
+        "Start with the exact error, not a universal workaround",
+        "Understand the difference between .item, .first() and $json",
+        "Reproduce the wrong-customer problem with three records",
+        "Create three fictional customers",
+        "Filter without losing the input positions",
+        "Compare linked and positional results",
+        "Fix 1: carry the required fields forward and use $json",
+        "Fix 2: preserve pairedItem when your Code node creates new items",
+        "Preserve pairing in a one-to-one transformation",
+        "The indexing mistake to avoid",
+        "Fix 3: use itemMatching correctly inside an all-items Code node",
+        "Retrieve upstream fields inside a Code node",
+        "Fix 4: distinguish splitting from aggregation",
+        "Split a customer's tickets into separate items",
+        "Represent a genuinely combined result",
+        "Fix 5: configure Merge around identity, not coincidental order",
+        "Check branches, loops and pinned data before blaming the code",
+        "Verify the repair before reconnecting external actions",
+        "Frequently Asked Questions",
+        "Why does first() fix the error but repeat the same customer?",
+        "Where should pairedItem go in an n8n Code node?",
+        "What is the difference between item and itemMatching?",
+        "Should I use first() after a Merge or Aggregate node?",
+        "Why does the workflow work with one item but fail with several?",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 245,
+      "title": "n8n JSON Parameter Needs to Be Valid JSON: Fix the Body",
+      "slug": "n8n-json-parameter-needs-to-be-valid-json",
+      "published": true,
+      "views": 0,
+      "created": "2026-11-01",
+      "headings": [
+        "Quick Fix: Return an Object From the Entire Body",
+        "Object Body for a Message",
+        "Identify Which Part Is Actually Failing",
+        "Why Valid-Looking JSON Breaks After an Expression Resolves",
+        "Fragile Quoted Interpolation",
+        "Reproduce the Problem With Eight Fictional Inputs",
+        "Create the Test Inputs",
+        "Choose the Body Mode That Matches Your API",
+        "Use JSON.stringify Without Adding Another Pair of Quotes",
+        "Safe Serialized Value in a Template",
+        "Equivalent n8n String Helper",
+        "Incorrect Extra Quotes Around a Serialized Value",
+        "Preserve Arrays, Booleans, Numbers, and Null",
+        "Typed Object Body",
+        "Expected Typed Payload",
+        "Handle JSON Text From AI Nodes Without Guessing",
+        "Parse and Validate a Message Payload",
+        "When an API Really Wants JSON Inside a String Field",
+        "Deliberately Serialized Nested Value",
+        "Use Raw JSON Only Deliberately",
+        "Serialized Raw Body",
+        "Diagnose Item 0, Item 1, or a Later Failure",
+        "Check Static Syntax and Exported Expressions Separately",
+        "Expression Inside a Workflow Export",
+        "Final Checklist Before Reconnecting Production",
+        "How the Examples Were Checked",
+        "Frequently Asked Questions",
+        "Why does n8n say JSON parameter needs to be valid JSON when a validator accepts it?",
+        "What does item 0 mean in the n8n JSON error?",
+        "Should I use JSON.stringify or toJsonString in n8n?",
+        "Can changing Content Type or Response Format fix this error?",
+        "Why does the workflow pass a manual test but fail later?",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 247,
+      "title": "n8n Code Node Guide: Return Items Correctly and Fix Common Errors",
+      "slug": "n8n-code-node-guide",
+      "published": true,
+      "views": 0,
+      "created": "2026-11-06",
+      "headings": [
+        "What the Code node receives and what it must return",
+        "Variables available in each mode",
+        "Run Once for All Items versus Run Once for Each Item",
+        "Filter and reshape in all items mode",
+        "Transform in each item mode",
+        "Split one item into many",
+        "Aggregate many items into one",
+        "Returning arrays, strings, numbers and lists of values",
+        "What each return value does",
+        "What each Code node error message means",
+        "Keeping item links intact with pairedItem",
+        "Multiple inputs and multiple outputs",
+        "Dates, Luxon and the modules you can and cannot load",
+        "HTTP requests, files and credentials",
+        "Timeouts, memory and large inputs on self hosted n8n",
+        "Python in the Code node after n8n 2.0",
+        "Debugging a Code node without guessing",
+        "A checklist before you leave the Code node",
+        "Frequently Asked Questions",
+        "Why does n8n say Code doesn't return items properly?",
+        "How do I return an array from the n8n Code node?",
+        "Can the n8n Code node take multiple inputs?",
+        "Why is my Code node slow or timing out?",
+        "Can I use Python packages in the n8n Code node?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 248,
+      "title": "n8n Loop Over Items: Batch Size, Done Branch, Reset and Rate Limits",
+      "slug": "n8n-loop-over-items-guide",
+      "published": true,
+      "views": 3,
+      "created": "2026-11-07",
+      "headings": [
+        "When you actually need Loop Over Items",
+        "How the node works, run by run",
+        "What the done output really contains",
+        "The loop-back connection",
+        "Batch size: what it changes and what it does not",
+        "Reading the index and detecting the last batch",
+        "Reset: when the node must forget its state",
+        "Rate limits: Loop and Wait versus HTTP Request batching",
+        "Pagination: use the HTTP Request node first",
+        "Nested loops and sub-workflows",
+        "Collecting results after the loop",
+        "Fixing the common failures",
+        "A checklist before you run a loop in production",
+        "Frequently Asked Questions",
+        "Why does my n8n Loop Over Items node only run once?",
+        "What does the done output of Loop Over Items contain?",
+        "How do I get the current index inside an n8n loop?",
+        "How do I handle API rate limits in n8n without a loop?",
+        "Can I nest Loop Over Items nodes in n8n?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 249,
+      "title": "n8n Sub-workflows: Pass Data, Return Output and Wait for Completion",
+      "slug": "n8n-sub-workflow-guide",
+      "published": true,
+      "views": 3,
+      "created": "2026-11-08",
+      "headings": [
+        "When a sub-workflow is the right tool",
+        "The two nodes and how data crosses the boundary",
+        "Defining inputs: the three input data modes",
+        "Run once with all items versus run once for each item",
+        "What the parent gets back",
+        "Wait for Sub-Workflow Completion: fire and forget",
+        "Errors, retries and the error workflow",
+        "Permissions: This workflow can be called by",
+        "Drafts, publishing and testing a sub-workflow",
+        "Memory and large jobs",
+        "Calling a workflow from outside: API, webhooks and AI tools",
+        "Fixing the common failures",
+        "A checklist before you publish a sub-workflow",
+        "Frequently Asked Questions",
+        "How do I pass data to a sub-workflow in n8n?",
+        "Why does my n8n sub-workflow return only the last item or batch?",
+        "What does Wait for Sub-Workflow Completion do in n8n?",
+        "Why does n8n say the workflow is not active and cannot be executed?",
+        "Can an AI agent call an n8n sub-workflow?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 250,
+      "title": "n8n AI Agent Memory: Session ID, Simple Memory vs Postgres and Fixes",
+      "slug": "n8n-ai-agent-memory-guide",
+      "published": true,
+      "views": 0,
+      "created": "2026-11-09",
+      "headings": [
+        "What memory does in an agent, and what it does not",
+        "The memory nodes compared",
+        "Session ID: the key that decides what the agent remembers",
+        "Which key to use for each channel",
+        "Node version 1.4 scopes the session to the memory node",
+        "One execution, one session",
+        "Context Window Length counts messages, not tokens",
+        "Simple Memory in depth",
+        "Postgres Chat Memory in depth",
+        "Clearing, inspecting and injecting memory with Chat Memory Manager",
+        "Load Previous Session in the Chat Trigger",
+        "A per user Telegram bot, end to end",
+        "Fixing the common failures",
+        "A checklist before publishing an agent with memory",
+        "Frequently Asked Questions",
+        "How does the Simple Memory node store chat history in n8n?",
+        "What does No session ID found mean in n8n?",
+        "How do I give each user their own memory in an n8n AI agent?",
+        "How do I clear an AI agent's memory in n8n?",
+        "Should I use Simple Memory or Postgres Chat Memory?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 251,
+      "title": "n8n Wait Node: Resume URL, Webhook Waits and Stuck Executions",
+      "slug": "n8n-wait-node-guide",
+      "published": true,
+      "views": 0,
+      "created": "2026-11-11",
+      "headings": [
+        "The four ways a Wait node resumes",
+        "What waiting means inside n8n",
+        "How suspended executions come back",
+        "Timed waits: After Time Interval and At Specified Time",
+        "Time zones",
+        "One wait for all items",
+        "On Webhook Call and $execution.resumeUrl",
+        "Send the URL before the Wait node",
+        "The parameters that matter",
+        "The output is the request, not your items",
+        "Test runs",
+        "Webhook Suffix and workflows with several Wait nodes",
+        "Limit Wait Time: never wait forever",
+        "On Form Submitted and send and wait",
+        "What the resume endpoint answers",
+        "Why executions stay stuck in Waiting",
+        "The callback that arrives too early",
+        "Workflow timeouts and long waits",
+        "Large executions and the crash limit",
+        "Waits inside sub-workflows",
+        "The Wait node does not wait for other branches",
+        "Patterns that work",
+        "A checklist before publishing a workflow with a Wait node",
+        "Frequently Asked Questions",
+        "How does the Wait node work in n8n?",
+        "What is $execution.resumeUrl in n8n?",
+        "Why is my n8n execution stuck in Waiting?",
+        "How do I add a delay between items or requests in n8n?",
+        "Does a long wait use resources or count toward the workflow timeout?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 252,
+      "title": "n8n Split Out Node: Arrays, Nested JSON and Common Fixes",
+      "slug": "n8n-split-out-node-guide",
+      "published": true,
+      "views": 3,
+      "created": "2026-11-12",
+      "headings": [
+        "First distinguish an array from a list of n8n items",
+        "A complete example: one order becomes two order lines",
+        "Fields To Split Out expects a name, not the array value",
+        "Include and Destination Field Name control the output shape",
+        "Nested arrays need the correct path and sometimes two splits",
+        "Split orders first, then their lines",
+        "Literal dots in property names",
+        "Nested destinations differ between node versions",
+        "Splitting several fields pairs values by position",
+        "Empty arrays, missing fields, nulls and objects are different inputs",
+        "Parse a JSON string before splitting it",
+        "Preserve object keys with a Code node",
+        "Split Out versus Loop Over Items, Aggregate and Code",
+        "Binary files: split attachments, not the JSON metadata",
+        "Keep item linking and parent identifiers intact",
+        "Troubleshoot Split Out without guessing",
+        "Large arrays and the cost of copying parent data",
+        "Frequently Asked Questions",
+        "What does the Split Out node do in n8n?",
+        "What is the difference between Split Out and Loop Over Items?",
+        "How do I split a nested JSON array and keep the parent ID?",
+        "Why does Split Out return no items or just one item?",
+        "Can Split Out separate binary files in n8n?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    },
+    {
+      "id": 253,
+      "title": "n8n Date Format: Expressions, Timezones and Invalid DateTime Fixes",
+      "slug": "n8n-date-format-guide",
+      "published": true,
+      "views": 6,
+      "created": "2026-11-13",
+      "headings": [
+        "Quick reference: common n8n date expressions",
+        "Start with the input contract, not the output pattern",
+        "A no-code example with the Date & Time node",
+        "Luxon format tokens: the mistakes that still look like dates",
+        "Parse ISO, custom text and SQL-style dates differently",
+        "Timezone conversion versus assigning a timezone",
+        "Unix timestamps: seconds and milliseconds are not interchangeable",
+        "Date-only values should not accidentally become timestamps",
+        "Expressions and the Code node do not expose identical methods",
+        "Validate every input before formatting it",
+        "Add days and months according to the rule you actually mean",
+        "DST gaps and repeated times need an explicit policy",
+        "Compare dates as instants or as business-calendar dates",
+        "Fix common n8n date errors",
+        "Frequently Asked Questions",
+        "How do I format a date in n8n?",
+        "Why does n8n return Invalid DateTime?",
+        "Should I use yyyy or YYYY in an n8n custom date format?",
+        "How do I convert a Unix timestamp to a date in n8n?",
+        "Why does a date expression work in Edit Fields but fail in the Code node?",
+        "Verification Notes",
+        "Sources and Further Reading"
+      ]
+    }
+  ],
+  "protectedDrafts": [
+    {
+      "slug": "audacity-noise-reduction-voice-2026",
+      "published": false
+    },
+    {
+      "slug": "pdf-to-podcast-notebooklm-2026",
+      "published": false
+    }
+  ],
+  "keywordResearch": {
+    "source": "Google public autocomplete",
+    "context": "English with US request parameters; wording evidence only, not measured demand",
+    "observations": [
+      {
+        "seed": "n8n merge node",
+        "suggestions": [
+          "n8n merge node",
+          "n8n merge node not working",
+          "n8n merge node wait for all inputs",
+          "n8n merge node example",
+          "n8n merge node documentation",
+          "n8n merge node append",
+          "n8n merge node wait",
+          "n8n merge node sql",
+          "n8n merge node binary",
+          "n8n merge node sql query"
+        ]
+      },
+      {
+        "seed": "n8n if node",
+        "suggestions": [
+          "n8n if node",
+          "n8n if node example",
+          "n8n if node executed",
+          "n8n if node not working",
+          "n8n if node output",
+          "n8n if node expression",
+          "n8n if node error",
+          "n8n if node regex",
+          "n8n if node array",
+          "n8n check if node executed"
+        ]
+      },
+      {
+        "seed": "n8n switch node",
+        "suggestions": [
+          "n8n switch node",
+          "n8n switch node example",
+          "n8n switch node default",
+          "n8n switch node else",
+          "n8n switch node expression",
+          "n8n switch node multiple conditions",
+          "n8n switch node expression example",
+          "n8n switch node not working",
+          "n8n switch node documentation",
+          "n8n change node icon"
+        ]
+      },
+      {
+        "seed": "n8n http request pagination",
+        "suggestions": [
+          "n8n http request pagination",
+          "n8n http request pagination example",
+          "n8n http request pagination loop",
+          "n8n http request node pagination"
+        ]
+      },
+      {
+        "seed": "n8n error handling",
+        "suggestions": [
+          "n8n error handling",
+          "n8n error handling workflow",
+          "n8n error handling best practices",
+          "n8n error handling template",
+          "n8n error handling node",
+          "n8n exception handling",
+          "n8n error handler",
+          "n8n error message",
+          "n8n error management",
+          "n8n global error handling"
+        ]
+      },
+      {
+        "seed": "n8n error trigger",
+        "suggestions": [
+          "n8n error trigger",
+          "n8n error trigger not working",
+          "n8n error trigger node",
+          "n8n error trigger example",
+          "n8n error trigger workflow",
+          "n8n error workflow not triggering",
+          "n8n whatsapp trigger error",
+          "n8n how to use error trigger"
+        ]
+      },
+      {
+        "seed": "n8n retry on fail",
+        "suggestions": [
+          "n8n retry on fail",
+          "n8n retry workflow on fail",
+          "n8n retry on error",
+          "n8n http request retry on fail",
+          "0xa00f4246 error retry failed"
+        ]
+      },
+      {
+        "seed": "n8n schedule trigger",
+        "suggestions": [
+          "n8n schedule trigger",
+          "n8n schedule trigger time zone",
+          "n8n schedule trigger not working",
+          "n8n schedule trigger change timezone",
+          "n8n schedule trigger cron",
+          "n8n schedule trigger not running",
+          "n8n schedule trigger weekdays",
+          "n8n schedule trigger node",
+          "n8n schedule trigger doesn't work",
+          "n8n schedule trigger random"
+        ]
+      },
+      {
+        "seed": "n8n cron",
+        "suggestions": [
+          "n8n cron",
+          "n8n cron expression",
+          "n8n cron job",
+          "n8n cron trigger",
+          "n8n cron node",
+          "n8n cron timezone",
+          "n8n cron not working",
+          "n8n crontab",
+          "n8n cron trigger not working",
+          "n8n cronometer"
+        ]
+      },
+      {
+        "seed": "n8n filter node",
+        "suggestions": [
+          "n8n filter node",
+          "n8n filter node discarded",
+          "n8n filter node array",
+          "n8n vs node-red"
+        ]
+      },
+      {
+        "seed": "n8n aggregate node",
+        "suggestions": [
+          "n8n aggregate node",
+          "n8n vs node-red"
+        ]
+      },
+      {
+        "seed": "n8n remove duplicates",
+        "suggestions": [
+          "n8n remove duplicates",
+          "n8n remove duplicates node",
+          "n8n remove duplicates from array",
+          "n8n remove duplicates from list",
+          "n8n remove duplicate items"
+        ]
+      },
+      {
+        "seed": "n8n google sheets",
+        "suggestions": [
+          "n8n google sheets",
+          "n8n google sheets integration",
+          "n8n google sheets credentials",
+          "n8n google sheets trigger",
+          "n8n google sheets api",
+          "n8n google sheets node",
+          "n8n google sheets get rows",
+          "n8n google sheets service account",
+          "n8n google sheets oauth2 api",
+          "n8n google sheets account"
+        ]
+      },
+      {
+        "seed": "n8n environment variables",
+        "suggestions": [
+          "n8n environment variables",
+          "n8n environment variables docker",
+          "n8n environment variables file",
+          "n8n environment variables webhook",
+          "n8n environment variables in workflow",
+          "n8n environment variables list",
+          "n8n environment variables timezone",
+          "n8n environment variables self hosted",
+          "n8n environment variables npm",
+          "n8n environment variables docker compose"
+        ]
+      },
+      {
+        "seed": "n8n execution timeout",
+        "suggestions": [
+          "n8n execution_timeout",
+          "n8n workflow execution timeout",
+          "n8n execute command timeout"
+        ]
+      },
+      {
+        "seed": "n8n referenced node is unexecuted",
+        "suggestions": [
+          "n8n referenced node is unexecuted",
+          "what is non reference node",
+          "node-red vs n8n"
+        ]
+      },
+      {
+        "seed": "n8n cannot read properties of undefined",
+        "suggestions": [
+          "n8n cannot read properties of undefined",
+          "n8n cannot read properties of undefined reading map ')",
+          "n8n cannot read properties of undefined reading message ')",
+          "n8n cannot read properties of undefined reading execute ')",
+          "n8n cannot read properties of undefined reading disabled ')",
+          "n8n cannot read properties of undefined reading parts ')",
+          "n8n cannot read properties of undefined reading reduce ')",
+          "n8n cannot read properties of undefined reading manager ')",
+          "n8n cannot read properties of undefined reading inputtype ')",
+          "n8n cannot read properties of undefined reading error ')"
+        ]
+      },
+      {
+        "seed": "n8n rate limit",
+        "suggestions": [
+          "n8n rate limit",
+          "n8n rate limit node",
+          "n8n rate limit reached",
+          "n8n rate limit openai",
+          "n8n rate limit workflow",
+          "n8n openai rate limit reached",
+          "n8n webhook rate limit",
+          "n8n api rate limit",
+          "n8n mcp rate limit",
+          "n8n gemini rate limit"
+        ]
+      },
+      {
+        "seed": "n8n 429",
+        "suggestions": [
+          "n8n 429 error",
+          "n8n 429 too many requests",
+          "n8n status code 429",
+          "n8n error code 429",
+          "erro 429 n8n",
+          "difference between 460 and 429",
+          "429 or 460 which is better"
+        ]
+      },
+      {
+        "seed": "n8n memory",
+        "suggestions": [
+          "n8n memory",
+          "n8n memory requirements",
+          "n8n memory limit",
+          "n8n memory node",
+          "n8n memory usage",
+          "n8n memory ai agent",
+          "n8n memory leak",
+          "n8n memory manager",
+          "n8n memory issues",
+          "n8n memory types"
+        ]
+      },
+      {
+        "seed": "n8n execute workflow",
+        "suggestions": [
+          "n8n execute workflow trigger",
+          "n8n execute workflow",
+          "n8n execute workflow node",
+          "n8n execute workflow with parameters",
+          "n8n execute workflow api",
+          "n8n execute workflow button",
+          "n8n execute workflow not working",
+          "n8n execute workflow trigger node",
+          "n8n execute workflow via api",
+          "n8n execute workflow output"
+        ]
+      },
+      {
+        "seed": "n8n update docker",
+        "suggestions": [
+          "n8n update docker",
+          "n8n update docker compose",
+          "n8n update docker image",
+          "n8n update docker container",
+          "n8n update docker desktop",
+          "n8n docker update version",
+          "n8n upgrade docker",
+          "n8n upgrade docker compose",
+          "update n8n using docker",
+          "update n8n using docker compose"
+        ]
+      },
+      {
+        "seed": "n8n openai",
+        "suggestions": [
+          "n8n openai",
+          "n8n openai subscription",
+          "n8n openai oauth",
+          "n8n openai credentials",
+          "n8n openai free credits",
+          "n8n openai api",
+          "n8n openai node",
+          "n8n openai compatible api",
+          "n8n openai api key",
+          "n8n openai chat model"
+        ]
+      },
+      {
+        "seed": "n8n form trigger",
+        "suggestions": [
+          "n8n form trigger",
+          "n8n form trigger node",
+          "n8n form trigger example",
+          "n8n form trigger file upload",
+          "n8n form trigger not working",
+          "n8n form trigger response",
+          "n8n form trigger authentication",
+          "n8n google form trigger",
+          "n8n form submission trigger",
+          "n8n form without trigger"
+        ]
+      },
+      {
+        "seed": "n8n telegram bot",
+        "suggestions": [
+          "n8n telegram bot",
+          "n8n telegram bot template",
+          "n8n telegram bot workflow",
+          "n8n telegram bot tutorial",
+          "n8n telegram bot buttons",
+          "n8n telegram bot menu",
+          "n8n telegram bot commands",
+          "n8n telegram bot trigger",
+          "n8n telegram bot chat id",
+          "n8n telegram bot ai agent"
+        ]
+      },
+      {
+        "seed": "n8n workflow has issues",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n problem in node",
+        "suggestions": [
+          "n8n problem in node http request",
+          "n8n problem in node ai agent",
+          "n8n error in sub node simple memory",
+          "n8n error in sub node mcp client",
+          "n8n error in sub-node openai chat model",
+          "n8n error node",
+          "n8n vs node-red"
+        ]
+      },
+      {
+        "seed": "n8n edit fields",
+        "suggestions": [
+          "n8n edit fields",
+          "n8n edit fields node",
+          "n8n edit fields array",
+          "n8n edit fields json",
+          "n8n edit fields set",
+          "n8n edit fields object",
+          "n8n edit fields binary",
+          "n8n edit fields example",
+          "n8n edit fields set node",
+          "n8n edit fields if"
+        ]
+      },
+      {
+        "seed": "n8n compare datasets",
+        "suggestions": [
+          "n8n compare datasets",
+          "n8n compare datasets node",
+          "n8n compare datasets not working"
+        ]
+      },
+      {
+        "seed": "n8n html extract",
+        "suggestions": [
+          "n8n html extract",
+          "n8n html extract node",
+          "n8n html extract css selector",
+          "n8n html extractor",
+          "n8n html extract content",
+          "n8n html extract table",
+          "n8n html extract example",
+          "n8n extract html content example",
+          "n8n get html content",
+          "n8n get html from url"
+        ]
+      },
+      {
+        "seed": "n8n pdf",
+        "suggestions": [
+          "n8n pdf",
+          "n8n pdf tutorial",
+          "n8n pdf download",
+          "n8n pdf to image",
+          "n8n pdf generator",
+          "n8n pdf extraction",
+          "n8n pdf book",
+          "n8n pdf ocr",
+          "n8n pdf to text",
+          "n8n pdf parser"
+        ]
+      },
+      {
+        "seed": "n8n gmail",
+        "suggestions": [
+          "n8n gmail",
+          "n8n gmail integration",
+          "n8n gmail trigger",
+          "n8n gmail automation",
+          "n8n gmail node",
+          "n8n gmail workflow",
+          "n8n gmail setup",
+          "n8n gmail connection",
+          "n8n gmail oauth2",
+          "n8n gmail login"
+        ]
+      },
+      {
+        "seed": "n8n notion",
+        "suggestions": [
+          "n8n notion",
+          "n8n notion integration",
+          "n8n notion mcp",
+          "n8n notion template",
+          "n8n notion database",
+          "n8n notion node",
+          "n8n notion trigger",
+          "n8n notion workflow",
+          "n8n notion automation",
+          "n8n notion rag"
+        ]
+      },
+      {
+        "seed": "n8n supabase",
+        "suggestions": [
+          "n8n supabase",
+          "n8n supabase vector store",
+          "n8n supabase node",
+          "n8n supabase rag",
+          "n8n supabase upsert",
+          "n8n supabase storage",
+          "n8n supabase credentials",
+          "n8n supabase vector",
+          "n8n supabase connection",
+          "n8n supabase integration"
+        ]
+      },
+      {
+        "seed": "n8n postgres",
+        "suggestions": [
+          "n8n postgres",
+          "n8n postgres node",
+          "n8n postgres version",
+          "n8n postgres chat memory",
+          "n8n postgres docker compose",
+          "n8n postgres docker",
+          "n8n postgres setup",
+          "n8n postgres vector store",
+          "n8n postgres pgvector store",
+          "n8n postgres connection refused"
+        ]
+      },
+      {
+        "seed": "n8n mcp",
+        "suggestions": [
+          "n8n mcp",
+          "n8n mcp server",
+          "n8n mcp claude",
+          "n8n mcp github",
+          "n8n mcp claude code",
+          "n8n mcp skills",
+          "n8n mcp docs",
+          "n8n mcp setup",
+          "n8n mcp codex",
+          "n8n mcp client"
+        ]
+      },
+      {
+        "seed": "n8n ai agent tools",
+        "suggestions": [
+          "n8n ai agent tools",
+          "n8n ai agent tools list",
+          "n8n ai agent tools tutorial",
+          "n8n ai agent tools prompt",
+          "n8n ai agent tools google sheets",
+          "n8n ai agent tools http request",
+          "n8n ai agent tools example",
+          "n8n ai agent tool node",
+          "n8n ai agent tool calling",
+          "n8n ai agent tool output"
+        ]
+      },
+      {
+        "seed": "n8n structured output parser",
+        "suggestions": [
+          "n8n structured output parser",
+          "n8n structured output parser not working",
+          "n8n structured output parser example",
+          "n8n structured output parser error",
+          "n8n structured output parser node",
+          "n8n structured output parser failing",
+          "n8n structured output parser ai agent",
+          "n8n structured output parser array",
+          "n8n how to use structured output parser",
+          "types of parser"
+        ]
+      },
+      {
+        "seed": "n8n vector store",
+        "suggestions": [
+          "n8n vector store",
+          "n8n vector store tool",
+          "n8n vector store retriever",
+          "n8n vector store tool missing",
+          "n8n vector store supabase",
+          "n8n vector store example",
+          "n8n vector store node",
+          "n8n vector store metadata",
+          "n8n vector store question answer tool",
+          "n8n vector store embedding"
+        ]
+      },
+      {
+        "seed": "n8n chat trigger",
+        "suggestions": [
+          "n8n chat trigger",
+          "n8n chat trigger node",
+          "n8n chat trigger not working",
+          "n8n chat trigger response mode",
+          "n8n chat trigger file upload",
+          "n8n chat trigger url",
+          "n8n chat trigger webhook",
+          "n8n chat trigger response",
+          "n8n chat trigger output",
+          "n8n chat trigger example"
+        ]
+      },
+      {
+        "seed": "n8n credentials",
+        "suggestions": [
+          "n8n credentials",
+          "n8n credentials manager",
+          "n8n credentials page",
+          "n8n credentials api",
+          "n8n credentials expression",
+          "n8n credentials export",
+          "n8n credentials google sheets",
+          "n8n credentials backup",
+          "n8n credentials in code node",
+          "n8n credentials variable"
+        ]
+      },
+      {
+        "seed": "n8n variables",
+        "suggestions": [
+          "n8n variables",
+          "n8n variables self hosted",
+          "n8n variables in workflow",
+          "n8n variables node",
+          "n8n variables tab",
+          "n8n variables community",
+          "n8n variables community edition",
+          "n8n variables free",
+          "n8n context variables",
+          "n8n variables docker"
+        ]
+      },
+      {
+        "seed": "n8n static data",
+        "suggestions": [
+          "n8n static data",
+          "n8n static data node",
+          "n8n workflow static data",
+          "n8n global static data",
+          "n8n get static data",
+          "n8n set static data",
+          "n8n clear static data",
+          "n8n save static data",
+          "n8n store static data",
+          "n8n get workflow static data"
+        ]
+      },
+      {
+        "seed": "n8n execution order",
+        "suggestions": [
+          "n8n execution order",
+          "n8n execution order v0 vs v1",
+          "n8n execution order v1",
+          "n8n node execution order",
+          "n8n workflow execution order",
+          "order execution policy",
+          "what is order execution",
+          "execution order meaning"
+        ]
+      },
+      {
+        "seed": "n8n merge node not waiting",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n google sheets append",
+        "suggestions": [
+          "n8n google sheets append multiple rows",
+          "n8n google sheets append",
+          "n8n google sheets append row",
+          "n8n google sheets add row",
+          "contact list template google sheets",
+          "can you merge google sheets",
+          "how to add template to google sheets"
+        ]
+      },
+      {
+        "seed": "n8n http request error 400",
+        "suggestions": []
+      },
+      {
+        "seed": "n8n http request headers",
+        "suggestions": [
+          "n8n http request header",
+          "n8n http request header auth",
+          "n8n http request response headers",
+          "http request header example",
+          "request header example"
+        ]
+      }
+    ]
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "limits": "Read-only database inventory. No Search Console or volume dataset."
+}

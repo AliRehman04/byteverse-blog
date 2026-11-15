@@ -48,12 +48,15 @@ function runSql(inputs, query, params = []) {
 test("draft blocks parse and FAQ structure matches the blog convention", () => {
   assert(!/^# /m.test(content));
   assert(content.match(/^## .+$/gm).every((heading) => !heading.endsWith("?")));
-  assert.equal(content.split("\n## Frequently Asked Questions")[1]?.split("\n## ")[0].match(/^### /gm)?.length, 5);
+  assert.equal(content.split("\n## Frequently Asked Questions")[1]?.split("\n## ")[0].match(/^### /gm)?.length, ledger.faq.length);
   for (const block of blocks) assert(["mjs", "txt", "json", "sql"].includes(block.language), block.language);
   assert.equal(jsonBlocks.length, 3);
   assert.equal(sqlBlocks.length, 4);
   assert.equal(codeBlocks.length, 1);
   assert(!/\u2014/.test(content), "No em dashes in published content");
+  assert(!/five modes/i.test(content), "The Mode menu has four entries and six behaviours");
+  const faqSection = content.split("\n## Frequently Asked Questions")[1].split("\n## ")[0];
+  for (const answer of faqSection.split(/^### .+$/m).slice(1)) assert(!/[#*_`>-]/.test(answer), "FAQ answers must survive the schema character filter");
 });
 
 if (process.argv.includes("--metrics")) console.log(JSON.stringify(metrics, null, 2));
@@ -121,27 +124,39 @@ test("the Code node append example concatenates both nodes in order", () => {
   assert.deepEqual(result.map((item) => item.json.customerId), [101, 102, 103, 101, 103, 101]);
 });
 
-test("the Merge node source facts quoted in the article match the pinned commit", () => {
-  const description = readFileSync(new URL("../../.byteverse-merge-check/src/versionDescription.ts", import.meta.url), "utf8");
+test("the Merge node source facts quoted in the article match the n8n 2.47.7 release tag", () => {
+  const source = (file) => readFileSync(new URL(`../../.byteverse-merge-check/src-2.47.7/${file}`, import.meta.url), "utf8");
+  for (const [file, hash] of Object.entries(ledger.validation.sourceSha256)) {
+    assert.equal(createHash("sha256").update(readFileSync(new URL(`../../.byteverse-merge-check/src-2.47.7/${file}`, import.meta.url))).digest("hex"), hash, file);
+  }
+  const description = source("versionDescription.ts");
   const quoted = blocks.find((block) => block.language === "txt").code.trim();
   assert(description.includes(quoted), "requiredInputs line changed");
   assert(description.includes("version: [3, 3.1, 3.2]"));
-  const sql = readFileSync(new URL("../../.byteverse-merge-check/src/combineBySql.ts", import.meta.url), "utf8");
+  const sql = source("combineBySql.ts");
   for (const message of ["Dataset too large for the SQL sandbox", "SQL query exceeded the 30 second execution limit", "Issue while executing query"]) {
     assert(sql.includes(message));
     assert(content.includes(message));
   }
   assert(sql.includes("node.typeVersion <= 3.1 ? true : options.emptyQueryResult === 'success'"));
-  const position = readFileSync(new URL("../../.byteverse-merge-check/src/combineByPosition.ts", import.meta.url), "utf8");
+  assert(sql.includes("this.evaluateExpression(resolvable, 0)"), "Query expressions are evaluated against the first item");
+  assert(sql.includes("Expressions in the query text become part of the SQL"));
+  const position = source("combineByPosition.ts");
   assert(position.includes("Consider enabling \"Include Any Unpaired Items\""));
   assert(position.includes("default: { values: { resolveClash: 'addSuffix' } }"));
-  const engine = readFileSync(new URL("../../.byteverse-merge-check/src/workflow-execute.ts", import.meta.url), "utf8");
+  assert(position.includes("export const properties: INodeProperties[] = [\n\tnumberInputsProperty,"), "Position accepts Number of Inputs");
+  assert(!source("combineAll.ts").includes("numberInputsProperty"), "All Possible Combinations stays two-input");
+  const utils = source("utils.ts");
+  assert(utils.includes("json[`${key}_${suffix}`] = entry.json[key];") && content.includes("`email_1` and `email_2`"));
+  assert(utils.includes("return { ...entry, json };"), "Suffixing leaves binary properties untouched");
+  assert(utils.includes("_source: sourceField,") && source("combineByFields.ts").includes("addSourceField(matches.unmatched1, 'input1')"));
+  assert(/if \(joinMode !== 'enrichInput2'\) \{\s+resolveClash = 'preferLast';\s+\} else \{\s+resolveClash = 'preferInput1';/.test(utils), "Enrich Input 2 prefers Input 1 by default");
+  assert(source("loadOptions.ts").includes("name: 'Prefer Input 2 Version',\n\t\t\t\tvalue: 'preferLast',") && content.includes("Prefer Input 2 Version"));
+  const engine = source("workflow-execute.ts");
   assert(engine.includes("return data === null ? [] : data;"));
   assert(engine.includes("nodeSuccessData![outputIndex].length !== 0 ||"));
-  for (const file of ["versionDescription.ts", "combineBySql.ts", "combineByPosition.ts", "combineByFields.ts", "workflow-execute.ts"]) {
-    const hash = createHash("sha256").update(readFileSync(new URL(`../../.byteverse-merge-check/src/${file}`, import.meta.url))).digest("hex");
-    assert.equal(ledger.validation.sourceSha256[file], hash, file);
-  }
+  assert(engine.includes("if (!this.isLegacyExecutionOrder(workflow)) {") && engine.includes("// Add empty item also if the input data is empty"), "v0 forces the empty branch with one empty item");
+  assert(engine.includes("workflow.settings.executionOrder === 'v1'\n\t\t\t\t\t\t\t\t\t? nodeType.description.requiredInputs"), "requiredInputs is only checked in v1");
 });
 
 const require = createRequire(import.meta.url);
@@ -205,7 +220,7 @@ test("the real renderer preserves code blocks, tables and the intended links", (
   assert(external.every((node) => node.attribs.rel.includes("noopener")));
 });
 
-test("five visible FAQs match the existing schema extractor exactly", () => {
+test("every visible FAQ matches the existing schema extractor exactly", () => {
   const source = readFileSync(new URL("../src/app/blog/[slug]/page.tsx", import.meta.url), "utf8");
   const start = source.indexOf("  const faqRegex =");
   const end = source.indexOf("  // Auto-extract HowTo", start);
@@ -214,7 +229,7 @@ test("five visible FAQs match the existing schema extractor exactly", () => {
   const faqs = new Function("post", `${compiled}; return faqs;`)({ content });
   const details = all(document, (node) => node.name === "details");
   const collapse = (text) => text.replace(/\s+/g, " ").trim();
-  assert.equal(details.length, 5);
+  assert.equal(details.length, ledger.faq.length);
   assert.deepEqual(faqs.map((faq) => faq.question), ledger.faq);
   assert.deepEqual(details.map((node) => DomUtils.textContent(one(node, (child) => child.name === "summary"))), ledger.faq);
   assert.deepEqual(faqs.map((faq) => collapse(faq.answer)), details.map((node) => collapse(DomUtils.textContent(one(node, (child) => child.name === "p")))));
@@ -361,7 +376,7 @@ if (mode === "--live") {
     const actualCode = all(live, (node) => node.name === "pre").map((node) => DomUtils.textContent(one(node, (child) => child.name === "code")).trim());
     assert.deepEqual(actualCode, blocks.map((block) => block.code.trim()));
     assert.equal(all(live, (node) => node.name === "table").length, metrics.tables);
-    assert.equal(all(live, (node) => node.name === "details").length, 5);
+    assert.equal(all(live, (node) => node.name === "details").length, ledger.faq.length);
     for (const href of ledger.internalLinks) assert(all(live, (node) => node.name === "a" && node.attribs.href === href).length > 0);
   });
 }

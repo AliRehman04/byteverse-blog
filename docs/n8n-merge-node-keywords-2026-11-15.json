@@ -6,10 +6,10 @@
     "title": "n8n Merge Node: Fix Waiting Issues, Combine Modes and SQL Joins",
     "metaTitle": "n8n Merge Node: Waiting Fixes, Modes and SQL",
     "metaDescription": "Fix the n8n Merge node when it never runs or drops items. See what each mode does with an empty branch, v0 vs v1 execution order, and tested SQL joins.",
-    "excerpt": "A source-checked n8n Merge node guide: how the engine decides when a waiting Merge runs, what Append, Combine, SQL Query and Choose Branch do when one branch is empty, v0 versus v1 execution order, executed AlaSQL join examples and a repair table for the usual errors.",
-    "keywords": "n8n merge node, n8n merge node not working, n8n merge node wait for all inputs, n8n merge node append, n8n merge node sql, n8n merge node example, n8n combine by matching fields, n8n execution order v0 vs v1, n8n merge three inputs, n8n merge node empty input",
-    "summary": "Pick the Merge mode by data shape: Append after an If split, Matching Fields for keyed joins, SQL Query for three or more inputs|In the v1 execution order a Merge runs with an empty input for a branch that produced nothing, except Choose Branch, which never runs|SQL mode needs bracketed reserved words, explicit aliases for shared columns and node version 3.2 for the Empty Query Result option",
-    "readingTime": "20 min read",
+    "excerpt": "A source-checked n8n Merge node guide, verified against the n8n 2.47.7 release: when a waiting Merge runs, what each mode does when one branch is empty, how v0 and v1 execution order differ, executed AlaSQL join examples and a repair table for the usual errors.",
+    "keywords": "n8n merge node, n8n merge node not working, n8n merge node wait for all inputs, n8n merge node append, n8n merge node sql, n8n merge node example, n8n combine by matching fields, n8n execution order v0 vs v1, n8n merge three inputs, n8n merge node empty input, n8n merge node binary, n8n merge choose branch, n8n compare datasets",
+    "summary": "Pick the Merge mode by data shape: Append after an If split, Matching Fields for keyed joins, SQL Query for three or more inputs|In v1 a Merge runs with an empty input for a branch that produced nothing, except Choose Branch, which needs Input 1 and Input 2|In v0 an empty branch is forced to run once with an empty item; SQL mode needs bracketed reserved words, aliased shared columns and query parameters",
+    "readingTime": "24 min read",
     "categoryId": 2,
     "categorySlug": "tech-guides",
     "author": "Ali Rehman",
@@ -70,17 +70,23 @@
     { "title": "n8n Docs: Merge node", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge" },
     { "title": "n8n Docs: Merge data", "url": "https://docs.n8n.io/build/flow-logic/merge-data" },
     { "title": "n8n Docs: Understand execution order", "url": "https://docs.n8n.io/build/flow-logic/understand-execution-order" },
-    { "title": "n8n source: Merge v3 versionDescription.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/nodes-base/nodes/Merge/v3/actions/versionDescription.ts" },
-    { "title": "n8n source: workflow-execute.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/core/src/execution-engine/workflow-execute.ts" },
-    { "title": "n8n source: Merge v3 combineBySql.ts at 51f8cf6", "url": "https://github.com/n8n-io/n8n/blob/51f8cf624992e5813c31684359d95db5bf378092/packages/nodes-base/nodes/Merge/v3/actions/mode/combineBySql.ts" },
+    { "title": "n8n Docs: Configure workflow settings", "url": "https://docs.n8n.io/build/manage-workflows/configure-workflow-settings" },
+    { "title": "n8n Docs: Compare Datasets node", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.comparedatasets" },
+    { "title": "n8n 2.47.7 source: Merge v3 versionDescription.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Merge/v3/actions/versionDescription.ts" },
+    { "title": "n8n 2.47.7 source: workflow-execute.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/core/src/execution-engine/workflow-execute.ts" },
+    { "title": "n8n 2.47.7 source: Merge v3 combineByFields.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Merge/v3/actions/mode/combineByFields.ts" },
+    { "title": "n8n 2.47.7 source: Merge v3 helpers/utils.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Merge/v3/helpers/utils.ts" },
+    { "title": "n8n 2.47.7 source: Merge v3 combineBySql.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Merge/v3/actions/mode/combineBySql.ts" },
     { "title": "AlaSQL wiki: Supported SQL statements", "url": "https://github.com/alasql/alasql/wiki/Supported-SQL-statements" }
   ],
-  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-cant-determine-which-item-to-use", "/blog/n8n-sub-workflow-guide", "/blog/n8n-loop-over-items-guide", "/blog/n8n-code-node-guide", "/blog/n8n-split-out-node-guide"],
+  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-cant-determine-which-item-to-use", "/blog/n8n-json-parameter-needs-to-be-valid-json", "/blog/n8n-sub-workflow-guide", "/blog/n8n-wait-node-guide", "/blog/n8n-loop-over-items-guide", "/blog/n8n-code-node-guide", "/blog/n8n-split-out-node-guide"],
   "faq": [
     "Why does the n8n Merge node not run when one branch is empty?",
     "Does the Merge node wait for all inputs?",
+    "What is the difference between v0 and v1 execution order in n8n?",
     "How do I merge more than two inputs in n8n?",
     "What is the difference between Append and Combine in the Merge node?",
+    "How do I merge binary files with the Merge node?",
     "Why does the SQL mode of the Merge node fail on a column name?"
   ],
   "images": {
@@ -96,22 +102,66 @@
     "selection": "Existing licensed self-hosted photos, both visually inspected on 15 November. Cover shows a woman at a desk with a laptop spreadsheet and folders; inline shows tabular data on a laptop screen. Neither is used as the cover of another n8n post. Illustrative, not n8n screenshots."
   },
   "validation": {
-    "proseWords": 4209,
-    "readingTime": "20 min read",
-    "contentSha256": "6946532e63e1b930f3ba1f37d88d068a59e8d24b2e86afd6e62d784227e24677",
+    "proseWords": 5066,
+    "readingTime": "24 min read",
+    "contentSha256": "2c42dab771107f6ee483d558943f2741417e7a4b7b268c5c7f0ec810525d3e74",
     "codeBlocks": 9,
     "tables": 3,
     "alasqlVersion": "4.4.0",
     "fixturePackage": "../.byteverse-merge-check/node_modules/alasql",
+    "sourceTag": "n8n@2.47.7",
+    "sourceDirectory": "../.byteverse-merge-check/src-2.47.7",
     "sourceCommit": "51f8cf624992e5813c31684359d95db5bf378092",
     "sourceCommitDate": "2026-11-15T03:44:47Z",
     "n8nLatestNpm": "2.47.7",
+    "tagVersusMaster": "Merge v3 action, mode, description and sandbox files byte-identical; helpers/utils.ts differs by one moved UserError import; workflow-execute.ts differs by a refactor that moved the waiting-node block into addWaitingNodeToEmptyStack with identical rules.",
     "sourceSha256": {
       "versionDescription.ts": "09951ed1b6bd26afe526d36c0b38809d7ad055077d2ae8368a3b7c5ebd8d3d0f",
       "combineBySql.ts": "be5fef3f66b0889eb45ac4ba2ea246c016f479397bc9bf1370858587a1cd5edf",
       "combineByPosition.ts": "74927a7fca3bde79a46f5755f4662e4ddcbb6b65e7f97fdfb8f74d3744e841e6",
       "combineByFields.ts": "5be27edab7bda917b9781187af9e8e540b7b9812f2d4c5794c738cf6336ed402",
-      "workflow-execute.ts": "1620f459c2805dc1ad0629fa7ff55242abdf97014f07ada2882de8488b3b2124"
+      "combineAll.ts": "7e4a7ad53e9f6eeeb34a886062584ed76dc46270c7b6845d259165b931070032",
+      "utils.ts": "2188f332f4e1e18b5e28d5973ee38b137232815421dbb79e08c5b8b26633fbad",
+      "workflow-execute.ts": "08690bf81e4eef57f8ccabd70d4863431ab5fc9bbddaafa376e313037632b8af",
+      "loadOptions.ts": "de820ab96fdcf8387e0b763c930fdf68a55a01ad8eb024e31ab5a0e77c77ad5b"
+    }
+  },
+  "revision": {
+    "date": "2026-11-15",
+    "reason": "Owner-supplied external review: verify execution-order claims against the exact release, fix the mode count, add inline source links, improve FAQs and internal links, break up long paragraphs, add practical evidence.",
+    "corrections": [
+      "Mode count: four Mode menu entries with Combine split three ways, six behaviours (was 'five modes').",
+      "Choose Branch requires Input 1 and Input 2 only (requiredInputs [0, 1]); extra inputs are not required (was 'every input').",
+      "Always Add Input Number to Field Names produces email_1 and email_2 (was email1 and email2).",
+      "Combine by Position accepts Number of Inputs like Append (FAQ said Position was two-input only).",
+      "Expressions inside SQL query text are evaluated once against item 0 and pasted into the SQL (was 'the query text is fixed').",
+      "Matching Fields clash default: Input 2 wins except Enrich Input 2, where Input 1 wins; Keep Non-Matches adds _source when Output Data From is both.",
+      "v0 detail: the first unexecuted node of the empty branch is pushed with a single empty item; getParentNodes orders deepest ancestor first."
+    ],
+    "additions": ["Inline links to the n8n 2.47.7 source and docs", "Compare Datasets pointer", "Workflow settings path for Execution order", "Binary merge behaviour", "Two FAQs: v0 versus v1, binary files", "Internal links to the Wait node and JSON body guides", "Four repair-table rows"],
+    "notDone": "Screenshots of a live n8n workflow: a local n8n 2.47.7 install was started and then stopped and fully removed at the owner's request ('fazul install mat kro'); the article states that no instance was run.",
+    "previous": {
+      "title": "n8n Merge Node: Fix Waiting Issues, Combine Modes and SQL Joins",
+      "metaTitle": "n8n Merge Node: Waiting Fixes, Modes and SQL",
+      "metaDescription": "Fix the n8n Merge node when it never runs or drops items. See what each mode does with an empty branch, v0 vs v1 execution order, and tested SQL joins.",
+      "excerpt": "A source-checked n8n Merge node guide: how the engine decides when a waiting Merge runs, what Append, Combine, SQL Query and Choose Branch do when one branch is empty, v0 versus v1 execution order, executed AlaSQL join examples and a repair table for the usual errors.",
+      "summary": "Pick the Merge mode by data shape: Append after an If split, Matching Fields for keyed joins, SQL Query for three or more inputs|In the v1 execution order a Merge runs with an empty input for a branch that produced nothing, except Choose Branch, which never runs|SQL mode needs bracketed reserved words, explicit aliases for shared columns and node version 3.2 for the Empty Query Result option",
+      "keywords": "n8n merge node, n8n merge node not working, n8n merge node wait for all inputs, n8n merge node append, n8n merge node sql, n8n merge node example, n8n combine by matching fields, n8n execution order v0 vs v1, n8n merge three inputs, n8n merge node empty input",
+      "readingTime": "20 min read",
+      "coverImage": "https://www.byteverse.fyi/blog/csv-excel/photo-cover.jpg",
+      "contentMd5": "2758ceb2202de1c339dd573893d1ed6d",
+      "contentSha256": "6946532e63e1b930f3ba1f37d88d068a59e8d24b2e86afd6e62d784227e24677",
+      "editorialHash": "f3d4273b36dcd8c8ec6d3e73c9e8e782",
+      "modifiedAt": "2026-11-15T14:15:00.246Z",
+      "backupFile": "docs/content-backups/n8n-merge-node-guide-before-2026-11-15-revision.md"
+    },
+    "publication": {
+      "status": "applied",
+      "appliedAt": "2026-11-15T16:42:08.325Z",
+      "databaseWrites": 1,
+      "fieldsChanged": ["excerpt", "summary", "keywords", "reading_time", "content", "updated_at"],
+      "otherPostsUnchanged": 185,
+      "otherPostsHash": "a046bad03b9b375cc52c3c9291b45b2c"
     }
   },
   "publication": {

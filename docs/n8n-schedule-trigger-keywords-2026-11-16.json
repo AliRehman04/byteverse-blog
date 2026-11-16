@@ -1,0 +1,204 @@
+{
+  "slug": "n8n-schedule-trigger-guide",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-16",
+  "targeting": {
+    "title": "n8n Schedule Trigger: Fix Timezone, Cron and Not Running Issues",
+    "metaTitle": "n8n Schedule Trigger: Timezone and Cron Fixes",
+    "metaDescription": "Fix an n8n Schedule Trigger that is not running or fires at the wrong time. Covers publishing, timezone, cron syntax and durable scheduler timing.",
+    "excerpt": "A source-checked n8n Schedule Trigger guide, verified against the n8n 2.47.7 release: why a schedule does not run until you publish, which timezone it reads, how each interval is timed on the durable scheduler, tested cron examples and what happens to missed runs.",
+    "keywords": "n8n schedule trigger, n8n schedule trigger not working, n8n schedule trigger time zone, n8n schedule trigger change timezone, n8n schedule trigger cron, n8n schedule trigger not running, n8n schedule trigger weekdays, n8n cron expression, n8n invalid cron expression, n8n generic_timezone, n8n set timezone docker, n8n schedule trigger multiple times, n8n schedule trigger random",
+    "summary": "A Schedule Trigger only fires after the workflow is published, and it reads times in the workflow timezone or else the instance timezone|From n8n 2.45.0 seconds and minutes intervals count from publication, while hours, days, weeks, months and cron rules follow the clock|Use plain five-field cron syntax, remember that day of month and day of week combine as OR, and choose a missed-run option if restarts matter",
+    "readingTime": "20 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-16T16:40:00.000Z",
+    "total": 186,
+    "published": 184,
+    "hash": "dbf5125c1f8ee4a9afa11cb1dbf4096e",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"],
+    "overlap": {
+      "source": "docs/content-research/2026-11-16-keywords-candidates.json",
+      "n8nPosts": 13,
+      "finding": "Thirteen published n8n posts. The Schedule Trigger is mentioned twice in the beginner guide and once in the date format guide, with no heading about schedules, cron or timezone settings in any post. No dedicated Schedule Trigger, cron or instance timezone guide exists on the site."
+    }
+  },
+  "research": {
+    "selection": "Ran 44 n8n seeds through Google public autocomplete on 16 November 2026. The Schedule Trigger seed returned ten suggestions, six of them troubleshooting or timezone wording (time zone, not working, change timezone, not running, doesn't work, random), and the related timezone seeds (n8n timezone, n8n set timezone, n8n generic_timezone) returned more than twenty further variants. Error handling (error workflow not triggering, retry on fail, continue on fail) was the runner-up cluster and stays open for the next post. Search results for these queries already include the official docs, community threads and many blog guides, so this is not a low-competition claim. The differentiator is coverage of the durable scheduler that became the default in n8n 2.45.0, backed by running n8n's own scheduling code.",
+    "candidateFile": "docs/content-research/2026-11-16-keywords-candidates.json",
+    "candidateSeedCount": 44,
+    "autocompleteCheckedAt": "2026-11-16T16:40:00.000Z",
+    "autocompleteContext": "Google public autocomplete, English / gl=us. Wording evidence only, not measured US demand.",
+    "observations": [
+      { "seed": "n8n schedule trigger", "suggestions": ["n8n schedule trigger", "n8n schedule trigger time zone", "n8n schedule trigger not working", "n8n schedule trigger change timezone", "n8n schedule trigger cron", "n8n schedule trigger not running", "n8n schedule trigger weekdays", "n8n schedule trigger node", "n8n schedule trigger doesn't work", "n8n schedule trigger random"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n cron expression", "suggestions": ["n8n cron expression", "n8n cron expression every 15 minutes", "n8n cron job", "n8n invalid cron expression", "cron expression example"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n cron not working", "suggestions": ["n8n cron not working", "n8n cron trigger not working", "troubleshoot cron job not running"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n timezone", "suggestions": ["n8n timezones", "n8n timezone setting", "n8n timezone list", "n8n timezone docker", "n8n timezone variable", "n8n timezone env", "n8n timezone format", "n8n timezone change", "n8n.timezone for.india", "n8n timezone docker compose"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n set timezone", "suggestions": ["n8n set timezone", "n8n set timezone docker", "n8n configure timezone", "n8n set default timezone", "n8n self hosted set timezone"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n generic_timezone", "suggestions": ["n8n generic_timezone", "n8n generic time zone", "n8n docker generic_timezone", "generic timezone n8n list", "generic timezone n8n indonesia", "n8n generic_timezone brasil"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n schedule trigger multiple times", "suggestions": ["n8n schedule trigger multiple times", "3 hour early release schedule"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "n8n publish workflow", "suggestions": ["n8n publish workflow", "n8n publish workflow meaning", "n8n deploy workflow", "n8n post workflow", "n8n api publish workflow"], "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "serpSamples": {
+      "file": "docs/content-research/2026-11-16-ddg-schedule.json",
+      "engine": "DuckDuckGo HTML",
+      "queries": ["n8n schedule trigger not working", "n8n schedule trigger time zone", "n8n cron expression"],
+      "limits": "Titles and links only, not a competitor-content audit or a neutral Google rank measurement."
+    },
+    "intentMap": [
+      { "query": "n8n schedule trigger not working / not running / doesn't work", "section": "Five checks before you change anything; Publish the workflow" },
+      { "query": "n8n schedule trigger time zone / change timezone / n8n generic_timezone / set timezone docker", "section": "Timezone: which clock the trigger reads" },
+      { "query": "n8n schedule trigger cron / n8n cron expression / every 15 minutes / invalid cron expression", "section": "Custom (Cron): the syntax n8n accepts" },
+      { "query": "n8n schedule trigger weekdays / multiple times", "section": "Recipes for common schedules" },
+      { "query": "n8n schedule trigger random", "section": "Why runs start at an odd second; Recipes" },
+      { "query": "n8n publish workflow meaning", "section": "Publish the workflow" }
+    ],
+    "primarySourceNotes": [
+      "ScheduleTrigger.node.ts at n8n@2.47.7: versions 1 to 1.4; seven Trigger Interval options; manual mode uses rules[0], skips the recurrence check and validates a cron rule with sendAt from the cron package; registration failures of a cron rule are rethrown as 'Invalid cron expression'; misfire options shown from node version 1.4; default weekday [0] (Sunday).",
+      "GenericFunctions.ts: toCronExpression fills the second (and a missing minute, hour or day of month) from a sha256 of workflowId:nodeId; seconds rules are */N with no offset; minutes not dividing 60 and hours not dividing 24 fire every period and are gated; validateInterval messages and ranges.",
+      "schedule-trigger-job-registrar.ts: durable interception when N8N_SCHEDULER_ENABLED and N8N_USE_WORKFLOW_PUBLICATION_SERVICE are on (both default true); seconds and minutes become interval jobs in the default 'new' mode; every N hours, days, weeks, months with N >= 2 become recurring_cron; everything else plain cron; workflow timezone '' or 'DEFAULT' resolves to the instance timezone; first run computed with computeFirstRunAt.",
+      "@n8n/scheduler recurrence code: interval adds elapsed seconds; cron uses cron-parser with Luxon zones (missing local time shifts forward, repeated time fires once); recurring_cron fires a candidate in the same period as the previous fire or at least N periods later; weeks start on Sunday.",
+      "schedule-trigger-task-handler.ts builds the trigger item from task.scheduledFor, so the durable item's timestamp is the scheduled time.",
+      "Config defaults at the tag: GENERIC_TIMEZONE America/New_York, scheduler enabled true, triggerNodeMode 'new', DEFAULT_MISFIRE_GRACE_SECONDS 60.",
+      "pnpm catalog at the tag pins cron 4.4.0, cron-parser 5.6.1, luxon 3.7.2, moment-timezone 0.5.48.",
+      "n8n docs: publish requirement, timezone order and defaults, durable scheduler default from 2.45.0, misfire options from 2.36 on newly added nodes, variables evaluated at publication, Cloud console timezone steps, Docker GENERIC_TIMEZONE and TZ.",
+      "Editor text at the tag: Publish, Unpublish, Timezone, 'Default - {defaultTimezoneValue}'."
+    ],
+    "limits": "No private Search Console access, volumes, keyword difficulty scores or ranking forecasts. No live n8n instance was run; behaviour is derived from the tagged source and from executing its scheduling functions and pinned libraries."
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "n8n Docs: Schedule Trigger", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger" },
+    { "title": "n8n Docs: Schedule Trigger common issues", "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/common-issues" },
+    { "title": "n8n Docs: Durable scheduler", "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/durable-scheduler" },
+    { "title": "n8n Docs: Timezone and localization", "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/timezone-and-localization" },
+    { "title": "n8n Docs: Set your timezone (Cloud)", "url": "https://docs.n8n.io/deploy/use-n8n-cloud/configure-cloud/set-your-timezone" },
+    { "title": "n8n Docs: Configure workflow settings", "url": "https://docs.n8n.io/build/manage-workflows/configure-workflow-settings" },
+    { "title": "n8n Docs: Save and publish workflows", "url": "https://docs.n8n.io/build/understand-workflows/save-and-publish-workflows" },
+    { "title": "n8n Docs: Install with Docker", "url": "https://docs.n8n.io/deploy/host-n8n/install-options/install-with-docker" },
+    { "title": "n8n 2.47.7 source: ScheduleTrigger.node.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Schedule/ScheduleTrigger.node.ts" },
+    { "title": "n8n 2.47.7 source: Schedule GenericFunctions.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/nodes-base/nodes/Schedule/GenericFunctions.ts" },
+    { "title": "n8n 2.47.7 source: schedule-trigger-job-registrar.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/cli/src/scheduling/schedule-trigger-node/schedule-trigger-job-registrar.ts" },
+    { "title": "n8n 2.47.7 source: scheduler recurring-cron.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/%40n8n/scheduler/src/core/recurrence/kinds/recurring-cron.ts" },
+    { "title": "n8n 2.47.7 source: schedule-trigger-task.ts", "url": "https://github.com/n8n-io/n8n/blob/n8n%402.47.7/packages/cli/src/scheduling/schedule-trigger-node/schedule-trigger-task.ts" },
+    { "title": "crontab guru", "url": "https://crontab.guru" }
+  ],
+  "internalLinks": ["/blog/how-to-use-n8n-2026-complete-guide", "/blog/n8n-date-format-guide", "/blog/n8n-sub-workflow-guide", "/blog/n8n-wait-node-guide", "/blog/n8n-webhook-not-working-2026"],
+  "faq": [
+    "Why is my n8n Schedule Trigger not running?",
+    "How do I change the timezone of an n8n Schedule Trigger?",
+    "How do I write a cron expression in n8n?",
+    "How do I run an n8n workflow only on weekdays?",
+    "Why does my n8n schedule start a few seconds late?",
+    "Does n8n run missed schedules after a restart?",
+    "Can I use variables in the n8n Schedule Trigger?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/gemini-workspace/photo-cover.jpg",
+    "coverFile": "public/blog/gemini-workspace/photo-cover.jpg",
+    "coverCredit": "https://www.pexels.com/photo/person-using-a-laptop-on-a-table-7439136/",
+    "coverPhotographer": "cottonbro studio",
+    "inline": "https://www.byteverse.fyi/blog/claude-code-windows/photo-inline.jpg",
+    "inlineFile": "public/blog/claude-code-windows/photo-inline.jpg",
+    "inlineCredit": "https://www.pexels.com/photo/person-typing-on-laptop-5473892/",
+    "inlinePhotographer": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "selection": "Existing licensed self-hosted photos, both visually inspected on 16 November. Cover shows a task board on a laptop with a sticky note reading a time and a weekly planner on the desk, which suits a scheduling topic and is not the cover of any other n8n post. Inline shows hands typing on a laptop in a dark room. Illustrative, not n8n screenshots."
+  },
+  "validation": {
+    "proseWords": 4296,
+    "readingTime": "20 min read",
+    "contentSha256": "6cc2b673bd73ab8d34d14300e25e0f91a44ab63d2baba993ac4364d2c32f8c80",
+    "codeBlocks": 5,
+    "tables": 7,
+    "sourceTag": "n8n@2.47.7",
+    "sourceTagCommit": "d4dcb1b152a98fc31ea7c4ee6aecdc45c5c88063",
+    "sourceDirectory": "../.byteverse-schedule-check/src-2.47.7",
+    "n8nLatestNpm": "2.47.7",
+    "libraryVersions": { "cron-parser": "5.6.1", "cron": "4.4.0", "luxon": "3.7.2", "moment-timezone": "0.5.48" },
+    "fixturePackage": "../.byteverse-schedule-check (four small date libraries, installed once for this article)",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Seven FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "executionScope": "Unmodified n8n TypeScript from the tag is transpiled in memory and executed: toCronExpression, validateInterval, the durable scheduler's computeFirstRunAt, occurrencesFrom and validateCron, and buildScheduleTriggerItem. No n8n server, database, publication or scheduled execution.",
+    "sourceSha256": {
+      "ScheduleTrigger.node.ts": "a28d7cf439b17161de7dc1fb00c994f3d4d3924212dde9f852f4452f993eba9c",
+      "GenericFunctions.ts": "96aba393963cdaefeaf64b3c8561d1aab47922a620ba7ee128a0b8ad2eecc85f",
+      "schedule-trigger-job-registrar.ts": "4a93387aec1b31cda51008dead49ff4c1fb4d57b4b89611beada3ec7b5d44c5b",
+      "schedule-trigger-task.ts": "98e02a7f424e5dc625e6423e6f35b17ef20418e9bd2154f93b95a401432d5eb0",
+      "schedule-trigger-task-handler.ts": "3cd3c95ed696217f2a8862d0fe211075df599e3b4aa2910ab4697ae26c0e98ce",
+      "scheduler-cron.ts": "0449b7847abae0a998a06f3d21fcf239a9a526eb9f9fb23a45dc64641c63326b",
+      "recurring-cron.ts": "a5fc2664bc844faede9a0ab251d731af6cd4c12e5088a9514314577b2bbf2d5b",
+      "periods.ts": "a1af70902f56bf63abc2b5b2a3e0915521c5b313541065a5bbf8fcc3ec383f07",
+      "interval.ts": "7ca1c8b1e78cccc2339006e0eaacc0a1463f33d5e9bc6eb416c66284b02faa70",
+      "next-run.ts": "a77ffaae43264b5abeb5019f978707dd4bfe4cea7b060d904e42917b05281613",
+      "validate.ts": "09f73f482203b602e620a19865d8aac6de6e2802e3f02bc08464bcfd18642a4d",
+      "scheduler.config.ts": "7c5980bb85f0d4ed8bb813e74b84c2c3103b87cca47cc81d44b162d18ba2ff77",
+      "generic.config.ts": "89af3fb0df483e65490f1b3d15fda97275b4efd5cd012af2ce503c9b196a7e3f",
+      "workflows.config.ts": "f3168a4916fcc485821886318143f9c7d0429acb6e8648d259884298800a2645",
+      "workflow.ts": "60af0f07f169d021a5e95d30870d86859dad7d05a0a345431c110efec0c974a8",
+      "constants-scheduler.ts": "1f38c11b7e60f7b1b6ff1bceac416c80a0ebe06d0ac0c6b81b4f50a8d6488398",
+      "scheduled-task-manager.ts": "055f1dcb574d3b22b9bcdd77990a03ae86239de304581b23f7e0fb143b5cae16"
+    }
+  },
+  "revision": {
+    "date": "2026-11-16",
+    "reason": "Same-day rewording before the first deployment: the originality audit found clauses of 9 to 14 words that matched the n8n documentation word for word. Facts unchanged.",
+    "changes": [
+      "Cloud timezone detection sentence reworded.",
+      "Grace period and missed-run paragraphs and option descriptions reworded.",
+      "Availability of the missed-run options (n8n 2.36, newly created nodes, durable scheduler) reworded.",
+      "Polling triggers note and the missed-schedules FAQ answer reworded."
+    ],
+    "previous": {
+      "title": "n8n Schedule Trigger: Fix Timezone, Cron and Not Running Issues",
+      "metaTitle": "n8n Schedule Trigger: Timezone and Cron Fixes",
+      "metaDescription": "Fix an n8n Schedule Trigger that is not running or fires at the wrong time. Covers publishing, timezone, cron syntax and durable scheduler timing.",
+      "readingTime": "20 min read",
+      "coverImage": "https://www.byteverse.fyi/blog/gemini-workspace/photo-cover.jpg",
+      "contentMd5": "61b70337b816c4fced13638a8020d2ee",
+      "contentSha256": "4c143844fa3f1b910fd8532c7f3bab6dbfe0c0e7c3405f15d19d721d48955a7d",
+      "editorialHash": "c8ae758de9f0f82062d495d20c3354d6",
+      "modifiedAt": "2026-11-16T17:23:46.634Z",
+      "backupFile": "docs/content-backups/n8n-schedule-trigger-guide-before-2026-11-16-rewording.md"
+    },
+    "publication": {
+      "status": "applied",
+      "appliedAt": "2026-11-16T17:27:19.327Z",
+      "databaseWrites": 1,
+      "fieldsChanged": ["content", "updated_at"],
+      "otherPostsUnchanged": 186,
+      "otherPostsHash": "dbf5125c1f8ee4a9afa11cb1dbf4096e"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-16T17:30:00.000Z",
+    "method": "Case-normalised five-word phrase overlap against the 186 other stored posts and four official n8n documentation pages; code blocks, tables and links excluded.",
+    "draftPhrases": 3415,
+    "highestPostOverlap": { "slug": "n8n-merge-node-guide", "sharedPhrases": 16, "percent": 0.47, "nature": "the series' standard disclosure sentence and version strings" },
+    "docsOverlap": [
+      { "page": "Schedule Trigger", "sharedPhrases": 16, "percent": 0.47, "longestRunWords": 8, "longestRun": "Run the Most Recent Missed Execution Per Rule (option label)" },
+      { "page": "Schedule Trigger common issues", "sharedPhrases": 7, "percent": 0.2, "longestRunWords": 8 },
+      { "page": "Durable scheduler", "sharedPhrases": 21, "percent": 0.61, "longestRunWords": 8, "longestRun": "N8N_SCHEDULER_TRIGGER_NODE_MODE=legacy (environment variable)" },
+      { "page": "Save and publish workflows", "sharedPhrases": 1, "percent": 0.03, "longestRunWords": 5 }
+    ],
+    "identicalParagraphs30Words": 0,
+    "emDashes": 0,
+    "sentenceStats": { "count": 233, "meanWords": 14.6, "stdevWords": 7.3, "longestWords": 38 },
+    "limits": "Local lexical comparison only. It is not a web-wide plagiarism scan and not an AI-detector verdict; third-party detector scores cannot be guaranteed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 255,
+    "publishedAt": "2026-11-16T17:23:46.634Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/n8n-schedule-trigger-guide",
+    "approvalRequired": false,
+    "approvedBy": "owner message 'new blog add krdo ... blog add krdo ma test krke check krnuga' 2026-11-16",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 186,
+    "otherPostsHash": "dbf5125c1f8ee4a9afa11cb1dbf4096e"
+  }
+}

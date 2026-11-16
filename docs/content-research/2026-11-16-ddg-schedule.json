@@ -1,0 +1,149 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-16T17:04:25.316Z",
+    "query": "n8n schedule trigger not working",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "n8n Schedule Trigger Not Working? Mine Never Ran for 7 Weeks",
+        "url": "https://jen8n.com/n8n-schedule-trigger-not-working/"
+      },
+      {
+        "title": "Scheduled Trigger nodes not working - Questions - n8n Community",
+        "url": "https://community.n8n.io/t/scheduled-trigger-nodes-not-working/119640"
+      },
+      {
+        "title": "Common issues | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/common-issues"
+      },
+      {
+        "title": "Some scheduled workflows not triggering - Questions - n8n",
+        "url": "https://community.n8n.io/t/some-scheduled-workflows-not-triggering/23666"
+      },
+      {
+        "title": "Schedule Trigger | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger"
+      },
+      {
+        "title": "Schedule Trigger is not working properly · Issue #13301 · n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n/issues/13301"
+      },
+      {
+        "title": "n8n Schedule Trigger Not Working? Fix Timezone Issue (Step-by-Step ...",
+        "url": "https://www.youtube.com/watch?v=qE8zmZSO3FQ"
+      },
+      {
+        "title": "n8n Schedule Trigger Not Firing? Why It Stopped Silently (and How to ...",
+        "url": "https://www.watchflow.io/blog/n8n-schedule-trigger-not-firing/"
+      },
+      {
+        "title": "Local Hosted N8N : Schedule Node Not Triggering - GitHub",
+        "url": "https://github.com/n8n-io/n8n/issues/16357"
+      },
+      {
+        "title": "n8n Workflow Not Triggering on Schedule? Fixes | Watchgoose",
+        "url": "https://watchgoose.com/guides/n8n-workflow-not-triggering/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-16T17:04:27.567Z",
+    "query": "n8n schedule trigger time zone",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Schedule Trigger | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger"
+      },
+      {
+        "title": "n8n Schedule Trigger Guide: Cron Syntax and Time Zones",
+        "url": "https://roamerhost.com/en/support/n8n-schedule-trigger-guide"
+      },
+      {
+        "title": "N8N Schedule Trigger: Cron, Intervals & Timezones",
+        "url": "https://manueltgomes.com/reference/n8n-trigger-reference/n8n-on-a-schedule-trigger/"
+      },
+      {
+        "title": "Schedule Trigger - what's the time zone? - Questions - n8n",
+        "url": "https://community.n8n.io/t/schedule-trigger-whats-the-time-zone/23124"
+      },
+      {
+        "title": "Set the timezone | Deploy | n8n Docs",
+        "url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/set-the-timezone"
+      },
+      {
+        "title": "Schedule Trigger and Confusion Over Time Zone Settings in n8n Workflow",
+        "url": "https://community.n8n.io/t/schedule-trigger-and-confusion-over-time-zone-settings-in-n8n-workflow/45401"
+      },
+      {
+        "title": "n8n Schedule Trigger: Set Times, Timezone and Publish",
+        "url": "https://learn.ynteractive.com/content/glossary/schedule-trigger"
+      },
+      {
+        "title": "n8n Schedule Trigger: Cron Examples, Intervals, Timezones",
+        "url": "https://rajsuyash.com/blog/n8n-scheduled-triggers-tutorial.html"
+      },
+      {
+        "title": "How to Schedule Workflows in n8n (Cron and Schedule Trigger)",
+        "url": "https://lokeshkapoor.com/blog/n8n-schedule-trigger-guide"
+      },
+      {
+        "title": "n8n Schedule Trigger: time zone, cron, and why it won't fire",
+        "url": "https://www.sume.com/blog/n8n-schedule-trigger-time-zone"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-16T17:04:29.772Z",
+    "query": "n8n cron expression",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Schedule Trigger | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger"
+      },
+      {
+        "title": "Cron integrations | Workflow automation with n8n",
+        "url": "https://n8n.io/integrations/cron/"
+      },
+      {
+        "title": "Master n8n Cron Expressions: Schedule Trigger Guide 2026",
+        "url": "https://n8nautomation.cloud/blog/master-cron-expressions-n8n-schedule-trigger-tutorial-2026"
+      },
+      {
+        "title": "n8n Cron Jobs: Scheduled Automation for Developers 2026",
+        "url": "https://markaicode.com/n8n-cron-jobs-scheduled-automation/"
+      },
+      {
+        "title": "How to Schedule Workflows in n8n: Cron Jobs, Timers, and Triggers ...",
+        "url": "https://www.nodox.ai/blog/how-to-schedule-workflows-n8n-cron-triggers-guide"
+      },
+      {
+        "title": "n8n Cron Expressions: Examples for Every Schedule",
+        "url": "https://iimagined.ai/blog/n8n-cron-expression-guide-examples"
+      },
+      {
+        "title": "Schedule Workflows in n8n | Cron & Intervals | RapidDev",
+        "url": "https://www.rapidevelopers.com/n8n-tutorial/how-to-schedule-workflows-in-n8n"
+      },
+      {
+        "title": "Common issues | Nodes | n8n Docs",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/common-issues"
+      },
+      {
+        "title": "n8n Cron Expression Builder: Free Visual Schedule Tool",
+        "url": "https://jen8n.com/n8n-cron-expression-builder/"
+      },
+      {
+        "title": "n8n Schedule Trigger: Cron Examples, Intervals, Timezones",
+        "url": "https://rajsuyash.com/blog/n8n-scheduled-triggers-tutorial.html"
+      }
+    ]
+  }
+]

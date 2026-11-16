@@ -191,7 +191,7 @@
     "limits": "Local lexical comparison only. It is not a web-wide plagiarism scan and not an AI-detector verdict; third-party detector scores cannot be guaranteed."
   },
   "publication": {
-    "status": "published",
+    "status": "published-live-verified",
     "postId": 255,
     "publishedAt": "2026-11-16T17:23:46.634Z",
     "liveUrl": "https://www.byteverse.fyi/blog/n8n-schedule-trigger-guide",
@@ -199,6 +199,26 @@
     "approvedBy": "owner message 'new blog add krdo ... blog add krdo ma test krke check krnuga' 2026-11-16",
     "databaseWrites": 1,
     "otherPostsUnchanged": 186,
-    "otherPostsHash": "dbf5125c1f8ee4a9afa11cb1dbf4096e"
+    "otherPostsHash": "dbf5125c1f8ee4a9afa11cb1dbf4096e",
+    "releaseCommit": "04d8e0a0343b577f7857a0594fefe5b7a809f595",
+    "pushed": true,
+    "deploymentStatus": "success",
+    "liveVerification": {
+      "command": "node scripts/test-n8n-schedule-trigger-post.mjs --live",
+      "result": "18/18 passed: 17 offline checks plus live title, meta description, canonical, publish date, no noindex, author, FAQPage schema (first five of seven), exact code blocks, seven tables, seven FAQ details and five internal links",
+      "modifiedTime": "2026-11-16T17:27:19.327Z",
+      "rewordedTextLive": true,
+      "discovery": [
+        { "path": "/blog/n8n-schedule-trigger-guide", "status": 200 },
+        { "path": "/", "status": 200, "listsPost": true },
+        { "path": "/blog", "status": 200, "listsPost": true },
+        { "path": "/sitemap.xml", "status": 200, "listsPost": true },
+        { "path": "/feed.xml", "status": 200, "listsPost": true },
+        { "path": "/category/tech-guides", "status": 200, "listsPost": true }
+      ],
+      "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px: no horizontal overflow, two images, seven scrollable tables, five code blocks, FAQ keyboard toggle. Desktop and mobile screenshots reviewed.",
+      "notDone": "No live-site browser session after deployment: the machine reported an exhausted paging file, so a headless browser was not launched again. The live HTML was verified over HTTP instead.",
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    }
   }
 }

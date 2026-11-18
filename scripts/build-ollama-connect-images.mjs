@@ -11,43 +11,43 @@ const mono = "Consolas, Courier New, monospace";
 const t = (x, y, value, { size = 20, fill = "#0f172a", weight = 400, family = sans, anchor = "middle" } = {}) =>
   `<text x="${x}" y="${y}" fill="${fill}" font-size="${size}" font-weight="${weight}" font-family="${family}" text-anchor="${anchor}">${xml(value)}</text>`;
 const box = (x, y, width, height, fill, stroke, lines) => {
-  const start = y + height / 2 - (lines.length - 1) * 13 + 7;
+  const start = y + height / 2 - (lines.length - 1) * 16 + 9;
   return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="14" fill="${fill}" stroke="${stroke}" stroke-width="2"/>`
-    + lines.map(([value, options], index) => t(x + width / 2, start + index * 26, value, options)).join("");
+    + lines.map(([value, options], index) => t(x + width / 2, start + index * 34, value, options)).join("");
 };
 const arrow = (x1, y1, x2, y2, color = "#475569") =>
   `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${color}" stroke-width="3" fill="none" marker-end="url(#head)"/>`;
 const head = `<defs><marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#475569"/></marker></defs>`;
-const bold = { size: 19, weight: 700 };
-const small = { size: 17, fill: "#334155" };
-const code = { size: 16, family: mono, fill: "#7f1d1d", weight: 700 };
 
+const title = { size: 28, weight: 700 };
+const detail = { size: 23, fill: "#334155" };
+const message = { size: 20, family: mono, fill: "#b91c1c", weight: 700 };
+const osBox = (x, name, lines, messages) => {
+  const cx = x + 170;
+  const first = messages.length === 3 ? 148 : 160;
+  return `<rect x="${x}" y="364" width="340" height="230" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>`
+    + t(cx, 404, name, title)
+    + lines.map((value, index) => t(cx, 440 + index * 30, value, detail)).join("")
+    + messages.map((value, index) => t(cx, 364 + first + index * 28, value, message)).join("");
+};
+
+// Large type on purpose: the article column shows this image at about half size, and at under a third on phones.
 const flow = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">${head}
 <rect width="1200" height="675" fill="#f8fafc"/>
-${t(600, 48, "What the ollama command does before it shows a connection error", { size: 27, weight: 700 })}
-${box(50, 80, 300, 76, "#e0f2fe", "#0284c7", [["1. You run a command", bold], ["ollama run, list, pull, ps", small]])}
-${arrow(350, 118, 428, 118)}
-${box(430, 80, 340, 76, "#e0f2fe", "#0284c7", [["2. Heartbeat request", bold], ["HEAD http://127.0.0.1:11434/", { size: 16, family: mono, fill: "#0c4a6e" }]])}
-${arrow(770, 118, 848, 118)}
-${box(850, 80, 300, 76, "#dcfce7", "#16a34a", [["Server answers", bold], ["The command continues", small]])}
-${arrow(520, 156, 520, 208)}
-${arrow(690, 156, 930, 208)}
-${box(300, 210, 440, 76, "#fef3c7", "#d97706", [["Connection refused", bold], ["3. The CLI tries to start the Ollama app", small]])}
-${box(790, 210, 360, 76, "#f1f5f9", "#64748b", [["Any other error", bold], ["Printed as it is, nothing is started", small]])}
-${arrow(400, 286, 220, 338)}
-${arrow(520, 286, 600, 338)}
-${arrow(660, 286, 980, 338)}
-${box(50, 340, 340, 104, "#ffffff", "#94a3b8", [["Windows", bold], ["Starts ollama app.exe, then", small], ["checks every 0.5 s for 5 s", small]])}
-${box(430, 340, 340, 104, "#ffffff", "#94a3b8", [["macOS", bold], ["Opens Ollama.app when the", small], ["command belongs to the app", small]])}
-${box(810, 340, 340, 104, "#ffffff", "#94a3b8", [["Linux", bold], ["Cannot start a server", small], ["for you", small]])}
-${arrow(220, 444, 220, 488)}
-${arrow(600, 444, 600, 488)}
-${arrow(980, 444, 980, 488)}
-${box(50, 490, 340, 96, "#fee2e2", "#dc2626", [["timed out waiting for", code], ["server to start", code], ["or: could not locate ollama app", { size: 15, family: mono, fill: "#7f1d1d" }]])}
-${box(430, 490, 340, 96, "#fee2e2", "#dc2626", [["timed out waiting for", code], ["server to start", code], ["or the ollama serve message", { size: 15, fill: "#7f1d1d" }]])}
-${box(810, 490, 340, 96, "#fee2e2", "#dc2626", [["could not connect to ollama", code], ["server, run 'ollama serve'", code], ["to start it", code]])}
-${t(600, 626, "Based on the Ollama 0.40.16 source code. Releases up to 0.7.0 printed one line for every case:", { size: 16, fill: "#334155" })}
-${t(600, 652, "could not connect to ollama app, is it running?", { size: 17, family: mono, fill: "#7f1d1d", weight: 700 })}
+${t(600, 54, "What ollama checks before a connection error", { size: 36, weight: 700 })}
+${box(60, 84, 480, 100, "#e0f2fe", "#0284c7", [["1. ollama run, pull, list", title], ["asks port 11434 for a reply", detail]])}
+${arrow(540, 134, 658, 134)}
+${box(660, 84, 480, 100, "#dcfce7", "#16a34a", [["Reply received", title], ["the command continues", detail]])}
+${arrow(300, 184, 300, 222)}
+${box(60, 224, 1080, 100, "#fef3c7", "#d97706", [["2. Connection refused", title], ["the command tries to start the Ollama app", detail]])}
+${arrow(230, 324, 230, 362)}
+${arrow(600, 324, 600, 362)}
+${arrow(970, 324, 970, 362)}
+${osBox(60, "Windows", ["starts the app, then", "waits up to 5 seconds"], ["timed out waiting", "for server to start"])}
+${osBox(430, "macOS", ["opens Ollama.app, then", "waits up to 5 seconds"], ["timed out waiting", "for server to start"])}
+${osBox(800, "Linux", ["has no app to start"], ["could not connect to", "ollama server, run", "'ollama serve' to start it"])}
+${t(600, 630, "Based on the Ollama 0.40.16 source code. Version 0.7.0 and older printed one line for every case:", { size: 21, fill: "#334155" })}
+${t(600, 660, "could not connect to ollama app, is it running?", { size: 22, family: mono, fill: "#b91c1c", weight: 700 })}
 </svg>`;
 
 const chip = (x, width, label) => `<rect x="${x}" y="596" width="${width}" height="38" rx="19" fill="#ffffff" fill-opacity="0.08" stroke="#64748b"/>`

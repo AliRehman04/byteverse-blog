@@ -1,0 +1,200 @@
+{
+  "slug": "could-not-connect-to-ollama-app-is-it-running",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-17",
+  "brief": "Owner-supplied brief (17 November 2026): research, write, optimise and publish one high-quality article; no fabricated metrics; analyse at least five competitors; report limitations.",
+  "targeting": {
+    "title": "Could Not Connect to Ollama App, Is It Running? Fixes by OS",
+    "metaTitle": "Could Not Connect to Ollama? Fixes by OS",
+    "metaDescription": "Fix \"could not connect to ollama app, is it running?\" and the newer ollama serve error. What each message means on Windows, Linux, macOS, Docker and WSL.",
+    "excerpt": "What \"could not connect to ollama app, is it running?\" and its newer variants mean, checked against the Ollama 0.40.16 source: a message lookup table, the fix for Windows, Linux, macOS, Docker and WSL, the OLLAMA_HOST defaults, and why ollama serve reports the address in use.",
+    "keywords": "could not connect to ollama app is it running, could not connect to ollama server, ollama could not connect to a running ollama instance, ollama serve address already in use, ollama timed out waiting for server to start, ollama connection refused 11434, ollama upgrade in progress, could not locate ollama app, ollama_host 0.0.0.0, ollama port 11434, ollama server not responding, how to start ollama server",
+    "summary": "The message means the ollama command got no reply on port 11434 and could not start the server; start the app on Windows or macOS, or the systemd service on Linux|The wording depends on version and system: one fixed sentence up to 0.7.0, a prefixed cause from 0.7.1, and the cause alone from 0.15.5|OLLAMA_HOST is read by the command as well as the server, and ollama serve reporting the address in use means a server is already running",
+    "readingTime": "15 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-17T18:30:00.000Z",
+    "total": 187,
+    "published": 185,
+    "hash": "0b058940363341df1e5ce2fc857d129c",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-17-inventory.json (read-only database query)",
+    "inventory": { "total": 187, "published": 185, "hash": "0b058940363341df1e5ce2fc857d129c" },
+    "categories": [
+      { "slug": "tech-guides", "posts": 64, "averageViews": 13.9 },
+      { "slug": "ai-tools", "posts": 60, "averageViews": 26.1 },
+      { "slug": "coding", "posts": 22, "averageViews": 32.7 },
+      { "slug": "software-reviews", "posts": 19, "averageViews": 19.9 },
+      { "slug": "productivity", "posts": 14, "averageViews": 17.1 },
+      { "slug": "cybersecurity", "posts": 6, "averageViews": 37.3 }
+    ],
+    "finding": "The 14 n8n posts published since 1 October have 0 to 9 stored views each. Recent troubleshooting posts on mainstream AI tools did better in the same period: Gemini not showing 42, Ollama not using GPU 18, Cursor stuck planning 15, GitHub Copilot not working 15, Ollama models folder 12. The stored view counter is the only first-party signal available and may include non-search visits.",
+    "searchConsole": { "available": false, "reason": "GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY and GSC_SITE_URL are not set in this workspace. The production admin endpoint was not logged into. No clicks, impressions or positions were used." },
+    "cannibalization": "Two Ollama posts exist (GPU not used on Windows, models folder on Windows). Neither covers connection errors, the server/client split, OLLAMA_HOST or ollama serve. No overlap in primary intent.",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "research": {
+    "candidateFile": "docs/content-research/2026-11-17-keywords-candidates.json",
+    "candidateSeedCount": 47,
+    "sources": ["Google public autocomplete (hl=en, gl=us)", "Bing public autocomplete (en-US)", "DuckDuckGo HTML result pages"],
+    "notUsed": "Google Trends, paid keyword tools and Search Console were not available. No search volume or keyword difficulty figures are stated anywhere.",
+    "keywordMap": {
+      "primary": "could not connect to ollama app is it running",
+      "secondary": ["could not connect to ollama server", "ollama could not connect to a running ollama instance", "ollama serve address already in use", "ollama connection refused 11434", "how to start ollama server"],
+      "supporting": ["timed out waiting for server to start", "could not locate ollama app", "ollama upgrade in progress", "ollama server not responding", "ollama_host 0.0.0.0", "ollama port 11434 already in use", "webui could not connect to ollama"],
+      "intent": "Problem-solving. The reader has an exact error line in a terminal and wants to know what it means and what to do on their system."
+    },
+    "observations": [
+      { "seed": "ollama could not connect", "google": ["ollama could not connect to server", "ollama could not connect to ollama app is it running", "ollama could not connect to ollama app", "ollama could not connect to a running ollama instance", "could not connect to ollama", "error could not connect to ollama app is it running", "webui could not connect to ollama"], "bingSuggestionCount": 24, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama address already in use", "google": ["ollama address already in use", "ollama serve address already in use", "ollama bind address already in use", "ollama error address already in use", "ollama server address already in use", "ollama listen tcp address already in use"], "bingSuggestionCount": 21, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama port 11434", "google": ["ollama port 11434", "ollama port 11434 connection refused", "ollama port 11434 already in use", "ollama port 11434 not working", "ollama not listening on port 11434"], "bingSuggestionCount": 2, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama error", "google": ["ollama error context deadline exceeded", "ollama error 500", "ollama error eof", "ollama error pull model manifest", "ollama error upgrade in progress"], "bingSuggestionCount": 15, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama host 0.0.0.0", "google": ["ollama host 0.0.0.0", "ollama host 0.0 0.0 windows", "ollama host=0.0.0.0 not working", "environment ollama_host 0.0 0.0"], "bingSuggestionCount": 6, "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "rejectedCandidates": [
+      {
+        "keyword": "ollama model requires more system memory than is available",
+        "reason": "Researched in depth first. The error exists through Ollama 0.24.0 and is absent from 0.30.0 onward. A competitor published on 29 October 2026 (binmage.com) already reproduces it on Ollama 0.24.0 with measurements, cites the source, covers container limits and the version change. Without hands-on testing this site could not publish something clearly better.",
+        "competitorFile": "docs/content-research/2026-11-17-competitors.json"
+      },
+      { "keyword": "n8n error workflow / retry on fail", "reason": "Fits the existing series, but the n8n cluster has the weakest first-party signal on the site so far. Kept as a future supporting article." }
+    ],
+    "serp": {
+      "file": "docs/content-research/2026-11-17-ddg-ollama.json",
+      "query": "could not connect to ollama app is it running",
+      "firstPage": ["two GitHub issues", "two Chinese-language CSDN posts", "kontext.tech (2024, about 300 words)", "Stack Overflow question", "betterclaw.io", "opilot troubleshooting page", "logeshwaran.org", "thinkfacility.com"],
+      "assessment": "Forum threads, non-English pages and small sites hold most of the page. No large-brand guide. Realistic for a small site, with no ranking promise.",
+      "limits": "DuckDuckGo titles and links only; not a neutral Google rank measurement."
+    },
+    "competitors": {
+      "file": "docs/content-research/2026-11-17-competitors-connect.json",
+      "method": "Main article text fetched and checked for 20 topic terms; a presence check, not a quality score.",
+      "analysed": [
+        { "site": "logeshwaran.org", "words": 6104, "note": "Broadest guide; covers both wordings, Docker, WSL, Open WebUI. No source links, no version boundary, no start-up error variants." },
+        { "site": "localaimaster.com", "words": 4987, "note": "Port 11434 focus; covers OLLAMA_HOST and the port 80 trap. No version boundary, no Windows start errors." },
+        { "site": "betterclaw.io", "words": 3888, "note": "Fifteen fixes for agent users; wide but generic. No version boundary." },
+        { "site": "llmconfigurator.com", "words": 1550, "note": "Connection refused from apps; does not mention the CLI messages at all." },
+        { "site": "thinkfacility.com", "words": 706, "note": "Only page that notes the wording changed and lists the timed out and locate messages; short, no fixes per system." },
+        { "site": "opilot.self.agency", "words": 702, "note": "Product troubleshooting page for one extension." },
+        { "site": "kontext.tech", "words": 315, "note": "2024 note for Windows; start the app." }
+      ],
+      "gap": "No competitor links to the Ollama source. None gives the exact releases where the wording changed (0.7.1 and 0.15.5) together with per-system fixes. None covers the Windows 'upgrade in progress...' message or the lookup order for ollama app.exe. Only one mentions the 'could not connect to a running Ollama instance' warning. This article is organised as a message lookup, which none of them is."
+    },
+    "primarySourceNotes": [
+      "cmd/cmd.go at v0.40.16: checkServerHeartbeat is the PreRunE of 13 commands (show, run, stop, pull, push, signin, login, signout, logout, list, ps, cp, rm). A heartbeat error containing ' refused' or 'could not connect' triggers startApp; any other error is returned unchanged. versionHandler prints 'Warning: could not connect to a running Ollama instance'. RunServer calls net.Listen on envconfig.Host().",
+      "api/client.go: ClientFromEnvironment uses envconfig.Host(), not ConnectableHost(); Heartbeat is an HTTP HEAD to '/'. server/routes.go answers HEAD and GET '/' with 'Ollama is running'.",
+      "cmd/start.go: waitForServer ticks every 500 ms and times out after 5 s with 'timed out waiting for server to start'.",
+      "cmd/start_windows.go: 'upgrade in progress...' when OllamaSetup.exe runs; looks for 'ollama app.exe' beside the executable, then %LOCALAPPDATA%\\Ollama, then PATH ('could not locate ollama app'); 'unable to start ollama app'.",
+      "cmd/start_darwin.go (v0.15.5 and v0.40.16, identical files): returns the ollama serve message unless the executable is a symlink into Ollama.app; v0.15.4 returned 'could not find ollama app'. cmd/start_default.go always returns the ollama serve message.",
+      "Version history, checked release by release: v0.7.0 cmd.go replaces every startApp error with 'could not connect to ollama app, is it running?'; v0.7.1 through v0.15.4 wrap it as 'ollama server not responding - %w'; v0.15.5 and later return the cause alone. An earlier draft said 0.16.0; probing v0.15.1 to v0.15.6 corrected it.",
+      "envconfig/config.go: default http://127.0.0.1:11434; no scheme means http and port 11434; http:// defaults to port 80 and https:// to 443; ConnectableHost exists with a comment that connecting to unspecified addresses fails on Windows.",
+      "Release dates from the GitHub API: v0.7.0 2025-05-13, v0.7.1 2025-05-21, v0.15.4 2026-02-01, v0.15.5 2026-02-03, v0.40.16 2026-11-09.",
+      "Local Windows 11 (build 26300) checks: Win32 error 10061 text 'No connection could be made because the target machine actively refused it'; error 10048 text 'Only one usage of each socket address (protocol/network address/port) is normally permitted'; a Node 24 TCP connection to 0.0.0.0 reached listeners bound to 127.0.0.1 and to 0.0.0.0.",
+      "Microsoft Learn WSL networking page: NAT mode needs the host IP to reach Windows apps from Linux; mirrored mode allows localhost in both directions."
+    ],
+    "limits": "Ollama was not installed or run. Linux, macOS and Docker commands come from the official documentation and were not executed. The OLLAMA_HOST table follows from reading the parser. No Search Console data, volumes, difficulty scores or ranking forecasts."
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "Ollama Docs: FAQ", "url": "https://docs.ollama.com/faq" },
+    { "title": "Ollama Docs: Troubleshooting", "url": "https://docs.ollama.com/troubleshooting" },
+    { "title": "Ollama Docs: Linux", "url": "https://docs.ollama.com/linux" },
+    { "title": "Ollama Docs: Docker", "url": "https://docs.ollama.com/docker" },
+    { "title": "Ollama Docs: Windows", "url": "https://docs.ollama.com/windows" },
+    { "title": "Ollama 0.40.16 source: cmd/cmd.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/cmd/cmd.go" },
+    { "title": "Ollama 0.40.16 source: cmd/start.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/cmd/start.go" },
+    { "title": "Ollama 0.40.16 source: cmd/start_windows.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/cmd/start_windows.go" },
+    { "title": "Ollama 0.40.16 source: cmd/start_darwin.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/cmd/start_darwin.go" },
+    { "title": "Ollama 0.40.16 source: envconfig/config.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/envconfig/config.go" },
+    { "title": "Ollama 0.7.0 source: cmd/cmd.go", "url": "https://github.com/ollama/ollama/blob/v0.7.0/cmd/cmd.go" },
+    { "title": "Microsoft Learn: Accessing network applications with WSL", "url": "https://learn.microsoft.com/en-us/windows/wsl/networking" }
+  ],
+  "internalLinks": ["/blog/how-to-run-ai-locally-2026", "/blog/ollama-not-using-gpu-windows-2026", "/blog/ollama-models-folder-windows-move-2026", "/blog/docker-for-beginners-2026-guide", "/blog/linux-wsl-setup-guide-2026-windows-developers", "/blog/how-to-use-n8n-2026-complete-guide"],
+  "futureSupportingArticles": ["ollama model requires more system memory (only with hands-on measurements)", "access Ollama from another computer on the network", "Open WebUI cannot connect to Ollama in Docker", "ollama error context deadline exceeded", "n8n error workflow and retry on fail"],
+  "faq": [
+    "What does \"could not connect to ollama app, is it running\" mean?",
+    "How do I start the Ollama server?",
+    "Why does ollama serve report that the address is already in use?",
+    "Why do I get timed out waiting for server to start?",
+    "Do I need to keep a terminal open for Ollama?",
+    "Why can another app not reach Ollama when the ollama command works?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/ollama-could-not-connect/ollama-could-not-connect-cover.png",
+    "coverFile": "public/blog/ollama-could-not-connect/ollama-could-not-connect-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/ollama-could-not-connect/ollama-cli-connection-check-flow.png",
+    "inlineFile": "public/blog/ollama-could-not-connect/ollama-cli-connection-check-flow.png",
+    "buildScript": "scripts/build-ollama-connect-images.mjs",
+    "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card showing the error in a terminal mock-up, not a screenshot. The inline flow chart is drawn from the 0.40.16 source and was reviewed against it. No stock photography."
+  },
+  "validation": {
+    "proseWords": 3148,
+    "readingTime": "15 min read",
+    "contentSha256": "6a1c3735b3ccd3bfa43c82fd3fc791aec2abb9ea47a3fd6339311ee65e4c0daf",
+    "codeBlocks": 12,
+    "tables": 3,
+    "sourceTag": "v0.40.16",
+    "sourceTagCommit": "d63b702609c4300a2ca07be2bdb0adb9834725e5",
+    "sourceDirectory": "../.byteverse-ollama-check",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Six FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "src-v0.40.16/cmd__cmd.go": "8845d65a4da1b7a5dd6df1f21aef41489ef3d21d5821778c860c9ac6f16be2b9",
+      "src-v0.40.16/cmd__start.go": "caaac44bf5589a756c8f37e303c5a54d6e41c86418d3d532c0886755a2843c3f",
+      "src-v0.40.16/cmd__start_windows.go": "1ef4655d1fd9c764dbcdfd6ba8fee4510dcb94055713f8163a12ae3fbbafb516",
+      "src-v0.40.16/cmd__start_darwin.go": "b3e700f3a7826b259ee8a03df37f3131994f3ca3d9b04b727a55b06b569dee73",
+      "src-v0.40.16/cmd__start_default.go": "74749cf2c44f31c404cf9d87d75d66325867565e8974ba25e949dc068b4238a9",
+      "src-v0.40.16/api__client.go": "7921188f41760293e0988d2bfe2c14b9c9b10673aa17d22a25f6581fd0d19941",
+      "src-v0.40.16/envconfig__config.go": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895",
+      "src-v0.40.16/server__routes.go": "0dbc9d5a6909209ab531a12677fe792e17ff7b825dd1396c00e83898901a13ed",
+      "src-v0.40.16/docs__faq.mdx": "e3630684676a21219abc7cb6c17db53993412c194ba9c108c8dbae2f30318e0c",
+      "src-v0.40.16/docs__troubleshooting.mdx": "d87bf025cb0a68a3d144cb0ca388202948a5135e6ea34bbfa7f988bda300b50d",
+      "src-v0.40.16/docs__linux.mdx": "3b46d2673d7682367bbe1c3941421d94cd80defe6a714f7bc16a254481db2690",
+      "src-v0.40.16/docs__docker.mdx": "394dd57c4dc3b37dd626e0fb1243d451e9d43d56b07cbc8b11a649afdeeff818",
+      "src-v0.40.16/docs__windows.mdx": "2dd781e589836e79dfdc2f92b77f9789fd35ea2786abcf291b6c9e16154a46a2",
+      "src-v0.7.0/cmd__cmd.go": "e72c7d9e9bafddb8b6a428f9ae37888e828e6018358d01e77e3ee6c2944b3722",
+      "src-v0.7.1/cmd__cmd.go": "f815fcfe3a423051c7738260639898826259e80cfef6bcaba4820ee118dc73d6",
+      "src-v0.15.4/cmd__cmd.go": "20b5c53ac8a4f6f6c594ead0c8a37bd7e29b528d8a57cedc7f2f21384aa6e291",
+      "src-v0.15.4/cmd__start_darwin.go": "f36b124f325c2e7c1a6fa13aba6a984e6a557a47bb6934d4884023f1d07319ae",
+      "src-v0.15.5/cmd__cmd.go": "66f65951deca8ab79ec9d7c6db6c4074ba66aed67ee7fb80dc79fddb795cd751",
+      "src-v0.15.5/cmd__start_darwin.go": "b3e700f3a7826b259ee8a03df37f3131994f3ca3d9b04b727a55b06b569dee73"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-18T06:50:00.000Z",
+    "method": "Case-normalised five-word phrase overlap; code blocks, tables and links excluded. Compared with the 187 stored posts, six official Ollama documentation pages, the seven competitor pages analysed and the cited Microsoft Learn page.",
+    "draftPhrases": 2798,
+    "ownPosts": { "highest": "ollama-models-folder-windows-move-2026", "percent": 0.25, "identicalParagraphs30Words": 0 },
+    "officialDocs": { "highestPercent": 0.07, "longestRunWords": 5 },
+    "competitors": [
+      { "site": "logeshwaran.org", "percentBefore": 3.69, "percentAfter": 2.04, "longestRunAfter": "the FAQ question 'what does could not connect to ollama app is it running mean' (the search query itself)" },
+      { "site": "betterclaw.io", "percentAfter": 1.39 },
+      { "site": "localaimaster.com", "percentAfter": 1.14 },
+      { "site": "thinkfacility.com", "percentBefore": 1.45, "percentAfter": 0.93 },
+      { "site": "llmconfigurator.com", "percentAfter": 0.5 },
+      { "site": "kontext.tech", "percentAfter": 0.36 },
+      { "site": "opilot.self.agency", "percentAfter": 0.11 }
+    ],
+    "action": "Listed every matching run. Runs made of commands, IP addresses and quoted error strings were left as they are. Eleven ordinary sentences that happened to read like a competitor's were reworded, including the opening paragraph and four FAQ answers.",
+    "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 186, "meanSentenceWords": 14.9, "stdevSentenceWords": 7.6 },
+    "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 256,
+    "publishedAt": "2026-11-18T07:11:28.516Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/could-not-connect-to-ollama-app-is-it-running",
+    "approvedBy": "owner message 'add new blog according to this prompt' with a brief that instructs publication",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 187,
+    "otherPostsHash": "0b058940363341df1e5ce2fc857d129c",
+    "assetCommits": ["286790b3a853aa4f05892e9743678da0614325f4", "9c55994"],
+    "note": "Research ran late on 17 November local time and publication followed on 18 November after an interrupted command was rechecked. Ollama 0.40.16 was still the latest release at publication."
+  }
+}

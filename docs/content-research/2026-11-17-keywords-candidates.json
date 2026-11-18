@@ -1,0 +1,1363 @@
+{
+  "checkedAt": "2026-11-17T18:25:52.975Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "coverage": {
+    "ollama": [
+      "ollama-not-using-gpu-windows-2026",
+      "ollama-models-folder-windows-move-2026"
+    ],
+    "claude-code": [
+      "what-is-claude-code-guide-2026",
+      "claude-code-not-recognized-windows-2026"
+    ],
+    "cursor": [
+      "best-ai-coding-assistants-2026-copilot-cursor-windsurf",
+      "how-to-use-cursor-ai-2026-guide",
+      "cursor-agent-stuck-planning-next-moves-2026"
+    ],
+    "copilot": [
+      "best-ai-coding-assistants-2026-copilot-cursor-windsurf",
+      "copilot-vs-chatgpt-for-coding-2026",
+      "github-copilot-guide-2026",
+      "github-copilot-not-working-vscode-2026",
+      "copilot-in-excel-not-showing-2026"
+    ],
+    "gemini": [
+      "perplexity-vs-google-gemini-2026-research",
+      "how-to-use-google-gemini-2026-complete-guide",
+      "gemini-vs-chatgpt-2026-comparison",
+      "claude-vs-gemini-2026-comparison",
+      "gemini-not-showing-google-docs-gmail-2026"
+    ],
+    "chatgpt": [
+      "best-chatgpt-alternatives-2026-free-paid",
+      "copilot-vs-chatgpt-for-coding-2026",
+      "best-chatgpt-prompts-for-work-2026",
+      "claude-vs-chatgpt-2026-comparison",
+      "how-to-use-chatgpt-2026-complete-guide",
+      "gemini-vs-chatgpt-2026-comparison",
+      "deepseek-vs-chatgpt-2026-comparison",
+      "perplexity-vs-chatgpt-2026-comparison"
+    ],
+    "notebooklm": [
+      "how-to-use-notebooklm-2026-complete-guide"
+    ],
+    "perplexity": [
+      "perplexity-vs-google-gemini-2026-research",
+      "how-to-use-perplexity-ai-2026-complete-guide",
+      "perplexity-vs-chatgpt-2026-comparison",
+      "perplexity-vs-claude-2026-comparison"
+    ],
+    "lm-studio": [],
+    "open-webui": []
+  },
+  "observations": [
+    {
+      "seed": "ollama error",
+      "google": [
+        "ollama error context deadline exceeded",
+        "ollama error 500",
+        "ollama error eof",
+        "ollama error 504",
+        "ollama error 400",
+        "ollama error",
+        "ollama error pull model manifest",
+        "ollama error upgrade in progress",
+        "ollama error 404",
+        "ollama error exit status 1"
+      ],
+      "bing": [
+        "ollama error 500",
+        "ollama error 400",
+        "ollama error",
+        "ollama error eof",
+        "ollama error 500 internal server error",
+        "ollama error max retries exceeded eof",
+        "ollama error messages",
+        "ollama error handling",
+        "ollama error solutions",
+        "ollama error context deadline exceeded",
+        "ollama error codes list",
+        "ollama error unexpected eof",
+        "ollama error pull model manifest",
+        "ollama error troubleshooting",
+        "ollama error max retries exceeded"
+      ]
+    },
+    {
+      "seed": "ollama model requires more system memory",
+      "google": [
+        "ollama model requires more system memory",
+        "ollama model requires more system memory than is available",
+        "ollama error model requires more system memory",
+        "ollama error model requires more system memory than is available",
+        "ollama 500 model requires more system memory",
+        "docker ollama model requires more system memory",
+        "ollama _types responseerror model requires more system memory",
+        "ollama requires more system memory",
+        "ollama api error 500 model requires more system memory",
+        "ollama requires more system memory than is available"
+      ],
+      "bing": [
+        "ollama model requires more system memory",
+        "ollama keep model in memory",
+        "ollama unload model from memory",
+        "ollama memory layout cannot be allocated",
+        "ollama cpu only model",
+        "ollama model ram requirements",
+        "ollama use shared gpu memory",
+        "ollama models that can run on cpu",
+        "ollama only using cpu",
+        "ollama model for image generation",
+        "ollama model not using gpu",
+        "ollama remove model from memory",
+        "best ollama model for programming",
+        "how much ram does ollama need",
+        "ollama model optimized for cpu",
+        "ollama gpu memory utilization",
+        "ollama out of memory",
+        "ollama graphics.memory_limit -1",
+        "ollama model is required",
+        "ollama_modules",
+        "ollama_max_gpu_memory"
+      ]
+    },
+    {
+      "seed": "ollama connection refused",
+      "google": [
+        "ollama connection refused",
+        "ollama connection refused docker",
+        "ollama connection refused 11434",
+        "n8n ollama connection refused",
+        "ollama api connection refused",
+        "dify ollama connection refused",
+        "ollama pull connection refused",
+        "langchain ollama connection refused",
+        "odysseus ollama connection refused",
+        "ollama remote connection refused"
+      ],
+      "bing": [
+        "ollama connection refused",
+        "ollama connection refused windows",
+        "n8n ollama connection refused",
+        "ollama api connection refused"
+      ]
+    },
+    {
+      "seed": "ollama could not connect",
+      "google": [
+        "ollama could not connect to server",
+        "ollama could not connect to ollama app is it running",
+        "ollama could not connect to ollama app",
+        "ollama could not connect to a running ollama instance",
+        "could not connect to ollama",
+        "error could not connect to ollama app is it running",
+        "webui could not connect to ollama",
+        "error could not connect to ollama server"
+      ],
+      "bing": [
+        "ollama could not connect to ollama app",
+        "could not connect to ollama app is it running",
+        "could not connect to ollama",
+        "how to connect to ollama",
+        "ollama is not recognized",
+        "ollama not working on windows",
+        "ollama does not support tools",
+        "connect to ollama remotely",
+        "ollama serve not working",
+        "how to connect ollama to the internet",
+        "ollama is open source or not",
+        "ollama this model does not support images",
+        "ollama allow external connections",
+        "why ollama is not opening",
+        "could not connect to ollama app",
+        "failed to connect to ollama",
+        "ollama does not support generate",
+        "ollama service could not be reached",
+        "ollama an existing connection",
+        "ollama failed to get connect url",
+        "ollama.service could not be found",
+        "ollama cli not working",
+        "n8n can't connect to ollama",
+        "openclaw ollama connection error"
+      ]
+    },
+    {
+      "seed": "ollama port 11434",
+      "google": [
+        "ollama port 11434",
+        "ollama port 11434 connection refused",
+        "ollama port 11434 already in use",
+        "ollama port 11434 not working",
+        "ollama open port 11434",
+        "ollama change port 11434",
+        "ollama not listening on port 11434",
+        "port 11434 ollama is running"
+      ],
+      "bing": [
+        "ollama port 11434",
+        "ollama port 11434 connection refused"
+      ]
+    },
+    {
+      "seed": "ollama address already in use",
+      "google": [
+        "ollama address already in use",
+        "ollama serve address already in use",
+        "ollama bind address already in use",
+        "ollama error address already in use",
+        "ollama server address already in use",
+        "ollama server bind address already in use",
+        "ollama serve error address already in use",
+        "ollama listen tcp address already in use",
+        "ollama error bind address already in use",
+        "ollama 11434 bind address already in use"
+      ],
+      "bing": [
+        "ollama address already in use",
+        "ollama serve address already in use",
+        "ollama bind address already in use",
+        "ollama serve bind address already in use",
+        "how to setup and use ollama locally",
+        "how to install and use ollama",
+        "how to use ollama locally",
+        "ollama install for all users",
+        "ollama serve ip address",
+        "how to use ollama with open code",
+        "using ollama with local documents",
+        "how to install ollama locally",
+        "ollama allow external connections",
+        "how to connect to ollama",
+        "how to access ollama on local network",
+        "how to setup ollama",
+        "ollama setup in local",
+        "open code and ollama",
+        "ollama an existing connection",
+        "ollama not found for url",
+        "ollama send a message / for help"
+      ]
+    },
+    {
+      "seed": "ollama slow",
+      "google": [
+        "ollama slow",
+        "ollama slow response",
+        "ollama slow on mac",
+        "ollama slow download",
+        "ollama slow download speed",
+        "ollama slower than lm studio",
+        "ollama slower than llama cpp",
+        "ollama slow reddit",
+        "ollama slow pull",
+        "ollama slow on windows"
+      ],
+      "bing": [
+        "ollama slow",
+        "ollama slow response",
+        "ollama slow on proxmox",
+        "ollama slow download",
+        "ollama slow response windows",
+        "ollama model download slow",
+        "ollama is too slow",
+        "ollama cloud slow"
+      ]
+    },
+    {
+      "seed": "ollama context length",
+      "google": [
+        "ollama context length",
+        "ollama context length settings",
+        "ollama context length environment variable",
+        "ollama context length 128k",
+        "ollama context length memory usage",
+        "ollama context length recommended",
+        "ollama context length 256k",
+        "ollama context length change",
+        "ollama context length default",
+        "ollama context length parameter"
+      ],
+      "bing": [
+        "ollama context length",
+        "ollama context length setting",
+        "ollama context length memory usage",
+        "ollama context length 128k",
+        "ollama context length recommended",
+        "ollama context length environment variable",
+        "ollama context length 256k",
+        "ollama context length embedding length",
+        "ollama set context length",
+        "ollama change context length"
+      ]
+    },
+    {
+      "seed": "ollama num_ctx",
+      "google": [
+        "ollama num_ctx",
+        "ollama num_ctx default",
+        "ollama num_ctx environment variables",
+        "ollama num_ctx max",
+        "ollama num_ctx parameter",
+        "ollama num_ctx example",
+        "ollama num_ctx=32768",
+        "ollama num_ctx=8192",
+        "ollama num_ctx api",
+        "ollama num_ctx meaning"
+      ],
+      "bing": [
+        "ollama num_ctx",
+        "ollama num_ctx docker",
+        "ollama num_ctx meaning",
+        "ollama num_ctx num_gpu",
+        "ollama num ctx",
+        "ollama set num_ctx",
+        "ollama modelfile num_ctx",
+        "r ollama num_ctx",
+        "ollama set parameter num_ctx"
+      ]
+    },
+    {
+      "seed": "ollama keep alive",
+      "google": [
+        "ollama keep alive",
+        "ollama keep alive environment variable",
+        "ollama keep alive forever",
+        "ollama keep alive windows",
+        "ollama keep alive not working",
+        "ollama_keep_alive =- 1",
+        "ollama_keep_alive 0",
+        "ollama keep alive parameter",
+        "ollama keep alive model",
+        "ollama_keep_alive 24h"
+      ],
+      "bing": [
+        "ollama keep alive",
+        "ollama keep alive forever",
+        "ollama keep alive environment variable",
+        "ollama keep alive -1",
+        "ollama keep alive windows"
+      ]
+    },
+    {
+      "seed": "ollama unload model",
+      "google": [
+        "ollama unload model",
+        "ollama unload model command",
+        "ollama unload model timeout",
+        "ollama unload model from gpu",
+        "ollama unload model api",
+        "ollama unload model time",
+        "ollama unload model cli",
+        "ollama unload model python",
+        "ollama unload model from vram",
+        "ollama unload model from ram"
+      ],
+      "bing": [
+        "ollama unload model",
+        "ollama unload model from memory",
+        "ollama how to load model and then unload",
+        "ollama model unload time",
+        "ollama command to unload a model"
+      ]
+    },
+    {
+      "seed": "ollama access from another computer",
+      "google": [
+        "ollama access from another computer",
+        "access ollama from another computer windows",
+        "access ollama from another computer linux",
+        "access ollama from another machine",
+        "access ollama from another pc",
+        "access ollama server from another computer"
+      ],
+      "bing": [
+        "how to access ollama from another computer",
+        "how do i access ollama",
+        "access ollama from browser",
+        "access ollama over network",
+        "access ollama windows over network",
+        "how to access ollama on local network",
+        "ollama access local file",
+        "can ollama access internet",
+        "give ollama internet access",
+        "how to connect ollama to the internet",
+        "make ollama accessible over the internet",
+        "how to install ollama for all users",
+        "how to connect to ollama",
+        "how to remotely connect to ollama server",
+        "connect to ollama remotely",
+        "how to use ollama on windows",
+        "ollama allow remote connections windows",
+        "how to set up ollama on windows",
+        "how to run ollama locally on windows",
+        "using ollama with local documents"
+      ]
+    },
+    {
+      "seed": "ollama host 0.0.0.0",
+      "google": [
+        "ollama host 0.0.0.0",
+        "ollama host 0.0 0.0 windows",
+        "ollama host 0.0 0.0 linux",
+        "ollama host 0.0 0.0 mac",
+        "ollama host 0.0 0.0 macos",
+        "ollama host 0.0 0.0 ubuntu",
+        "ollama host=0.0.0.0 not working",
+        "environment ollama_host 0.0 0.0",
+        "ollama_host 0.0 0.0 ollama serve",
+        "export ollama_host 0.0 0.0"
+      ],
+      "bing": [
+        "ollama host 0.0.0.0",
+        "ollama host 0.0.0.0 windows",
+        "ollama host 0.0.0.0 mac",
+        "ollama host 0.0.0.0:11434",
+        "host environment ollama allow 11434 0.0.0.0",
+        "ollama serve host 0.0.0.0"
+      ]
+    },
+    {
+      "seed": "ollama cors",
+      "google": [
+        "ollama cors",
+        "ollama cors error",
+        "ollama cors windows",
+        "ollama cors issue",
+        "ollama cors origin",
+        "ollama cors policy",
+        "ollama cors mac",
+        "ollama cors settings",
+        "ollama cors linux",
+        "ollama cors docker"
+      ],
+      "bing": [
+        "ollama cors",
+        "ollama cors error",
+        "ollama course",
+        "ollama cursor",
+        "ollama coral tpu",
+        "ollama core ultra",
+        "ollama cost",
+        "ollama corporate license",
+        "ollama cursor ai",
+        "correr claude desde terminal con ollama"
+      ]
+    },
+    {
+      "seed": "ollama not responding",
+      "google": [
+        "ollama not responding",
+        "ollama not responding mac",
+        "ollama not responding openclaw",
+        "ollama stops responding",
+        "ollama not working",
+        "ollama not working on windows",
+        "ollama not working with openclaw",
+        "ollama not working in vscode",
+        "ollama not answering",
+        "ollama not working on mac"
+      ],
+      "bing": [
+        "ollama not responding",
+        "ollama server not responding",
+        "ollama model not responding"
+      ]
+    },
+    {
+      "seed": "ollama out of memory",
+      "google": [
+        "ollama out of memory",
+        "ollama cuda out of memory",
+        "ollama rocm out of memory",
+        "ollama running out of memory",
+        "ollama cudamalloc failed out of memory",
+        "ollama cuda error out of memory",
+        "ollama rocm error out of memory",
+        "how to forget an embarrassing memory",
+        "how to erase your mind's memory"
+      ],
+      "bing": [
+        "ollama out of memory",
+        "ollama keep model in memory",
+        "ollama unload model from memory",
+        "ollama model requires more system memory",
+        "ollama memory layout cannot be allocated",
+        "tell me about ollama",
+        "ollama use shared gpu memory",
+        "how to delete ollama",
+        "ollama turn off thinking",
+        "how to remove ollama",
+        "how to manage ollama",
+        "does ollama collect data",
+        "does ollama able to generate images",
+        "ollama/ollama",
+        "ollama/ollama:latest",
+        "ollama remove model from memory",
+        "how to stop thinking in ollama",
+        "how to work with ollama",
+        "ollama gpu memory utilization",
+        "faster ollama on small ram"
+      ]
+    },
+    {
+      "seed": "ollama 500 internal server error",
+      "google": [
+        "ollama 500 internal server error",
+        "ollama 500 internal server error no user query found in messages",
+        "ollama 500 internal server error memory layout cannot be allocated",
+        "ollama 500 internal server error model requires more system memory",
+        "ollama 500 internal server error to load request",
+        "ollama 500 internal server error exit status 2",
+        "ollama 500 internal server error unable to load mode",
+        "ollama error 500 internal server error to load request post",
+        "ollama 500 internal server error model failed to load",
+        "ollama 500 internal server error failed to allocate memory for model"
+      ],
+      "bing": [
+        "ollama 500 internal server error",
+        "ollama error 500 internal server error",
+        "ollama 500 message internal server error",
+        "ollama api error 500",
+        "ollama chat/completions 500 error",
+        "how to stop ollama server",
+        "ollama as a server",
+        "how to restart ollama server",
+        "ollama server on windows",
+        "how to run ollama server",
+        "how to turn on ollama server",
+        "how to stop ollama server on windows",
+        "ollama internal server error",
+        "ollama server not responding",
+        "dify ollama internal server error",
+        "make sure ollama server is running",
+        "ollama server 0.0.0.0",
+        "ollama server.log"
+      ]
+    },
+    {
+      "seed": "ollama timeout",
+      "google": [
+        "ollama timeout",
+        "ollama timeout setting",
+        "ollama timeout 5 minutes",
+        "ollama timeout error",
+        "ollama timeout environment variables",
+        "ollama timeout api",
+        "ollama timeout openclaw",
+        "ollama timeout increase",
+        "ollama timeout python",
+        "ollama timeout after 5 minutes"
+      ],
+      "bing": [
+        "ollama timeout",
+        "ollama timeout setting",
+        "ollama timeout 5 minutes",
+        "ollama increase timeout",
+        "ollama load timeout",
+        "ollama pull timeout",
+        "ollama request timeout",
+        "cline ollama timeout"
+      ]
+    },
+    {
+      "seed": "ollama model not found",
+      "google": [
+        "ollama model not found",
+        "ollama model not found api",
+        "ollama model not found try pulling it first",
+        "ollama model not found error",
+        "ollama model not working",
+        "ollama_models not working windows",
+        "ollama serve model not found",
+        "opencode ollama model not found",
+        "openclaw ollama model not found",
+        "ollama rm model not found"
+      ],
+      "bing": [
+        "ollama model not found",
+        "ollama this model does not support images",
+        "no model in ollama",
+        "how to find ollama models",
+        "how to check installed ollama models",
+        "ollama model download location",
+        "how to check ollama models",
+        "ollama unable to load model",
+        "ollama remove a model",
+        "what is the latest ollama model",
+        "how to install model in ollama",
+        "ollama models and details",
+        "ollama show installed models",
+        "download ollama models locally",
+        "how to check available models in ollama",
+        "failed to discover ollama models",
+        "ollama model failed to load",
+        "ollama invalid model name"
+      ]
+    },
+    {
+      "seed": "ollama pull error",
+      "google": [
+        "ollama pull error eof",
+        "ollama pull error 504",
+        "ollama pull error 400",
+        "ollama pull error",
+        "ollama pull error max retries exceeded",
+        "ollama pull error 500",
+        "ollama pull error 429",
+        "ollama error pull model manifest",
+        "ollama error pull model manifest 401",
+        "ollama error pull model manifest 412"
+      ],
+      "bing": [
+        "ollama pull error",
+        "ollama pull error eof",
+        "ollama pull error 400",
+        "error context deadline exceeded ollama pull",
+        "ollama error pull model manifest",
+        "ollama pull llama model error"
+      ]
+    },
+    {
+      "seed": "ollama run multiple models",
+      "google": [
+        "ollama run multiple models",
+        "ollama run multiple models in parallel",
+        "ollama run multiple models simultaneously",
+        "ollama run multiple models at the same time",
+        "ollama run two models at the same time",
+        "ollama run 2 models at once",
+        "ollama run 2 models",
+        "can ollama run multiple models at the same time",
+        "can ollama run multiple models",
+        "ollama docker run multiple models"
+      ],
+      "bing": [
+        "ollama run multiple models",
+        "ollama run multiple models in parallel",
+        "can ollama run two models at once",
+        "ollama list running models",
+        "ollama pull multiple models",
+        "ollama run model locally",
+        "ollama run local model",
+        "can ollama have 2 models loaded",
+        "ollama run already downloaded model",
+        "how to list all models in ollama",
+        "models available on ollama",
+        "what are the latest ollama models",
+        "list of ollama models to pull",
+        "how to find ollama models",
+        "ollama models and details",
+        "ollama available models list",
+        "how to list ollama models",
+        "full list of ollama models",
+        "how to load models into ollama",
+        "how to run model in ollama",
+        "ollama run model in background",
+        "models provided by ollama"
+      ]
+    },
+    {
+      "seed": "ollama cpu only",
+      "google": [
+        "ollama cpu only",
+        "ollama cpu only models",
+        "ollama cpu only performance",
+        "ollama cpu only docker",
+        "ollama cpu only flag",
+        "ollama cpu only requirements",
+        "ollama cpu only docker compose",
+        "ollama cpu only install",
+        "ollama cpu only inference",
+        "ollama cpu only windows"
+      ],
+      "bing": [
+        "ollama cpu only",
+        "ollama cpu only mode",
+        "ollama cpu only models",
+        "ollama cpu only mode windows",
+        "ollama only using 50% cpu",
+        "ollama how to run gguf with cpu only",
+        "ollama only using cpu"
+      ]
+    },
+    {
+      "seed": "ollama windows",
+      "google": [
+        "ollama windows",
+        "ollama windows download",
+        "ollama windows installer",
+        "ollama windows 11",
+        "ollama windows gui",
+        "ollama windows app",
+        "ollama windows 10",
+        "ollama windows download page",
+        "ollama windows vs linux",
+        "ollama windows setup"
+      ],
+      "bing": [
+        "ollama windows",
+        "ollama windows download",
+        "ollama windows installer",
+        "ollama windows deepseek",
+        "ollama windows 11",
+        "ollama windows service",
+        "ollama windows gpu",
+        "ollama windows 10",
+        "ollama windows arm",
+        "ollama windows server",
+        "ollama windows download model",
+        "ollama windows arm64",
+        "ollama windows update",
+        "ollama windows setup",
+        "ollama windows gpu support",
+        "ollama windows install to different drive"
+      ]
+    },
+    {
+      "seed": "claude code error",
+      "google": [
+        "claude code errors",
+        "claude code error editing file",
+        "claude code error 400",
+        "claude code error 529",
+        "claude code error 529 overloaded",
+        "claude code error writing file",
+        "claude code error loading webview",
+        "claude code error 429",
+        "claude code error failed to authenticate",
+        "claude code error 403"
+      ],
+      "bing": [
+        "claude code error",
+        "claude code error writing file",
+        "claude code error editing file",
+        "claude code error types",
+        "claude code error handling",
+        "claude code error fix",
+        "claude code error 400",
+        "claude code error 500",
+        "claude code error message",
+        "claude code error 529",
+        "claude code error examples",
+        "claude code error solutions",
+        "claude code error troubleshooting"
+      ]
+    },
+    {
+      "seed": "claude code not working",
+      "google": [
+        "claude code not working",
+        "claude code not working in vscode",
+        "claude code not working in terminal",
+        "claude code not working on windows",
+        "claude code not working today",
+        "claude code not working now",
+        "claude code not working in visual studio code",
+        "claude code not working in cursor",
+        "claude code not working reddit",
+        "claude code not working with ollama"
+      ],
+      "bing": [
+        "claude code not working",
+        "claude code not working in vs code",
+        "claude code not working in terminal",
+        "claude code not working on vpn",
+        "claude code not working on wsl",
+        "claude code not working it just keeps loading",
+        "claude code not working on windows",
+        "claude code not working on my machine",
+        "claude verification code not working"
+      ]
+    },
+    {
+      "seed": "claude code usage limit",
+      "google": [
+        "claude code usage limits",
+        "claude code usage limit reset",
+        "claude code usage limits pro plan",
+        "claude code usage limits reddit",
+        "claude code usage limits vs codex",
+        "claude code usage limit reached",
+        "claude code usage limit hack",
+        "claude code usage limit removed",
+        "claude code usage limit increase",
+        "claude code usage limits per plan"
+      ],
+      "bing": [
+        "claude code usage limits",
+        "claude code usage limits reddit",
+        "claude code usage limits reset",
+        "claude code usage limit reached",
+        "claude code usage limit increase",
+        "claude code usage limits on pro plan",
+        "claude code usage limits vs codex limit",
+        "claude code pro usage limits",
+        "claude code approaching usage limit",
+        "does claude code have usage limits"
+      ]
+    },
+    {
+      "seed": "claude code mcp not connecting",
+      "google": [
+        "claude code mcp not working",
+        "claude code mcp json not working",
+        "claude code figma mcp not working",
+        "car android player reset code"
+      ],
+      "bing": [
+        "connect mcp to claude code",
+        "claude could not connect to mcp server",
+        "claude code with mcp",
+        "does claude code support mcp",
+        "how to use mcp with claude code",
+        "claude mcp failed to connect",
+        "how to setup mcp in claude code",
+        "claude code mcp settings",
+        "claude code mcp configuration",
+        "claude code configure mcp",
+        "claude code how to add mcp",
+        "adding mcp to claude code",
+        "connect mcp to claude",
+        "claude code mcp failed"
+      ]
+    },
+    {
+      "seed": "claude code slow",
+      "google": [
+        "claude code slow",
+        "claude code slow today",
+        "claude code slow reddit",
+        "claude code slower",
+        "claude code slowing down",
+        "claude code slowing down computer",
+        "claude code slower than cursor",
+        "claude code slow mode",
+        "claude code slower than copilot",
+        "claude code slower than codex"
+      ],
+      "bing": [
+        "claude code slow",
+        "claude code slow today",
+        "claude code slow performance",
+        "claude code slow on windows",
+        "claude code so slow",
+        "claude code is super slow",
+        "claude code too slow",
+        "claude code very slow"
+      ]
+    },
+    {
+      "seed": "cursor not working",
+      "google": [
+        "cursor not working on laptop",
+        "cursor not working",
+        "cursor not working on lenovo laptop",
+        "cursor not working on dell laptop",
+        "cursor not working on chromebook",
+        "cursor not working on hp laptop",
+        "cursor not working on pc",
+        "cursor not working on ipad keyboard",
+        "cursor not working on macbook",
+        "cursor not working on mac"
+      ],
+      "bing": [
+        "cursor not working",
+        "cursor not working on laptop",
+        "cursor not working windows 11",
+        "cursor not working on touchpad",
+        "cursor not working in excel",
+        "cursor not working properly",
+        "cursor not working windows 10",
+        "cursor not working on acer laptop",
+        "cursor not working on hp laptop",
+        "cursor not working in word",
+        "cursor not working in outlook",
+        "cursor not working on asus laptop",
+        "cursor not working properly on laptop",
+        "cursor not working on laptop lenovo",
+        "cursor not working on laptop windows 11"
+      ]
+    },
+    {
+      "seed": "cursor connection failed",
+      "google": [
+        "cursor connection failed",
+        "cursor connection failed if the problem persists",
+        "cursor connection failed vpn",
+        "cursor connection failed please try again",
+        "cursor connection failed issue",
+        "cursor connection failed unknown",
+        "cursor connection failure",
+        "cursor connection error",
+        "cursor connection error reddit",
+        "cursor ai connection failed"
+      ],
+      "bing": [
+        "cursor connection failed",
+        "cursor ssh connection failed",
+        "cursor ai connection failed",
+        "connection to cursor server failed",
+        "cursor agent connection failed",
+        "cursor chat connection failed"
+      ]
+    },
+    {
+      "seed": "cursor agent not working",
+      "google": [
+        "cursor agent not working",
+        "cursor agent stopped working",
+        "cursor agent not loading",
+        "cursor agent not starting",
+        "cursor agent not running",
+        "cursor agent terminal not working",
+        "cursor ai agent not working",
+        "cursor agent cli not working",
+        "cursor agent mode not working",
+        "cursor agent chat not working"
+      ],
+      "bing": [
+        "cursor agent not working",
+        "how to use cursor agent",
+        "how to open cursor agent",
+        "cursor failed to create agents",
+        "not seeing the custom agents in cursor",
+        "what is an agent in cursor",
+        "how to create an agent in cursor",
+        "what is cursor agent mode",
+        "failed to create agents. cursor",
+        "cursor agent code review",
+        "how to add agent in cursor",
+        "cursor agent ask manual",
+        "cursor-agent windows",
+        "cursor-agent.exe"
+      ]
+    },
+    {
+      "seed": "cursor slow",
+      "google": [
+        "cursor slow",
+        "cursor slow today",
+        "cursor slowly moving itself",
+        "cursor slow response",
+        "cursor slow reddit",
+        "cursor slowing down",
+        "cursor slow pool",
+        "cursor slow mode",
+        "cursor slow request",
+        "cursor slow startup"
+      ],
+      "bing": [
+        "cursor slow",
+        "cursor slow today",
+        "cursor slow request",
+        "cursor slow to respond",
+        "cursor slow pool",
+        "cursor slow response",
+        "cursor slow scroll project struktur",
+        "slow cursor speed",
+        "cursor autocad slow"
+      ]
+    },
+    {
+      "seed": "github copilot agent mode not showing",
+      "google": [
+        "github copilot agent mode not showing",
+        "github copilot agent mode not showing intellij",
+        "github copilot agent mode not working",
+        "vscode github copilot agent mode not showing",
+        "visual studio github copilot agent mode not showing"
+      ],
+      "bing": [
+        "vscode github copilot agent mode not showing",
+        "github copilot agent mode tutorial",
+        "what is github copilot agent mode",
+        "agent mode github copilot",
+        "github copilot agent mode vs code",
+        "visual studio github copilot agent mode",
+        "github copilot agent mode youtube",
+        "github copilot coding agent vs agent mode",
+        "github copilot cli agent mode",
+        "git copilot agent mode",
+        "github copilot agent mode visual studio code",
+        "how to activate github copilot agent mode"
+      ]
+    },
+    {
+      "seed": "copilot chat not responding",
+      "google": [
+        "copilot chat not responding",
+        "copilot chat not working",
+        "copilot chat not working in vscode",
+        "copilot chat not working in outlook",
+        "copilot chat not working in visual studio",
+        "copilot chat not working in edge",
+        "copilot chat not working in intellij",
+        "copilot chat not working in firefox",
+        "copilot chat not working in outlook classic",
+        "github copilot chat not responding"
+      ],
+      "bing": [
+        "copilot chat not responding",
+        "why is my copilot chat not responding",
+        "github copilot chat not responding",
+        "copilot chat not showing up",
+        "copilot chat not opening",
+        "my copilot is not responding",
+        "why is my copilot chat not working",
+        "copilot voice chat not working",
+        "copilot chat doesn't show up",
+        "why can't i chat with copilot",
+        "how to stop copilot chat",
+        "copilot chat won't load",
+        "why isn't my copilot chat working",
+        "copilot can't chat about this",
+        "copilot chat failed to load",
+        "copilot chat keeps crashing",
+        "copilot does not respond"
+      ]
+    },
+    {
+      "seed": "vscode copilot rate limit",
+      "google": [
+        "vscode copilot rate limit",
+        "vscode copilot rate limit exceeded",
+        "vscode github copilot rate limit",
+        "vscode copilot session rate limit",
+        "vscode copilot global rate limit"
+      ],
+      "bing": [
+        "vscode copilot rate limiting",
+        "vs code copilot free limits",
+        "vscode copilot code review",
+        "vscode copilot pro pricing",
+        "copilot in vscode free",
+        "github copilot vscode cost",
+        "using copilot in vscode",
+        "vscode copilot pricing student",
+        "what is vscode copilot",
+        "vs code copilot cost",
+        "copilot for vscode pricing",
+        "copilot option in vscode",
+        "vscode copilot so slow",
+        "vscode copilot pro+"
+      ]
+    },
+    {
+      "seed": "gemini cli error",
+      "google": [
+        "gemini cli error",
+        "gemini cli error 429",
+        "gemini cli error 400",
+        "gemini cli error 403",
+        "gemini cli error 503",
+        "gemini cli error 500",
+        "gemini cli bug",
+        "gemini cli bug bounty",
+        "gemini cli problem",
+        "gemini cli bug report"
+      ],
+      "bing": [
+        "gemini cli error",
+        "gemini cli error 400 with login url",
+        "gemini cli 429 error pro 3.1 preview",
+        "gemini cli api error",
+        "gemini cli internal api errors"
+      ]
+    },
+    {
+      "seed": "gemini not working",
+      "google": [
+        "gemini not working",
+        "gemini not working with android auto",
+        "gemini not working on galaxy watch",
+        "gemini not working today",
+        "gemini not working on chrome",
+        "gemini not working with google home",
+        "gemini not working on galaxy watch 8",
+        "gemini not working on samsung watch",
+        "gemini not working on watch",
+        "gemini not working on pixel watch 4"
+      ],
+      "bing": [
+        "gemini not working",
+        "gemini not working today",
+        "gemini not working properly",
+        "gemini not working something went wrong",
+        "gemini not working with vpn",
+        "gemini not working on browser",
+        "gemini not working on edge",
+        "gemini not working on android auto",
+        "gemini not working on pc",
+        "gemini not working reddit",
+        "gemini not working in gmail",
+        "gemini not working in chrome",
+        "gemini not working on edge browser"
+      ]
+    },
+    {
+      "seed": "gemini gems not showing",
+      "google": [
+        "gemini gems not showing up",
+        "gemini gems not working",
+        "gemini gems not working properly",
+        "gemini gems not visible",
+        "gemini gems not working reddit",
+        "google gemini gems not working",
+        "gemini custom gems not working",
+        "gemini storybook gem not working",
+        "gem not working",
+        "what gem should gemini wear"
+      ],
+      "bing": [
+        "gemini image not showing",
+        "gemini not showing generated images",
+        "gemini in chrome not showing",
+        "gemini is not working",
+        "gemini not seeing images",
+        "gemini not working properly",
+        "what signs are not compatible with gemini",
+        "gemini not working today",
+        "why can't i use gemini",
+        "why does gemini not work",
+        "gemini not answering questions",
+        "i don't want to use gemini"
+      ]
+    },
+    {
+      "seed": "chatgpt memory not working",
+      "google": [
+        "chatgpt memory not working",
+        "chatgpt memory not working reddit",
+        "chatgpt memory stopped working",
+        "chatgpt memory isn't working",
+        "chatgpt memory not loading",
+        "chatgpt memory not showing",
+        "chatgpt memories not showing up",
+        "chatgpt saved memory not working",
+        "chatgpt delete memory not working",
+        "chatgpt memory summary not working"
+      ],
+      "bing": [
+        "chatgpt memory not working",
+        "chatgpt keeps running out of memory",
+        "chatgpt out of memory error",
+        "chatgpt using a lot of memory",
+        "how to turn off memory in chatgpt",
+        "does chatgpt use local memory",
+        "chatgpt error code out of memory",
+        "does chatgpt have memory",
+        "chatgpt now has memory across chats",
+        "why does chatgpt have a memory limit",
+        "how to remove memory in chatgpt",
+        "how to check chatgpt memory",
+        "how to fix chatgpt memory full",
+        "how to update chatgpt memory",
+        "how to use chatgpts in memory mode",
+        "how to access chatgpt memory",
+        "chat gpt with no memory"
+      ]
+    },
+    {
+      "seed": "chatgpt not saving chats",
+      "google": [
+        "chatgpt not saving chats",
+        "chatgpt not saving messages",
+        "chatgpt not saving new chats",
+        "does chatgpt not save chats anymore",
+        "chatgpt do.not save chats",
+        "why is chatgpt not saving my chats"
+      ],
+      "bing": [
+        "chatgpt chats not saving",
+        "does chatgpt save all chats",
+        "how to save chats in chatgpt",
+        "chatgpt not showing chats",
+        "chatgpt chat not working",
+        "how many chats does chatgpt save",
+        "chatgpt how to save",
+        "does chatgpt save conversations",
+        "chatgpt save temporary chat",
+        "does chatgpt save information",
+        "can i save a chatgpt conversation",
+        "do chatgpt conversations save",
+        "how to save info from chatgpt",
+        "does chatgpt save data",
+        "how to save chat in chat gpt"
+      ]
+    },
+    {
+      "seed": "notebooklm not working",
+      "google": [
+        "notebooklm not working",
+        "notebooklm not working today",
+        "notebooklm not working reddit",
+        "notebooklm not working properly",
+        "notebooklm not working on phone",
+        "notebooklm not working on iphone",
+        "notebooklm not working right now",
+        "notebooklm not working on ipad",
+        "notebooklm not working on mac",
+        "notebook lm not working on safari"
+      ],
+      "bing": [
+        "notebooklm not working",
+        "notebooklm slide deck not working",
+        "notebooklm infographic not working",
+        "why notebooklm is not working",
+        "why notebooklm slide deck not working",
+        "notebooklm video overview not working"
+      ]
+    },
+    {
+      "seed": "notebooklm audio overview not working",
+      "google": [
+        "notebooklm audio overview not working",
+        "notebooklm audio overview not loading",
+        "notebooklm audio not working"
+      ],
+      "bing": [
+        "notebook lm audio overview not working",
+        "how to download notebooklm audio",
+        "notebooklm audio overview length",
+        "notebook lm audio overview",
+        "audio book not working",
+        "notebooklm video overview prompt",
+        "google notebook lm audio overview",
+        "why is notebooklm not working",
+        "notebook lm audio overview limits",
+        "on board audio not working",
+        "notebooklm video doesn't download",
+        "hp omnibook sound not working",
+        "notebooklm audio overview limit"
+      ]
+    },
+    {
+      "seed": "perplexity not working",
+      "google": [
+        "perplexity not working",
+        "perplexity not working today",
+        "perplexity not working on ipad",
+        "perplexity not working reddit",
+        "perplexity not working on chrome",
+        "perplexity not working on whatsapp",
+        "perplexity not working properly",
+        "perplexity not working on safari",
+        "perplexity not working on mac",
+        "perplexity not working now"
+      ],
+      "bing": [
+        "perplexity not working",
+        "perplexity not working today",
+        "perplexity ai not working",
+        "perplexity pro not working",
+        "perplexity pro airtel not working",
+        "perplexity airtel offer not working",
+        "perplexity deep research not working"
+      ]
+    },
+    {
+      "seed": "lm studio error",
+      "google": [
+        "lm studio error fetching staff picks",
+        "lm studio error channel error",
+        "lm studio error",
+        "lm studio error 400",
+        "lm studio error terminated",
+        "lm studio error loading model"
+      ],
+      "bing": [
+        "lm studio error fetching staff picks",
+        "lm studio error loading model",
+        "lm studio error",
+        "lm studio error device lost",
+        "lm studio error surveying hardware",
+        "lm studio channel error",
+        "lm studio unknown error",
+        "lm studio javascript error"
+      ]
+    },
+    {
+      "seed": "open webui ollama not connecting",
+      "google": [
+        "open webui ollama not working",
+        "open webui ollama connection problem",
+        "open webui not connecting to ollama"
+      ],
+      "bing": [
+        "open webui not connecting to ollama",
+        "ollama + open webui windows",
+        "open webui vs ollama",
+        "run ollama and open webui",
+        "how to link webui with ollama",
+        "connect openwebui to ollama",
+        "setup openwebui with ollama",
+        "open webui ollama windows",
+        "ollama webui server connection error",
+        "ollama open-webui",
+        "openwebui ollama network problem"
+      ]
+    },
+    {
+      "seed": "n8n error workflow",
+      "google": [
+        "n8n error workflow",
+        "n8n error workflow not triggering",
+        "n8n error workflow template",
+        "n8n error workflow not working",
+        "n8n error workflow example",
+        "n8n workflow error handling",
+        "n8n workflow error notification",
+        "n8n workflow error trigger",
+        "n8n create error workflow",
+        "n8n error fetching workflows unauthorized"
+      ],
+      "bing": [
+        "n8n error workflow",
+        "n8n error handling workflow"
+      ]
+    },
+    {
+      "seed": "n8n retry on fail",
+      "google": [
+        "n8n retry on fail",
+        "n8n retry workflow on fail",
+        "n8n retry on error",
+        "n8n http request retry on fail",
+        "0xa00f4246 error retry failed"
+      ],
+      "bing": [
+        "n8n retry on fail",
+        "n8n failed to connect",
+        "connection stops when running n8n",
+        "error connecting to n8n",
+        "error handling in n8n",
+        "n8n lost connection to the server",
+        "n8n ollama connection refused",
+        "how to remove a connection in n8n",
+        "n8n out of memory",
+        "how to get started with n8n",
+        "latest version of n8n",
+        "tell me about n8n",
+        "n8n wait for all inputs",
+        "n8n error: failed to receive response",
+        "how to remove n8n",
+        "n8n on error workflow",
+        "how to fix n8n flaw",
+        "n8n failed to receive response",
+        "stop and error n8n",
+        "n8n error installing new package",
+        "n8n model_not_found",
+        "n8n is starting up. please wait"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

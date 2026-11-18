@@ -1,0 +1,1160 @@
+{
+  "checkedAt": "2026-11-17T18:24:54.258Z",
+  "inventory": {
+    "total": 187,
+    "published": 185,
+    "hash": "0b058940363341df1e5ce2fc857d129c",
+    "views": 4021
+  },
+  "categories": [
+    {
+      "id": 2,
+      "slug": "tech-guides",
+      "name": "Tech Guides",
+      "posts": 64,
+      "views": 892,
+      "avg_views": 13.9
+    },
+    {
+      "id": 1,
+      "slug": "ai-tools",
+      "name": "AI Tools",
+      "posts": 60,
+      "views": 1568,
+      "avg_views": 26.1
+    },
+    {
+      "id": 4,
+      "slug": "coding",
+      "name": "Coding",
+      "posts": 22,
+      "views": 720,
+      "avg_views": 32.7
+    },
+    {
+      "id": 5,
+      "slug": "software-reviews",
+      "name": "Software Reviews",
+      "posts": 19,
+      "views": 378,
+      "avg_views": 19.9
+    },
+    {
+      "id": 3,
+      "slug": "productivity",
+      "name": "Productivity",
+      "posts": 14,
+      "views": 239,
+      "avg_views": 17.1
+    },
+    {
+      "id": 6,
+      "slug": "cybersecurity",
+      "name": "Cybersecurity",
+      "posts": 6,
+      "views": 224,
+      "avg_views": 37.3
+    }
+  ],
+  "topByViews": [
+    {
+      "id": 116,
+      "slug": "best-ai-content-creation-tools-2026",
+      "views": 187,
+      "created": "2026-06-23",
+      "category_id": 1
+    },
+    {
+      "id": 58,
+      "slug": "best-free-vpn-2026",
+      "views": 178,
+      "created": "2026-05-25",
+      "category_id": 6
+    },
+    {
+      "id": 1,
+      "slug": "10-best-free-ai-tools-in-2026-that-will-blow-your-mind",
+      "views": 129,
+      "created": "2026-05-19",
+      "category_id": 1
+    },
+    {
+      "id": 64,
+      "slug": "best-remote-job-boards-developers-2026",
+      "views": 118,
+      "created": "2026-05-26",
+      "category_id": 4
+    },
+    {
+      "id": 117,
+      "slug": "best-ai-tools-for-youtube-creators-2026",
+      "views": 106,
+      "created": "2026-06-24",
+      "category_id": 1
+    },
+    {
+      "id": 25,
+      "slug": "how-to-learn-programming-2026-beginner-roadmap",
+      "views": 87,
+      "created": "2026-05-21",
+      "category_id": 2
+    },
+    {
+      "id": 45,
+      "slug": "best-free-hosting-platforms-2026",
+      "views": 79,
+      "created": "2026-05-22",
+      "category_id": 2
+    },
+    {
+      "id": 148,
+      "slug": "best-ai-apps-for-android-2026",
+      "views": 76,
+      "created": "2026-07-18",
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "slug": "nextjs-16-deployment-guide-2026-vercel-seo-custom-domain",
+      "views": 71,
+      "created": "2026-05-20",
+      "category_id": 2
+    },
+    {
+      "id": 24,
+      "slug": "best-vscode-extensions-2026-web-developers",
+      "views": 61,
+      "created": "2026-05-21",
+      "category_id": 4
+    },
+    {
+      "id": 55,
+      "slug": "vibe-coding-guide-2026",
+      "views": 60,
+      "created": "2026-05-24",
+      "category_id": 4
+    },
+    {
+      "id": 53,
+      "slug": "apify-review-web-scraping-ai-platform-2026",
+      "views": 53,
+      "created": "2026-05-23",
+      "category_id": 5
+    },
+    {
+      "id": 4,
+      "slug": "python-ai-agent-tutorial-2026-langgraph-rag-tools",
+      "views": 47,
+      "created": "2026-05-20",
+      "category_id": 4
+    },
+    {
+      "id": 52,
+      "slug": "what-is-claude-code-guide-2026",
+      "views": 47,
+      "created": "2026-05-23",
+      "category_id": 1
+    },
+    {
+      "id": 38,
+      "slug": "linux-wsl-setup-guide-2026-windows-developers",
+      "views": 46,
+      "created": "2026-05-21",
+      "category_id": 2
+    },
+    {
+      "id": 5,
+      "slug": "best-ai-coding-assistants-2026-copilot-cursor-windsurf",
+      "views": 45,
+      "created": "2026-05-20",
+      "category_id": 5
+    },
+    {
+      "id": 68,
+      "slug": "best-ai-email-assistants-2026",
+      "views": 43,
+      "created": "2026-05-28",
+      "category_id": 5
+    },
+    {
+      "id": 3,
+      "slug": "ai-productivity-workflow-2026-time-blocking-automation",
+      "views": 43,
+      "created": "2026-05-20",
+      "category_id": 3
+    },
+    {
+      "id": 236,
+      "slug": "gemini-not-showing-google-docs-gmail-2026",
+      "views": 42,
+      "created": "2026-10-07",
+      "category_id": 2
+    },
+    {
+      "id": 21,
+      "slug": "how-to-make-money-with-ai-2026",
+      "views": 42,
+      "created": "2026-05-21",
+      "category_id": 1
+    },
+    {
+      "id": 171,
+      "slug": "how-to-use-midjourney-2026-complete-guide",
+      "views": 41,
+      "created": "2026-07-29",
+      "category_id": 1
+    },
+    {
+      "id": 141,
+      "slug": "how-to-learn-ai-2026-beginner-roadmap",
+      "views": 41,
+      "created": "2026-07-11",
+      "category_id": 4
+    },
+    {
+      "id": 6,
+      "slug": "best-ai-tools-for-students-2026-free-study-apps",
+      "views": 40,
+      "created": "2026-05-20",
+      "category_id": 1
+    },
+    {
+      "id": 123,
+      "slug": "best-ai-design-tools-2026",
+      "views": 39,
+      "created": "2026-06-28",
+      "category_id": 1
+    },
+    {
+      "id": 128,
+      "slug": "how-to-use-google-gemini-2026-complete-guide",
+      "views": 38,
+      "created": "2026-07-02",
+      "category_id": 1
+    }
+  ],
+  "recent": [
+    {
+      "id": 255,
+      "slug": "n8n-schedule-trigger-guide",
+      "views": 0,
+      "created": "2026-11-16"
+    },
+    {
+      "id": 254,
+      "slug": "n8n-merge-node-guide",
+      "views": 3,
+      "created": "2026-11-15"
+    },
+    {
+      "id": 253,
+      "slug": "n8n-date-format-guide",
+      "views": 9,
+      "created": "2026-11-13"
+    },
+    {
+      "id": 252,
+      "slug": "n8n-split-out-node-guide",
+      "views": 3,
+      "created": "2026-11-12"
+    },
+    {
+      "id": 251,
+      "slug": "n8n-wait-node-guide",
+      "views": 0,
+      "created": "2026-11-11"
+    },
+    {
+      "id": 250,
+      "slug": "n8n-ai-agent-memory-guide",
+      "views": 0,
+      "created": "2026-11-09"
+    },
+    {
+      "id": 249,
+      "slug": "n8n-sub-workflow-guide",
+      "views": 3,
+      "created": "2026-11-08"
+    },
+    {
+      "id": 248,
+      "slug": "n8n-loop-over-items-guide",
+      "views": 3,
+      "created": "2026-11-07"
+    },
+    {
+      "id": 247,
+      "slug": "n8n-code-node-guide",
+      "views": 0,
+      "created": "2026-11-06"
+    },
+    {
+      "id": 246,
+      "slug": "unexpected-token-html-not-valid-json",
+      "views": 0,
+      "created": "2026-11-05"
+    },
+    {
+      "id": 245,
+      "slug": "n8n-json-parameter-needs-to-be-valid-json",
+      "views": 0,
+      "created": "2026-11-01"
+    },
+    {
+      "id": 244,
+      "slug": "n8n-cant-determine-which-item-to-use",
+      "views": 3,
+      "created": "2026-10-31"
+    },
+    {
+      "id": 243,
+      "slug": "csv-opens-in-one-column-excel",
+      "views": 6,
+      "created": "2026-10-27"
+    },
+    {
+      "id": 242,
+      "slug": "ollama-models-folder-windows-move-2026",
+      "views": 12,
+      "created": "2026-10-25"
+    },
+    {
+      "id": 241,
+      "slug": "cursor-agent-stuck-planning-next-moves-2026",
+      "views": 15,
+      "created": "2026-10-24"
+    },
+    {
+      "id": 240,
+      "slug": "png-to-jpg-black-background",
+      "views": 9,
+      "created": "2026-10-13"
+    },
+    {
+      "id": 239,
+      "slug": "excel-csv-special-characters-utf8",
+      "views": 9,
+      "created": "2026-10-12"
+    },
+    {
+      "id": 238,
+      "slug": "claude-code-not-recognized-windows-2026",
+      "views": 0,
+      "created": "2026-10-12"
+    },
+    {
+      "id": 237,
+      "slug": "excel-csv-leading-zeros-2026",
+      "views": 9,
+      "created": "2026-10-08"
+    },
+    {
+      "id": 236,
+      "slug": "gemini-not-showing-google-docs-gmail-2026",
+      "views": 42,
+      "created": "2026-10-07"
+    },
+    {
+      "id": 235,
+      "slug": "ollama-not-using-gpu-windows-2026",
+      "views": 18,
+      "created": "2026-10-06"
+    },
+    {
+      "id": 234,
+      "slug": "copilot-in-excel-not-showing-2026",
+      "views": 6,
+      "created": "2026-10-04"
+    },
+    {
+      "id": 233,
+      "slug": "excel-get-data-from-pdf-missing-2026",
+      "views": 3,
+      "created": "2026-10-04"
+    },
+    {
+      "id": 232,
+      "slug": "github-copilot-not-working-vscode-2026",
+      "views": 15,
+      "created": "2026-10-02"
+    },
+    {
+      "id": 231,
+      "slug": "n8n-webhook-not-working-2026",
+      "views": 0,
+      "created": "2026-10-01"
+    },
+    {
+      "id": 228,
+      "slug": "how-to-make-ai-music-2026",
+      "views": 15,
+      "created": "2026-09-28"
+    },
+    {
+      "id": 227,
+      "slug": "how-to-write-cover-letter-with-ai-2026",
+      "views": 0,
+      "created": "2026-09-28"
+    },
+    {
+      "id": 226,
+      "slug": "how-to-start-online-store-with-ai-2026",
+      "views": 3,
+      "created": "2026-09-23"
+    },
+    {
+      "id": 225,
+      "slug": "how-to-edit-videos-with-ai-2026",
+      "views": 6,
+      "created": "2026-09-22"
+    },
+    {
+      "id": 223,
+      "slug": "perplexity-vs-claude-2026-comparison",
+      "views": 3,
+      "created": "2026-09-17"
+    }
+  ],
+  "titles": [
+    {
+      "slug": "10-best-free-ai-tools-in-2026-that-will-blow-your-mind",
+      "title": "10 Best Free AI Tools in 2026 That Will Blow Your Mind"
+    },
+    {
+      "slug": "nextjs-16-deployment-guide-2026-vercel-seo-custom-domain",
+      "title": "Next.js 16 Deployment Guide 2026: Vercel SEO Setup"
+    },
+    {
+      "slug": "ai-productivity-workflow-2026-time-blocking-automation",
+      "title": "AI Productivity Workflow 2026: Work Smarter"
+    },
+    {
+      "slug": "python-ai-agent-tutorial-2026-langgraph-rag-tools",
+      "title": "Python AI Agent Tutorial 2026: Build a LangGraph Agent"
+    },
+    {
+      "slug": "best-ai-coding-assistants-2026-copilot-cursor-windsurf",
+      "title": "Best AI Coding Assistants 2026 (Top 5 Ranked)"
+    },
+    {
+      "slug": "best-ai-tools-for-students-2026-free-study-apps",
+      "title": "Best AI Tools for Students 2026: Free Study Apps"
+    },
+    {
+      "slug": "best-ai-tools-for-small-business-2026",
+      "title": "Best AI Tools for Small Business 2026"
+    },
+    {
+      "slug": "best-chatgpt-alternatives-2026-free-paid",
+      "title": "Best ChatGPT Alternatives 2026: Free and Paid"
+    },
+    {
+      "slug": "how-to-start-a-tech-blog-2026-seo-checklist",
+      "title": "How to Start a Tech Blog in 2026: 17-Step SEO Checklist"
+    },
+    {
+      "slug": "website-speed-optimization-checklist-2026-core-web-vitals",
+      "title": "Website Speed Optimization Checklist 2026"
+    },
+    {
+      "slug": "online-security-checklist-2026-passkeys-2fa",
+      "title": "Online Security Checklist 2026: Passkeys and 2FA"
+    },
+    {
+      "slug": "best-ai-productivity-apps-for-freelancers-2026",
+      "title": "Best AI Productivity Apps for Freelancers 2026"
+    },
+    {
+      "slug": "time-blocking-for-students-2026-ai-study-planner",
+      "title": "Time Blocking for Students 2026: AI Study Planner"
+    },
+    {
+      "slug": "notion-vs-obsidian-vs-apple-notes-2026",
+      "title": "Notion vs Obsidian vs Apple Notes 2026"
+    },
+    {
+      "slug": "javascript-roadmap-2026-beginner-job-ready",
+      "title": "JavaScript Roadmap 2026: Beginner to Job Ready"
+    },
+    {
+      "slug": "react-19-best-practices-2026-faster-apps",
+      "title": "React 19 Best Practices 2026: Faster Apps"
+    },
+    {
+      "slug": "build-rag-chatbot-nextjs-2026",
+      "title": "Build a RAG Chatbot with Next.js in 2026"
+    },
+    {
+      "slug": "copilot-vs-chatgpt-for-coding-2026",
+      "title": "Copilot vs ChatGPT for Coding 2026"
+    },
+    {
+      "slug": "canva-ai-vs-adobe-express-2026",
+      "title": "Canva AI vs Adobe Express 2026"
+    },
+    {
+      "slug": "perplexity-vs-google-gemini-2026-research",
+      "title": "Perplexity vs Google Gemini 2026"
+    },
+    {
+      "slug": "how-to-make-money-with-ai-2026",
+      "title": "How to Make Money with AI in 2026: 12 Real Ways That Work"
+    },
+    {
+      "slug": "best-ai-image-generators-2026-free-paid",
+      "title": "Best AI Image Generators 2026: Free and Paid Tools Compared"
+    },
+    {
+      "slug": "best-chatgpt-prompts-for-work-2026",
+      "title": "50 Best ChatGPT Prompts for Work 2026: Copy-Paste Templates"
+    },
+    {
+      "slug": "best-vscode-extensions-2026-web-developers",
+      "title": "25 Best VS Code Extensions 2026 for Web Developers"
+    },
+    {
+      "slug": "how-to-learn-programming-2026-beginner-roadmap",
+      "title": "How to Learn Programming in 2026: Complete Beginner Roadmap"
+    },
+    {
+      "slug": "claude-vs-chatgpt-2026-comparison",
+      "title": "Claude vs ChatGPT 2026: Honest Comparison"
+    },
+    {
+      "slug": "best-ai-apps-for-iphone-2026",
+      "title": "15 Best AI Apps for iPhone 2026: Free and Paid"
+    },
+    {
+      "slug": "how-to-use-cursor-ai-2026-guide",
+      "title": "How to Use Cursor AI in 2026: Complete Guide for Developers"
+    },
+    {
+      "slug": "git-github-beginners-guide-2026",
+      "title": "Git and GitHub for Beginners 2026: Complete Guide"
+    },
+    {
+      "slug": "best-ai-video-generators-2026",
+      "title": "Best AI Video Generators 2026: Create Videos from Text"
+    },
+    {
+      "slug": "docker-for-beginners-2026-guide",
+      "title": "Docker for Beginners 2026: Complete Getting Started Guide"
+    },
+    {
+      "slug": "typescript-for-beginners-2026-complete-guide",
+      "title": "TypeScript for Beginners 2026: Getting Started"
+    },
+    {
+      "slug": "linux-wsl-setup-guide-2026-windows-developers",
+      "title": "Linux & WSL Setup Guide for Windows Devs (2026)"
+    },
+    {
+      "slug": "best-laptops-for-coding-2026-developers",
+      "title": "Best Laptops for Coding 2026 (Every Budget)"
+    },
+    {
+      "slug": "tailwind-css-4-guide-2026",
+      "title": "Tailwind CSS 4 Guide 2026: What's New and How to Migrate"
+    },
+    {
+      "slug": "best-free-apis-for-developers-2026",
+      "title": "30 Best Free APIs for Developers in 2026 (No Key Required)"
+    },
+    {
+      "slug": "build-portfolio-website-2026",
+      "title": "Build a Portfolio Website 2026: Developer Guide"
+    },
+    {
+      "slug": "best-vscode-extensions-2026",
+      "title": "20 Best VS Code Extensions in 2026 Every Developer Needs"
+    },
+    {
+      "slug": "top-programming-languages-2026",
+      "title": "Top 10 Programming Languages to Learn in 2026"
+    },
+    {
+      "slug": "best-free-hosting-platforms-2026",
+      "title": "Best Free Web Hosting in 2026: 7 Plans and Their Limits"
+    },
+    {
+      "slug": "how-to-build-portfolio-website-2026",
+      "title": "How to Build a Developer Portfolio Website in 2026"
+    },
+    {
+      "slug": "github-copilot-guide-2026",
+      "title": "How to Use GitHub Copilot Effectively: Complete Guide 2026"
+    },
+    {
+      "slug": "docker-for-beginners-complete-guide",
+      "title": "Docker for Beginners 2026: Complete Guide"
+    },
+    {
+      "slug": "how-to-start-freelancing-developer-2026",
+      "title": "How to Start Freelancing as a Developer in 2026"
+    },
+    {
+      "slug": "best-ai-website-builders-2026",
+      "title": "10 Best AI Website Builders in 2026 to Create a Site Fast"
+    },
+    {
+      "slug": "what-is-claude-code-guide-2026",
+      "title": "What Is Claude Code? AI Coding Tool Guide 2026"
+    },
+    {
+      "slug": "apify-review-web-scraping-ai-platform-2026",
+      "title": "Apify Review 2026: Best Web Scraping Platform?"
+    },
+    {
+      "slug": "best-ai-writing-tools-2026",
+      "title": "Best AI Writing Tools for Bloggers in 2026: 10 Tested Picks"
+    },
+    {
+      "slug": "vibe-coding-guide-2026",
+      "title": "Vibe Coding Guide 2026: Build Apps with AI"
+    },
+    {
+      "slug": "best-ai-code-editors-2026",
+      "title": "Best AI Code Editors 2026: Cursor vs Copilot"
+    },
+    {
+      "slug": "best-chrome-extensions-developers-2026",
+      "title": "15 Best Chrome Extensions for Developers in 2026"
+    },
+    {
+      "slug": "best-free-vpn-2026",
+      "title": "Best Free VPN Services in 2026: 5 Safe Picks, Tested and Ranked"
+    },
+    {
+      "slug": "best-password-managers-2026",
+      "title": "Best Password Managers in 2026: Free and Paid Compared"
+    },
+    {
+      "slug": "check-if-email-hacked-2026",
+      "title": "How to Check If Your Email Has Been Hacked (2026 Guide)"
+    },
+    {
+      "slug": "two-factor-authentication-guide-2026",
+      "title": "2FA Guide 2026: Set Up Two-Factor Everywhere"
+    },
+    {
+      "slug": "how-to-create-strong-passwords-2026",
+      "title": "How to Create Strong Passwords in 2026 (Easy)"
+    },
+    {
+      "slug": "best-ai-resume-builders-2026",
+      "title": "7 Best AI Resume Builders in 2026 (Free & Paid)"
+    },
+    {
+      "slug": "best-remote-job-boards-developers-2026",
+      "title": "15 Best Remote Job Boards for Developers (2026)"
+    },
+    {
+      "slug": "best-ai-meeting-assistants-2026",
+      "title": "7 Best AI Meeting Assistants in 2026 (Ranked)"
+    },
+    {
+      "slug": "linkedin-for-developers-2026",
+      "title": "LinkedIn for Developers 2026: Get More Job Calls"
+    },
+    {
+      "slug": "best-ai-email-assistants-2026",
+      "title": "7 Best AI Email Assistants in 2026 (Tested)"
+    },
+    {
+      "slug": "best-ai-presentation-makers-2026",
+      "title": "7 Best AI Presentation Makers in 2026"
+    },
+    {
+      "slug": "best-ai-logo-generators-2026",
+      "title": "Best AI Logo Generators in 2026: Top Tools for Fast Branding"
+    },
+    {
+      "slug": "best-ai-voice-generators-2026",
+      "title": "7 Best AI Voice Generators in 2026 (Ranked)"
+    },
+    {
+      "slug": "best-ai-customer-service-chatbots-2026",
+      "title": "7 Best AI Customer Service Chatbots (2026)"
+    },
+    {
+      "slug": "best-ai-agent-builders-2026",
+      "title": "Best AI Agent Builders in 2026: No-Code Tools for Real Business Automation"
+    },
+    {
+      "slug": "best-ai-seo-tools-2026",
+      "title": "Best AI SEO Tools in 2026: 10 Tools to Grow Blog Traffic"
+    },
+    {
+      "slug": "best-ai-sales-tools-2026",
+      "title": "9 Best AI Sales Tools in 2026 (Tested)"
+    },
+    {
+      "slug": "best-ai-spreadsheet-tools-2026",
+      "title": "7 Best AI Spreadsheet Tools in 2026 (Ranked)"
+    },
+    {
+      "slug": "best-vibe-coding-tools-2026",
+      "title": "7 Best Vibe Coding Tools in 2026 (Ranked)"
+    },
+    {
+      "slug": "seo-meta-tags-generator-guide-2026",
+      "title": "SEO Meta Tags Guide 2026: Titles & Descriptions"
+    },
+    {
+      "slug": "best-ai-data-analysis-tools-2026",
+      "title": "9 Best AI Data Analysis Tools in 2026 (Ranked)"
+    },
+    {
+      "slug": "best-ai-search-engines-2026",
+      "title": "7 Best AI Search Engines in 2026 (Compared)"
+    },
+    {
+      "slug": "best-ai-pdf-tools-2026",
+      "title": "7 Best AI PDF Tools in 2026 (Tested & Ranked)"
+    },
+    {
+      "slug": "affiliate-marketing-for-beginners-2026",
+      "title": "Affiliate Marketing for Beginners: 10 Steps (2026)"
+    },
+    {
+      "slug": "how-to-get-traffic-to-a-new-blog-2026",
+      "title": "10 Steps to Get Traffic to a New Blog (2026)"
+    },
+    {
+      "slug": "low-competition-keywords-for-new-blogs-2026",
+      "title": "15 Low Competition Keywords for New Blogs (2026)"
+    },
+    {
+      "slug": "how-many-blog-posts-before-traffic-starts-2026",
+      "title": "How Many Blog Posts Before Traffic Starts in 2026?"
+    },
+    {
+      "slug": "90-day-blog-content-plan-for-new-websites-in-2026",
+      "title": "90-Day Blog Content Plan for New Websites in 2026"
+    },
+    {
+      "slug": "50-blog-post-ideas-for-new-bloggers-in-2026",
+      "title": "50 Blog Post Ideas for New Bloggers in 2026"
+    },
+    {
+      "slug": "how-to-build-topical-authority-for-a-new-blog-in-2026",
+      "title": "How to Build Topical Authority for a New Blog in 2026"
+    },
+    {
+      "slug": "google-search-console-for-new-blogs-2026-beginner-guide",
+      "title": "Google Search Console for New Blogs: 2026 Beginner Guide"
+    },
+    {
+      "slug": "blog-seo-checklist-before-publishing-in-2026",
+      "title": "Blog SEO Checklist Before Publishing in 2026"
+    },
+    {
+      "slug": "how-to-update-old-blog-posts-for-more-traffic-in-2026",
+      "title": "How to Update Old Blog Posts for More Traffic in 2026"
+    },
+    {
+      "slug": "ai-automation-roadmap-2026-what-to-automate-first",
+      "title": "AI Automation Roadmap 2026: What to Automate First"
+    },
+    {
+      "slug": "best-ai-note-taking-apps-2026",
+      "title": "9 Best AI Note-Taking Apps in 2026 (Tested and Ranked)"
+    },
+    {
+      "slug": "best-ai-marketing-tools-2026",
+      "title": "10 Best AI Marketing Tools in 2026 (Tested for Real Campaigns)"
+    },
+    {
+      "slug": "9-best-no-code-app-builders-in-2026-build-without-coding",
+      "title": "9 Best No-Code App Builders in 2026 (Build Without Coding)"
+    },
+    {
+      "slug": "9-best-ai-photo-editors-in-2026-free-and-paid",
+      "title": "9 Best AI Photo Editors in 2026 (Free and Paid)"
+    },
+    {
+      "slug": "9-best-ai-social-media-tools-in-2026-tested",
+      "title": "9 Best AI Social Media Tools in 2026 (Tested)"
+    },
+    {
+      "slug": "prompt-engineering-guide-2026-write-better-ai-prompts",
+      "title": "Prompt Engineering Guide 2026: Write Better AI Prompts"
+    },
+    {
+      "slug": "best-ai-research-tools-in-2026-ranked-by-workflow",
+      "title": "Best AI Research Tools in 2026 (Ranked by Workflow)"
+    },
+    {
+      "slug": "best-ai-content-creation-tools-2026",
+      "title": "Best AI Content Creation Tools in 2026 (Tested & Ranked)"
+    },
+    {
+      "slug": "best-ai-tools-for-youtube-creators-2026",
+      "title": "Best AI Video Creation Tools for YouTube Creators in 2026"
+    },
+    {
+      "slug": "best-ai-tools-for-ecommerce-2026",
+      "title": "Best AI Tools for Ecommerce in 2026 (Tested Across Real Stores)"
+    },
+    {
+      "slug": "best-ai-tools-for-podcasters-2026",
+      "title": "Best AI Tools for Podcasters in 2026 (Record, Edit, Grow)"
+    },
+    {
+      "slug": "best-ai-project-management-tools-2026",
+      "title": "Best AI Project Management Tools in 2026 (Ranked by Real Teams)"
+    },
+    {
+      "slug": "best-ai-crm-tools-2026",
+      "title": "Best AI CRM Tools in 2026 (Ranked for Sales, Support & Growth)"
+    },
+    {
+      "slug": "best-ai-transcription-tools-2026",
+      "title": "Best AI Transcription Tools in 2026 (Speed, Accuracy & Price Compared)"
+    },
+    {
+      "slug": "best-ai-design-tools-2026",
+      "title": "Best AI Design Tools in 2026 (For Graphic Design, UI & Branding)"
+    },
+    {
+      "slug": "best-ai-chatbots-2026",
+      "title": "Best AI Chatbots in 2026 (Ranked by Speed, Accuracy & Real-World Use)"
+    },
+    {
+      "slug": "best-ai-tools-for-teachers-2026",
+      "title": "Best AI Tools for Teachers in 2026 (Lesson Planning, Grading & More)"
+    },
+    {
+      "slug": "topical-authority-seo-strategy-2026-new-tech-blogs",
+      "title": "Topical Authority SEO Strategy 2026 for New Tech Blogs"
+    },
+    {
+      "slug": "free-seo-audit-website-2026-step-by-step",
+      "title": "How to Do a Free SEO Audit for Your Website in 2026"
+    },
+    {
+      "slug": "how-to-use-google-gemini-2026-complete-guide",
+      "title": "How to Use Google Gemini in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-use-chatgpt-2026-complete-guide",
+      "title": "How to Use ChatGPT in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-use-claude-ai-2026-complete-guide",
+      "title": "How to Use Claude AI in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-use-perplexity-ai-2026-complete-guide",
+      "title": "How to Use Perplexity AI in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-do-keyword-research-free-2026",
+      "title": "How to Do Keyword Research for Free in 2026 (Step by Step)"
+    },
+    {
+      "slug": "how-to-write-seo-friendly-blog-posts-2026",
+      "title": "How to Write SEO-Friendly Blog Posts in 2026 (Step by Step)"
+    },
+    {
+      "slug": "how-to-learn-python-2026-beginner-roadmap",
+      "title": "How to Learn Python in 2026: Complete Beginner Roadmap"
+    },
+    {
+      "slug": "how-to-build-website-with-ai-2026",
+      "title": "How to Build a Website with AI in 2026 (Step by Step)"
+    },
+    {
+      "slug": "vscode-tips-and-tricks-2026",
+      "title": "25 VS Code Tips and Tricks Every Developer Should Know in 2026"
+    },
+    {
+      "slug": "how-to-learn-ai-2026-beginner-roadmap",
+      "title": "How to Learn AI in 2026: Complete Beginner Roadmap"
+    },
+    {
+      "slug": "how-to-get-first-tech-job-2026",
+      "title": "How to Get Your First Tech Job in 2026 (Step-by-Step Guide)"
+    },
+    {
+      "slug": "how-to-write-seo-titles-2026",
+      "title": "How to Write SEO Titles That Get More Clicks in 2026"
+    },
+    {
+      "slug": "best-free-text-to-speech-tools-2026",
+      "title": "10 Best Free Text to Speech Tools in 2026 (Tested)"
+    },
+    {
+      "slug": "do-ai-content-detectors-work-2026",
+      "title": "Do AI Content Detectors Actually Work in 2026? (Tested)"
+    },
+    {
+      "slug": "best-ai-apps-for-android-2026",
+      "title": "12 Best AI Apps for Android in 2026 (Mostly Free)"
+    },
+    {
+      "slug": "how-to-optimize-images-for-web-2026",
+      "title": "How to Optimize Images for Web in 2026 (Faster Pages, Better SEO)"
+    },
+    {
+      "slug": "how-to-monetize-a-blog-2026",
+      "title": "How to Monetize a Blog in 2026: 7 Proven Ways That Work"
+    },
+    {
+      "slug": "how-to-start-youtube-channel-2026",
+      "title": "How to Start a YouTube Channel in 2026 (Step by Step)"
+    },
+    {
+      "slug": "how-to-use-ai-in-excel-google-sheets-2026",
+      "title": "How to Use AI in Excel and Google Sheets (2026 Guide)"
+    },
+    {
+      "slug": "how-to-write-resume-with-ai-2026",
+      "title": "How to Write a Resume with AI in 2026 (Without Sounding Fake)"
+    },
+    {
+      "slug": "ai-side-hustles-2026",
+      "title": "10 AI Side Hustles That Actually Pay in 2026"
+    },
+    {
+      "slug": "how-to-build-app-without-coding-2026",
+      "title": "How to Build an App Without Coding in 2026 (Step by Step)"
+    },
+    {
+      "slug": "website-not-showing-on-google-fixes-2026",
+      "title": "Website Not Showing on Google? 10 Fixes That Work (2026)"
+    },
+    {
+      "slug": "how-to-rank-in-ai-search-2026",
+      "title": "How to Rank in AI Search in 2026 (GEO Guide That Works)"
+    },
+    {
+      "slug": "how-to-get-backlinks-2026",
+      "title": "How to Get Backlinks in 2026: 12 White-Hat Ways That Work"
+    },
+    {
+      "slug": "how-to-write-blog-posts-with-ai-2026",
+      "title": "How to Write Blog Posts with AI in 2026 (Without Getting Penalized)"
+    },
+    {
+      "slug": "google-analytics-4-for-bloggers-2026",
+      "title": "Google Analytics 4 for Bloggers 2026: Beginner Guide"
+    },
+    {
+      "slug": "faceless-youtube-channel-with-ai-2026",
+      "title": "How to Start a Faceless YouTube Channel with AI in 2026"
+    },
+    {
+      "slug": "how-to-sell-digital-products-2026",
+      "title": "How to Sell Digital Products Online in 2026 (Step by Step)"
+    },
+    {
+      "slug": "how-to-use-midjourney-2026-complete-guide",
+      "title": "How to Use Midjourney in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-spot-ai-scams-deepfakes-2026",
+      "title": "How to Spot AI Scams and Deepfakes in 2026 (Stay Safe)"
+    },
+    {
+      "slug": "how-to-build-ai-agent-without-coding-2026",
+      "title": "How to Build Your First AI Agent Without Coding (2026)"
+    },
+    {
+      "slug": "how-to-start-a-newsletter-2026",
+      "title": "How to Start a Newsletter in 2026 (and Grow It Free)"
+    },
+    {
+      "slug": "how-to-become-data-analyst-2026",
+      "title": "How to Become a Data Analyst in 2026 (No Degree Needed)"
+    },
+    {
+      "slug": "how-to-use-notebooklm-2026-complete-guide",
+      "title": "How to Use NotebookLM in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-run-ai-locally-2026",
+      "title": "How to Run AI Locally in 2026 (No GPU, No Subscription)"
+    },
+    {
+      "slug": "best-ai-browsers-2026",
+      "title": "7 Best AI Browsers in 2026 (Tested and Compared)"
+    },
+    {
+      "slug": "gemini-vs-chatgpt-2026-comparison",
+      "title": "Gemini vs ChatGPT in 2026: Which Is Actually Better?"
+    },
+    {
+      "slug": "best-ai-sdr-tools-2026",
+      "title": "7 Best AI SDR Tools in 2026 (Tested for Real Pipelines)"
+    },
+    {
+      "slug": "how-to-edit-photos-with-ai-2026",
+      "title": "How to Edit Photos with AI in 2026 (Free, Step by Step)"
+    },
+    {
+      "slug": "how-to-use-ai-for-interview-prep-2026",
+      "title": "How to Use AI for Interview Prep in 2026 (Mock Interviews That Work)"
+    },
+    {
+      "slug": "how-to-use-canva-ai-2026-complete-guide",
+      "title": "How to Use Canva AI in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-use-deepseek-2026-complete-guide",
+      "title": "How to Use DeepSeek in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "deepseek-vs-chatgpt-2026-comparison",
+      "title": "DeepSeek vs ChatGPT in 2026: Which Is Actually Better?"
+    },
+    {
+      "slug": "claude-vs-gemini-2026-comparison",
+      "title": "Claude vs Gemini in 2026: Which AI Assistant Is Actually Better?"
+    },
+    {
+      "slug": "perplexity-vs-chatgpt-2026-comparison",
+      "title": "Perplexity vs ChatGPT in 2026: Which Is Actually Better?"
+    },
+    {
+      "slug": "how-to-use-grok-2026-complete-guide",
+      "title": "How to Use Grok in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "how-to-use-ai-to-study-2026",
+      "title": "How to Use AI to Study in 2026 (Without Cheating Yourself)"
+    },
+    {
+      "slug": "what-is-mcp-model-context-protocol-2026",
+      "title": "What Is MCP (Model Context Protocol)? 2026 Beginner Guide"
+    },
+    {
+      "slug": "n8n-vs-zapier-2026-comparison",
+      "title": "n8n vs Zapier (2026): Pricing, AI Workflows and Hidden Costs"
+    },
+    {
+      "slug": "how-to-use-n8n-2026-complete-guide",
+      "title": "How to Use n8n in 2026: Complete Beginner Guide"
+    },
+    {
+      "slug": "perplexity-vs-claude-2026-comparison",
+      "title": "Perplexity vs Claude in 2026: Which Is Actually Better?"
+    },
+    {
+      "slug": "how-to-edit-videos-with-ai-2026",
+      "title": "How to Edit Videos with AI in 2026 (Free, Step by Step)"
+    },
+    {
+      "slug": "how-to-start-online-store-with-ai-2026",
+      "title": "How to Start an Online Store with AI in 2026 (Step by Step)"
+    },
+    {
+      "slug": "how-to-write-cover-letter-with-ai-2026",
+      "title": "How to Write a Cover Letter with AI in 2026 (Free, Step by Step)"
+    },
+    {
+      "slug": "how-to-make-ai-music-2026",
+      "title": "How to Make AI Music for Free in 2026 (Suno Guide)"
+    },
+    {
+      "slug": "n8n-webhook-not-working-2026",
+      "title": "n8n Webhook Not Working? Fix 404 and Production URL Errors"
+    },
+    {
+      "slug": "github-copilot-not-working-vscode-2026",
+      "title": "GitHub Copilot Not Working in VS Code? 9 Checks That Fix It"
+    },
+    {
+      "slug": "excel-get-data-from-pdf-missing-2026",
+      "title": "Excel Get Data From PDF Missing? Windows and Mac Guide"
+    },
+    {
+      "slug": "copilot-in-excel-not-showing-2026",
+      "title": "Copilot in Excel Not Showing? License, Button and Fixes"
+    },
+    {
+      "slug": "ollama-not-using-gpu-windows-2026",
+      "title": "Ollama Not Using GPU on Windows? 7 Checks Before Reinstalling"
+    },
+    {
+      "slug": "gemini-not-showing-google-docs-gmail-2026",
+      "title": "Gemini Not Showing in Google Docs or Gmail? 7 Checks Before You Pay"
+    },
+    {
+      "slug": "excel-csv-leading-zeros-2026",
+      "title": "Excel Removing Leading Zeros in CSV? Keep IDs Intact"
+    },
+    {
+      "slug": "claude-code-not-recognized-windows-2026",
+      "title": "Claude Code Not Recognized on Windows? Diagnose, Then Fix"
+    },
+    {
+      "slug": "excel-csv-special-characters-utf8",
+      "title": "Excel CSV Special Characters Broken? Fix UTF-8 Safely"
+    },
+    {
+      "slug": "png-to-jpg-black-background",
+      "title": "PNG to JPG Black Background? Choose the Right Fix"
+    },
+    {
+      "slug": "cursor-agent-stuck-planning-next-moves-2026",
+      "title": "Cursor Agent Stuck on \"Planning Next Moves\"? 8 Checks in Order"
+    },
+    {
+      "slug": "ollama-models-folder-windows-move-2026",
+      "title": "Ollama Models Folder on Windows: Find It and Move It to Another Drive"
+    },
+    {
+      "slug": "csv-opens-in-one-column-excel",
+      "title": "CSV Opens in One Column in Excel? Fix the Delimiter"
+    },
+    {
+      "slug": "n8n-cant-determine-which-item-to-use",
+      "title": "n8n Can't Determine Which Item to Use? Fix Item Linking"
+    },
+    {
+      "slug": "n8n-json-parameter-needs-to-be-valid-json",
+      "title": "n8n JSON Parameter Needs to Be Valid JSON: Fix the Body"
+    },
+    {
+      "slug": "unexpected-token-html-not-valid-json",
+      "title": "Unexpected Token '<' in JSON: Fix Fetch Returning HTML"
+    },
+    {
+      "slug": "n8n-code-node-guide",
+      "title": "n8n Code Node Guide: Return Items Correctly and Fix Common Errors"
+    },
+    {
+      "slug": "n8n-loop-over-items-guide",
+      "title": "n8n Loop Over Items: Batch Size, Done Branch, Reset and Rate Limits"
+    },
+    {
+      "slug": "n8n-sub-workflow-guide",
+      "title": "n8n Sub-workflows: Pass Data, Return Output and Wait for Completion"
+    },
+    {
+      "slug": "n8n-ai-agent-memory-guide",
+      "title": "n8n AI Agent Memory: Session ID, Simple Memory vs Postgres and Fixes"
+    },
+    {
+      "slug": "n8n-wait-node-guide",
+      "title": "n8n Wait Node: Resume URL, Webhook Waits and Stuck Executions"
+    },
+    {
+      "slug": "n8n-split-out-node-guide",
+      "title": "n8n Split Out Node: Arrays, Nested JSON and Common Fixes"
+    },
+    {
+      "slug": "n8n-date-format-guide",
+      "title": "n8n Date Format: Expressions, Timezones and Invalid DateTime Fixes"
+    },
+    {
+      "slug": "n8n-merge-node-guide",
+      "title": "n8n Merge Node: Fix Waiting Issues, Combine Modes and SQL Joins"
+    },
+    {
+      "slug": "n8n-schedule-trigger-guide",
+      "title": "n8n Schedule Trigger: Fix Timezone, Cron and Not Running Issues"
+    }
+  ]
+}

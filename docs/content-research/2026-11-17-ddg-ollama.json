@@ -1,0 +1,296 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:03.320Z",
+    "query": "ollama model requires more system memory than is available",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama: \"model requires more system memory than is available\"",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-more-system-memory"
+      },
+      {
+        "title": "Ollama 'Model Requires More System Memory'? Fix the RAM Check That ...",
+        "url": "https://runaihome.com/blog/ollama-model-requires-more-system-memory-fix-2026/"
+      },
+      {
+        "title": "Error: model requires more system memory (164.8 GiB) than is available ...",
+        "url": "https://github.com/ollama/ollama/issues/10920"
+      },
+      {
+        "title": "\"model requires more system memory\" When Running in Docker ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/7423"
+      },
+      {
+        "title": "Why doesn't Ollama use MORE RAM? - Stack Overflow",
+        "url": "https://stackoverflow.com/questions/78068285/why-doesnt-ollama-use-more-ram"
+      },
+      {
+        "title": "Fix Ollama \"Model Requires More System Memory\" Error",
+        "url": "https://soonminds.com/software-fixes/ollama-model-requires-more-system-memory-fix/"
+      },
+      {
+        "title": "Ollama Model Requires More System Memory: 6 Proven Fixes",
+        "url": "https://www.binmage.com/ollama-model-requires-more-system-memory/"
+      },
+      {
+        "title": "Ollama Out of Memory: Why It Happens and How to Fix It",
+        "url": "https://stratuspilot.io/gpu-for/errors/ollama-out-of-memory"
+      },
+      {
+        "title": "Ollama model not starting because of cached ram - Apps and ...",
+        "url": "https://forums.truenas.com/t/ollama-model-not-starting-because-of-cached-ram/33532"
+      },
+      {
+        "title": "Ollama Out of Memory: Proven Fixes for RAM, Swap & Model Configuration ...",
+        "url": "https://markaicode.com/fix-ollama-out-of-memory-errors-system-tuning-guide/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:06.060Z",
+    "query": "ollama connection refused 11434",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Fix Ollama Connection Refused on Port 11434 (2026) (50c)",
+        "url": "https://itsourcecode.com/ai-framework/fix-ollama-connection-refused-11434/"
+      },
+      {
+        "title": "Ollama \"Connection Refused\" on Port 11434: Fixes",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-connection-refused"
+      },
+      {
+        "title": "Ollama Connection Refused Error: 4 Verified Fixes (2026)",
+        "url": "https://markaicode.com/errors/ollama-api-connection-failed-fix/"
+      },
+      {
+        "title": "Ollama Connection Refused or Fetch Failed? 15 Fixes (2026)",
+        "url": "https://www.betterclaw.io/blog/ollama-fetch-failed-connection-refused-fix"
+      },
+      {
+        "title": "Ollama API Connection Refused: Quick Fixes | InsiderLLM",
+        "url": "https://insiderllm.com/guides/ollama-api-connection-refused-fix/"
+      },
+      {
+        "title": "Connection Refused ([Errno 111]) When Using Ollama with AutoGPT",
+        "url": "https://stackoverflow.com/questions/79376931/connection-refused-errno-111-when-using-ollama-with-autogpt"
+      },
+      {
+        "title": "Ollama Connection Refused Windows: 5 Fixes (2026)",
+        "url": "https://www.betterclaw.io/blog/ollama-connection-refused-windows-fix"
+      },
+      {
+        "title": "Ollama Connection Refused on Port 11434: 8 Causes",
+        "url": "https://localaimaster.com/blog/ollama-connection-refused-11434"
+      },
+      {
+        "title": "Ollama Connection Refused on Port 11434: What to Check",
+        "url": "https://aiandsoftwarehub.com/blog/how-to-fix-ollama-connection-refused-errors-in-cursor-and-vs-code"
+      },
+      {
+        "title": "How to solve ConnectionError ([Errno 111] Connection refused)",
+        "url": "https://github.com/ollama/ollama/issues/2132"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:08.778Z",
+    "query": "could not connect to ollama app is it running",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: could not connect to ollama app, is it running? - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3814"
+      },
+      {
+        "title": "Error: could not connect to ollama app, is it running? - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/2928"
+      },
+      {
+        "title": "当使用 ollama 本地部署 Error: could not connect to ollama app, is it running ...",
+        "url": "https://blog.csdn.net/qq_56463139/article/details/145625186"
+      },
+      {
+        "title": "Ollama: Error: could not connect to ollama app, is it running?",
+        "url": "https://kontext.tech/project/tools/article/ollama-error-could-not-connect-to-ollama-app-is-it-running"
+      },
+      {
+        "title": "run `!ollama run llama3` in colab raise err \"Error: could not connect ...",
+        "url": "https://stackoverflow.com/questions/78437376/run-ollama-run-llama3-in-colab-raise-err-error-could-not-connect-to-ollama"
+      },
+      {
+        "title": "Win10 ollama经常出现Error: could not connect to ollama app, is it running ...",
+        "url": "https://blog.csdn.net/weixin_42672685/article/details/144671448"
+      },
+      {
+        "title": "Ollama Connection Refused or Fetch Failed? 15 Fixes (2026)",
+        "url": "https://www.betterclaw.io/blog/ollama-fetch-failed-connection-refused-fix"
+      },
+      {
+        "title": "Troubleshooting | Opilot — Ollama for GitHub Copilot",
+        "url": "https://opilot.self.agency/users/troubleshooting.html"
+      },
+      {
+        "title": "\"Could Not Connect to Ollama App, Is It Running?\" Every Fix (Windows ...",
+        "url": "https://www.logeshwaran.org/2026/10/could-not-connect-to-ollama-fix.html"
+      },
+      {
+        "title": "\"Error: could not connect to ollama server, run 'ollama serve' to start ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-could-not-connect-to-ollama-server/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:11.391Z",
+    "query": "ollama address already in use",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "127.0.0.1:11434: bind: address already in use · Issue #707 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/707"
+      },
+      {
+        "title": "Ollama Port Already in Use: Fix 'Address Already in Use' (2026)",
+        "url": "https://markaicode.com/errors/ollama-port-already-in-use-fix/"
+      },
+      {
+        "title": "Ollama 'Address Already in Use' Error: Fix Port 11434 Bind Failure ...",
+        "url": "https://markaicode.com/errors/ollama-not-working-fix/"
+      },
+      {
+        "title": "Ollama \"bind: address already in use\" on Port 11434? Stop Killing ...",
+        "url": "https://www.runaihome.com/blog/ollama-bind-address-already-in-use-port-11434-fix-2026/"
+      },
+      {
+        "title": "Fix Ollama \"Address Already in Use\" on macOS",
+        "url": "https://truefixguides.com/ollama-address-already-in-use/"
+      },
+      {
+        "title": "Change the default 11434 port? · Issue #2194 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/2194"
+      },
+      {
+        "title": "Error: listen tcp 127.0.0.1:11434: bind: address already in use",
+        "url": "https://www.thinkfacility.com/errors/ollama-listen-tcp-11434-bind-address-already-in-use/"
+      },
+      {
+        "title": "How to fix Ollama address already in use errors",
+        "url": "https://www.simplified.guide/ollama/address-in-use-troubleshoot"
+      },
+      {
+        "title": "ollama serve: Why It Says Address Already In Use",
+        "url": "https://cloudraptor.io/ollama-serve-command/"
+      },
+      {
+        "title": "Ollama: listen tcp 127.0.0.1:11434 address already in use",
+        "url": "https://www.agentsqna.com/ollama-listen-tcp-11434-bind-address-already-in-use/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:14.026Z",
+    "query": "access ollama from another computer",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "How to Run Ollama on One Windows PC and Connect from Another",
+        "url": "https://www.mykolaaleksandrov.dev/posts/2025/07/ollama-network-setup/"
+      },
+      {
+        "title": "Access Ollama on Kali Linux From Another PC",
+        "url": "https://www.blackmoreops.com/how-to-access-ollama-from-another-pc-on-your-local-network/"
+      },
+      {
+        "title": "How to Access Ollama Over a Network and Remotely",
+        "url": "https://www.serverman.co.uk/ai/ollama/ollama-network-remote-access/"
+      },
+      {
+        "title": "Use Ollama from another computer or your phone, without exposing it",
+        "url": "https://munimv2.github.io/ollama-remote-access.html"
+      },
+      {
+        "title": "Ollama Remote Access: Setup and Security Guide | LocalXpose",
+        "url": "https://localxpose.io/blog/ollama-remote-access"
+      },
+      {
+        "title": "How to Self-Host Ollama and Access It Remotely",
+        "url": "https://localtonet.com/blog/how-to-self-host-ollama"
+      },
+      {
+        "title": "Running Ollama on Another PC on Your Network - The Daily Thing",
+        "url": "https://dailything.com/2026/06/03/running-ollama-on-another-pc-on-your-network/"
+      },
+      {
+        "title": "How to Create a Self-Hosted LLM with Ollama Web UI",
+        "url": "https://medium.com/@sumudithalanz/unlocking-seamless-access-how-to-harness-your-self-hosted-llm-anywhere-with-ollama-web-ui-0ef687aae604"
+      },
+      {
+        "title": "How to Access Ollama, vLLM or LM Studio Remotely from Anywhere",
+        "url": "https://www.socketxp.com/iot/remote-access-local-ai-models-from-anywhere/"
+      },
+      {
+        "title": "Connect to a Local Ollama AI Instance From Within Your LAN",
+        "url": "https://thenewstack.io/connect-to-a-local-ollama-ai-instance-from-within-your-lan/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-17T18:28:16.721Z",
+    "query": "ollama connection refused docker",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Connection Refused Error: 4 Verified Fixes (2026)",
+        "url": "https://markaicode.com/errors/ollama-api-connection-failed-fix/"
+      },
+      {
+        "title": "docker compose - Connection Refused ( [Errno 111]) When Using Ollama ...",
+        "url": "https://stackoverflow.com/questions/79376931/connection-refused-errno-111-when-using-ollama-with-autogpt"
+      },
+      {
+        "title": "Ollama \"Connection Refused\" on Port 11434: Fixes",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-connection-refused"
+      },
+      {
+        "title": "Fix Ollama Connection Refused on Port 11434 (2026) (50c)",
+        "url": "https://itsourcecode.com/ai-framework/fix-ollama-connection-refused-11434/"
+      },
+      {
+        "title": "Ollama Connection Refused: How to Diagnose and Fix It (2026 Guide)",
+        "url": "https://markaicode.com/errors/ollama-connection-refused-fix/"
+      },
+      {
+        "title": "Ollama API Connection Refused: Quick Fixes | InsiderLLM",
+        "url": "https://insiderllm.com/guides/ollama-api-connection-refused-fix/"
+      },
+      {
+        "title": "Ollama Docker Connection Refused on Port 11434: Fix It",
+        "url": "https://ramgpt.org/articles/ollama-docker-connection-refused-host-gateway-fix/"
+      },
+      {
+        "title": "Ollama Connection Refused or Fetch Failed? 15 Fixes (2026)",
+        "url": "https://www.betterclaw.io/blog/ollama-fetch-failed-connection-refused-fix"
+      },
+      {
+        "title": "App running in docker container can't connect to Ollama ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3652"
+      },
+      {
+        "title": "How to Fix Ollama Connection Refused from Docker on Linux",
+        "url": "https://agentic-pulse.dev/blog/2026-09-12-fix-ollama-connection-refused-docker-linux/"
+      }
+    ]
+  }
+]

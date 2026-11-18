@@ -186,7 +186,7 @@
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
   },
   "publication": {
-    "status": "published",
+    "status": "published-live-verified",
     "postId": 256,
     "publishedAt": "2026-11-18T07:11:28.516Z",
     "liveUrl": "https://www.byteverse.fyi/blog/could-not-connect-to-ollama-app-is-it-running",
@@ -195,6 +195,16 @@
     "otherPostsUnchanged": 187,
     "otherPostsHash": "0b058940363341df1e5ce2fc857d129c",
     "assetCommits": ["286790b3a853aa4f05892e9743678da0614325f4", "9c55994"],
+    "releaseCommit": "fd11852573a7b0d3a04becdc26bd74f36c816cb4",
+    "deploymentStatus": "success",
+    "liveVerification": {
+      "command": "node scripts/test-ollama-could-not-connect-post.mjs --live",
+      "result": "12/12 passed: 11 offline checks plus live title, meta description, canonical, publish date, no noindex, author, FAQPage schema (first five of six), exact code blocks, three tables, six FAQ details and six internal links",
+      "technical": "One H1; canonical is the article URL; robots index, follow; og:image is the cover illustration; schema types BlogPosting, BreadcrumbList, FAQPage; 18 links in the article body all return 200.",
+      "discovery": ["/", "/blog", "/category/tech-guides", "/sitemap.xml", "/feed.xml"],
+      "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed; the diagram was redrawn with larger type after that review.",
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    },
     "note": "Research ran late on 17 November local time and publication followed on 18 November after an interrupted command was rechecked. Ollama 0.40.16 was still the latest release at publication."
   }
 }

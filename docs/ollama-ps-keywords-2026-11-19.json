@@ -188,14 +188,24 @@
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
   },
   "publication": {
-    "status": "published",
+    "status": "published-live-verified",
     "postId": 257,
     "publishedAt": "2026-11-19T17:51:00.006Z",
     "liveUrl": "https://www.byteverse.fyi/blog/ollama-ps-explained",
     "databaseWrites": 1,
     "otherPostsUnchanged": 188,
     "otherPostsHash": "dfa030c742d9e50d9ccdba3f265c35f3",
-    "assetCommits": ["66a7397"],
+    "assetCommits": ["66a7397440d5eee210ee2be858ef1118ddcb5199"],
+    "releaseCommit": "8ba29d2d371f7ac6a835d712e1f9c62a9a2152d2",
+    "deploymentStatus": "success",
+    "liveVerification": {
+      "command": "node scripts/test-ollama-ps-post.mjs --live",
+      "result": "13/13 passed: 12 offline checks plus live title, meta description, canonical, publish date, no noindex, og:image, author, FAQPage schema (first five of six), exact code blocks, five tables, six FAQ details and five internal links",
+      "technical": "One H1, 13 H2 headings; canonical is the article URL; robots index, follow; meta description 156 characters; og:image is the cover illustration; schema types BlogPosting, BreadcrumbList, FAQPage; all 20 links in the article body return 200; the inline image has alt text and fixed dimensions.",
+      "discovery": ["/", "/blog", "/category/tech-guides", "/sitemap.xml", "/feed.xml"],
+      "browser": "No browser session on the live page after deployment; the pre-publish preview covered layout.",
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    },
     "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The diagram text is small on phones; the five rules are also written out above it.",
     "approvedBy": "owner message 'add new according to previous prompt: add new blog as soon as possible' (19 November 2026); the brief instructs publication"
   }

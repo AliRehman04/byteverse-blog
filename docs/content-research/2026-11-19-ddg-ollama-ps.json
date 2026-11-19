@@ -1,0 +1,198 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:25:54.865Z",
+    "query": "ollama ps until meaning",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "About the command \"ollama ps\" · Issue #9527 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/9527"
+      },
+      {
+        "title": "UNTIL being set to 4 minutes, --keepalive NOT being used",
+        "url": "https://github.com/ollama/ollama/issues/10422"
+      },
+      {
+        "title": "Ollama Commands Cheat Sheet: Every CLI Command (2026)",
+        "url": "https://techiehub.blog/ollama-commands/"
+      },
+      {
+        "title": "Ollama Says GPU but Runs on CPU: Reading ollama ps and the Load Log",
+        "url": "https://www.bigiron.cc/guides/ollama-says-gpu-but-runs-on-cpu-reading-ollama-ps-and-the-load-log"
+      },
+      {
+        "title": "ollama list vs ollama ps: Commands Cheat Sheet (2026)",
+        "url": "https://llmhardware.io/guides/ollama-cheat-sheet"
+      },
+      {
+        "title": "CLI Reference - Ollama",
+        "url": "https://docs.ollama.com/cli"
+      },
+      {
+        "title": "Ollama Commands Cheat Sheet · GitHub",
+        "url": "https://gist.github.com/karthiks/fb89ea8230e6574200c8644d9ac878b4"
+      },
+      {
+        "title": "Ollama CLI Cheatsheet: ls, serve, run, ps + commands (2026 update)",
+        "url": "https://www.glukhov.org/llm-hosting/ollama/ollama-cheatsheet/"
+      },
+      {
+        "title": "Context length - Ollama",
+        "url": "https://docs.ollama.com/context-length"
+      },
+      {
+        "title": "ollama ps命令输出字段解析 - CSDN博客",
+        "url": "https://blog.csdn.net/a772304419/article/details/150515483"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:25:57.182Z",
+    "query": "ollama ps shows nothing",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "ollama create model success but ps command returns empty",
+        "url": "https://github.com/ollama/ollama/issues/5404"
+      },
+      {
+        "title": "Ollama Troubleshooting Guide — Fix Every Common Error",
+        "url": "https://www.aimadetools.com/blog/ollama-troubleshooting-guide/"
+      },
+      {
+        "title": "ollama ps not working · Issue #4490 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/4490"
+      },
+      {
+        "title": "Ollama Not Using GPU? Fix CPU-Only Inference on Windows, WSL2, and ...",
+        "url": "https://runaihome.com/blog/ollama-not-using-gpu-fix-cpu-2026/"
+      },
+      {
+        "title": "Ollama Ps Shows Nothing Troubleshooting - Facebook",
+        "url": "https://www.facebook.com/fb-answers/ollama-ps-shows-nothing-troubleshooting/"
+      },
+      {
+        "title": "Ollama Troubleshooting Guide: Every Common Problem and Fix",
+        "url": "https://insiderllm.com/guides/ollama-troubleshooting-guide/"
+      },
+      {
+        "title": "Ollama Not Using GPU: Complete Fix Guide (2026) | InsiderLLM",
+        "url": "https://insiderllm.com/guides/ollama-not-using-gpu-fix/"
+      },
+      {
+        "title": "Ollama Not Starting? How to Fix the Most Common Issues",
+        "url": "https://mljourney.com/ollama-not-starting-how-to-fix-the-most-common-issues/"
+      },
+      {
+        "title": "ollama list vs ollama ps: Commands Cheat Sheet (2026)",
+        "url": "https://llmhardware.io/guides/ollama-cheat-sheet"
+      },
+      {
+        "title": "Ollama Commands Cheat Sheet: Every CLI Command (2026)",
+        "url": "https://techiehub.blog/ollama-commands/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:25:59.565Z",
+    "query": "ollama ps 100% cpu meaning",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Not Using GPU: Fix CPU Offload and 100% CPU",
+        "url": "https://ollamalab.com/posts/ollama-not-using-gpu/"
+      },
+      {
+        "title": "Ollama Using CPU Instead of GPU? Check With ollama ps (2026)",
+        "url": "https://modelfit.io/guides/does-ollama-use-gpu/"
+      },
+      {
+        "title": "Ollama Says GPU but Runs on CPU: Reading ollama ps and the Load Log",
+        "url": "https://www.bigiron.cc/guides/ollama-says-gpu-but-runs-on-cpu-reading-ollama-ps-and-the-load-log"
+      },
+      {
+        "title": "ollama ps reporting \"100% GPU\" while model is running on CPU only. - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/7323"
+      },
+      {
+        "title": "Ollama using CPU instead of GPU? How to check and fix it",
+        "url": "https://runitlocal.io/learn/fix-ollama-using-cpu-instead-of-gpu"
+      },
+      {
+        "title": "ps showing 100% GPU but CPU is used · Issue #9704 · ollama ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/9704"
+      },
+      {
+        "title": "Ollama Not Using GPU (100% CPU): Cause & Fix - betterclaw.io",
+        "url": "https://www.betterclaw.io/tools/agent-error-decoder/ollama-not-using-gpu"
+      },
+      {
+        "title": "Ollama runs on the CPU on Windows despite an NVIDIA GPU",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-windows-using-cpu-not-gpu"
+      },
+      {
+        "title": "Ollama Not Using GPU? Fix CPU-Only Inference on Windows, WSL2, and ...",
+        "url": "https://runaihome.com/blog/ollama-not-using-gpu-fix-cpu-2026/"
+      },
+      {
+        "title": "Ollama Multi-GPU Operations & Troubleshooting: 100% CPU, Driver 550 ...",
+        "url": "https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:26:02.019Z",
+    "query": "ollama ps command output explained",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Commands Cheat Sheet: Every CLI Command (2026)",
+        "url": "https://techiehub.blog/ollama-commands/"
+      },
+      {
+        "title": "ollama list vs ollama ps: Commands Cheat Sheet (2026)",
+        "url": "https://llmhardware.io/guides/ollama-cheat-sheet"
+      },
+      {
+        "title": "Ollama CLI Cheatsheet: ls, serve, run, ps + commands (2026 update)",
+        "url": "https://www.glukhov.org/llm-hosting/ollama/ollama-cheatsheet/"
+      },
+      {
+        "title": "CLI Reference - Ollama",
+        "url": "https://docs.ollama.com/cli"
+      },
+      {
+        "title": "Ollama Commands Cheat Sheet · GitHub",
+        "url": "https://gist.github.com/karthiks/fb89ea8230e6574200c8644d9ac878b4"
+      },
+      {
+        "title": "Ollama Commands Tutorial: Run, Pull, List, Manage, and Create Models",
+        "url": "https://codingkit.com/ollama/commands/"
+      },
+      {
+        "title": "Ollama Core Commands: run, pull, ls, ps, stop, rm — Urhoba",
+        "url": "https://www.urhoba.net/en/post/ollama-core-commands"
+      },
+      {
+        "title": "Ollama commands: CLI cheat sheet with examples - LumaDock",
+        "url": "https://lumadock.com/tutorials/ollama-commands"
+      },
+      {
+        "title": "Ollama Says GPU but Runs on CPU: Reading ollama ps and the Load Log",
+        "url": "https://www.bigiron.cc/guides/ollama-says-gpu-but-runs-on-cpu-reading-ollama-ps-and-the-load-log"
+      },
+      {
+        "title": "Command Line Interface | ollama/ollama | DeepWiki",
+        "url": "https://deepwiki.com/ollama/ollama/1.3-command-line-interface"
+      }
+    ]
+  }
+]

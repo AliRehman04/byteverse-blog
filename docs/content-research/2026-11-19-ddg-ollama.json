@@ -1,0 +1,247 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:17:21.415Z",
+    "query": "access ollama from another computer",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "How to Run Ollama on One Windows PC and Connect from Another",
+        "url": "https://www.mykolaaleksandrov.dev/posts/2025/07/ollama-network-setup/"
+      },
+      {
+        "title": "Access Ollama on Kali Linux From Another PC",
+        "url": "https://www.blackmoreops.com/how-to-access-ollama-from-another-pc-on-your-local-network/"
+      },
+      {
+        "title": "How to Access Ollama Over a Network and Remotely",
+        "url": "https://www.serverman.co.uk/ai/ollama/ollama-network-remote-access/"
+      },
+      {
+        "title": "Use Ollama from another computer or your phone, without exposing it",
+        "url": "https://munimv2.github.io/ollama-remote-access.html"
+      },
+      {
+        "title": "How to Self-Host Ollama and Access It Remotely | Localtonet",
+        "url": "https://localtonet.com/blog/how-to-self-host-ollama"
+      },
+      {
+        "title": "Ollama Remote Access: Setup and Security Guide | LocalXpose",
+        "url": "https://localxpose.io/blog/ollama-remote-access"
+      },
+      {
+        "title": "Running Ollama on Another PC on Your Network - The Daily Thing",
+        "url": "https://dailything.com/2026/06/03/running-ollama-on-another-pc-on-your-network/"
+      },
+      {
+        "title": "How to Create a Self-Hosted LLM with Ollama Web UI",
+        "url": "https://medium.com/@sumudithalanz/unlocking-seamless-access-how-to-harness-your-self-hosted-llm-anywhere-with-ollama-web-ui-0ef687aae604"
+      },
+      {
+        "title": "Connect to a Local Ollama AI Instance From Within Your LAN",
+        "url": "https://thenewstack.io/connect-to-a-local-ollama-ai-instance-from-within-your-lan/"
+      },
+      {
+        "title": "How to Expose the Ollama API to Your Local Network",
+        "url": "https://mljourney.com/how-to-expose-the-ollama-api-to-your-local-network/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:17:23.687Z",
+    "query": "ollama host 0.0.0.0 not working",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Allow listening on all local interfaces · Issue #703 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/703"
+      },
+      {
+        "title": "Forcing Ollama to bind to 0.0.0.0 instead of localhost - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/5905"
+      },
+      {
+        "title": "Ollama: OLLAMA_HOST environment variable does not work",
+        "url": "https://discourse.nixos.org/t/ollama-ollama-host-environment-variable-does-not-work/54542"
+      },
+      {
+        "title": "OLLAMA_HOST=0.0.0.0: Serve Ollama on Your Local Network",
+        "url": "https://pocketgrove.com/blog/ollama-setup-guide-serving-models-on-local-network/"
+      },
+      {
+        "title": "Troubleshooting - Ollama",
+        "url": "https://docs.ollama.com/troubleshooting"
+      },
+      {
+        "title": "Ollama Not Working? How to Fix It (2025) - prismix.dev",
+        "url": "https://prismix.dev/guides/ollama-not-working"
+      },
+      {
+        "title": "Ollama Troubleshooting Guide: Every Common Problem and Fix",
+        "url": "https://insiderllm.com/guides/ollama-troubleshooting-guide/"
+      },
+      {
+        "title": "Ollama \"Connection Refused\" on Port 11434: Fixes",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-connection-refused"
+      },
+      {
+        "title": "How to Expose the Ollama API to Your Local Network",
+        "url": "https://mljourney.com/how-to-expose-the-ollama-api-to-your-local-network/"
+      },
+      {
+        "title": "Open WebUI or n8n in Docker can't reach Ollama? Fix it without OLLAMA ...",
+        "url": "https://dev.to/munimv2/open-webui-or-n8n-in-docker-cant-reach-ollama-fix-it-without-ollamahost0000-4b22"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:17:25.918Z",
+    "query": "ollama 403 forbidden from another computer",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama 403 Forbidden: The OLLAMA_ORIGINS CORS Fix",
+        "url": "https://localaimaster.com/blog/ollama-403-forbidden-cors"
+      },
+      {
+        "title": "Persistent 403 Forbidden & login loop on ollama.com (8+ hours)",
+        "url": "https://github.com/ollama/ollama/issues/17471"
+      },
+      {
+        "title": "403 Forbidden · Issue #676 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/676"
+      },
+      {
+        "title": "403 Error when trying to access Colab Ollama server",
+        "url": "https://stackoverflow.com/questions/78552367/403-error-when-trying-to-access-colab-ollama-server"
+      },
+      {
+        "title": "Ollama Remote Access: Setup and Security Guide | LocalXpose",
+        "url": "https://localxpose.io/blog/ollama-remote-access"
+      },
+      {
+        "title": "Ollama CORS: Setting OLLAMA_ORIGINS on Mac, Windows, Linux and Docker ...",
+        "url": "https://objectgraph.com/blog/ollama-cors/"
+      },
+      {
+        "title": "Ollama: '403 Forbidden' for a web page's Origin, fixed with OLLAMA ...",
+        "url": "https://www.coder000.com/post/ollama-403-forbidden-cors-origin-ollama-origins"
+      },
+      {
+        "title": "Ollama returns 403 to a local browser extension with an Origin header",
+        "url": "https://kingy.ai/ai-fix-finder/fix-ollama-extension-origin-403/"
+      },
+      {
+        "title": "解决Ollama服务器403错误与远程访问配置指南 - CSDN文库",
+        "url": "https://wenku.csdn.net/doc/cc3z1xupa6vc"
+      },
+      {
+        "title": "ollama接口被nginx转发后出现403报错解决方法 - CSDN博客",
+        "url": "https://blog.csdn.net/xinbaiyu/article/details/140085324"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:17:28.183Z",
+    "query": "ollama keep alive not working",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "keep_alive and OLLAMA_KEEP_ALIVE not effective · Issue #5272 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/5272"
+      },
+      {
+        "title": "Ollama Keep-Alive and Model Preloading: Eliminate Cold Start Latency",
+        "url": "https://mljourney.com/ollama-keep-alive-and-model-preloading-eliminate-cold-start-latency/"
+      },
+      {
+        "title": "Ollama keep_alive: Keep Models Loaded or Free VRAM (Tested on Windows ...",
+        "url": "https://markaicode.com/ollama-keep-alive-memory-management/"
+      },
+      {
+        "title": "The OLLAMA_KEEP_ALIVE Trap (And Why Your Local Model Keeps Going Cold)",
+        "url": "https://vibecodewithkai.substack.com/p/the-ollama_keep_alive-trap-and-why"
+      },
+      {
+        "title": "Ollama Keep Alive in 2026: How to Keep Models Loaded, Avoid Reloads ...",
+        "url": "https://gyanaangan.in/blog/ollama-keep-alive-in-2026-how-to-keep-models-loaded-avoid-reloads-fix-slow-requests"
+      },
+      {
+        "title": "Ollama keep_alive: Control Model Load and Unload Times",
+        "url": "https://mljourney.com/ollama-keep_alive-how-to-control-model-load-and-unload/"
+      },
+      {
+        "title": "Keep Ollama Always On: Auto-Start, Keep-Alive, and Health Checks on ...",
+        "url": "https://takky.dojin.com/wp/301/"
+      },
+      {
+        "title": "OLLAMA_KEEP_ALIVE not working with continue extension",
+        "url": "https://github.com/continuedev/continue/issues/3033"
+      },
+      {
+        "title": "Local FAQ - Ollama",
+        "url": "https://docs.ollama.com/faq"
+      },
+      {
+        "title": "Ollama Keeps Unloading Models: How to Fix keep_alive",
+        "url": "https://www.serverman.co.uk/ai/ollama/ollama-keeps-unloading-models-keep-alive/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-19T12:17:30.631Z",
+    "query": "ollama unload model from vram",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Keep Alive: Unload Models from VRAM | SumGuy's Ramblings",
+        "url": "https://sumguy.com/ollama-memory-management/"
+      },
+      {
+        "title": "Is there any option to unload a model from memory? - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/1600"
+      },
+      {
+        "title": "Ollama Keeps Reloading the Model? Fix VRAM Unloading, Cold Starts, and ...",
+        "url": "https://www.runaihome.com/blog/ollama-model-keeps-reloading-vram-fix-2026/"
+      },
+      {
+        "title": "GitHub - rajeshc-git/ollama-vram-cleaner",
+        "url": "https://github.com/rajeshc-git/ollama-vram-cleaner"
+      },
+      {
+        "title": "How to stop a model that keeps loading in Ollama",
+        "url": "https://tecnobits.com/en/How-to-stop-a-model-that-continues-loading-in-Ollama/"
+      },
+      {
+        "title": "Freeing VRAM with ollama : r/LocalLLaMA - Reddit",
+        "url": "https://www.reddit.com/r/LocalLLaMA/comments/18ed9tr/freeing_vram_with_ollama/"
+      },
+      {
+        "title": "Ollama keep_alive: Keep Models Loaded or Free VRAM (Tested on Windows ...",
+        "url": "https://markaicode.com/ollama-keep-alive-memory-management/"
+      },
+      {
+        "title": "Ollama keep_alive: Control Model Load and Unload Times",
+        "url": "https://mljourney.com/ollama-keep_alive-how-to-control-model-load-and-unload/"
+      },
+      {
+        "title": "Ollama Unload (free VRAM) - ComfyUI Cloud",
+        "url": "https://comfy.icu/node/OllamaUnload"
+      },
+      {
+        "title": "Ollama Out of Memory: VRAM Fix GIGAGPU",
+        "url": "https://gigagpu.com/fix-ollama-out-of-memory/"
+      }
+    ]
+  }
+]

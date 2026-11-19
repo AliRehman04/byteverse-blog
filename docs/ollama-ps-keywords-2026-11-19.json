@@ -1,0 +1,202 @@
+{
+  "slug": "ollama-ps-explained",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-19",
+  "brief": "Owner-supplied brief (17 November 2026, repeated on 19 November: 'add new according to previous prompt'): research, write, optimise and publish one high-quality article; no fabricated metrics; analyse at least five competitors; report limitations.",
+  "targeting": {
+    "title": "ollama ps Explained: What SIZE, PROCESSOR and UNTIL Mean",
+    "metaTitle": "ollama ps Explained: SIZE, PROCESSOR, UNTIL",
+    "metaDescription": "What ollama ps shows: SIZE, PROCESSOR, CONTEXT, RUNNER and UNTIL explained, why it says Stopping or 4 minutes from now, and why the list is sometimes empty.",
+    "excerpt": "Every column of ollama ps explained from the Ollama 0.40.16 source: what SIZE and PROCESSOR measure, how the UNTIL countdown works, why it reads 4 minutes from now or Stopping, and seven reasons the list can be empty.",
+    "keywords": "ollama ps, ollama ps explained, ollama ps meaning, ollama ps until meaning, ollama ps until stopping, ollama ps shows nothing, ollama ps is empty, ollama ps command, ollama ps size, ollama ps 100% cpu, ollama ps processor, ollama stop model, ollama unload model, ollama keep alive",
+    "summary": "ollama ps lists the models loaded in memory; SIZE is memory in use, PROCESSOR is the CPU and GPU split with the CPU share first, and UNTIL is the time before unloading|UNTIL cuts minutes instead of rounding, so a fresh five minute timer reads 4 minutes from now, and Stopping means the expiry time has passed while a reply is still running|An empty table is normal once the keep-alive runs out; other causes are a different server, a cloud model or a name filter that matches nothing",
+    "readingTime": "14 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-19T12:17:00.000Z",
+    "total": 188,
+    "published": 186,
+    "hash": "dfa030c742d9e50d9ccdba3f265c35f3",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-19-inventory.json (read-only database query)",
+    "inventory": { "total": 188, "published": 186, "hash": "dfa030c742d9e50d9ccdba3f265c35f3", "storedViews": 4042 },
+    "categories": [
+      { "slug": "tech-guides", "posts": 65, "averageViews": 13.9 },
+      { "slug": "ai-tools", "posts": 60, "averageViews": 26.3 },
+      { "slug": "coding", "posts": 22, "averageViews": 32.7 },
+      { "slug": "software-reviews", "posts": 19, "averageViews": 19.9 },
+      { "slug": "productivity", "posts": 14, "averageViews": 17.1 },
+      { "slug": "cybersecurity", "posts": 6, "averageViews": 37.3 }
+    ],
+    "finding": "Stored views on 19 November: Gemini not showing 45, how to run AI locally 23, Ollama not using GPU 18, Ollama models folder 15, Cursor stuck planning 15. The 12 n8n posts published since 31 October have 0 to 9 views each. The Ollama connection guide (post 256) is one day old and has 0 views, which says nothing yet. The Ollama cluster is the only recent cluster with steady views, so this article extends it. The stored view counter is the only first-party signal available and may include non-search visits.",
+    "searchConsole": { "available": false, "reason": "GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY and GSC_SITE_URL are not set in this workspace. The production admin endpoint was not logged into. No clicks, impressions or positions were used." },
+    "cannibalization": "Four posts mention Ollama: run AI locally (install overview), GPU not used on Windows, models folder on Windows, and the connection error guide. The GPU post tells readers to run ollama ps but does not explain the table. No existing post targets the ollama ps command, the UNTIL column, Stopping or an empty list.",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "research": {
+    "candidateFiles": ["docs/content-research/2026-11-19-keywords-candidates.json", "docs/content-research/2026-11-17-keywords-candidates.json"],
+    "candidateSeedCount": 30,
+    "earlierSeedCount": 47,
+    "serpFiles": ["docs/content-research/2026-11-19-ddg-ollama.json", "docs/content-research/2026-11-19-ddg-ollama-ps.json"],
+    "sources": ["Google public autocomplete (hl=en, gl=us)", "Bing public autocomplete (en-US)", "DuckDuckGo HTML result pages"],
+    "notUsed": "Google Trends, paid keyword tools and Search Console were not available. No search volume or keyword difficulty figures are stated anywhere.",
+    "keywordMap": {
+      "primary": "ollama ps",
+      "secondary": ["ollama ps meaning", "ollama ps until meaning", "ollama ps until stopping", "ollama ps shows nothing", "ollama ps command"],
+      "supporting": ["ollama ps is empty", "ollama ps size", "ollama ps 100% cpu", "ollama ps stopping", "ollama stop model", "ollama unload model", "ollama model unload time", "ollama keep alive"],
+      "intent": "Informational with a problem-solving edge. The reader has run ollama ps, sees a label or an empty table and wants to know what it means and whether something is wrong."
+    },
+    "observations": [
+      { "seed": "ollama ps", "google": ["ollama ps", "ollama ps shows nothing", "ollama ps until", "ollama ps command", "ollama ps stopping", "ollama ps until stopping", "ollama ps until meaning", "ollama ps is empty", "ollama ps meaning"], "bing": ["ollama ps command", "ollama ps 100%cpu", "ollama ps until stopping", "ollama ps kill", "ollama ps size", "ollama ps meaning", "ollama ps shows nothing", "ollama ps cpu"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama stop model", "google": ["ollama stop model", "ollama stop model command", "ollama stop model running", "ollama stop model force", "ollama stop model not working", "ollama stop model api"], "bingSuggestionCount": 6, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama model unloads", "google": ["ollama unload model", "ollama model unload time", "ollama model unload timeout", "ollama unload model from memory", "ollama unload model command"], "bingSuggestionCount": 4, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama keep alive not working", "google": ["ollama keep alive not working"], "bingSuggestionCount": 10, "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "rejectedCandidates": [
+      {
+        "keyword": "access ollama from another computer",
+        "evidence": "Broad autocomplete footprint (network access, remote access, expose to network, listen on all interfaces, over network). Nine ranking pages were audited in docs/content-research/2026-11-19-competitors-network.json.",
+        "reason": "Several recent dedicated guides already cover the environment variable, firewall rules, the app setting, security and tunnels (mljourney updated 24 October 2026, blackmoreops updated 6 November 2026, pocketgrove updated 3 November 2026, serverman, munimv2). The remaining gap is narrow: the exact Host header rule and the app toggle replacing a custom port. Kept as a later supporting article, not the best opening for a small site today."
+      },
+      {
+        "keyword": "ollama keep alive not working / ollama unload model from vram",
+        "evidence": "docs/content-research/2026-11-19-ddg-ollama.json",
+        "reason": "The result page already holds several dedicated guides, one of them tested on Windows hardware (markaicode), plus two from mljourney, serverman and runaihome. Keep-alive is covered in this article only as far as it explains the UNTIL column."
+      }
+    ],
+    "serpSample": {
+      "engine": "DuckDuckGo HTML (not Google)",
+      "queries": {
+        "ollama ps until meaning": "Two GitHub issues first, then command cheat sheets, the one-line official CLI page and one Chinese-language post. No dedicated English explanation of the column.",
+        "ollama ps shows nothing": "Two GitHub issues, general troubleshooting guides, GPU guides and a Facebook answers page. No page about the empty table itself.",
+        "ollama ps command output explained": "Command cheat sheets and the official CLI page. One guide (bigiron.cc) reads the PROCESSOR column in depth.",
+        "ollama ps 100% cpu meaning": "Crowded with GPU troubleshooting guides. This article does not compete on GPU tuning and links to the existing GPU post instead."
+      }
+    },
+    "competitors": {
+      "file": "docs/content-research/2026-11-19-competitors-ps.json",
+      "method": "Fetched HTML, main article text only. Term coverage is a keyword presence check, not a quality score.",
+      "pages": [
+        { "url": "https://www.bigiron.cc/guides/ollama-says-gpu-but-runs-on-cpu-reading-ollama-ps-and-the-load-log", "words": 5479, "published": "2026-11-18", "strength": "Hands-on measurements of the PROCESSOR split on real hardware, with load logs.", "missing": "UNTIL, Stopping, Forever, RUNNER, keep-alive rules, empty table." },
+        { "url": "https://www.glukhov.org/llm-hosting/ollama/ollama-cheatsheet/", "words": 4578, "strength": "Large cheat sheet with two real ps outputs and a note on CONTEXT.", "missing": "No explanation of UNTIL wording, Stopping, RUNNER, empty table or the split maths." },
+        { "url": "https://modelfit.io/guides/does-ollama-use-gpu/", "words": 2164, "published": "2026-07-17", "strength": "Explains GPU and CPU fallback; one paragraph on PROCESSOR.", "missing": "Uses the old five-column table; nothing on UNTIL or an empty list." },
+        { "url": "https://techiehub.blog/ollama-commands/", "words": 1884, "published": "2026-10-23", "strength": "Command overview with an FAQ entry on what ollama ps shows.", "missing": "No column detail beyond PROCESSOR, no UNTIL, no Stopping." },
+        { "url": "https://codingkit.com/ollama/commands/", "words": 794, "updated": "2026-10-12", "strength": "Shows the seven-column 0.40 table with one line per column.", "missing": "One-line descriptions only; no rounding, no Stopping, no empty table causes." },
+        { "url": "https://www.urhoba.net/en/post/ollama-core-commands", "words": 737, "published": "2026-09-18", "strength": "Short beginner walk-through.", "missing": "No column explanations." },
+        { "url": "https://docs.ollama.com/cli", "words": 406, "strength": "Official.", "missing": "One heading and one command for ps." }
+      ],
+      "notFetched": ["https://lumadock.com/tutorials/ollama-commands (403)", "https://blog.csdn.net/a772304419/article/details/150515483 (521, Chinese)", "https://llmhardware.io/guides/ollama-cheat-sheet (page body is rendered by script; 202 words extracted)"],
+      "gap": "No page explains the UNTIL wording (why 4 minutes, Forever, Stopping), the rules that restart the countdown, the causes of an empty table, the undocumented name filter, the release in which each column arrived, or links any of it to the source code. The strongest competitor is deep on PROCESSOR with real measurements, so this article keeps PROCESSOR to the exact label rules and does not claim measurements."
+    }
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "Ollama Docs: CLI reference", "url": "https://docs.ollama.com/cli" },
+    { "title": "Ollama Docs: FAQ", "url": "https://docs.ollama.com/faq" },
+    { "title": "Ollama Docs: Context length", "url": "https://docs.ollama.com/context-length" },
+    { "title": "Ollama Docs: List running models API", "url": "https://docs.ollama.com/api/ps" },
+    { "title": "Ollama 0.40.16 source: cmd/cmd.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/cmd/cmd.go" },
+    { "title": "Ollama 0.40.16 source: format/time.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/format/time.go" },
+    { "title": "Ollama 0.40.16 source: format/bytes.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/format/bytes.go" },
+    { "title": "Ollama 0.40.16 source: server/sched.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/server/sched.go" },
+    { "title": "Ollama 0.40.16 source: server/routes.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/server/routes.go" },
+    { "title": "Ollama 0.40.16 source: envconfig/config.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/envconfig/config.go" },
+    { "title": "Ollama 0.40.16 source: llm/llama_server.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/llm/llama_server.go" },
+    { "title": "Ollama 0.40.16 source: manifest/manifest.go", "url": "https://github.com/ollama/ollama/blob/v0.40.16/manifest/manifest.go" },
+    { "title": "GitHub issue 9527: About the command ollama ps", "url": "https://github.com/ollama/ollama/issues/9527" },
+    { "title": "GitHub issue 10422: UNTIL being set to 4 minutes", "url": "https://github.com/ollama/ollama/issues/10422" },
+    { "title": "GitHub issue 7323: ps reporting 100% GPU while the model runs on CPU", "url": "https://github.com/ollama/ollama/issues/7323" }
+  ],
+  "internalLinks": ["/blog/how-to-run-ai-locally-2026", "/blog/ollama-not-using-gpu-windows-2026", "/blog/ollama-models-folder-windows-move-2026", "/blog/docker-for-beginners-2026-guide", "/blog/could-not-connect-to-ollama-app-is-it-running"],
+  "futureSupportingArticles": ["access Ollama from another computer on the network (Host header rule and the app setting)", "Ollama context length: default, how to change it and how it changes SIZE (only with hands-on measurements)", "Open WebUI cannot connect to Ollama in Docker", "ollama error context deadline exceeded", "add a link to this article from the ollama-not-using-gpu post where it tells readers to run ollama ps"],
+  "faq": [
+    "What does ollama ps show?",
+    "What does UNTIL mean in ollama ps?",
+    "Why does ollama ps show nothing?",
+    "What does \"Stopping...\" mean in ollama ps?",
+    "What does 100% GPU mean in ollama ps?",
+    "How do I unload a model in Ollama?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/ollama-ps/ollama-ps-explained-cover.png",
+    "coverFile": "public/blog/ollama-ps/ollama-ps-explained-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/ollama-ps/ollama-ps-until-countdown.png",
+    "inlineFile": "public/blog/ollama-ps/ollama-ps-until-countdown.png",
+    "buildScript": "scripts/build-ollama-ps-images.mjs",
+    "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card with an example table in a terminal mock-up, not a screenshot. The inline diagram of the countdown is drawn from the 0.40.16 scheduler code and was reviewed against it. No stock photography."
+  },
+  "validation": {
+    "proseWords": 2904,
+    "readingTime": "14 min read",
+    "contentSha256": "623329bef703eaab3016c28ccf56764851facb2c9c38374b5e18b15615d4a58f",
+    "codeBlocks": 10,
+    "tables": 5,
+    "sourceTag": "v0.40.16",
+    "sourceTagCommit": "d63b702609c4300a2ca07be2bdb0adb9834725e5",
+    "latestReleaseCheck": "gh api repos/ollama/ollama/releases/latest returned v0.40.16 on 19 November 2026; 0.40.17 exists only as release candidates.",
+    "sourceDirectory": "../.byteverse-ollama-check",
+    "columnHistory": "Binary search over the 273 stable release tags, reading cmd/cmd.go at each step: ps command absent 0.1.37, present 0.1.38; stop command and Stopping label absent 0.3.10, present 0.3.11; CONTEXT absent 0.9.6, present 0.10.0; RUNNER absent 0.35.1, present 0.40.0. There is no stable tag between 0.35.1 and 0.40.0.",
+    "powershellCheck": "The Invoke-RestMethod line was run in Windows PowerShell 5.1 on Windows 11 Pro build 26300 against a local test server that returned the article's example JSON on /api/ps. It printed name, size, size_vram, context_length and expires_at. Ollama was not involved.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Six FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "src-v0.40.16/cmd__cmd.go": "8845d65a4da1b7a5dd6df1f21aef41489ef3d21d5821778c860c9ac6f16be2b9",
+      "src-v0.40.16/format__time.go": "8702cb3ab90c455b434d68cc38114660bc1ebaf8c39d74bca1037bebe54bdbc7",
+      "src-v0.40.16/format__bytes.go": "4bde7fb9e2872e84ae1a66afc648b0129b0f34f60fc06b434d4cef233d0aa444",
+      "src-v0.40.16/server__sched.go": "f35a532705eaf83bef1619f49c4e51e56332c2d6065eaa50c3a87ae83d06a8f3",
+      "src-v0.40.16/server__routes.go": "0dbc9d5a6909209ab531a12677fe792e17ff7b825dd1396c00e83898901a13ed",
+      "src-v0.40.16/envconfig__config.go": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895",
+      "src-v0.40.16/api__types.go": "8e54520d34c312bb6adfccb652b0d1e18bb5c4cdb8ac2eb2eab0c065a508effa",
+      "src-v0.40.16/llm__llama_server.go": "f2510e68f4fce8ec75fc49710306baec2dfb879b061cd2b4822a14bde6e68387",
+      "src-v0.40.16/manifest__manifest.go": "2aa036f61cfffdff2f85fa3e0f29478c314c00c53aced8f9c6cb9103359f1bec",
+      "src-v0.40.16/go.mod": "32c3cd993ece27ec115d0eb1c932dfc58831ad1022588d712d426f103720e027",
+      "src-v0.40.16/docs__faq.mdx": "e3630684676a21219abc7cb6c17db53993412c194ba9c108c8dbae2f30318e0c",
+      "src-v0.40.16/docs__cli.mdx": "4bd7273668451c1ff1806620cb583dbf252b5ffc263b54454d4f5026148044f9",
+      "src-v0.40.16/docs__context-length.mdx": "8414ca2ad9c67fbd9bd1497bf352fb60993b2b5b69531118f456f9b31af87aa7",
+      "src-v0.40.16/docs__docker.mdx": "394dd57c4dc3b37dd626e0fb1243d451e9d43d56b07cbc8b11a649afdeeff818",
+      "src-olekukonko__tablewriter-v0.0.5/table.go": "5a28f9ec89de4d41d8abf821b9dbf144b6a9c272923367d2fce2da94e5ba133d",
+      "src-v0.1.37/cmd__cmd.go": "23d7916456517d87200e687f1f1cafec0d36a112b916aa02260f2e82720ffd1e",
+      "src-v0.1.38/cmd__cmd.go": "ec74b8cee2d0adbbcbd4ae8188d4a3b4f670846ec9a9de4089971c5a83fa50b1",
+      "src-v0.3.10/cmd__cmd.go": "8739c005719c962b641be6e270c869a2cb8bbe6cfa5cdeb8bec2dafc64191309",
+      "src-v0.3.11/cmd__cmd.go": "fa5f057feceb89c489a03c4ee2fae607c2c06508334aba641e46c4060c914d9f",
+      "src-v0.9.6/cmd__cmd.go": "191aa10b83bf2b30fbf4d897d7dc4cfa046e8f1576a0683ab9934a086064bdd9",
+      "src-v0.10.0/cmd__cmd.go": "474b468e71f2aabe395557b181215ccbc4978354b99808e28b67ffcb06adbca2",
+      "src-v0.35.1/cmd__cmd.go": "a306c897d3092aba5a25984eb20024d5743d391b58d95fe1a1594f6db87bf0b9",
+      "src-v0.40.0/cmd__cmd.go": "30a2adb4893c453a59bd3d21b41cee3e3e7edb709c9713d5164b0c4dd3e29c30"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-19T13:40:00.000Z",
+    "method": "Case-normalised five-word phrase overlap; code blocks, tables and links excluded. Compared with the 188 stored posts, 15 saved official Ollama documentation files, the ten competitor pages fetched for this topic, and the 16 competitor pages saved for the two earlier Ollama audits.",
+    "draftPhrases": 2521,
+    "ownPosts": { "highest": "could-not-connect-to-ollama-app-is-it-running", "percentBefore": 1.87, "percentAfter": 0.79, "note": "The first draft reused three sentences of verification wording from the previous guide; they were rewritten. What remains is link labels and the phrase naming the 0.40.16 release." },
+    "officialDocs": { "highestPercent": 0.04, "longestRunWords": 5 },
+    "competitors": [
+      { "site": "techiehub.blog", "percentBefore": 0.84, "percentAfter": 0.28, "note": "Two FAQ answers opened like theirs; both were rewritten." },
+      { "site": "pocketgrove.com", "percentAfter": 0.16 },
+      { "site": "bigiron.cc", "percentAfter": 0.04 },
+      { "site": "mljourney.com", "percentAfter": 0.04 },
+      { "site": "all other fetched pages", "percentAfter": 0 }
+    ],
+    "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 160, "meanSentenceWords": 14.9, "stdevSentenceWords": 8.6 },
+    "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 257,
+    "publishedAt": "2026-11-19T17:51:00.006Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/ollama-ps-explained",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 188,
+    "otherPostsHash": "dfa030c742d9e50d9ccdba3f265c35f3",
+    "assetCommits": ["66a7397"],
+    "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The diagram text is small on phones; the five rules are also written out above it.",
+    "approvedBy": "owner message 'add new according to previous prompt: add new blog as soon as possible' (19 November 2026); the brief instructs publication"
+  }
+}

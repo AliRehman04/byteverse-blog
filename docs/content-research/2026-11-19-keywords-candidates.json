@@ -1,0 +1,786 @@
+{
+  "checkedAt": "2026-11-19T12:17:20.368Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "access ollama from another computer",
+      "google": [
+        "access ollama from another computer",
+        "access ollama from another computer windows",
+        "access ollama from another computer linux",
+        "access ollama from another machine",
+        "access ollama server from another computer",
+        "ollama access from other computer",
+        "how to access another computer",
+        "how to use c$ to access another computer"
+      ],
+      "bing": [
+        "access ollama from another computer",
+        "how do i access ollama",
+        "access ollama from browser",
+        "access ollama windows over network",
+        "access ollama over network",
+        "ollama access local file",
+        "how to access ollama on local network",
+        "how to install ollama for all users",
+        "how to set up ollama on windows",
+        "how to connect ollama to the internet",
+        "how to use ollama on windows",
+        "how to run ollama on windows",
+        "setup ollama windows pc",
+        "how to run ollama locally on windows",
+        "how to download ollama on windows",
+        "how to connect to ollama",
+        "make ollama accessible over the internet",
+        "how to install ollama locally on windows",
+        "how to remotely connect to ollama server"
+      ]
+    },
+    {
+      "seed": "ollama network access",
+      "google": [
+        "ollama network access",
+        "ollama network access windows",
+        "ollama network access linux",
+        "ollama network access ubuntu",
+        "ollama remote access",
+        "ollama internet access",
+        "ollama web access",
+        "ollama lan access",
+        "ollama remote access linux",
+        "ollama remote access windows"
+      ],
+      "bing": [
+        "ollama network access",
+        "how to access ollama on local network",
+        "how to allow ollama for local network access",
+        "access ollama windows over network",
+        "how to share ollama access in local network"
+      ]
+    },
+    {
+      "seed": "ollama remote access",
+      "google": [
+        "ollama remote access",
+        "ollama remote access linux",
+        "ollama remote access windows",
+        "ollama remote access ubuntu",
+        "ollama remote access api",
+        "ollama remote access mac",
+        "ollama remote access port",
+        "ollama remote control",
+        "ollama remote connections",
+        "ollama enable remote access"
+      ],
+      "bing": [
+        "ollama remote access",
+        "ollama windows remote access",
+        "ollama how to enable remote access",
+        "how to allow remote access to ollama server"
+      ]
+    },
+    {
+      "seed": "ollama expose to network",
+      "google": [
+        "ollama expose to network",
+        "ollama expose to network windows",
+        "ollama expose to network port",
+        "expose ollama to network linux",
+        "expose ollama to network ubuntu",
+        "ollama expose to local network",
+        "ollama expose to local network windows",
+        "ollama expose to local network linux",
+        "ollama expose to local network mac",
+        "ollama expose api to network"
+      ],
+      "bing": [
+        "ollama expose to network",
+        "ollama expose to network port",
+        "ollama expose to local network",
+        "ollama expose to local network windows",
+        "ollama expose ollama to the network",
+        "expose ollama to network windows"
+      ]
+    },
+    {
+      "seed": "ollama listen on all interfaces",
+      "google": [
+        "ollama listen on all ips",
+        "make ollama listen on all interfaces",
+        "ollama windows listen on all interfaces",
+        "configure ollama to listen on all interfaces"
+      ],
+      "bing": [
+        "how to make ollama listen on all interfaces",
+        "ollama interfaces for windows",
+        "web interface for ollama",
+        "does ollama have a web interface",
+        "ollama listen on 0.0.0.0",
+        "ollama windows listen on 0.0.0.0",
+        "ollama windows ui interface",
+        "how to access ollama on local network",
+        "ollama on local network",
+        "ollama on the network",
+        "ollama install for all users",
+        "how to setup and use ollama locally",
+        "how to connect to ollama",
+        "ollama not showing the gui",
+        "how to use ollama with a gui",
+        "does ollama use the internet",
+        "how to connect ollama to the internet",
+        "how to use ollama locally",
+        "how to install and use ollama",
+        "how to run ollama on local network",
+        "ollama web interface port",
+        "how to get ollama chat interface",
+        "ollama setup in local",
+        "web gui for ollama"
+      ]
+    },
+    {
+      "seed": "ollama host 0.0.0.0 not working",
+      "google": [
+        "ollama host=0.0.0.0 not working",
+        "what is host 0.0.0.0"
+      ],
+      "bing": [
+        "ollama listen on 0.0.0.0",
+        "ollama ollama_host",
+        "ollama_host",
+        "environment ollama_host 0.0.0.0:11434",
+        "ollama serve host 0.0.0.0",
+        "ollama_host 0.0.0.0 ollama serve",
+        "ollama run on 0.0.0.0",
+        "set ollama_host 0.0.0.0 ollama serve",
+        "ollama server 0.0.0.0",
+        "environment ollama_host 0.0.0.0",
+        "ollama_host 0.0.0.0:11434 ollama serve",
+        "set ollama_host 0.0.0.0:11434 ollama serve",
+        "ollama_host 0.0.0.0:8080",
+        "ollama 0.0.0.0 windows",
+        "set ollama_host 0.0.0.0:11434",
+        "ollama_host 0.0.0.0:11435",
+        "ollama_host 0.0.0.0:11434",
+        "ollama 0.0.0.0 linux",
+        "ollama 0.0.0.0 mac",
+        "export ollama_host 0.0.0.0",
+        "ollama_host windows"
+      ]
+    },
+    {
+      "seed": "ollama 403 forbidden",
+      "google": [
+        "ollama 403 forbidden",
+        "ollama 403 forbidden this model requires a subscription",
+        "ollama 403 error",
+        "ollama 403 forbidden error",
+        "ollama api 403 forbidden",
+        "ollama 403 client error forbidden for url",
+        "403 forbidden example",
+        "what to do when 403 forbidden",
+        "what does it mean when forbidden 403",
+        "what is 403 forbidden"
+      ],
+      "bing": [
+        "ollama 403 forbidden"
+      ]
+    },
+    {
+      "seed": "ollama origins",
+      "google": [
+        "ollama origins",
+        "ollama_origins windows",
+        "ollama_origins environment variable",
+        "ollama_origins docker",
+        "ollama_origins =* system environment variable",
+        "ollama_origins allow all",
+        "ollama origins all",
+        "ollama_origins example",
+        "ollama_origins mac",
+        "ollama_origins linux"
+      ],
+      "bing": [
+        "ollama origins",
+        "ollama origins variable",
+        "ollama host and origins ollama service file"
+      ]
+    },
+    {
+      "seed": "ollama firewall",
+      "google": [
+        "ollama firewall",
+        "ollama firewall rules",
+        "ollama firewall windows",
+        "ubuntu ollama firewall",
+        "ollama port firewall",
+        "ollama blocked by firewall",
+        "como desativar firewall"
+      ],
+      "bing": [
+        "ollama firewall rules",
+        "ollama firewall",
+        "allow ollama through windows firewall",
+        "ollama windows firewall"
+      ]
+    },
+    {
+      "seed": "ollama api from another machine",
+      "google": [],
+      "bing": [
+        "how to use ollama api",
+        "how to connect to ollama api",
+        "ollama api tool calling example",
+        "ollama api not found",
+        "how to generate ollama api key",
+        "ollama api not running",
+        "how to get an ollama api key",
+        "ollama api system prompt",
+        "how to create ollama api key",
+        "manage ollama api connections",
+        "api key for ollama",
+        "ollama api is free",
+        "ollama is running api",
+        "ollama api/generate"
+      ]
+    },
+    {
+      "seed": "ollama lan",
+      "google": [
+        "ollama langchain",
+        "ollama language models",
+        "ollama langgraph",
+        "ollama langchain agent",
+        "ollama language",
+        "ollama langchain python",
+        "ollama lan access",
+        "ollama lan",
+        "ollama langchain rag",
+        "ollama langflow"
+      ],
+      "bing": [
+        "ollama langchain",
+        "ollama language models",
+        "ollama lan",
+        "ollama langgraph",
+        "ollama langchain rag",
+        "ollama langflow",
+        "ollama language options",
+        "ollama launch",
+        "ollama language integration",
+        "ollama langchain agent",
+        "ollama langchain4j",
+        "ollama langchain python",
+        "ollama langchain embeddings",
+        "ollama langchain integration"
+      ]
+    },
+    {
+      "seed": "ollama allow network access windows",
+      "google": [],
+      "bing": [
+        "access ollama over network",
+        "how to access ollama on local network",
+        "ollama allow remote connections windows",
+        "ollama expose to local network windows",
+        "expose ollama to the network windows",
+        "access ollama from another computer",
+        "open ollama to local network",
+        "give ollama internet access",
+        "how do i access ollama",
+        "access ollama from browser",
+        "how to set up ollama on windows",
+        "ollama access local file",
+        "make ollama available on network",
+        "can ollama access internet",
+        "make ollama accessible over the internet",
+        "ollama server on windows",
+        "how to run ollama locally on windows",
+        "ollama allow external connections",
+        "how to install ollama locally on windows",
+        "how to run ollama on local network"
+      ]
+    },
+    {
+      "seed": "connect to ollama remotely",
+      "google": [
+        "connect to ollama remotely",
+        "connect to ollama server remotely",
+        "connect to remote ollama instance",
+        "access ollama remotely"
+      ],
+      "bing": [
+        "connect to ollama remotely",
+        "how to remotely connect to ollama server",
+        "how to connect to ollama",
+        "ollama connect to remote server",
+        "how to connect ollama to the internet",
+        "ollama allow remote connections windows",
+        "connect ollama to homeassistant",
+        "how do i access ollama",
+        "how to setup ollama",
+        "ollama allow external connections",
+        "how to access ollama from another computer",
+        "how to configure ollama",
+        "how to install and use ollama",
+        "how to access ollama on local network",
+        "make ollama accessible over the internet",
+        "make ollama available on network",
+        "ollama setup in local",
+        "unable to connect to ollama",
+        "ollama an existing connection"
+      ]
+    },
+    {
+      "seed": "ollama server ip address",
+      "google": [
+        "ollama server ip address",
+        "famous server ip",
+        "name server ip address",
+        "ea server ip address"
+      ],
+      "bing": [
+        "ollama server address",
+        "ollama serve address already in use",
+        "ollama local server setup",
+        "ollama server on windows",
+        "ollama local server url",
+        "ollama as a server",
+        "how to turn on ollama server",
+        "ollama connect to remote server",
+        "how to start ollama server locally",
+        "how to start ollama server",
+        "how to remotely connect to ollama server",
+        "how to run ollama server",
+        "ollama server in hindi",
+        "ollama connect to mcp server",
+        "ollama setup in local",
+        "ollama internal server error",
+        "ollama server.log",
+        "ollama_host 0.0.0.0:11434 ollama serve",
+        "ollama_llama_server",
+        "ollama_proxy_server",
+        "ollama_model_server"
+      ]
+    },
+    {
+      "seed": "ollama over network",
+      "google": [
+        "ollama over network",
+        "ollama over network windows",
+        "ollama on network",
+        "ollama via network",
+        "ollama over lan",
+        "access ollama over network",
+        "ollama over local network",
+        "use ollama over network",
+        "ollama server over network",
+        "ollama connect over network"
+      ],
+      "bing": [
+        "ollama over network",
+        "access ollama over network",
+        "run pi.dev connected to ollama over network",
+        "access ollama windows over network"
+      ]
+    },
+    {
+      "seed": "ollama share with other computers",
+      "google": [],
+      "bing": [
+        "does ollama share data",
+        "how to access ollama from another computer",
+        "does ollama use the internet",
+        "how to connect ollama to the internet",
+        "does ollama send data to internet",
+        "ollama server on windows",
+        "locally hosting ollama in my laptop",
+        "make ollama available on network",
+        "how to access ollama on local network",
+        "does ollama send data",
+        "ollama on local network",
+        "ollama expose to local network windows",
+        "ollama on the network",
+        "can ollama access internet",
+        "using ollama on windows",
+        "how to serve ollama on network",
+        "ollama only using cpu",
+        "ollama install for all users",
+        "ollama as a server",
+        "how to run ollama on local network",
+        "can my laptop run ollama"
+      ]
+    },
+    {
+      "seed": "ollama keep alive not working",
+      "google": [
+        "ollama keep alive not working"
+      ],
+      "bing": [
+        "ollama keep alive forever",
+        "ollama serve not working",
+        "ollama not working on windows",
+        "how to stop ollama service",
+        "how to stop ollama",
+        "how to manage ollama",
+        "ollama keep_alive",
+        "ollama_keep_alive -1",
+        "why ollama is not opening",
+        "how to work with ollama",
+        "ollama keep alive windows",
+        "ollama ollama_keep_alive",
+        "ollama ollama_keep_alive -1",
+        "ollama_keep_alive 24h",
+        "ollama keep alive environment variable",
+        "ollama does not support generate",
+        "ollama service could not be reached",
+        "macos ollama_keep_alive",
+        "ollama_keep_alive ubuntu"
+      ]
+    },
+    {
+      "seed": "ollama unload model",
+      "google": [
+        "ollama unload model",
+        "ollama unload model command",
+        "ollama unload model timeout",
+        "ollama unload model from gpu",
+        "ollama unload model api",
+        "ollama unload model time",
+        "ollama unload model cli",
+        "ollama unload model python",
+        "ollama unload model from vram",
+        "ollama unload model from ram"
+      ],
+      "bing": [
+        "ollama unload model",
+        "ollama unload model from memory",
+        "ollama how to load model and then unload",
+        "ollama model unload time",
+        "ollama command to unload a model"
+      ]
+    },
+    {
+      "seed": "ollama stop model",
+      "google": [
+        "ollama stop model",
+        "ollama stop model command",
+        "ollama stop model running",
+        "ollama stop model force",
+        "ollama stop model not working",
+        "ollama stop model api",
+        "ollama stop model thinking",
+        "ollama stop model_name",
+        "ollama stop model python",
+        "ollama stop model download"
+      ],
+      "bing": [
+        "ollama stop model",
+        "ollama stop model command",
+        "ollama stop running model",
+        "ollama force stop model",
+        "stop ollama model python",
+        "ollama stop all models"
+      ]
+    },
+    {
+      "seed": "ollama free vram",
+      "google": [
+        "ollama free vram",
+        "how to free vram",
+        "how much does vram cost"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "ollama keep model loaded",
+      "google": [
+        "ollama keep model loaded",
+        "ollama keep model loaded in memory",
+        "ollama keep model loaded in gpu",
+        "ollama keep model loaded longer",
+        "ollama always keep model loaded",
+        "ollama api keep model loaded"
+      ],
+      "bing": [
+        "ollama keep model loaded",
+        "how to keep ollama model loaded in memory",
+        "how do i keep a model loaded in ollama",
+        "how to load model in ollama",
+        "ollama unable to load model",
+        "ollama keep model in memory",
+        "can ollama have 2 models loaded",
+        "how to unload ollama model",
+        "how to stop a model in ollama",
+        "ollama load local model",
+        "what is the latest ollama model",
+        "ollama this model does not support images",
+        "ollama which model to use",
+        "how to download a model on ollama",
+        "ollama where models are stored",
+        "how to check ollama models",
+        "ollama ollama_max_loaded_models",
+        "ollama failed to load model",
+        "ollama error unable to load model"
+      ]
+    },
+    {
+      "seed": "ollama model unloads",
+      "google": [
+        "ollama unload model",
+        "ollama model unload time",
+        "ollama model unload timeout",
+        "ollama unload model from memory",
+        "ollama unload model command",
+        "ollama unload model from gpu",
+        "ollama unload model api",
+        "ollama unload model cli",
+        "ollama unload model python",
+        "ollama unload model from vram"
+      ],
+      "bing": [
+        "ollama model unload",
+        "ollama model unload time",
+        "ollama unload model from memory",
+        "ollama command to unload a model"
+      ]
+    },
+    {
+      "seed": "ollama ps",
+      "google": [
+        "ollama ps",
+        "ollama ps shows nothing",
+        "ollama ps until",
+        "ollama ps command",
+        "ollama ps stopping",
+        "ollama ps until stopping",
+        "ollama ps until meaning",
+        "ollama ps is empty",
+        "ollama ps meaning",
+        "ollama ps5"
+      ],
+      "bing": [
+        "llamas",
+        "ollama ps command",
+        "ollama ps 100%cpu",
+        "ollama ps until stopping",
+        "ollama ps kill",
+        "ollama ps size",
+        "ollama ps meaning",
+        "ollama ps shows nothing",
+        "ollama ps cpu"
+      ]
+    },
+    {
+      "seed": "ollama stop",
+      "google": [
+        "ollama stop model",
+        "ollama stop",
+        "ollama stop server",
+        "ollama stop command",
+        "ollama stop all models",
+        "ollama stop running model",
+        "ollama stop serving",
+        "ollama stop all",
+        "ollama stop service",
+        "ollama stop model command"
+      ],
+      "bing": [
+        "ollama stop",
+        "ollama stop model",
+        "ollama stop server",
+        "ollama stop command",
+        "ollama stop running model",
+        "ollama stoppen",
+        "ollama stop service",
+        "ollama stop thinking",
+        "ollama stop process macos"
+      ]
+    },
+    {
+      "seed": "ollama truncating input prompt",
+      "google": [
+        "ollama truncating input prompt limit",
+        "openclaw ollama truncating input prompt",
+        "what is input in algorithm"
+      ],
+      "bing": [
+        "ollama truncating input prompt",
+        "ollama change system prompt",
+        "how to run ollama in command prompt",
+        "can ollama take images as an input",
+        "ollama run command not working",
+        "ollama command to update",
+        "ollama pull not working",
+        "how to setup and use ollama locally",
+        "how to run ollama in terminal",
+        "command to run ollama",
+        "command to run ollama in terminal",
+        "how to use ollama on windows",
+        "ollama batch list input",
+        "ollama pull nomic-embed-text",
+        "ollama set system prompt",
+        "ollama setup in local",
+        "command to pull ollama model",
+        "how to install ollama and use it",
+        "ollama windows system prompt",
+        "ollama failed to embed the input length",
+        "ollama ctrl+c",
+        "ollama tool_call",
+        "ollama prompt_eval_count",
+        "ollama pull nomic-embed-text:v1.5"
+      ]
+    },
+    {
+      "seed": "ollama context length not working",
+      "google": [
+        "ollama context length not working"
+      ],
+      "bing": [
+        "ollama context length setting",
+        "ollama default context length",
+        "ollama change context length",
+        "ollama max context length",
+        "ollama set context length",
+        "ollama increase context length",
+        "ollama show context length",
+        "ollama linux context length",
+        "ollama change context size",
+        "ollama set context size",
+        "ollama increase context size",
+        "ollama context window size",
+        "ollama default context window size",
+        "how to change context window in ollama",
+        "ollama context length environment variable",
+        "ollama_context_length",
+        "ollama input output context length curl",
+        "how to pass context to ollama",
+        "ollama context length embedding length",
+        "ollama ollama_context_length",
+        "ollama serve context length",
+        "ollama failed to embed the input length",
+        "export ollama_context_length 32768"
+      ]
+    },
+    {
+      "seed": "ollama default context length",
+      "google": [
+        "ollama default context length",
+        "ollama default context size",
+        "ollama set default context length",
+        "ollama change default context length",
+        "ollama set default context size",
+        "ollama change default context size",
+        "ollama default context window size",
+        "ollama increase default context size",
+        "ollama_context_length default value"
+      ],
+      "bing": [
+        "ollama default context length",
+        "ollama set default context length",
+        "ollama show context length",
+        "ollama change context length",
+        "ollama default context window size",
+        "ollama linux context length",
+        "ollama set context size",
+        "ollama increase context length",
+        "ollama context window size",
+        "ollama change context size",
+        "openwebui ollama context length",
+        "ollama increase context size",
+        "ollama context length environment variable",
+        "ollama_context_length",
+        "claude code ollama context size",
+        "how to pass context to ollama",
+        "ollama ollama_context_length",
+        "ollama serve context length",
+        "ollama context length embedding length",
+        "export ollama_context_length 32768"
+      ]
+    },
+    {
+      "seed": "ollama api key",
+      "google": [
+        "ollama api key",
+        "ollama api key free",
+        "ollama api key local",
+        "ollama api key generate",
+        "ollama api key usage",
+        "ollama api key verity",
+        "ollama api key self-hosted",
+        "ollama api key for n8n",
+        "ollama api key price",
+        "ollama api key cloud"
+      ],
+      "bing": [
+        "ollama api key",
+        "ollama api key local",
+        "ollama api key setup",
+        "ollama api key management",
+        "ollama api key integration",
+        "ollama api key base url",
+        "ollama api key generate",
+        "ollama api key claude",
+        "ollama api key configuration",
+        "ollama api key authentication"
+      ]
+    },
+    {
+      "seed": "ollama authentication",
+      "google": [
+        "ollama authentication",
+        "ollama authentication token",
+        "ollama authentication required",
+        "ollama authentication api",
+        "ollama local authentication",
+        "ollama proxy authentication required",
+        "ollama server authentication",
+        "ollama docker authentication",
+        "ollama add authentication",
+        "ollama requires authentication to be registered as a provider"
+      ],
+      "bing": [
+        "ollama authentication",
+        "ollama authentication guide",
+        "ollama authentication setup",
+        "ollama authentication options",
+        "ollama authentication process",
+        "ollama authentication token",
+        "ollama authentication configuration",
+        "ollama registry authentication",
+        "ollama api key authentication",
+        "ollama to openwebui authentication token"
+      ]
+    },
+    {
+      "seed": "ollama https",
+      "google": [
+        "ollama https",
+        "ollama https api",
+        "ollama https_proxy",
+        "ollama https port",
+        "ollama https server",
+        "ollama https setup",
+        "ollama https support",
+        "ollama https endpoint",
+        "https ollama com download",
+        "https ollama com download ollamasetup exe"
+      ],
+      "bing": [
+        "ollama https",
+        "ollama https_proxy",
+        "ollama https endpoint",
+        "ollama use https"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

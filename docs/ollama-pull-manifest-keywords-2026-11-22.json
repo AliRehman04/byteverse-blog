@@ -205,14 +205,24 @@
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
   },
   "publication": {
-    "status": "published",
+    "status": "published-live-verified",
     "postId": 258,
     "publishedAt": "2026-11-22T06:25:04.289Z",
     "liveUrl": "https://www.byteverse.fyi/blog/ollama-pull-model-manifest-error",
     "databaseWrites": 1,
     "otherPostsUnchanged": 189,
     "otherPostsHash": "c1a4592fd67863adddba2f51b5254ed9",
-    "assetCommits": ["6b0fd76"],
+    "assetCommits": ["6b0fd761a141ac99c3e62ffabcf396f61ccac6fa"],
+    "releaseCommit": "11e0ddeaa4893e1449b7644d9d6194f7f0d66218",
+    "deploymentStatus": "The GitHub CLI did not respond on 22 November, so the deployment status API was not read. Deployment was confirmed by the new post appearing in the live sitemap about a minute after the push.",
+    "liveVerification": {
+      "command": "node scripts/test-ollama-pull-manifest-post.mjs --live",
+      "result": "12/12 passed: 11 offline checks plus live title, meta description, canonical, publish date, no noindex, og:image, author, FAQPage schema (first five of six), exact code blocks, three tables, six FAQ details and six internal links",
+      "technical": "One H1, 12 H2 headings; canonical is the article URL; robots index, follow; meta description 153 characters; og:image is the cover illustration; schema types BlogPosting, BreadcrumbList, FAQPage; all 23 links in the article body return 200; the inline image has alt text and fixed dimensions.",
+      "discovery": ["/", "/blog", "/category/tech-guides", "/sitemap.xml", "/feed.xml"],
+      "browser": "No browser session on the live page after deployment; the pre-publish preview covered layout.",
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    },
     "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The lookup table wraps into narrow columns on phones and the diagram text is small there; both are also explained in the text.",
     "approvedBy": "owner message 'add new according to previous prompt: add new blog as soon as possible' (22 November 2026); the brief instructs publication"
   }

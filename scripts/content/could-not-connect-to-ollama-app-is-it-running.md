@@ -47,7 +47,7 @@ The same failure has been reported in three ways. This is what a Linux user sees
 
 In [version 0.7.0](https://github.com/ollama/ollama/blob/v0.7.0/cmd/cmd.go), every failure to start the app was replaced by one fixed sentence. A missing app, a slow start and a Linux machine with no service all looked identical.
 
-Version 0.7.1 followed eight days later, on 21 May 2025. It kept the real cause and put "ollama server not responding" in front of it. Version 0.15.5, released on 3 February 2026, dropped that prefix.
+Version 0.7.1, the next release, kept the real cause and put "ollama server not responding" in front of it. Version 0.15.5 dropped that prefix.
 
 If you still see the oldest sentence, your Ollama is at least eighteen months old. Run `ollama -v` to see the version. Updating gives you clearer errors before you fix anything else. The [Ollama FAQ](https://docs.ollama.com/faq) describes the update path: the Windows and macOS apps download updates themselves, and on Linux you run the install script again.
 

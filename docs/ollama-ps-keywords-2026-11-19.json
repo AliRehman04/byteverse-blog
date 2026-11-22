@@ -132,9 +132,9 @@
     "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card with an example table in a terminal mock-up, not a screenshot. The inline diagram of the countdown is drawn from the 0.40.16 scheduler code and was reviewed against it. No stock photography."
   },
   "validation": {
-    "proseWords": 2904,
+    "proseWords": 2892,
     "readingTime": "14 min read",
-    "contentSha256": "623329bef703eaab3016c28ccf56764851facb2c9c38374b5e18b15615d4a58f",
+    "contentSha256": "dad57a5d3f71729d7ebd7be2543fcb5a62be7f675798f5ef3e49db519bff7839",
     "codeBlocks": 10,
     "tables": 5,
     "sourceTag": "v0.40.16",
@@ -186,6 +186,22 @@
     ],
     "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 160, "meanSentenceWords": 14.9, "stdevSentenceWords": 8.6 },
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "revision": {
+    "date": "2026-11-22",
+    "reason": "Factual correction approved by the owner on 22 November 2026. The first version dated the releases: 0.1.38 on 15 May 2024, 0.10.0 on 18 July 2025 and 0.40.0 on 25 September 2026. Those were GitHub published_at values, which mark the day a release entry first appeared as a pre-release. The final tags of 0.10.0 and 0.40.0 point at commits dated 30 July 2025 and 6 October 2026, so two of the three dates were 12 and 11 days early. All three dates were removed; the version numbers, verified against the source, are unchanged.",
+    "change": "One paragraph: 'The command first shipped in release 0.1.38. CONTEXT arrived with 0.10.0, and RUNNER with 0.40.0.' No other text, metadata or image changed.",
+    "previous": {
+      "backupFile": "docs/content-backups/ollama-ps-explained-before-2026-11-22-date-correction.md",
+      "contentSha256": "623329bef703eaab3016c28ccf56764851facb2c9c38374b5e18b15615d4a58f",
+      "contentMd5": "806e69e1de481e2a4c63bf6819c8c05a",
+      "editorialHash": "2acacc09c3c5351edfc42449140f66aa",
+      "proseWords": 2904,
+      "modifiedAt": "2026-11-19T17:51:00.006Z"
+    },
+    "status": "applied",
+    "appliedAt": "2026-11-22T06:45:47.664Z",
+    "script": "scripts/_update-ollama-release-dates.mjs ps --apply (one guarded UPDATE of the body; all other fields and the other 189 posts unchanged)"
   },
   "publication": {
     "status": "published-live-verified",

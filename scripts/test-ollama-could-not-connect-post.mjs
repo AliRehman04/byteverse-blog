@@ -76,11 +76,13 @@ test("the wording history matches releases 0.7.0, 0.7.1, 0.15.4, 0.15.5 and 0.40
   assert.deepEqual(versionTable.map((row) => row[1].replaceAll("`", "")), [`Error: ${OLD}`, `Error: ollama server not responding - ${SERVE}`, `Error: ${SERVE}`]);
   assert.equal(messageTable[1][1], "Ollama 0.7.1 to 0.15.4");
   assert(!/0\.16\.0|0\.15\.0/.test(content), "Superseded version boundaries must not remain");
-  const published = { "0.7.0": "2025-05-13T00:10:33Z", "0.7.1": "2025-05-21T22:17:35Z", "0.15.5": "2026-02-03T01:21:21Z" };
-  assert.equal(Math.floor((Date.parse(published["0.7.1"]) - Date.parse(published["0.7.0"])) / 86400000), 8);
-  assert(content.includes("eight days later, on 21 May 2025") && content.includes("Version 0.15.5, released on 3 February 2026"));
-  // 0.7.0 came out on 13 May 2025; the article date is 17 November 2026.
-  assert(Date.UTC(2026, 10, 17) >= Date.UTC(2025, 4 + 18, 13));
+  // Corrected on 22 November 2026: the GitHub field published_at is the day a release entry first appeared as a pre-release,
+  // not the day of the final release (the final tags of 0.7.0, 0.7.1 and 0.15.5 point at commits dated one to three days later).
+  // The article therefore names the releases without dates.
+  assert(content.includes('Version 0.7.1, the next release, kept the real cause') && content.includes("Version 0.15.5 dropped that prefix."));
+  assert(!/21 May 2025|3 February 2026|eight days later/.test(content), "Pre-release dates must not be presented as release dates");
+  // The final 0.7.0 tag points at a commit dated 14 May 2025; the article date is 17 November 2026.
+  assert(Date.UTC(2026, 10, 17) >= Date.UTC(2025, 4 + 18, 14));
   assert(content.includes("at least eighteen months old"));
 });
 

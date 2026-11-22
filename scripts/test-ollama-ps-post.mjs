@@ -80,11 +80,10 @@ test("the column history matches the releases on each side of a change", () => {
     assert(!source(absent, "cmd__cmd.go").includes("func StopHandler") && !source(absent, "cmd__cmd.go").includes('"Stopping..."'));
     assert(source(present, "cmd__cmd.go").includes("func StopHandler") && source(present, "cmd__cmd.go").includes('until = "Stopping..."'));
   }
-  // Release timestamps read from the GitHub releases API on 19 November 2026.
-  const published = { "0.1.38": "2024-05-15T00:28:00Z", "0.3.11": "2024-09-17T21:40:04Z", "0.10.0": "2025-07-18T00:23:58Z", "0.40.0": "2026-09-25T03:31:52Z", "0.40.16": "2026-11-09T18:21:19Z" };
-  const day = (release) => new Date(published[release]).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-  assert(content.includes(`release 0.1.38 on ${day("0.1.38")}`) && content.includes(`0.10.0 on ${day("0.10.0")}`) && content.includes(`0.40.0 on ${day("0.40.0")}`));
-  assert.deepEqual([day("0.1.38"), day("0.10.0"), day("0.40.0")], ["15 May 2024", "18 July 2025", "25 September 2026"]);
+  // Corrected on 22 November 2026: the GitHub field published_at is the day a release entry first appeared as a pre-release.
+  // The final tags of 0.10.0 and 0.40.0 point at commits dated 12 and 11 days later, so the article names the releases without dates.
+  assert(content.includes("The command first shipped in release 0.1.38. CONTEXT arrived with 0.10.0, and RUNNER with 0.40.0."));
+  assert(!/15 May 2024|18 July 2025|25 September 2026/.test(content), "Pre-release dates must not be presented as release dates");
   assert(content.includes("`ollama stop`, added in release 0.3.11"));
   assert(content.includes("Ollama 0.40.16, the latest release on 19 November 2026"));
 });

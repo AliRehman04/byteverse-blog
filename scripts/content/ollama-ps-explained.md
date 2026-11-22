@@ -42,7 +42,7 @@ Your table may have fewer columns, because the command has grown over time:
 | 0.10.0 to 0.35.1 | CONTEXT added after PROCESSOR |
 | 0.40.0 and newer | RUNNER added before UNTIL |
 
-The command first shipped in release 0.1.38 on 15 May 2024. CONTEXT arrived with 0.10.0 on 18 July 2025, and RUNNER with 0.40.0 on 25 September 2026. Run `ollama -v` to see which version you have.
+The command first shipped in release 0.1.38. CONTEXT arrived with 0.10.0, and RUNNER with 0.40.0. Run `ollama -v` to see which version you have.
 
 ## NAME and ID
 

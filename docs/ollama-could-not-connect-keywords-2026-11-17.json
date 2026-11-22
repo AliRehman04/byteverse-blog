@@ -94,7 +94,7 @@
       "cmd/start_darwin.go (v0.15.5 and v0.40.16, identical files): returns the ollama serve message unless the executable is a symlink into Ollama.app; v0.15.4 returned 'could not find ollama app'. cmd/start_default.go always returns the ollama serve message.",
       "Version history, checked release by release: v0.7.0 cmd.go replaces every startApp error with 'could not connect to ollama app, is it running?'; v0.7.1 through v0.15.4 wrap it as 'ollama server not responding - %w'; v0.15.5 and later return the cause alone. An earlier draft said 0.16.0; probing v0.15.1 to v0.15.6 corrected it.",
       "envconfig/config.go: default http://127.0.0.1:11434; no scheme means http and port 11434; http:// defaults to port 80 and https:// to 443; ConnectableHost exists with a comment that connecting to unspecified addresses fails on Windows.",
-      "Release dates from the GitHub API: v0.7.0 2025-05-13, v0.7.1 2025-05-21, v0.15.4 2026-02-01, v0.15.5 2026-02-03, v0.40.16 2026-11-09.",
+      "GitHub published_at values (NOT release dates, see revision): v0.7.0 2025-05-13, v0.7.1 2025-05-21, v0.15.4 2026-02-01, v0.15.5 2026-02-03, v0.40.16 2026-11-09. Final tag commit dates: v0.7.0 2025-05-14, v0.7.1 2025-05-23, v0.15.5 2026-02-06, v0.40.16 2026-11-08.",
       "Local Windows 11 (build 26300) checks: Win32 error 10061 text 'No connection could be made because the target machine actively refused it'; error 10048 text 'Only one usage of each socket address (protocol/network address/port) is normally permitted'; a Node 24 TCP connection to 0.0.0.0 reached listeners bound to 127.0.0.1 and to 0.0.0.0.",
       "Microsoft Learn WSL networking page: NAT mode needs the host IP to reach Windows apps from Linux; mirrored mode allows localhost in both directions."
     ],
@@ -134,9 +134,9 @@
     "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card showing the error in a terminal mock-up, not a screenshot. The inline flow chart is drawn from the 0.40.16 source and was reviewed against it. No stock photography."
   },
   "validation": {
-    "proseWords": 3148,
+    "proseWords": 3137,
     "readingTime": "15 min read",
-    "contentSha256": "6a1c3735b3ccd3bfa43c82fd3fc791aec2abb9ea47a3fd6339311ee65e4c0daf",
+    "contentSha256": "e66d3fe981992aa823e7ff2fb14573b42e855226268bb61a842c06291c19097e",
     "codeBlocks": 12,
     "tables": 3,
     "sourceTag": "v0.40.16",
@@ -184,6 +184,22 @@
     "action": "Listed every matching run. Runs made of commands, IP addresses and quoted error strings were left as they are. Eleven ordinary sentences that happened to read like a competitor's were reworded, including the opening paragraph and four FAQ answers.",
     "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 186, "meanSentenceWords": 14.9, "stdevSentenceWords": 7.6 },
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "revision": {
+    "date": "2026-11-22",
+    "reason": "Factual correction approved by the owner on 22 November 2026. The first version said 0.7.1 followed 'eight days later, on 21 May 2025' and that 0.15.5 was 'released on 3 February 2026'. Those were GitHub published_at values, which mark the day a release entry first appeared as a pre-release. The final tags point at commits dated 23 May 2025 and 6 February 2026. The dates were removed; the version numbers, verified against the source, are unchanged.",
+    "change": "One paragraph: 'Version 0.7.1, the next release, kept the real cause and put \"ollama server not responding\" in front of it. Version 0.15.5 dropped that prefix.' No other text, metadata or image changed.",
+    "previous": {
+      "backupFile": "docs/content-backups/could-not-connect-to-ollama-app-is-it-running-before-2026-11-22-date-correction.md",
+      "contentSha256": "6a1c3735b3ccd3bfa43c82fd3fc791aec2abb9ea47a3fd6339311ee65e4c0daf",
+      "contentMd5": "9acd520ef2cf4111b0c03b71ed2849a4",
+      "editorialHash": "e9da5dcc3543f7306d2fce20a775fb12",
+      "proseWords": 3148,
+      "modifiedAt": "2026-11-18T07:11:28.516Z"
+    },
+    "status": "applied",
+    "appliedAt": "2026-11-22T06:45:42.794Z",
+    "script": "scripts/_update-ollama-release-dates.mjs connect --apply (one guarded UPDATE of the body; all other fields and the other 189 posts unchanged)"
   },
   "publication": {
     "status": "published-live-verified",

@@ -201,6 +201,7 @@
     },
     "status": "applied",
     "appliedAt": "2026-11-22T06:45:47.664Z",
+    "liveConfirmed": "After the redeploy of commit 80a2b73 the live page shows the corrected sentence and none of the removed dates; the live test passes 13/13.",
     "script": "scripts/_update-ollama-release-dates.mjs ps --apply (one guarded UPDATE of the body; all other fields and the other 189 posts unchanged)"
   },
   "publication": {

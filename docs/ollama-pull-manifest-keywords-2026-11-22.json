@@ -1,0 +1,219 @@
+{
+  "slug": "ollama-pull-model-manifest-error",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-22",
+  "brief": "Owner-supplied brief (17 November 2026, attached again on 22 November with 'add new according to previous prompt'): research, write, optimise and publish one high-quality article; no fabricated metrics; analyse at least five competitors; report limitations.",
+  "targeting": {
+    "title": "Ollama pull model manifest Error: What Each Message Means",
+    "metaTitle": "Ollama pull model manifest Error Explained",
+    "metaDescription": "Fix \"Error: pull model manifest\" in Ollama: what file does not exist, 412, ssh: no key found, no such host and Hugging Face 400 and 401 mean, with fixes.",
+    "excerpt": "Every ending of the Ollama error \"pull model manifest\" explained from the 0.40.17 source and live registry tests: file does not exist, 412, ssh: no key found, network and certificate errors, and the Hugging Face 400, 401 and realm host replies, each with its fix.",
+    "keywords": "ollama pull model manifest, error pull model manifest, ollama pull model manifest file does not exist, ollama pull model manifest 412, ollama pull model manifest 401, ollama pull model manifest ssh no key found, ollama pull model manifest no such host, ollama pull model manifest i/o timeout, ollama requires a newer version, ollama pull certificate signed by unknown authority, ollama realm host does not match original host, ollama pull error, ollama run pull model manifest file does not exist",
+    "summary": "The text after the second colon is the real cause: file does not exist means the registry has no such name and tag, 412 means Ollama is too old for the model, and a line with Get https is a network problem|The manifest request is sent by the Ollama server and signed with its key file on every pull, so proxy, DNS and key fixes belong to the server process, not the terminal|Registry tests on 22 November 2026 showed 404 for wrong names and tags, 412 for gemma4 from an old version, and 400 or 401 replies from Hugging Face",
+    "readingTime": "16 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-22T05:05:00.000Z",
+    "total": 189,
+    "published": 187,
+    "hash": "c1a4592fd67863adddba2f51b5254ed9",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-22-inventory.json (read-only database query)",
+    "inventory": { "total": 189, "published": 187, "hash": "c1a4592fd67863adddba2f51b5254ed9", "storedViews": 4057 },
+    "categories": [
+      { "slug": "tech-guides", "posts": 66, "averageViews": 13.9 },
+      { "slug": "ai-tools", "posts": 60, "averageViews": 26.3 },
+      { "slug": "coding", "posts": 22, "averageViews": 32.7 },
+      { "slug": "software-reviews", "posts": 19, "averageViews": 19.9 },
+      { "slug": "productivity", "posts": 14, "averageViews": 17.1 },
+      { "slug": "cybersecurity", "posts": 6, "averageViews": 37.3 }
+    ],
+    "finding": "Stored views rose from 4,042 to 4,057 across the whole site between 19 and 22 November. The two newest Ollama posts (256, four days old, and 257, three days old) still show 0 views, as do several n8n posts from November. Older Ollama posts hold 15 to 23 views. This is too early to judge the new posts, but it is not evidence that they work either. The stored view counter is the only first-party signal available and may include non-search visits.",
+    "searchConsole": { "available": false, "reason": "GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY and GSC_SITE_URL are not set in this workspace. The production admin endpoint was not logged into. No clicks, impressions or positions were used." },
+    "cannibalization": "Five posts mention Ollama: run AI locally, GPU not used on Windows, models folder on Windows, the connection error guide and the ollama ps guide. None covers pull errors, the registry, the key file or Hugging Face pulls. The connection guide covers errors before a pull can start; this article starts where that one ends.",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "research": {
+    "candidateFiles": ["docs/content-research/2026-11-22-keywords-candidates.json"],
+    "candidateSeedCount": 36,
+    "serpFiles": ["docs/content-research/2026-11-22-ddg-ollama.json", "docs/content-research/2026-11-22-ddg-pull-manifest.json"],
+    "sources": ["Google public autocomplete (hl=en, gl=us)", "Bing public autocomplete (en-US)", "DuckDuckGo HTML result pages"],
+    "notUsed": "Google Trends, paid keyword tools and Search Console were not available. No search volume or keyword difficulty figures are stated anywhere.",
+    "keywordMap": {
+      "primary": "ollama pull model manifest",
+      "secondary": ["error pull model manifest", "ollama pull model manifest file does not exist", "ollama pull model manifest 412", "ollama pull model manifest 401", "ollama pull model manifest ssh no key found", "ollama pull model manifest no such host"],
+      "supporting": ["ollama pull model manifest i/o timeout", "ollama pull model manifest 400", "ollama pull model manifest 500", "ollama pull model manifest eof", "requires a newer version of ollama", "ollama pull certificate signed by unknown authority", "ollama pull proxy", "ollama run pull model manifest file does not exist", "realm host does not match original host"],
+      "intent": "Problem-solving. The reader has an exact error line in a terminal that starts with 'pull model manifest' and wants to know what the ending means and what to do."
+    },
+    "observations": [
+      { "seed": "ollama error pull model manifest", "google": ["ollama error pull model manifest", "ollama error pull model manifest 401", "ollama error pull model manifest 412", "ollama error pull model manifest ssh no key found", "ollama error pull model manifest 400", "ollama error pull model manifest io timeout", "ollama error pull model manifest no such host", "ollama error pull model manifest 500", "ollama error pull model manifest eof", "ollama error pull model manifest i/o timeout"], "bingSuggestionCount": 10, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama pull model manifest file does not exist", "google": ["ollama error pull model manifest file does not exist", "ollama run pull model manifest file does not exist", "ollama run error pull model manifest file does not exist", "ollama create error pull model manifest file does not exist", "ollama save error pull model manifest file does not exist", "ollama pull manifest file does not exist"], "bingSuggestionCount": 0, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama pull certificate", "google": ["ollama pull certificate signed by unknown authority", "ollama pull certificate error", "ollama pull ignore certificate", "ollama pull failed to verify certificate"], "bingSuggestionCount": 0, "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "ollama no such host", "google": ["ollama no such host", "ollama pull no such host", "registry ollama ai no such host", "lookup registry ollama ai no such host", "ollama error pull model manifest no such host", "dial tcp lookup ollama com no such host"], "bingSuggestionCount": 8, "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "notCovered": "Autocomplete also suggests 'ollama create' and 'ollama save' with this error. In the 0.40.17 source only the pull handler starts a registry pull, and the create code does not call it, so the article makes no claim about ollama create. The 500 and EOF endings are listed in the keyword map but not explained, because I could not observe or source them.",
+    "rejectedCandidates": [
+      { "keyword": "ollama max retries exceeded", "reason": "Three dedicated recent guides already rank (runaihome, thinkfacility, binmage with a proxy test). Mentioned in one paragraph only, as the later download step." },
+      { "keyword": "ollama does not support tools", "reason": "Crowded result page: two betterclaw pages, thinkfacility, a tested binmage guide, automater and the official docs." },
+      { "keyword": "ollama llama runner process has terminated", "reason": "Dedicated exit-code guides from localaimaster and runaihome; a useful article needs real crashes on real hardware." },
+      { "keyword": "ollama model not found try pulling it first", "reason": "Several dedicated pages (betterclaw, adhdecode, markaicode, swfte). Kept as a later supporting article." }
+    ],
+    "serpSample": {
+      "engine": "DuckDuckGo HTML (not Google)",
+      "queries": {
+        "ollama error pull model manifest": "Two GitHub issues, a Hugging Face forum thread and a Docker forum thread lead. Then arsturn, netray, andreagrandi, thinkfacility and llmcheck. No page lists every ending.",
+        "ollama pull model manifest 401": "GitHub issues, the API docs page, forum threads and one Japanese post. No dedicated English guide.",
+        "ollama pull model manifest 412": "binmage has a tested, dedicated guide in first place, followed by GitHub issues and a video.",
+        "ollama pull model manifest ssh no key found": "Two GitHub issues and a Stack Overflow question lead; one combined page from dev-error-db.",
+        "ollama pull model manifest no such host / i/o timeout": "GitHub issues, forum threads, arsturn, dev-error-db and a VPN vendor post.",
+        "ollama pull certificate signed by unknown authority": "GitHub issues and a tested markaicode guide on certificates."
+      }
+    },
+    "competitors": {
+      "file": "docs/content-research/2026-11-22-competitors-pull.json",
+      "method": "Fetched HTML, main article text only. Term coverage is a keyword presence check, not a quality score.",
+      "pages": [
+        { "url": "https://dev-error-db.com/errors/ollama-error-pull-model-manifest-file-does-not-exist-also-ssh-no-key-found-no-such-host-and-pulling-manifest-412-requires-newer-version/", "words": 1457, "published": "2026-05-24", "strength": "The only page that groups several endings (file does not exist, ssh no key found, no such host, 412).", "missing": "No commands, no key file name or location, no 401, no Hugging Face replies, no source links, generic template sections." },
+        { "url": "https://www.binmage.com/ollama-pull-model-manifest-412/", "words": 1584, "updated": "2026-11-18", "strength": "Hands-on 412 test on two Ollama versions with screenshots; clear update steps per system.", "missing": "Only the 412 ending; no key, network or Hugging Face endings." },
+        { "url": "https://llmcheck.net/guides/troubleshooting/ollama-errors", "words": 2769, "updated": "2026-11-14", "strength": "Broad Mac error list with exact messages, including file does not exist and 412.", "missing": "No ssh key, 401, no such host, timeout, certificate or Hugging Face endings." },
+        { "url": "https://netray.co/troubleshoot/ollama-model-not-found", "words": 1989, "strength": "Good walk-through of the not-found case with diagnostic commands.", "missing": "Only file does not exist; nothing on 412, key or network endings." },
+        { "url": "https://www.thinkfacility.com/errors/ollama-pull-model-manifest-file-does-not-exist/", "words": 811, "published": "2026-09-23", "strength": "Explains the 404 and the cloud-only case for file does not exist.", "missing": "One ending only." },
+        { "url": "https://markaicode.com/errors/ollama-ssl-certificate-fix/", "words": 2525, "updated": "2026-06-20", "strength": "Tested certificate fixes for Linux and Docker.", "missing": "Certificate errors only." },
+        { "url": "https://www.arsturn.com/blog/handling-manifest-pull-errors-in-ollama", "words": 1027, "strength": "Mentions no such host, certificates and the proxy variable.", "missing": "No file does not exist, 412, 401 or key error; partly promotional." },
+        { "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/", "words": 565, "strength": "A personal workaround for one registry problem.", "missing": "Not a general explanation." },
+        { "url": "https://dev-error-db.com/errors/ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-dial-tcp-ip-443-i-o-timeout/", "words": 1290, "published": "2026-05-29", "strength": "Covers the i/o timeout ending.", "missing": "Generic template, no commands, no proxy setting for the server." },
+        { "url": "https://hedgevpn.com/en/blog/ollama-model-pull/", "words": 464, "published": "2026-10-02", "strength": "Short proxy and timeout notes.", "missing": "Vendor post; little detail." }
+      ],
+      "gap": "No page explains that the registry asks for a token on every pull and that the server signs it with a key file, which is why a damaged key stops public pulls. None covers the Hugging Face 400 and 401 replies, the realm host message or its 0.14.3 boundary, shows what the registries actually answer, or links any claim to the source code. No page offers one lookup table for all endings. binmage is stronger on 412 with a real install, so the 412 section here stays short and adds only the per-model test result."
+    }
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "Ollama Docs: FAQ", "url": "https://docs.ollama.com/faq" },
+    { "title": "Ollama Docs: Troubleshooting", "url": "https://docs.ollama.com/troubleshooting" },
+    { "title": "Hugging Face Docs: Use Ollama with any GGUF model", "url": "https://huggingface.co/docs/hub/ollama" },
+    { "title": "Ollama library: llama3.2 tags", "url": "https://ollama.com/library/llama3.2/tags" },
+    { "title": "Ollama 0.40.17 source: server/images.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/server/images.go" },
+    { "title": "Ollama 0.40.17 source: server/auth.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/server/auth.go" },
+    { "title": "Ollama 0.40.17 source: auth/auth.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/auth/auth.go" },
+    { "title": "Ollama 0.40.17 source: cmd/cmd.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/cmd/cmd.go" },
+    { "title": "Ollama 0.40.17 source: cmd/cloud_suggest.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/cmd/cloud_suggest.go" },
+    { "title": "Ollama 0.40.17 source: types/model/name.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/types/model/name.go" },
+    { "title": "Ollama 0.40.17 source: server/download.go", "url": "https://github.com/ollama/ollama/blob/v0.40.17/server/download.go" },
+    { "title": "GitHub issue 10412: ssh: no key found", "url": "https://github.com/ollama/ollama/issues/10412" },
+    { "title": "GitHub issue 2818: DNS i/o timeout when running ollama pull", "url": "https://github.com/ollama/ollama/issues/2818" },
+    { "title": "GitHub issue 1798: certificate signed by unknown authority", "url": "https://github.com/ollama/ollama/issues/1798" },
+    { "title": "GitHub issue 8045: hf.co 401 Invalid username or password", "url": "https://github.com/ollama/ollama/issues/8045" },
+    { "title": "GitHub issue 15661: realm host huggingface.co does not match hf.co", "url": "https://github.com/ollama/ollama/issues/15661" },
+    { "title": "GitHub issue 17361: realm host ollama.com does not match registry.ollama.ai", "url": "https://github.com/ollama/ollama/issues/17361" }
+  ],
+  "internalLinks": ["/blog/how-to-run-ai-locally-2026", "/blog/could-not-connect-to-ollama-app-is-it-running", "/blog/ollama-models-folder-windows-move-2026", "/blog/docker-for-beginners-2026-guide", "/blog/linux-wsl-setup-guide-2026-windows-developers", "/blog/ollama-ps-explained"],
+  "futureSupportingArticles": ["ollama model not found, try pulling it first (API and third-party apps)", "access Ollama from another computer on the network", "Open WebUI cannot connect to Ollama in Docker", "how to update Ollama on Windows, Linux and Docker and check the server version", "add a link to this article from the models folder post and the connection error post"],
+  "faq": [
+    "What does \"pull model manifest: file does not exist\" mean?",
+    "How do I fix pull model manifest 412?",
+    "What does \"ssh: no key found\" mean in Ollama?",
+    "Why does ollama pull say no such host?",
+    "Why do I get pull model manifest 401 with a Hugging Face model?",
+    "Does ollama run show the same error?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/ollama-pull-manifest/ollama-pull-manifest-cover.png",
+    "coverFile": "public/blog/ollama-pull-manifest/ollama-pull-manifest-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/ollama-pull-manifest/ollama-pull-manifest-flow.png",
+    "inlineFile": "public/blog/ollama-pull-manifest/ollama-pull-manifest-flow.png",
+    "buildScript": "scripts/build-ollama-pull-manifest-images.mjs",
+    "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card with the error in a terminal mock-up, not a screenshot. The inline flow chart is drawn from the 0.40.17 source and the registry answers and was reviewed against both. No stock photography."
+  },
+  "validation": {
+    "proseWords": 3431,
+    "readingTime": "16 min read",
+    "contentSha256": "cbf415b3f1efb34e84475aa61ac28d55a64553ae92a2d7442cecb269e66985d5",
+    "codeBlocks": 12,
+    "tables": 3,
+    "wordCountNote": "proseWords is the site's reading-time count and includes the text inside tables and code blocks.",
+    "sourceTag": "v0.40.17",
+    "sourceTagCommit": "23b94a2daf2cd1fbf6b4dcfbfd3efbaca424b7bf",
+    "latestReleaseCheck": "The GitHub releases API returned v0.40.17 as the latest release on 22 November 2026. Its tag commit is dated 21 November 2026 (UTC).",
+    "releaseDateNote": "The GitHub field published_at is the day a release entry first appeared as a pre-release, which can be up to 12 days before the final tag (seen for 0.10.0 and 0.40.0). This article therefore states no release dates.",
+    "sourceDirectory": "../.byteverse-ollama-check",
+    "versionBoundaries": "Binary search over the 274 stable release tags: the realm host check in server/auth.go is absent in 0.14.2 and present in 0.14.3; the manifest list Accept header in server/images.go is absent in 0.35.1 and present in 0.40.0; the 'pull model manifest' wrapper is already present in 0.1.20.",
+    "registryProbes": {
+      "files": ["docs/content-research/2026-11-22-registry-probes-f.json", "docs/content-research/2026-11-22-registry-probes-e.json"],
+      "cases": 22,
+      "method": "One manifest GET per case to the address Ollama builds, with the User-Agent and Accept header of the named Ollama version. When the registry asked for a token, the script completed the anonymous challenge described in server/auth.go and auth/auth.go with a throwaway ed25519 key held in memory, then repeated the GET. No blobs were downloaded; nothing was written to an .ollama folder.",
+      "supersededRuns": "Files a, b, c and the first timestamped file used a manifest list Accept value that no Ollama version sends. With it, gemma4 'as 0.20.0' returned 412 and 'as 0.40.0' returned 200. All table rows were repeated with the header each version really sends: file f (current header, 13 cases) and file e (header of 0.35.1 and older, 9 cases). File d is the same run as f made before the script recorded the header. Files a, b, c, d and the timestamped file are kept for the record and are not used. File f also holds two combinations no real client sends (old version number with the new header); they are not used in the article."
+    },
+    "handsOn": "curl -I against the registry and the two PowerShell Rename-Item commands were run on Windows 11 Pro build 26300 (the rename commands in a temporary test folder). Ollama was not installed or run. The Linux commands were not executed.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Six FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "src-v0.40.17/server__images.go": "31b4dbf86b9bfdd7786b0dcd9f6b01930470960ca1d289be90adf518a5a3356f",
+      "src-v0.40.17/server__auth.go": "236ae477ba26c85c3f981311353833959605744cb7fb6185c479ebeda494ffba",
+      "src-v0.40.17/auth__auth.go": "ac4c269cb812edc01e2386fce0a7753871851edf76ec46ad26329016dc6f7841",
+      "src-v0.40.17/cmd__cmd.go": "da57511b66026eb42e80a3b5c343be52d13e05dda8ddafdc019e921c1de30b2c",
+      "src-v0.40.17/cmd__cloud_suggest.go": "3030ba0cbf724ea318b4b4f84fff7ceaaa97870a91eedc92a9e4938f1b55b7fe",
+      "src-v0.40.17/types__model__name.go": "5a57960ce67a46383dc8a0e96df648be7e137ffa6510c39982e74dea793a0cd7",
+      "src-v0.40.17/server__download.go": "e8e13bdcfc40962ce9f776c8ee12369adc5978d869c916750118746670425a4f",
+      "src-v0.40.17/server__routes.go": "e2caec2f6b041342f33dda8b3fed43f5936408a066dcc626b45bedd13e8b42ae",
+      "src-v0.40.17/server__create.go": "7e9060cefafebdeb8206596ddf7d54c8088a6948c68dbc310ce6ddd2053b8919",
+      "src-v0.40.17/go.mod": "32c3cd993ece27ec115d0eb1c932dfc58831ad1022588d712d426f103720e027",
+      "src-v0.40.17/scripts__install.sh": "eb510679f45de4a914d99953cd3deaada5dc73f9d585014df99d704449dd7dcc",
+      "src-v0.40.17/docs__faq.mdx": "943b2b378b7bb593cf784fe3534ccbfc6cb6eae2de75ce83119f0f98c0c4b1a4",
+      "src-v0.40.17/docs__troubleshooting.mdx": "d87bf025cb0a68a3d144cb0ca388202948a5135e6ea34bbfa7f988bda300b50d",
+      "src-v0.40.17/docs__docker.mdx": "394dd57c4dc3b37dd626e0fb1243d451e9d43d56b07cbc8b11a649afdeeff818",
+      "src-v0.40.16/server__images.go": "31b4dbf86b9bfdd7786b0dcd9f6b01930470960ca1d289be90adf518a5a3356f",
+      "src-v0.14.2/server__auth.go": "4eb94801c332be11d2715d4d8eca2a63d01e8262486fc5bf068c4cbba9909a2f",
+      "src-v0.14.3/server__auth.go": "236ae477ba26c85c3f981311353833959605744cb7fb6185c479ebeda494ffba",
+      "src-v0.1.30/server__images.go": "0bcc99075c5b96f776f1d4d47052d02d8e07441ef5d74cc6af1135974196a074",
+      "src-v0.20.0/server__images.go": "b6ca34a8001a927c36db977fb149175159cfd8464d67a95242234ae1fc521d69",
+      "src-v0.35.1/server__images.go": "e8f0c359c23e8344a2f6203b76464419cd0122a1f7676648798ff45041347588",
+      "src-v0.40.0/server__images.go": "550d1c3f870cacec72f0484f543c53a8f442dd136499c89c30ba37d923d4eda7",
+      "src-golang__crypto-v0.58.0/ssh__keys.go": "805c102eb987b391c6384fa3d4c31a025c7821e70a1a703d3d6443745881edb3",
+      "issues/2818.html": "cec631ecb665c49b3b6df4188612d043f94041b6250f502e12a071127734d3bc",
+      "issues/1798.html": "d8ca370699480dadf846674028b213e368eefd34d7f6e2ee5f19c9f434d65c49",
+      "issues/8045.html": "1208d5423e517f6157eb29bd7004d3d67f791bf5428329e6aaf2e0dd348ed992",
+      "issues/15661.html": "ed2f8f165494a7994dc5262435dd338a0283d289102d5c28f62ce03ec449b429",
+      "issues/17361.html": "0c6c707b24a5287a664850521448356752610cc3f3590a61ba9cf0efac65815d",
+      "issues/10412.html": "3a18fdca28fcae7fde77b3f6817d1cea6ece35783121f4814f53ff2ee4538ed4",
+      "docs-other/huggingface-docs-hub-ollama.html": "e2574a7910afd084c03f278d6eef9d0b7a4656fb72d04f23f299515786f8c635"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-22T06:15:00.000Z",
+    "method": "Case-normalised five-word phrase overlap; code blocks, tables and links excluded. Compared with the 189 stored posts, eight saved official Ollama documentation files, the Hugging Face guide, the ten competitor pages fetched for this topic and the 19 competitor pages saved for the three earlier Ollama audits.",
+    "draftPhrases": 2765,
+    "ownPosts": { "highest": "could-not-connect-to-ollama-app-is-it-running", "percentBefore": 1.18, "percentAfter": 0.43, "note": "The first draft shared a 27-word run with the ollama ps guide (the systemctl and environment variable instructions) and several sentences of verification wording with the connection guide. Those passages were rewritten. ollama-ps-explained went from 1.69% to 0.36%. What remains is link labels and short common phrases." },
+    "officialDocs": { "highest": "Hugging Face guide", "highestPercent": 0.33, "longestRunWords": 6, "note": "The matches are the command form quoted from the guide and the phrase about adding a key to a Hugging Face account." },
+    "competitors": [
+      { "site": "llmcheck.net", "percentBefore": 0.48, "percentAfter": 0.43 },
+      { "site": "binmage.com", "percentBefore": 0.66, "percentAfter": 0.36 },
+      { "site": "markaicode.com", "percentAfter": 0.22 },
+      { "site": "netray.co", "percentBefore": 0.26, "percentAfter": 0.18 },
+      { "site": "thinkfacility.com", "percentBefore": 0.37, "percentAfter": 0.11 },
+      { "site": "dev-error-db.com (two pages)", "percentAfter": 0.11 },
+      { "site": "hedgevpn.com", "percentAfter": 0.11 }
+    ],
+    "action": "Remaining competitor matches are the quoted error strings ('pull model manifest file does not exist', 'requires a newer version of ollama'), the interface label 'Restart to update' and a few short common phrases. Seven ordinary sentences that read like a competitor's or like my own earlier guides were reworded, including the opening paragraph and two FAQ answers.",
+    "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 172, "meanSentenceWords": 15.2, "stdevSentenceWords": 8.1 },
+    "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 258,
+    "publishedAt": "2026-11-22T06:25:04.289Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/ollama-pull-model-manifest-error",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 189,
+    "otherPostsHash": "c1a4592fd67863adddba2f51b5254ed9",
+    "assetCommits": ["6b0fd76"],
+    "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The lookup table wraps into narrow columns on phones and the diagram text is small there; both are also explained in the text.",
+    "approvedBy": "owner message 'add new according to previous prompt: add new blog as soon as possible' (22 November 2026); the brief instructs publication"
+  }
+}

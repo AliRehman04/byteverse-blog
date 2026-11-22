@@ -1,0 +1,944 @@
+{
+  "checkedAt": "2026-11-22T04:51:04.761Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "ollama pull error",
+      "google": [
+        "ollama pull error eof",
+        "ollama pull error 504",
+        "ollama pull error 400",
+        "ollama pull error",
+        "ollama pull error max retries exceeded",
+        "ollama pull error 500",
+        "ollama pull error 429",
+        "ollama error pull model manifest",
+        "ollama error pull model manifest 401",
+        "ollama error pull model manifest 412"
+      ],
+      "bing": [
+        "ollama pull error",
+        "ollama pull error 400",
+        "ollama pull error eof",
+        "error context deadline exceeded ollama pull",
+        "ollama error pull model manifest",
+        "ollama pull llama model error"
+      ]
+    },
+    {
+      "seed": "ollama pull model manifest",
+      "google": [
+        "ollama pull model manifest",
+        "ollama pull model manifest 401",
+        "ollama pull model manifest 412",
+        "ollama pull model manifest timeout",
+        "ollama pull model manifest ssh no key found",
+        "ollama pull model manifest 500",
+        "ollama pull model manifest does not exist",
+        "ollama pull model manifest error",
+        "ollama error pull model manifest 401",
+        "ollama error pull model manifest 412"
+      ],
+      "bing": [
+        "ollama pull model manifest",
+        "ollama pull model manifest 401",
+        "ollama error pull model manifest",
+        "ollama pull model list",
+        "ollama pull a model",
+        "ollama pull model locally",
+        "ollama pull multiple models",
+        "list of ollama models to pull",
+        "pull nomic model from ollama",
+        "ollama pull model from huggingface",
+        "ollama pull not working",
+        "ollama run vs ollama pull",
+        "ollama stop a model",
+        "ollama pull i/o timeout",
+        "ollama start a model",
+        "ollama pulling manifest timeout",
+        "ollama pull model command",
+        "ollama pull model api",
+        "ollama stop running model"
+      ]
+    },
+    {
+      "seed": "ollama error pull model manifest",
+      "google": [
+        "ollama error pull model manifest",
+        "ollama error pull model manifest 401",
+        "ollama error pull model manifest 412",
+        "ollama error pull model manifest ssh no key found",
+        "ollama error pull model manifest 400",
+        "ollama error pull model manifest io timeout",
+        "ollama error pull model manifest no such host",
+        "ollama error pull model manifest 500",
+        "ollama error pull model manifest eof",
+        "ollama error pull model manifest i/o timeout"
+      ],
+      "bing": [
+        "ollama error pull model manifest",
+        "ollama pull model locally",
+        "ollama pull a model",
+        "ollama pull model list",
+        "ollama pull not working",
+        "ollama pull multiple models",
+        "list of ollama models to pull",
+        "ollama unable to load model",
+        "ollama stop a model",
+        "ollama pull i/o timeout",
+        "ollama pulling manifest timeout",
+        "ollama pull model command",
+        "ollama pull model api",
+        "ollama stop running model",
+        "error pull model manifest",
+        "ollama model failed to load",
+        "pull model manifest i/o timeout"
+      ]
+    },
+    {
+      "seed": "ollama pull model manifest file does not exist",
+      "google": [
+        "ollama error pull model manifest file does not exist",
+        "ollama run pull model manifest file does not exist",
+        "ollama run error pull model manifest file does not exist",
+        "ollama create error pull model manifest file does not exist",
+        "ollama save error pull model manifest file does not exist",
+        "ollama pull manifest file does not exist"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "ollama max retries exceeded",
+      "google": [
+        "ollama max retries exceeded with url",
+        "ollama max retries exceeded get",
+        "ollama error max retries exceeded",
+        "ollama pull max retries exceeded",
+        "ollama run max retries exceeded",
+        "ollama pull error max retries exceeded",
+        "ollama pulling manifest error max retries exceeded",
+        "ollama error max retries exceeded get",
+        "ollama run error max retries exceeded",
+        "maximum number of attempts exceeded"
+      ],
+      "bing": [
+        "ollama max retries exceeded",
+        "ollama max retries exceeded eof",
+        "ollama max retries exceeded with url",
+        "ollama pull max retries exceeded",
+        "error max retries exceeded eof ollama",
+        "ollama request timed out after 90 seconds",
+        "how much does ollama cost",
+        "ollama terms and conditions",
+        "can ollama run two models at once",
+        "ollama/ollama:latest",
+        "ollama request timed out after 30 seconds",
+        "ollama ollama_max_loaded_models",
+        "ollama run llama3:70b",
+        "ollama presence_penalty",
+        "ollama override.conf",
+        "ollama run llama3.1:70b",
+        "ollama model failed to load",
+        "ollama run llama3:8b",
+        "ollama + continue",
+        "ollama/ollama:0.18.1",
+        "ollama:latest",
+        "ollama_max_request_timeout",
+        "ollama0.12.9"
+      ]
+    },
+    {
+      "seed": "ollama pull stuck",
+      "google": [
+        "ollama pull stuck",
+        "ollama stuck pulling manifest",
+        "ollama pull hangs",
+        "how to remove a stuck roll pin",
+        "how to remove a stuck pin",
+        "how to loosen stuck threads"
+      ],
+      "bing": [
+        "ollama pull stable-diffusion"
+      ]
+    },
+    {
+      "seed": "ollama pull slow",
+      "google": [
+        "ollama pull slow",
+        "ollama pull slow download",
+        "ollama pull slows down",
+        "ollama pull slow at end",
+        "ollama pull slow speed",
+        "ollama pull slows down at the end",
+        "ollama pull takes forever",
+        "ollama pull very slow",
+        "ollama pull too slow",
+        "ollama pull extremely slow"
+      ],
+      "bing": [
+        "ollama pull local model",
+        "ollama pull local",
+        "ollama pull location",
+        "ollama pull open-webui",
+        "ollama pull openclaw",
+        "ollama pull shaw/dmeta-embedding-zh",
+        "ollama pull openai",
+        "ollama pull option",
+        "ollama pull opencode",
+        "ollama pull stable-diffusion"
+      ]
+    },
+    {
+      "seed": "ollama requires a newer version",
+      "google": [
+        "ollama a newer version of is available",
+        "requires a newer version of ollama"
+      ],
+      "bing": [
+        "how to get ollama version",
+        "what is the current ollama version",
+        "what is the latest version of ollama",
+        "newest version of ollama",
+        "what is the newest ollama version",
+        "ollama latest version download",
+        "how to update ollama to latest version",
+        "upgrade ollama to latest version",
+        "ollama version is 0.17.4",
+        "ollama version is 0.18.3",
+        "ollama version is 0.12.11",
+        "ollama version is 0.17.0",
+        "ollama version is 0.17.5",
+        "ollama version is 0.17.7",
+        "ollama version is 0.9.0",
+        "ollama version is 0.15.2",
+        "ollama version is 0.13.5",
+        "ollama version is 0.5.11",
+        "ollama version is 0.0.0"
+      ]
+    },
+    {
+      "seed": "ollama pull certificate",
+      "google": [
+        "ollama pull certificate signed by unknown authority",
+        "ollama pull certificate error",
+        "ollama pull ignore certificate",
+        "ollama pull failed to verify certificate",
+        "how to get trn certificate"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "ollama pull proxy",
+      "google": [
+        "ollama pull proxy",
+        "ollama pull proxy settings",
+        "ollama pull proxy authentication required",
+        "ollama pull proxy windows",
+        "ollama pull proxy ubuntu",
+        "ollama pull behind proxy",
+        "ollama pull via proxy",
+        "ollama pull through proxy",
+        "ollama pull use proxy",
+        "ollama pull http proxy"
+      ],
+      "bing": [
+        "ollama pull proxy",
+        "ollama pull proxy windows",
+        "use ollama pull with proxy"
+      ]
+    },
+    {
+      "seed": "ollama pull unauthorized",
+      "google": [],
+      "bing": []
+    },
+    {
+      "seed": "ollama download stuck",
+      "google": [
+        "ollama download stuck",
+        "ollama stuck downloading model",
+        "ollama download stalled",
+        "ollama download stops",
+        "what to do if download is stuck"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "ollama model not found",
+      "google": [
+        "ollama model not found",
+        "ollama model not found api",
+        "ollama model not found try pulling it first",
+        "ollama model not found error",
+        "ollama model not working",
+        "ollama_models not working windows",
+        "ollama serve model not found",
+        "opencode ollama model not found",
+        "openclaw ollama model not found",
+        "ollama rm model not found"
+      ],
+      "bing": [
+        "ollama model not found",
+        "ollama this model does not support images",
+        "no model in ollama",
+        "how to find ollama models",
+        "how to check installed ollama models",
+        "ollama model download location",
+        "how to check ollama models",
+        "ollama unable to load model",
+        "ollama remove a model",
+        "what is the latest ollama model",
+        "how to install model in ollama",
+        "ollama models and details",
+        "ollama show installed models",
+        "download ollama models locally",
+        "how to check available models in ollama",
+        "failed to discover ollama models",
+        "ollama model failed to load",
+        "ollama invalid model name"
+      ]
+    },
+    {
+      "seed": "ollama try pulling it first",
+      "google": [
+        "ollama model not found try pulling it first"
+      ],
+      "bing": [
+        "ollama pull i/o timeout",
+        "ollama run vs ollama pull",
+        "ollama pull not working",
+        "how to pull ollama model",
+        "ollama pull model locally",
+        "ollama pull vs run",
+        "how to get started with ollama",
+        "list of ollama models to pull",
+        "ollama pull model list",
+        "ollama pull multiple models",
+        "how to start ollama",
+        "how to train ollama",
+        "ollama pulling manifest timeout",
+        "how to stop ollama pull",
+        "ollama pull model command",
+        "ollama pull llama3.1",
+        "ollama pull llama3:8b-instruct"
+      ]
+    },
+    {
+      "seed": "ollama context deadline exceeded",
+      "google": [
+        "ollama context deadline exceeded",
+        "ollama error context deadline exceeded",
+        "ollama pull context deadline exceeded",
+        "ollama run context deadline exceeded",
+        "ollama pull error context deadline exceeded",
+        "ollama run error context deadline exceeded",
+        "deadline exceeded meaning"
+      ],
+      "bing": [
+        "ollama context deadline exceeded",
+        "error context deadline exceeded ollama pull",
+        "ollama error context deadline exceeded",
+        "ollama pull context deadline exceeded",
+        "ollama increase context length",
+        "ollama max context length",
+        "ollama default context length",
+        "ollama context length setting",
+        "ollama request timed out after 90 seconds",
+        "ollama change context length",
+        "ollama show context length",
+        "ollama set context length",
+        "ollama terms and conditions",
+        "ollama/ollama:latest",
+        "ollama_context_length",
+        "how to pass context to ollama",
+        "ollama max retries exceeded",
+        "ollama exit status 2",
+        "ollama request timed out after 30 seconds",
+        "ollama ollama_context_length",
+        "ollama + continue",
+        "ollama exited err exit status 1",
+        "ollama service could not be reached",
+        "ollama:latest",
+        "export ollama_context_length 32768"
+      ]
+    },
+    {
+      "seed": "ollama truncating input prompt",
+      "google": [
+        "ollama truncating input prompt limit",
+        "openclaw ollama truncating input prompt",
+        "what is input in algorithm"
+      ],
+      "bing": [
+        "ollama truncating input prompt",
+        "ollama change system prompt",
+        "how to run ollama in command prompt",
+        "can ollama take images as an input",
+        "ollama run command not working",
+        "ollama command to update",
+        "ollama pull not working",
+        "how to setup and use ollama locally",
+        "how to run ollama in terminal",
+        "command to run ollama",
+        "command to run ollama in terminal",
+        "how to use ollama on windows",
+        "ollama batch list input",
+        "ollama pull nomic-embed-text",
+        "ollama set system prompt",
+        "ollama setup in local",
+        "command to pull ollama model",
+        "how to install ollama and use it",
+        "ollama windows system prompt",
+        "ollama failed to embed the input length",
+        "ollama ctrl+c",
+        "ollama tool_call",
+        "ollama prompt_eval_count",
+        "ollama pull nomic-embed-text:v1.5"
+      ]
+    },
+    {
+      "seed": "ollama does not support tools",
+      "google": [
+        "ollama does not support tools",
+        "ollama does not support tools status code 400",
+        "ollama does not support tools n8n",
+        "ollama does not support tools error",
+        "ollama does not support tools opencode",
+        "ollama model does not support tools",
+        "registry ollama does not support tools",
+        "openclaw ollama does not support tools",
+        "ollama deepseek does not support tools",
+        "ollama latest does not support tools"
+      ],
+      "bing": [
+        "ollama does not support tools",
+        "ollama model does not support tools",
+        "ollama this model does not support images",
+        "ollama models that support tools",
+        "does ollama support tool calling models",
+        "ollama not working on windows",
+        "ollama models that support tool calling",
+        "ollama pull not working",
+        "ollama serve not working",
+        "how to install and use ollama",
+        "ollama is open source or not",
+        "ollama with tool calling",
+        "ollama install for all users",
+        "how to use ollama",
+        "ollama does not support generate",
+        "openclaw ollama does not support tools",
+        "ollama could not connect to ollama app",
+        "ollama cli not working",
+        "ollama tool_call",
+        "unable to connect to ollama"
+      ]
+    },
+    {
+      "seed": "ollama does not support thinking",
+      "google": [
+        "ollama does not support thinking",
+        "ollama model does not support thinking",
+        "ollama error does not support thinking"
+      ],
+      "bing": [
+        "how to disable thinking in ollama",
+        "ollama turn off thinking",
+        "ollama does not support tools",
+        "ollama this model does not support images",
+        "ollama model does not support tools",
+        "ollama qwen disable thinking",
+        "ollama is not recognized",
+        "ollama serve not working",
+        "ollama is open source or not",
+        "the term ollama is not recognized",
+        "how good is ollama",
+        "how to manage ollama",
+        "ollama pros and cons",
+        "how to stop thinking in ollama",
+        "why ollama is not opening",
+        "how to work with ollama",
+        "ollama does not support generate",
+        "ollama no_think",
+        "ollama enable_thinking",
+        "ollama set no think",
+        "ollama no think in cli",
+        "ollama qwen no thinking",
+        "ollama run no think",
+        "unable to connect to ollama"
+      ]
+    },
+    {
+      "seed": "ollama 500 internal server error",
+      "google": [
+        "ollama 500 internal server error",
+        "ollama 500 internal server error no user query found in messages",
+        "ollama 500 internal server error memory layout cannot be allocated",
+        "ollama 500 internal server error model requires more system memory",
+        "ollama 500 internal server error to load request",
+        "ollama 500 internal server error exit status 2",
+        "ollama 500 internal server error unable to load mode",
+        "ollama error 500 internal server error to load request post",
+        "ollama 500 internal server error model failed to load",
+        "ollama 500 internal server error failed to allocate memory for model"
+      ],
+      "bing": [
+        "ollama 500 internal server error",
+        "ollama error 500 internal server error",
+        "ollama 500 message internal server error",
+        "ollama api error 500",
+        "ollama chat/completions 500 error",
+        "how to stop ollama server",
+        "ollama as a server",
+        "how to restart ollama server",
+        "ollama server on windows",
+        "how to run ollama server",
+        "how to turn on ollama server",
+        "how to stop ollama server on windows",
+        "ollama internal server error",
+        "ollama server not responding",
+        "dify ollama internal server error",
+        "make sure ollama server is running",
+        "ollama server 0.0.0.0",
+        "ollama server.log"
+      ]
+    },
+    {
+      "seed": "ollama unexpected eof",
+      "google": [
+        "ollama unexpected eof",
+        "ollama error unexpected eof",
+        "ollama pull unexpected eof",
+        "ollama create unexpected eof",
+        "ollama create error unexpected eof"
+      ],
+      "bing": [
+        "ollama unexpected eof",
+        "ollama create error: unexpected eof"
+      ]
+    },
+    {
+      "seed": "ollama llama runner process has terminated",
+      "google": [
+        "ollama llama runner process has terminated exit status 2",
+        "ollama llama runner process has terminated",
+        "ollama llama runner process has terminated w ( nil )",
+        "ollama llama runner process has terminated signal killed",
+        "ollama 500 llama runner process has terminated exit status 2",
+        "ollama error 500 internal server error llama runner process has terminated"
+      ],
+      "bing": [
+        "ollama llama runner process has terminated",
+        "llama 3 vs ollama",
+        "ollama pull llama 3.2",
+        "ollama vs llama models",
+        "how to run ollama after installation",
+        "how to stop ollama from running",
+        "ollama run llama3.2",
+        "llama runner process has terminated",
+        "ollama run llama 3",
+        "ollama pull llama 4",
+        "ollama run llama 8b",
+        "how to stop ollama running model",
+        "ollama run llama3.2 command",
+        "error llama runner process has terminated",
+        "llama runner process has terminated cuda",
+        "llama factory + ollama",
+        "ollama run llama3:70b",
+        "ollama pull llama3.3",
+        "ollama run llama3.3",
+        "ollama run llama.cpp",
+        "ollama pull llama3.1",
+        "ollama run llama3:8b"
+      ]
+    },
+    {
+      "seed": "ollama error loading model",
+      "google": [
+        "ollama error loading model unknown model architecture 'mllama'",
+        "ollama error loading model",
+        "ollama error unable to load model",
+        "loading error retry"
+      ],
+      "bing": [
+        "how to load model in ollama",
+        "how to unload ollama model",
+        "ollama load local model",
+        "ollama command to unload a model",
+        "ollama this model does not support images",
+        "ollama stuck on loading",
+        "ollama download model manually",
+        "ollama keep model loaded",
+        "how to download an ollama model",
+        "how to check installed ollama models",
+        "how to check ollama model",
+        "how to install ollama model",
+        "ollama ollama_max_loaded_models",
+        "failed to download selected ollama model"
+      ]
+    },
+    {
+      "seed": "ollama update",
+      "google": [
+        "ollama update",
+        "ollama update command",
+        "ollama update model",
+        "ollama update linux",
+        "ollama update cli",
+        "ollama update all models",
+        "ollama update windows",
+        "ollama update ubuntu",
+        "ollama update command windows",
+        "ollama update model command"
+      ],
+      "bing": [
+        "ollama update",
+        "ollama update command",
+        "ollama update model",
+        "ollama update linux",
+        "ollama update windows",
+        "ollama update de",
+        "ollama update ubuntu",
+        "ollama update cli",
+        "ollama update log",
+        "ollama update local models",
+        "ollama update command windows"
+      ]
+    },
+    {
+      "seed": "ollama update windows",
+      "google": [
+        "ollama update windows",
+        "ollama update windows command",
+        "ollama update windows cmd",
+        "ollama update windows 11",
+        "update ollama windows powershell",
+        "update ollama windows terminal",
+        "update ollama windows command line",
+        "ollama upgrade windows",
+        "ollama update version windows",
+        "ollama update models windows"
+      ],
+      "bing": [
+        "ollama update windows",
+        "ollama update windows command",
+        "update ollama windows cmd",
+        "update ollama windows wsl",
+        "update ollama windows terminal"
+      ]
+    },
+    {
+      "seed": "ollama check version",
+      "google": [
+        "ollama check version",
+        "ollama check version command",
+        "check ollama version linux",
+        "check ollama version windows",
+        "check ollama version terminal",
+        "check ollama version mac",
+        "ollama version check cmd",
+        "check ollama version ubuntu",
+        "check ollama version docker",
+        "ollama get version"
+      ],
+      "bing": [
+        "ollama check version",
+        "how to check ollama version in terminal",
+        "check ollama version command",
+        "how to check ollama llama version",
+        "how to check ollama version in vs code"
+      ]
+    },
+    {
+      "seed": "ollama rm",
+      "google": [
+        "ollama rm model",
+        "ollama rm",
+        "ollama rm all models",
+        "ollama rm command",
+        "ollama rm model_name",
+        "ollama rm all",
+        "ollama rm model not found",
+        "ollama rm permission denied",
+        "ollama rm llama3",
+        "ollama rm by id"
+      ],
+      "bing": [
+        "ollama rm",
+        "ollama rm model",
+        "ollama rm model_name",
+        "ollama rm deepseek-r1",
+        "ollama rm deepseek"
+      ]
+    },
+    {
+      "seed": "ollama list",
+      "google": [
+        "ollama list models",
+        "ollama list",
+        "ollama list installed models",
+        "ollama list available models",
+        "ollama list models command",
+        "ollama listen on 0.0.0.0",
+        "ollama list local models",
+        "ollama list downloaded models",
+        "ollama list all models",
+        "ollama list running models"
+      ],
+      "bing": [
+        "ollama list",
+        "ollama list models",
+        "ollama list models command",
+        "ollama list local models",
+        "ollama list installed models",
+        "ollama list command",
+        "ollama list not showing models",
+        "ollama list running models",
+        "ollama list models linux",
+        "ollama list available models to pull"
+      ]
+    },
+    {
+      "seed": "ollama show",
+      "google": [
+        "ollama show tokens per second",
+        "ollama show models",
+        "ollama show running models",
+        "ollama show installed models",
+        "ollama show context usage",
+        "ollama show loaded models",
+        "ollama show thinking",
+        "ollama show",
+        "ollama show downloaded models",
+        "ollama show all models"
+      ],
+      "bing": [
+        "ollama show",
+        "ollama show tokens per second",
+        "ollama show models",
+        "ollama show logs",
+        "ollama show modelfile",
+        "ollama show modelfile command",
+        "ollama show tokens by prompt",
+        "ollama show installed models",
+        "ollama show command context length",
+        "ollama show version",
+        "ollama show running models",
+        "ollama show context length"
+      ]
+    },
+    {
+      "seed": "ollama create modelfile error",
+      "google": [],
+      "bing": [
+        "ollama create modelfile for local gguf",
+        "ollama create model file",
+        "ollama build from modelfile",
+        "ollama custom model file",
+        "ollama edit model file",
+        "ollama model generate image",
+        "ollama unable to load model",
+        "ollama create custom model",
+        "add model to ollama",
+        "ollama default model directory",
+        "ollama model not found",
+        "ollama show modelfile command",
+        "ollama error unable to load model",
+        "ollama create invalid model name",
+        "ollama error invalid model name",
+        "ollama model file location",
+        "ollama model failed to load",
+        "roo code ollama modelfile",
+        "ollama modelfile num_ctx",
+        "failed to download selected ollama model"
+      ]
+    },
+    {
+      "seed": "ollama signin",
+      "google": [
+        "ollama signin",
+        "ollama signin command",
+        "ollama signin cli",
+        "ollama signing",
+        "ollama sign in not working",
+        "ollama docker sign in",
+        "ollama sign in with api key",
+        "ollama signin 404",
+        "ollama signin without browser",
+        "openclaw ollama signin"
+      ],
+      "bing": [
+        "ollama sign in",
+        "ollama signin command",
+        "ollama signin error: 404 page not found"
+      ]
+    },
+    {
+      "seed": "ollama cloud models",
+      "google": [
+        "ollama cloud models",
+        "ollama cloud models free",
+        "ollama cloud models pricing",
+        "ollama cloud models vs local models",
+        "ollama cloud models free limits",
+        "ollama cloud models limits",
+        "ollama cloud models list",
+        "ollama cloud models free tier",
+        "ollama cloud models privacy",
+        "ollama cloud models without subscription"
+      ],
+      "bing": [
+        "ollama cloud models",
+        "ollama cloud models free",
+        "ollama cloud models pricing",
+        "ollama cloud models free limits",
+        "ollama cloud models limits",
+        "ollama cloud models privacy",
+        "ollama cloud models list",
+        "ollama cloud models have a cost",
+        "ollama cloud models in antigravity"
+      ]
+    },
+    {
+      "seed": "ollama no such host",
+      "google": [
+        "ollama no such host",
+        "ollama pull no such host",
+        "registry ollama ai no such host",
+        "lookup registry ollama ai no such host",
+        "ollama error pull model manifest no such host",
+        "dial tcp lookup ollama com no such host"
+      ],
+      "bing": [
+        "ollama no such host",
+        "ollama host 0.0.0.0 windows",
+        "how to set ollama host",
+        "ollama as a server",
+        "ollama ollama_host",
+        "ollama_host",
+        "ollama_host 0.0.0.0 ollama serve",
+        "ollama serve host 0.0.0.0",
+        "ollama serve ollama_host",
+        "ollama_host 0.0.0.0:11434 ollama serve",
+        "ollama host 0.0.0.0",
+        "ollama_host windows",
+        "set ollama_host 0.0.0.0:11434 ollama serve",
+        "set ollama_host 0.0.0.0 ollama serve",
+        "ollama_host 0.0.0.0:11435",
+        "ollama host:11434",
+        "ollama_host 0.0.0.0:11434",
+        "ollama_host 0.0.0.0:8080",
+        "ollama_host 127.0.0.1:11434",
+        "ollama localhost:11434/v1",
+        "set ollama_host 0.0.0.0:11434",
+        "export ollama_host"
+      ]
+    },
+    {
+      "seed": "claude code error",
+      "google": [
+        "claude code errors",
+        "claude code error editing file",
+        "claude code error 400",
+        "claude code error 529",
+        "claude code error 529 overloaded",
+        "claude code error writing file",
+        "claude code error loading webview",
+        "claude code error 429",
+        "claude code error failed to authenticate",
+        "claude code error 403"
+      ],
+      "bing": [
+        "claude code error",
+        "claude code error writing file",
+        "claude code error editing file",
+        "claude code error types",
+        "claude code error handling",
+        "claude code error fix",
+        "claude code error 400",
+        "claude code error message",
+        "claude code error 500",
+        "claude code error 529",
+        "claude code error examples",
+        "claude code error solutions",
+        "claude code error troubleshooting"
+      ]
+    },
+    {
+      "seed": "cursor error",
+      "google": [
+        "cursor error",
+        "cursor error loading plugin",
+        "cursor error resuming chat",
+        "cursor error module not found",
+        "cursor error review data policy",
+        "cursor error high load",
+        "cursor error while fetching extensions",
+        "cursor issues",
+        "cursor problems",
+        "cursor stopped working"
+      ],
+      "bing": [
+        "cursor error",
+        "cursor error in application",
+        "cursor error message",
+        "cursor error fix",
+        "cursor error troubleshooting",
+        "cursor error in excel",
+        "cursor error in browser",
+        "cursor error in database",
+        "cursor error in code editor",
+        "cursor error while fetching extensions"
+      ]
+    },
+    {
+      "seed": "gemini cli error",
+      "google": [
+        "gemini cli error",
+        "gemini cli error 429",
+        "gemini cli error 400",
+        "gemini cli error 403",
+        "gemini cli error 503",
+        "gemini cli error 500",
+        "gemini cli bug",
+        "gemini cli bug bounty",
+        "gemini cli problem",
+        "gemini cli bug report"
+      ],
+      "bing": [
+        "gemini cli error",
+        "gemini cli error 400 with login url",
+        "gemini cli api error",
+        "gemini cli 429 error pro 3.1 preview",
+        "gemini cli internal api errors"
+      ]
+    },
+    {
+      "seed": "copilot chat error",
+      "google": [
+        "copilot chat error",
+        "copilot chat error code 9",
+        "copilot chat not working",
+        "copilot chat bug",
+        "github copilot chat error",
+        "vscode copilot chat error",
+        "microsoft copilot chat error",
+        "codm network error check your connections"
+      ],
+      "bing": [
+        "copilot chat error handling",
+        "copilot chat error code 9",
+        "copilot chat error message"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "checkedAt": "2026-11-22T05:01:03.773Z",
+  "results": [
+    {
+      "label": "exists",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "bad-tag",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2/manifests/99b",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "bad-name",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2x-notreal/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "uppercase",
+      "url": "https://registry.ollama.ai/v2/library/Llama3.2/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "no-namespace-community",
+      "url": "https://registry.ollama.ai/v2/library/bartowski-notreal/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "unknown-user",
+      "url": "https://registry.ollama.ai/v2/nouser-zz91/nomodel-zz91/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "gemma4-old-client",
+      "url": "https://registry.ollama.ai/v2/library/gemma4/manifests/latest",
+      "agent": "ollama/0.1.30 (amd64 linux) Go/go1.22.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "gemma4-current",
+      "url": "https://registry.ollama.ai/v2/library/gemma4/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "llama3.2-old-client",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2/manifests/latest",
+      "agent": "ollama/0.1.30 (amd64 linux) Go/go1.22.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "cloud",
+      "url": "https://registry.ollama.ai/v2/library/gpt-oss/manifests/120b-cloud",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    },
+    {
+      "label": "hf-gguf",
+      "url": "https://hf.co/v2/bartowski/Llama-3.2-1B-Instruct-GGUF/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "wwwAuthenticate": null,
+      "location": null,
+      "bodyLength": 708,
+      "body": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"digest\":\"sha256:4549919ff3159501c4744683c2a5629fea61501be32ac7ffdc16ec4a3c5fc1d7\",\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":551},\"layers\":[{\"digest\":\"sha256:6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83\",\"mediaType\":\"application/vnd.ollama.image.model\",\"size\":807694464},{\"diges"
+    },
+    {
+      "label": "hf-missing",
+      "url": "https://hf.co/v2/nouser-zz91/nomodel-zz91/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "wwwAuthenticate": "Basic realm=\"https://huggingface.co/api/models/nouser-zz91/nomodel-zz91/ssh-auth\"",
+      "location": null,
+      "bodyLength": 41,
+      "body": "{\"error\":\"Invalid username or password.\"}"
+    },
+    {
+      "label": "hf-not-gguf",
+      "url": "https://hf.co/v2/openai-community/gpt2/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "wwwAuthenticate": null,
+      "location": null,
+      "bodyLength": 70,
+      "body": "{\"error\":\"Repository is not GGUF or is not compatible with llama.cpp\"}"
+    },
+    {
+      "label": "hf-bad-quant",
+      "url": "https://hf.co/v2/bartowski/Llama-3.2-1B-Instruct-GGUF/manifests/Q99_Z",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 400,
+      "contentType": "application/json; charset=utf-8",
+      "wwwAuthenticate": null,
+      "location": null,
+      "bodyLength": 102,
+      "body": "{\"error\":\"The specified tag is not a valid quantization scheme. Please use another tag or \\\"latest\\\"\"}"
+    },
+    {
+      "label": "old-domain",
+      "url": "https://ollama.com/v2/library/llama3.2/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "status": 401,
+      "contentType": "application/json",
+      "wwwAuthenticate": "Bearer realm=\"https://ollama.com/v2/token\",service=\"ollama\",scope=\"-\"",
+      "location": null,
+      "bodyLength": 61,
+      "body": "{\"errors\":[{\"code\":\"UNAUTHORIZED\",\"message\":\"unauthorized\"}]}"
+    }
+  ]
+}

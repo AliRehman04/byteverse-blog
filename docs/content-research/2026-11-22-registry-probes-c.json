@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-22T05:19:59.995Z",
+  "method": "Manifest GET, then the anonymous token challenge with an in-memory throwaway key, then the manifest GET again. No blobs downloaded.",
+  "results": [
+    {
+      "label": "hf-full-host-missing",
+      "url": "https://huggingface.co/v2/nouser-zz91/nomodel-zz91/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 401,
+      "challenge": "Basic realm=\"https://huggingface.co/api/models/nouser-zz91/nomodel-zz91/ssh-auth\"",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "bodyLength": 41,
+      "body": "{\"error\":\"Invalid username or password.\"}"
+    },
+    {
+      "label": "hf-full-host-gguf",
+      "url": "https://huggingface.co/v2/bartowski/Llama-3.2-1B-Instruct-GGUF/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 200,
+      "challenge": null,
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bodyLength": 708,
+      "body": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"digest\":\"sha256:4549919ff3159501c4744683c2a5629fea61501be32ac7ffdc16ec4a3c5fc1d7\",\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":551},\"layers\":[{\"digest\":\"sha256:6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83\",\"mediaType\":\"application/vnd.ollama.image.model\",\"size\":807694464},{\"digest\":\"sha256:948af2743fc78a328dcb3b0f5a31b3d75f415840fdb699e8b1235978392ecf85\",\"mediaType\":\"application/vnd.ollama.image.template\",\"size\":1481},{\"digest\":\"sha256:6c0b08d96525a540fbe4"
+    },
+    {
+      "label": "hf-quant-ok",
+      "url": "https://hf.co/v2/bartowski/Llama-3.2-1B-Instruct-GGUF/manifests/Q8_0",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 200,
+      "challenge": null,
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bodyLength": 709,
+      "body": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"digest\":\"sha256:bb5d5b33512e6b4af9097e503803e4734a81042edd3096be9f53ae0f88376d14\",\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":552},\"layers\":[{\"digest\":\"sha256:432f310a77f4650a88d0fd59ecdd7cebed8d684bafea53cbff0473542964f0c3\",\"mediaType\":\"application/vnd.ollama.image.model\",\"size\":1321083008},{\"digest\":\"sha256:948af2743fc78a328dcb3b0f5a31b3d75f415840fdb699e8b1235978392ecf85\",\"mediaType\":\"application/vnd.ollama.image.template\",\"size\":1481},{\"digest\":\"sha256:6c0b08d96525a540fbe"
+    }
+  ]
+}

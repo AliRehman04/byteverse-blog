@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-22T05:02:18.484Z",
+  "method": "Manifest GET, then the anonymous token challenge with an in-memory throwaway key, then the manifest GET again. No blobs downloaded.",
+  "results": [
+    {
+      "label": "exists",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 401,
+      "challenge": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "tokenStatus": 200,
+      "tokenBody": "(token received)",
+      "status": 200,
+      "contentType": "application/vnd.docker.distribution.manifest.v2+json",
+      "bodyLength": 1005,
+      "body": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"digest\":\"sha256:34bb5ab01051a11372a91f95f3fbbc51173eed8e7f13ec395b9ae9b8bd0e242b\",\"size\":561},\"layers\":[{\"mediaType\":\"application/vnd.ollama.image.model\",\"digest\":\"sha256:dde5aa3fc5ffc17176b5e8bdc82f587b24b2678c6c66101bf7da77af9f7ccdff\",\"size\":2019377376},{\"mediaType\":\"application/vnd.ollama.image.template\",\"digest\":\"sha256:966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396\",\"size\":1429},{\"mediaType\":\"application/vnd.ollama."
+    },
+    {
+      "label": "bad-tag",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2/manifests/99b",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 401,
+      "challenge": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "tokenStatus": 200,
+      "tokenBody": "(token received)",
+      "status": 404,
+      "contentType": "application/json",
+      "bodyLength": 69,
+      "body": "{\"errors\":[{\"code\":\"MANIFEST_UNKNOWN\",\"message\":\"manifest unknown\"}]}"
+    },
+    {
+      "label": "bad-name",
+      "url": "https://registry.ollama.ai/v2/library/llama3.2x-notreal/manifests/latest",
+      "agent": "ollama/0.40.17 (amd64 windows) Go/go1.26.0",
+      "firstStatus": 401,
+      "challenge": "Bearer realm=\"https://registry.ollama.ai/v2/token\",service=\"ollama\",scope=\"-\"",
+      "tokenStatus": 200,
+      "tokenBody": "(token received)",
+      "status": 404,
+      "contentType": "application/json",
+      "bodyLength": 69,
+      "body": "{\"errors\":[{\"code\":\"MANIFEST_UNKNOWN\",\"message\":\"manifest unknown\"}]}"
+    }
+  ]
+}

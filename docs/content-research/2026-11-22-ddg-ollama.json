@@ -1,0 +1,296 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:06.311Z",
+    "query": "ollama error pull model manifest",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Cant pull model manifest · Issue #1417 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/1417"
+      },
+      {
+        "title": "I can't pull any models · Issue #3504 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3504"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "[Docker Ollama] Error: pull model manifest: Get \"https://registry ...",
+        "url": "https://forums.docker.com/t/docker-ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-llama2-manifests-latest/140256"
+      },
+      {
+        "title": "Handling Manifest Pull Errors in Ollama | Your Guide to Troubleshooting",
+        "url": "https://www.arsturn.com/blog/handling-manifest-pull-errors-in-ollama"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "How to workaround Ollama models pull issues - andreagrandi.it",
+        "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/"
+      },
+      {
+        "title": "\"Error: pull model manifest: file does not exist\" in Ollama: the name ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-pull-model-manifest-file-does-not-exist/"
+      },
+      {
+        "title": "Ollama Errors on Mac (2026): Exact Messages and Fixes",
+        "url": "https://llmcheck.net/guides/troubleshooting/ollama-errors"
+      },
+      {
+        "title": "google/gemma-7b-GGUF · Error: pull model manifest ollama",
+        "url": "https://huggingface.co/google/gemma-7b-GGUF/discussions/4"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:09.250Z",
+    "query": "ollama pull model manifest file does not exist",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: pull model manifest: file does not exist (again)",
+        "url": "https://github.com/ollama/ollama/issues/6734"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "\"Error: pull model manifest: file does not exist\" in Ollama: the name ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-pull-model-manifest-file-does-not-exist/"
+      },
+      {
+        "title": "`Error: file does not exist` but it exists · Issue #5869 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/5869"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "Pull a model - Ollama",
+        "url": "https://docs.ollama.com/api/pull"
+      },
+      {
+        "title": "Why am I getting Error: pull model manifest: file does not exist when I ...",
+        "url": "https://genai.stackexchange.com/questions/2282/why-am-i-getting-error-pull-model-manifest-file-does-not-exist-when-i-pull-a-m"
+      },
+      {
+        "title": "Ollama 'modelfile not found' After Pull: Diagnosis and Fix",
+        "url": "https://markaicode.com/errors/ollama-model-load-failed-fix/"
+      },
+      {
+        "title": "Ollama模型拉取错误：pull model manifest文件不存在解决方案",
+        "url": "https://comate.baidu.com/zh/page/ma9h9w3hr9v"
+      },
+      {
+        "title": "Ollama Models: How to Pull, List, Update, and Manage Local LLMs",
+        "url": "https://oneuptime.com/blog/post/2026-02-02-ollama-model-management/view"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:11.538Z",
+    "query": "ollama max retries exceeded",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Pull Failing with \"max retries exceeded\"? Fix EOF, Connection ...",
+        "url": "https://runaihome.com/blog/ollama-pull-max-retries-exceeded-eof-fix-2026/"
+      },
+      {
+        "title": "Error: max retries exceeded · Issue #6211 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/6211"
+      },
+      {
+        "title": "pulling model: stuck at 0% and Error: max retries exceeded: EOF",
+        "url": "https://github.com/ollama/ollama/issues/8533"
+      },
+      {
+        "title": "\"Error: max retries exceeded\" in Ollama pull: read what comes after the ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-max-retries-exceeded/"
+      },
+      {
+        "title": "ollama — max retries exceeded error | by Tim Nirmal | Medium",
+        "url": "https://medium.com/@timnirmal/ollama-max-retries-exceeded-error-de6e0f86383e"
+      },
+      {
+        "title": "How to Fix Max Retries Exceeded EOF Error in Ollama",
+        "url": "https://www.youtube.com/watch?v=i_y4P5Ya6Js"
+      },
+      {
+        "title": "How to Fix 'max retries exceeded' Error in Ollama| Issues Solved!",
+        "url": "https://www.youtube.com/watch?v=ZAJwBv6rHGI"
+      },
+      {
+        "title": "Ollama \"max retries exceeded\": Proxy on the Server + v0.40.15",
+        "url": "https://www.binmage.com/ollama-error-max-retries-exceeded/"
+      },
+      {
+        "title": "解决ollama拉取模型报错Error: max retries exceeded的经验分享",
+        "url": "https://blog.csdn.net/GoldenleafTiger89/article/details/154062389"
+      },
+      {
+        "title": "Max retries exceeded with URL\" In Python? - GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/python/how-to-fix-connectionerror-max-retries-exceeded-with-url-in-python/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:13.969Z",
+    "query": "ollama does not support tools",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "ollama 0.2.7 function call error \"llama3 does not support tools\"",
+        "url": "https://github.com/ollama/ollama/issues/5793"
+      },
+      {
+        "title": "registry.ollama.ai does not support tools: Ollama Fix (2026)",
+        "url": "https://www.betterclaw.io/tools/agent-error-decoder/ollama-does-not-support-tools"
+      },
+      {
+        "title": "Which Ollama Models Support Tool Calling? Full List + Fix",
+        "url": "https://www.betterclaw.io/blog/ollama-models-tool-calling-support"
+      },
+      {
+        "title": "Tool support - Ollama Blog",
+        "url": "https://ollama.com/blog/tool-support"
+      },
+      {
+        "title": "ollama model not support tool calling · Issue #6704 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/6704"
+      },
+      {
+        "title": "\"registry.ollama.ai/library/… does not support tools\" in Ollama: the ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-does-not-support-tools/"
+      },
+      {
+        "title": "Ollama \"does not support tools\": Fix It (Tested) - binmage.com",
+        "url": "https://www.binmage.com/ollama-does-not-support-tools/"
+      },
+      {
+        "title": "Tool calling - Ollama",
+        "url": "https://docs.ollama.com/capabilities/tool-calling"
+      },
+      {
+        "title": "Ollama Does Not Support Tools: Diagnose and Fix It | Automater Intel",
+        "url": "https://automater.ai/intel/ollama-does-not-support-tools-error/"
+      },
+      {
+        "title": "OpenClaw + Ollama | Fix Ollama API Error 400 : Does Not Support Tools ...",
+        "url": "https://www.youtube.com/watch?v=taqXywnbiHE"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:16.251Z",
+    "query": "ollama llama runner process has terminated",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 0xc0000409 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/4572"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 2",
+        "url": "https://github.com/ollama/ollama/issues/8926"
+      },
+      {
+        "title": "ollama 部署本地大模型报\"llama runner process has terminated\"错误的解决方法",
+        "url": "https://zhuanlan.zhihu.com/p/709865577"
+      },
+      {
+        "title": "llama-server process has terminated: exit status 0xc0000409",
+        "url": "https://www.thinkfacility.com/errors/ollama-exit-status-0xc0000409/"
+      },
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "SOLVED - Error llama runner process has terminated - YouTube",
+        "url": "https://www.youtube.com/watch?v=dk37zlaVQFQ"
+      },
+      {
+        "title": "问题：如何解决Ollama运行时出现的llama runner process terminated错误？",
+        "url": "https://ask.csdn.net/questions/8548923"
+      },
+      {
+        "title": "openbmb/MiniCPM-o-2_6-gguf · Error: llama runner process has terminated ...",
+        "url": "https://huggingface.co/openbmb/MiniCPM-o-2_6-gguf/discussions/1"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:51:18.580Z",
+    "query": "ollama model not found try pulling it first",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "\"Model\" not found, try pulling it first · Issue #1254 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/1254"
+      },
+      {
+        "title": "Ollama \"model \"llama3\" not found, try pulling it first\"",
+        "url": "https://www.betterclaw.io/tools/agent-error-decoder/ollama-model-not-found-try-pulling"
+      },
+      {
+        "title": "Model not found. Try pulling it first · Issue #11401 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/11401"
+      },
+      {
+        "title": "Ollama Model Not Found: Try Pulling It First - Why Ollama Can't Find ...",
+        "url": "https://adhdecode.com/debugging/ollama/model-not-found-try-pulling-it-first/"
+      },
+      {
+        "title": "AnythingLLM Ollama Model Not Found: 5 Fixes That Work",
+        "url": "https://maketocreate.com/anythingllm-ollama-model-not-found-5-fixes-that-work/"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "How can I pull a model automatically with container creation?",
+        "url": "https://stackoverflow.com/questions/78500319/how-can-i-pull-a-model-automatically-with-container-creation"
+      },
+      {
+        "title": "How to Fix Llama 3.3 'Model Not Found' Error in Ollama: Complete ...",
+        "url": "https://markaicode.com/fix-llama-33-model-not-found-error-ollama/"
+      },
+      {
+        "title": "Issue: [ERROR: model \"illama3.2:latest\" not found, try pulling it first]",
+        "url": "https://community.n8n.io/t/issue-error-model-illama3-2-latest-not-found-try-pulling-it-first/60514"
+      },
+      {
+        "title": "Ollama Errors: Model Not Found, Port, GPU, OOM | Swfte",
+        "url": "https://www.swfte.com/errors/ollama-errors"
+      }
+    ]
+  }
+]

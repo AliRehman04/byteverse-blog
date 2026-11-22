@@ -1,0 +1,296 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:54:58.825Z",
+    "query": "ollama pull model manifest 401",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: pull model manifest: 401 · Issue #3875 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3875"
+      },
+      {
+        "title": "Ollama run hf.co - Error 401: Invalid username or password",
+        "url": "https://github.com/ollama/ollama/issues/8045"
+      },
+      {
+        "title": "Pull a model - Ollama",
+        "url": "https://docs.ollama.com/api/pull"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "[Docker Ollama] Error: pull model manifest: Get \"https://registry ...",
+        "url": "https://forums.docker.com/t/docker-ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-llama2-manifests-latest/140256"
+      },
+      {
+        "title": "Handling Manifest Pull Errors in Ollama - arsturn.com",
+        "url": "https://www.arsturn.com/blog/handling-manifest-pull-errors-in-ollama"
+      },
+      {
+        "title": "How to workaround Ollama models pull issues - andreagrandi.it",
+        "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/"
+      },
+      {
+        "title": "Ollamaで「Error: pull model manifest: 401: Invalid username or password ...",
+        "url": "https://frees.jp/2025/02/24/ollama%E3%81%A7%E3%80%8Cerror-pull-model-manifest-401-invalid-username-or-password-%E3%80%8D%E3%81%8C%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%82%8B%E5%8E%9F%E5%9B%A0%E3%81%A8%E8%A7%A3%E6%B1%BA/"
+      },
+      {
+        "title": "google/gemma-7b-GGUF · Error: pull model manifest ollama",
+        "url": "https://huggingface.co/google/gemma-7b-GGUF/discussions/4"
+      },
+      {
+        "title": "Ollama in Docker pulls models via interactive shell but not via RUN ...",
+        "url": "https://stackoverflow.com/questions/78232178/ollama-in-docker-pulls-models-via-interactive-shell-but-not-via-run-command-in-t"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:55:01.323Z",
+    "query": "ollama pull model manifest 412",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama \"pull model manifest: 412\": The Simple Fix - binmage.com",
+        "url": "https://www.binmage.com/ollama-pull-model-manifest-412/"
+      },
+      {
+        "title": "Error: pull model manifest: 412 · Issue #19085 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/19085"
+      },
+      {
+        "title": "Error: pull model manifest: 412: The model you are attempting ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/14876"
+      },
+      {
+        "title": "Ollama 报错 pull model manifest: 412 怎么办？别慌",
+        "url": "https://www.binmage.com/zh/ollama-pull-model-manifest-412-fix/"
+      },
+      {
+        "title": "Error: pull model manifest: 412 | Ollama Clef Flash /v1/systemone fix",
+        "url": "https://www.youtube.com/watch?v=6-uNQISCqfo"
+      },
+      {
+        "title": "Pull a model - Ollama",
+        "url": "https://docs.ollama.com/api/pull"
+      },
+      {
+        "title": "Ollama Models: How to Pull, List, Update, and Manage Local LLMs",
+        "url": "https://oneuptime.com/blog/post/2026-02-02-ollama-model-management/view"
+      },
+      {
+        "title": "Error: pull model manifest: 412: The model you are attempting to pull ...",
+        "url": "https://wenku.csdn.net/answer/1siyv5yx32"
+      },
+      {
+        "title": "Ollama Errors on Mac (2026): Exact Messages and Fixes",
+        "url": "https://llmcheck.net/guides/troubleshooting/ollama-errors"
+      },
+      {
+        "title": "Pulling Manifest Error Pull Model Manifest 412 The Model You Are",
+        "url": "https://nbkomputer.com/pulling-manifest-error-pull-model-manifest-412-the-model-you-are/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:55:03.923Z",
+    "query": "ollama pull model manifest ssh no key found",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: pull model manifest: ssh: no key found · Issue #4901 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/4901"
+      },
+      {
+        "title": "Ollama won't run anything - ssh: no key found - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/10412"
+      },
+      {
+        "title": "Ollama in Docker pulls models via interactive shell but not via RUN ...",
+        "url": "https://stackoverflow.com/questions/78232178/ollama-in-docker-pulls-models-via-interactive-shell-but-not-via-run-command-in-t"
+      },
+      {
+        "title": "Ollama Pulling Manifest Errors Including File Does Not Exist and SSH No ...",
+        "url": "https://dev-error-db.com/errors/ollama-error-pull-model-manifest-file-does-not-exist-also-ssh-no-key-found-no-such-host-and-pulling-manifest-412-requires-newer-version/"
+      },
+      {
+        "title": "How to workaround Ollama models pull issues - andreagrandi.it",
+        "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "Ollama 'modelfile not found' After Pull: Diagnosis and Fix",
+        "url": "https://markaicode.com/errors/ollama-model-load-failed-fix/"
+      },
+      {
+        "title": "Handling Manifest Pull Errors in Ollama - arsturn.com",
+        "url": "https://www.arsturn.com/blog/handling-manifest-pull-errors-in-ollama"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "How can I pull a model automatically with container creation?",
+        "url": "https://stackoverflow.com/questions/78500319/how-can-i-pull-a-model-automatically-with-container-creation"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:55:06.356Z",
+    "query": "ollama pull model manifest no such host",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "ollama pulling manifest error no such host - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3996"
+      },
+      {
+        "title": "How to workaround Ollama models pull issues - andreagrandi.it",
+        "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/"
+      },
+      {
+        "title": "Cant pull model manifest · Issue #1417 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/1417"
+      },
+      {
+        "title": "[Docker Ollama] Error: pull model manifest: Get \"https://registry ...",
+        "url": "https://forums.docker.com/t/docker-ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-llama2-manifests-latest/140256"
+      },
+      {
+        "title": "Handling Manifest Pull Errors in Ollama - arsturn.com",
+        "url": "https://www.arsturn.com/blog/handling-manifest-pull-errors-in-ollama"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "Not able to pull ollama model : r/ollama - Reddit",
+        "url": "https://www.reddit.com/r/ollama/comments/1ce6cwx/not_able_to_pull_ollama_model/"
+      },
+      {
+        "title": "Effective Solutions for No Such Host Errors in Ollama",
+        "url": "https://www.arsturn.com/blog/troubleshooting-no-such-host-errors-in-ollama"
+      },
+      {
+        "title": "Ollama pull issues - Site Feedback - Hugging Face Forums",
+        "url": "https://discuss.huggingface.co/t/ollama-pull-issues/179268"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:55:08.661Z",
+    "query": "ollama pull model manifest i/o timeout",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "DNS `i/o timeout` when running `ollama pull` · Issue #2818 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/2818"
+      },
+      {
+        "title": "Ollama Pull Timeouts and Proxy Settings | HedgeVPN",
+        "url": "https://hedgevpn.com/en/blog/ollama-model-pull/"
+      },
+      {
+        "title": "I can't pull any models · Issue #3504 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/3504"
+      },
+      {
+        "title": "Ollama 'pulling manifest' i/o timeout error fetching models from ...",
+        "url": "https://dev-error-db.com/errors/ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-dial-tcp-ip-443-i-o-timeout/"
+      },
+      {
+        "title": "[Docker Ollama] Error: pull model manifest: Get \"https://registry ...",
+        "url": "https://forums.docker.com/t/docker-ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-llama2-manifests-latest/140256"
+      },
+      {
+        "title": "Fix common Ollama errors: 500, timeouts and stalled pulls",
+        "url": "https://lumadock.com/tutorials/ollama-troubleshooting"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "How to workaround Ollama models pull issues - andreagrandi.it",
+        "url": "https://www.andreagrandi.it/posts/how-to-workaround-ollama-pull-issues/"
+      },
+      {
+        "title": "Ollama Stuck Loading a Model? Causes and Fixes",
+        "url": "https://localaimaster.com/blog/ollama-stuck-loading-model"
+      },
+      {
+        "title": "Ollama Tool Execution Timeouts: 7 Proven Fixes That Actually Work",
+        "url": "https://markaicode.com/troubleshooting-ollama-tool-execution-timeouts/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-22T04:55:11.421Z",
+    "query": "ollama pull certificate signed by unknown authority",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "failed to verify certificate: x509: certificate signed by unknown authority",
+        "url": "https://github.com/ollama/ollama/issues/1798"
+      },
+      {
+        "title": "Ollama SSL Certificate Error: Fix 'x509: Unknown Authority' (2026)",
+        "url": "https://markaicode.com/errors/ollama-ssl-certificate-fix/"
+      },
+      {
+        "title": "failed to verify certificate: x509: certificate signed by unknown authority",
+        "url": "https://github.com/ollama/ollama/issues/823"
+      },
+      {
+        "title": "\"docker pull\" certificate signed by unknown authority",
+        "url": "https://stackoverflow.com/questions/50768317/docker-pull-certificate-signed-by-unknown-authority"
+      },
+      {
+        "title": "Ollama HTTPS Setup: SSL Certificate Configuration Tutorial",
+        "url": "https://markaicode.com/ollama-https-ssl-certificate-setup/"
+      },
+      {
+        "title": "ssl - getting ` x509: certificate signed by unknown authority` error ...",
+        "url": "https://stackoverflow.com/questions/72546045/getting-x509-certificate-signed-by-unknown-authority-error-while-verifying-c"
+      },
+      {
+        "title": "How to Fix x509 Certificate Signed by Unknown Authority Error",
+        "url": "https://securew2.com/blog/fix-x509-certificate-signed-by-unknown-authority-error-code"
+      },
+      {
+        "title": "Ollama.ai cert experation? : r/ollama - Reddit",
+        "url": "https://www.reddit.com/r/ollama/comments/1bn9hzk/ollamaai_cert_experation/"
+      },
+      {
+        "title": "Error: \"x509: certificate signed by unknown authority ... - myBroadcom",
+        "url": "https://knowledge.broadcom.com/external/article/446248/error-x509-certificate-signed-by-unknown.html"
+      },
+      {
+        "title": "解决 Ollama 下载模型时\"tls: failed to verify certificate\"错误",
+        "url": "https://blog.uso6.com/archives/jie-jue-ollama-xia-zai-mo-xing-shi-tls-failed-to-verify-certificate-cuo-wu"
+      }
+    ]
+  }
+]

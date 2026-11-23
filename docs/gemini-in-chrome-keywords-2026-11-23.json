@@ -191,7 +191,7 @@
     "otherPostsUnchanged": 190,
     "linkAttributes": "src/components/markdown-renderer.tsx renders links that start with '/' as a plain anchor with no rel attribute, so the link is a normal followed link. External links get rel='noopener noreferrer' and are followed as well. The site does not add nofollow anywhere in article bodies.",
     "note": "The older local file scripts/content/gemini-not-showing-google-docs-gmail-2026.md already differed from the live body before this change (22,093 against 21,780 characters) and was left untouched, together with its October ledger and test.",
-    "liveCheck": "PENDING"
+    "liveCheck": "After the redeploy of commit 9ca6f5d the sentence is live on post 236. The link appears once, with the anchor text 'Gemini in Chrome not showing', no rel attribute and no target attribute, so it is a normal followed link. Post 236 has 5 internal and 15 external links and none carries nofollow, sponsored or ugc. Both pages return 200 with robots 'index, follow' in the meta tag and the X-Robots-Tag header, and each has its own URL as canonical. The two posts link to each other."
   },
   "publication": {
     "status": "published-live-verified",

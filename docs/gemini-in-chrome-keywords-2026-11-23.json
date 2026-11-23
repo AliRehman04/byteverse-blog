@@ -179,6 +179,20 @@
     "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 160, "meanSentenceWords": 14.9, "stdevSentenceWords": 8.5 },
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
   },
+  "inboundLink": {
+    "approvedBy": "owner, 23 November 2026, on condition that the link causes no SEO problem (follow or nofollow)",
+    "fromPost": { "id": 236, "slug": "gemini-not-showing-google-docs-gmail-2026" },
+    "change": "One sentence added after the Scope paragraph: 'If the button you are missing is Ask Gemini at the top of the Chrome browser, and not the one inside Docs or Gmail, see [Gemini in Chrome not showing](/blog/gemini-in-chrome-not-showing).' Nothing else in the post changed.",
+    "script": "scripts/_update-gemini-docs-internal-link.mjs (backup, read-only preflight, then one guarded UPDATE of the body)",
+    "backupFile": "docs/content-backups/gemini-not-showing-google-docs-gmail-2026-before-2026-11-23-internal-link.md",
+    "contentMd5Before": "6ff16d6bfbd95e8ed8c82c495900242e",
+    "contentMd5After": "eb5458d6ecb88450fc0170a532c6719a",
+    "appliedAt": "2026-11-23T06:16:11.630Z",
+    "otherPostsUnchanged": 190,
+    "linkAttributes": "src/components/markdown-renderer.tsx renders links that start with '/' as a plain anchor with no rel attribute, so the link is a normal followed link. External links get rel='noopener noreferrer' and are followed as well. The site does not add nofollow anywhere in article bodies.",
+    "note": "The older local file scripts/content/gemini-not-showing-google-docs-gmail-2026.md already differed from the live body before this change (22,093 against 21,780 characters) and was left untouched, together with its October ledger and test.",
+    "liveCheck": "PENDING"
+  },
   "publication": {
     "status": "published-live-verified",
     "postId": 259,

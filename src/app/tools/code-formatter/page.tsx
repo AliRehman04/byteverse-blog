@@ -193,7 +193,7 @@ export default function CodeFormatterPage() {
           <div className="p-5 rounded-2xl border border-border bg-card">
             <h3 className="font-bold text-sm sm:text-base flex items-center gap-2 mb-3"><BookOpen size={16} className="text-primary" /> Related Guides</h3>
             <ul className="grid gap-2 text-sm">
-              <li><Link href="/blog/best-vscode-extensions-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> 20 Best VS Code Extensions</Link></li>
+              <li><Link href="/blog/best-vscode-extensions-2026-web-developers" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Best VS Code Extensions for Web Developers</Link></li>
               <li><Link href="/blog/javascript-roadmap-2026-beginner-job-ready" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> JavaScript Roadmap: Beginner to Job Ready</Link></li>
               <li><Link href="/blog/git-github-beginners-guide-2026" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> Git & GitHub for Beginners</Link></li>
               <li><Link href="/blog/typescript-for-beginners-2026-complete-guide" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"><ArrowRight size={13} /> TypeScript for Beginners</Link></li>

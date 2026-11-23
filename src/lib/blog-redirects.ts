@@ -10,6 +10,10 @@ export const blogSlugRedirects: ReadonlyArray<readonly [string, string]> = [
   ["blog-seo-checklist-before-publishing-2026", "blog-seo-checklist-before-publishing-in-2026"],
   ["build-topical-authority-new-blog-2026", "how-to-build-topical-authority-for-a-new-blog-in-2026"],
   ["google-search-console-new-blogs-2026", "google-search-console-for-new-blogs-2026-beginner-guide"],
+  // Duplicate posts merged into the stronger article on 23 November 2026 (the duplicates are unpublished, not deleted).
+  ["best-vscode-extensions-2026", "best-vscode-extensions-2026-web-developers"],
+  ["docker-for-beginners-complete-guide", "docker-for-beginners-2026-guide"],
+  ["how-to-build-portfolio-website-2026", "build-portfolio-website-2026"],
 ];
 
 const targets = new Map(blogSlugRedirects);

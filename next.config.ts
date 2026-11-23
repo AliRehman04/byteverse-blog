@@ -78,7 +78,8 @@ const nextConfig: NextConfig = {
     {
       // Story handlers decide robots by status: do not overwrite their 404
       // noindex response or attach an index directive to a temporary outage.
-      source: "/:path((?!stories(?:/|$)).*)",
+      // Paginated archives carry their own noindex,follow meta; an index header would contradict it.
+      source: "/:path((?!stories(?:/|$)|blog/page/).*)",
       headers: [
         {
           key: "X-Robots-Tag",

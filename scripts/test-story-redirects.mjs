@@ -117,7 +117,8 @@ try {
     assert.equal(response.status, 308);
     assert.equal(response.headers.get('location'), `${siteConfig.url}/blog/published-guide`);
     assert.equal(await response.text(), '');
-    assert.equal(response.headers.get('cache-control'), 'no-store');
+    // Query-less redirects (the crawler case) are CDN-cached since 24 October 2026; visitor queries stay no-store below.
+    assert.equal(response.headers.get('cache-control'), 'public, s-maxage=86400, stale-while-revalidate=604800');
     assert.equal(dynamic, 'force-dynamic');
   });
   await test('Redirect does not require a title, two headings or usable slides', async () => {
@@ -149,7 +150,7 @@ try {
       assert.equal(response.status, 404);
       assert.equal(response.headers.get('location'), null);
       assert.equal(response.headers.get('x-robots-tag'), 'noindex');
-      assert.equal(response.headers.get('cache-control'), 'no-store');
+      assert.equal(response.headers.get('cache-control'), 'public, s-maxage=3600');
       assert.equal(await response.text(), 'Not Found');
     }
   });
@@ -179,9 +180,9 @@ try {
     assert.equal(await response.text(), '');
   });
   await test('Existing blog redirects remain unchanged', async () => {
-    assert.equal(blogRedirects.blogSlugRedirects.length, 9);
+    assert.equal(blogRedirects.blogSlugRedirects.length, 12);
     const sources = new Set(blogRedirects.blogSlugRedirects.map(([source]) => source));
-    assert.equal(sources.size, 9);
+    assert.equal(sources.size, 12);
     for (const [source, target] of blogRedirects.blogSlugRedirects) {
       assert(!sources.has(target), 'Aliases must resolve directly, without a loop or redirect chain');
       const response = await unstable_getResponseFromNextConfig({ url: `${siteConfig.url}/blog/${source}`, nextConfig });
@@ -246,6 +247,16 @@ try {
     for (const path of ['/', '/blog/published-guide', '/tools', '/stories-about-development']) {
       const response = await unstable_getResponseFromNextConfig({ url: siteConfig.url + path, nextConfig });
       assert(response.headers.get('x-robots-tag')?.startsWith('index, follow'), `Unrelated header changed at ${path}`);
+    }
+  });
+  await test('Paginated archives keep only their own noindex,follow signal', async () => {
+    for (const path of ['/blog/page/2', '/blog/page/14']) {
+      const response = await unstable_getResponseFromNextConfig({ url: siteConfig.url + path, nextConfig });
+      assert.equal(response.headers.get('x-robots-tag'), null, `Index header contradicts the noindex meta at ${path}`);
+    }
+    for (const path of ['/blog', '/blog/page-speed-guide', '/blog/best-vscode-extensions-2026-web-developers']) {
+      const response = await unstable_getResponseFromNextConfig({ url: siteConfig.url + path, nextConfig });
+      assert(response.headers.get('x-robots-tag')?.startsWith('index, follow'), `Index header missing at ${path}`);
     }
   });
 } finally {

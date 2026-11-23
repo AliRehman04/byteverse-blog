@@ -5,7 +5,7 @@
   "name": "byteverse",
   "main": "cloudflare/worker.js",
   "compatibility_date": "2026-11-23",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public", "enable_ctx_exports"],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
@@ -20,6 +20,12 @@
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }],
   // next/image optimization through Cloudflare Images.
   "images": { "binding": "IMAGES" },
+  // Workers Cache in front of the Site entrypoint only; the default (gateway) entrypoint must run on every request
+  // because it holds the host-dependent logic (see cloudflare/worker.js).
+  "exports": {
+    "default": { "type": "worker", "cache": { "enabled": false } },
+    "Site": { "type": "worker", "cache": { "enabled": true } }
+  },
   // Same schedule as the former Vercel Cron in vercel.json: publish scheduled posts daily at 00:00 UTC.
   "triggers": { "crons": ["0 0 * * *"] },
   "observability": { "enabled": true },

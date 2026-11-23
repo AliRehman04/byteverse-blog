@@ -1,0 +1,136 @@
+{
+  "checkedAt": "2026-11-23T05:43:20.348Z",
+  "source": "https://versionhistory.googleapis.com/v1/chrome/platforms/<platform>/channels/stable/versions/all/releases?filter=endtime=none",
+  "win": [
+    {
+      "version": "159.0.8154.13",
+      "fraction": 0.005,
+      "servingSince": "2026-11-18T18:53:23.819135Z"
+    },
+    {
+      "version": "158.0.8127.37",
+      "fraction": 1,
+      "servingSince": "2026-11-17T19:07:25.418313Z"
+    },
+    {
+      "version": "158.0.8127.37",
+      "fraction": 0,
+      "servingSince": "2026-11-12T21:05:37.028007Z"
+    },
+    {
+      "version": "158.0.8127.36",
+      "fraction": 0.2475,
+      "servingSince": "2026-11-19T20:21:11.310883Z"
+    },
+    {
+      "version": "157.0.8103.81",
+      "fraction": 0.005,
+      "servingSince": "2026-11-18T18:53:23.819135Z"
+    },
+    {
+      "version": "157.0.8103.80",
+      "fraction": 0.2475,
+      "servingSince": "2026-11-19T20:21:11.310883Z"
+    },
+    {
+      "version": "157.0.8103.79",
+      "fraction": 0.495,
+      "servingSince": "2026-11-19T20:21:11.310883Z"
+    },
+    {
+      "version": "156.0.8078.82",
+      "fraction": 0,
+      "servingSince": "2026-11-12T19:53:42.586207Z"
+    }
+  ],
+  "mac": [
+    {
+      "version": "159.0.8154.13",
+      "fraction": 0.005,
+      "servingSince": "2026-11-18T18:53:47.121342Z"
+    },
+    {
+      "version": "158.0.8127.37",
+      "fraction": 1,
+      "servingSince": "2026-11-17T19:07:20.796603Z"
+    },
+    {
+      "version": "158.0.8127.37",
+      "fraction": 0,
+      "servingSince": "2026-11-12T21:05:47.579499Z"
+    },
+    {
+      "version": "158.0.8127.36",
+      "fraction": 0.2475,
+      "servingSince": "2026-11-19T20:04:45.275222Z"
+    },
+    {
+      "version": "157.0.8103.81",
+      "fraction": 0.005,
+      "servingSince": "2026-11-18T18:53:47.121342Z"
+    },
+    {
+      "version": "157.0.8103.80",
+      "fraction": 0.2475,
+      "servingSince": "2026-11-19T20:04:45.275222Z"
+    },
+    {
+      "version": "157.0.8103.79",
+      "fraction": 0.495,
+      "servingSince": "2026-11-19T20:04:45.275222Z"
+    },
+    {
+      "version": "156.0.8078.82",
+      "fraction": 0,
+      "servingSince": "2026-11-12T20:28:55.532909Z"
+    }
+  ],
+  "linux": [
+    {
+      "version": "158.0.8127.36",
+      "fraction": 1,
+      "servingSince": "2026-11-17T18:56:40.005685Z"
+    }
+  ],
+  "chromeos": [
+    {
+      "version": "158.0.8127.65",
+      "fraction": 1,
+      "servingSince": "2026-11-17T16:35:17Z"
+    }
+  ],
+  "android": [
+    {
+      "version": "159.0.8154.18",
+      "fraction": 0.0025,
+      "servingSince": "2026-11-18T18:58:56.799321Z"
+    },
+    {
+      "version": "158.0.8127.43",
+      "fraction": 0.0025,
+      "servingSince": "2026-11-18T18:58:56.799321Z"
+    },
+    {
+      "version": "158.0.8127.42",
+      "fraction": 0.24875,
+      "servingSince": "2026-11-19T19:29:00Z"
+    },
+    {
+      "version": "157.0.8103.80",
+      "fraction": 0.24875,
+      "servingSince": "2026-11-19T19:29:00Z"
+    },
+    {
+      "version": "157.0.8103.78",
+      "fraction": 0.4975,
+      "servingSince": "2026-11-19T19:29:00Z"
+    }
+  ],
+  "ios": [
+    {
+      "version": "158.0.8127.35",
+      "fraction": 1,
+      "servingSince": "2026-11-12T17:35:33.184890Z"
+    }
+  ]
+}

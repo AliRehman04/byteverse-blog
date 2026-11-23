@@ -1,0 +1,194 @@
+{
+  "slug": "gemini-in-chrome-not-showing",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-23",
+  "brief": "Owner-supplied brief (17 November 2026, attached again on 23 November with 'add new blog according to prompt ... gain traffic and clicks'): research, write, optimise and publish one high-quality article; no fabricated metrics; analyse at least five competitors; report limitations; no promise of rankings or traffic.",
+  "targeting": {
+    "title": "Gemini in Chrome Not Showing? The 8 Checks Chrome Runs",
+    "metaTitle": "Gemini in Chrome Not Showing? 8 Checks to Run",
+    "metaDescription": "Gemini in Chrome not showing? Chrome hides the Ask Gemini button unless device, language, sign-in, age, country and admin checks all pass. Check each one.",
+    "excerpt": "Why the Ask Gemini button is missing in Chrome, checked against the Chrome 158 source code and Google's help pages: the eight conditions Chrome tests, the 187 supported countries, the languages that are left out, and what to do about each.",
+    "keywords": "gemini in chrome not showing, gemini not showing in chrome, gemini not showing up in chrome, gemini in chrome not showing in settings, gemini in chrome not working, how to enable gemini in chrome, gemini in chrome not available, ask gemini button missing chrome, gemini in chrome not showing mac, gemini in chrome not showing linux, gemini in chrome not showing uk, gemini in chrome supported countries",
+    "summary": "The Ask Gemini button appears only when eight conditions pass: a supported device, a supported Chrome language, a normal window, a signed-in Chrome, an account that is old enough, a supported country, no administrator block and a pinned button|On 23 November 2026 the list had 187 countries and territories for adults and 43 for users under 18, with no EU member state, and it matches the list in the Chrome 158 source code exactly|The Gemini in Chrome page in Settings appears only after opt-in, and flags or edits to the Local State file do not change the result of the checks",
+    "readingTime": "13 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-23T05:06:00.000Z",
+    "total": 190,
+    "published": 188,
+    "hash": "edb162015018762b551ee238a0da6bc2",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-23-inventory.json (read-only database query) compared with docs/content-research/2026-11-22-inventory.json",
+    "inventory": { "total": 190, "published": 188, "hash": "edb162015018762b551ee238a0da6bc2", "storedViews": 4066 },
+    "categories": [
+      { "slug": "tech-guides", "posts": 67, "averageViews": 13.7 },
+      { "slug": "ai-tools", "posts": 60, "averageViews": 26.4 },
+      { "slug": "coding", "posts": 22, "averageViews": 33 },
+      { "slug": "software-reviews", "posts": 19, "averageViews": 19.9 },
+      { "slug": "productivity", "posts": 14, "averageViews": 17.1 },
+      { "slug": "cybersecurity", "posts": 6, "averageViews": 37.3 }
+    ],
+    "viewCounter": "The stored counter is sampled. src/app/api/views/[slug]/route.ts adds a weight sent by the browser, and all stored values are multiples of 3, so one counted view stands for about three engaged visits of ten seconds or more. A post with 0 can still have had one or two visits. The whole site gained 9 counted views between 22 and 23 November, on three posts from May to July.",
+    "finding": "Among posts published since October, only one keeps gaining views: 'Gemini not showing in Google Docs or Gmail' (42 on 17 November, 45 on 19 November, 51 on 23 November). The three Ollama posts from 18, 19 and 22 November and most n8n posts from November show 0. This article is therefore a sibling of the one recent post with a measurable pull: the same product family, the same kind of problem (a Google AI button that is missing because of eligibility), and a mainstream audience instead of a developer niche.",
+    "searchConsole": { "available": false, "reason": "GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY and GSC_SITE_URL are not set in this workspace. The production admin endpoint was not logged into. No clicks, impressions or positions were used, and indexing status of earlier posts could not be checked." },
+    "cannibalization": "Post 236 covers Gemini inside Docs, Sheets and Gmail (Workspace plan, Smart features, account language, admin switches). Post 128 is a general Gemini guide and post 201 compares AI browsers. None covers the Ask Gemini button of the Chrome browser, its country and language lists, Chrome sign-in, Chrome policies or flags. The new article links to 236 in its third paragraph to send Workspace readers there.",
+    "protectedDrafts": ["pdf-to-podcast-notebooklm-2026", "audacity-noise-reduction-voice-2026"]
+  },
+  "research": {
+    "candidateFiles": ["docs/content-research/2026-11-23-keywords-candidates.json"],
+    "candidateSeedCount": 32,
+    "serpFiles": ["docs/content-research/2026-11-23-ddg-candidates.json", "docs/content-research/2026-11-23-ddg-gemini-chrome.json"],
+    "sources": ["Google public autocomplete (hl=en, gl=us)", "Bing public autocomplete (en-US)", "DuckDuckGo HTML result pages"],
+    "notUsed": "Google Trends, paid keyword tools and Search Console were not available. No search volume or keyword difficulty figures are stated anywhere.",
+    "keywordMap": {
+      "primary": "gemini in chrome not showing",
+      "secondary": ["gemini not showing up in chrome", "gemini in chrome not showing in settings", "gemini in chrome not working", "how to enable gemini in chrome", "gemini in chrome not available"],
+      "supporting": ["gemini in chrome not showing mac", "gemini in chrome not showing linux", "gemini in chrome not showing uk", "gemini in chrome not appearing", "ask gemini in chrome not working", "gemini in chrome supported countries", "gemini in chrome not showing reddit"],
+      "intent": "Problem-solving. The reader has heard of Gemini in Chrome, looks at the top of the browser or in Settings, and the button is not there. They want to know why and whether they can fix it."
+    },
+    "observations": [
+      { "seed": "gemini in chrome not showing", "google": ["gemini in chrome not showing", "gemini in chrome not showing in settings", "gemini in chrome not showing reddit", "gemini in chrome not showing up", "gemini in chrome not showing mac", "gemini in chrome not showing uk", "gemini in chrome not showing linux", "gemini in chrome not working", "gemini in chrome not appearing", "gemini in chrome not loading"], "bing": ["gemini in chrome not showing", "how to turn off gemini in chrome", "how to disable gemini in chrome", "how to enable gemini in chrome", "how to use gemini in chrome"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "gemini not showing", "google": ["gemini not showing up in chrome", "gemini not showing images", "gemini not showing in google sheets", "gemini not showing up in gmail", "gemini not showing in chrome"], "bing": ["gemini in chrome not showing", "gemini icon not showing in gmail", "gemini deep research not showing"], "monthlyVolume": null, "keywordDifficulty": null },
+      { "seed": "gemini in chrome not working", "google": ["gemini in chrome not working", "ask gemini in chrome not working", "open gemini in chrome not working"], "bing": ["gemini not working in chrome", "how to enable gemini in chrome"], "monthlyVolume": null, "keywordDifficulty": null }
+    ],
+    "rejectedCandidates": [
+      { "keyword": "google ai mode not showing", "reason": "Three dedicated recent guides already lead the result page (stackmatix, needsomefun, two from seoptimate), and I found no primary source beyond one help page to add." },
+      { "keyword": "gemini something went wrong 1099 / 1076", "reason": "The codes are not documented by Google, so nothing could be verified. Several dedicated pages already exist (thinkfacility, felloai, zerlo, izoate, ultimatewb)." },
+      { "keyword": "copilot not showing in word", "reason": "The site's similar post on Copilot in Excel (post 234) has 6 counted views, a weaker signal than the Gemini post." },
+      { "keyword": "another Ollama or n8n article", "reason": "The last three Ollama posts and most November n8n posts show 0 counted views. Too early to judge them, but no evidence to add a fourth today." }
+    ],
+    "serpSample": {
+      "engine": "DuckDuckGo HTML (not Google)",
+      "queries": {
+        "gemini in chrome not showing": "Two Google community threads lead, then two YouTube videos, two official product pages, one dedicated article (chromestory.com, 12 November 2026), a guide on turning Gemini off, and workalizer.",
+        "gemini in chrome not showing in settings": "The same threads and videos, chromestory, a guide on hiding Gemini, the GeminiSettings policy page and isumsoft.",
+        "gemini in chrome not showing mac / uk / linux": "Community threads, chromestory, YouTube, a Google blog post about the UK launch and a GitHub workaround for Linux. No page answers the country, language or Linux question with a source.",
+        "how to enable gemini in chrome": "Official pages first, then isumsoft and several general how-to guides.",
+        "gemini in chrome not working": "General 'Gemini not working' guides (windowsreport, techsifted, freakyjolly, aifixhelp) and two community threads."
+      }
+    },
+    "competitors": {
+      "file": "docs/content-research/2026-11-23-competitors-gemini-chrome.json",
+      "method": "Fetched HTML, main article text only. Term coverage is a keyword presence check, not a quality score.",
+      "pages": [
+        { "url": "https://chromestory.com/2026/11/gemini-chrome-not-showing-fix/", "words": 1225, "published": "2026-11-12", "strength": "The strongest page. Written by a long-time Chrome specialist, follows Google's help page closely, has a video, clear signs for each cause, and a 'what does not fix it' list.", "missing": "No country names or counts, nothing on the EU, no under-18 list, no language names, no explanation of why an update or a restart changes the country, no policy name, no Linux, no source code. It says a missing Settings entry is a sign of a region or language problem; in Chrome 158 the page is shown only after opt-in." },
+        { "url": "https://insights.terabox.com/hub/how-to-enable-and-use-the-gemini-extension-for-chrome-in-2026", "words": 3468, "strength": "Long and broad; mentions Linux, VPN, admin blocks and the stored country.", "missing": "Recommends forcing flags (one of which does not exist in Chrome 158) and editing the Local State file. No sources." },
+        { "url": "https://www.isumsoft.com/internet/how-to-enable-gemini-in-chrome.html", "words": 935, "published": "2026-01-30", "strength": "Precise file paths.", "missing": "The whole article is a Local State edit (is_glic_eligible and the country code). It does not cover eligibility at all." },
+        { "url": "https://workalizer.com/insights/gemini/troubleshooting-gemini-ai-features-in-chrome-a-google-dashboard-account-guide/", "words": 816, "published": "2026-09-16", "strength": "Covers account type and sign-in.", "missing": "No country, language, device, policy or update information." },
+        { "url": "https://www.analyticsinsight.net/artificial-intelligence/how-to-use-gemini-in-chrome", "words": 1043, "published": "2025-06-11", "strength": "General how-to.", "missing": "Out of date; no troubleshooting." },
+        { "url": "https://piunikaweb.com/2025/09/29/gemini-not-working-on-mac-potential-workaround/", "words": 874, "updated": "2026-08-17", "strength": "Reports a Mac workaround from users.", "missing": "About the Gemini app on Mac more than Chrome; no eligibility rules." }
+      ],
+      "notReadable": ["Four Google community threads (their text is loaded by script)", "https://browserhow.com/how-to-disable-gemini-in-chrome/ (error 522)", "Two YouTube videos (not analysed)"],
+      "gap": "No page names the countries or says how many there are, states that no EU country is on the list, separates the adult and under-18 lists, names the languages that are left out, explains how Chrome stores its country and why Google's advice to update Chrome follows from that, shows the policy value to look for, says that the Settings page appears only after opt-in, or checks any of it against Chrome's source code. chromestory is the page to beat for clarity; this article does not try to out-write it on the basics and instead adds the facts it lacks."
+    }
+  },
+  "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null },
+  "sources": [
+    { "title": "Google Chrome Help: Use Gemini in Chrome", "url": "https://support.google.com/chrome/answer/16283624" },
+    { "title": "Gemini Apps Help: Gemini in Chrome availability", "url": "https://support.google.com/gemini/answer/17140089" },
+    { "title": "Chrome Enterprise Help: Gemini in Chrome", "url": "https://support.google.com/chrome/a/answer/16291696" },
+    { "title": "Google Chrome Help: Learn about Chrome flags", "url": "https://support.google.com/chrome/answer/16552482" },
+    { "title": "Google Chrome Help: Change Chrome languages", "url": "https://support.google.com/chrome/answer/173424" },
+    { "title": "Google Chrome Help: Check if your Chrome browser is managed", "url": "https://support.google.com/chrome/answer/9281740" },
+    { "title": "Chromium 158.0.8127.37: glic_enabling.cc", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/chrome/browser/glic/public/glic_enabling.cc" },
+    { "title": "Chromium 158.0.8127.37: glic_enabling.h", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/chrome/browser/glic/public/glic_enabling.h" },
+    { "title": "Chromium 158.0.8127.37: chrome_features.cc", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/chrome/common/chrome_features.cc" },
+    { "title": "Chromium 158.0.8127.37: GeminiSettings.yaml", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/components/policy/resources/templates/policy_definitions/GenerativeAI/GeminiSettings.yaml" },
+    { "title": "Chromium 158.0.8127.37: variations_field_trial_creator.cc", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/components/variations/service/variations_field_trial_creator.cc" },
+    { "title": "Chromium 158.0.8127.37: settings_ui.cc", "url": "https://chromium.googlesource.com/chromium/src/+/refs/tags/158.0.8127.37/chrome/browser/ui/webui/settings/settings_ui.cc" }
+  ],
+  "internalLinks": ["/blog/gemini-not-showing-google-docs-gmail-2026", "/blog/best-free-vpn-2026", "/blog/best-ai-apps-for-android-2026", "/blog/how-to-use-google-gemini-2026-complete-guide", "/blog/best-ai-browsers-2026"],
+  "futureSupportingArticles": ["add a link to this article from the Gemini in Docs and Gmail post (236), the Gemini guide (128) and the AI browsers post (201)", "how to turn off or hide Gemini in Chrome (the opposite intent, visible in Bing suggestions)", "Gemini in Chrome on Android and iPhone: requirements and what is different", "Gemini in Chrome auto browse: who can use it and how to switch it on", "update this article when Google changes the country list or Chrome reaches a new major version"],
+  "faq": [
+    "Why is Gemini not showing in Chrome?",
+    "Is Gemini in Chrome available in the UK and Europe?",
+    "Why is Gemini in Chrome not in Settings?",
+    "Does Gemini in Chrome work on Linux?",
+    "Why did Gemini disappear from Chrome after I travelled or used a VPN?",
+    "How do I enable Gemini in Chrome on a work account?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/gemini-in-chrome/gemini-in-chrome-not-showing-cover.png",
+    "coverFile": "public/blog/gemini-in-chrome/gemini-in-chrome-not-showing-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/gemini-in-chrome/gemini-in-chrome-checks.png",
+    "inlineFile": "public/blog/gemini-in-chrome/gemini-in-chrome-checks.png",
+    "buildScript": "scripts/build-gemini-in-chrome-images.mjs",
+    "origin": "Original ByteVerse illustrations rendered from SVG with sharp. The cover is a title card with a drawn browser toolbar, not a screenshot. The inline diagram lists the eight checks and was reviewed against the source code and the help pages. No stock photography and no Google logos."
+  },
+  "validation": {
+    "proseWords": 2694,
+    "readingTime": "13 min read",
+    "contentSha256": "f5c96dcc2e05cf6c20e9b596a20a0f00a0ba85691de98b9b3f1d11fffb8fa94d",
+    "codeBlocks": 0,
+    "tables": 1,
+    "wordCountNote": "proseWords is the site's reading-time count and includes the text inside the table.",
+    "sourceTag": "refs/tags/158.0.8127.37",
+    "sourceService": "Chromium source read through chromium.googlesource.com (Gitiles) at the tag of the stable release.",
+    "stableVersionCheck": "docs/content-research/2026-11-23-chrome-version-history.json: Google's version history service listed 158.0.8127.37 at fraction 1 on the stable channel for Windows and Mac on 23 November 2026. Other versions (157.0.8103.79 to .81, 158.0.8127.36, 159.0.8154.13) were served to parts of the same channel.",
+    "sourceDirectory": "../.byteverse-gemini-chrome-check",
+    "listComparison": "The test script parses the country codes from glic_enabling.h and the locale codes from glic_enabling.cc and compares them with the lists on Google's availability page: 187 adult countries and territories, 43 under-18 countries, 51 languages. The country lists are identical. In the code, Basque, Galician, Icelandic and Zulu are ChromeOS-only; the help page marks only Zulu.",
+    "handsOn": "docs/content-research/2026-11-23-chrome-hands-on.json, produced by scripts/research-chrome-hands-on-2026-11-23.mjs on Windows 11 Pro with the installed Chrome and empty temporary profiles that were not signed in and were deleted afterwards. The real Chrome profile was not opened. Starting Chrome made its updater download version 158.0.8127.37, which was left pending for the next relaunch.",
+    "notTested": "A signed-in account, an account under 18, a managed browser, macOS, ChromeOS, Linux, Android and iOS were not tested. What happens after opt-in, and the anchored error state, come from reading the code. Default lists in the code can be overridden by Google's servers.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Six FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "chromium-158.0.8127.37/chrome__VERSION": "cad3816ec196f61ea824c0474cca7118ee4b00de14428b0afeb60e4af8948082",
+      "chromium-158.0.8127.37/chrome__browser__glic__public__glic_enabling.cc": "c4fafd047fa453468dd31709aa2f2c7e2639b4711e840800188e1d2f7ee4cbe5",
+      "chromium-158.0.8127.37/chrome__browser__glic__public__glic_enabling.h": "d0c057568a4d0ba235e54a9333f12b3fc72df4e6cfac25c921f9499558dd8c81",
+      "chromium-158.0.8127.37/chrome__browser__glic__public__features.cc": "d5aa1948b9c395abddfe16d41e3d15d5693b28d46de5359b7bcdc06ac0855be3",
+      "chromium-158.0.8127.37/chrome__common__chrome_features.cc": "fd2f7159b34b22dfed03715dc2c676a62385ca3f05121fcff59042529524af60",
+      "chromium-158.0.8127.37/chrome__browser__glic__glic_pref_names.cc": "dd3704fe0d6a97d34d863e52bb4d37105314c754a2c43338ba2297d86ee75770",
+      "chromium-158.0.8127.37/chrome__browser__flag-metadata.json": "c5379405e2b351d12d926d006ce06ef91eb71c2f2394a7d90c38aa1049df5021",
+      "chromium-158.0.8127.37/chrome__browser__profiles__profile_attributes_entry.cc": "f7730b23906724ee8021bd3c891804883caec4ed7c9522e6143250fd566403c6",
+      "chromium-158.0.8127.37/chrome__browser__ui__webui__settings__settings_ui.cc": "72b7f786bfbe7fb19335a35aac488dff182600e84e4046e5f8a30d1ed84e4329",
+      "chromium-158.0.8127.37/components__policy__resources__templates__policy_definitions__GenerativeAI__GeminiSettings.yaml": "3e34b792ccd5834c699812294cee075e13d3daf7952f7be3b562a9ef04a09eda",
+      "chromium-158.0.8127.37/components__variations__pref_names.h": "b9aa4503e6622a43dc57b1f1a81671e690a9152d36df6072e99163aa4ddbe3a2",
+      "chromium-158.0.8127.37/components__variations__service__variations_field_trial_creator.cc": "ce05430fe7f624a91747f7ac07e907034e146dc955e30cf22fe2f4f6598aa0b7",
+      "chromium-158.0.8127.37/components__variations__service__variations_service.cc": "33e3669253d4140a1ca6b12a7ce55cfc02e59d9ac8c7df830fa2789688911352",
+      "docs/chrome-help-use-gemini-desktop.txt": "730a64e87c65f34ddab6931119ec6213c3e973e74ed3bc56922cdedc92911772",
+      "docs/gemini-help-17140089-regions-languages.txt": "0cd17aa3f399f401e78da4b6e474982a8c1d7d7c22ce1e59e9da884c81c71def",
+      "docs/chrome-enterprise-p-gemini.txt": "4ae78ae376aaf152c9298d5eaa2ce26e84813781a449e509d3fdf70d60ec8197",
+      "docs/chrome-help-flags-16552482.txt": "9888dc286a9a57b4fd64de5b123d0fab5eda317126d992078687a986e0196c4f",
+      "docs/chrome-help-languages-173424.txt": "81f5ff3f92a491dc31f8bd2efdac1cf4b074e29aa9230a14e2e7dd49a85b108e",
+      "docs/chrome-help-managed-9281740.txt": "0ba3408e855454781d678f09ae085efbf5d22965c39dbace9db476824313a2d4",
+      "docs/chrome-help-update-95414.txt": "8f188b9dc6b2c43d1d004f9545f5d20f30a3c6feff5ef6a5e89e94a16b611046",
+      "docs/chrome-help-use-gemini-android.txt": "adaa5b15754c4161b13fd263cbccbe24ec37a9833f8897e3a45a8d0f0953d371",
+      "docs/chrome-help-use-gemini-ios.txt": "62d88559c5ec6486ae317ea4de44aee14414aa90003b6b5923d3d91bd400ecb8",
+      "docs/gemini-help-14620100-work-school.txt": "83be029669c5cef0aacee6b6a4a4cad570a446b17eb9f0259ee4d9cf96dc0eaa"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-23T05:55:00.000Z",
+    "method": "Case-normalised five-word phrase overlap; tables and links excluded. Compared with the 190 stored posts, 18 saved Google help pages and 11 competitor and forum pages fetched for this topic.",
+    "draftPhrases": 2532,
+    "ownPosts": { "highest": "gemini-not-showing-google-docs-gmail-2026 and copilot-in-excel-not-showing-2026", "percent": 0.28, "note": "Matches are the title of the linked sibling post and short common phrases such as 'a work or school account'." },
+    "officialDocs": { "highest": "Google Chrome Help: Use Gemini in Chrome", "percentBefore": 0.99, "percentAfter": 0.75, "longestRunWords": 10, "note": "The matches are sentences quoted in quotation marks and interface labels such as 'Show Gemini at the top of the browser'." },
+    "competitors": [
+      { "site": "chromestory.com", "percentBefore": 0.79, "percentAfter": 0.59, "note": "The first draft opened with the same six words as this page and described the Pin Gemini right-click in almost the same words. Both were rewritten. What remains is the interface label, the search query itself and short product phrases." },
+      { "site": "insights.terabox.com", "percentAfter": 0.2 },
+      { "site": "workalizer.com", "percentAfter": 0.08 },
+      { "site": "isumsoft.com", "percentAfter": 0.04 },
+      { "site": "other fetched pages", "percentAfter": 0 }
+    ],
+    "styleChecks": { "flaggedFillerWords": 0, "emDashes": 0, "sentences": 160, "meanSentenceWords": 14.9, "stdevSentenceWords": 8.5 },
+    "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 259,
+    "publishedAt": "2026-11-23T06:04:06.513Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/gemini-in-chrome-not-showing",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 190,
+    "otherPostsHash": "edb162015018762b551ee238a0da6bc2",
+    "assetCommits": ["c47b8fd"],
+    "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The lookup table wraps into narrow columns on phones and the diagram text is small there; the eight checks are also the article's section headings.",
+    "approvedBy": "owner message 'add new blog according to prompt' (23 November 2026); the brief instructs publication"
+  }
+}

@@ -1,0 +1,926 @@
+{
+  "checkedAt": "2026-11-23T05:06:25.741Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "gemini not showing",
+      "google": [
+        "gemini not showing up in chrome",
+        "gemini not showing images",
+        "gemini not showing in google sheets",
+        "gemini not showing up in gmail",
+        "gemini not showing in chrome",
+        "gemini not showing up on android auto",
+        "gemini not showing recent chats",
+        "gemini not showing previous chats",
+        "gemini not showing video option",
+        "gemini not showing chat history"
+      ],
+      "bing": [
+        "gemini not showing generated images",
+        "gemini 3.1 pro is not showing in antigravity",
+        "gemini deep research not showing",
+        "gemini icon not showing in gmail",
+        "gemini canvas not showing preview",
+        "gemini in chrome not showing",
+        "gemini image not showing",
+        "gemini dynamic view not showing"
+      ]
+    },
+    {
+      "seed": "gemini not working",
+      "google": [
+        "gemini not working",
+        "gemini not working with android auto",
+        "gemini not working on galaxy watch",
+        "gemini not working today",
+        "gemini not working on chrome",
+        "gemini not working with google home",
+        "gemini not working on galaxy watch 8",
+        "gemini not working on samsung watch",
+        "gemini not working on watch",
+        "gemini not working on pixel watch 4"
+      ],
+      "bing": [
+        "gemini not working",
+        "gemini not working today",
+        "gemini not working properly",
+        "gemini not working in edge",
+        "gemini not working with vpn",
+        "gemini not working reddit",
+        "gemini not working something went wrong",
+        "gemini not working on browser",
+        "gemini not working on android auto",
+        "gemini not working on pc",
+        "gemini not working in gmail",
+        "gemini not working in chrome",
+        "gemini not working on edge browser"
+      ]
+    },
+    {
+      "seed": "gemini in chrome not showing",
+      "google": [
+        "gemini in chrome not showing",
+        "gemini in chrome not showing in settings",
+        "gemini in chrome not showing reddit",
+        "gemini in chrome not showing up",
+        "gemini in chrome not showing mac",
+        "gemini in chrome not showing uk",
+        "gemini in chrome not showing linux",
+        "gemini in chrome not working",
+        "gemini in chrome not appearing",
+        "gemini in chrome not loading"
+      ],
+      "bing": [
+        "gemini in chrome not showing",
+        "gemini image not showing",
+        "how to turn off gemini in chrome",
+        "how to disable gemini in chrome",
+        "how to enable gemini in chrome",
+        "how to use gemini in chrome",
+        "gemini in google chrome",
+        "gemini in chrome browser",
+        "open gemini in chrome",
+        "gemini in chrome remove",
+        "google gemini not working"
+      ]
+    },
+    {
+      "seed": "gemini in chrome not working",
+      "google": [
+        "gemini in chrome not working",
+        "gemini in chrome not showing",
+        "gemini in chrome not showing up",
+        "gemini in chrome not showing reddit",
+        "gemini in chrome not showing mac",
+        "gemini in chrome not showing uk",
+        "gemini in chrome not showing linux",
+        "gemini in chrome not loading",
+        "ask gemini in chrome not working",
+        "open gemini in chrome not working"
+      ],
+      "bing": [
+        "gemini not working in chrome",
+        "google gemini not working",
+        "how to use gemini in chrome",
+        "how to enable gemini in chrome",
+        "how to turn off gemini in chrome",
+        "how to disable gemini in chrome",
+        "gemini pro not working",
+        "google gemini isn't working",
+        "gemini is not working",
+        "google gemini on chrome",
+        "why isn't google gemini working"
+      ]
+    },
+    {
+      "seed": "gemini live not working",
+      "google": [
+        "gemini live not working",
+        "gemini live not working on android auto",
+        "gemini live not working on iphone",
+        "gemini live not working reddit",
+        "gemini live not working properly",
+        "gemini live not working ios",
+        "gemini live stopped working",
+        "why isn't gemini live working",
+        "gemini live not showing up",
+        "gemini live chat not working"
+      ],
+      "bing": [
+        "gemini live camera sharing not working ios",
+        "is gemini not working",
+        "gemini not working today",
+        "gemini not working properly",
+        "gemini pro not working",
+        "gemini app not working",
+        "why isn't gemini working",
+        "google gemini not working",
+        "gemini not working reddit",
+        "why does gemini not work",
+        "why doesn't gemini work",
+        "why i can't use gemini"
+      ]
+    },
+    {
+      "seed": "gemini gems not showing",
+      "google": [
+        "gemini gems not showing up",
+        "gemini gems not working",
+        "gemini gems not working properly",
+        "gemini gems not visible",
+        "gemini gems not working reddit",
+        "google gemini gems not working",
+        "gemini custom gems not working",
+        "gemini storybook gem not working",
+        "gem not working",
+        "what gem should gemini wear"
+      ],
+      "bing": [
+        "gemini image not showing",
+        "gemini not showing generated images",
+        "gemini in chrome not showing",
+        "gemini is not working",
+        "gemini not seeing images",
+        "gemini not working properly",
+        "what signs are not compatible with gemini",
+        "gemini not working today",
+        "why can't i use gemini",
+        "why does gemini not work",
+        "gemini not answering questions",
+        "i don't want to use gemini"
+      ]
+    },
+    {
+      "seed": "gemini app not working",
+      "google": [
+        "gemini app not working",
+        "gemini app not working on iphone",
+        "gemini app not working today",
+        "gemini app not working reddit",
+        "gemini app not working on mac",
+        "gemini app not working ios",
+        "gemini app not working android",
+        "gemini app not working/ something went wrong",
+        "gemini app not working properly",
+        "gemini app not working asking for google photos access"
+      ],
+      "bing": [
+        "gemini app not working",
+        "why is my gemini app not working",
+        "google gemini not working",
+        "gemini is not working",
+        "gemini api not working",
+        "gemini app how to disable",
+        "gemini pro not working",
+        "google gemini isn't working",
+        "how to use gemini app",
+        "gemini app on windows",
+        "how to install gemini app",
+        "gemini app on android",
+        "how to remove gemini app"
+      ]
+    },
+    {
+      "seed": "gemini deep research not working",
+      "google": [
+        "gemini deep research not working",
+        "gemini deep research not working reddit",
+        "gemini deep research not working today",
+        "gemini deep research stopped working",
+        "gemini deep research not showing",
+        "gemini deep research not loading",
+        "gemini deep research not showing thinking",
+        "google gemini deep research not working",
+        "gemini deep research does not work",
+        "why is my gemini deep research not working"
+      ],
+      "bing": [
+        "gemini deep research not working",
+        "why gemini deep research is not working",
+        "gemini deep research stuck",
+        "gemini deep research down",
+        "how to do deep research on gemini",
+        "how to access gemini deep research",
+        "gemini deep research disappeared",
+        "does gemini have a deep research feature",
+        "is gemini deep research good",
+        "how to prompt gemini deep research",
+        "how does gemini deep research work",
+        "gemini pro deep research",
+        "deep research feature gemini",
+        "gemini deep research free",
+        "gemini 2 deep research"
+      ]
+    },
+    {
+      "seed": "gemini side panel not showing",
+      "google": [
+        "gemini side panel not showing",
+        "gemini side panel not working",
+        "gemini speaker not working",
+        "when i click detect displays nothing happens"
+      ],
+      "bing": [
+        "side panel for gemini",
+        "gemini image not showing",
+        "gemini in chrome not showing",
+        "gemini side panel extension",
+        "gemini dynamic view not showing",
+        "gemini not working properly",
+        "gemini pro not working",
+        "gemini not working on edge",
+        "gemini is not working",
+        "can gemini look at my screen",
+        "gemini canvas not showing preview",
+        "gemini not showing generated images",
+        "gemini not producing dashboard",
+        "gemini not working today",
+        "google gemini not working",
+        "how to put gemini on home screen",
+        "gemini cant see images",
+        "gemini settings turn off",
+        "gemini safety settings off",
+        "gemini panel and paint"
+      ]
+    },
+    {
+      "seed": "help me write not showing",
+      "google": [
+        "help me write not showing up on facebook",
+        "help me write not showing in gmail",
+        "help me write not showing in google docs",
+        "help me write not showing",
+        "help me write not working",
+        "help me write not working in gmail",
+        "help me write not working on facebook",
+        "help me write option not showing in gmail",
+        "help me write option not showing",
+        "google help me write not working"
+      ],
+      "bing": [
+        "gmail help me write not showing",
+        "showing not telling in writing",
+        "how to disable help me write",
+        "how to remove help me write",
+        "how to write cannot",
+        "show not tell in writing",
+        "how to turn off help me write",
+        "read and write not working",
+        "no show write up sample",
+        "examples of showing not telling in writing",
+        "windows cannot find write",
+        "show not tell writing examples",
+        "how to show don't tell in writing"
+      ]
+    },
+    {
+      "seed": "gemini in google sheets not showing",
+      "google": [
+        "gemini in google sheets not working",
+        "gemini in google docs not working",
+        "ask gemini in google sheets not working",
+        "google sheets gemini not showing",
+        "gemini not showing up in google sheets",
+        "ask gemini not showing in google sheets",
+        "google sheets not recognizing numbers",
+        "how to go past z in google sheets",
+        "how to get p value in google sheets"
+      ],
+      "bing": [
+        "how to use gemini in google sheets",
+        "can gemini create google sheets",
+        "google sheets and gemini",
+        "how to connect gemini to google sheets",
+        "how to add gemini to google sheet"
+      ]
+    },
+    {
+      "seed": "gemini in google drive not showing",
+      "google": [
+        "gemini in google sheets not working",
+        "ask gemini in google sheets not working",
+        "why is my g drive not showing up"
+      ],
+      "bing": [
+        "how to disable gemini in google drive",
+        "gemini in google drive",
+        "turn off gemini in google drive",
+        "gemini in chrome not showing",
+        "google gemini google drive",
+        "can gemini access google drive",
+        "google gemini not working",
+        "how to remove gemini from google drive",
+        "google gemini not loading",
+        "google gemini isn't working",
+        "gemini image not showing",
+        "why can't i use google gemini",
+        "how to disable gemini in google",
+        "problems with google gemini"
+      ]
+    },
+    {
+      "seed": "gemini in google meet not showing",
+      "google": [
+        "gemini notes google meet not showing",
+        "gemini not showing in google meet"
+      ],
+      "bing": [
+        "how to use gemini in google meet",
+        "how to disable gemini in google meet",
+        "how to enable gemini in google meet",
+        "how to add gemini in google meet",
+        "google meet with gemini",
+        "how to activate gemini in google meet",
+        "gemini note taking in google meet",
+        "gemini in chrome not showing",
+        "google gemini not working",
+        "gemini meeting notes google meet",
+        "gemini notes google meet",
+        "show google gemini website",
+        "how to talk to google gemini",
+        "i am using google gemini",
+        "google gemini isn't working",
+        "google gemini meeting minutes",
+        "google meet con gemini"
+      ]
+    },
+    {
+      "seed": "gemini not available in your country",
+      "google": [
+        "gemini not available in your country",
+        "gemini not available in your country reddit",
+        "gemini not available in your country vpn",
+        "gemini isn t available in your country iphone",
+        "gemini not available in your region",
+        "google gemini not available in your country",
+        "gemini ai not available in your country",
+        "gemini app not available in your country",
+        "gemini notebook not available in your country",
+        "gemini isn t available in this country"
+      ],
+      "bing": [
+        "gemini not available in your country",
+        "gemini not supported in your country",
+        "gemini isn't available for this account",
+        "gemini this offer is not available",
+        "gemini is not working today",
+        "gemini is not free",
+        "gemini without signing in",
+        "is gemini not working right now",
+        "gemini isn't supported for this account",
+        "is gemini having issues right now",
+        "is gemini not free anymore",
+        "gemini isn't available message",
+        "i don't want to use gemini",
+        "is gemini having issues today",
+        "why can't i use gemini",
+        "is gemini having problems today"
+      ]
+    },
+    {
+      "seed": "gemini something went wrong",
+      "google": [
+        "gemini something went wrong",
+        "gemini something went wrong 1095",
+        "gemini something went wrong 1152",
+        "gemini something went wrong 13",
+        "gemini something went wrong 1097",
+        "gemini something went wrong 1099",
+        "gemini something went wrong 1076",
+        "gemini something went wrong 1184",
+        "gemini something went wrong 1100",
+        "gemini something went wrong try again later"
+      ],
+      "bing": [
+        "gemini something went wrong 1099",
+        "gemini something went wrong",
+        "gemini something went wrong 1076",
+        "gemini something went wrong 13",
+        "gemini something went wrong 1155",
+        "gemini something went wrong 1152",
+        "gemini something went wrong 1100",
+        "gemini something went wrong 1096",
+        "gemini something went wrong 1097",
+        "gemini something went wrong 9",
+        "gemini something went wrong 3",
+        "gemini something went wrong 8",
+        "gemini something went wrong 5",
+        "gemini something went wrong 1060",
+        "gemini something went wrong error"
+      ]
+    },
+    {
+      "seed": "gemini can't help with that",
+      "google": [
+        "gemini can help with that",
+        "gemini can't help with that image",
+        "gemini i can t help with that",
+        "gemini sorry i can t help with that image",
+        "gemini sorry i can t help with that",
+        "sorry i can't help with that right now. gemini",
+        "gemini i can t help you with that",
+        "google gemini sorry i can't help with that image",
+        "why gemini don't open up",
+        "gemini app not working"
+      ],
+      "bing": [
+        "gemini i need help",
+        "i don't want to use gemini",
+        "gemini is not working",
+        "why doesn't gemini work",
+        "why isn't gemini working",
+        "why does gemini not work",
+        "gemini not working properly",
+        "gemini is not working today",
+        "is gemini having issues right now"
+      ]
+    },
+    {
+      "seed": "gemini image generation not working",
+      "google": [
+        "gemini image generation not working",
+        "gemini image creation not working",
+        "google gemini image generation not working",
+        "gemini ai image generator not working",
+        "gemini photos review",
+        "gemini not working"
+      ],
+      "bing": [
+        "gemini image generation not working",
+        "gemini is not generating images",
+        "gemini not showing generated images",
+        "gemini won't generate images",
+        "how to use gemini image generation",
+        "gemini image not showing",
+        "gemini cannot generate images",
+        "gemini not creating images",
+        "why gemini doesn't generate images",
+        "why won't gemini generate images",
+        "why can't gemini generate images anymore",
+        "google gemini not generating images",
+        "gemini image generator down",
+        "how to fix the gemini image generation",
+        "no_image:gemini cannot generate images"
+      ]
+    },
+    {
+      "seed": "gemini voice not working",
+      "google": [
+        "gemini voice not working",
+        "gemini sound not working",
+        "gemini sound not working properly",
+        "gemini speech not working",
+        "gemini voice assistant not working",
+        "gemini voice match not working",
+        "gemini voice chat not working",
+        "gemini voice activation not working",
+        "gemini voice commands not working",
+        "google gemini voice not working"
+      ],
+      "bing": [
+        "gemini voice mode not working",
+        "gemini is not working",
+        "how to change gemini voice",
+        "does gemini have a voice mode",
+        "gemini not working properly",
+        "gemini microphone not working",
+        "how to enable gemini voice on web",
+        "gemini pro not working",
+        "how to voice activate gemini",
+        "gemini not working today",
+        "google gemini voice over",
+        "voice control for gemini",
+        "how to change gemini voice on pc",
+        "voice in gemini pc"
+      ]
+    },
+    {
+      "seed": "google ai mode not showing",
+      "google": [
+        "google ai mode not showing",
+        "google ai mode not showing in safari",
+        "google ai mode not showing in search",
+        "google ai mode not showing on iphone",
+        "google ai mode not showing in chrome",
+        "google ai mode not showing on ipad",
+        "google ai mode not showing in incognito",
+        "google ai mode isn t showing up",
+        "google ai mode not working",
+        "google ai mode not available"
+      ],
+      "bing": [
+        "google ai mode not showing up",
+        "ai mode not showing in google chrome",
+        "ai mode not showing in google search",
+        "why google ai mode is not showing",
+        "why google ai mode is not working",
+        "google no ai mode",
+        "i don't want ai mode on google",
+        "ai mode on google",
+        "google ai mode disable",
+        "google ai mode disappeared",
+        "how to stop google ai mode",
+        "how to enable google ai mode",
+        "google ai mode open",
+        "google ai mode features"
+      ]
+    },
+    {
+      "seed": "ai overview not showing",
+      "google": [
+        "ai overview not showing up",
+        "ai overview not showing up on google",
+        "ai overview not showing in google search",
+        "ai overview not showing up safari",
+        "ai overview not showing in chrome",
+        "ai overview not showing up anymore",
+        "ai overview not showing on google",
+        "ai overview not showing up firefox",
+        "ai overview not showing up reddit",
+        "ai overview not showing more"
+      ],
+      "bing": [
+        "ai overview not showing up",
+        "ai overview not showing in google search",
+        "why is ai overview not showing up",
+        "why is google ai overview not showing",
+        "google ai overview not showing up",
+        "why is ai overview not showing up anymore"
+      ]
+    },
+    {
+      "seed": "notebooklm not working",
+      "google": [
+        "notebooklm not working",
+        "notebooklm not working today",
+        "notebooklm not working reddit",
+        "notebooklm not working properly",
+        "notebooklm not working on phone",
+        "notebooklm not working on iphone",
+        "notebooklm not working right now",
+        "notebooklm not working on ipad",
+        "notebooklm not working on mac",
+        "notebook lm not working on safari"
+      ],
+      "bing": [
+        "notebooklm not working",
+        "notebooklm slide deck not working",
+        "why is notebooklm not working",
+        "notebooklm infographic not working",
+        "why notebooklm slide deck not working",
+        "notebooklm video overview not working"
+      ]
+    },
+    {
+      "seed": "notebooklm audio overview not",
+      "google": [
+        "notebooklm audio overview not working",
+        "notebooklm audio overview not playing",
+        "notebooklm audio overview not loading",
+        "notebooklm audio overview not generating",
+        "notebooklm could not load audio overview",
+        "how to refresh audible library"
+      ],
+      "bing": [
+        "notebook lm audio overview not working",
+        "notebooklm audio overview length",
+        "how to download notebooklm audio",
+        "notebook lm audio overview",
+        "notebooklm video overview prompt",
+        "notebooklm audio to text",
+        "google notebook lm audio overview",
+        "notebooklm's new video overviews",
+        "notebook lm audio overview limits",
+        "notebooklm video overview limit",
+        "notebook lm audio overview transcript",
+        "notebooklm video doesn't download",
+        "notebooklm cinematic video overview",
+        "notebooklm features and tools",
+        "notebook lm video overview",
+        "why notebooklm is not working",
+        "notebooklm how to use",
+        "how to work with notebooklm",
+        "notebooklm windows app guide",
+        "notebooklm audio overview limit",
+        "notebooklm non carica file audio",
+        "notebook lm audio limit"
+      ]
+    },
+    {
+      "seed": "chatgpt not showing",
+      "google": [
+        "chatgpt not showing responses",
+        "chatgpt not showing images",
+        "chatgpt not showing images on iphone",
+        "chatgpt not showing old chats",
+        "chatgpt not showing history",
+        "chatgpt not showing pictures",
+        "chatgpt not showing answers",
+        "chatgpt not showing photos",
+        "chatgpt not showing astra",
+        "chatgpt not showing chat history"
+      ],
+      "bing": [
+        "chatgpt not showing responses",
+        "chatgpt not showing my subscription",
+        "chatgpt not showing answers",
+        "chatgpt not showing history",
+        "chatgpt not showing anything",
+        "chatgpt not showing projects",
+        "chatgpt not showing chat history",
+        "chatgpt not showing chats",
+        "chatgpt not showing images",
+        "chatgpt not showing code",
+        "chatgpt not showing text",
+        "chatgpt not showing responses on pc"
+      ]
+    },
+    {
+      "seed": "chatgpt memory not working",
+      "google": [
+        "chatgpt memory not working",
+        "chatgpt memory not working reddit",
+        "chatgpt memory stopped working",
+        "chatgpt memory isn't working",
+        "chatgpt memory not loading",
+        "chatgpt memory not showing",
+        "chatgpt memories not showing up",
+        "chatgpt saved memory not working",
+        "chatgpt delete memory not working",
+        "chatgpt memory summary not working"
+      ],
+      "bing": [
+        "chatgpt memory not working",
+        "chatgpt keeps running out of memory",
+        "chatgpt out of memory error",
+        "chatgpt using a lot of memory",
+        "how to turn off memory in chatgpt",
+        "does chatgpt use local memory",
+        "chatgpt error code out of memory",
+        "does chatgpt have memory",
+        "chatgpt now has memory across chats",
+        "why does chatgpt have a memory limit",
+        "how to remove memory in chatgpt",
+        "how to check chatgpt memory",
+        "how to fix chatgpt memory full",
+        "how to update chatgpt memory",
+        "how to use chatgpts in memory mode",
+        "how to access chatgpt memory",
+        "chat gpt with no memory"
+      ]
+    },
+    {
+      "seed": "chatgpt something went wrong",
+      "google": [
+        "chatgpt something went wrong",
+        "chatgpt something went wrong please try again",
+        "chatgpt something went wrong while generating the response",
+        "chatgpt something went wrong please try again later",
+        "chatgpt something went wrong reddit",
+        "chatgpt something went wrong error",
+        "chatgpt something went wrong and the content wasn't generated",
+        "did something went wrong",
+        "is something went wrong"
+      ],
+      "bing": [
+        "chatgpt something went wrong",
+        "chatgpt something went wrong reddit",
+        "chatgpt hmm something went wrong",
+        "chatgpt hmm something went wrong error",
+        "chatgpt keeps saying something went wrong",
+        "chatgpt something went wrong please try again",
+        "chatgpt says something went wrong",
+        "chatgpt change email something went wrong"
+      ]
+    },
+    {
+      "seed": "chatgpt image generation not working",
+      "google": [
+        "chatgpt image generation not working",
+        "chatgpt image generation not working today",
+        "chatgpt image generator not working reddit",
+        "chatgpt image creation not working",
+        "chatgpt picture generator not working",
+        "chatgpt image generator isn t working",
+        "chatgpt image generation tool not working",
+        "chatgpt image generator does not work",
+        "why is my chatgpt image generator not working",
+        "what is image generation"
+      ],
+      "bing": [
+        "chatgpt image generation not working",
+        "chatgpt image generator not working today",
+        "why is chatgpt image generation not working",
+        "chatgpt image generation failed",
+        "chatgpt with image generation enabled",
+        "why is chatgpt not generating images",
+        "how to enable image generation in chatgpt",
+        "does chatgpt have image generation",
+        "chatgpt image not showing",
+        "chat gpt image generator not working",
+        "chatgpt error generating images",
+        "is chatgpt image generator down",
+        "why won't chatgpt generate images for me",
+        "why can't chatgpt generate images",
+        "chatgpt not making images",
+        "chatgpt not showing images",
+        "chat gpt not generating images"
+      ]
+    },
+    {
+      "seed": "claude not working",
+      "google": [
+        "claude not working",
+        "claude not working today",
+        "claude not working right now",
+        "claude not working in excel",
+        "claude not working on chrome",
+        "claude not working now",
+        "claude not working on iphone",
+        "claude not working in terminal",
+        "claude not working reddit",
+        "claude not working rn"
+      ],
+      "bing": [
+        "claude not working",
+        "claude not working today",
+        "claude not working in uae",
+        "claude not working in devcontainer",
+        "claude not working in excel",
+        "claude not working today in india",
+        "claude not working in vs code",
+        "claude not working in pakistan",
+        "claude not working on edge",
+        "claude not working uk",
+        "claude not working in india",
+        "claude not working in vscode terminal",
+        "claude not working in terminal"
+      ]
+    },
+    {
+      "seed": "claude artifacts not showing",
+      "google": [
+        "claude artifacts not showing",
+        "claude artifacts not showing in artifacts tab",
+        "claude artifacts not showing in chat",
+        "claude artifacts not showing on mobile",
+        "claude artifacts not showing in app",
+        "claude artifacts not showing in mobile app",
+        "claude artifacts not working",
+        "claude artifacts not appearing",
+        "claude artifacts not working reddit",
+        "claude artifacts not working today"
+      ],
+      "bing": [
+        "claude artifacts not showing",
+        "claude not creating artifacts",
+        "how to use artifacts in claude",
+        "how to download claude artifacts",
+        "what is claude artifacts feature",
+        "how to utilize claude artifacts",
+        "how to delete artifacts in claude",
+        "how do artifacts work in claude",
+        "claude projects and artifacts",
+        "claude artifacts vs projects",
+        "claude ai how to use artifacts",
+        "claude ai public artifacts"
+      ]
+    },
+    {
+      "seed": "copilot not showing in word",
+      "google": [
+        "copilot not showing in word",
+        "copilot not showing in word mac",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word or excel",
+        "copilot not showing in word and excel",
+        "copilot not showing in word options",
+        "copilot not showing in word desktop app",
+        "copilot not showing in word 365",
+        "copilot not showing in word online",
+        "why is copilot not showing in word anymore"
+      ],
+      "bing": [
+        "copilot not showing in word",
+        "copilot not showing in word 365",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word desktop",
+        "copilot not showing in word options",
+        "copilot not showing in word for mac",
+        "copilot not showing in word or excel",
+        "copilot not showing in word or powerpoint",
+        "copilot icon not showing in word"
+      ]
+    },
+    {
+      "seed": "copilot key not working",
+      "google": [
+        "copilot key not working",
+        "copilot key not working windows 11",
+        "copilot key not working on keyboard",
+        "copilot button not working",
+        "copilot button not working on keyboard",
+        "copilot button not working in outlook",
+        "copilot button not working in edge",
+        "copilot button not working in word",
+        "copilot shortcut key not working",
+        "hp copilot key not working"
+      ],
+      "bing": [
+        "copilot key not working",
+        "copilot key not working on keyboard",
+        "copilot shortcut key not working",
+        "my copilot key is not working",
+        "lenovo copilot key not working",
+        "copilot enter key not working",
+        "remap copilot key not working",
+        "why copilot key is not working"
+      ]
+    },
+    {
+      "seed": "meta ai not showing whatsapp",
+      "google": [
+        "meta ai not working whatsapp",
+        "meta ai not appearing in whatsapp",
+        "meta ai not appearing in whatsapp group chat",
+        "meta ai not showing in whatsapp iphone",
+        "meta ai not showing in whatsapp android",
+        "meta ai not showing in whatsapp business",
+        "meta ai not showing in whatsapp web",
+        "meta ai not showing in whatsapp iphone 15",
+        "meta ai not showing in whatsapp samsung",
+        "meta ai not showing in whatsapp chat"
+      ],
+      "bing": [
+        "how to get meta ai on whatsapp",
+        "how to enable meta ai in whatsapp",
+        "how to add meta ai to whatsapp",
+        "whatsapp how to use meta ai",
+        "how to disable meta ai on whatsapp",
+        "how to stop meta ai in whatsapp",
+        "whatsapp turn off meta ai",
+        "install meta ai whatsapp",
+        "how to remove meta ai in whatsapp"
+      ]
+    },
+    {
+      "seed": "circle to search not working",
+      "google": [
+        "circle to search not working",
+        "circle to search not working on tiktok",
+        "circle to search not working on samsung",
+        "circle to search not working oneplus",
+        "circle to search not working on secure folder",
+        "gemini circle to search not working",
+        "google circle to search not working",
+        "why my circle to search not working",
+        "circle not working",
+        "ctrl f search not working"
+      ],
+      "bing": [
+        "circle to search not working",
+        "how to use circle to search",
+        "how to use google circle to search",
+        "circle to search in windows",
+        "circle to search feature",
+        "how to circle to search on pc",
+        "circle to search google",
+        "circle to search app",
+        "how to enable circle to search",
+        "microsoft circle to search",
+        "google circle to search windows"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

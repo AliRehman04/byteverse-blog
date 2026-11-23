@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-23T05:36:00.365Z",
+  "machine": "Windows 11 Pro, Google Chrome from the default install path, two empty temporary profiles, not signed in",
+  "note": "The two-letter country code Chrome recorded is not stored here. It was a country on Google's supported list.",
+  "versionNote": "The two parts report different versions. While this check ran, Chrome's updater downloaded 158.0.8127.37 (install folder: chrome.exe 157.0.8103.79, new_chrome.exe 158.0.8127.37, both version folders present) because Chrome was already open on this PC and the update was waiting for a relaunch. An earlier run the same morning stored 157.0.8103.79 in the pair. The article uses only the facts that hold in both runs: a two-letter code appears within seconds and is stored as a pair with a Chrome version.",
+  "localState": {
+    "variationsCountryIsTwoLetterCode": true,
+    "secondsUntilCountryAppeared": 15,
+    "permanentCountryIsPair": true,
+    "permanentCountryStoredVersion": "158.0.8127.37",
+    "permanentCountryEqualsLatestCountry": true,
+    "profileInfoCacheIsGlicEligible": false
+  },
+  "pages": {
+    "version": "157.0.8103.79",
+    "localStatePage": "Internal debugging pages are currently disabled. These pages are intended for use by Chrome developers, and may not be actively maintained or tested. To enable them, navigate to chrome://chrome-urls, click the button to enable debug pages, and then navigate to this page again.",
+    "managementPage": "Your browser is not managed This browser is not managed by a company or other organization. Activity on this device may ",
+    "geminiSettingsFinalUrl": "chrome://settings/",
+    "settingsMenuHasAiInnovations": true,
+    "uiLanguage": "en-US"
+  },
+  "temporaryProfilesRemoved": true
+}

@@ -8,7 +8,7 @@ const toolConfig = {
   name: "SEO Title Checker",
   title: "SEO Title Checker: Length, Pixels & SERP Preview",
   description:
-    "Free SEO title checker with character counts, estimated pixel width, desktop/mobile SERP previews, brand suffixes and draft comparison. No sign-up.",
+    "Free SEO title checker: character count, estimated pixel width, desktop and mobile title tag preview, optional meta description preview and draft comparison.",
   slug: "seo-title-analyzer",
   keywords: [
     "seo title checker",
@@ -49,6 +49,14 @@ const toolConfig = {
       question: "Will a title that fits this preview rank higher or get more clicks?",
       answer: "Not necessarily. Preview fit is a layout observation, not an SEO score. Google can generate a different title or snippet from the page and other signals. Write an accurate title, improve the page behind it, and evaluate actual queries, impressions, position and clicks in Search Console after publishing.",
     },
+    {
+      question: "Which separator should go between the title and my brand?",
+      answer: "Any short delimiter works. Google's title-link guidance suggests putting the site name at the start or end of the title, separated by a delimiter such as a hyphen, colon or pipe. This checker offers a pipe, a dash or a middle dot and counts it in the length and width. Pick one and use it consistently.",
+    },
+    {
+      question: "Can I check a meta description with the title?",
+      answer: "Yes, for layout only. Open Preview URL & description and paste the description: the mockup shows it under the title with a character count. It does not measure description pixels or predict Google's snippet. Google mainly uses page content and may use the meta description when it describes the page better.",
+    },
   ],
 };
 
@@ -75,7 +83,7 @@ export default function SeoTitleAnalyzerPage() {
         <div className="relative max-w-3xl">
           <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary"><Sparkles size={13} aria-hidden="true" />Measure first. Publish with context.</p>
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">SEO title checker<span className="mt-2 block text-2xl font-medium text-muted-foreground sm:text-3xl">A clearer title starts here.</span></h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Check title length, estimate pixel width and preview your search snippet. Include your brand, compare a few drafts and keep the version that accurately describes your page—not the one with a made-up SEO score.</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Check title length, estimate pixel width and preview your title tag, with an optional meta description, in a desktop or mobile search-result mockup. Include your brand, compare a few drafts and keep the version that accurately describes your page—not the one with a made-up SEO score.</p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium">
             <span className="inline-flex items-center gap-1.5"><Ruler size={14} className="text-primary" aria-hidden="true" />Characters + pixels</span>
             <span className="inline-flex items-center gap-1.5"><Monitor size={14} className="text-primary" aria-hidden="true" />Desktop + mobile</span>
@@ -104,7 +112,7 @@ export default function SeoTitleAnalyzerPage() {
 
       <section id="title-length" className="mt-14 grid scroll-mt-24 items-start gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
-          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Title length: characters count text, pixels explain fit</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">SEO title length: characters count text, pixels explain fit</h2>
           <p>A 60-character title is not automatically safe, and a 61-character title is not automatically bad. <a href="https://developers.google.com/search/docs/appearance/title-link" className="text-primary underline underline-offset-4">Google&apos;s title-link guidance</a> says there is no fixed title-element length limit. Displayed title links are shortened to fit the available space. That space depends on the device and result layout.</p>
           <p>Wide letters, capitals, punctuation and your brand all use space. Ten capital Ws and ten lowercase is have the same character count but very different widths. The checker measures the complete title in your browser using 20px Arial. It counts the separator and brand, then wraps or clips at the visible preview width. The displayed pixel value is the full, unwrapped width in CSS pixels.</p>
           <p>Our desktop model uses one line up to 580px; the mobile model uses two lines up to 360px. On a smaller screen, the preview uses the space actually available. These are transparent simulation choices, not permanent Google specifications. A title that fits still needs to make sense and match the page. Do not cut an important product attribute just to get a fit label.</p>
@@ -155,7 +163,7 @@ export default function SeoTitleAnalyzerPage() {
       </section>
 
       <section className="mt-12 flex flex-col gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-start sm:justify-between">
-        <div className="max-w-3xl"><p className="flex items-center gap-2 font-semibold text-foreground"><BookOpen size={14} aria-hidden="true" />Method reviewed 28 September 2026</p><p className="mt-2 leading-relaxed">Based on Google Search Central&apos;s <a href="https://developers.google.com/search/docs/appearance/title-link" className="text-primary underline">title-link</a> and <a href="https://developers.google.com/search/docs/appearance/snippet" className="text-primary underline">snippet guidance</a>. Measurements use the documented preview assumptions above. No invented reviews, traffic benchmarks or guaranteed scores.</p></div>
+        <div className="max-w-3xl"><p className="flex items-center gap-2 font-semibold text-foreground"><BookOpen size={14} aria-hidden="true" />Method reviewed 23 November 2026</p><p className="mt-2 leading-relaxed">Based on Google Search Central&apos;s <a href="https://developers.google.com/search/docs/appearance/title-link" className="text-primary underline">title-link</a> and <a href="https://developers.google.com/search/docs/appearance/snippet" className="text-primary underline">snippet guidance</a>. Measurements use the documented preview assumptions above. No invented reviews, traffic benchmarks or guaranteed scores.</p></div>
         <a href="#title-workspace" className="inline-flex min-h-10 shrink-0 items-center gap-2 font-semibold text-primary">Back to the checker <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
     </div>

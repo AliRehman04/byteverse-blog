@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { v2 as cloudinary } from "cloudinary";
-
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import { uploadPostImage } from "@/lib/cloudinary-upload";
 
 export async function POST(request: Request) {
   if (!(await isAuthenticated())) {
@@ -30,30 +24,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+  if (!cloudName || !apiKey || !apiSecret) {
+    return NextResponse.json({ error: "Image upload is not configured" }, { status: 500 });
+  }
 
-  const result = await new Promise<{ secure_url: string; public_id: string }>(
-    (resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            folder: "byteverse/posts",
-            transformation: [
-              { width: 1200, height: 630, crop: "fill", quality: "auto" },
-            ],
-          },
-          (error, result) => {
-            if (error) reject(error);
-            else resolve(result as { secure_url: string; public_id: string });
-          }
-        )
-        .end(buffer);
-    }
-  );
-
-  return NextResponse.json({
-    url: result.secure_url,
-    publicId: result.public_id,
-  });
+  try {
+    const result = await uploadPostImage(file, { cloudName, apiKey, apiSecret });
+    return NextResponse.json({ url: result.secureUrl, publicId: result.publicId });
+  } catch {
+    return NextResponse.json({ error: "Upload failed" }, { status: 502 });
+  }
 }

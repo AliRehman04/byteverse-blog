@@ -8,6 +8,10 @@
     "prebuild": "node scripts/build-invoice-workspace.mjs && node scripts/build-image-studio.mjs",
     "build": "next build",
     "start": "next start",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "node scripts/cf-deploy-guard.mjs && opennextjs-cloudflare deploy",
+    "cf:upload": "node scripts/cf-deploy-guard.mjs && opennextjs-cloudflare upload",
     "build:invoice": "node scripts/build-invoice-workspace.mjs",
     "build:images": "node scripts/build-image-studio.mjs",
     "test:images": "node scripts/test-image-studio-core.mjs",
@@ -48,6 +52,7 @@
     "@jsquash/webp": "1.5.0",
     "@lezer/highlight": "1.2.5",
     "@neondatabase/serverless": "^1.1.0",
+    "@opennextjs/cloudflare": "^1.20.18",
     "@tailwindcss/typography": "^0.5.19",
     "@uiw/react-md-editor": "^4.1.0",
     "bcryptjs": "^3.0.3",
@@ -68,7 +73,7 @@
     "jspdf": "^4.2.1",
     "libheif-js": "1.23.5",
     "lucide-react": "^1.16.0",
-    "next": "16.2.6",
+    "next": "16.4.6",
     "next-cloudinary": "^6.17.5",
     "next-mdx-remote": "^6.0.0",
     "next-sitemap": "^4.2.3",
@@ -102,10 +107,11 @@
     "drizzle-kit": "^0.31.10",
     "esbuild": "0.28.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "16.4.6",
     "lighthouse": "13.5.0",
     "read-excel-file": "9.3.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.166.0"
   }
 }

@@ -57,9 +57,13 @@ export function rateLimit(
   };
 }
 
-/** Get client IP from request headers (works on Vercel) */
+// Cloudflare always overwrites CF-Connecting-IP, so it is trusted only there; elsewhere a client could send it.
+const onCloudflareWorkers = typeof navigator !== "undefined" && navigator.userAgent === "Cloudflare-Workers";
+
+/** Get client IP from request headers (Cloudflare Workers or Vercel) */
 export function getClientIp(request: Request): string {
   return (
+    (onCloudflareWorkers ? request.headers.get("cf-connecting-ip") : null) ||
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip") ||
     "unknown"

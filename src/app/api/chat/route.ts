@@ -5,8 +5,6 @@ import { eq } from "drizzle-orm";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { siteConfig } from "@/lib/config";
 
-export const runtime = "edge";
-
 // Scoring needs every published article body; keep one copy per isolate instead of reloading on each message.
 type CorpusPost = { title: string; slug: string; excerpt: string | null; content: string; keywords: string | null; summary: string | null };
 const CORPUS_TTL_MS = 10 * 60 * 1000;

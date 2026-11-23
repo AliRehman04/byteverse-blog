@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // ByteVerse on Cloudflare Workers via @opennextjs/cloudflare.
+  // Deploy from Workers Builds (CI), never from a local build: a local build embeds .env.local values in the Worker.
+  "name": "byteverse",
+  "main": "cloudflare/worker.js",
+  "compatibility_date": "2026-11-23",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+    // Serve /invoice-workspace/frame.html at its exact path, as Vercel does, instead of redirecting to /frame.
+    "html_handling": "none"
+  },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "byteverse" }],
+  "r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "byteverse-next-cache" }],
+  "durable_objects": {
+    "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }],
+  // next/image optimization through Cloudflare Images.
+  "images": { "binding": "IMAGES" },
+  // Same schedule as the former Vercel Cron in vercel.json: publish scheduled posts daily at 00:00 UTC.
+  "triggers": { "crons": ["0 0 * * *"] },
+  "observability": { "enabled": true },
+  "upload_source_maps": true,
+  "workers_dev": true,
+  "preview_urls": false
+}

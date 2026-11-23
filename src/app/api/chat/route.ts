@@ -237,9 +237,10 @@ async function callGroq(systemPrompt: string, userMessage: string): Promise<stri
           { role: "user", content: userMessage },
         ],
         temperature: 0.7,
-        max_completion_tokens: 800,
+        max_completion_tokens: 1000,
         top_p: 0.9,
-        ...groqModelOptions(GROQ_MODEL),
+        // At low effort gpt-oss-120b misspelled "Ollama" as "Ollava" in 4 of 6 chat answers; medium had none.
+        ...groqModelOptions(GROQ_MODEL, "medium"),
       }),
     });
     if (!res.ok) {

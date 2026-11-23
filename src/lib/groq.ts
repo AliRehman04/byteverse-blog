@@ -5,8 +5,8 @@ export const GROQ_MODEL = "openai/gpt-oss-120b";
 export const GROQ_MODEL_LABEL = "GPT-OSS 120B";
 
 // gpt-oss reasons before it answers and those tokens count toward max_completion_tokens; keep the reasoning short and out of the reply.
-export function groqModelOptions(model: string) {
-  return model.startsWith("openai/gpt-oss") ? { reasoning_effort: "low", include_reasoning: false } : {};
+export function groqModelOptions(model: string, reasoningEffort: "low" | "medium" = "low") {
+  return model.startsWith("openai/gpt-oss") ? { reasoning_effort: reasoningEffort, include_reasoning: false } : {};
 }
 
 // gpt-oss writes look-alike characters (U+2011 hyphens, U+202F and U+00A0 spaces, zero-width marks) that break copy-paste, search and ATS keyword matching.

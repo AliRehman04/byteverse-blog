@@ -180,14 +180,24 @@
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed."
   },
   "publication": {
-    "status": "published",
+    "status": "published-live-verified",
     "postId": 259,
     "publishedAt": "2026-11-23T06:04:06.513Z",
     "liveUrl": "https://www.byteverse.fyi/blog/gemini-in-chrome-not-showing",
     "databaseWrites": 1,
     "otherPostsUnchanged": 190,
     "otherPostsHash": "edb162015018762b551ee238a0da6bc2",
-    "assetCommits": ["c47b8fd"],
+    "assetCommits": ["c47b8fd39593a1783bc5c8066e8b72193e0c9d88"],
+    "releaseCommit": "982cd96a10ed66ff2460e62c8f44d6826eb78a4c",
+    "deploymentStatus": "Confirmed by the new post appearing in the live sitemap about a minute after the push. The GitHub deployment status API was not read.",
+    "liveVerification": {
+      "command": "node scripts/test-gemini-in-chrome-post.mjs --live",
+      "result": "12/12 passed: 11 offline checks plus live title, meta description, canonical, publish date, no noindex, og:image, author, FAQPage schema (first five of six), one table, six FAQ details, five internal links and two key sentences",
+      "technical": "One H1, 17 H2 headings; canonical is the article URL; robots index, follow; meta description 154 characters; og:image is the cover illustration; schema types BlogPosting, BreadcrumbList, FAQPage; all 17 links in the article body return 200; the inline image has alt text and fixed dimensions.",
+      "discovery": ["/", "/blog", "/category/tech-guides", "/sitemap.xml", "/feed.xml"],
+      "browser": "No browser session on the live page after deployment; the pre-publish preview covered layout.",
+      "indexingRequest": "Not submitted; owner action in Search Console"
+    },
     "preview": "Static preview with the real renderer and site CSS passed at 320, 375 (light and dark), 768 and 1440 px. Mobile and desktop screenshots reviewed. The lookup table wraps into narrow columns on phones and the diagram text is small there; the eight checks are also the article's section headings.",
     "approvedBy": "owner message 'add new blog according to prompt' (23 November 2026); the brief instructs publication"
   }

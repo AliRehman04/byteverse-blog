@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { rateLimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { AI_REWRITE_LIMITS } from "@/lib/plagiarism/ai-rewrite-limits";
+import { GROQ_MODEL, GROQ_URL, groqModelOptions, toPlainText } from "@/lib/groq";
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 export async function POST(request: Request) {
   try {
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: GROQ_MODEL,
         messages: [
           {
             role: "system",
@@ -59,7 +59,8 @@ export async function POST(request: Request) {
           },
         ],
         temperature: strength <= 30 ? 0.3 : strength <= 65 ? 0.6 : 0.9,
-        max_tokens: 4096,
+        max_completion_tokens: 4096,
+        ...groqModelOptions(GROQ_MODEL),
       }),
     });
 
@@ -73,8 +74,7 @@ export async function POST(request: Request) {
     }
 
     const data = await res.json();
-    const rewritten =
-      data.choices?.[0]?.message?.content?.trim() || "";
+    const rewritten = toPlainText(data.choices?.[0]?.message?.content || "").trim();
 
     if (!rewritten) {
       return NextResponse.json(
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       text: rewritten,
-      model: "llama-3.3-70b",
+      model: GROQ_MODEL,
       remaining: rl.remaining,
     });
   } catch (err) {

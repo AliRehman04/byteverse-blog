@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { GROQ_MODEL, GROQ_URL, groqModelOptions, toPlainText } from "@/lib/groq";
 
 const XAI_API_KEY = process.env.XAI_API_KEY;
 const XAI_MODEL = process.env.XAI_MODEL || "grok-3-mini";
 const XAI_URL = "https://api.x.ai/v1/chat/completions";
 const CV_GROQ_API_KEY = process.env.CV_GROQ_API_KEY || process.env.GROQ_CV_API_KEY;
-const CV_GROQ_MODEL = process.env.CV_GROQ_MODEL || "llama-3.3-70b-versatile";
+const CV_GROQ_MODEL = process.env.CV_GROQ_MODEL || GROQ_MODEL;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = "llama-3.3-70b-versatile";
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 type Provider = "xai" | "groq";
 
@@ -40,11 +39,11 @@ function buildInstruction(action: string, body: Record<string, unknown>) {
   }
 
   if (action === "bullet") {
-    return `Rewrite this CV bullet into a stronger achievement-focused bullet. Keep it truthful, concise, measurable where possible, and start with a strong action verb. Return only one bullet sentence. Bullet: ${text}`;
+    return `Rewrite this CV bullet into a stronger achievement-focused bullet. Keep it truthful and concise, and start with a strong action verb. Keep any numbers already in the bullet, but do not add new numbers, percentages or metrics. Return only one bullet sentence. Bullet: ${text}`;
   }
 
   if (action === "tailor") {
-    return `Tailor this CV for the target job. Return JSON only with keys summary, skills, skillGroups, bulletSuggestions. summary must be 2 sentences. skills must be an array of 8-14 skills. skillGroups must be an array of 3-5 objects with title and items arrays for grouped CV skills. bulletSuggestions must be an array of 5 stronger bullets. Target role: ${targetRole}. Job description: ${jobDescription}. Resume JSON: ${resume}`;
+    return `Tailor this CV for the target job. Return JSON only with keys summary, skills, skillGroups, bulletSuggestions. summary must be 2 sentences. skills must be an array of 8-14 skills. skillGroups must be an array of 3-5 objects with title and items arrays for grouped CV skills. bulletSuggestions must be an array of 5 stronger bullets based only on facts in the resume; do not add numbers, percentages or metrics that are not in the resume. Target role: ${targetRole}. Job description: ${jobDescription}. Resume JSON: ${resume}`;
   }
 
   if (action === "design") {
@@ -71,6 +70,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const action = safeText(body.action, 50) || "improve";
     const instruction = buildInstruction(action, body);
+    const isGroq = provider.provider === "groq";
+    const wantsJson = action === "tailor" || action === "design";
+    const maxTokens = action === "tailor" ? 1500 : action === "design" ? 700 : 600;
 
     const res = await fetch(provider.url, {
       method: "POST",
@@ -88,8 +90,10 @@ export async function POST(request: Request) {
           },
           { role: "user", content: instruction },
         ],
-        temperature: action === "tailor" || action === "design" ? 0.35 : 0.55,
-        max_tokens: action === "tailor" ? 1000 : action === "design" ? 450 : 350,
+        temperature: wantsJson ? 0.35 : 0.55,
+        ...(isGroq
+          ? { max_completion_tokens: maxTokens, ...groqModelOptions(provider.model), ...(wantsJson ? { response_format: { type: "json_object" } } : {}) }
+          : { max_tokens: maxTokens }),
       }),
     });
 
@@ -99,7 +103,7 @@ export async function POST(request: Request) {
     }
 
     const data = await res.json();
-    const output = data.choices?.[0]?.message?.content?.trim() || "";
+    const output = toPlainText(data.choices?.[0]?.message?.content || "").trim();
     if (!output) {
       return NextResponse.json({ error: "AI returned empty response." }, { status: 502 });
     }

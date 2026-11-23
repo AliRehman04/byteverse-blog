@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
+import { GROQ_MODEL, GROQ_URL, groqModelOptions, toPlainText } from "@/lib/groq";
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
@@ -52,17 +53,19 @@ Rules:
 - Return ONLY the JSON object, nothing else`;
 
   try {
-    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const res = await fetch(GROQ_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: GROQ_MODEL,
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
-        max_tokens: 500,
+        max_completion_tokens: 1200,
+        response_format: { type: "json_object" },
+        ...groqModelOptions(GROQ_MODEL),
       }),
     });
 
@@ -85,7 +88,7 @@ Rules:
     }
 
     // Parse JSON from response (handle potential markdown wrapping)
-    const cleanJson = text.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+    const cleanJson = toPlainText(text).replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
     const seoData = JSON.parse(cleanJson);
 
     return NextResponse.json(seoData);

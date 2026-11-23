@@ -4,6 +4,7 @@ import { posts, contentGaps } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { siteConfig } from "@/lib/config";
+import { GROQ_MODEL, GROQ_URL, groqModelOptions, toPlainText } from "@/lib/groq";
 
 // Scoring needs every published article body; keep one copy per isolate instead of reloading on each message.
 type CorpusPost = { title: string; slug: string; excerpt: string | null; content: string; keywords: string | null; summary: string | null };
@@ -21,8 +22,6 @@ async function loadCorpus(): Promise<CorpusPost[]> {
 }
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = "llama-3.3-70b-versatile";
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 /* ── Tools Knowledge Base ──────────────────────────────── */
 const TOOLS: { slug: string; name: string; desc: string; keywords: string[] }[] = [
@@ -238,14 +237,20 @@ async function callGroq(systemPrompt: string, userMessage: string): Promise<stri
           { role: "user", content: userMessage },
         ],
         temperature: 0.7,
-        max_tokens: 500,
+        max_completion_tokens: 800,
         top_p: 0.9,
+        ...groqModelOptions(GROQ_MODEL),
       }),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.error("Groq chat error:", res.status, (await res.text()).slice(0, 300));
+      return null;
+    }
     const data = await res.json();
-    return data.choices?.[0]?.message?.content?.trim() || null;
-  } catch {
+    const answer = data.choices?.[0]?.message?.content;
+    return typeof answer === "string" ? toPlainText(answer).trim() || null : null;
+  } catch (error) {
+    console.error("Groq chat request failed:", error);
     return null;
   }
 }

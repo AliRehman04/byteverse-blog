@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { AI_REWRITE_LIMITS } from "@/lib/plagiarism/ai-rewrite-limits";
+import { GROQ_MODEL_LABEL } from "@/lib/groq";
 import { compareSources } from "@/lib/similarity/engine";
 import { DEFAULT_MATCH_OPTIONS } from "@/lib/similarity/types";
 
@@ -695,7 +696,7 @@ export function PlagiarismRemoverTool() {
               <Sparkles size={18} className="text-violet-500 shrink-0" />
               <div>
                 <p className="text-sm font-medium">AI-Powered Rewrite</p>
-                <p className="text-xs text-muted-foreground">Rewritten by Llama 3.3 70B — {outWordCount} words</p>
+                <p className="text-xs text-muted-foreground">Rewritten by {GROQ_MODEL_LABEL} — {outWordCount} words</p>
               </div>
             </div>
           ) : (

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 
 // Cloudflare build entry (npm run cf:build). NEXT_PUBLIC_ values are inlined into the bundle at build time, so the
@@ -16,6 +16,11 @@ for (const [key, value] of Object.entries(publicEnv)) {
   }
   process.env[key] ??= value;
 }
+
+// Workers Builds restores .next/cache between builds, and Next.js keeps the database (Neon HTTP) responses there for a
+// day (fetch-cache, revalidate 86400). A rebuild after a post edit would then prerender the old text, so drop only that
+// folder and keep the compiler cache.
+rmSync(new URL("../.next/cache/fetch-cache", import.meta.url), { recursive: true, force: true });
 
 const windows = process.platform === "win32";
 const build = spawnSync(windows ? "npx.cmd" : "npx", ["opennextjs-cloudflare", "build", ...process.argv.slice(2)], { stdio: "inherit", shell: windows });

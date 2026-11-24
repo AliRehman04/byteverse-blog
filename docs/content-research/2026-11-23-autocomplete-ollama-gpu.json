@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-11-23T17:49:23.408Z",
+  "endpoint": "https://suggestqueries.google.com/complete/search",
+  "parameters": {
+    "client": "firefox",
+    "hl": "en",
+    "gl": "us"
+  },
+  "observations": {
+    "ollama missing gpu": [],
+    "ollama missing gpu runtime": [],
+    "ollama gpu runtime": [
+      "ollama runtime nvidia"
+    ],
+    "ollama mlx runtime": [
+      "ollama mlx runtime",
+      "ollama mlx runtime not available",
+      "ollama install mlx runtime",
+      "rune factory 4 game length",
+      "rune factory 4 time limit"
+    ],
+    "ollama mlx runtime is not available": [
+      "ollama mlx runtime not available",
+      "ollama this model requires mlx support but the mlx runtime is not available",
+      "install java runtime on macos"
+    ],
+    "this model requires mlx support": [
+      "this model requires mlx support",
+      "ollama this model requires mlx support",
+      "error this model requires mlx support"
+    ],
+    "ollama not using gpu": [
+      "ollama not using gpu",
+      "ollama not using gpu windows",
+      "ollama not using gpu linux",
+      "ollama not using gpu ubuntu",
+      "ollama not using gpu after update",
+      "ollama not using gpu windows 11",
+      "ollama not using gpu amd",
+      "ollama not using gpu memory",
+      "ollama not using gpu windows amd",
+      "ollama not using gpu arch"
+    ],
+    "ollama not using gpu windows": [
+      "ollama not using gpu windows",
+      "ollama not using gpu windows 11",
+      "ollama not using gpu windows amd",
+      "ollama not using nvidia gpu windows",
+      "ollama does not use gpu windows",
+      "ollama using gpu windows",
+      "ollama is not using my gpu windows",
+      "ollama use gpu windows 11",
+      "ollama use gpu windows amd",
+      "can you use pc without gpu"
+    ],
+    "ollama integrated gpu": [
+      "ollama integrated gpu amd",
+      "ollama intel gpu",
+      "ollama intel gpu support",
+      "ollama intel gpu docker",
+      "ollama intel gpu acceleration",
+      "ollama intel gpu linux",
+      "ollama intel gpu vulkan",
+      "ollama intel gpu unraid",
+      "ollama_intel_gpu false",
+      "ollama proxmox intel gpu"
+    ],
+    "ollama intel gpu": [
+      "ollama intel gpu",
+      "ollama intel gpu support",
+      "ollama intel gpu docker",
+      "ollama intel gpu acceleration",
+      "ollama intel gpu linux",
+      "ollama intel gpu vulkan",
+      "ollama intel gpu unraid",
+      "ollama_intel_gpu false",
+      "ollama proxmox intel gpu",
+      "ollama intel gpu docker compose"
+    ],
+    "ollama igpu": [
+      "ollama igpu",
+      "ollama igpu enable",
+      "ollama igpu intel",
+      "ollama amd gpu",
+      "ollama igpu enabled=1",
+      "ollama igpu support",
+      "ollama igpu vulkan",
+      "ollama use igpu",
+      "ollama docker igpu",
+      "ollama intel gpu docker"
+    ],
+    "ollama amd gpu windows": [
+      "ollama amd gpu windows",
+      "ollama radeon gpu windows",
+      "ollama use amd gpu windows",
+      "ollama docker amd gpu windows",
+      "ollama amd gpu support windows",
+      "ollama not using amd gpu windows",
+      "ollama run on amd gpu windows",
+      "make ollama use amd gpu windows",
+      "force ollama to use amd gpu windows",
+      "ollama enable amd gpu windows"
+    ],
+    "ollama docker gpu": [
+      "ollama docker gpu",
+      "ollama docker gpu windows",
+      "ollama docker gpu passthrough",
+      "ollama docker gpu support",
+      "ollama docker gpu compose",
+      "ollama docker gpu linux",
+      "ollama docker gpu mac",
+      "ollama docker gpu amd",
+      "ollama docker gpu ubuntu",
+      "ollama docker gpu usage"
+    ],
+    "ollama gpu requirements": [
+      "ollama gpu requirements",
+      "ollama system requirements",
+      "ollama hardware requirements",
+      "ollama system requirements windows",
+      "ollama system requirements linux",
+      "ollama system requirements mac",
+      "ollama hardware requirements mac",
+      "ollama models gpu requirements",
+      "ollama minimum gpu requirements",
+      "ollama gpu memory requirements"
+    ],
+    "how to check if ollama is using gpu": [
+      "how to check if ollama is using gpu",
+      "how to check if ollama is using gpu or cpu",
+      "how to check if ollama is using gpu windows",
+      "how to check if ollama is using gpu linux",
+      "how to check if ollama is using gpu ubuntu",
+      "how to check if ollama is using gpu on mac",
+      "how to check whether ollama is using gpu",
+      "how to check if ollama is using nvidia gpu",
+      "how to check if ollama docker is using gpu",
+      "how to check if ollama is using amd gpu"
+    ],
+    "ollama dropping integrated gpu": []
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "slug": "ollama-not-using-gpu-windows-2026",
+  "postId": 235,
+  "website": "https://www.byteverse.fyi",
+  "checkedAt": "2026-11-24T04:20:58.569Z",
+  "previous": {
+    "post": {
+      "id": 235,
+      "slug": "ollama-not-using-gpu-windows-2026",
+      "title": "Ollama Not Using GPU on Windows? 7 Checks Before Reinstalling",
+      "author": "Ali Rehman",
+      "content": "If **Ollama is not using your GPU on Windows**, start with `ollama ps` while a local model is loaded. Its **PROCESSOR** column separates three different situations: the model is entirely in GPU memory, entirely in system memory, or split between them. Those percentages describe **memory placement, not live GPU utilization**. A quiet Task Manager graph alone is not evidence that Ollama has fallen back to the CPU.\n\nThe useful fix depends on that first result. Full CPU placement calls for checking the actual server, supported hardware, drivers and overrides. A CPU/GPU split calls for a memory check before a reinstall. An empty list calls for loading a local model first.\n\n**Scope:** this is a documentation-based guide for the native Windows Ollama application, checked on **October 6, 2026**. CLI command names were checked against installed help; the GPU cases and diagrams are explanatory, not hardware benchmarks. No NVIDIA/AMD comparison or successful driver repair is claimed. WSL, containers and remote servers have separate boundaries below.\n\n## First, identify the symptom\n\nOpen PowerShell and run:\n\n```powershell\nollama ps\n```\n\nRead the row for the model you are actually using. The [official Ollama FAQ](https://docs.ollama.com/faq) defines the PROCESSOR values as follows:\n\n| What you see | What it establishes | Useful next step |\n| --- | --- | --- |\n| `100% GPU` | The model is loaded entirely in GPU memory | Investigate workload, model and context if responses are slow; do not assume CPU fallback |\n| `100% CPU` | The model is loaded entirely in system memory | Check server location, GPU support, drivers and CPU-forcing settings |\n| A split such as `48%/52% CPU/GPU` | Some of the model is on each side | Check available VRAM and allocated context before changing drivers |\n| No model rows | No model is currently reported as loaded by this server | Send a short request to an installed local model and check again |\n| A connection error | The client could not reach its server | Resolve the server/address problem before diagnosing GPU placement |\n\nModels are normally unloaded after an idle period; the FAQ documents five minutes as the default, configurable with keep-alive settings. A model appearing in `ollama list` only establishes that it is available on the server. It does not mean it is loaded now.\n\n![GeForce RTX graphics card installed inside a desktop PC with liquid cooling](https://www.byteverse.fyi/blog/ollama-gpu/photo-inline.jpg \"A discrete GPU inside a desktop PC. Ollama only uses it when the driver, runtime and model placement all line up. Photo: Andrey Matveev / Pexels.\")\n\n## 1. Make sure you are checking the right Ollama server\n\nThe CLI, desktop chat window and third-party front end do not necessarily point to the same place. A browser UI might be using Ollama in a container, a different computer, or a cloud-hosted model while your terminal is checking native Windows.\n\nConfirm three things before making changes: the exact model name, where inference is running, and which server your client uses. A cloud model is not a test of your local GPU. If you are still choosing between native tools, the [local AI setup guide](/blog/how-to-run-ai-locally-2026) covers that decision; this article assumes you already have Ollama installed.\n\nThese commands show the CLI selected by PowerShell, the version it reports, and models visible through its configured server:\n\n```powershell\nGet-Command ollama | Select-Object Source\nollama --version\nollama list\n```\n\nIf your client reports a client/server version mismatch, record both rather than treating an updated executable as proof that the running server was updated. Review `OLLAMA_HOST` if you deliberately configured a custom address, and compare the endpoint in your front end's settings. Do not change it to `0.0.0.0` to solve a GPU problem: that changes network exposure, not hardware support.\n\nFor the standard native setup, the documented server listens on localhost port 11434. This read-only PowerShell request checks that local server explicitly:\n\n```powershell\n(Invoke-RestMethod -Uri 'http://127.0.0.1:11434/api/ps' -TimeoutSec 10).models |\n  Select-Object name, size, size_vram, context_length\n```\n\nThe [running-model API reference](https://docs.ollama.com/api/ps) defines `size_vram` in bytes and `context_length` for the loaded model. Neither is a live utilization reading. An empty result here, alongside activity in a remote UI, is a reason to verify endpoints—not to install more drivers on the wrong machine. If you intentionally use a custom local port, use that approved address instead.\n\n## 2. Check the Windows hardware and driver requirements\n\nOllama's automatic GPU selection only helps when the hardware and backend are supported. Start with the [current Windows requirements](https://docs.ollama.com/windows) and the platform-specific [hardware support page](https://docs.ollama.com/gpu). The native application does not require WSL merely to use a supported GPU.\n\n### NVIDIA: distinguish detection from successful inference\n\nFor an NVIDIA system, these are useful read-only checks:\n\n```powershell\nnvidia-smi\nnvidia-smi -L\n```\n\nIf the utility runs and lists the intended card, Windows can communicate with that NVIDIA driver. This **does not yet prove** that Ollama detected the same device, has enough VRAM, or loaded the model there. If the command is not found, check the installed driver and utility path; that message alone does not prove there is no NVIDIA GPU.\n\nAs checked for this guide, the Windows page specifies NVIDIA driver **551.61 or newer**. The hardware page specifies compute capability **5.0 or newer**, with an important exception: **compute capability 5.0 through 6.2 requires driver 570 or newer**. Do not reduce those requirements to “any CUDA card” or “550 works for everything.” Match your exact card to the current supported-device information.\n\nUse the laptop manufacturer or GPU vendor's supported driver path. If a driver installation requires a reboot, finish it before retesting. An update can change the situation, but it is not a guaranteed repair for unsupported hardware.\n\nA separate CUDA Toolkit installation is not a universal prerequisite for the normal Windows Ollama installer. Do not add development toolchains, unofficial DLL packs or random driver bundles just because an old forum answer mentions CUDA. First identify the actual missing component or backend error in Ollama's log.\n\n### AMD: use the Windows table, not the Linux one\n\nCurrent documentation distinguishes **ROCm v7 / HIP7-capable Windows drivers** from **Vulkan acceleration**. A card appearing in the Linux ROCm table does not establish Windows ROCm support.\n\nThe Windows page specifically notes that some RDNA2/Radeon RX 6000 systems, including RX 6800-class cards, may not expose ROCm 7 through current Windows drivers. It recommends Vulkan as the fallback for those systems. The hardware documentation says Vulkan is enabled by default **when the backend is installed**. Older advice that every user must enable an experimental Vulkan switch may not describe your current release.\n\nThat is not a promise that every Radeon or integrated GPU works. Check the exact device, driver, installed backend and server log. On a mixed integrated/discrete system, only select a Vulkan device index after establishing which index belongs to the discrete card. Copying someone else's `GGML_VK_VISIBLE_DEVICES=1` can select the wrong device on yours.\n\n## 3. Separate a VRAM limit from a detection failure\n\nA CPU/GPU split means GPU placement is already happening. The next step is to investigate why part of the model remains in system memory, starting with available VRAM and context allocation. Placement alone does not prove the cause.\n\nAvailable VRAM can be smaller than the card's advertised capacity. Other applications, another loaded model, the selected model's memory needs and its context allocation all matter. The model's download size is not a complete runtime-memory budget.\n\nTry a controlled comparison on a personal, idle setup:\n\n1. Finish active work and close GPU-heavy applications you do not need for the test.\n2. Check `ollama ps` for other loaded models. Unload only a model you know is unused; do not disrupt a shared service or someone else's request.\n3. Test a smaller **already installed local model** with a short, non-sensitive prompt.\n4. Keep the context modest for the comparison, then inspect PROCESSOR and CONTEXT again.\n\nThe commands below use `example-model:tag` as a placeholder. Replace it with an exact local model tag from your own list; do not run the placeholder literally. Running a tag that is not installed can trigger a model download. Stopping a model unloads it; it is different from removing its downloaded files.\n\n```powershell\nollama stop example-model:tag\nollama run example-model:tag \"Reply with one short sentence.\"\nollama ps\n```\n\nIf the smaller model loads fully on GPU but the larger one still splits, that is evidence that the GPU path works for at least one workload. It does not establish a universal safe model size, a tokens-per-second target, or that the larger model must also fit.\n\n\n### Check the actual context instead of assuming a default\n\nLarger context allocations require more memory. The [dedicated context-length guide](https://docs.ollama.com/context-length) documents a settings slider in the application and a CONTEXT column in `ollama ps` for inspecting the running allocation.\n\nThe official pages currently disagree about defaults: the FAQ says 4,096 tokens, while the dedicated context page describes VRAM-dependent defaults. That is why this guide does **not** assume every installation starts at 4k. Check your running allocation and your app's settings.\n\nFor a CLI comparison, the documented interactive command is:\n\n```text\n/set parameter num_ctx 4096\n```\n\nEnter that **inside an interactive `ollama run` session**, not at the PowerShell prompt. Send another short prompt and recheck placement. If your front end supplies its own context setting, change the relevant setting there instead. Lower context is a diagnostic comparison, not a claim that 4,096 tokens is sufficient for every coding or document task.\n\nDo not make five memory changes together. Change one factor, record the result, and restore settings that did not help. A smaller context cannot make an unsupported card or missing driver supported.\n\n## 4. Look for settings that deliberately exclude the GPU\n\nEnvironment variables copied from earlier experiments can be easy to forget. In **Edit environment variables for your account**, review only the settings relevant to Ollama and note their existing values before changing anything.\n\nFor NVIDIA, the hardware docs describe `CUDA_VISIBLE_DEVICES=-1` as a way to force CPU usage. A value selecting an unavailable device can also leave no intended device visible. For Vulkan, the documentation describes `OLLAMA_VULKAN=0` or `GGML_VK_VISIBLE_DEVICES=-1` as ways to disable that backend or its devices.\n\nThe troubleshooting page also describes an experimental `OLLAMA_LLM_LIBRARY` override. A CPU library override such as `cpu_avx2`, if supported by the installed release, bypasses normal automatic selection. Library names vary: copying an old `cuda_v11` name is not a reliable way to repair a newer installation.\n\nThese controls are backend-specific. A NVIDIA visibility variable is not a universal AMD/Vulkan setting. Remove only a stale override you understand, or ask the administrator who configured it. Do not clear all user/system variables, and do not share a full environment dump publicly—it may contain unrelated credentials.\n\nAfter changing user variables, fully quit and relaunch the actual Ollama server process. Editing a variable in a new client terminal does not retroactively change the environment of the tray application's already-running server.\n\n## 5. Restart the native app once, not a second server\n\nThe Windows installer normally runs Ollama in the background. Closing its chat window is not necessarily the same as quitting it. Use the tray menu to quit, then start Ollama from the Windows Start menu and repeat the same local-model test.\n\nDo not launch `ollama serve` alongside a tray instance already occupying the same port. A bind/address-in-use error is a duplicate-server problem, not proof of a GPU fault. Likewise, if a third-party service manager owns the server, relaunching a separate desktop app may test a different process entirely.\n\nIf the problem began after an Ollama update, record the version, exact model and driver before changing anything else. Apply any pending “Restart to update” action, then test again. Keep logs from the failed run so a temporary improvement after a restart does not erase the only evidence.\n\nIf it began after sleep, retest after a controlled app restart. Ollama documents an NVIDIA suspend/resume issue and driver-module workaround specifically for **Linux**. Those Linux module commands are not Windows PowerShell fixes; do not transplant them into a native Windows checklist.\n\n## 6. Read the server log before reinstalling\n\nFor a default native Windows installation, the [troubleshooting documentation](https://docs.ollama.com/troubleshooting) points to the latest server log under your local application-data directory. This bounded read shows the most recent 120 lines:\n\n```powershell\nGet-Content -LiteralPath \"$env:LOCALAPPDATA\\Ollama\\server.log\" -Tail 120\n```\n\nRun it after reproducing the issue and compare timestamps. Look for the selected backend, GPU discovery, available memory, model loading and any later fallback/error message. Exact log wording changes between releases, so absence of one phrase copied from a tutorial is not a diagnosis. The same log's startup `server config` line also records the active `OLLAMA_MODELS` path, which matters if you have [moved the models folder to another drive](/blog/ollama-models-folder-windows-move-2026) and the model list suddenly looks empty.\n\nIf the file is missing, verify the user account and how the server was launched. A manually launched process may log to its terminal; a container has its own logs. Do not conclude “the GPU is broken” from a missing native log file.\n\nAdditional debug logging is optional. It changes how much diagnostic information is recorded, so enable it only for a brief reproduction. First quit the native tray app. Then, from its default install directory, the documented app-launch pattern can be written in PowerShell as:\n\n```powershell\n$env:OLLAMA_DEBUG = '1'\n& \"$env:LOCALAPPDATA\\Programs\\Ollama\\ollama app.exe\"\n```\n\nUse the actual installed path if you selected a custom location. After collecting the relevant lines, quit that diagnostic app and close the diagnostic shell; relaunch normally from Start. A process-only variable set in that shell is not a permanent user-variable change. If you also set a persistent debug variable elsewhere, remove that specific setting when finished.\n\nReview logs before sharing. Remove prompts, private file paths, hostnames, tokens and unrelated information. Send a short time-bounded excerpt with versions and the exact error, not your entire model folder or account configuration.\n\n## 7. Keep WSL, Docker and remote inference separate\n\nFor native Windows, use the checks above. For Ollama inside WSL or a container, GPU access must work **inside that environment**. A successful NVIDIA check on the Windows host alone does not prove container passthrough or Linux backend access.\n\nThe official [Ollama Docker guide](https://docs.ollama.com/docker) covers its runtime setup. Our [Windows and WSL setup guide](/blog/linux-wsl-setup-guide-2026-windows-developers) explains the host/subsystem distinction, and the [Docker getting-started guide](/blog/docker-for-beginners-2026-guide) explains why a container is a separate runtime. Use the guide for the setup you actually run instead of installing every stack at once.\n\nDo not edit Docker daemon settings, disable security controls, or change system-wide GPU permissions as a first response to a native Windows symptom. Those are administrator-level changes with different consequences.\n\nOn a Mac, native Apple GPU acceleration uses Metal. The Ollama FAQ separately says GPU acceleration is unavailable through Docker Desktop on macOS. Neither statement is a reason to install NVIDIA CUDA tools on a Mac. For remote inference, troubleshoot the remote server's GPU and environment, not the client laptop's graphics panel.\n\n## What a useful final result looks like\n\nRetest the **same model, server, context and short prompt** after each relevant change. Record PROCESSOR placement, the model's allocated context, whether responses actually succeed, and the time of the server-log excerpt.\n\nIf you have `100% GPU` and responses work, GPU placement is confirmed even if a utilization graph looks quiet. If you have a stable CPU/GPU split, decide whether a smaller model or lower context is acceptable. Full GPU placement may not be possible for the workload on that hardware.\n\nIf a supported card remains undetected, a useful issue report contains your OS, GPU model, driver and Ollama versions, native/WSL/container location, exact model tag, PROCESSOR result, reproduction steps and a redacted log excerpt. Those facts are more actionable than “GPU at zero percent.”\n\n## Frequently Asked Questions\n\n### How can I tell whether Ollama is using my GPU?\n\nRun `ollama ps` while a local model is loaded. Its PROCESSOR column describes memory placement: GPU, CPU or a mixture. GPU placement does not mean the device is continuously at full utilization. Confirm that the command checks the same server and model as your chat application.\n\n### Does a CPU and GPU split mean Ollama is broken?\n\nNot necessarily. It means the model is partly loaded on each side. Available VRAM and context allocation can affect placement. Compare a smaller installed model and a modest context before assuming driver detection failed. Full GPU placement is not guaranteed for every workload.\n\n### Do I need WSL or the CUDA Toolkit for native Windows Ollama?\n\nWSL is not a native Windows prerequisite. Supported hardware and drivers are required, but a separate CUDA development toolkit is not a universal fix for the normal installer. WSL and containers have their own GPU access requirements; troubleshoot the environment where your server runs.\n\n### Why might Ollama not use an AMD GPU on Windows?\n\nWindows ROCm support is different from Linux support and depends on the card and driver. Current documentation recommends Vulkan fallback for some Radeon RX 6000 systems. Check the Windows hardware information, installed backend and server log rather than copying a Linux override or assuming every Radeon card is supported.\n\n### Should I force GPU use with a large layer setting?\n\nNot as a universal first fix. A setting cannot create more VRAM, install a missing backend or make unsupported hardware compatible. Establish server location, supported drivers, current placement and memory needs first. Use only options documented for the installed release and workload.\n\n## Sources and Image Credits\n\nPrimary documentation checked October 6, 2026:\n\n- [Ollama FAQ: processor placement, server configuration, updates and model unloading](https://docs.ollama.com/faq).\n- [Ollama Windows: requirements, default paths and backend notes](https://docs.ollama.com/windows).\n- [Ollama hardware support: NVIDIA, AMD, Metal and Vulkan](https://docs.ollama.com/gpu).\n- [Ollama context length: allocated context and memory requirements](https://docs.ollama.com/context-length).\n- [Ollama troubleshooting: logs, discovery and experimental library overrides](https://docs.ollama.com/troubleshooting).\n- [Ollama CLI reference](https://docs.ollama.com/cli).\n- [Ollama running-model API reference](https://docs.ollama.com/api/ps).\n- [Ollama container setup](https://docs.ollama.com/docker).\n\nCover photo: [Andrey Matveev](https://www.pexels.com/@zeleboba/) via Pexels. Inline photo: [Andrey Matveev](https://www.pexels.com/@zeleboba/) via Pexels. Both are photographs of consumer PC hardware used for illustration; they are not screenshots, measured hardware results or a claim of endorsement by Ollama, NVIDIA, AMD or Microsoft.",
+      "excerpt": "Ollama stuck on CPU? Start with the running model and server, separate memory placement from utilization, then check Windows GPU support, drivers, VRAM, context and logs without blindly reinstalling.",
+      "summary": "The PROCESSOR column in ollama ps describes model memory placement, not live GPU utilization.|Full CPU placement and a CPU/GPU split require different checks; confirm the server, supported drivers, available VRAM and context.|Native Windows, WSL, containers and remote models are separate environments; keep changes scoped and use redacted server logs.",
+      "featured": false,
+      "keywords": "ollama not using gpu windows, ollama using cpu instead of gpu, ollama gpu not detected, ollama ps 100 cpu, ollama not using amd gpu windows, ollama gpu offloading",
+      "published": true,
+      "created_at": "2026-10-06T05:33:36.879939",
+      "meta_title": "Ollama Not Using GPU on Windows? 7 Checks Before Reinstalling",
+      "updated_at": "2026-10-25T06:41:22.047525",
+      "category_id": 2,
+      "cover_image": "https://www.byteverse.fyi/blog/ollama-gpu/photo-cover.jpg",
+      "reading_time": "13 min read",
+      "scheduled_at": null,
+      "meta_description": "Ollama using CPU instead of GPU? Check model placement, Windows drivers, VRAM, context settings and server logs before reinstalling."
+    },
+    "hash": "42b68367ff5312bc8ce3d080ed617319",
+    "published_at": "2026-10-06T05:33:36.879Z",
+    "modified_at": "2026-10-25T06:41:22.047Z"
+  },
+  "otherPosts": {
+    "total": 190,
+    "hash": "e7ce38dccd79154dc9303b1e04ec419c"
+  },
+  "targeting": {
+    "title": "Ollama Not Using GPU on Windows? How to Check and Fix It",
+    "metaTitle": "Ollama Not Using GPU on Windows? How to Fix It",
+    "metaDescription": "Ollama stuck on CPU? Read ollama ps and the inference compute line in server.log, then fix the cause: driver, VRAM, iGPU, AMD, Docker or MLX runtime.",
+    "excerpt": "Run ollama ps to see where the model was loaded, then read the inference compute line in server.log. Each message in the Ollama 0.40.17 source is matched to a fix: drivers, VRAM, built-in GPUs, AMD on Windows, Docker and the missing MLX runtime.",
+    "summary": "100% CPU in ollama ps means no usable GPU, while a CPU/GPU split means the GPU works but the model does not fit in video memory.|The inference compute line in server.log and the warnings before it name the cause, such as an old driver, a skipped built-in GPU or a variable that hides the GPU.|Docker on Windows passes only NVIDIA GPUs through the WSL 2 backend, and MLX-only models need the separate MLX runtime on Windows.",
+    "keywords": "ollama not using gpu windows, ollama not using gpu fix, how to check if ollama is using gpu, ollama gpu requirements, ollama not using amd gpu windows, ollama docker not using gpu, ollama integrated gpu, ollama mlx runtime not available",
+    "readingTime": "15 min read",
+    "author": "Ali Rehman",
+    "titleChange": "The old title and meta title were replaced because the page drew many impressions and no clicks in the owner's Search Console export; the slug and cover stay unchanged."
+  },
+  "contentFile": "scripts/content/ollama-not-using-gpu-windows-2026-refresh.md",
+  "faq": [
+    "How do I check if Ollama is using my GPU?",
+    "What GPU does Ollama need on Windows?",
+    "Why is Ollama not using my AMD GPU on Windows?",
+    "Why is Ollama in Docker not using my GPU?",
+    "How much VRAM does Ollama need?"
+  ],
+  "internalLinks": [
+    "/blog/could-not-connect-to-ollama-app-is-it-running",
+    "/blog/ollama-ps-explained",
+    "/blog/ollama-models-folder-windows-move-2026",
+    "/blog/ollama-pull-model-manifest-error",
+    "/blog/linux-wsl-setup-guide-2026-windows-developers",
+    "/blog/docker-for-beginners-2026-guide",
+    "/blog/how-to-run-ai-locally-2026"
+  ],
+  "research": {
+    "date": "2026-11-23",
+    "searchConsole": {
+      "source": "Owner-pasted Search Console export (web, last 3 months). Click and impression figures stay in the owner's private report and are not stored in this public repository.",
+      "targetQueries": [
+        "ollama missing gpu runtime fix",
+        "ollama not using gpu fix",
+        "ollama not using gpu",
+        "ollama not using amd gpu windows",
+        "check gpu support ollama",
+        "ollama not using gpu windows",
+        "how to check if ollama is using gpu",
+        "ollama gpu requirements",
+        "ollama gpu support",
+        "ollama use gpu",
+        "how to configure ollama to use gpu",
+        "ollama gpu memory requirements",
+        "ollama using cpu instead of gpu",
+        "how to make ollama use gpu",
+        "ollama docker not using gpu",
+        "ollama not using nvidia gpu",
+        "ollama not using gpu ubuntu"
+      ]
+    },
+    "autocomplete": "docs/content-research/2026-11-23-autocomplete-ollama-gpu.json",
+    "findings": [
+      "Google autocomplete pairs 'ollama mlx runtime' with 'not available' and 'install mlx runtime'; the missing-runtime query is treated as the MLX error in server/images.go.",
+      "discover/runner.go in 0.30.0 added filterIntegratedGPUs and OLLAMA_IGPU_ENABLE; 0.24.0 had neither. 0.40.17 keeps the rule.",
+      "OLLAMA_IGPU_ENABLE is listed by ollama serve --help (cmd/cmd.go) and in envconfig, but on no docs page.",
+      "app/ollama.iss installs lib/ollama except mlx_* folders, so a normal Windows install has no MLX runtime.",
+      "On Windows the first GPU discovery may take longer because Defender scans the DLLs; runner.go raises the bootstrap timeout to 90 seconds."
+    ],
+    "evidenceDirectory": "../.byteverse-ollama-check (outside the repository)",
+    "runtimeEvidence": "Ollama was not installed and no GPU tests were run; log lines are quoted from the 0.40.17 source. PowerShell blocks were parsed with the Windows PowerShell 5.1 parser and the read-only variable listing was run once."
+  },
+  "sources": [
+    "https://docs.ollama.com/windows",
+    "https://docs.ollama.com/gpu",
+    "https://github.com/ollama/ollama/blob/v0.40.17/discover/cuda_compat.go",
+    "https://github.com/ollama/ollama/blob/v0.40.17/discover/amd.go",
+    "https://developer.nvidia.com/cuda-gpus",
+    "https://docs.ollama.com/context-length",
+    "https://github.com/ollama/ollama/blob/v0.40.17/discover/runner.go",
+    "https://docs.ollama.com/troubleshooting",
+    "https://github.com/ollama/ollama/blob/v0.40.17/app/ollama.iss",
+    "https://github.com/ollama/ollama/issues/19343",
+    "https://docs.docker.com/desktop/features/gpu/",
+    "https://docs.ollama.com/docker",
+    "https://docs.nvidia.com/cuda/wsl-user-guide/index.html",
+    "https://github.com/ollama/ollama/blob/v0.40.17/discover/types.go",
+    "https://github.com/ollama/ollama/blob/v0.40.17/discover/llama_server.go",
+    "https://github.com/ollama/ollama/blob/v0.40.17/server/images.go",
+    "https://www.pexels.com/@zeleboba/"
+  ],
+  "validation": {
+    "words": 3267,
+    "sha256": "a4cbfdbb015e61200481c43163e905b498394f1bc3034bde8a1869b62b93a9f4",
+    "codeBlocks": 10,
+    "tables": 3,
+    "sourceSha256": {
+      "src-v0.40.17/discover__types.go": "5b8919bbb5b9dc2c78527f017ce6311bd5a67f916aa2023f71da30a85c56ac4c",
+      "src-v0.40.17/discover__cuda_compat.go": "b844e9f7b2261a2f29af4e63325ee8cef2cc98d9b12f78351fec83a94b0b497c",
+      "src-v0.40.17/discover__runner.go": "2a86db0566041d934c5e057131fa7fae70745b8fbf6bf710bb837225f98d04e1",
+      "src-v0.40.17/discover__amd.go": "7c536f0f604aad00133f62dd9d62fce52fa728596fd78fdefe4b40c7bd1ca507",
+      "src-v0.40.17/discover__llama_server.go": "f6f1cd640de80e4c64d22be45d8b8a1f6c20c776c68578f096c7b13e9303ffc6",
+      "src-v0.40.17/ml__path.go": "8949f6a83bb201ba3e126e3d8b45a67d674535c029bb5dffe81751292dbba4c3",
+      "src-v0.40.17/app__ollama.iss": "a96d7f01b36998d4ce9c3dbcf1f9c576a584a847ecc7cfd4891c10e58a5932c5",
+      "src-v0.40.17/envconfig__config.go": "7c774cb0c97f6d14073aac7052b91898515be2ea02cee5ac13f3a2bdde022a5d",
+      "src-v0.40.17/cmd__cmd.go": "da57511b66026eb42e80a3b5c343be52d13e05dda8ddafdc019e921c1de30b2c",
+      "src-v0.40.17/server__images.go": "31b4dbf86b9bfdd7786b0dcd9f6b01930470960ca1d289be90adf518a5a3356f",
+      "src-v0.40.17/mlxrunner__client.go": "b7f16b869d8209b7c325bb241f67a6af49a356a287b0444a9881de6f269e255e",
+      "src-v0.40.17/scripts__build_windows.ps1": "eb4a0cb63357832192ca82f31ac98182fb084b9320cb8f018831aca3b4e15fdb",
+      "src-v0.40.17/docs__gpu.mdx": "c0e73ade4fa90a5b1e04d6025fc84d51f962157577604972870a31eaa3718a6c",
+      "src-v0.40.17/docs__windows.mdx": "2dd781e589836e79dfdc2f92b77f9789fd35ea2786abcf291b6c9e16154a46a2",
+      "src-v0.40.17/docs__context-length.mdx": "8414ca2ad9c67fbd9bd1497bf352fb60993b2b5b69531118f456f9b31af87aa7",
+      "src-v0.40.17/docs__troubleshooting.mdx": "d87bf025cb0a68a3d144cb0ca388202948a5135e6ea34bbfa7f988bda300b50d",
+      "src-v0.40.17/docs__faq.mdx": "943b2b378b7bb593cf784fe3534ccbfc6cb6eae2de75ce83119f0f98c0c4b1a4",
+      "src-v0.40.17/docs__docker.mdx": "394dd57c4dc3b37dd626e0fb1243d451e9d43d56b07cbc8b11a649afdeeff818",
+      "src-v0.40.17/release-assets.json": "3e0bc454b19d65cdd5150206ffadc39a3c49ab5ee0a2521db403eeab536844ea",
+      "src-v0.30.0/discover__runner.go": "d58585820caeca7747559034258172427c1f87529f0248d666d068e430824035",
+      "src-v0.24.0/discover__runner.go": "bbbc9e91f08d6746ee0d31b1eb96e374b46587f1e97c2224d11501a39220bed8",
+      "issues/19343.html": "248dbed74586ffe972eef5c18e32cfb1c4764628fa272f5dd37876ad397b47e8",
+      "docs-other/docker-desktop-gpu.html": "71d755026598748c15a6b19a2c43d6c39af907a30525b60ba66da59a6045fc31",
+      "docs-other/nvidia-cuda-wsl-user-guide.html": "5be0d8501ce187c2eea043233d7c6e089f2cbb79dde3bf88e15820fb82e67674"
+    }
+  },
+  "publication": {
+    "status": "applied-awaiting-deploy",
+    "originalPublishedAt": "2026-10-06T05:33:36.879Z",
+    "modifiedAt": "2026-11-24T04:33:42.727Z",
+    "databaseWrites": 1,
+    "otherPostsUnchanged": 190,
+    "pushed": false
+  }
+}

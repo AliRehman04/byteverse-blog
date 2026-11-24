@@ -147,11 +147,31 @@
     }
   },
   "publication": {
-    "status": "applied-awaiting-deploy",
+    "status": "live-verified",
     "originalPublishedAt": "2026-10-06T05:33:36.879Z",
     "modifiedAt": "2026-11-24T04:33:42.727Z",
     "databaseWrites": 1,
     "otherPostsUnchanged": 190,
-    "pushed": false
+    "pushed": true,
+    "commit": "347be0fdf701cd7fb02f1ef9853c6bb7354b4680",
+    "liveVerification": {
+      "checkedAt": "2026-11-24T04:37:26.192Z",
+      "url": "https://www.byteverse.fyi/blog/ollama-not-using-gpu-windows-2026",
+      "command": "node scripts/test-ollama-gpu-refresh.mjs --live",
+      "testsPassed": 9,
+      "sitemapLastmod": "2026-11-24T04:33:42.727Z"
+    },
+    "cloudflareCopy": {
+      "note": "The first Workers Build after the update served the old article: Workers Builds restored .next/cache, whose fetch-cache still held the Neon responses for 24 hours. scripts/cf-build.mjs now deletes that folder before each build.",
+      "fixCommit": "8d6642388a492034c85fce9b2470cd1f3d7ee10e",
+      "verifiedAt": "2026-11-24T05:19:03.708Z",
+      "sameAsVercel": {
+        "text": true,
+        "title": true,
+        "description": true,
+        "modifiedTime": true,
+        "canonical": true
+      }
+    }
   }
 }

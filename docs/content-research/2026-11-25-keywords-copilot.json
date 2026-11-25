@@ -1,0 +1,525 @@
+{
+  "checkedAt": "2026-11-25T12:56:59.623Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "copilot not showing in word",
+      "google": [
+        "copilot not showing in word",
+        "copilot not showing in word mac",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word or excel",
+        "copilot not showing in word and excel",
+        "copilot not showing in word options",
+        "copilot not showing in word desktop app",
+        "copilot not showing in word 365",
+        "why is copilot not showing in word anymore",
+        "copilot not showing in word online"
+      ],
+      "bing": [
+        "copilot not showing in word",
+        "copilot not showing in word 365",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word desktop",
+        "copilot not showing in word options",
+        "copilot not showing in word for mac",
+        "copilot not showing in word or excel",
+        "copilot not showing in word or powerpoint",
+        "copilot icon not showing in word"
+      ]
+    },
+    {
+      "seed": "copilot not showing in outlook",
+      "google": [
+        "copilot not showing in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook desktop",
+        "copilot not showing in outlook app",
+        "copilot not showing in outlook web",
+        "copilot not showing in outlook new email",
+        "copilot not showing in outlook mac",
+        "copilot not showing in outlook ribbon"
+      ],
+      "bing": [
+        "copilot not showing in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not showing in outlook app",
+        "copilot not showing in outlook desktop",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook ribbon",
+        "copilot not showing in outlook anymore",
+        "copilot icon not showing in outlook"
+      ]
+    },
+    {
+      "seed": "copilot not showing in powerpoint",
+      "google": [
+        "copilot not showing in powerpoint",
+        "copilot not showing in powerpoint mac",
+        "copilot not showing in powerpoint ribbon",
+        "copilot not showing in powerpoint 365",
+        "co pilot not appearing in powerpoint",
+        "copilot icon not showing in powerpoint",
+        "copilot option not showing in powerpoint",
+        "copilot button not showing in powerpoint",
+        "microsoft copilot not showing in powerpoint",
+        "copilot tab not showing in powerpoint"
+      ],
+      "bing": [
+        "copilot not showing in powerpoint",
+        "copilot not showing in powerpoint ribbon",
+        "copilot not showing in powerpoint mac",
+        "copilot icon not showing in powerpoint",
+        "copilot button not showing in powerpoint",
+        "copilot option not showing in powerpoint"
+      ]
+    },
+    {
+      "seed": "copilot not showing in teams",
+      "google": [
+        "copilot not showing in teams",
+        "copilot not showing in teams meeting",
+        "copilot not showing in teams chat",
+        "copilot not showing in teams call",
+        "copilot not showing in teams app",
+        "copilot not working in teams",
+        "copilot not working in teams meeting",
+        "copilot not visible in teams meeting",
+        "copilot icon not showing in teams",
+        "copilot icon not showing in teams meeting"
+      ],
+      "bing": [
+        "copilot not showing in teams",
+        "copilot not showing in teams meeting",
+        "copilot not showing in teams call",
+        "copilot icon not showing in teams",
+        "copilot studio agent not showing in teams",
+        "copilot option not showing in teams",
+        "copilot button not showing in teams meeting",
+        "copilot not appearing in teams meeting",
+        "why can't i see copilot in teams",
+        "why don't i see copilot in teams",
+        "copilot isn't available teams",
+        "copilot teams not working",
+        "unable to see copilot in teams"
+      ]
+    },
+    {
+      "seed": "copilot not showing in onenote",
+      "google": [
+        "copilot not showing in onenote",
+        "copilot not working in onenote",
+        "copilot button not showing in onenote",
+        "copilot icon not showing in onenote",
+        "copilot notebook not showing in onenote",
+        "copilot not in onenote",
+        "why is copilot not showing up in my onenote",
+        "how do i share only one notebook in onenote",
+        "onenote sharing not working",
+        "show notebooks on left side in onenote"
+      ],
+      "bing": [
+        "copilot not showing in onenote",
+        "why is copilot not showing in onenote",
+        "copilot button not showing in onenote",
+        "i don't see copilot in onenote",
+        "how to open copilot in onenote",
+        "how to get copilot in onenote",
+        "microsoft copilot in onenote",
+        "how to access copilot in onenote"
+      ]
+    },
+    {
+      "seed": "copilot icon not showing in word",
+      "google": [
+        "copilot icon not showing in word",
+        "copilot button not showing in word",
+        "copilot icon not visible in word",
+        "copilot button not working in word",
+        "copilot icon not appearing in word",
+        "copilot icon not in word",
+        "copilot icon missing in word",
+        "copilot button not in word",
+        "word icon not showing",
+        "display icon not showing windows 10"
+      ],
+      "bing": [
+        "copilot icon not showing in word",
+        "why is copilot icon not showing in word",
+        "copilot not showing in word",
+        "copilot option not showing in word",
+        "microsoft copilot not showing in word",
+        "copilot button not showing up in word",
+        "copilot icon missing in word",
+        "copilot not showing up in word document",
+        "copilot icon not showing in powerpoint",
+        "ms word copilot not showing",
+        "copilot icon in word",
+        "copilot not appearing in word",
+        "turn off copilot icon in word"
+      ]
+    },
+    {
+      "seed": "copilot button missing",
+      "google": [
+        "copilot button missing in outlook",
+        "copilot button missing in excel",
+        "copilot button missing in outlook classic",
+        "copilot button missing in word",
+        "copilot button missing in powerpoint",
+        "copilot button missing in teams",
+        "copilot button missing in office apps",
+        "copilot button missing",
+        "copilot not working",
+        "how to use copilot gps"
+      ],
+      "bing": [
+        "copilot button missing in excel",
+        "copilot button missing in word",
+        "copilot button missing in outlook",
+        "copilot button missing in powerpoint",
+        "copilot button missing",
+        "copilot button missing in teams",
+        "copilot button missing in outlook classic",
+        "copilot button missing in edge",
+        "copilot button missing from office apps",
+        "copilot button missing in word 365"
+      ]
+    },
+    {
+      "seed": "copilot not working in word",
+      "google": [
+        "copilot not working in word",
+        "copilot not working in word mac",
+        "copilot not working in word or excel",
+        "copilot not showing in word",
+        "copilot not showing in word mac",
+        "copilot not loading in word",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word options",
+        "copilot not showing in word desktop app",
+        "copilot stopped working in word"
+      ],
+      "bing": [
+        "copilot not working in word",
+        "copilot not working in word app",
+        "copilot not working in microsoft word",
+        "copilot not working in ms word"
+      ]
+    },
+    {
+      "seed": "copilot not available in word",
+      "google": [
+        "copilot not available in word",
+        "copilot not showing in word",
+        "copilot not showing in word mac",
+        "copilot not showing in word ribbon",
+        "copilot not showing in word options",
+        "copilot not showing in word desktop app",
+        "copilot not showing in word and excel",
+        "copilot not showing in word 365",
+        "copilot no longer available in word",
+        "why is copilot not showing in word anymore"
+      ],
+      "bing": [
+        "copilot not available in word",
+        "why is copilot not available in word",
+        "word copilot not working"
+      ]
+    },
+    {
+      "seed": "copilot greyed out",
+      "google": [
+        "copilot greyed out in outlook",
+        "copilot greyed out in outlook classic",
+        "copilot greyed out",
+        "copilot greyed out in word",
+        "copilot greyed out in onenote",
+        "copilot greyed out in power bi",
+        "copilot greyed out in excel",
+        "copilot greyed out in outlook ribbon"
+      ],
+      "bing": [
+        "copilot greyed out in outlook",
+        "copilot greyed out in excel",
+        "copilot greyed out in power bi",
+        "copilot greyed out in outlook classic",
+        "copilot greyed out in word",
+        "copilot greyed out",
+        "copilot greyed out in onenote",
+        "copilot greyed out in powerpoint",
+        "copilot greyed out in edge settings"
+      ]
+    },
+    {
+      "seed": "copilot in new outlook",
+      "google": [
+        "copilot in new outlook",
+        "copilot in new outlook missing",
+        "copilot in new outlook desktop",
+        "copilot in outlook new email",
+        "copilot in outlook new mail",
+        "copilot in microsoft outlook",
+        "copilot in microsoft outlook classic",
+        "copilot in microsoft outlook desktop",
+        "copilot in microsoft outlook for mac",
+        "enable copilot in new outlook"
+      ],
+      "bing": [
+        "copilot in new outlook",
+        "copilot in outlook new features",
+        "new outlook copilot missing",
+        "new outlook copilot not showing",
+        "copilot works in new outlook but not classic",
+        "new outlook copilot integration"
+      ]
+    },
+    {
+      "seed": "copilot not showing in classic outlook",
+      "google": [
+        "copilot not showing in classic outlook",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not working in classic outlook",
+        "copilot not visible in classic outlook",
+        "copilot button not showing in classic outlook",
+        "co pilot not appearing in outlook classic",
+        "copilot icon not showing in outlook classic",
+        "copilot chat not showing in outlook classic",
+        "copilot no longer showing in classic outlook",
+        "draft with copilot not showing in outlook classic"
+      ],
+      "bing": [
+        "copilot not showing in classic outlook",
+        "copilot icon not showing in outlook classic",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook",
+        "missing copilot in outlook classic",
+        "using copilot in outlook classic",
+        "how to get copilot in classic outlook"
+      ]
+    },
+    {
+      "seed": "why can't i see copilot in",
+      "google": [
+        "why can't i see copilot in excel",
+        "why can't i see copilot in word",
+        "why can't i see copilot in powerpoint",
+        "why can't i see copilot in outlook",
+        "why can't i see copilot in onenote",
+        "why can't i see copilot in my excel",
+        "why can't i see copilot in teams",
+        "why can't i see copilot in my word document",
+        "why can i not see copilot in excel",
+        "why can i not see copilot in word"
+      ],
+      "bing": [
+        "why can't i see copilot in excel",
+        "why can't i see copilot in word",
+        "why can't i see copilot in powerpoint",
+        "why can't i see copilot in outlook",
+        "why can't i see copilot in teams",
+        "why can't i see copilot in onenote",
+        "why can't i see copilot in word anymore",
+        "why can't i see copilot in ppt",
+        "why can't i see copilot in edge",
+        "why can't i see copilot in my excel ribbon",
+        "why can't i see copilot in teams meeting",
+        "why can't i see copilot in microsoft word"
+      ]
+    },
+    {
+      "seed": "copilot disappeared from",
+      "google": [
+        "copilot disappeared from excel",
+        "copilot disappeared from outlook",
+        "copilot disappeared from word",
+        "copilot disappeared from teams",
+        "copilot disappeared from powerpoint",
+        "copilot disappeared from outlook classic",
+        "copilot disappeared from new outlook",
+        "copilot disappeared from excel ribbon",
+        "copilot disappeared from taskbar",
+        "what took the pilot in lost"
+      ],
+      "bing": [
+        "copilot disappeared from excel",
+        "copilot disappeared from word",
+        "copilot disappeared from outlook",
+        "copilot disappeared from taskbar",
+        "copilot disappeared from teams",
+        "copilot disappeared from outlook classic",
+        "copilot disappeared from edge",
+        "copilot disappeared from powerpoint",
+        "copilot disappeared from toolbar",
+        "copilot disappeared from word ribbon",
+        "copilot disappeared from excel web",
+        "copilot disappeared from windows 11",
+        "copilot disappeared from windows",
+        "copilot disappeared from outlook ribbon"
+      ]
+    },
+    {
+      "seed": "copilot not showing microsoft 365 personal",
+      "google": [],
+      "bing": [
+        "microsoft 365 not copilot",
+        "microsoft 365 personal with copilot",
+        "microsoft 365 copilot not working",
+        "copilot not showing up in office 365",
+        "does copilot come with microsoft 365 personal",
+        "does microsoft 365 personal include copilot",
+        "microsoft 365 login not copilot",
+        "does my microsoft 365 include copilot",
+        "copilot 365 is not working",
+        "how to get copilot on microsoft 365",
+        "microsoft 365 copilot community",
+        "microsoft 365 copilot status"
+      ]
+    },
+    {
+      "seed": "microsoft 365 copilot not showing",
+      "google": [
+        "microsoft 365 copilot not showing in excel",
+        "microsoft 365 copilot not showing in word",
+        "microsoft 365 copilot not showing",
+        "microsoft word copilot not showing",
+        "outlook 365 copilot not showing",
+        "microsoft 365 copilot not working",
+        "microsoft 365 copilot not working on android",
+        "microsoft 365 copilot not working today",
+        "microsoft 365 copilot chat not showing",
+        "microsoft word copilot not working"
+      ],
+      "bing": [
+        "microsoft 365 copilot not showing in excel",
+        "copilot not showing in microsoft 365",
+        "why is microsoft 365 copilot not working",
+        "copilot not showing in word 365",
+        "microsoft 365 copilot app not working",
+        "microsoft 365 copilot not loading",
+        "microsoft 365 copilot problems",
+        "microsoft 365 copilot troubleshooting",
+        "microsoft 365 copilot issues",
+        "copilot 365 is not working",
+        "copilot 365 not opening",
+        "microsoft 365 copilot error",
+        "office 365 not copilot",
+        "why can't i open microsoft 365 copilot",
+        "copilot not working in outlook 365",
+        "microsoft 365 copilot community",
+        "does my microsoft 365 include copilot"
+      ]
+    },
+    {
+      "seed": "copilot chat not showing",
+      "google": [
+        "copilot chat not showing up in vscode",
+        "copilot chat not showing",
+        "copilot chat not showing in outlook",
+        "copilot chat not showing in excel",
+        "copilot chat not showing in word",
+        "copilot chat not showing in edge",
+        "copilot chat not showing in outlook classic",
+        "copilot chat not showing in visual studio",
+        "copilot chat not showing in app",
+        "copilot chat not showing in intellij"
+      ],
+      "bing": [
+        "copilot chat not showing",
+        "copilot chat not showing in outlook",
+        "copilot chat not showing in edge",
+        "copilot chat not showing in word",
+        "copilot chat not showing up in vscode",
+        "github copilot chat not showing",
+        "copilot not showing chat history"
+      ]
+    },
+    {
+      "seed": "copilot not showing in office",
+      "google": [
+        "copilot not showing in office apps",
+        "copilot not showing in office 365",
+        "copilot not showing in office",
+        "copilot not showing in office 365 apps",
+        "copilot not working in office apps",
+        "copilot not working in office 365",
+        "copilot not working in office",
+        "copilot icon not showing in office apps",
+        "copilot button not showing in office apps",
+        "copilot not in office apps"
+      ],
+      "bing": [
+        "copilot not showing in office apps",
+        "copilot not showing in office 365",
+        "copilot not showing in office",
+        "copilot not showing in office 365 apps",
+        "copilot agent not showing in office app",
+        "copilot button not showing in office apps",
+        "why is copilot not showing in office apps"
+      ]
+    },
+    {
+      "seed": "copilot not showing",
+      "google": [
+        "copilot not showing up in excel",
+        "copilot not showing up in outlook",
+        "copilot not showing up in word",
+        "copilot not showing up in powerpoint",
+        "copilot not showing in word",
+        "copilot not showing in outlook classic",
+        "copilot not showing in word mac",
+        "copilot not showing up in teams",
+        "copilot not showing up in outlook classic",
+        "copilot not showing up in onenote"
+      ],
+      "bing": [
+        "copilot not showing in excel",
+        "copilot not showing in word",
+        "copilot not showing in outlook",
+        "copilot not showing in powerpoint",
+        "copilot not showing in teams",
+        "copilot not showing",
+        "copilot not showing in outlook classic",
+        "copilot not showing in excel ribbon",
+        "copilot not showing in office apps",
+        "copilot not showing in edge browser"
+      ]
+    },
+    {
+      "seed": "copilot not working in outlook",
+      "google": [
+        "copilot not working in outlook",
+        "copilot not working in outlook classic",
+        "copilot not working in outlook for mac",
+        "copilot not working in outlook app",
+        "copilot not working in outlook 365",
+        "copilot not working in outlook desktop",
+        "copilot not working in outlook web",
+        "copilot not loading in outlook",
+        "copilot stopped working in outlook",
+        "copilot not loading in outlook classic"
+      ],
+      "bing": [
+        "copilot not working in outlook",
+        "copilot not working in outlook classic",
+        "copilot not working in outlook app",
+        "copilot not working in outlook desktop",
+        "copilot not working in outlook on mac",
+        "copilot not working in outlook 365"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

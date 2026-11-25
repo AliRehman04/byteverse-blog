@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-11-25",
+  "topic": "copilot not showing in outlook",
+  "method": "Pages taken from the DuckDuckGo result samples in 2026-11-25-ddg-candidates.json and 2026-11-25-serp-outlook.json, fetched once as text and saved outside the repository (../.byteverse-copilot-outlook-check/competitors). Concept coverage was measured with the same 36 regular expressions for every page. No ranking positions, traffic or volume figures are claimed.",
+  "blocked": [
+    { "site": "thewindowsclub.com", "url": "https://www.thewindowsclub.com/copilot-not-working-in-outlook-fix", "status": 403 },
+    { "site": "thegeekpage.com", "url": "https://thegeekpage.com/copilot-wont-draft-in-classic-outlook-heres-the-fix/", "status": 403 }
+  ],
+  "competitors": [
+    {
+      "site": "wintips.org",
+      "url": "https://www.wintips.org/copilot-missing-or-grayed-out-in-outlook-how-to-fix/",
+      "published": "2026-09-10", "modified": "2026-09-10", "words": 2303,
+      "strengths": "Seven numbered methods, known issue first, admin center checks.",
+      "gaps": "Says Microsoft is still investigating the known issue (status changed to fixed in October). No mailbox location, no plain text limit, no new Outlook only features, no Mac section."
+    },
+    {
+      "site": "easytweaks.com",
+      "url": "https://www.easytweaks.com/fix-outlook-copilot-icon-missing-settings/",
+      "published": "2025-09-28", "modified": "2026-11-18", "words": 638,
+      "strengths": "Asks which control is missing first; mentions the license troubleshooter.",
+      "gaps": "Short. No license labels, no mailbox or hybrid rules, no personal account rules, no Mac."
+    },
+    {
+      "site": "stoneridgesoftware.com",
+      "url": "https://stoneridgesoftware.com/copilot-for-microsoft-365-not-showing-in-outlook-steps-to-resolving-the-issue/",
+      "published": "2025-04-02", "modified": "2026-05-31", "words": 1220,
+      "strengths": "Platform split (Windows, Mac, web) for license refresh and privacy settings.",
+      "gaps": "Tells readers to move to new Outlook first. Written before the 2026 known issue and entry point change. No mailbox, encrypted mail or admin pinning detail."
+    },
+    {
+      "site": "eyalmarcus.com",
+      "url": "https://eyalmarcus.com/copilot-not-showing-in-outlook/",
+      "published": "2026-09-28", "modified": "2026-11-22", "words": 1508,
+      "strengths": "Most complete page: known issue, license labels, Exchange Online, group mailboxes, roaming toggle, legacy Mac, encrypted mail, channel, pinning, network.",
+      "gaps": "Splits attention with Word. Gives a September to October timeline for the moved classic button (Microsoft later moved it to mid to late November) and does not say the known issue is fixed. No hybrid mailbox table, no plain text limit, no one-time purchase Outlook, no Frontier note."
+    },
+    {
+      "site": "techbridge.top",
+      "url": "https://techbridge.top/en/article/fix-copilot-greyed-out-outlook",
+      "published": "2026-11-01", "modified": "2026-11-01", "words": 1757,
+      "strengths": "Focused on the greyed out symptom; mentions sensitivity labels.",
+      "gaps": "States that third-party IMAP and POP accounts can never use Copilot, while Microsoft's sharing page says connected accounts can borrow Copilot in the newer Outlook apps. Cache clearing steps are not from Microsoft. No known issue, no hybrid table."
+    },
+    {
+      "site": "pcglance.com",
+      "url": "https://pcglance.com/copilot-grayed-out-classic-outlook/",
+      "published": "2026-10-02", "modified": "2026-11-12", "words": 1204,
+      "strengths": "Clear on the classic Outlook known issue, Show Apps setting and profile workaround.",
+      "gaps": "Still says no fix exists. Classic Outlook only; nothing on license types, mailboxes, Mac or personal accounts."
+    },
+    {
+      "site": "thedroidguy.com",
+      "url": "https://thedroidguy.com/copilot-missing-word-excel-outlook-1291852",
+      "published": "2026-11-20", "modified": "2026-11-20", "words": 1411,
+      "strengths": "Current page, covers the corner button in Word and Excel and the license troubleshooter.",
+      "gaps": "Outlook gets one short section. No mailbox, encrypted mail, plain text, Mac legacy or admin pinning detail."
+    },
+    {
+      "site": "typemac.com",
+      "url": "https://typemac.com/blog/copilot-outlook-mac-not-showing/",
+      "published": "2026-11-21", "modified": "2026-11-21", "words": 1201,
+      "strengths": "Mac specific: legacy Outlook, account type, connected experiences, license refresh.",
+      "gaps": "Mac only. Nothing on classic Outlook for Windows, admin pinning or the new Outlook only features."
+    }
+  ],
+  "coverageOfEightReadablePages": {
+    "connectedExperiences": 7, "updateLicense": 6, "outlookOnTheWebWorkaround": 6, "analyzeYourContent": 5,
+    "showAppsInOutlook": 4, "knownIssueBuild20026": 4, "sharedMailbox": 4, "semiAnnualChannel": 4, "newProfile": 4,
+    "exchangeOnline": 3, "imapPopGmail": 3, "encryptedOrIrm": 3, "sensitivityLabels": 3, "familyOwnerOnly": 3,
+    "licenseLabels": 2, "legacyMac": 2, "turnOnCopilotToggle": 2, "adminPinning": 2, "thirdPartyCookies": 2, "licenseTroubleshooter": 2,
+    "groupMailbox": 2, "renamedToMicrosoftCopilot": 2, "integratedApps": 1, "cloudMicrosoftDomain": 1, "deviceBasedLicensing": 1, "ageLimit": 1,
+    "onPremisesOrHybridMailbox": 0, "plainTextDrafts": 0, "oneTimePurchaseOutlook": 0, "frontierProgram": 0, "connectivityTest": 0,
+    "knownIssueMarkedFixed": 0, "mc1441784NovemberTimeline": 0, "newOutlookOnlyFeatures": 0
+  },
+  "coverageNote": "eyalmarcus.com names Schedule with Copilot as a paid feature but no page says it is missing from classic Outlook. Counts come from coverage.mjs in the evidence folder; the last four keys were checked by separate searches.",
+  "contentGap": [
+    "A test that separates account problems from app problems before any setting is changed, shown as an original diagram.",
+    "The current state of classic Outlook on 25 November 2026: the build 20026.20182 known issue is marked fixed, and the entry point is moving next to the ribbon from mid to late November 2026 (MC1441784).",
+    "Microsoft's Exchange hybrid table: Outlook from Microsoft 365 Apps shows a greyed out Copilot icon when the mailbox is on premises, and one-time purchase Outlook has no Copilot at all.",
+    "Draft with Copilot does not work on plain text messages in new Outlook and on the web.",
+    "Schedule with Copilot, Prepare for your meeting and Copilot themes are not available in classic Outlook.",
+    "Personal accounts: the Turn on Copilot setting applies to every device on the account, Classic plans have no Copilot, and connected Gmail or iCloud accounts can use Copilot except in classic Outlook.",
+    "Features released only to the Frontier program, and the Copilot connectivity test for admins."
+  ]
+}

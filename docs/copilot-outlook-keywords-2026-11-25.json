@@ -1,0 +1,534 @@
+{
+  "slug": "copilot-not-showing-in-outlook",
+  "website": "https://www.byteverse.fyi",
+  "date": "2026-11-25",
+  "brief": "Owner-supplied Senior SEO Strategist brief (Pasted text #1, 25 November 2026): analyse the site, do deep keyword and competitor research without invented metrics, find the content gap, write an original people-first article, optimise it, check originality and publish one new post.",
+  "targeting": {
+    "title": "Copilot Not Showing in Outlook? Fix Classic, New and Mac",
+    "metaTitle": "Copilot Not Showing in Outlook or Greyed Out",
+    "metaDescription": "Copilot missing or greyed out in Outlook? Use the one-minute web test, then fix the real cause: license, the moved classic button, mailbox, Mac or settings.",
+    "excerpt": "Why Copilot is missing or greyed out in classic Outlook, new Outlook, Outlook on the web and Outlook for Mac, checked against Microsoft's support and admin pages on 25 November 2026: a one-minute test that separates app problems from account problems, and the fix for each cause.",
+    "keywords": "copilot not showing in outlook, copilot not showing in outlook classic, copilot greyed out in outlook, copilot button missing in outlook, copilot disappeared from outlook, why can't i see copilot in outlook, copilot not showing in new outlook, copilot icon missing outlook, draft with copilot not showing in outlook, copilot not showing in outlook mac, how to enable copilot in outlook classic, copilot not available in outlook",
+    "summary": "Open Outlook on the web with the same account first: if Copilot appears there, the account works and the fault is in the Outlook app; if not, check the license, the mailbox and the admin settings|In classic Outlook the Copilot entry point is moving next to the ribbon in a rollout planned for mid to late November 2026, and the known issue that removed the buttons on build 20026.20182 and later is marked fixed|A Copilot icon that stays grey on every email usually means the mailbox is on a company Exchange server, and Schedule with Copilot, meeting prep and themes are not available in classic Outlook at all",
+    "readingTime": "15 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-25T12:55:31.073Z",
+    "total": 191,
+    "published": 186,
+    "hash": "5febdbf65bed811035b540d312fecac5",
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-25-inventory.json (read-only database query) and a Search Console export supplied privately by the owner on 23 November 2026. The export's click and impression figures are not reproduced in this repository.",
+    "inventory": {
+      "total": 191,
+      "published": 186,
+      "hash": "5febdbf65bed811035b540d312fecac5",
+      "storedViews": 4114
+    },
+    "categories": [
+      {
+        "slug": "tech-guides",
+        "posts": 66,
+        "averageViews": 14.1
+      },
+      {
+        "slug": "ai-tools",
+        "posts": 60,
+        "averageViews": 26.5
+      },
+      {
+        "slug": "coding",
+        "posts": 21,
+        "averageViews": 34.5
+      },
+      {
+        "slug": "software-reviews",
+        "posts": 19,
+        "averageViews": 19.9
+      },
+      {
+        "slug": "productivity",
+        "posts": 14,
+        "averageViews": 17.1
+      },
+      {
+        "slug": "cybersecurity",
+        "posts": 6,
+        "averageViews": 37.3
+      }
+    ],
+    "finding": "In the owner's Search Console export, problem-fix guides about AI buttons that do not appear are the posts that earn clicks: Gemini not showing in Docs or Gmail, Copilot in Excel not showing and Cursor stuck planning. Every Copilot query in the export was about Excel, so Copilot in the other Microsoft 365 apps had no page on the site. Autocomplete for Outlook returned the most distinct problem variants of the Microsoft 365 apps (classic, new, ribbon, greyed out, Mac, Draft with Copilot, disappeared).",
+    "searchConsole": {
+      "available": "export only",
+      "reason": "No Search Console API access in this workspace. The owner's export (three months to 23 November 2026) was read locally and kept out of the repository. No positions or volumes are stated anywhere."
+    },
+    "cannibalization": "Post 234 (Copilot in Excel not showing) covers Excel, the corner button of Word, Excel and PowerPoint, the license labels, channel, privacy and network checks; it never mentions Outlook. Post 68 (AI email assistants) is a tool roundup. Post 232 is GitHub Copilot in VS Code, a different product. No post covers Copilot in Outlook, Exchange mailboxes, classic versus new Outlook or Outlook for Mac. The new article keeps the generic checks short and links to post 234 for them.",
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ]
+  },
+  "research": {
+    "candidateFiles": [
+      "docs/content-research/2026-11-25-keywords-copilot.json",
+      "docs/content-research/2026-11-25-keywords-dev.json",
+      "docs/content-research/2026-11-25-keywords-outlook.json"
+    ],
+    "candidateSeedCount": 64,
+    "serpFiles": [
+      "docs/content-research/2026-11-25-ddg-candidates.json",
+      "docs/content-research/2026-11-25-serp-outlook.json"
+    ],
+    "competitorFile": "docs/content-research/2026-11-25-competitors-copilot-outlook.json",
+    "sources": [
+      "Google public autocomplete (hl=en, gl=us)",
+      "Bing public autocomplete (en-US)",
+      "DuckDuckGo HTML result pages",
+      "Owner's private Search Console export"
+    ],
+    "notUsed": "Google Trends, paid keyword tools and the Search Console API were not available. No search volume, keyword difficulty, ranking probability or traffic forecast is stated anywhere.",
+    "keywordMap": {
+      "primary": "copilot not showing in outlook",
+      "secondary": [
+        "copilot not showing in outlook classic",
+        "copilot greyed out in outlook",
+        "copilot button missing in outlook",
+        "copilot disappeared from outlook",
+        "why can't i see copilot in outlook",
+        "copilot not showing in new outlook"
+      ],
+      "supporting": [
+        "copilot icon missing outlook",
+        "copilot not showing in outlook mac",
+        "draft with copilot not showing in outlook",
+        "how to enable copilot in outlook classic",
+        "copilot not available in outlook",
+        "copilot greyed out in outlook classic",
+        "copilot not showing in outlook classic ribbon",
+        "copilot works in new outlook but not classic",
+        "copilot outlook shared mailbox"
+      ],
+      "intent": "Problem-solving. The reader expects a Copilot button in Outlook, cannot find it or finds it grey, and wants the cause and the fix without reinstalling Office.",
+      "placement": "Primary phrase in the title, meta title, first sentence, slug and first FAQ. Greyed out, classic, new, Mac and Draft with Copilot each have their own section, table row or FAQ."
+    },
+    "observations": [
+      {
+        "seed": "copilot not showing in outlook",
+        "google": [
+          "copilot not showing in outlook classic",
+          "copilot not showing in outlook 365",
+          "copilot not showing in outlook classic ribbon",
+          "copilot not showing in outlook desktop",
+          "copilot not showing in outlook app",
+          "copilot not showing in outlook web",
+          "copilot not showing in outlook new email",
+          "copilot not showing in outlook mac",
+          "copilot not showing in outlook ribbon"
+        ],
+        "bing": [
+          "copilot not showing in outlook anymore",
+          "copilot icon not showing in outlook"
+        ]
+      },
+      {
+        "seed": "copilot greyed out in outlook",
+        "google": [
+          "copilot greyed out in outlook classic",
+          "copilot greyed out in outlook ribbon",
+          "copilot greyed out in outlook mac",
+          "copilot button grayed out in outlook"
+        ],
+        "bing": [
+          "copilot option greyed out in new outlook",
+          "copilot icon greyed out in outlook"
+        ]
+      },
+      {
+        "seed": "copilot disappeared from outlook",
+        "google": [
+          "copilot disappeared from outlook classic",
+          "copilot disappeared from outlook ribbon",
+          "copilot disappeared from outlook mac"
+        ],
+        "bing": [
+          "copilot disappeared from outlook and teams",
+          "why is copilot missing from outlook",
+          "copilot removed from outlook"
+        ]
+      },
+      {
+        "seed": "draft with copilot not showing",
+        "google": [
+          "draft with copilot not showing in outlook classic",
+          "draft with copilot not showing in new outlook",
+          "draft with copilot not working in outlook"
+        ],
+        "bing": [
+          "draft with copilot missing",
+          "how to turn on draft with copilot"
+        ]
+      },
+      {
+        "seed": "copilot works in new outlook but not classic",
+        "google": [],
+        "bing": [
+          "copilot works in new outlook but not classic",
+          "is copilot available in classic outlook"
+        ]
+      }
+    ],
+    "rejectedCandidates": [
+      {
+        "topic": "Gemini not showing in Google Sheets",
+        "reason": "Post 236 already covers Sheets in depth; a new page would compete with it."
+      },
+      {
+        "topic": "Copilot not showing in Word or PowerPoint",
+        "reason": "Post 234 already explains the corner button these apps share; a Word page is a future sibling, not today's best gap."
+      },
+      {
+        "topic": "Claude Code requires Git Bash",
+        "reason": "Post 238 already covers Git Bash on Windows nine times."
+      },
+      {
+        "topic": "OLLAMA_HOST 0.0.0.0 and remote access",
+        "reason": "Post 256 covers OLLAMA_HOST 21 times; overlap risk."
+      },
+      {
+        "topic": "Cursor taking longer than expected",
+        "reason": "Cursor's own forum and several dedicated pages answer it; the site's Cursor post already covers a sibling error."
+      },
+      {
+        "topic": "Open WebUI cannot connect to Ollama in Docker",
+        "reason": "Valid gap with many dedicated competitors; kept as a future supporting article."
+      },
+      {
+        "topic": "Copilot not showing in Teams meetings",
+        "reason": "Depends on meeting policies and transcription; separate future article."
+      }
+    ],
+    "serpSample": "For the Outlook queries, DuckDuckGo showed Microsoft's own pages first (the known issue page and the missing button guide), then Microsoft Q&A threads, then independent guides: wintips, easytweaks, eyalmarcus, techbridge, pcglance, thedroidguy, typemac, stoneridgesoftware and The Windows Club.",
+    "competitors": "See competitorFile. Eight readable pages were audited and two were blocked. None says the classic Outlook known issue is fixed or gives the November timeline of MC1441784, none explains the hybrid mailbox table, the plain text limit for Draft with Copilot, the Outlook versions without Copilot, the Copilot features missing from classic Outlook, Frontier-only features or the connectivity test."
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "Copilot connectivity test",
+      "publisher": "Microsoft",
+      "url": "https://connectivity.m365.cloud.microsoft/copilot"
+    },
+    {
+      "title": "Copilot buttons are missing in classic Outlook for Windows",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/support/known-issues/copilot-buttons-gone-classic-outlook-windows"
+    },
+    {
+      "title": "MC1441784, new Copilot entry point in classic Outlook (message center archive)",
+      "publisher": "merill.net archive of the Microsoft 365 message center",
+      "url": "https://mc.merill.net/message/MC1441784"
+    },
+    {
+      "title": "How to find and enable missing Copilot button in Microsoft 365 apps",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/office/foundations-experiences/how-to-find-and-enable-missing-copilot-button-in-microsoft-365-apps"
+    },
+    {
+      "title": "Copilot troubleshooters",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/support/get-help/copilot-troubleshooters"
+    },
+    {
+      "title": "Frequently asked questions about Copilot in Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/frequently-asked-questions-about-copilot-in-outlook"
+    },
+    {
+      "title": "Draft an email message with Copilot in Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/copilot-pages/draft-an-email-message-with-copilot-in-outlook"
+    },
+    {
+      "title": "Chat with Copilot in Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/copilot-outlook/chat-with-copilot-in-outlook"
+    },
+    {
+      "title": "What Copilot license do I have",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/what-copilot-license-do-i-have"
+    },
+    {
+      "title": "Feature comparison between new Outlook and classic Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/getstarted/feature-comparison-between-new-outlook-and-classic-outlook"
+    },
+    {
+      "title": "Turn off Copilot in Microsoft 365 apps",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/privacy/turn-off-copilot-in-microsoft-365-apps"
+    },
+    {
+      "title": "Sharing Copilot in Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/sharing-copilot-in-outlook"
+    },
+    {
+      "title": "How AI usage works across Microsoft 365 subscriptions for individuals",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/ai-credits-and-limits-for-microsoft-365-subscriptions"
+    },
+    {
+      "title": "Frequently asked questions about Copilot in Microsoft 365 subscriptions",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/frequently-asked-questions-about-copilot-in-microsoft-365-subscriptions"
+    },
+    {
+      "title": "Shared and Delegated Mailboxes with Microsoft Copilot Chat in Outlook",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/sharing/shared-delegated-mailboxes-copilot-chat-outlook"
+    },
+    {
+      "title": "Use Copilot in shared mailboxes and delegate mailboxes",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/microsoft-365-copilot/use-copilot-in-shared-mailboxes-and-delegate-mailboxes"
+    },
+    {
+      "title": "Create a profile in classic Outlook for Windows",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/create-an-outlook-profile"
+    },
+    {
+      "title": "Change what appears on the Navigation Bar in classic Outlook for Windows",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/change-what-appears-on-the-navigation-bar-in-classic-outlook-for-windows"
+    },
+    {
+      "title": "Outlook for Mac",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/outlook-for-mac"
+    },
+    {
+      "title": "End of support for legacy Outlook for Mac",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/end-of-support-for-legacy-outlook-for-mac"
+    },
+    {
+      "title": "How to sign in to Outlook on the web",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/outlook/how-to-sign-in-to-outlook-on-the-web"
+    },
+    {
+      "title": "What's the difference between Microsoft 365 and Office 2024?",
+      "publisher": "Microsoft Support",
+      "url": "https://support.microsoft.com/en-us/office/lifecycle/lc-account/what-s-the-difference-between-microsoft-365-and-office-2024"
+    },
+    {
+      "title": "Microsoft Copilot requirements",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/copilot/plan/microsoft-copilot-requirements"
+    },
+    {
+      "title": "Exchange Hybrid: Microsoft Copilot and on-premises mailboxes",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/exchange/hybrid-deployment/exchange-hybrid-and-copilot-behaviour"
+    },
+    {
+      "title": "Manage Copilot Chat",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/copilot/manage/manage-copilot-chat"
+    },
+    {
+      "title": "Pin Microsoft Copilot Chat in the Microsoft 365 apps",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/copilot/implement/pin-copilot-chat-navbar"
+    },
+    {
+      "title": "Office LTSC 2024 is now available",
+      "publisher": "Microsoft Tech Community",
+      "url": "https://techcommunity.microsoft.com/blog/microsoft_365blog/office-ltsc-2024-is-now-available/4244953"
+    },
+    {
+      "title": "Copilot in Outlook: New agentic experiences for email and calendar",
+      "publisher": "Microsoft Tech Community",
+      "url": "https://techcommunity.microsoft.com/blog/outlook/copilot-in-outlook-new-agentic-experiences-for-email-and-calendar/4514601"
+    },
+    {
+      "title": "Copilot is now included in Microsoft 365 Personal and Family",
+      "publisher": "Microsoft",
+      "url": "https://www.microsoft.com/en-us/microsoft-365/blog/2025/01/16/copilot-is-now-included-in-microsoft-365-personal-and-family/"
+    }
+  ],
+  "internalLinks": [
+    "/blog/copilot-in-excel-not-showing-2026",
+    "/blog/best-ai-email-assistants-2026",
+    "/blog/gemini-not-showing-google-docs-gmail-2026"
+  ],
+  "futureSupportingArticles": [
+    "Copilot not showing in Word (the corner button, Word for the web, file location)",
+    "Copilot not showing in Teams meetings (meeting policies, transcription)",
+    "Copilot not showing in PowerPoint",
+    "Open WebUI cannot connect to Ollama in Docker",
+    "Copilot Chat versus Microsoft Copilot license in Outlook: what each can do"
+  ],
+  "faq": [
+    "Why can't I see Copilot in Outlook?",
+    "Why is Copilot greyed out in Outlook?",
+    "How do I fix Copilot missing from classic Outlook?",
+    "Do I need a paid license for Copilot in Outlook?",
+    "Why is Draft with Copilot missing in new Outlook?",
+    "Does Outlook 2021 or Outlook 2024 have Copilot?",
+    "Can I use Copilot in Outlook with a Gmail account?",
+    "Why can't my family members see Copilot in Outlook?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/copilot-outlook/copilot-not-showing-in-outlook-cover.png",
+    "coverFile": "public/blog/copilot-outlook/copilot-not-showing-in-outlook-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/copilot-outlook/copilot-outlook-web-test.png",
+    "inlineFile": "public/blog/copilot-outlook/copilot-outlook-web-test.png",
+    "buildScript": "scripts/build-copilot-outlook-images.mjs",
+    "assetCommit": "d63eb0d",
+    "origin": "Original SVG drawn in code and rendered to PNG with sharp. No screenshots, logos, stock photos or AI-generated images."
+  },
+  "validation": {
+    "proseWords": 3298,
+    "readingTime": "15 min read",
+    "contentSha256": "80f0aa5834d59f87a0c6864d9af33eb6ea814f060ecd17fc2fe538e6ff633de3",
+    "codeBlocks": 1,
+    "tables": 2,
+    "wordCountNote": "proseWords is the site's reading-time count and includes the text inside the tables and the ticket template.",
+    "sourceDirectory": "../.byteverse-copilot-outlook-check",
+    "notTested": "No work tenant, Copilot license, hybrid mailbox, Mac, iPhone, Android or personal Microsoft 365 plan was available, so no step was run and there are no screenshots. Every rule comes from the saved Microsoft pages listed below; the test script checks the quoted sentences against those files.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "Eight FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "docs/d01-missing-button.txt": "ddc489b2e22670947c6d7ffbcc3f4985f26358d33a671248242cee818cbde463",
+      "docs/d02-known-issue.txt": "ec00624975992c166f32268f5edab6c7e8edfb1a11e855724a73dd6c15cc3cb9",
+      "docs/d03-outlook-faq.txt": "a85b59dbd2f225d890f1084e152c51aa455b77d5c814ec1c21fa0e5b351beb9b",
+      "docs/d04-license.txt": "64b373e4b5517698e089bab3f81ad4d9d4575e8cf71e74cb2e58bed0fc3d0a66",
+      "docs/d05-troubleshooters.txt": "d17079137ff4f1493868879e2b7882afd06a34e6ea47413288dde0296f38a321",
+      "docs/d06-chat.txt": "9c03109d6fae8bda6403763f79a05d07a7dc97d19a773c6491a16976af5551cd",
+      "docs/d07-draft.txt": "0b50171b214e573621cd12de4002867d1fdf98b67d45ea24f29c1e8004f9a9cc",
+      "docs/d08-summarize.txt": "3c38aaa41a87d8044da0b730bad52843c23e04874354006f5383772cd4a959c8",
+      "docs/d09-requirements.txt": "4f6bd76435d3d3270c09a2e2c256fc568f3bffe72ec00278709a1f3007c8d06c",
+      "docs/d10-hybrid.txt": "a5aee768afd7bd6059edeac7e96647165771c00bede9fe6c4c9f394757632552",
+      "docs/d11-sharing.txt": "38f59816529e7be3eaff4e0af6a57f6c7231f57e088ecd418305f3b5656c4862",
+      "docs/d12-ai-credits.txt": "05d4dfb8591747118e0d65f88aa26c42cd2b262d73e0d74ed128674f1d333066",
+      "docs/d13-consumer-faq.txt": "641415c66eab4b04e8cdab3e4b678a128e52ff4ebf61cc757ea7d864dea1939e",
+      "docs/d14-turn-off.txt": "484863a0c617868655a298c32bb7a5b499232f913d850cf760783858e73e20cb",
+      "docs/d15-manage-chat.txt": "84ded8d3f014dd24285584bebc84d063d9bb61f034e385ac87ec696e29237fe9",
+      "docs/d16-pinning.txt": "7db9a4247d08a9ab6cd7098a4d56a231fa9a64f4bd647af7ca29f6fcbaf19eff",
+      "docs/d17-shared-outlook.txt": "392892598fcac74f91081b7f5d2e8b10be6dd78a8f1b31762252fca38c4d51b1",
+      "docs/d18-shared-app.txt": "41aa0e10da08cc51534f89eb8c9a917744a9b99acb490cc99835b4bb385eba4e",
+      "docs/d19-mc1441784.txt": "98d4c38b7e1383eeaa8a6da74550c350b0dde6030e780d41225b72757cb040b1",
+      "docs/d20-navbar.txt": "93943a740d2ed3cd19c4a3716df8ce51a43173d642ffa786dd12dd52705e44cc",
+      "docs/d21-classic-blog-2024.txt": "ec21e00ba3a4657cc50842b378ea06ef69477295b36c5a8537c1bfe8a4b7bdbe",
+      "docs/d22-agentic-blog-2026.txt": "bf619245f04ab5885c2c819b424f584c75a5856b81c70f79665379fdd2b94d7b",
+      "docs/d23-feature-comparison.txt": "282850c55e08fd76b105ee76287d0a9efde5ee7b90e02756ea3bc5a90f59f962",
+      "docs/d24-create-profile.txt": "63611b78fecef39cb9707c53330d0424b5367c4c7b52a105234c2615f8acb317",
+      "docs/d25-outlook-for-mac.txt": "7dc5673e74fcfec0f4a99086670c17bdab451732848827778aba42ce52f1d0ca",
+      "docs/d26-legacy-mac-end.txt": "2b55f108a21db17c8adf1a7e1317ea19c12e5d25f8832f1271158d0ede943466",
+      "docs/d27-owa-sign-in.txt": "4ccb808960796b51fe057caf474b1cf8a328e1e3ec8f42c04231dda4a3127a08",
+      "docs/d28-ltsc-2024.txt": "1a3a4e909f24e85e974eb0b559602f5bf3cf92b10cdc61651638f2bbd66f04c7",
+      "docs/d29-consumer-blog-2025.txt": "002dd6cbfedd837d6e91a31f2a93f6fc00e5be570832a9aa5c818df482943814",
+      "docs/d30-m365-vs-office-2024.txt": "b8d706a6972a969bfc5e59339c1727cd473d64bce9173c84eb0f6d36659f63ee"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-25",
+    "method": "Case-normalised five-word phrase overlap on the article body; tables, the ticket template, links and the sources list excluded. Compared with all 191 stored posts (read-only query), the 30 saved Microsoft pages and the 8 readable competitor pages fetched for this topic. Script: ../.byteverse-copilot-outlook-check/originality.mjs.",
+    "draftPhrases": 2890,
+    "ownPosts": {
+      "highest": "copilot-in-excel-not-showing-2026",
+      "percentBefore": 2.23,
+      "percentAfter": 0.66,
+      "longestRunWords": 7,
+      "note": "The first draft repeated the Excel guide's wording for the update channel, the license label check and the license delay. All three were rewritten."
+    },
+    "officialDocs": {
+      "highest": "Draft an email message with Copilot in Outlook",
+      "percentAfter": 0.76,
+      "longestRunWords": 11,
+      "note": "The longest matches are sentences quoted in quotation marks and interface labels such as Do not pin Copilot Chat in Microsoft 365 apps."
+    },
+    "competitors": [
+      {
+        "site": "eyalmarcus.com",
+        "percentBefore": 2.55,
+        "percentAfter": 1,
+        "longestRunWords": 8,
+        "note": "The first draft matched this page on the license label sentence, the two privacy setting names joined by 'both need to be on', the Show Apps path and one FAQ question. All were rewritten; the remaining run is Microsoft's own instruction 'under Outlook panes, check the box for Show Apps in Outlook'."
+      },
+      {
+        "site": "typemac.com",
+        "percentAfter": 0.66
+      },
+      {
+        "site": "wintips.org",
+        "percentBefore": 0.8,
+        "percentAfter": 0.52
+      },
+      {
+        "site": "thedroidguy.com",
+        "percentBefore": 0.98,
+        "percentAfter": 0.48
+      },
+      {
+        "site": "techbridge.top",
+        "percentAfter": 0.35
+      },
+      {
+        "site": "pcglance.com",
+        "percentBefore": 0.63,
+        "percentAfter": 0.28,
+        "note": "An FAQ question and the profile steps were reworded."
+      },
+      {
+        "site": "easytweaks.com",
+        "percentAfter": 0.24
+      },
+      {
+        "site": "stoneridgesoftware.com",
+        "percentAfter": 0.1
+      }
+    ],
+    "styleChecks": {
+      "flaggedFillerWords": 0,
+      "emDashes": 0,
+      "sentences": 175,
+      "meanSentenceWords": 16,
+      "stdevSentenceWords": 6.9
+    },
+    "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed. The checks show the text is not copied; they cannot predict what a third-party detector will say."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 260,
+    "publishedAt": "2026-11-25T17:39:33.368Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/copilot-not-showing-in-outlook",
+    "databaseWrites": "One guarded INSERT by scripts/_publish-copilot-outlook-post.mjs --apply; no other row was updated.",
+    "otherPostsUnchanged": 191,
+    "otherPostsHash": "5febdbf65bed811035b540d312fecac5",
+    "assetCommits": [
+      "d63eb0d"
+    ],
+    "releaseCommit": null,
+    "deploymentStatus": null,
+    "liveVerification": null,
+    "preview": "Headless Microsoft Edge at 320, 375 (light and dark), 768 and 1440 px: no horizontal overflow, both images decoded, both tables inside scroll containers, FAQ opens by keyboard, no page errors. Screenshots in ../.byteverse-copilot-outlook-preview.",
+    "approvedBy": "Owner request on 25 November 2026: 'new blog add kro according to this prompt ... deep working honi chhaye'."
+  }
+}

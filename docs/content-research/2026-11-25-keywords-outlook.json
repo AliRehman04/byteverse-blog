@@ -1,0 +1,529 @@
+{
+  "checkedAt": "2026-11-25T13:01:56.363Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "copilot in outlook not showing",
+      "google": [
+        "copilot in outlook not showing",
+        "copilot in outlook not showing up",
+        "copilot in outlook not working",
+        "copilot in outlook classic not showing",
+        "copilot button in outlook not showing",
+        "draft with copilot in outlook not showing",
+        "copilot in outlook stopped working",
+        "copilot in outlook classic not working",
+        "copilot button in outlook not working",
+        "copilot not working in outlook desktop"
+      ],
+      "bing": [
+        "copilot in outlook not showing",
+        "copilot not showing in outlook classic",
+        "copilot icon not showing in outlook"
+      ]
+    },
+    {
+      "seed": "copilot not showing in outlook",
+      "google": [
+        "copilot not showing in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook desktop",
+        "copilot not showing in outlook app",
+        "copilot not showing in outlook web",
+        "copilot not showing in outlook new email",
+        "copilot not showing in outlook mac",
+        "copilot not showing in outlook ribbon"
+      ],
+      "bing": [
+        "copilot not showing in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not showing in outlook app",
+        "copilot not showing in outlook desktop",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook ribbon",
+        "copilot not showing in outlook anymore",
+        "copilot icon not showing in outlook"
+      ]
+    },
+    {
+      "seed": "copilot not showing in new outlook",
+      "google": [
+        "copilot not showing in new outlook",
+        "copilot not showing in outlook new email",
+        "copilot not working in new outlook",
+        "copilot not appearing in new outlook",
+        "copilot icon not showing in outlook new email",
+        "draft with copilot not showing in new outlook",
+        "copilot not showing in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not showing in outlook classic ribbon"
+      ],
+      "bing": [
+        "copilot not showing in new outlook",
+        "why is copilot not showing in my new outlook",
+        "copilot icon not showing in new outlook"
+      ]
+    },
+    {
+      "seed": "copilot not showing in outlook classic",
+      "google": [
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not working in outlook classic",
+        "copilot not appearing in outlook classic",
+        "copilot icon not showing in outlook classic",
+        "copilot chat not showing in outlook classic",
+        "draft with copilot not showing in outlook classic",
+        "copilot no longer showing in outlook classic",
+        "copilot chat not working in outlook classic",
+        "draft with copilot not working in outlook classic"
+      ],
+      "bing": [
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook classic ribbon",
+        "copilot icon not showing in outlook classic"
+      ]
+    },
+    {
+      "seed": "copilot greyed out in outlook",
+      "google": [
+        "copilot greyed out in outlook",
+        "copilot greyed out in outlook classic",
+        "copilot greyed out in outlook ribbon",
+        "copilot greyed out in outlook mac",
+        "copilot is grayed out in outlook",
+        "copilot button grayed out in outlook",
+        "copilot is grayed out in outlook classic",
+        "copilot button grayed out in outlook classic",
+        "copilot button greyed out in outlook classic",
+        "copilot icon greyed out in outlook"
+      ],
+      "bing": [
+        "copilot greyed out in outlook",
+        "copilot greyed out in outlook classic",
+        "copilot button greyed out in outlook classic",
+        "copilot option greyed out in new outlook",
+        "copilot icon greyed out in outlook",
+        "copilot is greyed out in word",
+        "copilot is greyed out",
+        "copilot greyed out in powerpoint",
+        "copilot in excel greyed out",
+        "copilot grayed out in word",
+        "copilot send button greyed out",
+        "copilot grayed out in powerpoint",
+        "copilot grayed out in excel",
+        "copilot button greyed out",
+        "copilot on old outlook"
+      ]
+    },
+    {
+      "seed": "outlook copilot greyed out",
+      "google": [
+        "outlook copilot greyed out",
+        "outlook classic copilot greyed out",
+        "outlook copilot button greyed out",
+        "outlook mac copilot greyed out",
+        "outlook copilot reply greyed out",
+        "outlook copilot options greyed out",
+        "outlook copilot icon greyed out",
+        "outlook 365 copilot greyed out",
+        "outlook draft with copilot greyed out",
+        "outlook classic copilot button greyed out"
+      ],
+      "bing": [
+        "outlook copilot greyed out",
+        "outlook classic copilot greyed out",
+        "outlook classic copilot button greyed out",
+        "outlook copilot icon greyed out",
+        "copilot is greyed out",
+        "copilot greyed out in word",
+        "copilot greyed out in powerpoint",
+        "copilot in excel greyed out",
+        "copilot button greyed out",
+        "copilot send button greyed out",
+        "copilot grayed out in word",
+        "copilot grayed out in powerpoint",
+        "copilot grayed out in excel"
+      ]
+    },
+    {
+      "seed": "copilot button missing in outlook",
+      "google": [
+        "copilot button missing in outlook",
+        "copilot button missing in outlook classic",
+        "copilot button missing in outlook web",
+        "copilot icon missing in outlook",
+        "copilot icon missing in outlook classic",
+        "copilot button not showing in outlook classic",
+        "copilot option missing in outlook",
+        "copilot tab missing in outlook",
+        "copilot button disappeared in outlook",
+        "copilot button gone in outlook"
+      ],
+      "bing": [
+        "copilot button missing in outlook",
+        "copilot button missing in outlook classic"
+      ]
+    },
+    {
+      "seed": "copilot icon missing outlook",
+      "google": [
+        "copilot icon missing outlook",
+        "copilot icon missing outlook classic",
+        "copilot icon disappeared from outlook",
+        "copilot button missing outlook",
+        "copilot button missing outlook classic",
+        "copilot icon disappeared from outlook classic",
+        "copilot icon missing from outlook ribbon",
+        "copilot button gone from outlook",
+        "copilot button disappeared from outlook classic",
+        "copilot icon missing in outlook 365"
+      ],
+      "bing": [
+        "copilot icon missing in outlook",
+        "copilot icon missing in classic outlook",
+        "no copilot icon in outlook",
+        "copilot missing from outlook",
+        "copilot button missing from outlook",
+        "copilot option missing from outlook",
+        "new outlook copilot missing",
+        "how to find copilot icon in outlook"
+      ]
+    },
+    {
+      "seed": "copilot disappeared from outlook",
+      "google": [
+        "copilot disappeared from outlook",
+        "copilot disappeared from outlook classic",
+        "copilot disappeared from outlook ribbon",
+        "copilot disappeared from outlook 365",
+        "copilot disappeared from outlook app",
+        "copilot disappeared from outlook mac",
+        "copilot missing from outlook",
+        "copilot missing from outlook ribbon",
+        "copilot missing from outlook classic ribbon",
+        "copilot missing from outlook app"
+      ],
+      "bing": [
+        "copilot disappeared from outlook",
+        "copilot disappeared from outlook classic",
+        "copilot disappeared from outlook ribbon",
+        "copilot disappeared from outlook and teams",
+        "copilot has disappeared from outlook",
+        "my copilot disappeared from outlook",
+        "copilot icon disappeared from outlook",
+        "why is copilot missing from outlook",
+        "copilot option missing from outlook",
+        "copilot removed from outlook",
+        "copilot missing from classic outlook",
+        "copilot button missing from outlook",
+        "what happened to copilot in outlook",
+        "copilot not appearing in outlook",
+        "where has copilot gone in outlook"
+      ]
+    },
+    {
+      "seed": "why can't i see copilot in outlook",
+      "google": [
+        "why can't i see copilot in outlook",
+        "why i cannot see copilot in outlook",
+        "why cant i find copilot in outlook",
+        "where can i see copilot in outlook",
+        "why don t i see copilot in outlook",
+        "can't see cursor in outlook",
+        "why i cannot see sent items in outlook",
+        "can't see sent items in outlook"
+      ],
+      "bing": [
+        "why can't i see copilot in outlook",
+        "why can't i see copilot in my outlook",
+        "why i don t see copilot in outlook",
+        "why can't i see the copilot icon in outlook"
+      ]
+    },
+    {
+      "seed": "copilot not available in outlook",
+      "google": [
+        "copilot not available in outlook",
+        "copilot not available in outlook classic",
+        "copilot not showing in outlook",
+        "copilot not working in outlook",
+        "copilot not showing in outlook classic",
+        "copilot not showing in outlook 365",
+        "copilot not working in outlook classic",
+        "copilot not showing in outlook classic ribbon",
+        "copilot not showing in outlook new email",
+        "copilot not showing in outlook app"
+      ],
+      "bing": [
+        "copilot not available in outlook",
+        "copilot not available in outlook classic",
+        "why is copilot not available in outlook"
+      ]
+    },
+    {
+      "seed": "copilot not working in outlook",
+      "google": [
+        "copilot not working in outlook",
+        "copilot not working in outlook classic",
+        "copilot not working in outlook for mac",
+        "copilot not working in outlook app",
+        "copilot not working in outlook 365",
+        "copilot not working in outlook desktop",
+        "copilot not working in outlook web",
+        "copilot not loading in outlook",
+        "copilot stopped working in outlook",
+        "copilot not loading in outlook classic"
+      ],
+      "bing": [
+        "copilot not working in outlook",
+        "copilot not working in outlook classic",
+        "copilot not working in outlook app",
+        "copilot not working in outlook desktop",
+        "copilot not working in outlook on mac",
+        "copilot not working in outlook 365"
+      ]
+    },
+    {
+      "seed": "draft with copilot not showing",
+      "google": [
+        "draft with copilot not showing in outlook",
+        "draft with copilot not showing in outlook classic",
+        "draft with copilot not showing in word",
+        "draft with copilot not showing in new outlook",
+        "draft with copilot not showing",
+        "draft with copilot not working in outlook",
+        "draft with copilot not working",
+        "draft with copilot not working in outlook classic",
+        "how to show draft in word"
+      ],
+      "bing": [
+        "draft with copilot not showing",
+        "draft with copilot not showing in outlook",
+        "draft with copilot not showing in word",
+        "draft with copilot box not showing",
+        "draft with copilot off",
+        "draft with copilot feature",
+        "how to turn on draft with copilot",
+        "how to eliminate draft with copilot",
+        "how to disable draft with copilot",
+        "draft with copilot missing",
+        "stop draft with copilot",
+        "how to remove draft with copilot",
+        "how to delete draft with copilot",
+        "outlook draft with copilot",
+        "how to use copilot to draft documents"
+      ]
+    },
+    {
+      "seed": "summarize with copilot not showing",
+      "google": [],
+      "bing": [
+        "copilot is not showing",
+        "copilot summary not working",
+        "copilot suggestions not showing",
+        "copilot option not showing",
+        "how to summarize with copilot",
+        "copilot images not showing",
+        "copilot actions not showing",
+        "pictures not showing in copilot",
+        "copilot preview not showing",
+        "why is copilot not showing images",
+        "summarize this page copilot",
+        "can copilot summarize videos",
+        "can copilot summarize a document",
+        "copilot is not opening",
+        "copilot can you summarize it",
+        "can copilot summarise a video",
+        "can copilot summarise a document"
+      ]
+    },
+    {
+      "seed": "copilot outlook shared mailbox",
+      "google": [
+        "copilot outlook shared mailbox",
+        "how does a shared mailbox in outlook work",
+        "what is a shared mailbox in outlook",
+        "how do i give someone access to a shared mailbox in outlook"
+      ],
+      "bing": [
+        "copilot outlook shared mailbox",
+        "copilot studio shared mailbox as source",
+        "how to share outlook with copilot",
+        "copilot in outlook email",
+        "how to connect copilot and outlook",
+        "using copilot with outlook",
+        "copilot outlook inbox management",
+        "copilot chat entire mailbox",
+        "copilot in outlook microsoft",
+        "using microsoft copilot in outlook",
+        "copilot access shared mailbox",
+        "copilot studio shared mailbox",
+        "copilot shared mailbox roadmap",
+        "sharing copilot in outlook",
+        "how to use copilot in outlook mail"
+      ]
+    },
+    {
+      "seed": "copilot outlook gmail",
+      "google": [
+        "copilot outlook gmail",
+        "can you put gmail in outlook",
+        "can i transfer my gmail to outlook",
+        "can i send an email from outlook to gmail",
+        "connect gmail to outlook"
+      ],
+      "bing": [
+        "copilot outlook email",
+        "copilot outlook email management",
+        "copilot outlook email summary",
+        "copilot outlook email sorting"
+      ]
+    },
+    {
+      "seed": "copilot outlook personal account",
+      "google": [],
+      "bing": [
+        "copilot for personal account",
+        "copilot personal account login",
+        "sign in copilot with personal account",
+        "microsoft copilot personal account",
+        "outlook copilot log in",
+        "outlook email login copilot",
+        "outlook copilot sign in",
+        "outlook copilot login free",
+        "how to access copilot outlook",
+        "copilot in my outlook",
+        "outlook office copilot login",
+        "copilot make an account",
+        "how to get outlook on copilot",
+        "microsoft outlook copilot login",
+        "how to access copilot in outlook email",
+        "log into copilot account",
+        "create an account copilot"
+      ]
+    },
+    {
+      "seed": "copilot outlook mac not showing",
+      "google": [
+        "copilot outlook mac not showing",
+        "copilot outlook mac not working"
+      ],
+      "bing": [
+        "outlook copilot not showing",
+        "my outlook is not showing copilot",
+        "copilot in outlook on mac",
+        "copilot not appearing in outlook",
+        "copilot app not showing in outlook",
+        "copilot does not appear in outlook",
+        "copilot does not show in outlook"
+      ]
+    },
+    {
+      "seed": "how to enable copilot in outlook",
+      "google": [
+        "how to enable copilot in outlook",
+        "how to enable copilot in outlook 365",
+        "how to enable copilot in outlook classic",
+        "how to enable copilot in outlook for mac",
+        "how to enable copilot in outlook desktop",
+        "how to enable copilot in outlook web",
+        "how to enable copilot in outlook desktop app",
+        "how to enable copilot in outlook classic 365",
+        "how to enable copilot in outlook meeting invite",
+        "how to enable copilot in outlook email"
+      ],
+      "bing": [
+        "how to enable copilot in outlook",
+        "how to enable copilot in outlook classic",
+        "how to enable copilot in outlook 365",
+        "how to enable copilot in outlook desktop",
+        "how to enable copilot in outlook app",
+        "how to enable copilot in outlook 365 family",
+        "how to enable copilot in outlook email",
+        "how to enable copilot in outlook ribbon",
+        "how to enable copilot in outlook on mac",
+        "how to enable copilot in outlook meeting",
+        "how to enable copilot in outlook desktop app",
+        "how to enable copilot in outlook web",
+        "how to enable copilot in outlook 365 classic"
+      ]
+    },
+    {
+      "seed": "how to turn on copilot in outlook",
+      "google": [
+        "how to turn on copilot in outlook",
+        "how to turn on copilot in outlook classic",
+        "how to turn on copilot in outlook 365",
+        "how to turn on copilot in outlook email",
+        "how to turn on copilot in outlook desktop",
+        "how to turn on copilot in outlook mac",
+        "how to turn on copilot in outlook app",
+        "how to turn on copilot in outlook meeting invite",
+        "how to turn on copilot in outlook web",
+        "how to switch on copilot in outlook"
+      ],
+      "bing": [
+        "how to turn on copilot in outlook",
+        "how to turn on copilot in outlook classic",
+        "how to turn on copilot in outlook 365",
+        "how to turn on copilot in outlook email",
+        "how to turn on copilot in outlook app",
+        "how to turn on copilot in outlook desktop",
+        "how to turn on copilot in outlook for mac",
+        "how to turn on copilot in outlook meeting",
+        "how to turn on copilot in outlook and teams"
+      ]
+    },
+    {
+      "seed": "copilot in outlook classic",
+      "google": [
+        "copilot in outlook classic",
+        "copilot in outlook classic not showing",
+        "copilot in outlook classic not working",
+        "copilot in outlook classic not loading",
+        "copilot in outlook classic missing",
+        "copilot in outlook classic desktop",
+        "copilot in outlook classic vs new",
+        "copilot in outlook classic disappeared",
+        "copilot in classic outlook app",
+        "enable copilot in outlook classic"
+      ],
+      "bing": [
+        "copilot in outlook classic",
+        "copilot in outlook classic not showing",
+        "copilot in outlook classic guide",
+        "copilot in outlook classic features",
+        "copilot in outlook classic settings",
+        "copilot in outlook classic tutorial",
+        "copilot in outlook classic is greyed out",
+        "copilot in outlook classic app",
+        "copilot in outlook classic verwenden"
+      ]
+    },
+    {
+      "seed": "copilot works in new outlook but not classic",
+      "google": [],
+      "bing": [
+        "copilot works in new outlook but not classic",
+        "copilot in outlook classic not showing",
+        "is copilot available in classic outlook",
+        "using copilot in outlook classic"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

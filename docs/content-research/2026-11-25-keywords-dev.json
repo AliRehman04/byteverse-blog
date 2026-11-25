@@ -1,0 +1,636 @@
+{
+  "checkedAt": "2026-11-25T12:57:36.824Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "cursor stuck on generating",
+      "google": [
+        "cursor stuck on generating",
+        "cursor stuck on generating command",
+        "cursor agent stuck on generating",
+        "cursor ai stuck on generating",
+        "cursor chat stuck on generating",
+        "cursor cli stuck on generating",
+        "cursor stuck on creating project",
+        "why is my cursor stuck",
+        "how do i get my cursor unstuck",
+        "what do i do if my cursor is stuck"
+      ],
+      "bing": [
+        "cursor stuck on generating",
+        "cursor keeps getting stuck",
+        "how to fix cursor stuck",
+        "cursor getting stuck on laptop",
+        "cursor is stuck on screen",
+        "cursor stuck on reconnecting",
+        "mouse cursor getting stuck",
+        "my cursor keeps going up",
+        "my cursor stopped working",
+        "what happened to my cursor",
+        "cursor gone how to fix",
+        "cursor is not working",
+        "cursor will not work",
+        "cursor not working correctly"
+      ]
+    },
+    {
+      "seed": "cursor agent not working",
+      "google": [
+        "cursor agent not working",
+        "cursor agent stopped working",
+        "cursor agent not loading",
+        "cursor agent not starting",
+        "cursor agent not running",
+        "cursor agent terminal not working",
+        "cursor ai agent not working",
+        "cursor agent cli not working",
+        "cursor agent mode not working",
+        "cursor agent chat not working"
+      ],
+      "bing": [
+        "cursor agent not working",
+        "how to use cursor agent",
+        "how to open cursor agent",
+        "cursor failed to create agents",
+        "not seeing the custom agents in cursor",
+        "what is an agent in cursor",
+        "how to create an agent in cursor",
+        "what is cursor agent mode",
+        "failed to create agents. cursor",
+        "cursor agent code review",
+        "how to add agent in cursor",
+        "cursor agent ask manual",
+        "cursor-agent windows",
+        "cursor-agent.exe"
+      ]
+    },
+    {
+      "seed": "cursor connection failed",
+      "google": [
+        "cursor connection failed",
+        "cursor connection failed if the problem persists",
+        "cursor connection failed vpn",
+        "cursor connection failed please try again",
+        "cursor connection failed issue",
+        "cursor connection failed unknown",
+        "cursor connection failure",
+        "cursor connection error",
+        "cursor connection error reddit",
+        "cursor ai connection failed"
+      ],
+      "bing": [
+        "cursor connection failed",
+        "cursor ssh connection failed",
+        "cursor ai connection failed",
+        "connection to cursor server failed",
+        "cursor agent connection failed"
+      ]
+    },
+    {
+      "seed": "cursor tab not working",
+      "google": [
+        "cursor tab not working",
+        "cursor tab not working in jupyter notebook",
+        "cursor tab not working free",
+        "cursor tab not showing",
+        "cursor tab completion not working",
+        "cursor tab autocomplete not working",
+        "cursor browser tab not working",
+        "cursor tab suggestions not working",
+        "cursor ide tab not working",
+        "cursor tab key not working"
+      ],
+      "bing": [
+        "cursor tab not working",
+        "cursor tab not working in jupyter notebook",
+        "cursor tab completion not working",
+        "my cursor not working",
+        "cursor not working on windows",
+        "cursor not working correctly",
+        "my cursor is not working properly",
+        "cursor on keyboard not working",
+        "cursor not working on laptop",
+        "pc cursor not working",
+        "my cursor does not work",
+        "cursor does not work properly",
+        "my cursor stopped working",
+        "my cursor doesn't work",
+        "my cursor won't work",
+        "microsoft cursor not working properly"
+      ]
+    },
+    {
+      "seed": "cursor model not available",
+      "google": [
+        "cursor model not available",
+        "cursor model not available in your region",
+        "cursor model not available region",
+        "cursor model not available 2026",
+        "cursor model not found",
+        "cursor model not working",
+        "cursor models not showing",
+        "cursor claude model not available",
+        "cursor ai model not found",
+        "cursor auto model not working"
+      ],
+      "bing": [
+        "cursor model not available",
+        "cursor model not available in your region",
+        "cursor the model default does not work",
+        "cursor does not appear",
+        "built in cursor not working",
+        "cursor is not working",
+        "free model in cursor",
+        "cursor is not showing",
+        "cursor does not work",
+        "custom cursor not working",
+        "cursor not appearing windows",
+        "cursor not working correctly",
+        "cursor is not working properly",
+        "does cursor have free models",
+        "unable to use cursor",
+        "cursor the model does not work",
+        "cursor no models found",
+        "cursor no changes made"
+      ]
+    },
+    {
+      "seed": "cursor taking longer than expected",
+      "google": [
+        "cursor taking longer than expected",
+        "cursor taking longer than expected stuck",
+        "cursor taking longer than expected issue",
+        "cursor taking longer than expected reddit",
+        "cursor taking longer than expected error",
+        "cursor taking longer than expected message",
+        "cursor taking longer than expected fix",
+        "cursor taking longer than expected mac",
+        "cursor taking longer than usual",
+        "cursor ai taking longer than expected"
+      ],
+      "bing": [
+        "cursor taking longer than expected",
+        "cursor taking longer than expected stuck",
+        "cursor taking longer than expected issue",
+        "cursor ai taking longer than expected",
+        "cursor agent taking longer than expected",
+        "cursor always taking longer than expected"
+      ]
+    },
+    {
+      "seed": "cursor request failed",
+      "google": [
+        "cursor request failed",
+        "cursor request failed with status code 400",
+        "cursor request error",
+        "cursor error request id",
+        "cursor issues",
+        "how to fix cursor issue",
+        "cursor stopped working"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "cursor terminal not working",
+      "google": [
+        "cursor terminal not working",
+        "cursor terminal not working mac",
+        "cursor terminal not loading",
+        "cursor terminal not opening",
+        "cursor terminal not starting",
+        "cursor terminal not showing",
+        "cursor agent terminal not working",
+        "cursor terminal commands not working",
+        "cursor terminal copy not working",
+        "cursor ai terminal not working"
+      ],
+      "bing": [
+        "cursor terminal not working",
+        "cursor terminal not loading",
+        "cursor terminal commands not working",
+        "how to use cursor in terminal",
+        "how to open cursor from terminal",
+        "how to run cursor in terminal",
+        "how to restart terminal in cursor",
+        "cursor is not working",
+        "cursor add terminal command",
+        "computer cursor not working",
+        "cursor not working windows",
+        "how to launch cursor from terminal",
+        "cursor not working properly",
+        "cursor pointer not working",
+        "cursor is not opening",
+        "cursor running terminal command",
+        "open from terminal cursor and code command"
+      ]
+    },
+    {
+      "seed": "cursor rate limit",
+      "google": [
+        "cursor rate limited by model provider",
+        "cursor rate limits",
+        "cursor rate limited by model provider retrying",
+        "cursor rate limited by provider",
+        "cursor rate limited by model",
+        "what is rate limit",
+        "rate limit reached"
+      ],
+      "bing": [
+        "cursor rate limit",
+        "cursor rate limited by model provider",
+        "cursor rate limited by provider",
+        "cursor user api key rate limit exceeded",
+        "cursor pro rate limits"
+      ]
+    },
+    {
+      "seed": "claude code windows",
+      "google": [
+        "claude code windows",
+        "claude code windows install",
+        "claude code windows download",
+        "claude code windows terminal",
+        "claude code windows app",
+        "claude code windows cli",
+        "claude code windows powershell",
+        "claude code windows cli install",
+        "claude code windows update",
+        "claude code windows 11"
+      ],
+      "bing": [
+        "claude code windows download",
+        "claude code windows app",
+        "claude code windows cli",
+        "claude code windows 11",
+        "claude code windows terminal",
+        "claude code windows installer",
+        "claude code windows powershell",
+        "claude code windows desktop",
+        "claude code windows setup",
+        "claude code windows",
+        "claude code windows 10",
+        "claude code windows cmd",
+        "claude code windows terminal install",
+        "claude code windows powershell install",
+        "claude code windows 11 install",
+        "claude code windows desktop app",
+        "claude code windows native install"
+      ]
+    },
+    {
+      "seed": "claude code requires git bash",
+      "google": [
+        "claude code requires git bash",
+        "claude code requires git bash error",
+        "claude code without git bash",
+        "claude code windows requires git bash",
+        "does claude code require git bash",
+        "claude code on windows requires git bash error",
+        "claude code on windows requires git bash vscode",
+        "claude_code_git_bash_path",
+        "claude code git bash",
+        "claude code git bash path windows"
+      ],
+      "bing": [
+        "claude code requires git bash",
+        "claude code on windows requires git bash",
+        "claude code in git bash windows",
+        "git bash claude code",
+        "install claude code in git bash",
+        "claude code install windows git bash",
+        "git bash for claude",
+        "installing git bash on claude",
+        "install claude git bash",
+        "claude code need git",
+        "how to set claude_code_git_bash_path"
+      ]
+    },
+    {
+      "seed": "claude code not working",
+      "google": [
+        "claude code not working",
+        "claude code not working in vscode",
+        "claude code not working in terminal",
+        "claude code not working on windows",
+        "claude code not working today",
+        "claude code not working now",
+        "claude code not working in visual studio code",
+        "claude code not working reddit",
+        "claude code not working in cursor",
+        "claude code not working with ollama"
+      ],
+      "bing": [
+        "claude code not working",
+        "claude code not working in vs code",
+        "claude code not working in terminal",
+        "claude code not working on vpn",
+        "claude code not working on wsl",
+        "claude code not working it just keeps loading",
+        "claude code not working on windows",
+        "claude code not working on my machine",
+        "claude verification code not working"
+      ]
+    },
+    {
+      "seed": "claude code api error",
+      "google": [
+        "claude code api error",
+        "claude code api error unable to connect to api (econnreset)",
+        "claude code api error 400",
+        "claude code api error the operation timed out",
+        "claude code api error 529 overloaded",
+        "claude code api error overloaded",
+        "claude code api error unable to connect to api (connectionrefused)",
+        "claude code api error retrying in 0s",
+        "claude code api error 400 input is too long",
+        "claude code api error 529"
+      ],
+      "bing": [
+        "claude code api error",
+        "claude code api error 500",
+        "claude code api error 400",
+        "claude code api error 529",
+        "claude code api error 401",
+        "claude code api error 422",
+        "claude code api error 403",
+        "claude code api error 502",
+        "claude code api error connection error",
+        "claude code api error 402",
+        "claude code api error rate limit reached",
+        "claude code api error 529 overloaded",
+        "claude code api error 407",
+        "claude code api error 503",
+        "claude code api error overloaded"
+      ]
+    },
+    {
+      "seed": "claude code stuck",
+      "google": [
+        "claude code stuck thinking",
+        "claude code stuck",
+        "claude code stuck on almost done thinking",
+        "claude code stuck compacting conversation",
+        "claude code stuck on sending",
+        "claude code stuck on compacting",
+        "claude code stuck on starting session",
+        "claude code stuck on waiting for claude",
+        "claude code stuck in vscode"
+      ],
+      "bing": [
+        "claude code stuck",
+        "claude code stuck thinking",
+        "claude code stuck on resuming cloud container",
+        "claude code stuck in terminal",
+        "claude code stuck at prompt is too long",
+        "claude code stuck in old version after update",
+        "claude code getting stuck",
+        "claude code keeps getting stuck"
+      ]
+    },
+    {
+      "seed": "ollama host",
+      "google": [
+        "ollama host",
+        "ollama host 0.0.0.0",
+        "ollama hosted models",
+        "ollama host variable",
+        "ollama host ai",
+        "ollama host url",
+        "ollama hostinger",
+        "ollama host port",
+        "ollama host environment variable",
+        "ollama host local model"
+      ],
+      "bing": [
+        "ollama host",
+        "ollama host 11434",
+        "ollama host windows",
+        "ollama host ai",
+        "ollama host ip",
+        "ollama host model",
+        "ollama hosten",
+        "ollama host url",
+        "ollama host environment variable",
+        "ollama host and origins ollama service file"
+      ]
+    },
+    {
+      "seed": "ollama 0.0.0.0",
+      "google": [
+        "ollama 0.0.0.0",
+        "ollama 0.0 0.0 linux",
+        "ollama 0.0 0.0 windows",
+        "ollama 0.0 0.0 ubuntu",
+        "ollama 0.0 0.0 macos",
+        "ollama 0.0 0.0 host",
+        "ollama serve 0.0 0.0",
+        "ollama server 0.0 0.0",
+        "ollama listen 0.0 0.0",
+        "ollama service 0.0 0.0"
+      ],
+      "bing": [
+        "ollama 0.0.0.0:11434",
+        "ollama 0.0.0.0 windows",
+        "ollama 0.0.0.0:11434 windows",
+        "ollama listen on 0.0.0.0",
+        "run ollama on 0.0.0.0",
+        "set ollama to 0.0.0.0",
+        "ubuntu ollama 0.0.0.0"
+      ]
+    },
+    {
+      "seed": "ollama port",
+      "google": [
+        "ollama port",
+        "ollama portable",
+        "ollama port number",
+        "ollama port 11434",
+        "ollama portable windows",
+        "ollama portainer",
+        "ollama port 11434 connection refused",
+        "ollama portable zip",
+        "ollama portable download",
+        "ollama port default"
+      ],
+      "bing": [
+        "ollama port",
+        "ollama portable",
+        "ollama port 11434",
+        "ollama port number",
+        "ollama portable zip",
+        "ollama portable windows",
+        "ollama portainer",
+        "ollama port change",
+        "ollama port windows",
+        "ollama portable download",
+        "ollama port config",
+        "ollama port default"
+      ]
+    },
+    {
+      "seed": "ollama access from another computer",
+      "google": [
+        "ollama access from another computer",
+        "access ollama from another computer windows",
+        "access ollama from another computer linux",
+        "access ollama from another machine",
+        "how to access ollama from another pc",
+        "access ollama server from another computer"
+      ],
+      "bing": [
+        "how do i access ollama from another computer",
+        "how to access ollama from another computer",
+        "how do i access ollama",
+        "access ollama from browser",
+        "access ollama over network",
+        "access ollama windows over network",
+        "how to access ollama on local network",
+        "ollama access local file",
+        "can ollama access internet",
+        "give ollama internet access",
+        "how to connect ollama to the internet",
+        "make ollama accessible over the internet",
+        "how to install ollama for all users",
+        "how to connect to ollama",
+        "how to remotely connect to ollama server",
+        "connect to ollama remotely",
+        "how to use ollama on windows",
+        "ollama allow remote connections windows",
+        "how to set up ollama on windows",
+        "how to run ollama locally on windows",
+        "using ollama with local documents"
+      ]
+    },
+    {
+      "seed": "ollama remote access",
+      "google": [
+        "ollama remote access",
+        "ollama remote access windows",
+        "ollama remote access linux",
+        "ollama remote access ubuntu",
+        "ollama remote access api",
+        "ollama remote access mac",
+        "ollama remote access port",
+        "ollama remote control",
+        "ollama remote connections",
+        "ollama enable remote access"
+      ],
+      "bing": [
+        "ollama remote access",
+        "ollama windows remote access",
+        "ollama how to enable remote access",
+        "how to allow remote access to ollama server"
+      ]
+    },
+    {
+      "seed": "open webui can't connect to ollama",
+      "google": [
+        "open webui cannot connect to ollama",
+        "open webui cannot connect to ollama docker",
+        "open webui cannot connect to local ollama",
+        "open webui connect to ollama",
+        "open webui connect to ollama server",
+        "open webui connect to ollama docker",
+        "open webui connect to ollama local",
+        "open webui desktop connect to ollama",
+        "open webui can't access ollama",
+        "openwebui unable.to connect to ollama"
+      ],
+      "bing": [
+        "open webui cannot connect to ollama",
+        "connect openwebui to ollama",
+        "how to link webui with ollama",
+        "open webui vs ollama",
+        "ollama + open webui windows",
+        "run ollama and open webui",
+        "setup openwebui with ollama",
+        "open webui ollama windows",
+        "ollama webui server connection error"
+      ]
+    },
+    {
+      "seed": "ollama context deadline exceeded",
+      "google": [
+        "ollama context deadline exceeded",
+        "ollama error context deadline exceeded",
+        "ollama pull context deadline exceeded",
+        "ollama run context deadline exceeded",
+        "ollama pull error context deadline exceeded",
+        "ollama run error context deadline exceeded",
+        "deadline exceeded meaning"
+      ],
+      "bing": [
+        "ollama context deadline exceeded",
+        "error context deadline exceeded ollama pull",
+        "ollama error context deadline exceeded",
+        "ollama pull context deadline exceeded",
+        "ollama increase context length",
+        "ollama max context length",
+        "ollama default context length",
+        "ollama context length setting",
+        "ollama request timed out after 90 seconds",
+        "ollama change context length",
+        "ollama show context length",
+        "ollama set context length",
+        "ollama terms and conditions",
+        "ollama/ollama:latest",
+        "ollama_context_length",
+        "how to pass context to ollama",
+        "ollama max retries exceeded",
+        "ollama exit status 2",
+        "ollama request timed out after 30 seconds",
+        "ollama ollama_context_length",
+        "ollama + continue",
+        "ollama exited err exit status 1",
+        "ollama service could not be reached",
+        "ollama:latest",
+        "export ollama_context_length 32768"
+      ]
+    },
+    {
+      "seed": "ollama model not found",
+      "google": [
+        "ollama model not found",
+        "ollama model not found api",
+        "ollama model not found error",
+        "ollama model not found try pulling it first",
+        "ollama model not working",
+        "opencode ollama model not found",
+        "ollama serve model not found",
+        "openclaw ollama model not found",
+        "ollama rm model not found",
+        "ollama model metadata not found"
+      ],
+      "bing": [
+        "ollama model not found",
+        "ollama this model does not support images",
+        "no model in ollama",
+        "how to find ollama models",
+        "how to check installed ollama models",
+        "ollama model download location",
+        "how to check ollama models",
+        "ollama unable to load model",
+        "ollama remove a model",
+        "what is the latest ollama model",
+        "how to install model in ollama",
+        "ollama models and details",
+        "ollama show installed models",
+        "download ollama models locally",
+        "how to check available models in ollama",
+        "failed to discover ollama models",
+        "ollama model failed to load",
+        "ollama invalid model name"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

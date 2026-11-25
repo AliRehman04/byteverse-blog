@@ -525,9 +525,9 @@
     "assetCommits": [
       "d63eb0d"
     ],
-    "releaseCommit": null,
-    "deploymentStatus": null,
-    "liveVerification": null,
+    "releaseCommit": "56f95fa",
+    "deploymentStatus": "Vercel status success for 56f95fa at 2026-11-25T17:42:56Z. The page already returned 200 from the database right after the insert at 17:39:33Z.",
+    "liveVerification": "node scripts/test-copilot-outlook-post.mjs --live passed 10 of 10 tests after the deploy: H1, title, meta description, canonical, article:published_time, no noindex, og:image, FAQPage schema with the first five questions, BlogPosting author and date, both tables, eight FAQ items, all three internal links and two body sentences. https://www.byteverse.fyi/sitemap.xml lists the new URL.",
     "preview": "Headless Microsoft Edge at 320, 375 (light and dark), 768 and 1440 px: no horizontal overflow, both images decoded, both tables inside scroll containers, FAQ opens by keyboard, no page errors. Screenshots in ../.byteverse-copilot-outlook-preview.",
     "approvedBy": "Owner request on 25 November 2026: 'new blog add kro according to this prompt ... deep working honi chhaye'."
   }

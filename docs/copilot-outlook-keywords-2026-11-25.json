@@ -514,6 +514,23 @@
     },
     "limits": "Local lexical comparison only. No commercial plagiarism checker and no AI detector were available, so no score from either is claimed. The checks show the text is not copied; they cannot predict what a third-party detector will say."
   },
+  "inboundLink": {
+    "approvedBy": "owner, 25 November 2026, through the ask_user form ('Excel post mein Outlook post ka 1 link add karun?' answered yes)",
+    "fromPost": {
+      "id": 234,
+      "slug": "copilot-in-excel-not-showing-2026"
+    },
+    "change": "One sentence added after the scope paragraph that starts 'This is a documentation-based troubleshooting guide': 'If the Copilot you are missing is in Outlook rather than Excel, see [Copilot not showing in Outlook](/blog/copilot-not-showing-in-outlook). Outlook has its own rules for licenses, mailboxes and the classic app.' Nothing else in the post changed.",
+    "script": "scripts/_update-copilot-excel-internal-link.mjs (backup, read-only preflight, then one guarded UPDATE of the body)",
+    "backupFile": "docs/content-backups/copilot-in-excel-not-showing-2026-before-2026-11-25-internal-link.md",
+    "contentMd5Before": "784959a8720a408b919587da03099c26",
+    "contentMd5After": "eab761c1113991c1edc67a3504a44bd9",
+    "appliedAt": "2026-11-25T17:49:12.260Z",
+    "otherPostsUnchanged": 191,
+    "linkAttributes": "Links that start with '/' are rendered as plain followed anchors by src/components/markdown-renderer.tsx.",
+    "note": "The older local file scripts/content/copilot-in-excel-not-showing-2026.md was not edited; the live database body is the source of the backup.",
+    "liveCheck": null
+  },
   "publication": {
     "status": "published",
     "postId": 260,

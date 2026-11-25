@@ -529,7 +529,7 @@
     "otherPostsUnchanged": 191,
     "linkAttributes": "Links that start with '/' are rendered as plain followed anchors by src/components/markdown-renderer.tsx.",
     "note": "The older local file scripts/content/copilot-in-excel-not-showing-2026.md was not edited; the live database body is the source of the backup.",
-    "liveCheck": null
+    "liveCheck": "After the redeploy of commit 0e414fa (Vercel success 2026-11-25T17:52:50Z) post 234 returns 200 with robots 'index, follow' and contains exactly one link to /blog/copilot-not-showing-in-outlook, anchor text 'Copilot not showing in Outlook', with no rel or target attribute. The new post links back to post 234 in its third paragraph, so the two posts link to each other."
   },
   "publication": {
     "status": "published",

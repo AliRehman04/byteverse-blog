@@ -22,7 +22,10 @@ try {
     const response = await page.goto(`${origin}/`, { waitUntil: "load", timeout: 60000 });
     assert.equal(response.status(), 200);
     await expect(page.locator("html")).toHaveClass(new RegExp(theme));
-    await expect(page.locator("h1")).toHaveText("Tools for your work. Ideas for what’s next.");
+    await expect(page.locator("h1")).toHaveText("Free online developer tools and practical tech guides");
+    assert.equal(await page.title(), "Free Online Developer Tools & Tech Guides | ByteVerse");
+    await expect(page.locator("[data-homepage]")).toHaveAttribute("data-homepage-design", "directory");
+    await expect(page.getByRole("searchbox", { name: "Find a tool" })).toBeVisible();
     assert.equal(new URL(await page.locator('link[rel="canonical"]').getAttribute("href")).href, `${origin}/`);
     const state = await page.evaluate(() => {
       const root = document.querySelector("[data-homepage]"), style = getComputedStyle(root);
@@ -34,10 +37,16 @@ try {
       };
       return {
         foreground: rgb(style.color), expectedForeground: rgb(shared.getPropertyValue("--foreground")),
-        card: rgb(getComputedStyle(root.querySelector("#featured-stories article > a")).backgroundColor), expectedCard: rgb(shared.getPropertyValue("--card")),
+        card: rgb(getComputedStyle(root.querySelector("#featured-stories article")).backgroundColor), expectedCard: rgb(shared.getPropertyValue("--card")),
         violet: shared.getPropertyValue("--brand-violet").trim(),
-        alignment: ["header a[href='/']", "#home-title", "#featured-stories article > a", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
-        articleLinks: [...root.querySelectorAll("article a")].map(anchor => new URL(anchor.href).pathname),
+        alignment: ["header a[href='/']", "#tools-title", "#featured-stories article", "footer a[href='/']"].map(selector => document.querySelector(selector).getBoundingClientRect().left),
+        articleLinks: [...root.querySelectorAll("article a[href*='/blog/']")].map(anchor => new URL(anchor.href).pathname),
+        sections: ["featured-tools", "tool-categories", "why-byteverse", "featured-stories", "topics", "latest-guides", "newsletter", "about-byteverse", "questions"].filter(id => !document.getElementById(id)),
+        featuredTools: root.querySelectorAll("#featured-tools a[href^='/tools/']").length,
+        categoryLinks: [...root.querySelectorAll("#tool-categories a[href^='/tools#']")].map(anchor => anchor.getAttribute("href")),
+        schemaTypes: [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(script => { const data = JSON.parse(script.textContent); return (data["@graph"] ?? [data]).map(item => item["@type"]); }),
+        description: document.querySelector('meta[name="description"]').content.length,
+        robots: document.querySelector('meta[name="robots"]')?.content ?? "",
         overflowing: [...root.querySelectorAll("h1,h2,h3,a,button,p,summary")].filter(element => {
           if (!element.getClientRects().length) return false;
           const rect = element.getBoundingClientRect(); return rect.left < -1 || rect.right > document.documentElement.clientWidth + 1;
@@ -48,9 +57,17 @@ try {
     assert.deepEqual(state.foreground, state.expectedForeground);
     assert.deepEqual(state.card, state.expectedCard);
     assert.equal(state.violet, "#8b5cf6");
-    assert(state.alignment.every(left => Math.abs(left - state.alignment[0]) < 1));
-    assert.equal(state.articleLinks.length, 9);
-    assert(state.articleLinks.every(path => !/homepage-preview|json-parse-large-numbers-precision|n8n-binary-data-not-found|webp-larger-than-jpg/.test(path)));
+    assert(state.alignment.every(left => Math.abs(left - state.alignment[0]) < 1), `Page edges are not aligned: ${state.alignment}`);
+    assert.equal(state.articleLinks.length, 12);
+    assert.equal(new Set(state.articleLinks).size, 12);
+    assert(state.articleLinks.every(path => !/homepage-preview/.test(path)));
+    assert.deepEqual(state.sections, [], "Missing homepage sections");
+    assert.equal(state.featuredTools, 8);
+    assert.equal(state.categoryLinks.length, 6);
+    for (const type of ["Organization", "WebSite", "WebPage"]) assert(state.schemaTypes.includes(type), `Missing ${type} schema`);
+    assert(!state.schemaTypes.includes("FAQPage"));
+    assert(state.description >= 120 && state.description <= 160, `Meta description length ${state.description}`);
+    assert(!/noindex/i.test(state.robots));
     assert.deepEqual(state.overflowing, []);
     assert.equal(state.translationLoaded, false);
     assert.deepEqual(errors, []);

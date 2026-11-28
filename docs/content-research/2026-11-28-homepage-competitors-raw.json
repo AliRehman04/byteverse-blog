@@ -1,0 +1,387 @@
+{
+  "note": "Server HTML only (no JavaScript rendering). Used for structure and wording patterns; no traffic or ranking figures.",
+  "competitors": [
+    {
+      "url": "https://www.nextool.co/",
+      "checkedAt": "2026-11-28T07:29:29.387Z",
+      "error": "TypeError: fetch failed"
+    },
+    {
+      "url": "https://www.onedev.tools/",
+      "checkedAt": "2026-11-28T07:29:29.885Z",
+      "error": "TypeError: fetch failed"
+    },
+    {
+      "url": "https://www.mytoolstudio.com/",
+      "checkedAt": "2026-11-28T07:29:30.158Z",
+      "status": 200,
+      "finalUrl": "https://www.mytoolstudio.com/",
+      "htmlBytes": 878452,
+      "title": "Free Online Tools: SEO, PDF, Image, Code | MyToolStudio",
+      "description": "Over 300 free online tools for SEO, schema, PDF, images, code, color and text. Most run in your browser. No sign up, no daily limits and no paywalls.",
+      "h1": [
+        "Free online tools for developers, SEO and design."
+      ],
+      "h2": [
+        "Browse the entire toolkit.",
+        "Most used tools.",
+        "Simple tools, no sign up.",
+        "For people who build websites.",
+        "Answers, plus what is coming next.",
+        "Over two hundred tools. All free, all yours.",
+        "mytoolstudio",
+        "mytoolstudio"
+      ],
+      "navLinks": 2,
+      "links": 729,
+      "toolLinks": 697,
+      "searchInputs": [
+        "Search tools, JSON, schema, image, audit…"
+      ],
+      "scripts": 15,
+      "jsonLdTypes": [
+        "Organization",
+        "WebSite"
+      ],
+      "claims": [
+        "310 tools",
+        "no sign up",
+        "in your browser",
+        "300 free tools",
+        "no upload",
+        "300 tools"
+      ],
+      "visibleWords": 2298,
+      "firstText": "PDFImageSEODeveloperDesignTextWCAGSite AuditNewFile TransferNewResourcesNewsletterFree online tools for developers, SEO and design.Search all 310 tools by name or task. No sign up. No paywalls.SearchEveryday toolkitBrowse 310 tools16 categoriesJSON, schema, image, PDF, color and text tools. All free, no sign up, and most run in your browser.310Technical SEO + AI auditTechnical SEO and AI search audit28 reports per ru"
+    },
+    {
+      "url": "https://www.browserling.com/tools",
+      "checkedAt": "2026-11-28T07:29:31.831Z",
+      "status": 200,
+      "finalUrl": "https://www.browserling.com/tools",
+      "htmlBytes": 204122,
+      "title": "Web Developer Tools - Programmer Tools - Online - Browserling",
+      "description": "World's largest collection of useful web developer tools. HTML encoder/decoder, URL escaper/unescaper, JavaScript, JSON, CSS and HTML minifier/beautifier, and many more!",
+      "h1": [
+        "Web Developer Tools",
+        "Login with SSO",
+        "Sign in to your account"
+      ],
+      "h2": [],
+      "navLinks": 0,
+      "links": 841,
+      "toolLinks": 796,
+      "searchInputs": [],
+      "scripts": 10,
+      "jsonLdTypes": [],
+      "claims": [
+        "100 tools"
+      ],
+      "visibleWords": 7462,
+      "firstText": "we've also created: Features Pricing Live API About Us Sign In Sign Up Web Developer Tools We also created: and (note: in bank statements charges for tools appear as \"browserling/onlinetool\") We're obsessed with making web developers' lives easier at Browserling, so we created a collection of the most popular developer tools all in one place. We love simplicity so we made them very simple and obvious how to use. Ther"
+    },
+    {
+      "url": "https://www.freeformatter.com/",
+      "checkedAt": "2026-11-28T07:29:33.021Z",
+      "error": "TypeError: fetch failed"
+    },
+    {
+      "url": "https://it-tools.tech/",
+      "checkedAt": "2026-11-28T07:29:43.579Z",
+      "status": 200,
+      "finalUrl": "https://it-tools.tech/",
+      "htmlBytes": 2787,
+      "title": "IT Tools - Handy online tools for developers",
+      "description": "Collection of handy online tools for developers, with great UX. IT Tools is a free and open-source collection of handy online tools for developers & people working in IT.",
+      "h1": [],
+      "h2": [],
+      "navLinks": 0,
+      "links": 0,
+      "toolLinks": 0,
+      "searchInputs": [],
+      "scripts": 1,
+      "jsonLdTypes": [],
+      "claims": [],
+      "visibleWords": 1,
+      "firstText": ""
+    },
+    {
+      "url": "https://10015.io/",
+      "checkedAt": "2026-11-28T07:29:44.225Z",
+      "status": 200,
+      "finalUrl": "https://10015.io/",
+      "htmlBytes": 465159,
+      "title": "All Online Tools in One Box | 10015 Tools",
+      "description": "All online tools you need in one box for free. Build anything online with “all-in-one toolbox”. All tools are easy-to-use, blazing fast & free.",
+      "h1": [
+        "All Online Tools in “One Box”"
+      ],
+      "h2": [
+        "Featured Tools",
+        "Featured Products",
+        "Discover the best digital products",
+        "Tool Categories",
+        "#Text Tools",
+        "#Image Tools",
+        "#PDF Tools",
+        "#Social Media Tools",
+        "#Security Tools",
+        "#Coding Tools",
+        "#CSS Tools",
+        "#Color Tools",
+        "#Miscellaneous Tools",
+        "Best Online All-In-One Toolbox"
+      ],
+      "navLinks": 1,
+      "links": 394,
+      "toolLinks": 363,
+      "searchInputs": [
+        "Search Tools",
+        "Search 314 tools"
+      ],
+      "scripts": 17,
+      "jsonLdTypes": [
+        "WebSite",
+        "Organization",
+        "CollectionPage"
+      ],
+      "claims": [
+        "in your browser",
+        "client-side",
+        "no upload",
+        "no login",
+        "no sign-up"
+      ],
+      "visibleWords": 8141,
+      "firstText": "Skip to contentProduct FinderCategoriesText ToolsImage ToolsPDF ToolsSocial Media ToolsSecurity ToolsCoding ToolsCSS ToolsColor ToolsMiscellaneous ToolsExtensionsAdd to ChromeAdd to FirefoxMenuSign inSign inAll Online Tools in “One Box”A free all-in-one toolbox: 310+ online tools for text, images, PDFs, social media and code. No bookmarks needed./Explore Tools Product FinderGet the extension and reach every tool in o"
+    },
+    {
+      "url": "https://devutils.com/",
+      "checkedAt": "2026-11-28T07:29:44.985Z",
+      "status": 200,
+      "finalUrl": "https://devutils.com/",
+      "htmlBytes": 134267,
+      "title": "DevUtils - All-in-one Toolbox for Developers",
+      "description": "Powerful developer tools to help you with your everyday tasks. Native macOS app, work offline, and respect your data.",
+      "h1": [
+        "All-in-one Toolboxfor Developers",
+        "1.17.0 ✨"
+      ],
+      "h2": [
+        "🌏 Trusted by 10,000+ Productive Developers",
+        "🚀 Powerful Developer Tools",
+        "🌐 Work Offline",
+        "⚡ Smart Detection",
+        "🎲 Generators / Decoders",
+        "🔁 Converter / Parser",
+        "🔍 Inspector / Debugger",
+        "🎨 The little details!",
+        "🧩 Integrations",
+        "❤️ Trusted by awesome developers like you",
+        "🧰 What's in the box?",
+        "🎯 Use DevUtils today",
+        "📜 Latest Release",
+        "👀 See more"
+      ],
+      "navLinks": 0,
+      "links": 96,
+      "toolLinks": 17,
+      "searchInputs": [],
+      "scripts": 16,
+      "jsonLdTypes": [],
+      "claims": [
+        "offline"
+      ],
+      "visibleWords": 812,
+      "firstText": ".noscript-hidden { display: none !important; } DevUtilsDemoFAQsChangelogPricingDownloadFully supports Apple M-series & macOS TahoeAll-in-one Toolboxfor Developers47+ carefully crafted developer toolsNative macOS app, fast & beautifulWork offline, and respect your data 4.9 Based on user reviewsDownload for macOSor install DevUtils like a real hacker:brew install devutilsv1.17.0macOS 10.13+ Intel, Apple SiliconYour bro"
+    },
+    {
+      "url": "https://www.devtoollab.com/",
+      "checkedAt": "2026-11-28T07:29:46.048Z",
+      "status": 200,
+      "finalUrl": "https://devtoollab.com/",
+      "htmlBytes": 72522,
+      "title": "Free Online Developer Tools - DevToolLab",
+      "description": "Free online developer tools for JSON, XML, CSS formatting, conversion, minification and encoding. No registration required.",
+      "h1": [
+        "Developer Tools for the Modern Web"
+      ],
+      "h2": [
+        "Features That Make Us Different",
+        "What Developers Say",
+        "Subscribe to our newsletter"
+      ],
+      "navLinks": 19,
+      "links": 37,
+      "toolLinks": 17,
+      "searchInputs": [],
+      "scripts": 21,
+      "jsonLdTypes": [
+        "WebSite",
+        "Organization",
+        "FAQPage"
+      ],
+      "claims": [
+        "no registration",
+        "700 tools",
+        "in your browser",
+        "900+ tools",
+        "privacy-first"
+      ],
+      "visibleWords": 530,
+      "firstText": "((a,b,c,d,e,f,g,h)=>{let i=document.documentElement,j=[\"light\",\"dark\"];function k(b){var c;(Array.isArray(a)?a:[a]).forEach(a=>{let c=\"class\"===a,d=c&&f?e.map(a=>f[a]||a):e;c?(i.classList.remove(...d),i.classList.add(f&&f[b]?f[b]:b)):i.setAttribute(a,b)}),c=b,h&&j.includes(c)&&(i.style.colorScheme=c)}if(d)k(d);else try{let a=localStorage.getItem(b)||c,d=g&&\"system\"===a?window.matchMedia(\"(prefers-color-scheme: dark)\""
+    },
+    {
+      "url": "https://tinywow.com/",
+      "checkedAt": "2026-11-28T07:29:47.302Z",
+      "status": 200,
+      "finalUrl": "https://tinywow.com/",
+      "htmlBytes": 1084570,
+      "title": "Free AI Writing, PDF, Image, and other Online Tools - TinyWow",
+      "description": null,
+      "h1": [
+        "Free Tools to Make Business Your Life Everything Education Simple"
+      ],
+      "h2": [
+        "Our Most Popular Tools",
+        "Free Tools You'd Usually Pay For",
+        "Get more with Premium",
+        "Welcome to TinyWow!",
+        "Welcome to TinyWow!",
+        "Unlock Everything"
+      ],
+      "navLinks": 0,
+      "links": 328,
+      "toolLinks": 73,
+      "searchInputs": [
+        "Search",
+        "Search",
+        "Search"
+      ],
+      "scripts": 9,
+      "jsonLdTypes": [],
+      "claims": [
+        "45+ tools",
+        "30+ tools",
+        "10+ tools",
+        "15+ tools",
+        "no sign-up"
+      ],
+      "visibleWords": 2232,
+      "firstText": "Redirecting to checkout… PDF FEATURED TOOLS Edit PDF Free PDF Editor PDF to Word Convert a PDF to Word Document JPG to PDF Upload images and receive as a PDF Merge PDF Merge 2 or more PDF files into a single PDF file OTHER PDF TOOLS Create PDF PDF to JPG Compress PDF Word to PDF Split Remove Password PDF Translator eSign Protect Rearrange Extract Text All Pdf Tools Image AI TOOLS Background Remover Easily Remove the "
+    },
+    {
+      "url": "https://smalldev.tools/",
+      "checkedAt": "2026-11-28T07:29:49.954Z",
+      "status": 200,
+      "finalUrl": "https://smalldev.tools/",
+      "htmlBytes": 29482,
+      "title": "Home - SmallDev.tools",
+      "description": "FREE tools for developers like encoder/decoder, HTML/CSS/Javascript formatters, minifiers, fake or test data generators & much more.",
+      "h1": [],
+      "h2": [],
+      "navLinks": 0,
+      "links": 33,
+      "toolLinks": 32,
+      "searchInputs": [
+        "Search Tools"
+      ],
+      "scripts": 12,
+      "jsonLdTypes": [],
+      "claims": [],
+      "visibleWords": 199,
+      "firstText": "Powered by Arcana.Network Code Share View/Share snippets in 100+ language JSON Decoder Decode JSON to array JSON Formatter Format/Beautify JSON BASE64 Encode Text to base64 BASE64 Decode base64 to plain text URL Encode online Encode text to url URL Decode Decode url UTF8 Encode Plain text to UTF8 UTF8 Decode UTF8 to plain text XML Decode Decode XML string to array JS Formatter Format/Beautify javascript HTML Formatte"
+    },
+    {
+      "url": "https://codebeautify.org/",
+      "checkedAt": "2026-11-28T07:29:50.969Z",
+      "status": 200,
+      "finalUrl": "https://codebeautify.org/",
+      "htmlBytes": 161546,
+      "title": "Code Beautify and Code Formatter For Developers - to Beautify, Validate, Minify, JSON, XML, JavaScript, CSS, HTML, Excel and more",
+      "description": "Free Online Tools like Code Beautifiers, Code Formatters, Editors, Viewers, Minifier, Validators, Converters for Developers: XML, JSON, CSS, JavaScript, Java, C#, MXML, SQL, CSV, Excel",
+      "h1": [
+        "Code Beautify"
+      ],
+      "h2": [
+        "Code Formatter, JSON Beautifier, XML Viewer, Hex Converters and more...",
+        "Code Beautify"
+      ],
+      "navLinks": 0,
+      "links": 801,
+      "toolLinks": 498,
+      "searchInputs": [
+        "Search CodeBeautify tools"
+      ],
+      "scripts": 3,
+      "jsonLdTypes": [
+        "WebSite"
+      ],
+      "claims": [],
+      "visibleWords": 6170,
+      "firstText": "JSON Formatter XML Formatter Pixelate Image JSON Beautifier Recent Links Sitemap Favs Home Login Dropdown button Links Archived Favorite Logout 50% freestar.config.enabled_slots.push({ placementName: \"codebeautify_leaderboard_atf\", slotId: \"codebeautify_leaderboard_atf\" }); Code Beautify Code Formatter, JSON Beautifier, XML Viewer, Hex Converters and more... Chrome Extension Recently used freestar.config.enabled_slot"
+    },
+    {
+      "url": "https://jsonformatter.org/",
+      "checkedAt": "2026-11-28T07:29:51.454Z",
+      "status": 200,
+      "finalUrl": "https://jsonformatter.org/",
+      "htmlBytes": 45575,
+      "title": "Best JSON Formatter and JSON Validator: Online JSON Formatter",
+      "description": "Online JSON Formatter / Beautifier and JSON Validator will format JSON data, and helps to validate, convert JSON to XML, JSON to CSV. Save and Share JSON",
+      "h1": [
+        "JSON Formatter"
+      ],
+      "h2": [
+        "JSON Validator",
+        "JSON Beautifier"
+      ],
+      "navLinks": 0,
+      "links": 246,
+      "toolLinks": 55,
+      "searchInputs": [],
+      "scripts": 5,
+      "jsonLdTypes": [],
+      "claims": [],
+      "visibleWords": 1338,
+      "firstText": "Toggle navigation JSON Beautifier JSON Parser XML FormatterJSBeautifierSaveRecent LinksLoginMy LinksLogout Copied to Clipboard freestar.config.enabled_slots.push({ placementName: \"jsonformatter_leaderboard_atf\", slotId: \"jsonformatter_leaderboard_atf\" }); Upload DataValidate2 Tab Space3 Tab Space4 Tab SpaceFormat / Beautify freestar.config.enabled_slots.push({ placementName: \"jsonformatter_medrec_middle\", slotId: \"js"
+    },
+    {
+      "url": "https://transform.tools/",
+      "checkedAt": "2026-11-28T07:29:51.922Z",
+      "status": 200,
+      "finalUrl": "https://transform.tools/",
+      "htmlBytes": 85803,
+      "title": "Transform",
+      "description": "A polyglot web converter that's going to save you a lot of time.",
+      "h1": [],
+      "h2": [
+        "SVG",
+        "HTML",
+        "JSON",
+        "JSON Schema",
+        "CSS",
+        "JavaScript",
+        "GraphQL",
+        "JSON-LD",
+        "TypeScript",
+        "Flow",
+        "Others",
+        "Created by @ritz078",
+        "SVG",
+        "JSX"
+      ],
+      "navLinks": 0,
+      "links": 70,
+      "toolLinks": 0,
+      "searchInputs": [
+        "Search"
+      ],
+      "scripts": 15,
+      "jsonLdTypes": [],
+      "claims": [],
+      "visibleWords": 117,
+      "firstText": "GitHubSVGto JSXto React NativeHTMLto JSXto PugJSONto Big Query Schemato Flowto Go Bsonto Go Structto GraphQLto io-tsto Javato JSDocto JSON Schemato Kotlinto MobX-State-Tree Modelto Mongoose Schemato MySQLto React PropTypesto Rust Serdeto Sarcasticto Scala Case Classto TOMLto TypeScriptto YAMLto Zod SchemaJSON Schemato OpenAPI Schemato Protobufto TypeScriptto Zod SchemaCSSto JS Objectsto TailwindCSSto template literal"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "task": "ByteVerse homepage revamp: search-led tools directory hero, tool categories, curated guides, trust section, footer and header updates",
+  "researchDate": "2026-11-28",
+  "validationDate": "2026-11-28",
+  "status": "Implemented and validated in an isolated local preview; live verification is recorded under liveVerification once deployed",
+  "baselineCommit": "181469d",
+  "scope": {
+    "primaryRoute": "/",
+    "siteWide": ["Footer link columns", "Header call-to-action and navigation order", "Default social image text"],
+    "preserved": [
+      "All existing routes, tool URLs and article URLs",
+      "Canonical https://www.byteverse.fyi/ and robots rules",
+      "Organization, WebSite and WebPage structured data types",
+      "Existing Google Analytics tag (no new script)",
+      "Newsletter form, translation opt-in and the private image/CSV tool boundary",
+      "Six-hour homepage revalidation"
+    ],
+    "validationData": "Real published articles fetched read-only from the public site into a disposable credential-free production build; no production database or provider access during tests."
+  },
+  "audit": {
+    "previousHomepage": "Tools-first design from October 2026 with the heading \"Tools for your work. Ideas for what's next.\"",
+    "gaps": [
+      "The main heading did not say what the site offers",
+      "Tool search sat below the first screen on phones",
+      "No tool-category section, so most of the catalogue was one extra click away",
+      "No section explaining why to use the tools or who runs the site",
+      "The guides list was only the newest nine posts, not an editorial selection",
+      "No closing call to action",
+      "Header button pointed to the blog although the tools are the main offer",
+      "Footer listed six tools and no category or sitemap links"
+    ],
+    "technical": {
+      "canonicalRobotsOpenGraphTwitter": "Correct before the change",
+      "apexRedirect": "https://byteverse.fyi/ answers 307 (temporary) to www. A permanent redirect is a Vercel domain setting and cannot be changed in code.",
+      "previousHtml": "About 158 KB HTML and 10 scripts on the live homepage"
+    }
+  },
+  "research": {
+    "method": "Public Google autocomplete for 28 seeds, DuckDuckGo result pages for 7 queries, server-HTML review of 14 competitor homepages plus screenshots, and the site's own private Search Console export (figures kept out of this repository).",
+    "evidenceFiles": [
+      "docs/content-research/2026-11-28-homepage-keywords.json",
+      "docs/content-research/2026-11-28-homepage-serp.json",
+      "docs/content-research/2026-11-28-homepage-competitors-raw.json"
+    ],
+    "tool": "scripts/research-homepage-2026-11-28.mjs",
+    "serpFinding": "For \"free online developer tools\", \"free online tools for developers\" and \"online developer tools\" every result was a tool directory or a list of tools. Titles follow the pattern \"Free Online Developer Tools\" and many advertise 100 or more tools.",
+    "competitorPatterns": [
+      "Centred hero that names the offer in the main heading",
+      "Large search box as the first control",
+      "Categories with tool counts",
+      "A short row of frequently used tools",
+      "Blanket privacy and popularity claims, which were not copied"
+    ],
+    "competitorsReviewed": ["mytoolstudio.com", "10015.io", "devtoollab.com", "codebeautify.org", "tinywow.com", "onlinedevtools.dev", "browserling.com/tools", "devutils.com", "jsonformatter.org"],
+    "positioning": "ByteVerse has 44 tools and cannot compete on catalogue size. The homepage leads with tools plus troubleshooting guides, a per-tool note on where data is processed, and a named editor.",
+    "keywordMap": {
+      "primaryTheme": "free online developer tools",
+      "supporting": ["free online tools for developers", "online developer tools", "practical tech guides", "free developer tools online"],
+      "placement": "Title, main heading, meta description, hero intro and section headings. Individual tool queries (JSON formatter, regex tester and so on) stay on their own tool pages.",
+      "metrics": { "monthlyVolume": null, "keywordDifficulty": null, "rankingProbability": null, "trafficForecast": null }
+    },
+    "unavailable": [
+      "Search volume and keyword difficulty (no paid keyword tool)",
+      "Bing autocomplete returned no usable response",
+      "Four of seven result-page queries returned HTTP 202 with no results",
+      "nextool.co, onedev.tools and freeformatter.com could not be fetched as server HTML",
+      "it-tools.tech, smalldev.tools and transform.tools render with JavaScript only, so their headings were not readable",
+      "Competitor traffic, rankings and conversion data"
+    ]
+  },
+  "decisions": {
+    "title": "Free Online Developer Tools & Tech Guides | ByteVerse",
+    "h1": "Free online developer tools and practical tech guides",
+    "description": "Built from the live tool count; 120 to 160 characters; mentions no sign-up.",
+    "sectionOrder": ["Hero with tool search", "Featured tools", "Tool categories", "Why ByteVerse", "Featured guides", "Guide topics", "Latest guides and newsletter", "Who runs ByteVerse", "Questions", "Closing call to action"],
+    "featuredTools": ["json-formatter", "image-compressor", "csv-repair", "seo-title-analyzer", "json-to-csv", "plagiarism-checker", "html-editor", "meta-tag-generator"],
+    "featuredToolsBasis": "Editorial selection. The page does not call them most popular.",
+    "featuredGuides": [
+      "gemini-not-showing-google-docs-gmail-2026",
+      "excel-csv-leading-zeros-2026",
+      "unexpected-token-html-not-valid-json",
+      "ollama-not-using-gpu-windows-2026",
+      "github-copilot-not-working-vscode-2026",
+      "how-to-use-n8n-2026-complete-guide"
+    ],
+    "guideToolPairs": { "excel-csv-leading-zeros-2026": "csv-repair", "unexpected-token-html-not-valid-json": "json-formatter" },
+    "categoryLinks": "Each category card opens the matching section of /tools (formatters-dev, encoders-converters, security-crypto, seo-web, content-analysis, css-design).",
+    "notAdded": [
+      "SearchAction markup: there is no URL search route and Google retired the sitelinks search box",
+      "FAQPage markup on the homepage",
+      "Testimonials, user counts, ratings or usage rankings: no verified data exists",
+      "An editor photo: none was supplied, so initials are shown"
+    ],
+    "analytics": "Clicks are reported through the existing gtag as home_tool_click, home_shortcut_click, home_category_click, home_guide_click, home_topic_click, home_trust_click, home_cta_click, home_search_result_click and home_tool_search. Search terms are cut to 40 characters and sent after a 1.2 second pause."
+  },
+  "implementation": [
+    "src/app/page.tsx: new section structure; guide titles are the links and stretch over the card",
+    "src/app/home-premium.module.css: design rules based on the shared theme variables, compact phone rows, right-to-left, reduced motion and forced colours",
+    "src/lib/homepage.ts: copy, featured tools, shortcuts, categories with counts, benefits, curated guides, editor details, questions and structured data",
+    "src/lib/homepage-data.ts: two compact queries (curated guides and newest posts)",
+    "src/components/homepage-tool-finder.tsx and its stylesheet: hero search with aliases, arrow keys, Enter and Escape",
+    "src/components/homepage-analytics.tsx and src/lib/homepage-events.ts: click reporting through the existing tag",
+    "src/components/footer.tsx: Free tools, Guides, ByteVerse and Legal columns",
+    "src/components/header.tsx and src/lib/config.ts: \"Free tools\" button and Home, Tools, Blog, Categories, About, Contact order",
+    "src/app/opengraph-image.tsx: new tagline",
+    "scripts/test-homepage.mjs, scripts/test-homepage-browser.mjs, scripts/homepage-fixtures.mjs, scripts/homepage-public-preview.mjs, scripts/preview-homepage.mjs, scripts/check-homepage-live.mjs, scripts/test-image-studio-browser.mjs: tests and preview tooling updated for the new structure"
+  ],
+  "validation": {
+    "unitGroups": { "passed": 13, "failed": 0, "command": "node scripts/test-homepage.mjs" },
+    "browserGroups": { "passed": 21, "failed": 0, "command": "node scripts/test-homepage-browser.mjs --published" },
+    "browserCoverage": [
+      "Server-rendered content, metadata and lazy covers",
+      "Hero search, keyboard use and event reporting",
+      "Category cards land on the matching /tools section",
+      "320, 390, 768, 1280 and 1440 pixel widths in light and dark with axe WCAG A and AA checks",
+      "Theme toggle, forced colours, reduced motion and the mobile menu",
+      "Newsletter validation with mocked responses",
+      "Translation opt-in and right-to-left layout",
+      "Private image-tool boundary",
+      "Page content without JavaScript",
+      "Social image renders as a 1200 x 630 PNG"
+    ],
+    "typecheck": "PASS: tsc --noEmit --incremental false",
+    "lint": "PASS: changed source files and homepage scripts",
+    "visualReview": "Edge screenshots reviewed at 1440 and 390 pixels in light and dark, plus the footer, the right-to-left layout and the /tools page with the new header and footer."
+  },
+  "mobileLab": {
+    "version": "Lighthouse 13.5.0, local Edge, mobile simulation",
+    "newLocalPreview": {
+      "performanceRuns": [88, 73, 75, 83, 87],
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "cls": 0,
+      "lcpRangeSeconds": [2.1, 3.9]
+    },
+    "liveBeforeChange": {
+      "performanceRuns": [82, 78, 76, 94],
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "cls": 0,
+      "lcpRangeSeconds": [2.4, 2.8]
+    },
+    "interpretation": "Scores moved by more than ten points between runs of the same build on this machine, and the two hosts differ, so no performance gain or loss is claimed. The first local run flagged guide-card link names that did not match the visible text; that was fixed and did not recur.",
+    "caveats": ["Lab runs only, not field data", "Local preview and the live CDN are not directly comparable", "Third-party scripts are part of the live figures"]
+  },
+  "limitations": [
+    "No ranking or traffic outcome is promised",
+    "Keyword wording comes from autocomplete and result pages, not measured demand",
+    "The apex-to-www redirect remains temporary until the Vercel domain setting is changed"
+  ]
+}

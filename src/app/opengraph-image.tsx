@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Node runtime: rendered once at build and served as a static asset, not regenerated per crawler request.
-export const alt = "ByteVerse — Free developer tools, AI and tech guides";
+export const alt = "ByteVerse: free online developer tools and practical tech guides";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -86,7 +86,7 @@ export default function OgImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              fontSize: 68,
+              fontSize: 62,
               fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: "-3px",
@@ -94,8 +94,8 @@ export default function OgImage() {
               marginBottom: 44,
             }}
           >
-            <span>Tools for your work.</span>
-            <span style={{ color: "#60a5fa" }}>Ideas for what’s next.</span>
+            <span>Free online developer tools</span>
+            <span style={{ color: "#60a5fa" }}>and practical tech guides.</span>
           </div>
 
           {/* URL */}

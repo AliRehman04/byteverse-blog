@@ -1,0 +1,460 @@
+{
+  "checkedAt": "2026-11-28T07:29:29.184Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "free online tools",
+      "google": [
+        "free online tools",
+        "free online tools website",
+        "free online tools for teachers",
+        "free online tools to edit pdf",
+        "free online tools for students",
+        "free online tools for productivity",
+        "free online tools to compress pdf",
+        "free online tools like photoshop",
+        "free online tools telugu public",
+        "free online tools for photo editing"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "free online tools for developers",
+      "google": [
+        "free online tools for developers",
+        "how can i get free tools",
+        "where to get free tools",
+        "tools used by developers"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "free developer tools",
+      "google": [
+        "free developer tools",
+        "free developer tools for students",
+        "free developer tools online",
+        "free software development tools",
+        "free programming tools",
+        "free programming tools for students",
+        "free ai developer tools",
+        "best free developer tools online 2026",
+        "best free developer tools",
+        "free website developer tools"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "online developer tools",
+      "google": [
+        "online developer tools",
+        "web developer tools",
+        "web developer tools chrome",
+        "web developer tools firefox",
+        "web developer tools extension",
+        "web developer tools chrome extension",
+        "web developer tools safari",
+        "web developer tools list",
+        "online programming tools",
+        "web developer tools android"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "developer tools online",
+      "google": [
+        "developer tools online",
+        "website developer tools online",
+        "free developer tools online",
+        "developer tools in word online",
+        "web developer tools online",
+        "chrome developer tools online",
+        "react developer tools online",
+        "best free developer tools online 2026",
+        "all in one developer tools online",
+        "developer tools examples"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "free web tools",
+      "google": [
+        "free web tools",
+        "free online tools",
+        "free online tools website",
+        "free online tools for developers",
+        "free online tools to edit pdf",
+        "free internet tools",
+        "free online tools for students",
+        "free online tools for teachers",
+        "free online tools for photo editing",
+        "free online tools and calculators"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "browser based tools",
+      "google": [
+        "browser based tools",
+        "web based tools",
+        "web based tools examples",
+        "web based tools for e business",
+        "web based tools for e commerce",
+        "web based tools for sequence searches",
+        "web based tools meaning",
+        "web based tools for education",
+        "web based tools for computational enzyme design",
+        "web based tools for e business ppt"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "online utilities",
+      "google": [
+        "online utilities",
+        "online utilities exchange",
+        "online utilities payment",
+        "utilities online base64",
+        "utilities online info",
+        "utilities online bill pay",
+        "utilities online santa barbara",
+        "utilities online@venicegov.com",
+        "utilities online pay",
+        "utilities online denver"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "dev tools online free",
+      "google": [
+        "free online dev tools",
+        "developer tools examples"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "web developer tools online",
+      "google": [
+        "web developer tools online",
+        "website developer tools online",
+        "web design tools online",
+        "chrome developer tools online",
+        "website design tools online",
+        "website design tools online free",
+        "web design tool online free",
+        "web ui design tool online free",
+        "web development tools examples",
+        "web development tools list"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "json formatter online",
+      "google": [
+        "json formatter online",
+        "json formatter online free",
+        "json formatter online viewer",
+        "json formatter online code beautify",
+        "json formatter online remove escape characters",
+        "json formatter online editor",
+        "json formatter online compare",
+        "json formatter online beautify",
+        "json formatter online chrome extension",
+        "json format example"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "json validator",
+      "google": [
+        "json validator",
+        "json validator online",
+        "json validator tool",
+        "json validator formatter",
+        "json validator dayz",
+        "json validator and fixer",
+        "json validator with schema",
+        "json validator free",
+        "json validator online free",
+        "json validator notepad++"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "url encoder decoder",
+      "google": [
+        "url encoder decoder",
+        "url encoder decoder online",
+        "url encoder decoder tool",
+        "link encoder decoder",
+        "url escape decoder",
+        "html url encoder decoder",
+        "base64 url encoder decoder",
+        "url percent encoding decoder",
+        "url encoded json decoder",
+        "meyerweb url decoder encoder"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "base64 encoder decoder",
+      "google": [
+        "base64 encoder decoder",
+        "base64 encoder decoder online",
+        "base64 encoder decoder download",
+        "base64 encoder-decoder extension",
+        "base64 encoder decoder offline",
+        "base64 encoder decoder tool",
+        "base64 encode decode python",
+        "base64 encode decode linux",
+        "base64 encode decode java",
+        "base64 encode decode javascript"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "uuid generator",
+      "google": [
+        "uuid generator",
+        "uuid generator v4",
+        "uuid generator online",
+        "uuid generator minecraft bedrock",
+        "uuid generator java",
+        "uuid generator python",
+        "uuid generator minecraft",
+        "uuid generator v7",
+        "uuid generator javascript",
+        "uuid generator linux"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "hash generator",
+      "google": [
+        "hash generator",
+        "hash generator sha256",
+        "hash generator online",
+        "hash generator md5",
+        "hash generator download",
+        "hash generator password",
+        "hash generator for file",
+        "hash generator sha512",
+        "hash generator online md5",
+        "hash generator with salt"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "regex tester",
+      "google": [
+        "regex tester",
+        "regex tester online",
+        "regex tester python",
+        "regex tester c#",
+        "regex tester javascript",
+        "regex tester java",
+        "regex tester js",
+        "regex tester 101",
+        "regex tester .net",
+        "regex tester online c#"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "text tools online",
+      "google": [
+        "text tools online",
+        "text tools online whiteboard",
+        "text tools online free",
+        "text analysis tools online",
+        "text compare tools online",
+        "text editor tools online",
+        "text manipulation tools online",
+        "ai text tools online",
+        "text formatting tools online",
+        "text diff tool online"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "css tools online",
+      "google": [
+        "css tools online",
+        "css compare tool online",
+        "css designer tool online",
+        "css gradient tool online"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "html tools online",
+      "google": [
+        "html tools online",
+        "html editor online",
+        "html editor online free",
+        "html editor online with preview",
+        "html editor online wysiwyg",
+        "html editor online free with preview",
+        "html editor online w3schools",
+        "html editor online compiler",
+        "html editor online download",
+        "html editor online programiz"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "free seo tools",
+      "google": [
+        "free seo tools",
+        "free seo tools for keyword research",
+        "free seo tools for etsy",
+        "free seo tools for website",
+        "free seo tools google",
+        "free seo tools ai",
+        "free seo tools for instagram",
+        "free seo tools plagiarism checker",
+        "free seo tools for competitor analysis",
+        "free seo tools for youtube videos"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "online text tools",
+      "google": [
+        "online text tools",
+        "online text tools remove duplicate lines",
+        "online text tools replace",
+        "online text tools remove line breaks",
+        "online text tools remove extra spaces",
+        "online text tools morse code",
+        "online tools text encryption decryption",
+        "web text tools",
+        "online book tools",
+        "online text compare tools"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "free productivity tools online",
+      "google": [
+        "free online productivity tools",
+        "free online tools productivity pdf text & images",
+        "free online tools for productivity pdf",
+        "free online tools for productivity pdf text y images",
+        "free online tools for productivity pdf text",
+        "productivity tools examples"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "developer tutorials",
+      "google": [
+        "developer tutorials",
+        "developer tutorials sap",
+        "dev tutorials",
+        "dev tutorials-k7c",
+        "dev tutorials youtube",
+        "dev tutorials roblox",
+        "dev tutorials syncfusion",
+        "dev tutorials missing kid",
+        "dev tutorials photos",
+        "dev tutorials youtube channel"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "tech guides",
+      "google": [
+        "tech guides",
+        "technical guides",
+        "technical guides icai",
+        "anthem tech guides",
+        "tech gift guides",
+        "aarp tech guides",
+        "electron magazine tech guides archives",
+        "bore tech guides",
+        "tech it out guides",
+        "g guides tech ltd"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "ai tutorials for beginners",
+      "google": [
+        "ai tutorials for beginners",
+        "ai tutorials for beginners free",
+        "adobe illustrator tutorials for beginners",
+        "ai tutorial for beginners pdf",
+        "ai tutorial for beginners step by step",
+        "ai tutorial for beginners youtube",
+        "ai tutorial for beginners in hindi",
+        "ai tutorial for beginners tagalog",
+        "ai tutorial for beginners in tamil",
+        "adobe illustrator tutorials for beginners pdf"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "tech troubleshooting guides",
+      "google": [
+        "technical troubleshooting guide",
+        "technical troubleshooting guide template",
+        "technical troubleshooting"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    },
+    {
+      "seed": "byteverse",
+      "google": [
+        "byteverse",
+        "byteverse ai",
+        "byteverse login",
+        "byteverse 2026",
+        "byteverse hackathon",
+        "byteverse 1.0",
+        "byteverse ltd",
+        "byteverse solution",
+        "byteverse 2025"
+      ],
+      "bing": [],
+      "bingError": "SyntaxError"
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

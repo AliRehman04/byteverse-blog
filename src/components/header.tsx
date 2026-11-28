@@ -109,7 +109,7 @@ export function Header({ localTool = false }: { localTool?: boolean }) {
               <Image
                 src="/logo.png"
                 alt="ByteVerse"
-                title="ByteVerse - AI Tools, Tech Guides & Productivity"
+                title="ByteVerse home"
                 width={160}
                 height={40}
                 unoptimized={localTool}
@@ -249,11 +249,11 @@ export function Header({ localTool = false }: { localTool?: boolean }) {
               {!localTool && <><SearchDialog /><ReadingList /><LanguageSelector /></>}
               <ThemeToggle />
               <Link
-                href="/blog"
+                href="/tools"
                 prefetch={prefetch}
                 className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-all duration-200 btn-shimmer"
               >
-                Read Blog <ArrowRight size={14} />
+                Free tools <ArrowRight size={14} aria-hidden="true" />
               </Link>
               <button
                 ref={mobileTrigger}
@@ -345,12 +345,12 @@ export function Header({ localTool = false }: { localTool?: boolean }) {
                 );
               })}
               <Link
-                href="/blog"
+                href="/tools"
                 prefetch={prefetch}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 mx-3 mt-3 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg"
               >
-                Read Blog <ArrowRight size={14} />
+                Browse all free tools <ArrowRight size={14} aria-hidden="true" />
               </Link>
             </nav>
           )}

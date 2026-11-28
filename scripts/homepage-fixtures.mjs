@@ -38,3 +38,20 @@ export const previewHomePosts = previewPosts.map(post => ({
   categoryName: previewCategories.find(category => category.id === post.categoryId).name,
   categorySlug: previewCategories.find(category => category.id === post.categoryId).slug,
 }));
+
+// Fictional stand-ins for the curated guides. The slugs are the real curated slugs so tool pairings and ordering are exercised;
+// the list is deliberately out of editorial order.
+export const previewFeaturedPosts = [
+  ['how-to-use-n8n-2026-complete-guide', 'A fictional first automation, one node at a time', 1],
+  ['gemini-not-showing-google-docs-gmail-2026', 'A fictional checklist for an assistant button that went missing', 2],
+  ['github-copilot-not-working-vscode-2026', 'Fictional checks for a coding assistant that stopped answering', 4],
+  ['excel-csv-leading-zeros-2026', 'A fictional guide to IDs that lose their leading zeros', 2],
+  ['ollama-not-using-gpu-windows-2026', 'A fictional look at a local model that ignores the graphics card', 2],
+  ['unexpected-token-html-not-valid-json', 'A fictional fix for a request that returns a web page instead of data', 2],
+].map(([slug, title, categoryId], index) => ({
+  id: 991000 + index, title, slug, excerpt: 'Synthetic preview copy for a curated guide card. It is long enough to show how three lines of excerpt text are clamped on the card.',
+  coverImage: ['/blog/gemini-workspace/cover.png', '/blog/csv-excel/cover.png', '/blog/claude-code-windows/cover.png', '/blog/csv-utf8/cover.png', '/blog/ollama-gpu/cover-v2.png', null][index],
+  readingTime: `${9 + index} min read`, author: 'Preview fixture', createdAt: `2026-09-${String(20 - index).padStart(2, '0')}T09:00:00.000Z`,
+  categoryName: previewCategories.find(category => category.id === categoryId).name,
+  categorySlug: previewCategories.find(category => category.id === categoryId).slug,
+}));

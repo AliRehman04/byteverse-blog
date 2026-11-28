@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process';
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, symlink, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { previewCategories, previewPosts, previewHomePosts } from './homepage-fixtures.mjs';
+import { previewCategories, previewPosts, previewHomePosts, previewFeaturedPosts } from './homepage-fixtures.mjs';
 import { getPublishedHomepagePreview } from './homepage-public-preview.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -33,7 +33,7 @@ async function run(args) {
 }
 if (mode !== '--serve') {
   const entries = mode === '--sync'
-    ? ['src/app/page.tsx', 'src/app/home-premium.module.css', 'src/app/opengraph-image.tsx', 'src/lib/homepage.ts', 'src/components/homepage-tool-finder.tsx', 'src/components/homepage-tool-finder.module.css', 'src/components/homepage-newsletter.tsx', 'src/components/homepage-newsletter.module.css', 'src/app/blog/page.tsx', 'src/app/blog/blog-index.tsx', 'src/app/blog/page/[page]/page.tsx', 'src/app/blog/blog-premium.module.css', 'src/lib/blog.ts', 'src/middleware.ts', 'next.config.ts', 'public/blog']
+    ? ['src/app/page.tsx', 'src/app/home-premium.module.css', 'src/app/opengraph-image.tsx', 'src/app/layout.tsx', 'src/lib/homepage.ts', 'src/lib/homepage-events.ts', 'src/lib/tools-hub.ts', 'src/lib/config.ts', 'src/components/homepage-analytics.tsx', 'src/components/header.tsx', 'src/components/footer.tsx', 'src/components/homepage-tool-finder.tsx', 'src/components/homepage-tool-finder.module.css', 'src/components/homepage-newsletter.tsx', 'src/components/homepage-newsletter.module.css', 'src/app/blog/page.tsx', 'src/app/blog/blog-index.tsx', 'src/app/blog/page/[page]/page.tsx', 'src/app/blog/blog-premium.module.css', 'src/lib/blog.ts', 'src/middleware.ts', 'next.config.ts', 'public/blog']
     : ['src', 'public', 'package.json', 'package-lock.json', 'tsconfig.json', 'next-env.d.ts', 'next.config.ts', 'postcss.config.mjs', 'eslint.config.mjs'];
   for (const entry of entries) {
     await cp(join(root, entry), join(workspace, entry), { recursive: true, filter: path => !/(?:^|[\\/])(?:\.env[^\\/]*|\.vercel|\.git)(?:[\\/]|$)/.test(path) });
@@ -51,15 +51,15 @@ if (mode !== '--serve') {
   let publicSnapshot = null;
   const snapshotPath = join(workspace, 'homepage-published.json');
   if (publishedContent) {
-    publicSnapshot = await getPublishedHomepagePreview();
+    publicSnapshot = await getPublishedHomepagePreview(previewFeaturedPosts.map(post => post.slug));
     await writeFile(snapshotPath, JSON.stringify(publicSnapshot, null, 2));
   } else if (mode === '--sync') {
     try { publicSnapshot = JSON.parse(await readFile(snapshotPath, 'utf8')); }
     catch (error) { if (error.code !== 'ENOENT') throw error; }
   }
   if (publicSnapshot) {
-    assert(publicSnapshot.source === 'https://www.byteverse.fyi/feed.xml' && publicSnapshot.posts.length === 9);
-    assert(publicSnapshot.posts.every(post => /^[a-z0-9-]+$/.test(post.slug) && typeof post.title === 'string' && Number.isFinite(Date.parse(post.createdAt))));
+    assert(publicSnapshot.source === 'https://www.byteverse.fyi/feed.xml' && publicSnapshot.posts.length === 9 && Array.isArray(publicSnapshot.featured));
+    assert([...publicSnapshot.posts, ...publicSnapshot.featured].every(post => /^[a-z0-9-]+$/.test(post.slug) && typeof post.title === 'string' && Number.isFinite(Date.parse(post.createdAt))));
     // Public preview links open the real article, not a database-free local 404.
     await writeFile(homepage, toProduction(source));
     await writeFile(blogPage, toProduction(blogSource));
@@ -71,7 +71,8 @@ if (mode !== '--serve') {
     await writeFile(homepage, source.slice(0, start) + fixtures + source.slice(end));
   } else {
     assert(source.includes('getHomepagePosts'), 'Unknown homepage data boundary');
-    await writeFile(join(workspace, 'src/lib/homepage-data.ts'), `import type { HomepagePost } from './homepage';\nexport async function getHomepagePosts(): Promise<HomepagePost[]> { return ${JSON.stringify(publicSnapshot?.posts ?? previewHomePosts)}.map(post => ({ ...post, createdAt: new Date(post.createdAt) })); }\n`);
+    // The stub keeps the real arrangement logic: curated order first, and no curated guide repeated in the latest list.
+    await writeFile(join(workspace, 'src/lib/homepage-data.ts'), `import { arrangeHomepagePosts, type HomepagePost } from './homepage';\nconst revive = (posts: (Omit<HomepagePost, 'createdAt'> & { createdAt: string })[]): HomepagePost[] => posts.map(post => ({ ...post, createdAt: new Date(post.createdAt) }));\nexport async function getHomepagePosts() { return arrangeHomepagePosts(revive(${JSON.stringify(publicSnapshot?.featured ?? previewFeaturedPosts)}), revive(${JSON.stringify(publicSnapshot?.posts ?? previewHomePosts)})); }\n`);
   }
   assert(blogSource.includes('getBlogIndex'), 'Unknown blog data boundary');
   {

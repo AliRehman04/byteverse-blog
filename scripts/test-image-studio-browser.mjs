@@ -256,7 +256,7 @@ try {
     await expect(p.getByRole("contentinfo")).toHaveCount(1);
     await expect(p.getByRole("banner").getByRole("img", { name: "ByteVerse", exact: true })).toHaveAttribute("src", "/logo.png");
     await expect(p.getByRole("contentinfo").getByRole("img", { name: "ByteVerse", exact: true })).toHaveAttribute("src", "/logo.png");
-    await expect(p.getByRole("contentinfo")).toContainText("Quick Links");
+    await expect(p.getByRole("contentinfo")).toContainText("All tools");
     await expect(p.locator(".isp-header, .isp-footer, .isp-landscape")).toHaveCount(0);
     await expect(p.locator(".isp-hero-photo")).toHaveAttribute("src", HERO);
     await expect.poll(() => p.locator(".isp-hero-photo").evaluate(image => image.complete && image.naturalWidth === 1200)).toBe(true);

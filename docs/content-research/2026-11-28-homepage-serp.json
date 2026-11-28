@@ -1,0 +1,183 @@
+{
+  "note": "Result order in one unauthenticated session; not rank tracking.",
+  "results": [
+    {
+      "query": "free online tools for developers",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:29:52.641Z",
+      "results": [
+        {
+          "title": "100+ Free Online Developer Tools - LambdaTest",
+          "url": "https://www.testmuai.com/learning-hub/free-online-developers-tools/"
+        },
+        {
+          "title": "Free Online Developer Tools - DevToolLab",
+          "url": "https://devtoollab.com/"
+        },
+        {
+          "title": "OnlineDevTools - Free Online Developer Tools",
+          "url": "https://onlinedevtools.dev/"
+        },
+        {
+          "title": "DevToolKit — Free Online Developer Tools",
+          "url": "https://devtoolkit.io/"
+        },
+        {
+          "title": "Free Online Developer Tools | Coddy",
+          "url": "https://coddy.tech/tools"
+        },
+        {
+          "title": "SimplyUtils — 199 Free Online Tools for Developers & Creators",
+          "url": "https://simplyutils.com/"
+        },
+        {
+          "title": "RapidToolSet - Free Online Tools for Developers & Designers",
+          "url": "https://rapidtoolset.com/en"
+        },
+        {
+          "title": "Free Online Tools for Developers & Designers — 100+ Browser Tools ...",
+          "url": "https://freetoolskit.dev/"
+        },
+        {
+          "title": "50 Best Free Online Developer Tools in 2026 | GoSnippets",
+          "url": "https://gosnippets.com/blog/best-free-online-developer-tools"
+        },
+        {
+          "title": "Best Free Developer Tools (2026): 11 Picks | Toolradar",
+          "url": "https://toolradar.com/guides/best-free-developer-tools"
+        }
+      ],
+      "status": 200
+    },
+    {
+      "query": "free online developer tools",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:29:55.599Z",
+      "results": [
+        {
+          "title": "OnlineDevTools - Free Online Developer Tools",
+          "url": "https://onlinedevtools.dev/"
+        },
+        {
+          "title": "Free Online Developer Tools | Coddy",
+          "url": "https://coddy.tech/tools"
+        },
+        {
+          "title": "DevToolKit — Free Online Developer Tools",
+          "url": "https://devtoolkit.io/"
+        },
+        {
+          "title": "Free Online Developer Tools - DevToolLab",
+          "url": "https://devtoollab.com/"
+        },
+        {
+          "title": "100+ Free Online Developer Tools - LambdaTest",
+          "url": "https://www.testmuai.com/learning-hub/free-online-developers-tools/"
+        },
+        {
+          "title": "50 Best Free Online Developer Tools in 2026 | GoSnippets",
+          "url": "https://gosnippets.com/blog/best-free-online-developer-tools"
+        },
+        {
+          "title": "206+ Free Developer Tools — No Signup | PromptSpace",
+          "url": "https://tools.promptspace.in/"
+        },
+        {
+          "title": "Free Developer Tools Online — 117+ Browser-Based Utilities",
+          "url": "https://www.devbolt.dev/free-tools"
+        },
+        {
+          "title": "DevTools — 532+ Free Online Developer Tools",
+          "url": "https://www.devtools.tools/"
+        },
+        {
+          "title": "Best Free Developer Tools (2026): 11 Picks | Toolradar",
+          "url": "https://toolradar.com/guides/best-free-developer-tools"
+        }
+      ],
+      "status": 200
+    },
+    {
+      "query": "online developer tools",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:29:58.152Z",
+      "results": [
+        {
+          "title": "Free Online Developer Tools | Coddy",
+          "url": "https://coddy.tech/tools"
+        },
+        {
+          "title": "OnlineDevTools - Free Online Developer Tools",
+          "url": "https://onlinedevtools.dev/"
+        },
+        {
+          "title": "DevToolKit — Free Online Developer Tools",
+          "url": "https://devtoolkit.io/"
+        },
+        {
+          "title": "App DevTools - Free Online DevTools",
+          "url": "https://appdevtools.com/"
+        },
+        {
+          "title": "206+ Free Developer Tools — No Signup | PromptSpace",
+          "url": "https://tools.promptspace.in/"
+        },
+        {
+          "title": "Devtoolry — Free Online Developer Tools & Compilers",
+          "url": "https://devtoolry.com/"
+        },
+        {
+          "title": "Online Dev Tools - Free Browser-Based Developer Utilities",
+          "url": "https://www.onlinedev.tools/"
+        },
+        {
+          "title": "DevTools — 532+ Free Online Developer Tools",
+          "url": "https://www.devtools.tools/"
+        },
+        {
+          "title": "Developer Tools - W3Schools",
+          "url": "https://www.w3schools.com/tools/"
+        },
+        {
+          "title": "100+ Free Online Developer Tools - LambdaTest",
+          "url": "https://www.testmuai.com/learning-hub/free-online-developers-tools/"
+        }
+      ],
+      "status": 200
+    },
+    {
+      "query": "free online tools",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:30:00.714Z",
+      "results": [],
+      "status": 202
+    },
+    {
+      "query": "free web tools online",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:30:02.717Z",
+      "results": [],
+      "status": 202
+    },
+    {
+      "query": "json formatter online",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:30:04.784Z",
+      "results": [],
+      "status": 202
+    },
+    {
+      "query": "developer utilities online",
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28T07:30:06.773Z",
+      "results": [],
+      "status": 202
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

@@ -8,9 +8,9 @@ export const siteConfig = {
   email: "contact@byteverse.fyi",
   nav: [
     { title: "Home", href: "/" },
+    { title: "Tools", href: "/tools" },
     { title: "Blog", href: "/blog" },
     { title: "Categories", href: "/categories" },
-    { title: "Tools", href: "/tools" },
     { title: "About", href: "/about" },
     { title: "Contact", href: "/contact" },
   ],

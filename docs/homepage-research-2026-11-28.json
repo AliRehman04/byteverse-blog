@@ -196,7 +196,13 @@
     "validation": {
       "unitGroups": { "passed": 13, "failed": 0 },
       "browserGroups": { "passed": 21, "failed": 0 },
-      "mobileLab": "Local preview performance 67 to 78 across eight runs with accessibility, best practices and SEO at 100 and layout shift 0. The live page with the previous hero scored 71 and 73 in the same session, so no change is claimed either way."
+      "mobileLab": "Local preview performance 67 to 78 across eight runs with accessibility, best practices and SEO at 100 and layout shift 0. The live page with the previous hero scored 71 and 73 in the same session, so no change is claimed either way.",
+      "live": {
+        "commit": "49b4a915788f787da15118748e44980f88d07684",
+        "check": "PASS: node scripts/check-homepage-live.mjs at 390 and 1440 pixels in light and dark",
+        "lighthouse": "Performance 46, 72 and 64 in three runs while the test machine sat at about 56 percent CPU load from other work; accessibility, best practices and SEO stayed at 100 and layout shift at 0. These runs are not a reliable speed reading.",
+        "decorationOnOff": "Six alternating runs each on the live page under 4x CPU throttling with the hero decoration shown and hidden: median blocking time 6186 ms shown against 5539 ms hidden, median largest paint 4456 ms against 4816 ms, with single runs ranging from 2 to 8 seconds in both groups. The difference is inside the noise, so no speed cost or gain is claimed."
+      }
     }
   }
 }

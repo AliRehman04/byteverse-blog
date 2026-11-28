@@ -995,7 +995,14 @@
     "approvedBy": "Owner request on 28 November 2026: 'new blog add kro according to this prompt ... deep working honi chhaye'.",
     "releaseCommit": "7c3082d",
     "deploymentStatus": "Vercel production deployment of 7c3082d succeeded at 2026-11-28T06:59:27Z (preview at 06:58:32Z). The page already returned 200 from the database right after the insert at 06:56:57Z, with robots 'index, follow'.",
-    "liveVerification": "node scripts/test-ollama-runner-post.mjs --live passed 13 of 13 tests after the production deploy: H1, title, meta description, canonical, article:published_time, no noindex, og:image, FAQPage schema with the first five questions, BlogPosting author and date, all four tables, nine FAQ items, all five internal links and three body strings including %!w(<nil>). https://www.byteverse.fyi/sitemap.xml lists the new URL (188 blog URLs) at 2026-11-28T07:00:05Z."
+    "liveVerification": "node scripts/test-ollama-runner-post.mjs --live passed 13 of 13 tests after the production deploy: H1, title, meta description, canonical, article:published_time, no noindex, og:image, FAQPage schema with the first five questions, BlogPosting author and date, all four tables, nine FAQ items, all five internal links and three body strings including %!w(<nil>). https://www.byteverse.fyi/sitemap.xml lists the new URL (188 blog URLs) at 2026-11-28T07:00:05Z.",
+    "listCssFix": {
+      "approvedBy": "owner, 28 November 2026, through the ask_user form ('Poori site ki lists ka mobile CSS fix karun?' answered yes)",
+      "commit": "b33377c",
+      "change": "src/app/globals.css: blog list items changed from display flex to block with absolutely positioned bullets and numbers (logical properties for RTL), and the first paragraph inside a list item no longer gets a top margin.",
+      "validation": "Compiled with the project's @tailwindcss/postcss setup without warnings. Before deploying, the new rules were injected into the live posts 258, 260 and 257 at 375 px (light, dark, RTL) and 1440 px: bold text and inline code went from block to inline and no page overflowed.",
+      "liveCheck": "After the production deploy of b33377c, posts 258, 260 and 257 at 375 px render 0 flex list items (previously 18, 36 and 22) and no bold or code element pushed into its own column; no horizontal overflow. Post 261 still passes node scripts/test-ollama-runner-post.mjs --live."
+    }
   },
   "inboundLink": {
     "approvedBy": "owner, 28 November 2026, through the ask_user form ('Post 258 mein naye post ka 1 link add karun?' answered yes)",
@@ -1009,6 +1016,7 @@
     "contentMd5Before": "dc1ff1eccd8af22e696644e2f26e1eab",
     "contentMd5After": "78672d3063f96c3e0b13d665b8dec3cd",
     "appliedAt": "2026-11-28T07:03:37.666Z",
-    "otherPostsUnchanged": 192
+    "otherPostsUnchanged": 192,
+    "liveCheck": "After the production deploy of b33377c (Vercel success 2026-11-28T07:11:50Z) post 258 returns 200 with robots 'index, follow' and contains exactly one link to /blog/ollama-llama-runner-process-has-terminated, a plain followed internal anchor. The new post links back to post 258 in its third paragraph, so the two posts link to each other."
   }
 }

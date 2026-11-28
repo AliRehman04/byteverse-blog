@@ -2,7 +2,7 @@
   "task": "ByteVerse homepage revamp: search-led tools directory hero, tool categories, curated guides, trust section, footer and header updates",
   "researchDate": "2026-11-28",
   "validationDate": "2026-11-28",
-  "status": "Implemented and validated in an isolated local preview; live verification is recorded under liveVerification once deployed",
+  "status": "Live on https://www.byteverse.fyi/ since 2026-11-28 (commit 8cb3dc7); validated locally and on the live site",
   "baselineCommit": "181469d",
   "scope": {
     "primaryRoute": "/",
@@ -143,7 +143,38 @@
       "lcpRangeSeconds": [2.4, 2.8]
     },
     "interpretation": "Scores moved by more than ten points between runs of the same build on this machine, and the two hosts differ, so no performance gain or loss is claimed. The first local run flagged guide-card link names that did not match the visible text; that was fixed and did not recur.",
-    "caveats": ["Lab runs only, not field data", "Local preview and the live CDN are not directly comparable", "Third-party scripts are part of the live figures"]
+    "caveats": ["Lab runs only, not field data", "Local preview and the live CDN are not directly comparable", "Third-party scripts are part of the live figures"],
+    "liveAfterChange": {
+      "performanceRuns": [97, 84, 84],
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "cls": 0,
+      "lcpRangeSeconds": [1.6, 2.5],
+      "note": "Within the same run-to-run spread as the four runs before the change; the guide-card link-name warning seen on the old live page did not appear."
+    }
+  },
+  "liveVerification": {
+    "commit": "8cb3dc789095f22f7fd3c9016d3fe12f435395f8",
+    "deployment": "Vercel Production deployment reported success",
+    "checkedAt": "2026-11-28T08:50:08.405Z",
+    "command": "node scripts/check-homepage-live.mjs",
+    "result": "PASS at 390 and 1440 pixels in light and dark",
+    "confirmed": [
+      "Title and main heading match the decisions above",
+      "Canonical https://www.byteverse.fyi/ and robots index, follow",
+      "Meta description is 154 characters",
+      "Organization, WebSite and WebPage structured data present; no FAQPage",
+      "All nine sections present, 8 featured tools, 6 category links, 12 distinct guide links",
+      "No horizontal overflow and no page errors",
+      "All 46 internal links on the homepage answered 200",
+      "Social image answered 200 as image/png",
+      "Homepage is listed in the XML sitemap"
+    ],
+    "notes": [
+      "Homepage HTML is about 187 KB, up from about 158 KB, because of the added sections and the in-page tool search list; the script count stayed at 10",
+      "The apex domain still answers 307 to www"
+    ]
   },
   "limitations": [
     "No ranking or traffic outcome is promised",

@@ -1,0 +1,198 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:18:33.610Z",
+    "query": "ollama model not found try pulling it first",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "\"Model\" not found, try pulling it first · Issue #1254 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/1254"
+      },
+      {
+        "title": "Ollama \"model \"llama3\" not found, try pulling it first\"",
+        "url": "https://www.betterclaw.io/tools/agent-error-decoder/ollama-model-not-found-try-pulling"
+      },
+      {
+        "title": "Model not found. Try pulling it first · Issue #11401 · ollama/ollama",
+        "url": "https://github.com/ollama/ollama/issues/11401"
+      },
+      {
+        "title": "Ollama Model Not Found: Try Pulling It First - Why Ollama Can't Find ...",
+        "url": "https://adhdecode.com/debugging/ollama/model-not-found-try-pulling-it-first/"
+      },
+      {
+        "title": "Ollama: pull model manifest file does not exist | Netray",
+        "url": "https://netray.co/troubleshoot/ollama-model-not-found"
+      },
+      {
+        "title": "How can I pull a model automatically with container creation?",
+        "url": "https://stackoverflow.com/questions/78500319/how-can-i-pull-a-model-automatically-with-container-creation"
+      },
+      {
+        "title": "langchain - Problems With Python and Ollama - Stack Overflow",
+        "url": "https://stackoverflow.com/questions/78162485/problems-with-python-and-ollama"
+      },
+      {
+        "title": "How to Fix Llama 3.3 'Model Not Found' Error in Ollama: Complete ...",
+        "url": "https://markaicode.com/fix-llama-33-model-not-found-error-ollama/"
+      },
+      {
+        "title": "Error when trying to dowload a model in Ollama - Beginners - Hugging ...",
+        "url": "https://discuss.huggingface.co/t/error-when-trying-to-dowload-a-model-in-ollama/172540"
+      },
+      {
+        "title": "Ollama Errors: Model Not Found, Port, GPU, OOM | Swfte",
+        "url": "https://www.swfte.com/errors/ollama-errors"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:18:35.802Z",
+    "query": "ollama model not found api",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama Model Not Found: Check Tags, Server and API Paths",
+        "url": "https://aimodelsnews.com/local-ai/ollama-model-not-found/"
+      },
+      {
+        "title": "Ollama Model Not Found: Check Exact Tags, Servers and Model Stores",
+        "url": "https://www.aimadetools.com/blog/ollama-model-not-found-fix/"
+      },
+      {
+        "title": "ollama serve yields \"'model' not found\" error because of incorrect ...",
+        "url": "https://github.com/ollama/ollama/issues/3740"
+      },
+      {
+        "title": "Cannot see models under api · Issue #12213 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/12213"
+      },
+      {
+        "title": "AnythingLLM Ollama Model Not Found: 5 Fixes That Work",
+        "url": "https://maketocreate.com/anythingllm-ollama-model-not-found-5-fixes-that-work/"
+      },
+      {
+        "title": "Ollama Model Not Found: Check the Server and Exact Tag First",
+        "url": "https://runaihome.com/blog/ollama-model-not-found-wrong-server-tag-fix-2026/"
+      },
+      {
+        "title": "Ollama 'model not found' Error: Fix in Under 2 Minutes",
+        "url": "https://markaicode.com/errors/ollama-model-not-found-fix/"
+      },
+      {
+        "title": "Ollama Status Code 404 Error when trying to run with LangChain",
+        "url": "https://stackoverflow.com/questions/78422802/ollama-status-code-404-error-when-trying-to-run-with-langchain"
+      },
+      {
+        "title": "python - ollama.generate raises model not found error: \"hf.co ...",
+        "url": "https://stackoverflow.com/questions/79605566/ollama-generate-raises-model-not-found-error-hf-co-mradermacher-llama-3-2-3b-i"
+      },
+      {
+        "title": "OpenAI compatibility - Ollama",
+        "url": "https://docs.ollama.com/api/openai-compatibility"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:18:38.035Z",
+    "query": "openwebui 500 llama runner process has terminated exit status 2",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "500: llama runner process has terminated: exit status 2",
+        "url": "https://github.com/ollama/ollama/issues/11985"
+      },
+      {
+        "title": "Troubleshooting / Open WebUI",
+        "url": "https://docs.openwebui.com/troubleshooting/"
+      },
+      {
+        "title": "Ollama Runner Fails with \"Exit Status 2\" and Random Non ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/12940"
+      },
+      {
+        "title": "Fix common Ollama errors: 500, timeouts and stalled pulls",
+        "url": "https://lumadock.com/tutorials/ollama-troubleshooting"
+      },
+      {
+        "title": "Ollama Troubleshooting Guide: Every Common Problem and Fix",
+        "url": "https://insiderllm.com/guides/ollama-troubleshooting-guide/"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 2 when running ...",
+        "url": "https://huggingface.co/openbmb/MiniCPM-o-2_6-gguf/discussions/1"
+      },
+      {
+        "title": "Local AI Troubleshooting Guide: Every Common Problem and Fix",
+        "url": "https://insiderllm.com/guides/local-ai-troubleshooting-guide/"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "\"Error: 500 Internal Server Error: llama-server process has terminated ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/"
+      },
+      {
+        "title": "openbmb/MiniCPM-V-4-gguf · Error with ollama - Hugging Face",
+        "url": "https://huggingface.co/openbmb/MiniCPM-V-4-gguf/discussions/1"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:18:40.866Z",
+    "query": "llama-server process has terminated signal killed",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama: 'llama-server process has terminated: signal: killed'",
+        "url": "https://www.coder000.com/post/ollama-llama-server-process-has-terminated-signal-killed"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "LLAMA4 Scout crashes during run · Issue #10532 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/10532"
+      },
+      {
+        "title": "Ollama Llama Runner Process Has Terminated: Fix by Exit Code",
+        "url": "https://www.binmage.com/ollama-llama-runner-process-has-terminated/"
+      },
+      {
+        "title": "\"Error: 500 Internal Server Error: llama-server process has terminated ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/"
+      },
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "Ollama returns 'llama-server process has terminated: signal: killed ...",
+        "url": "https://chatoverflow.dev/n/ollama-returns-llama-server-process-has-terminated-signal-killed-status-code-500-mid-run-with-qwen2-991ee1b6e00e"
+      },
+      {
+        "title": "Windows Process Unexpectedly Terminated - llama-server.exe ... - GitHub",
+        "url": "https://github.com/mostlygeek/llama-swap/issues/159"
+      },
+      {
+        "title": "Error: llama runner process has terminated: signal: killed — 常见原因及排查方法",
+        "url": "https://ask.csdn.net/questions/8758178"
+      }
+    ]
+  }
+]

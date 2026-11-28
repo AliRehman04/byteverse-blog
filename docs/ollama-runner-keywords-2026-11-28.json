@@ -1,0 +1,997 @@
+{
+  "slug": "ollama-llama-runner-process-has-terminated",
+  "date": "2026-11-28",
+  "website": "https://www.byteverse.fyi",
+  "brief": "Owner-supplied Senior SEO Strategist brief (Pasted text #1, 28 November 2026): analyse the site, do deep keyword and competitor research without invented metrics, find the content gap, write an original people-first article, optimise it, check originality and publish one new post.",
+  "targeting": {
+    "title": "Ollama llama runner process has terminated: Causes and Fixes",
+    "metaTitle": "llama runner process has terminated: Ollama Fix",
+    "metaDescription": "Ollama says llama runner or llama-server process has terminated? Read the exit status and the line after it, then fix memory, model, driver or crash causes.",
+    "excerpt": "What \"llama runner process has terminated\" and \"llama-server process has terminated\" mean in Ollama, traced in the Ollama 0.40.19 source on 28 November 2026: how to read the exit status and the captured error, find the full message in the log, and fix each cause.",
+    "keywords": "llama runner process has terminated, llama-server process has terminated, ollama llama runner process has terminated, llama runner process has terminated exit status 2, llama runner process has terminated signal killed, llama runner process has terminated cuda error, llama-server process has terminated signal killed, ollama exit status 0xc0000409, llama server process has terminated exit status 1, timed out waiting for llama runner to start, ollama cudamalloc failed out of memory, ollama 500 internal server error",
+    "summary": "Read the words after process has terminated: the exit status or signal says how the program ended, and the error text Ollama captured from its output is the cause to act on|Since Ollama 0.30.0 the program is llama.cpp's llama-server; a memory failure gets one automatic retry with a smaller automatic context, but a context you set yourself is never lowered|0xc0000409 on Windows is a deliberate abort after a failed check or a CUDA error, not an attack, while exit status 2 and the nil ending come only from Ollama 0.24 and older",
+    "readingTime": "21 min read",
+    "categoryId": 2,
+    "categorySlug": "tech-guides",
+    "author": "Ali Rehman",
+    "authorSlug": "ali-rehman"
+  },
+  "inventory": {
+    "checkedAt": "2026-11-28T05:01:36.385Z",
+    "total": 192,
+    "published": 187,
+    "hash": "6e3e41828aba278b9a50447a7a78abc7",
+    "protectedDrafts": [
+      "pdf-to-podcast-notebooklm-2026",
+      "audacity-noise-reduction-voice-2026"
+    ]
+  },
+  "siteAnalysis": {
+    "source": "docs/content-research/2026-11-25-inventory.json and docs/content-research/2026-11-28-inventory.json (read-only database queries). The owner's private Search Console export of 23 November 2026 was read locally; its figures are not reproduced here.",
+    "inventory": {
+      "total": 192,
+      "published": 187,
+      "hash": "6e3e41828aba278b9a50447a7a78abc7",
+      "views": 4153,
+      "storedViews": 4153
+    },
+    "categories": [
+      {
+        "id": 1,
+        "slug": "ai-tools",
+        "posts": 60,
+        "avg_views": 26.6
+      },
+      {
+        "id": 2,
+        "slug": "tech-guides",
+        "posts": 67,
+        "avg_views": 14.2
+      },
+      {
+        "id": 3,
+        "slug": "productivity",
+        "posts": 14,
+        "avg_views": 17.1
+      },
+      {
+        "id": 4,
+        "slug": "coding",
+        "posts": 21,
+        "avg_views": 35
+      },
+      {
+        "id": 5,
+        "slug": "software-reviews",
+        "posts": 19,
+        "avg_views": 19.9
+      },
+      {
+        "id": 6,
+        "slug": "cybersecurity",
+        "posts": 6,
+        "avg_views": 37.8
+      }
+    ],
+    "viewGains25to28November": [
+      {
+        "id": 258,
+        "slug": "ollama-pull-model-manifest-error",
+        "views": 21,
+        "gain": 9
+      },
+      {
+        "id": 241,
+        "slug": "cursor-agent-stuck-planning-next-moves-2026",
+        "views": 21,
+        "gain": 6
+      },
+      {
+        "id": 6,
+        "slug": "best-ai-tools-for-students-2026-free-study-apps",
+        "views": 43,
+        "gain": 3
+      },
+      {
+        "id": 24,
+        "slug": "best-vscode-extensions-2026-web-developers",
+        "views": 64,
+        "gain": 3
+      },
+      {
+        "id": 61,
+        "slug": "two-factor-authentication-guide-2026",
+        "views": 16,
+        "gain": 3
+      },
+      {
+        "id": 158,
+        "slug": "ai-side-hustles-2026",
+        "views": 27,
+        "gain": 3
+      },
+      {
+        "id": 213,
+        "slug": "how-to-use-deepseek-2026-complete-guide",
+        "views": 24,
+        "gain": 3
+      },
+      {
+        "id": 234,
+        "slug": "copilot-in-excel-not-showing-2026",
+        "views": 12,
+        "gain": 3
+      },
+      {
+        "id": 235,
+        "slug": "ollama-not-using-gpu-windows-2026",
+        "views": 21,
+        "gain": 3
+      },
+      {
+        "id": 257,
+        "slug": "ollama-ps-explained",
+        "views": 6,
+        "gain": 3
+      }
+    ],
+    "finding": "Between 25 and 28 November the Ollama pull manifest error guide (post 258) gained the most stored views on the site (+9), and the Ollama GPU guide (235, +3) and the ollama ps guide (257, +3) also grew. The five Ollama posts cover connection, pulling, GPU use, the models folder and ollama ps, but none covers the error people hit when a model fails to load. No published post contains the strings 'llama runner process has terminated' or 'llama-server process has terminated' (zero cannibalization).",
+    "searchConsole": {
+      "available": "export only",
+      "note": "No Search Console API access in this workspace; no clicks, impressions or positions are quoted."
+    }
+  },
+  "research": {
+    "candidateFiles": [
+      "docs/content-research/2026-11-28-keywords-candidates.json",
+      "docs/content-research/2026-11-28-keywords-runner.json"
+    ],
+    "serpFiles": [
+      "docs/content-research/2026-11-28-serp-ollama-load.json",
+      "docs/content-research/2026-11-28-serp-alt.json"
+    ],
+    "competitorFile": "docs/content-research/2026-11-28-competitors-ollama-runner.json",
+    "sources": [
+      "Google public autocomplete (hl=en, gl=us)",
+      "Bing public autocomplete (en-US)",
+      "DuckDuckGo HTML result pages",
+      "GitHub issue search for ollama/ollama",
+      "Ollama, llama.cpp and Go source code at release tags"
+    ],
+    "notUsed": "Google Trends, paid keyword tools and the Search Console API were not available. No search volume, keyword difficulty, ranking probability or traffic forecast is stated anywhere.",
+    "keywordMap": {
+      "primary": "llama runner process has terminated",
+      "secondary": [
+        "llama-server process has terminated",
+        "ollama llama runner process has terminated",
+        "llama runner process has terminated exit status 2",
+        "llama runner process has terminated signal killed",
+        "llama runner process has terminated cuda error",
+        "ollama exit status 0xc0000409"
+      ],
+      "supporting": [
+        "llama-server process has terminated signal killed",
+        "llama server process has terminated exit status 1",
+        "llama server process has terminated signal segmentation fault",
+        "llama server process has terminated signal aborted core dumped",
+        "llama runner process has terminated cuda error out of memory",
+        "error llama runner process has terminated cudamalloc failed out of memory",
+        "llama runner process has terminated w ( nil )",
+        "timed out waiting for llama runner to start",
+        "timed out waiting for llama runner to start context canceled",
+        "500 timed out waiting for llama runner to start progress 0.00",
+        "openwebui 500 llama runner process has terminated exit status 2",
+        "ollama exit status 2",
+        "ollama unknown model architecture",
+        "ollama model requires more system memory"
+      ],
+      "intent": "Problem-fix (informational): a user saw the error in a terminal, the server log or an app such as Open WebUI and wants to know what it means and what to change.",
+      "notCovered": [
+        "signal: broken pipe (only three old reports, all on versions before 0.30)"
+      ]
+    },
+    "observations": [
+      {
+        "seed": "llama-server process has terminated",
+        "google": [
+          "llama-server process has terminated signal killed",
+          "llama-server process has terminated",
+          "llama server process has terminated exit status 1",
+          "llama server process has terminated with exit code",
+          "llama server process has terminated signal segmentation fault",
+          "llama server process has terminated signal aborted core dumped",
+          "llama server process has terminated cuda error",
+          "llama server process has terminated signal broken pipe",
+          "error llama server process has terminated signal killed"
+        ],
+        "bing": [
+          "llama-server process has terminated",
+          "llama runner process has terminated",
+          "error llama runner process has terminated",
+          "llama.cpp server exited before becoming ready"
+        ]
+      },
+      {
+        "seed": "ollama llama-server process has terminated",
+        "google": [],
+        "bing": [
+          "error llama runner process has terminated"
+        ]
+      },
+      {
+        "seed": "llama runner process has terminated exit status",
+        "google": [
+          "llama runner process has terminated exit status 2",
+          "llama runner process has terminated exit status 2 linux",
+          "llama runner process has terminated exit status 1",
+          "llama runner process has terminated exit status",
+          "500 llama runner process has terminated exit status 2",
+          "error llama runner process has terminated exit status 2",
+          "openwebui 500 llama runner process has terminated exit status 2",
+          "llama runner process has terminated with exit code 2",
+          "llama runner process has terminated exit status 2 status code 500"
+        ],
+        "bing": []
+      },
+      {
+        "seed": "llama runner process has terminated error",
+        "google": [
+          "llama runner process has terminated cuda error",
+          "llama runner process has terminated cuda error out of memory",
+          "error llama runner process has terminated exit status 2",
+          "500 llama runner process has terminated cuda error",
+          "error llama runner process has terminated cudamalloc failed out of memory",
+          "error llama runner process has terminated signal killed",
+          "error llama runner process has terminated signal broken pipe",
+          "error llama runner process has terminated w ( nil )",
+          "error llama runner process has terminated",
+          "500 internal server error llama runner process has terminated cuda error"
+        ],
+        "bing": [
+          "llama runner terminated error exit status 2",
+          "llama runner process has terminated cuda",
+          "waiting for llama runner to start responding"
+        ]
+      },
+      {
+        "seed": "ollama error llama runner",
+        "google": [],
+        "bing": []
+      },
+      {
+        "seed": "ollama exit status 2",
+        "google": [
+          "ollama exit status 2",
+          "ollama exit code 2",
+          "ollama error exit status 2",
+          "ollama 500 internal server error exit status 2",
+          "ollama runner process has terminated exit status 2"
+        ],
+        "bing": [
+          "ollama exit status 2",
+          "ollama exit status 0xc0000409",
+          "how to exit ollama",
+          "how to exit ollama in terminal",
+          "ollama code exited status 203/exec",
+          "ollama serve code exited status 1/failure",
+          "ollama serve code exited status 203/exec",
+          "ollama.service failed with result exit-code"
+        ]
+      },
+      {
+        "seed": "ollama 0xc0000409",
+        "google": [],
+        "bing": [
+          "ollama 0xc0000409",
+          "ollama exit status 0xc0000409"
+        ]
+      },
+      {
+        "seed": "ollama signal killed",
+        "google": [],
+        "bing": []
+      },
+      {
+        "seed": "ollama cuda error",
+        "google": [
+          "ollama cuda error",
+          "ollama cuda error out of memory",
+          "ollama cuda error invalid argument",
+          "ollama cuda error operation not supported",
+          "ollama cuda error 500"
+        ],
+        "bing": [
+          "ollama cuda error",
+          "ollama cuda error 500"
+        ]
+      },
+      {
+        "seed": "timed out waiting for llama runner to start",
+        "google": [
+          "timed out waiting for llama runner to start",
+          "timed out waiting for llama runner to start context canceled",
+          "ollama timed out waiting for llama runner to start",
+          "500 timed out waiting for llama runner to start progress 0.00"
+        ],
+        "bing": [
+          "llama runner process has terminated",
+          "waiting for llama runner to start responding",
+          "error llama runner process has terminated"
+        ]
+      },
+      {
+        "seed": "ollama crashes when loading model",
+        "google": [],
+        "bing": [
+          "ollama unable to load model",
+          "ollama failed to load model",
+          "ollama error unable to load model"
+        ]
+      },
+      {
+        "seed": "ollama model failed to load",
+        "google": [
+          "ollama model failed to load",
+          "ollama failed to load mlx dynamic library",
+          "ollama failed to load settings",
+          "ollama failed to load private key",
+          "ollama failed to load image or audio file",
+          "ollama failed to load clip model",
+          "ollama 500 internal server error model failed to load"
+        ],
+        "bing": [
+          "ollama model failed to load"
+        ]
+      }
+    ],
+    "issueCounts": {
+      "method": "GitHub issue search in ollama/ollama on 28 November 2026, exact phrase plus ending; counts are search totals, not unique causes.",
+      "signalAbortedCoreDumped": 107,
+      "segmentationFault": 47,
+      "signalKilledNewWording": 12,
+      "timedOutWaitingForLlamaServer": 67,
+      "nilFormat": 41,
+      "brokenPipe": 3,
+      "referencedMemoryAt0xp": 9,
+      "duplicatedCapturedTextIn300NewWordingIssues": 7
+    },
+    "rejectedCandidates": [
+      {
+        "topic": "Ollama model not found, try pulling it first",
+        "reason": "The SERP sample shows at least seven dedicated pages for one simple cause, and post 258 already covers pull errors; overlap risk with little room to add."
+      },
+      {
+        "topic": "Ollama model requires more system memory",
+        "reason": "Six dedicated pages in the SERP sample, and the message no longer exists from Ollama 0.30.0; covered as a short section inside this guide instead."
+      },
+      {
+        "topic": "Cursor tab completion or agent terminal not working",
+        "reason": "Many autocomplete variants, but Cursor's own forum dominates and post 241 already covers a sibling Cursor error."
+      },
+      {
+        "topic": "Copilot not showing in Word or Teams meetings",
+        "reason": "Post 234 covers the shared Copilot button in Word, Excel and PowerPoint, and post 260 was published three days ago; a third Copilot page now would split attention. Kept as future siblings."
+      },
+      {
+        "topic": "Gemini not showing in Google Meet (Take notes for me)",
+        "reason": "Weak autocomplete demand: one Google suggestion and mostly unrelated Bing suggestions."
+      },
+      {
+        "topic": "Open WebUI cannot connect to Ollama in Docker",
+        "reason": "Valid gap with many dedicated competitors; still kept as a future supporting article."
+      }
+    ],
+    "serpSample": {
+      "engine": "DuckDuckGo HTML",
+      "checkedAt": "2026-11-28",
+      "queries": [
+        "llama runner process has terminated exit status 2",
+        "ollama llama runner process has terminated",
+        "llama runner process has terminated signal killed",
+        "ollama exit status 0xc0000409",
+        "llama-server process has terminated signal killed",
+        "openwebui 500 llama runner process has terminated exit status 2",
+        "ollama cudamalloc failed out of memory",
+        "ollama unknown model architecture",
+        "ollama 500 internal server error",
+        "ollama model requires more system memory than is available"
+      ],
+      "pattern": "GitHub issues and four recurring independent sites (runaihome, localaimaster, binmage, thinkfacility) fill the first results; Ollama's own troubleshooting page appears for the 500 and 0xc0000409 queries."
+    },
+    "competitors": [
+      {
+        "site": "runaihome.com",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/",
+        "published": "2026-06-19",
+        "words": 2194,
+        "gaps": "States that 0xc0000409 is an illegal instruction exception (that is 0xc000001d; 0xc0000409 is STATUS_STACK_BUFFER_OVERRUN). Says exit status 2 is usually a GPU or VRAM problem and that the codes are stable across versions. Pinned to 0.30.8 from June 2026."
+      },
+      {
+        "site": "localaimaster.com",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated",
+        "published": "2026-08-23",
+        "words": 4047,
+        "gaps": "Describes 0xc0000409 as Windows killing the process for a corrupted stack instead of a fail fast from abort. Says exit status 2 has no meaning, without the Go runtime explanation for the old runner. No automatic retry rules, no garbled Windows texts, no nil format, no apps that show only 500."
+      },
+      {
+        "site": "binmage.com",
+        "url": "https://www.binmage.com/ollama-llama-runner-process-has-terminated/",
+        "published": "2026-11-19",
+        "words": 1683,
+        "gaps": "No explanation of why 0xc0000409 appears with CUDA lines, no exit status 2 history, no retry rules, no timeout, no nil format, no log search steps beyond locations."
+      },
+      {
+        "site": "thinkfacility.com (llama-server)",
+        "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/",
+        "published": "2026-09-25",
+        "words": 830,
+        "gaps": "Brief; retry description does not give the conditions; no per-ending fixes."
+      },
+      {
+        "site": "thinkfacility.com (0xc0000409)",
+        "url": "https://www.thinkfacility.com/errors/ollama-exit-status-0xc0000409/",
+        "published": "2026-09-25",
+        "words": 704,
+        "gaps": "Does not say why the code appears (abort and fail fast), no other Windows codes."
+      },
+      {
+        "site": "coder000.com",
+        "url": "https://www.coder000.com/post/ollama-llama-server-process-has-terminated-signal-killed",
+        "published": "2026-10-22",
+        "words": 972,
+        "gaps": "Single ending only; no WSL limit, no kernel log line, no other endings."
+      },
+      {
+        "site": "dasroot.net",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/",
+        "published": "2026-02-07",
+        "words": 777,
+        "gaps": "Generic; predates the llama-server change in its original form; no endings decoded."
+      },
+      {
+        "site": "night-dev.com",
+        "url": "https://night-dev.com/en/blog/ollama-500-internal-server-error/",
+        "published": "2026-04-09",
+        "words": 629,
+        "gaps": "Single cause; not about the runner message."
+      },
+      {
+        "site": "localaimaster.com (out of memory)",
+        "url": "https://localaimaster.com/blog/ollama-out-of-memory-errors",
+        "published": "2026-08-23",
+        "words": 4326,
+        "gaps": "Memory only; mentions the explicit context case but not the retry tiers."
+      }
+    ],
+    "contentGap": [
+      "Why 0xc0000409 appears: abort() in a release build ends as a fail fast with that code, and llama.cpp calls abort after GGML_ASSERT and after every CUDA or ROCm error (Microsoft __fastfail and abort documentation, Raymond Chen, llama.cpp b12734 source).",
+      "The texts Ollama 0.30 and later attach to Windows codes, produced on Windows 11 with the same FormatMessage call: some are garbled (0xp, hs) because the call passes no insert values.",
+      "Exit status 2 on 0.24 and older: the runner was Ollama's own Go program, and Go exits with code 2 after an unrecovered panic or fatal error (Go runtime documentation, reports #12314 and #14291).",
+      "The %!w(<nil>) ending of 0.22 and older: a nil exit error formatted with %w when the runner exited with status 0 (Go fmt source, Ollama 0.22.0 source, report #15849).",
+      "Exact automatic retry rules since 0.30.0: one retry, automatic context only (above 32768 to 32768, above 4096 to 4096), other models evicted, projector moved to the CPU for vision models; explicit context settings are kept.",
+      "Context multiplied by OLLAMA_NUM_PARALLEL in the llama-server command line, and the 50 percent WSL 2 memory default for Ollama in WSL or Docker Desktop.",
+      "How to get the full message when an app such as Open WebUI shows only a 500, and which log lines frame a failed load."
+    ]
+  },
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  },
+  "sources": [
+    {
+      "title": "Latest supported Visual C++ Redistributable downloads",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist"
+    },
+    {
+      "title": "Troubleshooting",
+      "publisher": "Ollama documentation",
+      "url": "https://docs.ollama.com/troubleshooting"
+    },
+    {
+      "title": "FAQ",
+      "publisher": "Ollama documentation",
+      "url": "https://docs.ollama.com/faq"
+    },
+    {
+      "title": "Context length",
+      "publisher": "Ollama documentation",
+      "url": "https://docs.ollama.com/context-length"
+    },
+    {
+      "title": "Hardware support",
+      "publisher": "Ollama documentation",
+      "url": "https://docs.ollama.com/gpu"
+    },
+    {
+      "title": "llm/llama_server.go at v0.40.19",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.19/llm/llama_server.go"
+    },
+    {
+      "title": "llm/status.go at v0.40.19",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.19/llm/status.go"
+    },
+    {
+      "title": "llm/exit_status_windows.go at v0.40.19",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.19/llm/exit_status_windows.go"
+    },
+    {
+      "title": "server/sched.go at v0.40.19",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.19/server/sched.go"
+    },
+    {
+      "title": "envconfig/config.go at v0.40.19",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.40.19/envconfig/config.go"
+    },
+    {
+      "title": "llm/server.go at v0.24.0",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.24.0/llm/server.go"
+    },
+    {
+      "title": "llm/server.go at v0.22.0",
+      "publisher": "Ollama source on GitHub",
+      "url": "https://github.com/ollama/ollama/blob/v0.22.0/llm/server.go"
+    },
+    {
+      "title": "Ollama v0.30.0 release",
+      "publisher": "Ollama on GitHub",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.0"
+    },
+    {
+      "title": "runner: Remove CGO engines, use llama-server exclusively for GGML models (#16031)",
+      "publisher": "Ollama on GitHub",
+      "url": "https://github.com/ollama/ollama/pull/16031"
+    },
+    {
+      "title": "ggml/src/ggml.c at b12734",
+      "publisher": "llama.cpp on GitHub",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b12734/ggml/src/ggml.c"
+    },
+    {
+      "title": "ggml/src/ggml-cuda/ggml-cuda.cu at b12734",
+      "publisher": "llama.cpp on GitHub",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b12734/ggml/src/ggml-cuda/ggml-cuda.cu"
+    },
+    {
+      "title": "tools/server/server.cpp at b12734",
+      "publisher": "llama.cpp on GitHub",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b12734/tools/server/server.cpp"
+    },
+    {
+      "title": "src/llama-context.cpp at b12734",
+      "publisher": "llama.cpp on GitHub",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b12734/src/llama-context.cpp"
+    },
+    {
+      "title": "runtime package",
+      "publisher": "Go documentation",
+      "url": "https://pkg.go.dev/runtime"
+    },
+    {
+      "title": "src/os/exec_posix.go at go1.26.10",
+      "publisher": "Go source on GitHub",
+      "url": "https://github.com/golang/go/blob/go1.26.10/src/os/exec_posix.go"
+    },
+    {
+      "title": "src/fmt/print.go at go1.26.10",
+      "publisher": "Go source on GitHub",
+      "url": "https://github.com/golang/go/blob/go1.26.10/src/fmt/print.go"
+    },
+    {
+      "title": "__fastfail",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/cpp/intrinsics/fastfail"
+    },
+    {
+      "title": "abort",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/abort"
+    },
+    {
+      "title": "[MS-ERREF]: NTSTATUS Values",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55"
+    },
+    {
+      "title": "STATUS_STACK_BUFFER_OVERRUN doesn't mean that there was a stack buffer overrun",
+      "publisher": "The Old New Thing, Microsoft DevBlogs",
+      "url": "https://devblogs.microsoft.com/oldnewthing/20190108-00/?p=100655"
+    },
+    {
+      "title": "Advanced settings configuration in WSL",
+      "publisher": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/wsl-config"
+    },
+    {
+      "title": "Concepts overview (OOM killer)",
+      "publisher": "The Linux Kernel documentation",
+      "url": "https://docs.kernel.org/admin-guide/mm/concepts.html"
+    },
+    {
+      "title": "mm/oom_kill.c at v6.12",
+      "publisher": "Linux kernel source on GitHub",
+      "url": "https://github.com/torvalds/linux/blob/v6.12/mm/oom_kill.c"
+    },
+    {
+      "title": "Resource constraints",
+      "publisher": "Docker Docs",
+      "url": "https://docs.docker.com/engine/containers/resource_constraints/"
+    },
+    {
+      "title": "Change your Docker Desktop settings",
+      "publisher": "Docker Docs",
+      "url": "https://docs.docker.com/desktop/settings-and-maintenance/settings/"
+    },
+    {
+      "title": "Docker Desktop WSL 2 backend on Windows",
+      "publisher": "Docker Docs",
+      "url": "https://docs.docker.com/desktop/features/wsl/"
+    },
+    {
+      "title": "Formula/o/ollama.rb",
+      "publisher": "Homebrew on GitHub",
+      "url": "https://github.com/Homebrew/homebrew-core/blob/main/Formula/o/ollama.rb"
+    },
+    {
+      "title": "Data types used by CUDA Runtime",
+      "publisher": "NVIDIA CUDA Runtime API documentation",
+      "url": "https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html"
+    },
+    {
+      "title": "llama-server crashes with exit status 0xc0000409 (stack-based buffer overrun) on CUDA initialization (#17627)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/17627"
+    },
+    {
+      "title": "Integer division by zero with gemma4 12B (#16479)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/16479"
+    },
+    {
+      "title": "gemma4:12b SIGFPE on Linux (mmproj n_head=0) — Ollama 0.30.4 (#16495)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/16495"
+    },
+    {
+      "title": "Error running rnj-1: llama-server process has terminated: GGML_ASSERT(hparams.is_swa_any()) failed: GGML_ASSERT(hparams.is_swa_any()) failed (#18924)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/18924"
+    },
+    {
+      "title": "Windows: llama-server.exe crashes with 0xc0000409 (ucrtbase.dll) / CUDA error \"PTX was compiled with an unsupported toolchain\" (#17012)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/17012"
+    },
+    {
+      "title": "Debian 13, rocm 7.0 --> [signal SIGSEGV: segmentation violation (#12314)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/12314"
+    },
+    {
+      "title": "Bug: Metal backend crash on Apple M5 (llama runner terminated) when running TinyLlama (#15849)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/15849"
+    },
+    {
+      "title": "0xc0000005 access violation loading ANY model on Vulkan (AMD RX 6800 XT, driver 32.0.21045.5002) (#18557)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/18557"
+    },
+    {
+      "title": "Windows: bundled ggml-cuda.dll crashes with 0xc0000005 during GPU discovery on RTX 4060 Laptop (#17375)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/17375"
+    },
+    {
+      "title": "llama-server segfaults (GPF) for all models on virtualized Granite Rapids / GCP C4 — 0.31.1–0.32.1, Docker and native; local llama.cpp build works (#17249)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/17249"
+    },
+    {
+      "title": "Segmentation fault in libggml-cpu-sapphirerapids.so on AWS m7i (Intel Sapphire Rapids) during first inference (#17205)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/17205"
+    },
+    {
+      "title": "Windows ARM64 fails when loading model, error code 0xc000001d (#7266)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/7266"
+    },
+    {
+      "title": "llama-server core dumps when serving GPT-OSS with OLLAMA_KV_CACHE_TYPE=q8_0 (#16946)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/16946"
+    },
+    {
+      "title": "phi4 crashes at load with OLLAMA_KV_CACHE_TYPE=q8_0 on Metal (abort in ggml_hash_find_or_insert) (#19905)",
+      "publisher": "Ollama issues on GitHub",
+      "url": "https://github.com/ollama/ollama/issues/19905"
+    }
+  ],
+  "internalLinks": [
+    "/blog/could-not-connect-to-ollama-app-is-it-running",
+    "/blog/ollama-pull-model-manifest-error",
+    "/blog/ollama-not-using-gpu-windows-2026",
+    "/blog/ollama-ps-explained",
+    "/blog/ollama-models-folder-windows-move-2026"
+  ],
+  "futureSupportingArticles": [
+    "Open WebUI cannot connect to Ollama in Docker",
+    "Ollama on WSL 2: memory limit, GPU and where the models live",
+    "Ollama context length and memory: how num_ctx, parallel requests and the KV cache add up",
+    "Ollama unknown model architecture for imported GGUF files",
+    "Copilot not showing in Word (the corner button, Word for the web, file location)"
+  ],
+  "faq": [
+    "What does llama runner process has terminated mean?",
+    "Why does my error say llama-server instead of llama runner?",
+    "What does exit status 0xc0000409 mean in Ollama?",
+    "Does signal killed mean Ollama ran out of memory?",
+    "How do I fix exit status 2 in Ollama?",
+    "Does reinstalling Ollama fix this error?",
+    "Why does the error show the same text twice?",
+    "Why does Open WebUI only show a 500 error?",
+    "Why does Ollama say timed out waiting for the runner to start?"
+  ],
+  "images": {
+    "cover": "https://www.byteverse.fyi/blog/ollama-runner/ollama-llama-runner-process-has-terminated-cover.png",
+    "coverFile": "public/blog/ollama-runner/ollama-llama-runner-process-has-terminated-cover.png",
+    "inline": "https://www.byteverse.fyi/blog/ollama-runner/ollama-runner-error-anatomy.png",
+    "inlineFile": "public/blog/ollama-runner/ollama-runner-error-anatomy.png",
+    "buildScript": "scripts/build-ollama-runner-images.mjs",
+    "assetCommit": "90bc894",
+    "origin": "Original SVG drawn in code and rendered to PNG with sharp. No screenshots, logos, stock photos or AI-generated images. The terminal text is the message from GitHub issue #17627."
+  },
+  "validation": {
+    "proseWords": 4613,
+    "readingTime": "21 min read",
+    "contentSha256": "bd5886c9287eb12dfd6c1b63cbd0a4a64d002d638a29eff60b20c890c5bd5451",
+    "codeBlocks": 6,
+    "tables": 4,
+    "wordCountNote": "proseWords is the site's reading-time count and includes the text inside tables and code blocks.",
+    "sourceDirectory": "../.byteverse-ollama-runner-check",
+    "notTested": "Ollama was not installed, so no model was loaded and there are no screenshots. Linux, Docker and macOS commands were not run. The Windows code descriptions were produced on Windows 11 Pro build 26300 (en-US) with the same FormatMessage call as Ollama's Go library and saved as windows-formatmessage-2026-11-28.json.",
+    "faqSchemaLimit": 5,
+    "faqSchemaNote": "9 FAQs are visible; the site-wide FAQPage JSON-LD uses the first five.",
+    "sourceSha256": {
+      "ollama-0.40.19/llm__llama_server.go": "7bfe40e24b23c2b3098533effc96d796dbdd3b3247c4f35700389d227f5cc8fc",
+      "ollama-0.40.19/llm__status.go": "535b1c8c845b79621dcdcc7cd4b77820f4541bad7f4fad941cd2ab60516e4a7d",
+      "ollama-0.40.19/llm__exit_status.go": "035b3c15fa3fb5b455e7f87f09554bfe4220de998b42eab22631c9316bd84a5c",
+      "ollama-0.40.19/llm__exit_status_windows.go": "c32be84c57278f105b5079a96e8be14ea85f56a655db8ddd67d8929ae2ae6531",
+      "ollama-0.40.19/llm__server.go": "43aa2df6b1be6f798e38060186224e93736c4799624463871b701cb8008d27a3",
+      "ollama-0.40.19/server__sched.go": "2f36365ced6a811e601509909887080f296b88166f8506d538c9dc6ae026e550",
+      "ollama-0.40.19/server__routes.go": "e2caec2f6b041342f33dda8b3fed43f5936408a066dcc626b45bedd13e8b42ae",
+      "ollama-0.40.19/api__types.go": "e1924ee5e34d215484f99df1660e3bdf4c53ea0f76260bd99a7587e36409e46b",
+      "ollama-0.40.19/envconfig__config.go": "7c774cb0c97f6d14073aac7052b91898515be2ea02cee5ac13f3a2bdde022a5d",
+      "ollama-0.40.19/go.mod": "32c3cd993ece27ec115d0eb1c932dfc58831ad1022588d712d426f103720e027",
+      "ollama-0.40.19/LLAMA_CPP_VERSION": "40f324932d0260fd929a66503769f389b6188081fd5ea8af6eb20ffb084df468",
+      "ollama-0.40.19/docs__troubleshooting.mdx": "d87bf025cb0a68a3d144cb0ca388202948a5135e6ea34bbfa7f988bda300b50d",
+      "ollama-0.40.19/docs__faq.mdx": "943b2b378b7bb593cf784fe3534ccbfc6cb6eae2de75ce83119f0f98c0c4b1a4",
+      "ollama-0.40.19/docs__context-length.mdx": "8414ca2ad9c67fbd9bd1497bf352fb60993b2b5b69531118f456f9b31af87aa7",
+      "ollama-0.40.19/docs__gpu.mdx": "c0e73ade4fa90a5b1e04d6025fc84d51f962157577604972870a31eaa3718a6c",
+      "ollama-0.24.0/llm__server.go": "e8f890b51632e80e62782464139aaf3530e02032ab5652ddfec1650be5e741b2",
+      "ollama-0.22.0/llm__server.go": "f5c924a77f6b85442562921f08cee08a156ce016c233430efc5cc7dcc84ffc2e",
+      "llamacpp-b12734/ggml__include__ggml-cuda.h": "9cbfcea49f6da4d07f41dc22fa8dbf870825faaa2a68e34e65fe30ea6c41e042",
+      "llamacpp-b12734/ggml__include__ggml.h": "b0d10baf33283843b70f36665be917ce38ddceb32ae19052739e64a1b26e7e94",
+      "llamacpp-b12734/ggml__src__ggml-cuda__common.cuh": "6f5c60a103f55b2cfe0019582ccd0cc8154a53b35d2968a17b193dd065616d3c",
+      "llamacpp-b12734/ggml__src__ggml-cuda__ggml-cuda.cu": "bc77edd523b792e0e145fe0f73554bd27b44ee9d4736df8f1da4c3e8baf3eee2",
+      "llamacpp-b12734/ggml__src__ggml-cuda__vendors__cuda.h": "a61fedd72c3cf0d027a1a2836dc5b936e02e954dc8ced7d2cfad47c9e611ec52",
+      "llamacpp-b12734/ggml__src__ggml-cuda__vendors__hip.h": "304bade92dae7fcbb306a651e37da7b612ecb0187032ec16a40641afd74af315",
+      "llamacpp-b12734/ggml__src__ggml.c": "7f86b6fdbc60ccf025eea0f030b8250bac4f45cbd832b81de039ab1829ac7666",
+      "llamacpp-b12734/src__llama-context.cpp": "eac2d16bcada7852310ffe25ceacdfc49bb24a413ad815049814e070a2d87d81",
+      "llamacpp-b12734/src__llama-model-loader.cpp": "8764cb2ba9b435dca83b02d72b39db08344b06bad5d1fbe2fa58b670ad073dac",
+      "llamacpp-b12734/src__llama-model.cpp": "2b83fc940c13f092464d4b16f0332c44a37395ea9c69feabd5b867a8cf74c0ab",
+      "llamacpp-b12734/src__llama.cpp": "b848662663738a41888acbf803a7c6aac641ead31070b44d9ee6d7cc9c73b597",
+      "llamacpp-b12734/tools__server__server.cpp": "436ccb818855b3e4e29e30ecc2a20ca26ebb344c2d7c7c3ae6315de8b246b799",
+      "golang-go1.26.10/src__fmt__doc.go": "400732eb804a960f2c1bdfbd88a5cb183e11e7a46bbb44f2b0784d0b1b171a05",
+      "golang-go1.26.10/src__fmt__print.go": "57250462a0d06d61f124b4530493bcdd150e9de29600bd60347e1c74457ac8a1",
+      "golang-go1.26.10/src__os__exec_posix.go": "57f9028ac13e80d2106dc60649b0101b540957729a1dc9f775211aea6bd9a624",
+      "golang-go1.26.10/src__syscall__zerrors_linux_amd64.go": "2d96a92f48c420b427f48090663c854672433142fe7c6f7d67638e1e7113a173",
+      "golang-sys-v0.49.0/windows__syscall_windows.go": "589a6e28bca016f69eb25b75e82a808162d707de98d3d50367337303dcdd7018",
+      "linux/v6.12-mm__oom_kill.c": "e429ade2a39de985e8d05fb204132a4d39f82ddf8d0aa2cf6ff1d5d844776e44",
+      "issues/12314.json": "75a1b849a0847a64f413db92535a805cd164084054b194a3c63f667e4fa1b5a6",
+      "issues/15849.json": "25a4fcab0f8657588ac732839dd2871ee36b30399192e4fe222e391d2a21f2b2",
+      "issues/16479.json": "24afd0978d9c4bc53027260d12433d1366e5f426f01a0ab9e8673b11d990b13e",
+      "issues/16495.json": "edb9eb9b24648da6870429e5f7988a98a286e52907c924f660598bfb8c541deb",
+      "issues/16946.json": "6d7c0d9a70d370720accf11141038fab1711c95d453f7f463dc91ee2b2c0aee3",
+      "issues/17012.json": "b5f6c70bb50e9c06ad30949db9c9e01420e864aefb44ab8e57f086a33e7ee987",
+      "issues/17205.json": "27160069d8b2c7da644934ed9da920bf30cc72fcc7b12f555d5de5a9aca35ea9",
+      "issues/17249.json": "670c0be022993785edff033fd5c2158b4655f137d6734bed9f74b7e48d32c63b",
+      "issues/17375.json": "2e0f00d73f618f4b3fac60b52ffb9d737cef4c4fb6589523518aa86fae0f8dd4",
+      "issues/17627.json": "9e948e7d44404aea4fb29ac87b71ed39c4b3bd5d90a3f491bc351f994c2d8c49",
+      "issues/18557.json": "3ccfb73fcd0a04adbb0fab3922793889653d009e9e5f873b53e39241b3bde451",
+      "issues/18924.json": "f5e5f3d20ffdb229197ac155904a820e164e91b5683cf23fdafa5998490b5fe1",
+      "issues/19905.json": "dd2a80ca698acc555e5d5c10cf634d87054e674558bede389f8f80683d23b46b",
+      "issues/7266.json": "5ab9676afebd774a7bde883297ebc19d8f3c7a52801ab6a1d23d00ddea78f31d",
+      "issues/v0.30.0-dates.json": "6d40b22d8c30d28eda0b18e93059d76b61e7911e0074b1500b7e8681cbeee801",
+      "docs/e01-go-runtime.txt": "d1d5bac8a6673b75afe79081f26fc4625aa81672048c7ad8aee1e9e5deb7798e",
+      "docs/e02-ms-abort.txt": "fe589a4fa13e8d2f6d7669534a3223fc5fe1c756c0fed45c7c94e534f18700fa",
+      "docs/e03-ms-fastfail.txt": "0698d0f926133c20725f7d9f0bdc0550cc2068c63bdfff5f196dbfbd390e9995",
+      "docs/e04-oldnewthing-stack-overrun.txt": "b400e46f92d27d8e0f30027011bbe2867fabf2dd5b9c7bb6c55b4786a6edb3c5",
+      "docs/e05-ms-ntstatus.txt": "d67e8771ff952761e194b5bbea3681b7057f54a86f25d60ca67732eba6f3a963",
+      "docs/e06-kernel-mm-concepts.txt": "06e68b98c320e68480aaee4bf18d0bef1e55045c395c69df2122029d6939b3ec",
+      "docs/e07-wsl-config.txt": "627aa09ffce39b2cac7f3517fd4ae13f910d866fa8816899bf1cf63795a806df",
+      "docs/e08-docker-resources.txt": "1fb881ae6b2f6656e626909dbbf702921780208c4cb1bb48256b74e9679d669e",
+      "docs/e09-docker-desktop-settings.txt": "7f67d1b66f4d8f777315c759bc800c4936b988c0fad26566b3d26f7548f0e52e",
+      "docs/e10-docker-desktop-wsl.txt": "2ea6beebaec33b33aa5756698c6e6317e05ca4aaa5c41e863b15e216cd7a8cc5",
+      "docs/e11-cuda-runtime-types.txt": "a26bc543fc173773b0115033ac68f2d9c187880d21c35ddf5545a525a97c9a8d",
+      "docs/e12-homebrew-ollama-formula.rb": "e03b5312cbcec8407d2915c39c652512acd7492d396e1e84c650a2d32fc9054a",
+      "docs/e13-ms-vc-redist.txt": "fe229a940f6de5dd998340fa29da33f07fac646ac0c9ba2ee301ea70f450c440",
+      "windows-formatmessage-2026-11-28.json": "dcdc2047d6c3a6c409bd1fa915a804942e216858b65099b042798b2530549936"
+    }
+  },
+  "originalityAudit": {
+    "checkedAt": "2026-11-28",
+    "method": "Case-normalised five-word phrase overlap on the article body; tables, code blocks, links and the sources list excluded. Compared with all 192 stored posts (read-only query), the 13 saved vendor pages, the 10 saved Ollama documentation pages, the 14 saved GitHub issues with comments and the 9 readable competitor pages. Script: ../.byteverse-ollama-runner-check/originality.mjs.",
+    "draftPhrases": 4004,
+    "competitors": [
+      {
+        "name": "3-binmage",
+        "percent": 0.77,
+        "longestRunWords": 9,
+        "runsOf8PlusWords": [
+          "the provided ptx was compiled with an unsupported toolchain",
+          "what does llama runner process has terminated mean",
+          "what does exit status 0xc0000409 mean in ollama"
+        ]
+      },
+      {
+        "name": "2-localaimaster",
+        "percent": 0.7,
+        "longestRunWords": 9,
+        "runsOf8PlusWords": [
+          "the provided ptx was compiled with an unsupported toolchain",
+          "llama server reported out of memory during startup",
+          "what does llama runner process has terminated mean"
+        ]
+      },
+      {
+        "name": "10-localaimaster-oom",
+        "percent": 0.52,
+        "longestRunWords": 8,
+        "runsOf8PlusWords": [
+          "llama server reported out of memory during startup"
+        ]
+      },
+      {
+        "name": "6-thinkfacility-0409",
+        "percent": 0.32,
+        "longestRunWords": 9,
+        "runsOf8PlusWords": [
+          "the provided ptx was compiled with an unsupported toolchain"
+        ]
+      },
+      {
+        "name": "5-coder000",
+        "percent": 0.27,
+        "longestRunWords": 10,
+        "runsOf8PlusWords": [
+          "model requires more system memory x than is available y"
+        ]
+      },
+      {
+        "name": "4-thinkfacility-server",
+        "percent": 0.22,
+        "longestRunWords": 8,
+        "runsOf8PlusWords": [
+          "timed out waiting for llama server to start"
+        ]
+      },
+      {
+        "name": "1-runaihome",
+        "percent": 0.17,
+        "longestRunWords": 5,
+        "runsOf8PlusWords": []
+      },
+      {
+        "name": "7-dasroot",
+        "percent": 0.02,
+        "longestRunWords": 5,
+        "runsOf8PlusWords": []
+      },
+      {
+        "name": "8-nightdev",
+        "percent": 0,
+        "longestRunWords": 0,
+        "runsOf8PlusWords": []
+      }
+    ],
+    "officialDocs": [
+      {
+        "name": "e04-oldnewthing-stack-overrun",
+        "percent": 0.15,
+        "longestRunWords": 10,
+        "runsOf8PlusWords": [
+          "doesn't actually mean that there is a stack buffer overrun"
+        ]
+      },
+      {
+        "name": "e11-cuda-runtime-types",
+        "percent": 0.15,
+        "longestRunWords": 10,
+        "runsOf8PlusWords": [
+          "the provided ptx was compiled with an unsupported toolchain the"
+        ]
+      },
+      {
+        "name": "docs__faq.mdx",
+        "percent": 0.15,
+        "longestRunWords": 8,
+        "runsOf8PlusWords": [
+          "f16 with a very small loss in precision"
+        ]
+      }
+    ],
+    "ownPosts": {
+      "compared": 192,
+      "highest": [
+        {
+          "name": "ollama-not-using-gpu-windows-2026",
+          "percent": 0.37,
+          "longestRunWords": 7,
+          "runsOf8PlusWords": []
+        },
+        {
+          "name": "could-not-connect-to-ollama-app-is-it-running",
+          "percent": 0.27,
+          "longestRunWords": 7,
+          "runsOf8PlusWords": []
+        },
+        {
+          "name": "ollama-ps-explained",
+          "percent": 0.27,
+          "longestRunWords": 7,
+          "runsOf8PlusWords": []
+        }
+      ]
+    },
+    "githubIssues": [
+      {
+        "name": "issue-15849",
+        "percent": 0.1,
+        "longestRunWords": 7,
+        "runsOf8PlusWords": []
+      },
+      {
+        "name": "issue-16946",
+        "percent": 0.1,
+        "longestRunWords": 6,
+        "runsOf8PlusWords": []
+      }
+    ],
+    "reviewNote": "Every match of eight or more words is a quoted error message (NVIDIA's PTX text, Ollama's out-of-memory, timeout and old memory-check messages), an attributed quote (Raymond Chen, Ollama's FAQ) or an FAQ question in the searcher's own wording. Before this run, one sentence about the Linux out-of-memory killer and one FAQ opening matched competitor wording, and one hardware sentence matched post 235; all three were rewritten.",
+    "style": {
+      "flaggedFillerWords": 0,
+      "filler": [],
+      "emDashes": 0,
+      "sentences": 219,
+      "meanSentenceWords": 17.8,
+      "stdevSentenceWords": 8.4,
+      "contractions": 32
+    },
+    "limits": "This is a phrase-overlap check against saved pages, not a commercial plagiarism or AI-detection service. No AI-detector score is claimed."
+  },
+  "publication": {
+    "status": "published",
+    "postId": 261,
+    "publishedAt": "2026-11-28T06:56:57.569Z",
+    "liveUrl": "https://www.byteverse.fyi/blog/ollama-llama-runner-process-has-terminated",
+    "databaseWrites": "One guarded INSERT by scripts/_publish-ollama-runner-post.mjs --apply; no other row was updated.",
+    "otherPostsUnchanged": 192,
+    "otherPostsHash": "6e3e41828aba278b9a50447a7a78abc7",
+    "assetCommits": [
+      "90bc894"
+    ],
+    "preview": "Headless Microsoft Edge at 320, 375 (light and dark), 768 and 1440 px: no horizontal overflow, both images decoded, all four tables inside scroll containers, FAQ opens by keyboard, no page errors. Screenshots in ../.byteverse-ollama-runner-preview.",
+    "layoutNote": "The site styles list items as flex rows, which splits bold text, inline code and links inside a list item into separate columns (also visible on post 258). This guide therefore uses lead-in paragraphs instead of lists, and the test asserts that no list is rendered.",
+    "approvedBy": "Owner request on 28 November 2026: 'new blog add kro according to this prompt ... deep working honi chhaye'."
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "checkedAt": "2026-11-28T05:15:25.732Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "llama-server process has terminated",
+      "google": [
+        "llama-server process has terminated signal killed",
+        "llama-server process has terminated",
+        "llama server process has terminated exit status 1",
+        "llama server process has terminated with exit code",
+        "llama server process has terminated signal segmentation fault",
+        "llama server process has terminated signal aborted core dumped",
+        "llama server process has terminated cuda error",
+        "llama server process has terminated signal broken pipe",
+        "error llama server process has terminated signal killed"
+      ],
+      "bing": [
+        "llama-server process has terminated",
+        "llama cpp llama server",
+        "llama server vs ollama",
+        "llama factory system prompt",
+        "llama-server arguments",
+        "llama-server",
+        "llama-server.exe",
+        "llama.cpp server",
+        "llama runner process has terminated",
+        "error llama runner process has terminated",
+        "llama-server option",
+        "ollama llama runner process has terminated",
+        "error loading llama server",
+        "llama-server temperature",
+        "llama.cpp server exited before becoming ready",
+        "llama server model name",
+        "llama factory connection errored out",
+        "llama_server_path"
+      ]
+    },
+    {
+      "seed": "ollama llama-server process has terminated",
+      "google": [],
+      "bing": [
+        "llama server vs ollama",
+        "how to stop ollama server",
+        "how to restart ollama server",
+        "ollama as a server",
+        "ollama serve not working",
+        "how to run ollama as a server",
+        "how to stop ollama server windows",
+        "how to turn on ollama server",
+        "how to start ollama server",
+        "how to serve ollama on network",
+        "stop ollama server linux",
+        "ollama server on windows",
+        "ollama llama runner process has terminated",
+        "ollama_llama_server",
+        "ollama server not responding",
+        "error llama runner process has terminated",
+        "ollama internal server error",
+        "ollama server.log",
+        "make sure ollama server is running"
+      ]
+    },
+    {
+      "seed": "llama runner process has terminated exit status",
+      "google": [
+        "llama runner process has terminated exit status 2",
+        "llama runner process has terminated exit status 2 linux",
+        "llama runner process has terminated exit status 1",
+        "llama runner process has terminated exit status",
+        "500 llama runner process has terminated exit status 2",
+        "error llama runner process has terminated exit status 2",
+        "ollama llama runner process has terminated exit status 2",
+        "openwebui 500 llama runner process has terminated exit status 2",
+        "llama runner process has terminated with exit code 2",
+        "llama runner process has terminated exit status 2 status code 500"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "llama runner process has terminated error",
+      "google": [
+        "llama runner process has terminated cuda error",
+        "llama runner process has terminated cuda error out of memory",
+        "error llama runner process has terminated exit status 2",
+        "500 llama runner process has terminated cuda error",
+        "error llama runner process has terminated cudamalloc failed out of memory",
+        "error llama runner process has terminated signal killed",
+        "error llama runner process has terminated signal broken pipe",
+        "error llama runner process has terminated w ( nil )",
+        "error llama runner process has terminated",
+        "500 internal server error llama runner process has terminated cuda error"
+      ],
+      "bing": [
+        "llama runner terminated error exit status 2",
+        "llama factory system prompt",
+        "llama 3 system prompts",
+        "how to run llama",
+        "llama 3 technical report",
+        "llama cpp system prompt",
+        "setsystemprompt llama not working",
+        "running local llama model",
+        "ollama llama runner process has terminated",
+        "llama runner process has terminated cuda",
+        "waiting for llama runner to start responding",
+        "llama factory connection errored out",
+        "llama factory bus error core dumped",
+        "error loading llama server",
+        "llama is not installed",
+        "llama 3.2 report",
+        "llama factory preprocessing_num_workers",
+        "repetition_penalty llama",
+        "llama 3.2 technical report",
+        "llama.cpp timeout",
+        "llama-run",
+        "llama-completion",
+        "run-llama/llama_index"
+      ]
+    },
+    {
+      "seed": "ollama error llama runner",
+      "google": [],
+      "bing": [
+        "ollama with llama 3.2",
+        "llama 3 vs ollama",
+        "how to check ollama llama version",
+        "how to check if ollama is running",
+        "ollama run llama3.2",
+        "ollama run llama 3",
+        "ollama run llama3.2 command",
+        "link to check ollama running",
+        "ollama llama runner process has terminated",
+        "ollama + llama 3",
+        "ollama run llama3.3",
+        "ollama + llama 3.1",
+        "ollama run llama3.1",
+        "ollama run llama3.2:1b",
+        "ollama run llama3.2:3b",
+        "could not connect to a running ollama",
+        "ollama run llama3.1:70b",
+        "ollama run llama3:70b",
+        "ollama pull llama3.2",
+        "ollama run llama3:8b",
+        "ollama pull llama3.3",
+        "ollama run llama2:7b",
+        "ollama pull llama3.1"
+      ]
+    },
+    {
+      "seed": "ollama exit status 2",
+      "google": [
+        "ollama exit status 2",
+        "ollama exit code 2",
+        "ollama error exit status 2",
+        "ollama 500 internal server error exit status 2",
+        "ollama runner process has terminated exit status 2"
+      ],
+      "bing": [
+        "ollama exit status 2",
+        "ollama exit status 0xc0000409",
+        "how to exit ollama",
+        "how to exit ollama in terminal",
+        "ollama request timed out after 90 seconds",
+        "how to shut down ollama",
+        "setup continue with ollama",
+        "ollama address already in use",
+        "how to run ollama in terminal",
+        "ollama allow external connections",
+        "ollama context deadline exceeded",
+        "ollama list is empty",
+        "ollama code exited status 203/exec",
+        "ollama serve code exited status 1/failure",
+        "ollama serve code exited status 203/exec",
+        "ollama.service failed with result exit-code",
+        "ollama i/o timeout",
+        "ollama request timed out after 30 seconds",
+        "ollama + continue",
+        "ollama override.conf"
+      ]
+    },
+    {
+      "seed": "ollama 0xc0000409",
+      "google": [],
+      "bing": [
+        "ollama 0xc0000409",
+        "ollama exit status 0xc0000409"
+      ]
+    },
+    {
+      "seed": "ollama signal killed",
+      "google": [],
+      "bing": []
+    },
+    {
+      "seed": "ollama cuda error",
+      "google": [
+        "ollama cuda error",
+        "ollama cuda error out of memory",
+        "ollama cuda error invalid argument",
+        "ollama cuda error operation not supported",
+        "ollama cuda error 500"
+      ],
+      "bing": [
+        "ollama cuda error",
+        "ollama cuda error 500"
+      ]
+    },
+    {
+      "seed": "timed out waiting for llama runner to start",
+      "google": [
+        "timed out waiting for llama runner to start",
+        "timed out waiting for llama runner to start context canceled",
+        "ollama timed out waiting for llama runner to start",
+        "500 timed out waiting for llama runner to start progress 0.00",
+        "how to fix connection timed out",
+        "what to do when connection timed out"
+      ],
+      "bing": [
+        "llama llama time to share",
+        "how to run llama",
+        "llama llama spring time",
+        "youtube llama llama time to share",
+        "llama llama time to share video",
+        "llama llama time to share worksheet",
+        "llama time to share",
+        "llama llama very busy springtime",
+        "llama llama time to share summary",
+        "llama llama time to share read aloud",
+        "llama llama time to share pdf",
+        "llama llama back to school",
+        "how to open llama",
+        "llama llama learns to share",
+        "how fast can a llama run",
+        "llama llama learns to swim",
+        "how to run llama locally",
+        "how to train llama 3",
+        "llama llama wintertime episodes",
+        "llama runner process has terminated",
+        "when llama learns to listen",
+        "waiting for llama runner to start responding",
+        "error llama runner process has terminated",
+        "ollama llama runner process has terminated"
+      ]
+    },
+    {
+      "seed": "ollama crashes when loading model",
+      "google": [],
+      "bing": [
+        "ollama unable to load model",
+        "how to load model in ollama",
+        "how to unload ollama model",
+        "ollama stuck in loading",
+        "ollama load local model",
+        "ollama keep model loaded",
+        "ollama command to unload a model",
+        "ollama run already downloaded model",
+        "ollama stop a model",
+        "ollama this model does not support images",
+        "how to pull a model in ollama",
+        "can ollama have 2 models loaded",
+        "ollama stop running model",
+        "ollama model not found",
+        "how to run model in ollama",
+        "ollama failed to load model",
+        "ollama error unable to load model",
+        "ollama ollama_max_loaded_models"
+      ]
+    },
+    {
+      "seed": "ollama model failed to load",
+      "google": [
+        "ollama model failed to load",
+        "ollama failed to load mlx dynamic library",
+        "ollama failed to load settings",
+        "ollama failed to load private key",
+        "ollama failed to load image or audio file",
+        "ollama failed to load clip model",
+        "ollama 500 internal server error model failed to load"
+      ],
+      "bing": [
+        "ollama model failed to load",
+        "how to load model in ollama",
+        "how to unload ollama model",
+        "ollama load local model",
+        "ollama command to unload a model",
+        "ollama this model does not support images",
+        "how to download an ollama model",
+        "how to update an ollama model",
+        "ollama run already downloaded model",
+        "ollama model does not support tools",
+        "ollama keep model loaded",
+        "how to check installed ollama models",
+        "ollama model not found",
+        "how to install ollama model",
+        "failed to download selected ollama model",
+        "fail to access model ollama",
+        "failed to connect to ollama",
+        "failed to discover ollama models",
+        "ollama ollama_max_loaded_models"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

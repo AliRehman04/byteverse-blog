@@ -1,0 +1,394 @@
+[
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:05.764Z",
+    "query": "ollama model requires more system memory than is available",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama: \"model requires more system memory than is available\"",
+        "url": "https://llmconfigurator.com/en/guides/troubleshooting/ollama-more-system-memory"
+      },
+      {
+        "title": "\"model requires more system memory\" When Running in Docker ... - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/7423"
+      },
+      {
+        "title": "Ollama 'Model Requires More System Memory'? Fix the RAM Check That ...",
+        "url": "https://runaihome.com/blog/ollama-model-requires-more-system-memory-fix-2026/"
+      },
+      {
+        "title": "Why doesn't Ollama use MORE RAM? - Stack Overflow",
+        "url": "https://stackoverflow.com/questions/78068285/why-doesnt-ollama-use-more-ram"
+      },
+      {
+        "title": "`model requires more system memory (42.8 GiB) than is available (12.9 ...",
+        "url": "https://github.com/ollama/ollama/issues/10256"
+      },
+      {
+        "title": "Ollama Model Requires More System Memory: 6 Proven Fixes",
+        "url": "https://www.binmage.com/ollama-model-requires-more-system-memory/"
+      },
+      {
+        "title": "Fix Ollama \"model requires more system memory\" Error",
+        "url": "https://kxdevelopers.com/blogs/fix-ollama-model-requires-more-system-memory"
+      },
+      {
+        "title": "Fix Ollama \"Model Requires More System Memory\" Error",
+        "url": "https://soonminds.com/software-fixes/ollama-model-requires-more-system-memory-fix/"
+      },
+      {
+        "title": "How to Fix Ollama \"Model Requires More System Memory\" on Linux in 2026 ...",
+        "url": "https://getoffgridai.co/articles/how-to-fix-ollama-model-requires-more-system-memory-on-linux-in-2026-run-bigger-models-anyway/"
+      },
+      {
+        "title": "Ollama Out of Memory: Why It Happens and How to Fix It",
+        "url": "https://stratuspilot.io/gpu-for/errors/ollama-out-of-memory"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:08.071Z",
+    "query": "llama runner process has terminated exit status 2",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: llama runner process has terminated: exit status 2",
+        "url": "https://github.com/ollama/ollama/issues/8926"
+      },
+      {
+        "title": "llama runner process has terminated: exit status 2 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/9968"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 2 when running ...",
+        "url": "https://huggingface.co/openbmb/MiniCPM-o-2_6-gguf/discussions/1"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "llama3.2 Installation Error: exiting with status 0xc0000135",
+        "url": "https://stackoverflow.com/questions/79072393/llama3-2-installation-error-exiting-with-status-0xc0000135"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 2",
+        "url": "https://blog.csdn.net/weixin_42716893/article/details/149038138"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 2",
+        "url": "https://blog.csdn.net/babytiger/article/details/149715319"
+      },
+      {
+        "title": "SOLVED - Error llama runner process has terminated - YouTube",
+        "url": "https://www.youtube.com/watch?v=dk37zlaVQFQ"
+      },
+      {
+        "title": "Errorr:llama runner process has terminater :exit status 2",
+        "url": "https://ask.csdn.net/questions/8893809"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:10.420Z",
+    "query": "ollama 500 internal server error",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "How to Fix \"500 Internal Server Error\" in Ollama: Troubleshooting and ...",
+        "url": "https://night-dev.com/en/blog/ollama-500-internal-server-error/"
+      },
+      {
+        "title": "Ollama: 500 error on Larger Models · Issue #5892 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/5892"
+      },
+      {
+        "title": "Troubleshooting - Ollama",
+        "url": "https://docs.ollama.com/troubleshooting"
+      },
+      {
+        "title": "Fix common Ollama errors: 500, timeouts and stalled pulls",
+        "url": "https://lumadock.com/tutorials/ollama-troubleshooting"
+      },
+      {
+        "title": "Ollama 0.11.5-RC2: Linux Nvidia / Cuda: Error: 500 Internal Server ...",
+        "url": "https://github.com/ollama/ollama/issues/11921"
+      },
+      {
+        "title": "500 Internal Server Error with Ollama - Beginners - Hugging Face Forums",
+        "url": "https://discuss.huggingface.co/t/500-internal-server-error-with-ollama/174735"
+      },
+      {
+        "title": "\"Error: 500 Internal Server Error: llama-server process has terminated ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/"
+      },
+      {
+        "title": "Ollama运行模型报500 Internal Server Error错误 - CSDN博客",
+        "url": "https://blog.csdn.net/weimengStudio/article/details/159412018"
+      },
+      {
+        "title": "How to fix Ollama: 500 message=Internal Server Error",
+        "url": "https://www.ajeetraina.com/how-to-fix-ollama-500-messageinternal-server-error/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:12.600Z",
+    "query": "ollama llama runner process has terminated",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "llama runner process has terminated: error:fault - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/11341"
+      },
+      {
+        "title": "llama runner process has terminated: exit status 127",
+        "url": "https://github.com/ollama/ollama/issues/7542"
+      },
+      {
+        "title": "ollama 部署本地大模型报\"llama runner process has terminated\"错误的解决方法",
+        "url": "https://zhuanlan.zhihu.com/p/709865577"
+      },
+      {
+        "title": "SOLVED - Error llama runner process has terminated - YouTube",
+        "url": "https://www.youtube.com/watch?v=dk37zlaVQFQ"
+      },
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "\"Error: 500 Internal Server Error: llama-server process has terminated ...",
+        "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/"
+      },
+      {
+        "title": "Windows 10 上运行 Ollama 时遇到 llama runner process has terminated: exit ...",
+        "url": "https://blog.csdn.net/m0_60414444/article/details/147519599"
+      },
+      {
+        "title": "ollama运行qwen2出错Error: llama runner process has terminated: s",
+        "url": "https://blog.csdn.net/weixin_42458975/article/details/139604897"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:14.826Z",
+    "query": "llama runner process has terminated signal killed",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "LLAMA4 Scout crashes during run · Issue #10532 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/10532"
+      },
+      {
+        "title": "SOLVED - Error llama runner process has terminated - YouTube",
+        "url": "https://www.youtube.com/watch?v=dk37zlaVQFQ"
+      },
+      {
+        "title": "Ollama Llama Runner Process Has Terminated: Fix by Exit Code",
+        "url": "https://www.binmage.com/ollama-llama-runner-process-has-terminated/"
+      },
+      {
+        "title": "Ollama: 'llama-server process has terminated: signal: killed'",
+        "url": "https://www.coder000.com/post/ollama-llama-server-process-has-terminated-signal-killed"
+      },
+      {
+        "title": "Self Hosted AI starter kit [ERROR: llama runner process has terminated ...",
+        "url": "https://community.n8n.io/t/self-hosted-ai-starter-kit-error-llama-runner-process-has-terminated-signal-killed/52338"
+      },
+      {
+        "title": "llama3.2 Installation Error: exiting with status 0xc0000135",
+        "url": "https://stackoverflow.com/questions/79072393/llama3-2-installation-error-exiting-with-status-0xc0000135"
+      },
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "Error: llama runner process has terminated: signal: killed — 常见原因及排查方法",
+        "url": "https://ask.csdn.net/questions/8758178"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:17.044Z",
+    "query": "ollama cudamalloc failed out of memory",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "error \"cudaMalloc failed: out of memory\"; can't configure Ollama to ...",
+        "url": "https://github.com/ollama/ollama/issues/8447"
+      },
+      {
+        "title": "CUDA Out of Memory on Local AI? Every Fix That Works for Ollama, llama ...",
+        "url": "https://runaihome.com/blog/cuda-out-of-memory-local-ai-fix-2026/"
+      },
+      {
+        "title": "\"out of memory\" when using CUDA · Issue #790 · ollama/ollama - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/790"
+      },
+      {
+        "title": "CUDA Out of Memory: What It Means and How to Fix It",
+        "url": "https://insiderllm.com/guides/cuda-out-of-memory-fix/"
+      },
+      {
+        "title": "Ollama Out of Memory: CUDA and RAM Crash Fixes",
+        "url": "https://localaimaster.com/blog/ollama-out-of-memory-errors"
+      },
+      {
+        "title": "Fix Ollama CUDA Out of Memory (2026): Causes, Commands & Fixes",
+        "url": "https://markaicode.com/errors/ollama-cuda-out-of-memory-fix/"
+      },
+      {
+        "title": "How to Fix \"CUDA Out of Memory\" in Ollama and llama.cpp on Windows in ...",
+        "url": "https://getoffgridai.co/articles/how-to-fix-cuda-out-of-memory-in-ollama-and-llama-cpp-on-windows-in-2026-run-bigger-models-anyway/"
+      },
+      {
+        "title": "Ollama Out of Memory Errors: How to Fix Them - Serverman",
+        "url": "https://www.serverman.co.uk/ai/ollama/ollama-out-of-memory-errors-fix/"
+      },
+      {
+        "title": "Problems with cudaMalloc and \"out of memory\" error",
+        "url": "https://stackoverflow.com/questions/4750293/problems-with-cudamalloc-and-out-of-memory-error"
+      },
+      {
+        "title": "Fix Ollama CUDA Out of Memory in 5 Minutes | LocalVRAM",
+        "url": "https://localvram.com/en/blog/fix-ollama-cuda-out-of-memory/"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:19.306Z",
+    "query": "ollama unknown model architecture",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Fix \"Unknown Model Architecture\" in Ollama and llama.cpp (2026): Why ...",
+        "url": "https://runaihome.com/blog/unknown-model-architecture-gguf-ollama-llama-cpp-fix-2026/"
+      },
+      {
+        "title": "Ollama Unknown Model Architecture: The Version Table",
+        "url": "https://localaimaster.com/blog/ollama-unknown-model-architecture"
+      },
+      {
+        "title": "Ollama \"unknown model architecture\" (inkling2_loop, LFM3)",
+        "url": "https://www.binmage.com/ollama-unknown-model-architecture/"
+      },
+      {
+        "title": "error loading model: unknown model architecture: 'mllama' (Llama3.2 ...",
+        "url": "https://github.com/ollama/ollama/issues/16547"
+      },
+      {
+        "title": "Fix \"Unknown Model Architecture: 'qwen35'\" Error in Ollama",
+        "url": "https://soonminds.com/software-fixes/ollama-unknown-model-architecture-qwen35-fix/"
+      },
+      {
+        "title": "0.20.5: unknown model architecture: 'gemma4' #15508",
+        "url": "https://github.com/ollama/ollama/issues/15508"
+      },
+      {
+        "title": "Inkling 2 Mini GGUF: unknown model architecture 'inkling2_loop' in ...",
+        "url": "https://cybernative.ai/guides/inkling-2-mini-gguf-unknown-model-architecture/"
+      },
+      {
+        "title": "Ollama 报错 unknown model architecture 怎么办？别着急",
+        "url": "https://www.binmage.com/zh/ollama-unknown-model-architecture-fix/"
+      },
+      {
+        "title": "error: unknown model architecture | Inference Academy",
+        "url": "https://inferenceacademy.com/troubleshooting/unknown-model-architecture"
+      },
+      {
+        "title": "Architecture | ollama/ollama | DeepWiki",
+        "url": "https://deepwiki.com/ollama/ollama/2-architecture"
+      }
+    ]
+  },
+  {
+    "engine": "DuckDuckGo HTML",
+    "checkedAt": "2026-11-28T05:05:21.690Z",
+    "query": "ollama exit status 0xc0000409",
+    "status": 200,
+    "blocked": false,
+    "results": [
+      {
+        "title": "Error: llama runner process has terminated: exit status 0xc0000409 ...",
+        "url": "https://github.com/ollama/ollama/issues/5764"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 0xc0000409 - GitHub",
+        "url": "https://github.com/ollama/ollama/issues/4442"
+      },
+      {
+        "title": "llama-server process has terminated: exit status 0xc0000409",
+        "url": "https://www.thinkfacility.com/errors/ollama-exit-status-0xc0000409/"
+      },
+      {
+        "title": "Ollama 'llama runner process has terminated'? Read the Exit Code, Then ...",
+        "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/"
+      },
+      {
+        "title": "Troubleshooting - Ollama",
+        "url": "https://docs.ollama.com/troubleshooting"
+      },
+      {
+        "title": "Llama Runner Process Has Terminated: Ollama Exit Codes",
+        "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated"
+      },
+      {
+        "title": "How to Fix Ollama: 500 Internal Server Error - Comprehensive Guide",
+        "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/"
+      },
+      {
+        "title": "How do you diagnose the exception code 0xc0000409 on Windows?",
+        "url": "https://stackoverflow.com/questions/23409809/how-do-you-diagnose-the-exception-code-0xc0000409-on-windows"
+      },
+      {
+        "title": "Ollama Llama Runner Process Has Terminated: Fix by Exit Code",
+        "url": "https://www.binmage.com/ollama-llama-runner-process-has-terminated/"
+      },
+      {
+        "title": "Error: llama runner process has terminated: exit status 0xc0000409 问题解决 ...",
+        "url": "https://blog.csdn.net/happycell188/article/details/145570863"
+      }
+    ]
+  }
+]

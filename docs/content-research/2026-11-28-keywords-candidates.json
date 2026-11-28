@@ -1,0 +1,749 @@
+{
+  "checkedAt": "2026-11-28T05:04:02.906Z",
+  "sources": [
+    "Google public autocomplete (hl=en, gl=us)",
+    "Bing public autocomplete (en-US)"
+  ],
+  "context": "Wording evidence only, not measured demand.",
+  "observations": [
+    {
+      "seed": "llama runner process has terminated",
+      "google": [
+        "llama runner process has terminated exit status 2",
+        "llama runner process has terminated with(nil)",
+        "llama runner process has terminated",
+        "llama runner process has terminated signal killed",
+        "llama runner process has terminated cuda error",
+        "llama runner process has terminated cudamalloc failed out of memory",
+        "llama runner process has terminated with exit code 2",
+        "llama runner process has terminated signal aborted core dumped",
+        "llama runner process has terminated exit status 2 linux",
+        "llama runner process has terminated signal killed status code 500"
+      ],
+      "bing": [
+        "llama runner process has terminated",
+        "llama runner process has terminated cuda",
+        "llama runner terminated error exit status 2",
+        "how to run llama",
+        "llama llama throws a tantrum",
+        "llama factory system prompt",
+        "llama 3 terms of use",
+        "llama 3 system prompts",
+        "how to tame llama",
+        "running llama 3 locally",
+        "llamas on the loose",
+        "how to tame llamas in real life",
+        "running local llama model",
+        "how does llama work",
+        "llama on local machine",
+        "ollama llama runner process has terminated",
+        "waiting for llama runner to start responding",
+        "llama factory cutoff_len",
+        "repetition_penalty llama",
+        "llama-run"
+      ]
+    },
+    {
+      "seed": "ollama llama runner process has terminated",
+      "google": [
+        "ollama llama runner process has terminated exit status 2",
+        "ollama llama runner process has terminated",
+        "ollama llama runner process has terminated w ( nil )",
+        "ollama llama runner process has terminated signal killed",
+        "ollama 500 llama runner process has terminated exit status 2",
+        "ollama error 500 internal server error llama runner process has terminated"
+      ],
+      "bing": [
+        "ollama llama runner process has terminated",
+        "llama 3 vs ollama",
+        "ollama pull llama 3.2",
+        "ollama vs llama models",
+        "how to run ollama after installation",
+        "how to stop ollama from running",
+        "ollama run llama3.2",
+        "llama runner process has terminated",
+        "ollama run llama 3",
+        "ollama pull llama 4",
+        "ollama run llama 8b",
+        "how to stop ollama running model",
+        "ollama run llama3.2 command",
+        "error llama runner process has terminated",
+        "llama runner process has terminated cuda",
+        "llama factory + ollama",
+        "ollama run llama3:70b",
+        "ollama pull llama3.3",
+        "ollama run llama3.3",
+        "ollama run llama.cpp",
+        "ollama pull llama3.1",
+        "ollama run llama3:8b"
+      ]
+    },
+    {
+      "seed": "ollama model requires more system memory",
+      "google": [
+        "ollama model requires more system memory",
+        "ollama model requires more system memory than is available",
+        "ollama error model requires more system memory",
+        "ollama error model requires more system memory than is available",
+        "ollama 500 model requires more system memory",
+        "docker ollama model requires more system memory",
+        "ollama _types responseerror model requires more system memory",
+        "ollama requires more system memory",
+        "ollama api error 500 model requires more system memory",
+        "ollama requires more system memory than is available"
+      ],
+      "bing": [
+        "ollama model requires more system memory",
+        "ollama keep model in memory",
+        "ollama unload model from memory",
+        "ollama memory layout cannot be allocated",
+        "ollama cpu only model",
+        "ollama model ram requirements",
+        "ollama use shared gpu memory",
+        "ollama models that can run on cpu",
+        "ollama only using cpu",
+        "ollama model for image generation",
+        "ollama model not using gpu",
+        "ollama remove model from memory",
+        "best ollama model for programming",
+        "how much ram does ollama need",
+        "ollama model optimized for cpu",
+        "ollama gpu memory utilization",
+        "ollama out of memory",
+        "ollama graphics.memory_limit -1",
+        "ollama model is required",
+        "ollama_modules",
+        "ollama_max_gpu_memory"
+      ]
+    },
+    {
+      "seed": "ollama out of memory",
+      "google": [
+        "ollama out of memory",
+        "ollama cuda out of memory",
+        "ollama rocm out of memory",
+        "ollama running out of memory",
+        "ollama cudamalloc failed out of memory",
+        "ollama cuda error out of memory",
+        "ollama rocm error out of memory",
+        "how to forget an embarrassing memory",
+        "how to erase your mind's memory"
+      ],
+      "bing": [
+        "ollama out of memory",
+        "ollama keep model in memory",
+        "ollama unload model from memory",
+        "ollama model requires more system memory",
+        "ollama memory layout cannot be allocated",
+        "tell me about ollama",
+        "ollama use shared gpu memory",
+        "how to delete ollama",
+        "ollama turn off thinking",
+        "how to remove ollama",
+        "how to manage ollama",
+        "does ollama collect data",
+        "does ollama able to generate images",
+        "ollama/ollama",
+        "ollama/ollama:latest",
+        "ollama remove model from memory",
+        "how to stop thinking in ollama",
+        "how to work with ollama",
+        "ollama gpu memory utilization",
+        "faster ollama on small ram"
+      ]
+    },
+    {
+      "seed": "ollama model not found",
+      "google": [
+        "ollama model not found",
+        "ollama model not found api",
+        "ollama model not found error",
+        "ollama model not found try pulling it first",
+        "ollama model not working",
+        "opencode ollama model not found",
+        "ollama serve model not found",
+        "openclaw ollama model not found",
+        "ollama rm model not found",
+        "ollama model metadata not found"
+      ],
+      "bing": [
+        "ollama model not found",
+        "ollama this model does not support images",
+        "no model in ollama",
+        "how to find ollama models",
+        "how to check installed ollama models",
+        "ollama model download location",
+        "how to check ollama models",
+        "ollama unable to load model",
+        "ollama remove a model",
+        "what is the latest ollama model",
+        "how to install model in ollama",
+        "ollama models and details",
+        "ollama show installed models",
+        "download ollama models locally",
+        "how to check available models in ollama",
+        "failed to discover ollama models",
+        "ollama model failed to load",
+        "ollama invalid model name"
+      ]
+    },
+    {
+      "seed": "model not found, try pulling it first",
+      "google": [
+        "model not found try pulling it first",
+        "ollama model not found try pulling it first",
+        "model llama3 2 not found try pulling it first",
+        "model nomic embed text not found try pulling it first",
+        "model t starter removal"
+      ],
+      "bing": [
+        "model not found try pulling it first",
+        "model not found error",
+        "how to find model no",
+        "model information cannot be found",
+        "model not found in the model list",
+        "model_not_found",
+        "error : model not found",
+        "model request failed. please try again later",
+        "error pull model manifest get",
+        "unable to get model",
+        "failed to create a model",
+        "failed to create model quickly"
+      ]
+    },
+    {
+      "seed": "ollama 500 internal server error",
+      "google": [
+        "ollama 500 internal server error no user query found in messages",
+        "ollama 500 internal server error memory layout cannot be allocated",
+        "ollama 500 internal server error model requires more system memory",
+        "ollama 500 internal server error to load request",
+        "ollama 500 internal server error exit status 2",
+        "ollama 500 internal server error unable to load mode",
+        "ollama error 500 internal server error to load request post",
+        "ollama 500 internal server error model failed to load",
+        "ollama 500 internal server error bad request",
+        "ollama run 500 internal server error"
+      ],
+      "bing": [
+        "ollama 500 internal server error",
+        "ollama error 500 internal server error",
+        "ollama 500 message internal server error",
+        "ollama api error 500",
+        "ollama chat/completions 500 error",
+        "how to stop ollama server",
+        "ollama as a server",
+        "how to restart ollama server",
+        "ollama server on windows",
+        "how to run ollama server",
+        "how to turn on ollama server",
+        "how to stop ollama server on windows",
+        "ollama internal server error",
+        "ollama server not responding",
+        "dify ollama internal server error",
+        "make sure ollama server is running",
+        "ollama server 0.0.0.0",
+        "ollama server.log"
+      ]
+    },
+    {
+      "seed": "ollama error loading model",
+      "google": [
+        "ollama error loading model unknown model architecture 'mllama'",
+        "ollama error loading model",
+        "ollama error loading model architecture",
+        "ollama error unable to load model",
+        "loading error retry"
+      ],
+      "bing": [
+        "how to load model in ollama",
+        "how to unload ollama model",
+        "ollama load local model",
+        "ollama command to unload a model",
+        "ollama this model does not support images",
+        "ollama stuck on loading",
+        "ollama download model manually",
+        "ollama keep model loaded",
+        "how to download an ollama model",
+        "how to check installed ollama models",
+        "how to check ollama model",
+        "how to install ollama model",
+        "ollama ollama_max_loaded_models",
+        "failed to download selected ollama model"
+      ]
+    },
+    {
+      "seed": "ollama unknown model architecture",
+      "google": [
+        "ollama unknown model architecture mllama",
+        "ollama unknown model architecture",
+        "ollama unknown model architecture gemma4",
+        "ollama unknown model architecture qwen3",
+        "ollama error loading model unknown model architecture mllama",
+        "famous architecture models"
+      ],
+      "bing": [
+        "ollama unknown model architecture: qwen35",
+        "no model in ollama",
+        "what is ollama model",
+        "ollama model that supports images",
+        "ollama model that can generate images",
+        "what is the latest ollama model",
+        "ollama uncensored vision model",
+        "ollama models and details",
+        "ollama model for describing images",
+        "how to find ollama models",
+        "ollama open source models",
+        "list of ollama models",
+        "ollama model not found",
+        "models provided by ollama",
+        "ollama create unknown type",
+        "failed to discover ollama models"
+      ]
+    },
+    {
+      "seed": "ollama is not recognized",
+      "google": [
+        "ollama is not recognized command",
+        "ollama is not recognized",
+        "ollama is not recognized as an internal",
+        "ollama is not recognized command windows",
+        "ollama is not working",
+        "ollama not recognized windows",
+        "ollama not recognized in cmd",
+        "the term ollama is not recognized"
+      ],
+      "bing": [
+        "ollama is not recognized",
+        "ollama is not recognized command",
+        "the term ollama is not recognized",
+        "ollama is open source or not",
+        "what is the current version of ollama",
+        "what is the latest version of ollama",
+        "is ollama completely local",
+        "newest version of ollama",
+        "tell me about ollama",
+        "does ollama collect data",
+        "ollama/ollama:latest",
+        "why ollama is not opening",
+        "ollama could not connect to ollama app",
+        "ollama does not support generate",
+        "ollama not found for url",
+        "unable to connect to ollama",
+        "failed to connect to ollama",
+        "requires a newer version of ollama",
+        "ollama:latest",
+        "ollama_registry"
+      ]
+    },
+    {
+      "seed": "ollama exit status",
+      "google": [
+        "ollama exit status 1",
+        "ollama exit status 2",
+        "ollama exit code 5",
+        "ollama exit code 2",
+        "ollama exit code 1",
+        "ollama error exit status 1",
+        "ollama error exit status 2",
+        "ollama list error exit status 1",
+        "how to check final exit status online"
+      ],
+      "bing": [
+        "ollama exit status 2",
+        "ollama exit status 0xc0000409"
+      ]
+    },
+    {
+      "seed": "ollama timed out waiting for llama runner to start",
+      "google": [
+        "ollama timed out waiting for llama runner to start"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "ollama stuck",
+      "google": [
+        "ollama stuck on loading",
+        "ollama stuck on pulling manifest",
+        "ollama stuck in stopping",
+        "ollama stuck",
+        "ollama stuck downloading model",
+        "ollama stuck loading model",
+        "ollama stuck in loop",
+        "ollama stuck thinking",
+        "ollama stuck downloading",
+        "ollama stuck on success"
+      ],
+      "bing": [
+        "ollama stuck on loading",
+        "ollama stock trading",
+        "ollama stock market model",
+        "ollama structured output",
+        "ollama getting stuck loading models"
+      ]
+    },
+    {
+      "seed": "ollama very slow",
+      "google": [
+        "ollama very slow",
+        "ollama very slow on mac",
+        "ollama very slow on cpu",
+        "ollama very slow download",
+        "ollama is slow",
+        "ollama too slow",
+        "ollama so slow",
+        "ollama really slow",
+        "ollama extremely slow",
+        "ollama is slower than lm studio"
+      ],
+      "bing": [
+        "ollama very slow",
+        "local ollama is very slow"
+      ]
+    },
+    {
+      "seed": "cursor tab not working",
+      "google": [
+        "cursor tab not working in jupyter notebook",
+        "cursor tab not working",
+        "cursor tab not working free",
+        "cursor tab not showing",
+        "cursor tab completion not working",
+        "cursor tab autocomplete not working",
+        "cursor browser tab not working",
+        "cursor tab suggestions not working",
+        "cursor ide tab not working",
+        "cursor tab key not working"
+      ],
+      "bing": [
+        "cursor tab not working",
+        "cursor tab not working in jupyter notebook",
+        "cursor tab completion not working",
+        "my cursor not working",
+        "cursor not working on windows",
+        "cursor not working correctly",
+        "my cursor is not working properly",
+        "cursor on keyboard not working",
+        "cursor not working on laptop",
+        "pc cursor not working",
+        "my cursor does not work",
+        "cursor does not work properly",
+        "my cursor stopped working",
+        "my cursor doesn't work",
+        "my cursor won't work",
+        "microsoft cursor not working properly"
+      ]
+    },
+    {
+      "seed": "cursor tab completion not working",
+      "google": [
+        "cursor tab completion not working",
+        "cursor tab autocomplete not working",
+        "cursor auto complete not working",
+        "cursor stop working",
+        "what to do if cursor stops working",
+        "what to do if cursor is not working"
+      ],
+      "bing": [
+        "cursor tab completion not working",
+        "what is cursor tab completion",
+        "cursor tab not working",
+        "cursor not working correctly",
+        "visual studio tab completion not working",
+        "my cursor stopped working",
+        "cursor is not working properly",
+        "my cursor is not working",
+        "windows cursor not working",
+        "cursor does not work properly",
+        "how to fix cursor not working",
+        "my custom cursor won't stay",
+        "how to turn off cursor autocomplete",
+        "my cursor doesn't work",
+        "microsoft cursor not working properly",
+        "cursor stopped working windows 11",
+        "not setting tab completion",
+        "cursor-tab"
+      ]
+    },
+    {
+      "seed": "cursor agent terminal not working",
+      "google": [
+        "cursor agent terminal not working",
+        "how to move cursor in terminal",
+        "mac terminal cursor disappears",
+        "cursor stop working"
+      ],
+      "bing": [
+        "cursor agent not working",
+        "cursor agent not responding",
+        "how to open cursor agent",
+        "how to use cursor agent",
+        "not seeing the custom agents in cursor",
+        "cursor failed to create agents",
+        "cursor agent execution timed out",
+        "what is an agent in cursor",
+        "cursor forgetting its in agent mode",
+        "cursor open agent window",
+        "failed to create agents. cursor",
+        "how to add agent in cursor",
+        "cursor agent ask manual",
+        "cursor-agent windows",
+        "cursor-agent.cmd",
+        "cursor-agent.exe"
+      ]
+    },
+    {
+      "seed": "cursor terminal stuck",
+      "google": [
+        "cursor terminal stuck",
+        "cursor terminal frozen",
+        "cursor agent terminal stuck",
+        "cursor terminal command stuck",
+        "cursor terminal commands get stuck",
+        "cursor running terminal command stuck",
+        "what do i do if my cursor is stuck",
+        "what to do when your cursor is stuck"
+      ],
+      "bing": [
+        "cursor terminal stuck",
+        "cursor getting stuck in terminal"
+      ]
+    },
+    {
+      "seed": "cursor mcp not working",
+      "google": [
+        "cursor mcp not working",
+        "cursor atlassian mcp not working",
+        "cursor cli mcp not working",
+        "cursor figma mcp not working",
+        "cursor browser mcp not working",
+        "cursor github mcp not working",
+        "cursor playwright mcp not working",
+        "cursor stop working",
+        "why is my cursor not working",
+        "what to do if cursor stops working"
+      ],
+      "bing": [
+        "how to use cursor with mcp",
+        "cursor mcp client closed",
+        "how to setup mcp in cursor",
+        "mcp server in cursor",
+        "any good mcp to add to cursor",
+        "cursor how to add mcp",
+        "mcp browser no cursor",
+        "how to connect mcp in cursor",
+        "can't add mcp server to cursor",
+        "what does mcp enable cursor to do",
+        "adding mcp to cursor",
+        "cursor mcp no server info found",
+        "cursor mcp no tools or prompts",
+        "cursor talk to mcp"
+      ]
+    },
+    {
+      "seed": "cursor mcp server not showing",
+      "google": [
+        "cursor mcp server not working",
+        "why can't i see my cursor on minecraft"
+      ],
+      "bing": [
+        "mcp server in cursor",
+        "cursor add mcp server",
+        "cursor setup mcp server",
+        "connect mcp server to cursor",
+        "cursor and mcp servers",
+        "cursor mcp client closed",
+        "how to use cursor with mcp",
+        "mcp server list for cursor",
+        "how to setup mcp in cursor",
+        "mcp browser no cursor",
+        "how to connect mcp in cursor",
+        "cursor mcp no server info found"
+      ]
+    },
+    {
+      "seed": "cursor indexing stuck",
+      "google": [
+        "cursor indexing stuck",
+        "cursor codebase indexing stuck",
+        "cursor setting up indexing stuck",
+        "how do i get my cursor unstuck",
+        "cursor getting stuck",
+        "why is my cursor stuck"
+      ],
+      "bing": []
+    },
+    {
+      "seed": "take notes for me not showing",
+      "google": [],
+      "bing": [
+        "take notes for me",
+        "take notes for me for free",
+        "takes notes for me",
+        "take notes for me for school",
+        "show me my notes",
+        "test me on my notes",
+        "i take notes but never read them",
+        "take on me music notes",
+        "how to take notes on a movie",
+        "make me notes on this",
+        "take note free forum",
+        "take note from video"
+      ]
+    },
+    {
+      "seed": "gemini not showing in google meet",
+      "google": [
+        "gemini not showing in google meet"
+      ],
+      "bing": [
+        "how to enable gemini in google meet",
+        "how to disable gemini in google meet",
+        "how to use gemini in google meet",
+        "how to add gemini in google meet",
+        "google meet with gemini",
+        "how to activate gemini in google meet",
+        "gemini note taking in google meet",
+        "gemini in chrome not showing",
+        "google gemini not working",
+        "gemini meeting notes google meet",
+        "gemini notes google meet",
+        "show google gemini website",
+        "how to talk to google gemini",
+        "i am using google gemini",
+        "google gemini isn't working",
+        "google gemini meeting minutes",
+        "google meet con gemini"
+      ]
+    },
+    {
+      "seed": "take notes for me greyed out",
+      "google": [],
+      "bing": [
+        "take notes for me",
+        "greyed out for me",
+        "takes notes for me",
+        "take notes for me free",
+        "get me up to date greyed out",
+        "taking down notes meme"
+      ]
+    },
+    {
+      "seed": "copilot not available in this meeting",
+      "google": [
+        "copilot not available in teams meeting",
+        "copilot not showing in teams meeting",
+        "copilot not working in teams meeting"
+      ],
+      "bing": [
+        "copilot not available in teams meeting",
+        "copilot in meeting only",
+        "copilot not appearing in teams meeting",
+        "copilot not showing in teams meeting",
+        "allow copilot in meeting options",
+        "copilot not generating meeting notes",
+        "schedule meeting with copilot",
+        "can copilot provide meeting minutes",
+        "can copilot create meetings for me",
+        "can copilot schedule meetings",
+        "can use copilot attend meeting"
+      ]
+    },
+    {
+      "seed": "copilot greyed out in teams meeting",
+      "google": [
+        "copilot greyed out in teams meeting"
+      ],
+      "bing": [
+        "copilot not appearing in teams meeting",
+        "copilot not showing up in teams meeting",
+        "copilot missing in teams meeting",
+        "copilot in teams meeting",
+        "teams copilot in meetings",
+        "teams meeting policies copilot",
+        "teams meeting copilot policy",
+        "copilot during ms teams meeting"
+      ]
+    },
+    {
+      "seed": "copilot in teams meeting not working",
+      "google": [
+        "copilot not working in teams meeting",
+        "why can i not join a teams meeting",
+        "why is my teams meeting not working"
+      ],
+      "bing": [
+        "how to use copilot in teams meeting"
+      ]
+    },
+    {
+      "seed": "copilot not showing in word for mac",
+      "google": [
+        "copilot not showing in word for mac",
+        "copilot not working in word for mac",
+        "copilot not showing up in word for mac",
+        "copilot not appearing in word for mac"
+      ],
+      "bing": [
+        "copilot not showing in word for mac",
+        "copilot not showing in word",
+        "microsoft copilot not showing in word",
+        "copilot option not showing in word",
+        "ms word copilot not showing",
+        "copilot not appearing in word",
+        "copilot in word on mac",
+        "copilot not showing up in word document",
+        "copilot icon not showing in word",
+        "copilot does not show in word",
+        "copilot not available in word",
+        "copilot doesn't appear in word",
+        "why isn't copilot showing in word"
+      ]
+    },
+    {
+      "seed": "copilot not showing in word online",
+      "google": [
+        "copilot not showing in word online",
+        "word online not working",
+        "why is my ticket not showing up online"
+      ],
+      "bing": [
+        "why is copilot not showing in word",
+        "copilot does not appear in word",
+        "copilot not working in microsoft word",
+        "copilot doesn't appear in word",
+        "copilot not working on word",
+        "why isn't copilot showing in word"
+      ]
+    },
+    {
+      "seed": "draft with copilot not showing in word",
+      "google": [
+        "draft with copilot not showing in word"
+      ],
+      "bing": [
+        "draft with copilot not showing in word",
+        "draft with copilot not showing in outlook",
+        "turn off draft with copilot in word",
+        "disable draft with copilot in word",
+        "microsoft word draft with copilot",
+        "microsoft word draft with copilot turn off",
+        "what is draft with copilot in word",
+        "copilot in word not showing",
+        "copilot not showing up in microsoft word",
+        "copilot not showing up in word document",
+        "remove draft with copilot from word",
+        "how to draft with copilot in outlook",
+        "how to disable draft with copilot",
+        "copilot doesn't appear in word"
+      ]
+    }
+  ],
+  "metrics": {
+    "monthlyVolume": null,
+    "keywordDifficulty": null,
+    "rankingProbability": null,
+    "trafficForecast": null
+  }
+}

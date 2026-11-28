@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-11-28",
+  "topic": "ollama llama runner process has terminated",
+  "method": "Pages taken from the DuckDuckGo samples in 2026-11-28-serp-ollama-load.json and 2026-11-28-serp-alt.json, fetched once as text and saved outside the repository (../.byteverse-ollama-runner-check/competitors). Concept coverage was measured with the same 40 regular expressions for every page (coverage.mjs in the evidence folder). No ranking positions, traffic or volume figures are claimed.",
+  "blocked": [
+    { "site": "lumadock.com", "url": "https://lumadock.com/tutorials/ollama-troubleshooting", "status": 403 }
+  ],
+  "competitors": [
+    {
+      "site": "runaihome.com",
+      "url": "https://www.runaihome.com/blog/ollama-llama-runner-process-terminated-fix-2026/",
+      "published": "2026-06-19", "words": 2194,
+      "strengths": "Organised by exit code with a triage list and links to GitHub issues.",
+      "gaps": "States that 0xc0000409 is an illegal instruction exception (that is 0xc000001d; 0xc0000409 is STATUS_STACK_BUFFER_OVERRUN). Says exit status 2 is usually a GPU or VRAM problem and that the codes are stable across versions. Pinned to 0.30.8 from June 2026."
+    },
+    {
+      "site": "localaimaster.com",
+      "url": "https://localaimaster.com/blog/ollama-llama-runner-terminated",
+      "published": "2026-08-23", "words": 4047,
+      "strengths": "Reads llm/llama_server.go, explains the two fields after the colon, hex versus decimal codes and the wording change, quotes real reports.",
+      "gaps": "Describes 0xc0000409 as Windows killing the process for a corrupted stack instead of a fail fast from abort. Says exit status 2 has no meaning, without the Go runtime explanation for the old runner. No automatic retry rules, no garbled Windows texts, no nil format, no apps that show only 500."
+    },
+    {
+      "site": "binmage.com",
+      "url": "https://www.binmage.com/ollama-llama-runner-process-has-terminated/",
+      "published": "2026-11-19", "modified": "2026-11-22", "words": 1683,
+      "strengths": "Reproduced three exit status 1 failures on 0.40.16 and counted 65 recent GitHub issues by ending.",
+      "gaps": "No explanation of why 0xc0000409 appears with CUDA lines, no exit status 2 history, no retry rules, no timeout, no nil format, no log search steps beyond locations."
+    },
+    {
+      "site": "thinkfacility.com (llama-server)",
+      "url": "https://www.thinkfacility.com/errors/ollama-llama-server-process-has-terminated/",
+      "published": "2026-09-25", "words": 830,
+      "strengths": "Short and correct about the 0.30.0 wording change and the captured line.",
+      "gaps": "Brief; retry description does not give the conditions; no per-ending fixes."
+    },
+    {
+      "site": "thinkfacility.com (0xc0000409)",
+      "url": "https://www.thinkfacility.com/errors/ollama-exit-status-0xc0000409/",
+      "published": "2026-09-25", "words": 704,
+      "strengths": "Explains that the alarming sentence is Windows' text for the code.",
+      "gaps": "Does not say why the code appears (abort and fail fast), no other Windows codes."
+    },
+    {
+      "site": "coder000.com",
+      "url": "https://www.coder000.com/post/ollama-llama-server-process-has-terminated-signal-killed",
+      "published": "2026-10-22", "words": 972,
+      "strengths": "Reproduced signal: killed in a memory limited Docker container on 0.40.8.",
+      "gaps": "Single ending only; no WSL limit, no kernel log line, no other endings."
+    },
+    {
+      "site": "dasroot.net",
+      "url": "https://dasroot.net/posts/2026/02/fix-ollama-500-internal-server-error-comprehensive-guide/",
+      "published": "2026-02-07", "modified": "2026-09-26", "words": 777,
+      "strengths": "General 500 checklist.",
+      "gaps": "Generic; predates the llama-server change in its original form; no endings decoded."
+    },
+    {
+      "site": "night-dev.com",
+      "url": "https://night-dev.com/en/blog/ollama-500-internal-server-error/",
+      "published": "2026-04-09", "words": 629,
+      "strengths": "One Hugging Face Modelfile case.",
+      "gaps": "Single cause; not about the runner message."
+    },
+    {
+      "site": "localaimaster.com (out of memory)",
+      "url": "https://localaimaster.com/blog/ollama-out-of-memory-errors",
+      "published": "2026-08-23", "words": 4326,
+      "strengths": "Memory levers including context, parallel requests and K/V cache type.",
+      "gaps": "Memory only; mentions the explicit context case but not the retry tiers."
+    }
+  ],
+  "coverageOfNineReadablePages": {
+    "journalctl": 8, "statusCode500": 8, "serverLog": 5, "newWording": 5, "versionBoundary": 5, "oomKiller": 4, "forceCpu": 4,
+    "cudaMalloc": 3, "unknownArch": 3, "repull": 3, "kvCacheType": 3, "ntstatusText": 3, "ggmlAssert": 3, "oldSystemMemoryCheck": 3,
+    "autoRetryOnOOM": 2, "sigabrt": 2, "illegalInstruction": 2, "accessViolation": 2, "exit127": 2, "wslconfig": 2,
+    "explicitNumCtxNoShrink": 1, "dllNotFound": 1, "loadTimeout": 1, "dockerMemory": 1,
+    "fastFail": 0, "exit2GoPanic": 0, "nilFormat": 0, "incompatibleHint": 0, "appsShow500": 0
+  },
+  "contentGap": [
+    "Why 0xc0000409 appears: abort() in a release build ends as a fail fast with that code, and llama.cpp calls abort after GGML_ASSERT and after every CUDA or ROCm error (Microsoft __fastfail and abort documentation, Raymond Chen, llama.cpp b12734 source).",
+    "The texts Ollama 0.30 and later attach to Windows codes, produced on Windows 11 with the same FormatMessage call: some are garbled (0xp, hs) because the call passes no insert values.",
+    "Exit status 2 on 0.24 and older: the runner was Ollama's own Go program, and Go exits with code 2 after an unrecovered panic or fatal error (Go runtime documentation, reports #12314 and #14291).",
+    "The %!w(<nil>) ending of 0.22 and older: a nil exit error formatted with %w when the runner exited with status 0 (Go fmt source, Ollama 0.22.0 source, report #15849).",
+    "Exact automatic retry rules since 0.30.0: one retry, automatic context only (above 32768 to 32768, above 4096 to 4096), other models evicted, projector moved to the CPU for vision models; explicit context settings are kept.",
+    "Context multiplied by OLLAMA_NUM_PARALLEL in the llama-server command line, and the 50 percent WSL 2 memory default for Ollama in WSL or Docker Desktop.",
+    "How to get the full message when an app such as Open WebUI shows only a 500, and which log lines frame a failed load."
+  ]
+}

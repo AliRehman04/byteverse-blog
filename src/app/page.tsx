@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BadgeCheck, BookOpen, BookOpenCheck, Bot, Check, Code2, Compass, FileSpreadsheet, Layers, LayoutGrid, Mail, Monitor, Newspaper, Plus, ShieldCheck, SlidersHorizontal, Sparkles, UserRound, Wrench, type LucideIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BadgeCheck, BookOpen, BookOpenCheck, Bot, Braces, Check, Code2, Compass, FileSpreadsheet, Layers, LayoutGrid, Mail, Monitor, Newspaper, Plus, Ruler, ShieldCheck, SlidersHorizontal, Sparkles, UserRound, Wrench, type LucideIcon } from "lucide-react";
 import { HomepageAnalytics } from "@/components/homepage-analytics";
 import { HomepageNewsletter } from "@/components/homepage-newsletter";
 import { HomepageToolFinder } from "@/components/homepage-tool-finder";
@@ -55,6 +55,51 @@ function SectionHead({ id, icon: Icon, eyebrow, title, lede, link }: { id: strin
   );
 }
 
+const stageJson = [
+  { key: "site", value: "\"ByteVerse\"", tone: styles.tokString },
+  { key: "tools", value: String(toolCount), tone: styles.tokNumber },
+  { key: "signup", value: "false", tone: styles.tokNumber },
+  { key: "price", value: "\"free\"", tone: styles.tokString },
+];
+
+// Decorative only: each panel pictures something the named tool really does, so it is hidden from assistive technology.
+function HeroStage() {
+  return (
+    <div className={styles.stage} aria-hidden="true" translate="no">
+      <div className={styles.stageHalo} />
+      <div className={styles.window}>
+        <div className={styles.windowBar}>
+          <span className={styles.windowDots}><i /><i /><i /></span>
+          <span className={styles.windowTab}><Braces size={13} />JSON Formatter</span>
+        </div>
+        <div className={styles.code}>
+          <div><span className={styles.codeLine}>1</span><span className={styles.tokPunct}>{"{"}</span></div>
+          {stageJson.map((row, index) => (
+            <div key={row.key}>
+              <span className={styles.codeLine}>{index + 2}</span>
+              <span className={styles.codeIndent}><span className={styles.tokKey}>&quot;{row.key}&quot;</span><span className={styles.tokPunct}>: </span><span className={row.tone}>{row.value}</span>{index < stageJson.length - 1 && <span className={styles.tokPunct}>,</span>}</span>
+            </div>
+          ))}
+          <div><span className={styles.codeLine}>{stageJson.length + 2}</span><span className={styles.tokPunct}>{"}"}</span></div>
+        </div>
+        <div className={styles.windowFoot}><span className={styles.windowOk}><Check size={12} />Formatted</span></div>
+      </div>
+      <div className={`${styles.float} ${styles.floatTitle}`}>
+        <span className={styles.floatHead}><Ruler size={13} />SEO Title Checker</span>
+        <span className={styles.serpUrl}>www.byteverse.fyi</span>
+        <span className={styles.serpTitle}>{homepageMeta.title}</span>
+        <span className={styles.floatMeta}><strong>{homepageMeta.title.length}</strong> characters</span>
+      </div>
+      <div className={`${styles.float} ${styles.floatCsv}`}>
+        <span className={styles.floatHead}><FileSpreadsheet size={13} />CSV Repair</span>
+        <span className={styles.miniTable}><span>zip</span><span>city</span><span>02115</span><span>Boston</span><span>00501</span><span>Holtsville</span></span>
+        <span className={styles.floatOk}><Check size={12} />Leading zeros kept</span>
+      </div>
+      <span className={`${styles.float} ${styles.floatPill}`}><ShieldCheck size={14} />No sign-up</span>
+    </div>
+  );
+}
+
 function Byline({ post }: { post: HomepagePost }) {
   return (
     <div className={styles.byline}>
@@ -99,6 +144,7 @@ export default async function HomePage() {
         <div className={styles.heroGlow} aria-hidden="true" />
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={`${styles.container} ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
           <p className={styles.heroBadge}><Sparkles size={14} aria-hidden="true" /><span>{homepageHero.badge}</span></p>
           <h1 id="home-title" className={styles.headline}>{homepageHero.headingLead} <span>{homepageHero.headingAccent}</span></h1>
           <p className={styles.heroIntro}>{homepageHero.intro}</p>
@@ -114,6 +160,8 @@ export default async function HomePage() {
             <Link href="/blog" prefetch={false} className={styles.ghostCta} data-home-event="cta_click" data-home-label="hero-guides">Browse tech guides <ArrowRight size={17} aria-hidden="true" /></Link>
           </div>
           <p className={styles.heroNote}><ShieldCheck size={15} aria-hidden="true" />{homepageHero.note}</p>
+          </div>
+          <HeroStage />
         </div>
       </section>
 

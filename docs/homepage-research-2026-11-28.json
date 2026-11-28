@@ -180,5 +180,23 @@
     "No ranking or traffic outcome is promised",
     "Keyword wording comes from autocomplete and result pages, not measured demand",
     "The apex-to-www redirect remains temporary until the Vercel domain setting is changed"
-  ]
+  ],
+  "heroRedesign": {
+    "date": "2026-11-28",
+    "reason": "Owner feedback after launch: the centred hero looked dated",
+    "changes": [
+      "Two-column hero from 1024 pixels: copy and search on one side, an illustration on the other; one column below that",
+      "Illustration built in HTML and CSS only (no image file): a JSON Formatter window, an SEO Title Checker card showing the real page title and its character count, a CSV Repair card and a no sign-up pill",
+      "Soft colour fields behind the hero, a dotted backdrop, gradient borders on the badge and the search box, and a colour glow under the search box",
+      "Slow drifting and floating motion only from 1024 pixels and only when reduced motion is not requested",
+      "Right-to-left pages keep the homepage heading sizes instead of the site-wide shrink"
+    ],
+    "unchanged": ["Title, main heading text, meta description, structured data, links, search behaviour and analytics events"],
+    "accessibility": "The illustration is aria-hidden, is not translated and has no links or controls.",
+    "validation": {
+      "unitGroups": { "passed": 13, "failed": 0 },
+      "browserGroups": { "passed": 21, "failed": 0 },
+      "mobileLab": "Local preview performance 67 to 78 across eight runs with accessibility, best practices and SEO at 100 and layout shift 0. The live page with the previous hero scored 71 and 73 in the same session, so no change is claimed either way."
+    }
+  }
 }

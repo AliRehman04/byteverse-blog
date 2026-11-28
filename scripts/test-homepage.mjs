@@ -227,6 +227,11 @@ test("server-rendered homepage has a single H1, ordered sections, real anchors, 
   for (const node of elements(doc, node => "data-home-event" in node.attribs)) assert(node.name === "a" && node.attribs["data-home-label"], textContent(node));
   const hero = elements(doc, node => node.name === "section" && node.attribs["aria-labelledby"] === "home-title")[0];
   assert.deepEqual(elements(hero, node => node.attribs["data-home-event"] === "cta_click").map(node => [textContent(node).trim(), node.attribs.href]), [["Explore free tools", "/tools"], ["Browse tech guides", "/blog"]]);
+  // The hero illustration is decoration: hidden from assistive technology, never translated, and without links or controls.
+  const stage = elements(hero, node => node.attribs.translate === "no")[0];
+  assert.equal(stage.attribs["aria-hidden"], "true");
+  assert.equal(elements(stage, node => ["a", "button", "input", "img"].includes(node.name)).length, 0);
+  assert(textContent(stage).includes(home.homepageMeta.title), "The title-checker card shows the real page title");
   for (const href of ["/about", "/contact", "/privacy", "/disclaimer", "/author/ali-rehman"]) assert(elements(doc, node => node.name === "a" && node.attribs.href === href).length >= 1, href);
   for (const topic of home.homepageTopics) assert.equal(elements(doc, node => node.name === "a" && node.attribs.href === `/category/${topic.slug}`).length, 1);
 });
